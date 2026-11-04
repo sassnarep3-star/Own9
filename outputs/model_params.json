@@ -1,0 +1,12 @@
+{
+  "warmup_blend_mae": 10.8445,
+  "params": {
+    "elo_k": 10.0,
+    "elo_hfa": 2.6,
+    "elo_season_decay": 0.5,
+    "ridge_lambda": 2.0,
+    "ridge_tau_days": 90.0,
+    "ewma_halflife": 10.0
+  },
+  "grid_size": 144
+}

@@ -1,0 +1,135 @@
+{
+  "eval_window": [
+    2006,
+    2026
+  ],
+  "n_games_eval": 5320,
+  "n_games_with_market": 5320,
+  "mae_model_spread": 10.648,
+  "mae_market_spread": 10.248,
+  "rmse_model_spread": 13.625,
+  "rmse_market_spread": 13.186,
+  "mae_total_model": 10.804,
+  "mae_total_market": 10.523,
+  "corr_model_result": 0.3785,
+  "corr_market_result": 0.436,
+  "regression_result_on_market_and_model": {
+    "intercept": -0.3104,
+    "coef_market": 1.0003,
+    "coef_model_increment": 0.0679,
+    "t_stat_model_increment": 1.069,
+    "note": "A t-stat below ~2 means the own line does not add statistically detectable information beyond the market line; it does NOT mean the line is useless, only that the market is hard to beat."
+  },
+  "mae_50_50_blend": 10.358,
+  "anchored": {
+    "alpha_market_weight": 0.8303,
+    "note": "alpha fitted on the 1999-2005 warm-up window only: anchored_line = alpha*market_line + (1-alpha)*own_line",
+    "mae_anchored": 10.264
+  },
+  "mae_by_week_bucket": [
+    {
+      "bucket": "weeks 1-2",
+      "n": 670,
+      "mae_model": 10.16,
+      "mae_market": 9.79,
+      "mean_abs_edge": 2.728
+    },
+    {
+      "bucket": "weeks 3-4",
+      "n": 649,
+      "mae_model": 10.849,
+      "mae_market": 10.575,
+      "mean_abs_edge": 2.688
+    },
+    {
+      "bucket": "weeks 5-8",
+      "n": 1186,
+      "mae_model": 10.625,
+      "mae_market": 10.26,
+      "mean_abs_edge": 2.501
+    },
+    {
+      "bucket": "weeks 9-13",
+      "n": 1467,
+      "mae_model": 10.437,
+      "mae_market": 10.032,
+      "mean_abs_edge": 2.553
+    },
+    {
+      "bucket": "weeks 14-18",
+      "n": 1348,
+      "mae_model": 11.044,
+      "mae_market": 10.543,
+      "mean_abs_edge": 2.837
+    }
+  ],
+  "edge_margin_sd": 3.187,
+  "share_games_edge_ge_2": 0.5284,
+  "share_games_edge_ge_3_5": 0.2823,
+  "sigma_margin": 13.433,
+  "sigma_total": 13.908,
+  "blend_weights": {
+    "margin": {
+      "elo_margin": 0.376403,
+      "ridge_margin": 0.0,
+      "massey_margin": 0.0,
+      "naive_margin": 0.7541
+    },
+    "total": {
+      "ridge_total": 0.03003,
+      "naive_total": 0.973599
+    }
+  },
+  "calibration": {
+    "elo_margin": {
+      "a": 2.014091500708288,
+      "b": 0.3481052971243967,
+      "n": 1768
+    },
+    "ridge_margin": {
+      "a": 3.2535075037702925,
+      "b": 0.11677929869563587,
+      "n": 1564
+    },
+    "massey_margin": {
+      "a": 1.7510818095451806,
+      "b": 0.4948956292011684,
+      "n": 1564
+    },
+    "naive_margin": {
+      "a": 3.024652208725915,
+      "b": 1.5631962564231048,
+      "n": 1768
+    },
+    "ridge_total": {
+      "a": 37.16047718263113,
+      "b": 0.11470762654518105,
+      "n": 1564
+    },
+    "naive_total": {
+      "a": -11.218390411043268,
+      "b": 1.2635000844835778,
+      "n": 1768
+    }
+  },
+  "tuning": {
+    "warmup_blend_mae": 10.8445,
+    "params": {
+      "elo_k": 10.0,
+      "elo_hfa": 2.6,
+      "elo_season_decay": 0.5,
+      "ridge_lambda": 2.0,
+      "ridge_tau_days": 90.0,
+      "ewma_halflife": 10.0
+    },
+    "grid_size": 144
+  },
+  "params": {
+    "elo_k": 10.0,
+    "elo_hfa": 2.6,
+    "elo_season_decay": 0.5,
+    "ridge_lambda": 2.0,
+    "ridge_tau_days": 90.0,
+    "ewma_halflife": 10.0
+  }
+}

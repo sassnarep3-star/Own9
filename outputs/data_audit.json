@@ -1,0 +1,386 @@
+{
+  "generated_at_utc": "2026-11-04T20:17:15Z",
+  "source_commit_sha": "d48ea039e3683aabdf1f1f610320b3e1d1c86409",
+  "checks": [
+    {
+      "id": "A01",
+      "check": "game_id is unique in games.csv",
+      "result": "pass",
+      "detail": "0 duplicates",
+      "source": "https://github.com/nflverse/nfldata/blob/d48ea039e3683aabdf1f1f610320b3e1d1c86409/data/games.csv"
+    },
+    {
+      "id": "A02",
+      "check": "result == home_score - away_score",
+      "result": "pass",
+      "detail": "checked 7397 completed games",
+      "source": "https://github.com/nflverse/nfldata/blob/d48ea039e3683aabdf1f1f610320b3e1d1c86409/data/games.csv"
+    },
+    {
+      "id": "A03",
+      "check": "total == home_score + away_score",
+      "result": "pass",
+      "detail": "checked 7397 completed games",
+      "source": "https://github.com/nflverse/nfldata/blob/d48ea039e3683aabdf1f1f610320b3e1d1c86409/data/games.csv"
+    },
+    {
+      "id": "A04",
+      "check": "every club code appears in teams.csv",
+      "result": "pass",
+      "detail": "unknown: []",
+      "source": "https://github.com/nflverse/nfldata/blob/d48ea039e3683aabdf1f1f610320b3e1d1c86409/data/teams.csv"
+    },
+    {
+      "id": "A05",
+      "check": "each season has >= 30 distinct clubs",
+      "result": "pass",
+      "detail": "seasons with <30 club codes: 0",
+      "source": "https://github.com/nflverse/nfldata/blob/d48ea039e3683aabdf1f1f610320b3e1d1c86409/data/games.csv"
+    },
+    {
+      "id": "A06",
+      "check": "spread_line is home-perspective and positive when the HOME team is favoured",
+      "result": "pass",
+      "detail": "corr(spread_line, result) = 0.4252 on n=7397; positive spread_line must coincide with positive result (home wins by that many)",
+      "source": "https://github.com/nflverse/nfldata/blob/d48ea039e3683aabdf1f1f610320b3e1d1c86409/data/games.csv"
+    },
+    {
+      "id": "A07",
+      "check": "games.spread_line agrees with closing_lines.csv SPREAD sign convention",
+      "result": "fail",
+      "detail": "0.59% of 3368 games agree on the away-side line (max |diff| = 54.00)",
+      "source": "https://github.com/nflverse/nfldata/blob/d48ea039e3683aabdf1f1f610320b3e1d1c86409/data/closing_lines.csv"
+    },
+    {
+      "id": "A08",
+      "check": "games.total_line agrees with closing_lines.csv TOTAL line",
+      "result": "fail",
+      "detail": "61.70% of 6736 rows agree (max |diff| = 3.00)",
+      "source": "https://github.com/nflverse/nfldata/blob/d48ea039e3683aabdf1f1f610320b3e1d1c86409/data/closing_lines.csv"
+    },
+    {
+      "id": "A09",
+      "check": "closing_lines SPREAD outcome flag reproduces from scores + line",
+      "result": "pass",
+      "detail": "99.91% of 6542 non-push spread rows agree (194 pushes excluded)",
+      "source": "https://github.com/nflverse/nfldata/blob/d48ea039e3683aabdf1f1f610320b3e1d1c86409/data/closing_lines.csv"
+    },
+    {
+      "id": "A10",
+      "check": "closing_lines TOTAL outcome flag reproduces from score + line",
+      "result": "pass",
+      "detail": "99.88% of 6622 non-push total rows agree",
+      "source": "https://github.com/nflverse/nfldata/blob/d48ea039e3683aabdf1f1f610320b3e1d1c86409/data/closing_lines.csv"
+    },
+    {
+      "id": "A11",
+      "check": "moneyline columns are American odds (two-sided implied prob 1.00-1.20)",
+      "result": "pass",
+      "detail": "n=5444, share in [1.00,1.20] = 0.9998, median overround = 1.0247",
+      "source": "https://github.com/nflverse/nfldata/blob/d48ea039e3683aabdf1f1f610320b3e1d1c86409/data/games.csv"
+    },
+    {
+      "id": "A12",
+      "check": "home_spread_odds is the price of the HOME side at spread_line",
+      "result": "fail",
+      "detail": "when the home team is favoured, home_spread_odds < 0 in 74.9% of games; when the home team is the underdog, home_spread_odds > 0 in 20.3% of games (n=5444) - both consistent with a home-side price",
+      "source": "https://github.com/nflverse/nfldata/blob/d48ea039e3683aabdf1f1f610320b3e1d1c86409/data/games.csv"
+    },
+    {
+      "id": "A13",
+      "check": "over_odds/under_odds are American odds",
+      "result": "pass",
+      "detail": "n=5441, median overround = 1.0244",
+      "source": "https://github.com/nflverse/nfldata/blob/d48ea039e3683aabdf1f1f610320b3e1d1c86409/data/games.csv"
+    },
+    {
+      "id": "A14",
+      "check": "sc_lines lines are team-perspective spreads on the same scale (within 5 pts of close)",
+      "result": "fail",
+      "detail": "nan% of 0 away-side rows within 5 pts of the closing line; sc_lines is an OPENING line set, so it is expected to differ from the close",
+      "source": "https://github.com/nflverse/nfldata/blob/d48ea039e3683aabdf1f1f610320b3e1d1c86409/data/sc_lines.csv"
+    },
+    {
+      "id": "A15",
+      "check": "upstream documentation (DATASETS.md) covers every games.csv column",
+      "result": "fail",
+      "detail": "columns not described in DATASETS.md: ['overtime', 'old_game_id', 'nfl_detail_id', 'ftn', 'away_rest', 'home_rest', 'away_moneyline', 'home_moneyline', 'away_spread_odds', 'home_spread_odds', 'under_odds', 'over_odds', 'div_game', 'away_qb_id', 'home_qb_id', 'away_qb_name', 'home_qb_name', 'stadium_id', 'gsis_int']",
+      "source": "https://github.com/nflverse/nfldata/blob/d48ea039e3683aabdf1f1f610320b3e1d1c86409/DATASETS.md"
+    },
+    {
+      "id": "A16",
+      "check": "upstream documentation matches the current regular-season length",
+      "result": "fail",
+      "detail": "DATASETS.md states regular season weeks are 1-17 (and week 18 = wildcard), but the data contains regular-season week 18 (season 2026 has 272 scheduled REG games). Documentation lag - flagged.",
+      "source": "https://github.com/nflverse/nfldata/blob/d48ea039e3683aabdf1f1f610320b3e1d1c86409/DATASETS.md"
+    }
+  ],
+  "n_pass": 10,
+  "n_fail": 6,
+  "coverage": {
+    "games": {
+      "first": 1999,
+      "last": 2026,
+      "n_seasons": 28
+    },
+    "closing_lines": {
+      "first": 2006,
+      "last": 2018,
+      "n_seasons": 13
+    },
+    "sc_lines": {
+      "first": 2013,
+      "last": 2020,
+      "n_seasons": 8
+    },
+    "initial_lines": {
+      "first": 2021,
+      "last": 2021,
+      "n_seasons": 1
+    },
+    "win_totals": {
+      "first": 2003,
+      "last": 2020,
+      "n_seasons": 18
+    }
+  },
+  "market_price_coverage": {
+    "spread_line": {
+      "n": 7116,
+      "first_season": 1999,
+      "last_season": 2026
+    },
+    "home_spread_odds": {
+      "n": 5214,
+      "first_season": 2006,
+      "last_season": 2026
+    },
+    "total_line": {
+      "n": 7116,
+      "first_season": 1999,
+      "last_season": 2026
+    },
+    "over_odds": {
+      "n": 5212,
+      "first_season": 2006,
+      "last_season": 2026
+    },
+    "away_moneyline": {
+      "n": 5214,
+      "first_season": 2006,
+      "last_season": 2026
+    },
+    "home_moneyline": {
+      "n": 5214,
+      "first_season": 2006,
+      "last_season": 2026
+    }
+  },
+  "season_structure": [
+    {
+      "season": 1999,
+      "games": 248,
+      "weeks": 17,
+      "completed": 248
+    },
+    {
+      "season": 2000,
+      "games": 248,
+      "weeks": 17,
+      "completed": 248
+    },
+    {
+      "season": 2001,
+      "games": 248,
+      "weeks": 17,
+      "completed": 248
+    },
+    {
+      "season": 2002,
+      "games": 256,
+      "weeks": 17,
+      "completed": 256
+    },
+    {
+      "season": 2003,
+      "games": 256,
+      "weeks": 17,
+      "completed": 256
+    },
+    {
+      "season": 2004,
+      "games": 256,
+      "weeks": 17,
+      "completed": 256
+    },
+    {
+      "season": 2005,
+      "games": 256,
+      "weeks": 17,
+      "completed": 256
+    },
+    {
+      "season": 2006,
+      "games": 256,
+      "weeks": 17,
+      "completed": 256
+    },
+    {
+      "season": 2007,
+      "games": 256,
+      "weeks": 17,
+      "completed": 256
+    },
+    {
+      "season": 2008,
+      "games": 256,
+      "weeks": 17,
+      "completed": 256
+    },
+    {
+      "season": 2009,
+      "games": 256,
+      "weeks": 17,
+      "completed": 256
+    },
+    {
+      "season": 2010,
+      "games": 256,
+      "weeks": 17,
+      "completed": 256
+    },
+    {
+      "season": 2011,
+      "games": 256,
+      "weeks": 17,
+      "completed": 256
+    },
+    {
+      "season": 2012,
+      "games": 256,
+      "weeks": 17,
+      "completed": 256
+    },
+    {
+      "season": 2013,
+      "games": 256,
+      "weeks": 17,
+      "completed": 256
+    },
+    {
+      "season": 2014,
+      "games": 256,
+      "weeks": 17,
+      "completed": 256
+    },
+    {
+      "season": 2015,
+      "games": 256,
+      "weeks": 17,
+      "completed": 256
+    },
+    {
+      "season": 2016,
+      "games": 256,
+      "weeks": 17,
+      "completed": 256
+    },
+    {
+      "season": 2017,
+      "games": 256,
+      "weeks": 17,
+      "completed": 256
+    },
+    {
+      "season": 2018,
+      "games": 256,
+      "weeks": 17,
+      "completed": 256
+    },
+    {
+      "season": 2019,
+      "games": 256,
+      "weeks": 17,
+      "completed": 256
+    },
+    {
+      "season": 2020,
+      "games": 256,
+      "weeks": 17,
+      "completed": 256
+    },
+    {
+      "season": 2021,
+      "games": 272,
+      "weeks": 18,
+      "completed": 272
+    },
+    {
+      "season": 2022,
+      "games": 271,
+      "weeks": 18,
+      "completed": 271
+    },
+    {
+      "season": 2023,
+      "games": 272,
+      "weeks": 18,
+      "completed": 272
+    },
+    {
+      "season": 2024,
+      "games": 272,
+      "weeks": 18,
+      "completed": 272
+    },
+    {
+      "season": 2025,
+      "games": 272,
+      "weeks": 18,
+      "completed": 272
+    },
+    {
+      "season": 2026,
+      "games": 272,
+      "weeks": 18,
+      "completed": 121
+    }
+  ],
+  "undocumented_columns": [
+    "overtime",
+    "old_game_id",
+    "nfl_detail_id",
+    "ftn",
+    "away_rest",
+    "home_rest",
+    "away_moneyline",
+    "home_moneyline",
+    "away_spread_odds",
+    "home_spread_odds",
+    "under_odds",
+    "over_odds",
+    "div_game",
+    "away_qb_id",
+    "home_qb_id",
+    "away_qb_name",
+    "home_qb_name",
+    "stadium_id",
+    "gsis_int"
+  ],
+  "official_crosscheck_targets": {
+    "season_2026_weeks": 18,
+    "season_2026_reg_games": 272,
+    "season_2025_reg_games": 272,
+    "completed_games_2026": 121,
+    "last_completed_gameday_2026": "2026-11-02"
+  },
+  "row_counts": {
+    "games": 7548,
+    "closing_lines": 20490,
+    "initial_lines": 1088,
+    "sc_lines": 4092,
+    "win_totals": 576,
+    "standings": 800,
+    "teams": 800
+  }
+}
