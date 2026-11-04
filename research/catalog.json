@@ -1,0 +1,825 @@
+{
+  "as_of": "2026-11-04",
+  "sources": [
+    {
+      "id": "NFL-RULES",
+      "title": "NFL Football Operations",
+      "url": "https://operations.nfl.com/rules-officiating/2026-nfl-rulebook",
+      "kind": "NFL primary source",
+      "status": "checked",
+      "checked_on": "2026-11-04",
+      "evidence": "2026 NFL RULEBOOK; rule changes and links to the official PDF.",
+      "scope": "Rulebook identity and scope only; no sportsbook settlement or model efficacy."
+    },
+    {
+      "id": "NFL-STATS",
+      "title": "NFL team statistics",
+      "url": "https://www.nfl.com/stats/team-stats/",
+      "kind": "NFL primary source",
+      "status": "checked",
+      "checked_on": "2026-11-04",
+      "evidence": "NFL 2026 REG - offense passing stats; passing, rushing, receiving, scoring and downs categories.",
+      "scope": "Category availability only. Extracted numerical rows lacked column headers; no statistics admitted to model data."
+    },
+    {
+      "id": "NFL-INJURY",
+      "title": "NFL injury report",
+      "url": "https://www.nfl.com/injuries/",
+      "kind": "NFL primary source",
+      "status": "checked",
+      "checked_on": "2026-11-04",
+      "evidence": "Official Latest NFL Injury Report for Players - Week 9 of the 2026 Season. Columns: Player, Position, Injuries, Practice Status, Game Status.",
+      "scope": "Practice and game-status fields are distinct; dynamic page is not a historical as-of archive."
+    },
+    {
+      "id": "SK-CV",
+      "title": "scikit-learn cross-validation",
+      "url": "https://scikit-learn.org/stable/modules/cross_validation.html",
+      "kind": "Official project documentation",
+      "status": "checked",
+      "checked_on": "2026-11-04",
+      "evidence": "Training and testing on the same data is a methodological mistake; tuning on test data can leak knowledge.",
+      "scope": "Supports holdout design, not profitability or an NFL-specific sample-size guarantee."
+    },
+    {
+      "id": "SK-TIME",
+      "title": "scikit-learn TimeSeriesSplit",
+      "url": "https://scikit-learn.org/stable/modules/generated/sklearn.model_selection.TimeSeriesSplit.html",
+      "kind": "Official project documentation",
+      "status": "checked",
+      "checked_on": "2026-11-04",
+      "evidence": "Other cross-validation methods can lead to training on future data and evaluating on past data; gap excludes samples.",
+      "scope": "Our proposed splitter operates on complete NFL weeks, not equally spaced individual bets."
+    },
+    {
+      "id": "SK-CAL",
+      "title": "scikit-learn probability calibration",
+      "url": "https://scikit-learn.org/stable/modules/calibration.html",
+      "kind": "Official project documentation",
+      "status": "checked",
+      "checked_on": "2026-11-04",
+      "evidence": "Brier score and log loss assess reliability, resolution and uncertainty; lower Brier loss alone need not mean better calibration.",
+      "scope": "Use reliability bins as well as proper scores; no candidate has yet been evaluated."
+    },
+    {
+      "id": "SP-R",
+      "title": "SciPy Pearson correlation",
+      "url": "https://docs.scipy.org/doc/scipy/reference/generated/scipy.stats.pearsonr.html",
+      "kind": "Official project documentation",
+      "status": "checked",
+      "checked_on": "2026-11-04",
+      "evidence": "Pearson r ranges from -1 to +1; constant-input correlation is undefined. Confidence intervals can use Fisher transformation or bootstrap.",
+      "scope": "No NFL correlation estimates verified. Pairwise r alone does not identify a higher-order joint distribution."
+    },
+    {
+      "id": "SP-BOOT",
+      "title": "SciPy bootstrap",
+      "url": "https://docs.scipy.org/doc/scipy/reference/generated/scipy.stats.bootstrap.html",
+      "kind": "Official project documentation",
+      "status": "checked",
+      "checked_on": "2026-11-04",
+      "evidence": "Bootstrap resamples with replacement; paired resampling uses the same indices; rng supports repeatability.",
+      "scope": "Week-block resampling is our dependence-aware project design, not a SciPy-endorsed NFL procedure. Percentile intervals have limitations."
+    },
+    {
+      "id": "SM-MULTI",
+      "title": "statsmodels multiple testing",
+      "url": "https://www.statsmodels.org/stable/generated/statsmodels.stats.multitest.multipletests.html",
+      "kind": "Official project documentation",
+      "status": "checked",
+      "checked_on": "2026-11-04",
+      "evidence": "Test results and p-value correction for multiple tests; holm is step-down Bonferroni adjustment.",
+      "scope": "Project uses Holm correction across registered candidates, with valid input p-values still required."
+    },
+    {
+      "id": "DK-GENERAL",
+      "title": "DraftKings general rules",
+      "url": "https://sportsbook.draftkings.com/help/general-betting-rules/general-rules",
+      "kind": "Operator primary source",
+      "status": "checked",
+      "checked_on": "2026-11-04",
+      "evidence": "Retrieved introduction explicitly applies within Virginia; bet-slip language and rule hierarchy affect settlement.",
+      "scope": "Virginia snapshot only. Not proof of access, availability or applicable rules in Washington."
+    },
+    {
+      "id": "DK-MARKETS",
+      "title": "DraftKings market rules",
+      "url": "https://sportsbook.draftkings.com/help/general-betting-rules/market-rules",
+      "kind": "Operator primary source",
+      "status": "checked",
+      "checked_on": "2026-11-04",
+      "evidence": "Two-way point-spread ties after handicap and totals equal to line settle as Push; two-way moneyline ties settle as Push.",
+      "scope": "Generic retrieved market definitions only; sport-specific, jurisdiction and ticket terms must also be verified."
+    },
+    {
+      "id": "WA-GAMING",
+      "title": "Washington State Gambling Commission",
+      "url": "https://wsgc.wa.gov/tribal-partnerships/sports-wagering",
+      "kind": "Government primary source",
+      "status": "checked",
+      "checked_on": "2026-11-04",
+      "evidence": "Sports wagering page links to requirements and rules, licensing, and the allowed wagering menu for tribal casinos.",
+      "scope": "Landing-page verification only; no personal eligibility or operator availability determination."
+    },
+    {
+      "id": "GH-PAGES",
+      "title": "GitHub Pages workflow documentation",
+      "url": "https://docs.github.com/en/pages/getting-started-with-github-pages/using-custom-workflows-with-github-pages",
+      "kind": "Official platform documentation",
+      "status": "checked",
+      "checked_on": "2026-11-04",
+      "evidence": "Custom workflows build Pages through Actions; deploy requires pages:write, id-token:write and a dependent build job.",
+      "scope": "Deployment workflow reference only; actual deployment result recorded separately."
+    }
+  ],
+  "strategies": [
+    {
+      "id": "S01",
+      "category": "Singles",
+      "name": "Opponent-adjusted team strength",
+      "method": "Fit regularized offense/defense and home effects to pre-cutoff official game results; predict a discrete score distribution.",
+      "inputs": "Rolling past-game scoring and opponent identities",
+      "risk": "Shrink small samples; compare with intercept-only and no-vig market baselines.",
+      "status": "blocked — no verified backtest dataset",
+      "implementation": "research specification; probability utilities implemented, model not trained",
+      "rank": null,
+      "roi": null,
+      "brier": null,
+      "log_loss": null,
+      "n_bets": null,
+      "reward": null,
+      "source_ids": [
+        "NFL-STATS",
+        "NFL-RULES"
+      ]
+    },
+    {
+      "id": "S02",
+      "category": "Singles",
+      "name": "Possession and scoring-rate total",
+      "method": "Model possessions and scoring per possession jointly; retain dispersion and discrete scores.",
+      "inputs": "Timestamped drive outcomes and scoring",
+      "risk": "Reject if drive-level provenance is missing; average points alone is not a distribution.",
+      "status": "blocked — no verified backtest dataset",
+      "implementation": "research specification; probability utilities implemented, model not trained",
+      "rank": null,
+      "roi": null,
+      "brier": null,
+      "log_loss": null,
+      "n_bets": null,
+      "reward": null,
+      "source_ids": [
+        "NFL-STATS",
+        "SK-CV"
+      ]
+    },
+    {
+      "id": "S03",
+      "category": "Singles",
+      "name": "Availability scenario mixture",
+      "method": "Price separately under documented active/inactive scenarios, with weights estimated only from prior reports.",
+      "inputs": "As-of official practice and game-status history",
+      "risk": "Do not treat limited practice as ruled out; no invented injury impact or scenario weights.",
+      "status": "blocked — no verified backtest dataset",
+      "implementation": "research specification; probability utilities implemented, model not trained",
+      "rank": null,
+      "roi": null,
+      "brier": null,
+      "log_loss": null,
+      "n_bets": null,
+      "reward": null,
+      "source_ids": [
+        "NFL-INJURY",
+        "SK-TIME"
+      ]
+    },
+    {
+      "id": "S04",
+      "category": "Player props",
+      "name": "Opportunity × efficiency",
+      "method": "Estimate attempts/targets/carries and conditional production with player/team shrinkage.",
+      "inputs": "Official player game logs, role and availability history",
+      "risk": "Test opportunity and efficiency separately; verify player IDs and participation settlement rules.",
+      "status": "blocked — no verified backtest dataset",
+      "implementation": "research specification; probability utilities implemented, model not trained",
+      "rank": null,
+      "roi": null,
+      "brier": null,
+      "log_loss": null,
+      "n_bets": null,
+      "reward": null,
+      "source_ids": [
+        "NFL-STATS",
+        "SK-CAL"
+      ]
+    },
+    {
+      "id": "S05",
+      "category": "Parlays",
+      "name": "Cross-game selective basket",
+      "method": "Use a validated joint outcome distribution; retain shared uncertainty and synchronized offered quote.",
+      "inputs": "Frozen single-leg probabilities, cross-game dependence and actual parlay quote",
+      "risk": "Independence is a testable assumption, never a default; product of leg prices is not an executable quote.",
+      "status": "blocked — no verified backtest dataset",
+      "implementation": "research specification; probability utilities implemented, model not trained",
+      "rank": null,
+      "roi": null,
+      "brier": null,
+      "log_loss": null,
+      "n_bets": null,
+      "reward": null,
+      "source_ids": [
+        "SP-R",
+        "DK-GENERAL"
+      ]
+    },
+    {
+      "id": "S06",
+      "category": "Prop combos",
+      "name": "QB + receiver joint opportunity",
+      "method": "Shared pass-volume and target-allocation simulation for quarterback and receiver legs.",
+      "inputs": "Paired official game logs plus role, thresholds and same-game quote",
+      "risk": "Joint tails must be calibrated; raw passing/receiving correlation is not hit-event correlation.",
+      "status": "blocked — no verified backtest dataset",
+      "implementation": "research specification; probability utilities implemented, model not trained",
+      "rank": null,
+      "roi": null,
+      "brier": null,
+      "log_loss": null,
+      "n_bets": null,
+      "reward": null,
+      "source_ids": [
+        "SP-R",
+        "SK-CV"
+      ]
+    },
+    {
+      "id": "S07",
+      "category": "Prop combos",
+      "name": "Game-script team + player",
+      "method": "Simulate score path, possessions, play selection and player volume together.",
+      "inputs": "Official play-level histories and verified ticket rules",
+      "risk": "Do not assume favorite + running-back over has a positive sign or profitable payout.",
+      "status": "blocked — no verified backtest dataset",
+      "implementation": "research specification; probability utilities implemented, model not trained",
+      "rank": null,
+      "roi": null,
+      "brier": null,
+      "log_loss": null,
+      "n_bets": null,
+      "reward": null,
+      "source_ids": [
+        "NFL-RULES",
+        "DK-MARKETS"
+      ]
+    },
+    {
+      "id": "S08",
+      "category": "Prop combos",
+      "name": "Competing teammates / alternate thresholds",
+      "method": "Model mutually constrained allocation and threshold nesting; integrate all legs jointly.",
+      "inputs": "Paired player histories, participation and synchronized quotes",
+      "risk": "Reject impossible combinations; three-plus-leg prices cannot be recovered from pairwise correlations.",
+      "status": "blocked — no verified backtest dataset",
+      "implementation": "research specification; probability utilities implemented, model not trained",
+      "rank": null,
+      "roi": null,
+      "brier": null,
+      "log_loss": null,
+      "n_bets": null,
+      "reward": null,
+      "source_ids": [
+        "SP-R",
+        "DK-MARKETS"
+      ]
+    }
+  ],
+  "gates": [
+    {
+      "id": "G01",
+      "name": "Provenance",
+      "rule": "Each observation needs official URL, retrieval time, published/as-of time, immutable content hash, entity/market ID and permission to use. Missing any required evidence blocks evaluation.",
+      "status": "not evaluated",
+      "source_ids": [
+        "NFL-STATS"
+      ]
+    },
+    {
+      "id": "G02",
+      "name": "As-of integrity",
+      "rule": "Features and quotes available no later than forecast cutoff; cutoff strictly before kickoff; results never features. Revisions retained separately.",
+      "status": "not evaluated",
+      "source_ids": [
+        "SK-TIME"
+      ]
+    },
+    {
+      "id": "G03",
+      "name": "Registration",
+      "rule": "Freeze strategy version, feature rules, selection threshold, market, folds, risk caps and trial family before test exposure. Log all rejected trials.",
+      "status": "not evaluated",
+      "source_ids": [
+        "SK-CV"
+      ]
+    },
+    {
+      "id": "G04",
+      "name": "Walk-forward holdout",
+      "rule": "Train only before each complete test week; tune and calibrate inside training periods; embargo overlapping outcomes and keep all same-game legs in one fold.",
+      "status": "not evaluated",
+      "source_ids": [
+        "SK-TIME"
+      ]
+    },
+    {
+      "id": "G05",
+      "name": "Probability quality",
+      "rule": "Report Brier, log loss and reliability-bin sample counts against constant and no-vig market baselines on identical non-push observations. Push models evaluated separately.",
+      "status": "not evaluated",
+      "source_ids": [
+        "SK-CAL"
+      ]
+    },
+    {
+      "id": "G06",
+      "name": "Dependence",
+      "rule": "Estimate continuous residual and binary hit-event correlations separately; report sample and uncertainty. Require a validated full joint model for three-plus legs.",
+      "status": "not evaluated",
+      "source_ids": [
+        "SP-R"
+      ]
+    },
+    {
+      "id": "G07",
+      "name": "Execution and settlement",
+      "rule": "Use archived executable quote at decision time, exact ticket/jurisdiction rules, line, price, void/push handling and costs; no retrospective best-price shopping.",
+      "status": "not evaluated",
+      "source_ids": [
+        "DK-GENERAL"
+      ]
+    },
+    {
+      "id": "G08",
+      "name": "Statistical evidence",
+      "rule": "Use paired week-block bootstrap for score improvement and net returns; use valid one-sided evidence tests and Holm family-wise correction over all registered trials. Do not equate p-values with probability of skill.",
+      "status": "not evaluated",
+      "source_ids": [
+        "SM-MULTI"
+      ]
+    },
+    {
+      "id": "G09",
+      "name": "Stability and power",
+      "rule": "Pre-register power analysis, enough independent weeks, regime/season checks and drift limits. No universal sample count proves skill; report sensitivity to costs and model error.",
+      "status": "not evaluated",
+      "source_ids": [
+        "SP-BOOT"
+      ]
+    },
+    {
+      "id": "G10",
+      "name": "Reward eligibility",
+      "rule": "All gates pass, independent final holdout remains untouched, and lower confidence bound on cost-adjusted return is positive. Rank by paired out-of-sample Brier improvement lower bound, then log loss, then drawdown.",
+      "status": "not evaluated",
+      "source_ids": [
+        "SK-CAL"
+      ]
+    },
+    {
+      "id": "G11",
+      "name": "Forward paper operation",
+      "rule": "Shadow-test frozen strategies on new games, monitor calibration and source freshness, stop on drift or missing data. Paper research only; no automatic wager placement.",
+      "status": "not evaluated",
+      "source_ids": [
+        "SK-CV"
+      ]
+    }
+  ],
+  "correlations": [
+    {
+      "id": "C01",
+      "leg_a": "QB passing yards",
+      "leg_b": "Receiver receiving yards",
+      "note": "Shared pass opportunity; estimate, do not assume sign.",
+      "pearson_r": null,
+      "ci_low": null,
+      "ci_high": null,
+      "n_pairs": null,
+      "status": "unverified — paired as-of data unavailable",
+      "source_ids": [
+        "SP-R"
+      ]
+    },
+    {
+      "id": "C02",
+      "leg_a": "Team win event",
+      "leg_b": "RB rushing over event",
+      "note": "Game-script dependence; outcome selection can distort association.",
+      "pearson_r": null,
+      "ci_low": null,
+      "ci_high": null,
+      "n_pairs": null,
+      "status": "unverified — paired as-of data unavailable",
+      "source_ids": [
+        "SP-R"
+      ]
+    },
+    {
+      "id": "C03",
+      "leg_a": "Receiver A over",
+      "leg_b": "Receiver B over",
+      "note": "Shared team volume plus competing targets.",
+      "pearson_r": null,
+      "ci_low": null,
+      "ci_high": null,
+      "n_pairs": null,
+      "status": "unverified — paired as-of data unavailable",
+      "source_ids": [
+        "SP-R"
+      ]
+    },
+    {
+      "id": "C04",
+      "leg_a": "Game total over",
+      "leg_b": "QB passing over",
+      "note": "Threshold-specific tail dependence.",
+      "pearson_r": null,
+      "ci_low": null,
+      "ci_high": null,
+      "n_pairs": null,
+      "status": "unverified — paired as-of data unavailable",
+      "source_ids": [
+        "SP-R"
+      ]
+    },
+    {
+      "id": "C05",
+      "leg_a": "Different-game favorite covers",
+      "leg_b": "Different-game favorite covers",
+      "note": "Potential shared model error; separate events do not prove independence.",
+      "pearson_r": null,
+      "ci_low": null,
+      "ci_high": null,
+      "n_pairs": null,
+      "status": "unverified — paired as-of data unavailable",
+      "source_ids": [
+        "SP-R"
+      ]
+    },
+    {
+      "id": "C06",
+      "leg_a": "Player 50+ yards",
+      "leg_b": "Same player 75+ yards",
+      "note": "Nested events; joint hit equals higher threshold event, not product.",
+      "pearson_r": null,
+      "ci_low": null,
+      "ci_high": null,
+      "n_pairs": null,
+      "status": "unverified — paired as-of data unavailable",
+      "source_ids": [
+        "SP-R"
+      ]
+    },
+    {
+      "id": "C07",
+      "leg_a": "Team margin residual",
+      "leg_b": "Game total residual",
+      "note": "Out-of-sample residual association, not raw-score association.",
+      "pearson_r": null,
+      "ci_low": null,
+      "ci_high": null,
+      "n_pairs": null,
+      "status": "unverified — paired as-of data unavailable",
+      "source_ids": [
+        "SP-R"
+      ]
+    },
+    {
+      "id": "C08",
+      "leg_a": "Three-leg combo",
+      "leg_b": "All component legs",
+      "note": "Pairwise correlations do not uniquely determine full joint probability.",
+      "pearson_r": null,
+      "ci_low": null,
+      "ci_high": null,
+      "n_pairs": null,
+      "status": "unverified — paired as-of data unavailable",
+      "source_ids": [
+        "SP-R"
+      ]
+    }
+  ],
+  "flags": [
+    {
+      "id": "F01",
+      "title": "Historical official dataset",
+      "detail": "No provenance-complete historical game/play/player dataset ingested. A dynamic aggregate page is not an as-of training archive.",
+      "impact": "All models and backtests remain blocked.",
+      "status": "needs review",
+      "source_ids": [
+        "NFL-STATS"
+      ]
+    },
+    {
+      "id": "F02",
+      "title": "Executable odds archive",
+      "detail": "No verified timestamped singles, props or actual parlay quotes obtained. No current edge or closing-line value published.",
+      "impact": "Prices, ROI and betting recommendations blank.",
+      "status": "needs review",
+      "source_ids": [
+        "DK-GENERAL"
+      ]
+    },
+    {
+      "id": "F03",
+      "title": "Correlation evidence",
+      "detail": "No paired, threshold-specific official observations approved. Signs, coefficients and intervals must not be invented.",
+      "impact": "Correlation cells blank; no independence assumption.",
+      "status": "needs review",
+      "source_ids": [
+        "SP-R"
+      ]
+    },
+    {
+      "id": "F04",
+      "title": "Luck and skill",
+      "detail": "Finite samples cannot eliminate chance or guarantee future returns. Validation can reduce false discoveries, not certify risk-free skill.",
+      "impact": "No winning strategy, skill-only claim or guaranteed reward.",
+      "status": "needs review",
+      "source_ids": [
+        "SK-CV"
+      ]
+    },
+    {
+      "id": "F05",
+      "title": "Jurisdiction mismatch",
+      "detail": "Retrieved operator general rules explicitly describe Virginia. They do not determine availability or settlement in Washington.",
+      "impact": "Research only; location and ticket-specific checks required before any wagering.",
+      "status": "needs review",
+      "source_ids": [
+        "DK-GENERAL"
+      ]
+    },
+    {
+      "id": "F06",
+      "title": "Dynamic injury report",
+      "detail": "Practice Status and Game Status are separate; blank injuries/game-status fields are not inferred. Snapshot is not historical availability.",
+      "impact": "No active/inactive assumptions or injury effect estimates.",
+      "status": "needs review",
+      "source_ids": [
+        "NFL-INJURY"
+      ]
+    },
+    {
+      "id": "F07",
+      "title": "Extraction ambiguity",
+      "detail": "NFL aggregate numerical rows were returned without reliable column headers in extracted content. Values deliberately excluded.",
+      "impact": "No numeric team performance data copied.",
+      "status": "needs review",
+      "source_ids": [
+        "NFL-STATS"
+      ]
+    },
+    {
+      "id": "F08",
+      "title": "Broken injury-policy URL",
+      "detail": "Attempted legacy injury-policy URL returned 404 content; replaced by the official injury report, not by an invented policy.",
+      "impact": "Policy details unverified.",
+      "status": "needs review",
+      "source_ids": [
+        "NFL-INJURY"
+      ]
+    },
+    {
+      "id": "F09",
+      "title": "Broken NIST URL",
+      "detail": "Attempted NIST ANOVA background URL returned a page-not-found response. No claims attributed to it.",
+      "impact": "Statistical methods instead linked to checked official software documentation.",
+      "status": "needs review",
+      "source_ids": [
+        "SK-CV"
+      ]
+    },
+    {
+      "id": "F10",
+      "title": "Rewards not funded",
+      "detail": "Competition and research-point rewards are a proposed project policy; no cash pool, sponsor or payout exists.",
+      "impact": "No rankings or reward amounts issued without eligible evidence.",
+      "status": "needs review",
+      "source_ids": [
+        "SK-CAL"
+      ]
+    },
+    {
+      "id": "F11",
+      "title": "Automation boundary",
+      "detail": "Static site, tests and fail-closed report run automatically. Official historical data licensing/access and validated models are not implemented.",
+      "impact": "Dashboard is a research foundation, not a live betting feed.",
+      "status": "needs review",
+      "source_ids": [
+        "NFL-STATS"
+      ]
+    }
+  ],
+  "observations": [
+    {
+      "id": "O01",
+      "subject": "Official rulebook",
+      "finding": "NFL Football Operations page labels the rulebook 2026 and supplies an official PDF link.",
+      "value": "2026",
+      "status": "source checked",
+      "source_ids": [
+        "NFL-RULES"
+      ]
+    },
+    {
+      "id": "O02",
+      "subject": "Official injury report schema",
+      "finding": "Retrieved table separates Practice Status from Game Status. Blank fields are left blank.",
+      "value": null,
+      "status": "schema checked; no availability inferred",
+      "source_ids": [
+        "NFL-INJURY"
+      ]
+    },
+    {
+      "id": "O03",
+      "subject": "Two-way point spread",
+      "finding": "Retrieved market rules say a tie after applying a whole-number spread settles as Push.",
+      "value": null,
+      "status": "operator example; not universal rules",
+      "source_ids": [
+        "DK-MARKETS"
+      ]
+    },
+    {
+      "id": "O04",
+      "subject": "Totals market",
+      "finding": "Retrieved market rules say total equal to the stated line settles as Push.",
+      "value": null,
+      "status": "operator example; not universal rules",
+      "source_ids": [
+        "DK-MARKETS"
+      ]
+    },
+    {
+      "id": "O05",
+      "subject": "Washington review route",
+      "finding": "State regulator landing page links to requirements/rules and an allowed wagering menu for tribal casinos.",
+      "value": null,
+      "status": "landing page checked; eligibility unverified",
+      "source_ids": [
+        "WA-GAMING"
+      ]
+    }
+  ],
+  "requirements": [
+    {
+      "id": "R01",
+      "requirement": "Review repository",
+      "status": "done",
+      "delivery": "Initial repository had only README.md; no legacy data/model to certify.",
+      "source_ids": [
+        "NFL-STATS"
+      ]
+    },
+    {
+      "id": "R02",
+      "requirement": "Collect and organize trusted sources",
+      "status": "done",
+      "delivery": "Primary-source catalog with checked scope and exclusions; no invented values.",
+      "source_ids": [
+        "NFL-RULES"
+      ]
+    },
+    {
+      "id": "R03",
+      "requirement": "Originate own NFL lines",
+      "status": "partial",
+      "delivery": "Tested distribution-to-line utilities; trained, sourced production model blocked.",
+      "source_ids": [
+        "NFL-STATS"
+      ]
+    },
+    {
+      "id": "R04",
+      "requirement": "Singles, parlays, player combos",
+      "status": "done",
+      "delivery": "Eight explicitly unvalidated strategy specifications across all requested classes.",
+      "source_ids": [
+        "SP-R"
+      ]
+    },
+    {
+      "id": "R05",
+      "requirement": "Validation gates",
+      "status": "done",
+      "delivery": "Eleven gates specified; fail-closed eligibility evaluator and tests implemented. No strategy passes yet.",
+      "source_ids": [
+        "SK-CV"
+      ]
+    },
+    {
+      "id": "R06",
+      "requirement": "Determine correlation values",
+      "status": "needs review",
+      "delivery": "Eight pair definitions; coefficients blank until official paired data exist.",
+      "source_ids": [
+        "SP-R"
+      ]
+    },
+    {
+      "id": "R07",
+      "requirement": "Skill-based competition and rewards",
+      "status": "partial",
+      "delivery": "Paper leaderboard and reward policy implemented as specification; no eligible entries or funded prizes.",
+      "source_ids": [
+        "SM-MULTI"
+      ]
+    },
+    {
+      "id": "R08",
+      "requirement": "Remove luck",
+      "status": "needs review",
+      "delivery": "Impossible guarantee explicitly rejected; uncertainty, holdouts and multiplicity used instead.",
+      "source_ids": [
+        "SP-BOOT"
+      ]
+    },
+    {
+      "id": "R09",
+      "requirement": "Executive summary",
+      "status": "done",
+      "delivery": "Executive overview, findings, limitations and priorities on dashboard and research report.",
+      "source_ids": [
+        "SK-CAL"
+      ]
+    },
+    {
+      "id": "R10",
+      "requirement": "GitHub Pages category site",
+      "status": "done",
+      "delivery": "Static multi-page dashboard with row-level official-source links and review page; deployment tracked in coordination log.",
+      "source_ids": [
+        "GH-PAGES"
+      ]
+    },
+    {
+      "id": "R11",
+      "requirement": "No manual input",
+      "status": "partial",
+      "delivery": "Build/tests/report automated with no secrets; no fabricated substitute for inaccessible official historical data.",
+      "source_ids": [
+        "NFL-STATS"
+      ]
+    },
+    {
+      "id": "R12",
+      "requirement": "Line-by-line verification",
+      "status": "partial",
+      "delivery": "Every curated row audited for source references and claim scope; no claim that unavailable data or all external links were verified.",
+      "source_ids": [
+        "SK-CV"
+      ]
+    }
+  ],
+  "audit": [
+    {
+      "id": "A01",
+      "area": "Initial repository",
+      "finding": "README.md contained only # Own9; no application, data, lockfiles, tests or hidden implementation outside .git.",
+      "status": "local inventory checked",
+      "source_ids": [
+        "GH-PAGES"
+      ]
+    },
+    {
+      "id": "A02",
+      "area": "Coordination",
+      "finding": "No pre-existing board or claims. One integration session owns non-overlapping scopes; fixed Arena branch retained.",
+      "status": "local Git checked",
+      "source_ids": [
+        "GH-PAGES"
+      ]
+    },
+    {
+      "id": "A03",
+      "area": "Numerical claims",
+      "finding": "No real NFL prices, ROI, sample counts, rankings or correlations asserted. Synthetic unit-test fixtures never exported as observed results.",
+      "status": "manifest and generated tables checked",
+      "source_ids": [
+        "SP-R"
+      ]
+    },
+    {
+      "id": "A04",
+      "area": "Source meaning",
+      "finding": "Official software documentation supports methods only; it does not verify strategy performance. Operator examples are jurisdiction-limited.",
+      "status": "scope-limited source review",
+      "source_ids": [
+        "SK-CV",
+        "DK-GENERAL"
+      ]
+    }
+  ]
+}
