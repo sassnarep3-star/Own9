@@ -101,7 +101,42 @@ def verify_player_leaders():
     return res
 
 
+def verify_2026_ytd():
+    """Reconcile the in-progress 2026 regular season (nfldata schedule/results) against NFL.com standings through Week 8.
+
+    The NFL game-center archive used for 2015-2025 has no 2026 files, so 2026 results come from the nfldata games table and are
+    accepted only if every team's W-L-T / PF / PA equals the official standings page (data/verified/nfl_standings_ytd/).
+    """
+    import glob
+    g = pd.read_csv(Path.home() / ".cache" / "own9" / "raw" / "nfldata" / "data" / "games.csv")
+    g = g[(g.season == 2026) & (g.game_type == "REG") & g.result.notna()]
+    rec = []
+    for _, r in g.iterrows():
+        for side, oth in (("home", "away"), ("away", "home")):
+            pf, pa = r[f"{side}_score"], r[f"{oth}_score"]
+            rec.append(dict(team=r[f"{side}_team"], w=int(pf > pa), l=int(pf < pa), t=int(pf == pa), pf=pf, pa=pa))
+    comp = pd.DataFrame(rec).groupby("team", as_index=False).sum()
+    out = []
+    for f in sorted(glob.glob(str(VERIFIED / "nfl_standings_ytd" / "*.csv"))):
+        off = pd.read_csv(f)
+        off["team"] = off.nfl_code.replace(NFL_TO_FRANCHISE)
+        m = off.merge(comp, on="team", how="outer", suffixes=("_nfl", "_data"), indicator=True)
+        m["match"] = (m._merge == "both") & m.eval("w_nfl == w_data and l_nfl == l_data and t_nfl == t_data and pf_nfl == pf_data and pa_nfl == pa_data")
+        m["season"] = 2026
+        out.append(m)
+    res = pd.concat(out, ignore_index=True)
+    keep = ["season", "through_week", "team", "team_name", "w_nfl", "l_nfl", "t_nfl", "pf_nfl", "pa_nfl", "w_data", "l_data", "t_data", "pf_data", "pa_data", "match", "source_url"]
+    res[keep].to_csv(VERIFIED / "reconciliation_standings_2026_ytd.csv", index=False)
+    print(f"2026 YTD: {len(g)} completed games; teams matched {int(res.match.sum())} of {len(res)}")
+    bad = res[~res.match]
+    if len(bad):
+        print(bad[keep].to_string(index=False))
+    return res
+
+
 if __name__ == "__main__":
     main()
     print()
     verify_player_leaders()
+    print()
+    verify_2026_ytd()

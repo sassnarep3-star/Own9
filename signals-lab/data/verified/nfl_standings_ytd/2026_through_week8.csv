@@ -1,0 +1,33 @@
+season,through_week,nfl_code,team_name,w,l,t,pf,pa,source_url,retrieved_utc
+2026,8,BUF,Buffalo Bills,6,1,0,233,181,https://www.nfl.com/standings/league/2026/REG,2026-11-04
+2026,8,MIN,Minnesota Vikings,6,1,0,140,93,https://www.nfl.com/standings/league/2026/REG,2026-11-04
+2026,8,SF,San Francisco 49ers,6,1,0,197,139,https://www.nfl.com/standings/league/2026/REG,2026-11-04
+2026,8,CHI,Chicago Bears,6,2,0,214,160,https://www.nfl.com/standings/league/2026/REG,2026-11-04
+2026,8,DEN,Denver Broncos,6,2,0,172,165,https://www.nfl.com/standings/league/2026/REG,2026-11-04
+2026,8,PIT,Pittsburgh Steelers,6,2,0,180,144,https://www.nfl.com/standings/league/2026/REG,2026-11-04
+2026,8,CIN,Cincinnati Bengals,5,2,0,206,158,https://www.nfl.com/standings/league/2026/REG,2026-11-04
+2026,8,DET,Detroit Lions,5,2,0,203,180,https://www.nfl.com/standings/league/2026/REG,2026-11-04
+2026,8,JAX,Jacksonville Jaguars,5,2,0,196,111,https://www.nfl.com/standings/league/2026/REG,2026-11-04
+2026,8,KC,Kansas City Chiefs,5,2,0,167,131,https://www.nfl.com/standings/league/2026/REG,2026-11-04
+2026,8,NYG,New York Giants,4,2,1,163,161,https://www.nfl.com/standings/league/2026/REG,2026-11-04
+2026,8,CLE,Cleveland Browns,5,3,0,139,173,https://www.nfl.com/standings/league/2026/REG,2026-11-04
+2026,8,GB,Green Bay Packers,5,3,0,171,164,https://www.nfl.com/standings/league/2026/REG,2026-11-04
+2026,8,NE,New England Patriots,5,3,0,184,162,https://www.nfl.com/standings/league/2026/REG,2026-11-04
+2026,8,BAL,Baltimore Ravens,4,4,0,179,203,https://www.nfl.com/standings/league/2026/REG,2026-11-04
+2026,8,LV,Las Vegas Raiders,4,4,0,221,230,https://www.nfl.com/standings/league/2026/REG,2026-11-04
+2026,8,LA,Los Angeles Rams,4,4,0,194,168,https://www.nfl.com/standings/league/2026/REG,2026-11-04
+2026,8,SEA,Seattle Seahawks,4,4,0,185,159,https://www.nfl.com/standings/league/2026/REG,2026-11-04
+2026,8,CAR,Carolina Panthers,3,4,0,178,193,https://www.nfl.com/standings/league/2026/REG,2026-11-04
+2026,8,AZ,Arizona Cardinals,3,5,0,175,238,https://www.nfl.com/standings/league/2026/REG,2026-11-04
+2026,8,ATL,Atlanta Falcons,3,5,0,171,189,https://www.nfl.com/standings/league/2026/REG,2026-11-04
+2026,8,DAL,Dallas Cowboys,3,5,0,219,213,https://www.nfl.com/standings/league/2026/REG,2026-11-04
+2026,8,TB,Tampa Bay Buccaneers,3,5,0,178,151,https://www.nfl.com/standings/league/2026/REG,2026-11-04
+2026,8,WAS,Washington Commanders,2,4,1,159,182,https://www.nfl.com/standings/league/2026/REG,2026-11-04
+2026,8,HOU,Houston Texans,2,5,0,165,170,https://www.nfl.com/standings/league/2026/REG,2026-11-04
+2026,8,NO,New Orleans Saints,2,5,0,162,194,https://www.nfl.com/standings/league/2026/REG,2026-11-04
+2026,8,IND,Indianapolis Colts,2,6,0,161,222,https://www.nfl.com/standings/league/2026/REG,2026-11-04
+2026,8,NYJ,New York Jets,2,6,0,170,188,https://www.nfl.com/standings/league/2026/REG,2026-11-04
+2026,8,PHI,Philadelphia Eagles,2,6,0,137,202,https://www.nfl.com/standings/league/2026/REG,2026-11-04
+2026,8,MIA,Miami Dolphins,1,6,0,117,181,https://www.nfl.com/standings/league/2026/REG,2026-11-04
+2026,8,TEN,Tennessee Titans,1,7,0,144,199,https://www.nfl.com/standings/league/2026/REG,2026-11-04
+2026,8,LAC,Los Angeles Chargers,0,7,0,99,175,https://www.nfl.com/standings/league/2026/REG,2026-11-04
