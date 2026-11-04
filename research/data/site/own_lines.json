@@ -1,0 +1,339 @@
+{
+ "model": {
+  "type": "Walk-forward time-decayed ridge rating model",
+  "lambda_ridge": 25.0,
+  "half_life_days": 365.0,
+  "note": "Ratings use only games played strictly before the game being priced."
+ },
+ "backtest": {
+  "evaluated_games_2016_2025": 2761,
+  "mae_model_vs_margin": 10.383,
+  "mae_market_vs_margin": 9.777,
+  "note": "Lower mean absolute error is better. Model is walk-forward (no look-ahead)."
+ },
+ "upcoming_week9_2026": [
+  {
+   "game_id": "2026_09_JAX_BAL",
+   "week": 9,
+   "gameday": "2026-11-05",
+   "gametime": "20:15",
+   "away": "JAX",
+   "home": "BAL",
+   "market_spread_home": -10.0,
+   "total_market": 39.5,
+   "own_line_home": 0.88,
+   "edge_home_pts": 10.88
+  },
+  {
+   "game_id": "2026_09_ARI_SEA",
+   "week": 9,
+   "gameday": "2026-11-08",
+   "gametime": "16:25",
+   "away": "ARI",
+   "home": "SEA",
+   "market_spread_home": 8.5,
+   "total_market": 40.5,
+   "own_line_home": 7.13,
+   "edge_home_pts": -1.37
+  },
+  {
+   "game_id": "2026_09_CIN_ATL",
+   "week": 9,
+   "gameday": "2026-11-08",
+   "gametime": "09:30",
+   "away": "CIN",
+   "home": "ATL",
+   "market_spread_home": -3.0,
+   "total_market": 52.5,
+   "own_line_home": -0.2,
+   "edge_home_pts": 2.8
+  },
+  {
+   "game_id": "2026_09_CLE_NO",
+   "week": 9,
+   "gameday": "2026-11-08",
+   "gametime": "13:00",
+   "away": "CLE",
+   "home": "NO",
+   "market_spread_home": 3.0,
+   "total_market": 42.5,
+   "own_line_home": 2.67,
+   "edge_home_pts": -0.33
+  },
+  {
+   "game_id": "2026_09_DAL_IND",
+   "week": 9,
+   "gameday": "2026-11-08",
+   "gametime": "13:00",
+   "away": "DAL",
+   "home": "IND",
+   "market_spread_home": -5.5,
+   "total_market": 51.5,
+   "own_line_home": 0.93,
+   "edge_home_pts": 6.43
+  },
+  {
+   "game_id": "2026_09_DEN_CAR",
+   "week": 9,
+   "gameday": "2026-11-08",
+   "gametime": "13:00",
+   "away": "DEN",
+   "home": "CAR",
+   "market_spread_home": -2.5,
+   "total_market": 44.5,
+   "own_line_home": -2.14,
+   "edge_home_pts": 0.36
+  },
+  {
+   "game_id": "2026_09_DET_MIA",
+   "week": 9,
+   "gameday": "2026-11-08",
+   "gametime": "13:00",
+   "away": "DET",
+   "home": "MIA",
+   "market_spread_home": -7.0,
+   "total_market": 50.5,
+   "own_line_home": -2.57,
+   "edge_home_pts": 4.43
+  },
+  {
+   "game_id": "2026_09_GB_NE",
+   "week": 9,
+   "gameday": "2026-11-08",
+   "gametime": "16:25",
+   "away": "GB",
+   "home": "NE",
+   "market_spread_home": 3.0,
+   "total_market": 46.5,
+   "own_line_home": 1.72,
+   "edge_home_pts": -1.28
+  },
+  {
+   "game_id": "2026_09_HOU_LAC",
+   "week": 9,
+   "gameday": "2026-11-08",
+   "gametime": "16:05",
+   "away": "HOU",
+   "home": "LAC",
+   "market_spread_home": -4.5,
+   "total_market": 40.5,
+   "own_line_home": -0.22,
+   "edge_home_pts": 4.28
+  },
+  {
+   "game_id": "2026_09_LA_WAS",
+   "week": 9,
+   "gameday": "2026-11-08",
+   "gametime": "13:00",
+   "away": "LA",
+   "home": "WAS",
+   "market_spread_home": -5.5,
+   "total_market": 47.5,
+   "own_line_home": -2.33,
+   "edge_home_pts": 3.17
+  },
+  {
+   "game_id": "2026_09_LV_SF",
+   "week": 9,
+   "gameday": "2026-11-08",
+   "gametime": "16:05",
+   "away": "LV",
+   "home": "SF",
+   "market_spread_home": 10.0,
+   "total_market": 52.5,
+   "own_line_home": 6.45,
+   "edge_home_pts": -3.55
+  },
+  {
+   "game_id": "2026_09_NYG_PHI",
+   "week": 9,
+   "gameday": "2026-11-08",
+   "gametime": "13:00",
+   "away": "NYG",
+   "home": "PHI",
+   "market_spread_home": -3.5,
+   "total_market": 38.5,
+   "own_line_home": 4.1,
+   "edge_home_pts": 7.6
+  },
+  {
+   "game_id": "2026_09_NYJ_KC",
+   "week": 9,
+   "gameday": "2026-11-08",
+   "gametime": "13:00",
+   "away": "NYJ",
+   "home": "KC",
+   "market_spread_home": 10.0,
+   "total_market": 47.5,
+   "own_line_home": 6.73,
+   "edge_home_pts": -3.27
+  },
+  {
+   "game_id": "2026_09_TB_CHI",
+   "week": 9,
+   "gameday": "2026-11-08",
+   "gametime": "20:20",
+   "away": "TB",
+   "home": "CHI",
+   "market_spread_home": 6.0,
+   "total_market": 47.5,
+   "own_line_home": 1.75,
+   "edge_home_pts": -4.25
+  },
+  {
+   "game_id": "2026_09_BUF_MIN",
+   "week": 9,
+   "gameday": "2026-11-09",
+   "gametime": "20:15",
+   "away": "BUF",
+   "home": "MIN",
+   "market_spread_home": -3.5,
+   "total_market": 45.5,
+   "own_line_home": -0.55,
+   "edge_home_pts": 2.95
+  }
+ ],
+ "ratings_now": [
+  {
+   "team": "BUF",
+   "rating": 3.75
+  },
+  {
+   "team": "SEA",
+   "rating": 2.98
+  },
+  {
+   "team": "LA",
+   "rating": 2.37
+  },
+  {
+   "team": "DET",
+   "rating": 2.33
+  },
+  {
+   "team": "JAX",
+   "rating": 2.15
+  },
+  {
+   "team": "SF",
+   "rating": 1.98
+  },
+  {
+   "team": "KC",
+   "rating": 1.78
+  },
+  {
+   "team": "MIN",
+   "rating": 1.55
+  },
+  {
+   "team": "BAL",
+   "rating": 1.37
+  },
+  {
+   "team": "NE",
+   "rating": 1.35
+  },
+  {
+   "team": "GB",
+   "rating": 1.29
+  },
+  {
+   "team": "DEN",
+   "rating": 1.27
+  },
+  {
+   "team": "HOU",
+   "rating": 0.96
+  },
+  {
+   "team": "CHI",
+   "rating": 0.86
+  },
+  {
+   "team": "TB",
+   "rating": 0.77
+  },
+  {
+   "team": "CIN",
+   "rating": 0.56
+  },
+  {
+   "team": "PHI",
+   "rating": 0.54
+  },
+  {
+   "team": "PIT",
+   "rating": 0.35
+  },
+  {
+   "team": "SD",
+   "rating": -0.0
+  },
+  {
+   "team": "STL",
+   "rating": -0.0
+  },
+  {
+   "team": "OAK",
+   "rating": -0.07
+  },
+  {
+   "team": "DAL",
+   "rating": -0.33
+  },
+  {
+   "team": "LAC",
+   "rating": -0.91
+  },
+  {
+   "team": "IND",
+   "rating": -1.06
+  },
+  {
+   "team": "ATL",
+   "rating": -1.29
+  },
+  {
+   "team": "NO",
+   "rating": -1.56
+  },
+  {
+   "team": "WAS",
+   "rating": -1.62
+  },
+  {
+   "team": "MIA",
+   "rating": -1.9
+  },
+  {
+   "team": "NYG",
+   "rating": -1.9
+  },
+  {
+   "team": "ARI",
+   "rating": -2.49
+  },
+  {
+   "team": "CAR",
+   "rating": -2.52
+  },
+  {
+   "team": "CLE",
+   "rating": -2.58
+  },
+  {
+   "team": "LV",
+   "rating": -2.82
+  },
+  {
+   "team": "NYJ",
+   "rating": -3.29
+  },
+  {
+   "team": "TEN",
+   "rating": -3.91
+  }
+ ],
+ "home_field_advantage": 1.66
+}

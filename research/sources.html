@@ -1,0 +1,33 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Sources · Own9 NFL research</title>
+<link rel="stylesheet" href="assets/style.css">
+
+</head>
+<body>
+<header class="top">
+  <div class="brand"><a href="index.html">Own9 · NFL signal research</a></div>
+  <nav><a href="index.html" class="">Home</a><a href="summary.html" class="">Executive summary</a><a href="games.html" class="">Games &amp; lines</a><a href="strategies.html" class="">Strategies</a><a href="correlations.html" class="">Correlations &amp; parlays</a><a href="own-lines.html" class="">Own lines</a><a href="props.html" class="">Player props</a><a href="rules.html" class="">Rules &amp; legal</a><a href="sources.html" class="active">Sources</a><a href="flagged.html" class="">Flagged for review</a><a href="../" class="mainlink">Main site ↗</a></nav>
+</header>
+<main>
+
+<section>
+<h1>Source register</h1>
+<p class="meta">Official = league or state regulator. Secondary = community dataset, labelled Unverified unless a value was matched to an official page.</p>
+<div class="tablewrap"><table class="data"><thead><tr><th>Source</th><th>URL</th><th>Type</th><th>Checked</th><th>What was checked</th></tr></thead><tbody><tr><td>Washington State Gambling Commission - Sports wagering requirements and rules</td><td><a href="https://wsgc.wa.gov/tribal-partnerships/sports-wagering/sports-wagering-requirements-and-rules" target="_blank" rel="noopener">https://wsgc.wa.gov/tribal-partnerships/sports-wagering/sports-wagering-requirements-and-rules</a></td><td>Official (state regulator)</td><td>2026-11-04</td><td>Quoted on Rules page</td></tr><tr><td>Washington State Gambling Commission - Sports wagering</td><td><a href="https://wsgc.wa.gov/tribal-partnerships/sports-wagering" target="_blank" rel="noopener">https://wsgc.wa.gov/tribal-partnerships/sports-wagering</a></td><td>Official (state regulator)</td><td>2026-11-04</td><td>Hub link only</td></tr><tr><td>NFL Football Operations - 2026 NFL Rulebook</td><td><a href="https://operations.nfl.com/rules-officiating/2026-nfl-rulebook" target="_blank" rel="noopener">https://operations.nfl.com/rules-officiating/2026-nfl-rulebook</a></td><td>Official (league)</td><td>2026-11-04</td><td>2026 rule-change table on Rules page</td></tr><tr><td>NFL.com - Schedule (2026, Week 9 games)</td><td><a href="https://www.nfl.com/schedules/" target="_blank" rel="noopener">https://www.nfl.com/schedules/</a></td><td>Official (league)</td><td>2026-11-04</td><td>15 Week 9 games: 14 match, 1 kickoff mismatch (LV @ SF)</td></tr><tr><td>NFL.com Game Center - Chiefs at Chargers, 2025 REG Week 1</td><td><a href="https://www.nfl.com/games/chiefs-at-chargers-2025-reg-1" target="_blank" rel="noopener">https://www.nfl.com/games/chiefs-at-chargers-2025-reg-1</a></td><td>Official (league)</td><td>2026-11-04</td><td>Score matched (KC 21, LAC 27)</td></tr><tr><td>NFL.com Game Center - Ravens at Dolphins, 2025 REG Week 9</td><td><a href="https://www.nfl.com/games/ravens-at-dolphins-2025-reg-9" target="_blank" rel="noopener">https://www.nfl.com/games/ravens-at-dolphins-2025-reg-9</a></td><td>Official (league)</td><td>2026-11-04</td><td>Score matched (BAL 28, MIA 6)</td></tr><tr><td>nflverse / nfldata - data/games.csv (Lee Sharpe&#x27;s nfldata; repo snapshot d5c8272)</td><td><a href="https://github.com/nflverse/nfldata/blob/master/data/games.csv" target="_blank" rel="noopener">https://github.com/nflverse/nfldata/blob/master/data/games.csv</a></td><td>Secondary (community dataset - not official)</td><td>2026-11-04</td><td>Used for analysis; 2 scores verified; lines Unverified</td></tr><tr><td>nflverse / nfldata repository</td><td><a href="https://github.com/nflverse/nfldata" target="_blank" rel="noopener">https://github.com/nflverse/nfldata</a></td><td>Secondary (community dataset - not official)</td><td>2026-11-04</td><td>Repository snapshot d5c8272</td></tr><tr><td>nflreadr - Data Dictionary: Schedules</td><td><a href="https://nflreadr.nflverse.com/articles/dictionary_schedules.html" target="_blank" rel="noopener">https://nflreadr.nflverse.com/articles/dictionary_schedules.html</a></td><td>Secondary (package documentation)</td><td>2026-11-04</td><td>Result = home − away and total confirmed; spread_line definition not retrieved</td></tr><tr><td>nflreadr - dictionary_schedules.Rmd (source of the dictionary)</td><td><a href="https://github.com/nflverse/nflreadr/blob/main/vignettes/dictionary_schedules.Rmd" target="_blank" rel="noopener">https://github.com/nflverse/nflreadr/blob/main/vignettes/dictionary_schedules.Rmd</a></td><td>Secondary (package source)</td><td>2026-11-04</td><td>Dictionary source file (no spread definition in fetched text)</td></tr><tr><td>This repository (sassnarep3-star/Own9)</td><td><a href="https://github.com/sassnarep3-star/Own9" target="_blank" rel="noopener">https://github.com/sassnarep3-star/Own9</a></td><td>Project repository</td><td>2026-11-04</td><td>Repository reviewed; README minimal</td></tr></tbody></table></div>
+<h2>Dataset snapshot</h2>
+<div class="tablewrap"><table class="data"><thead><tr><th>Item</th><th>Value</th></tr></thead><tbody><tr><td>Rows (games)</td><td>7,548</td></tr><tr><td>Season range</td><td>1999–2026</td></tr><tr><td>Completed games</td><td>7,397</td></tr><tr><td>Scheduled (no result yet)</td><td>151</td></tr><tr><td>Duplicate game IDs</td><td>0</td></tr><tr><td>Upstream snapshot</td><td>nflverse/nfldata commit d5c8272 (cloned, 2026-11-04)</td></tr><tr><td>Local copy</td><td><code>data/raw/games.csv</code></td></tr></tbody></table></div>
+</section>
+
+</main>
+<footer>
+  <p>Research only, not betting advice. Data as of 2026-11-04. Secondary-source values are labelled
+  <span class="tag unv">Unverified</span>. Gambling is only legal in Washington at tribal casinos
+  (see <a href="rules.html">Rules &amp; legal</a>). Problem gambling help: call or text 1-800-GAMBLER (US).</p>
+  <p>Repository: <a href="https://github.com/sassnarep3-star/Own9">github.com/sassnarep3-star/Own9</a></p>
+</footer>
+</body>
+</html>

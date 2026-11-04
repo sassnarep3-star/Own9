@@ -103,3 +103,12 @@ remain unimplemented, explicitly flagged. No credentials or manual entries reque
 
 Probabilistic sports outcomes retain chance. Validation may provide evidence of predictive skill,
 never remove luck or guarantee future profits. No automated wagering or personal financial advice.
+
+## Concurrent inherited analysis boundary
+
+PR #6 merged while this release was pending, adding `analysis/`, `data/raw/` and a separate
+`research/` static report based on secondary data. Those files were preserved, not edited or
+certified by this session. Its numerical findings do not satisfy this dashboard’s official
+row-level evidence requirement and are not adopted; see root F12 and `research/flagged.html`.
+References to missing models/data above mean missing qualifying official-verified artifacts,
+not a claim that no secondary experimental code now exists anywhere in the repository.
