@@ -1,0 +1,55 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="description" content="Independent source verification and research limitations for NFL line origination.">
+<title>Strategy and validation handoff · Own9 audit</title>
+<link rel="stylesheet" href="audit.css">
+</head>
+<body>
+<a class="skip" href="#content">Skip to content</a>
+<header><div class="shell header-inner"><a class="brand" href="../index.html"><span>O9</span> OWN9 <small> / RESEARCH</small></a><nav aria-label="Audit navigation"><a href="index.html">Overview</a><a href="methodology.html" aria-current="page">Methodology</a><a href="audit.html">Row audit</a><a href="sources.html">Sources</a><a href="flags.html">Flagged for review</a></nav></div></header>
+<main id="content" class="shell"><p class="eyebrow">INDEPENDENT VERIFICATION / 04 NOV 2026</p><h1>Strategy and validation handoff</h1><p>Everything on this page is a <strong>proposed research protocol</strong>, not an official NFL recommendation, a claim of a measured edge, or a completed validation. No odds are represented as executable and no numerical forecasts, correlation estimates, returns, or rewards have been supplied. Definitions and methodological sources are linked; applicability to a particular market still requires testing.</p>
+<h2>Candidate signals</h2>
+<div class="table-wrap" tabindex="0" role="region" aria-label="Scrollable table">
+<table><caption class="sr-only">Candidate signals</caption><thead><tr>
+<th scope="col">Candidate</th>
+<th scope="col">Proposed inputs and output</th>
+<th scope="col">Unverified prerequisites</th>
+<th scope="col">Official source / context</th>
+</tr></thead><tbody>
+<tr><td>Game single</td><td>Fit a pregame distribution of team scores using prior, time-available team performance, location and documented availability; derive win, spread and total probabilities from that same distribution.</td><td>Permitted historical data; prediction-time snapshots; price, limits and rules for the exact contract.</td><td><a href="https://www.nfl.com/stats/player-stats/">NFL statistics</a>, <a href="https://www.nfl.com/injuries/">NFL injury report</a></td></tr>
+<tr><td>Player prop single</td><td>Model participation separately from opportunities and efficiency, then produce an outcome distribution for the specified player and threshold.</td><td>Official player-game observations, historical availability, prop quotes, nonparticipation rules and redistribution rights.</td><td><a href="https://www.nfl.com/games/panthers-at-packers-2026-reg-8">NFL Game Center example</a>, <a href="https://www.nfl.com/injuries/">NFL injury report</a></td></tr>
+<tr><td>Cross-game parlay</td><td>Estimate a joint distribution over legs; consider common information and model risk rather than assuming games are independent. Compare with the actual accepted combination price.</td><td>Matched simultaneous leg and parlay quotes, joint observations, executable limits and settlement rules.</td><td><a href="https://online.stat.psu.edu/stat414/Lesson04">Penn State conditional probability</a>, <a href="https://sportsbook.fanatics.com/legal/tn/house-rules/">Fanatics Tennessee rules</a></td></tr>
+<tr><td>Same-game prop combo</td><td>Jointly model participation, game conditions and player opportunities; calculate each settlement state&#x27;s probability for the actual bundle.</td><td>Paired player-game outcomes, threshold definitions, applicable void/push rules, actual combo prices and independent joint calibration.</td><td><a href="https://sportsbook.fanatics.com/legal/tn/house-rules/">Fanatics Tennessee rules</a>, <a href="https://online.stat.psu.edu/stat414/Lesson04">Penn State joint probability</a></td></tr>
+<tr><td>Weather feature</td><td>If permitted and genuinely available before a prediction, evaluate a timestamped forecast for the venue, not the later observed weather.</td><td>Historical forecast snapshots, venue mapping, indoor conditions and international coverage were not established.</td><td><a href="https://www.weather.gov/documentation/services-web-api">NWS API documentation</a></td></tr>
+</tbody></table></div>
+<h2>Fail-closed gates</h2>
+<div class="table-wrap" tabindex="0" role="region" aria-label="Scrollable table">
+<table><caption class="sr-only">Fail-closed gates</caption><thead><tr>
+<th scope="col">Gate</th>
+<th scope="col">Proposed pass condition</th>
+<th scope="col">Current result</th>
+<th scope="col">Official source / context</th>
+</tr></thead><tbody>
+<tr><td>Rights and provenance</td><td>Retain source, license, permission, event identity, retrieval time and revision history; reject sources whose authorized use is unresolved.</td><td>Not run</td><td><a href="https://www.nfl.com/legal/terms/">NFL.com terms</a></td></tr>
+<tr><td>Point-in-time integrity</td><td>Reject any input, market price or preprocessing fit that was not available at prediction time; freeze forecasts before outcomes.</td><td>Not run</td><td><a href="https://scikit-learn.org/stable/common_pitfalls.html">scikit-learn leakage guidance</a></td></tr>
+<tr><td>Evaluation design</td><td>Predeclare chronological train, validation and untouched test windows. Keep all selections from an event in the same fold; test prospective forecasts.</td><td>Not run</td><td><a href="https://scikit-learn.org/stable/modules/generated/sklearn.model_selection.TimeSeriesSplit.html">TimeSeriesSplit documentation</a></td></tr>
+<tr><td>Fair comparison</td><td>Compare models to a prespecified market or other baseline on the <strong>same eligible events and timestamps</strong>. Report log loss, Brier score, calibration, sample count and missingness.</td><td>Not run</td><td><a href="https://scikit-learn.org/stable/modules/generated/sklearn.metrics.log_loss.html">Log loss</a>, <a href="https://www.spaceweather.gov/sites/default/files/images/u30/Ensemble%20Forecast%20Verification.pdf">forecast verification</a></td></tr>
+<tr><td>Economics and settlement</td><td>Use the accepted, timestamped price, jurisdiction, limits, fees and versioned market rules. Represent win, loss, push, void and partial settlements as distinct states.</td><td>Not run</td><td><a href="https://sportsbook.fanatics.com/legal/tn/house-rules/">Fanatics Tennessee rules</a></td></tr>
+<tr><td>Selection and uncertainty</td><td>Register all candidate strategies and selection rules; prespecify multiplicity correction, dependence-aware uncertainty and decision thresholds. Report failures, not only winners.</td><td>Not run</td><td><a href="https://www.amstat.org/asa/files/pdfs/p-valuestatement.pdf">ASA statement</a>, <a href="https://online.stat.psu.edu/stat555/node/58/">Penn State multiplicity</a></td></tr>
+<tr><td>Dependence and stability</td><td>Predeclare the resampling unit and assess enough independent clusters, joint calibration, season and regime sensitivity, and price drift. Fail closed when uncertainty is too large.</td><td>Not run</td><td><a href="https://pmc.ncbi.nlm.nih.gov/articles/PMC10893847/">Clustered-data article hosted by NIH</a></td></tr>
+<tr><td>Rewards and legality</td><td>Publish eligibility, ties, exclusion, sponsor, funding, jurisdiction and prize rules before evaluation; do not run a real prize contest until requirements are reviewed.</td><td>Not run</td><td><a href="https://wsgc.wa.gov/rules-enforcement/illegal-gambling-activities">Washington State Gambling Commission</a></td></tr>
+</tbody></table></div>
+<h2>Correlation protocol</h2>
+<p>Predeclare the exact two contracts, line thresholds, player/game identifiers, observation window, and inclusion rules. Align paired win/loss outcomes from the same eligible sample. Track pushes, voids, missing observations and revisions separately; do not silently code them as losses. State whether the reported association is unconditional or conditional on both legs being in action. A threshold-specific correlation should not automatically be applied to another threshold.</p>
+<p>For binary win indicators X and Y, with nonzero variances, correlation is covariance divided by the product of standard deviations. With pX = P(X wins), pY = P(Y wins), and p11 = P(both win), this gives the following <strong>identity</strong>, not an observed NFL estimate:</p>
+<p><code>rho = (p11 - pX * pY) / sqrt(pX * (1-pX) * pY * (1-pY))</code></p>
+<p>If either indicator has zero variance, the coefficient is undefined; leave it blank. Record the four paired counts, cluster count, estimation window and uncertainty alongside any future result. Intervals do not erase model error or luck. A zero observed estimate is not evidence that every multi-leg combination is mutually independent. The <a href="https://online.stat.psu.edu/stat414/Lesson18">Penn State correlation definition</a> and <a href="https://online.stat.psu.edu/stat414/Lesson05">independence discussion</a> provide mathematical context. For three or more legs, pairwise relationships alone generally do not determine the full joint distribution.</p>
+<h2>Pricing and leaderboard safeguards</h2>
+<p>For a single contract where a win pays decimal odds D including returned stake, a loss loses one unit, and push or void returns the full stake, expected net return per unit is <code>p_win * (D - 1) - p_loss</code>, before fees. The fair decimal price under those specific assumptions is <code>1 + p_loss / p_win</code>, only when <code>p_win</code> is positive. These are algebraic identities, not measured prices or recommendations. Partial payments, dead heats, altered prices and multi-leg settlements require their own payoff states and the applicable rules; see the <a href="https://sportsbook.fanatics.com/legal/tn/house-rules/">operator&#x27;s example rules</a>.</p>
+<p>Rank only strategies that pass every gate, within comparable predeclared market divisions, on the same forecast universe and timestamps. Publish paired score improvement, uncertainty and coverage together; using only voluntary selections would permit cherry-picking, and comparing raw Brier scores across different samples can be misleading according to the <a href="https://www.spaceweather.gov/sites/default/files/images/u30/Ensemble%20Forecast%20Verification.pdf">forecast-verification material</a>. Keep actual rewards, prize values and ranks blank until an eligible, legally reviewed competition and sufficient independent evidence exist. These safeguards cannot eliminate luck or guarantee future profits.</p></main>
+<footer class="shell">Own9 · Independent review <span>Evidence is not an endorsement or a promise of profit.</span></footer>
+</body>
+</html>
