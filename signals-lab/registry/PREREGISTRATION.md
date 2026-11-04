@@ -80,3 +80,7 @@ Each grid was widened once when its optimum sat on the edge. Both selections are
 * Roofed venues are identified from missing weather readings or explicit indoor labels in the feed (heuristic). Off-site games are identified from the stadium differing from the home team's usual stadium that season (heuristic). The division map was checked against nfldata's own 2026 `div_game` (272/272).
 * Player evaluation is conditional on appearing with minimum volume. Pass attempts and yards for laterals follow NFL.com's convention (verified on the sample).
 * Process (G5/G6) models need play-by-play, which does not exist for 2026, so they cannot price Week 9.
+
+## 10. Amendments (append-only)
+
+* **Amendment 1 — 2026-11-04 (before any sealed metric existed).** The first attempt to start the sealed run aborted inside `preregistration_check()` because of a path bug in its `git log` / `git status` calls (paths were relative to the wrong directory). The abort happened before any evaluation metric was computed; the walk-forward prediction files (`game_predictions`, `prop_predictions`) had already been written by the frozen model code, which is unchanged. Only those two path strings in `pipeline/gates.py` were corrected, and this pre-registration was re-committed with new hashes. No strategy, hyper-parameter, metric, threshold or gate rule changed. The first pre-registration commit is `da92fe0` (2026-11-04T20:58:25Z).

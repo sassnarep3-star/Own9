@@ -170,9 +170,9 @@ def preregistration_check() -> dict:
     pj = REGISTRY / "preregistration.json"
     if not pj.exists(): sys.exit("REFUSING sealed run: registry/preregistration.json does not exist")
     reg = json.loads(pj.read_text()); lab = REGISTRY.parent
-    commit = subprocess.run(["git", "log", "-1", "--format=%H %cI", "--", "signals-lab/registry/preregistration.json"], cwd=lab, capture_output=True, text=True).stdout.strip()
+    commit = subprocess.run(["git", "log", "-1", "--format=%H %cI", "--", "registry/preregistration.json"], cwd=lab, capture_output=True, text=True).stdout.strip()
     if not commit: sys.exit("REFUSING sealed run: preregistration.json is not committed to git")
-    dirty = subprocess.run(["git", "status", "--porcelain", "--", "signals-lab/registry", "signals-lab/pipeline"], cwd=lab, capture_output=True, text=True).stdout.strip()
+    dirty = subprocess.run(["git", "status", "--porcelain", "--", "registry", "pipeline"], cwd=lab, capture_output=True, text=True).stdout.strip()
     bad = [f for f in PREREG_FILES if sha(f) != reg["sha256"].get(f)]
     if bad: sys.exit(f"REFUSING sealed run: files changed since pre-registration: {bad}")
     return dict(prereg_commit=commit.split()[0], prereg_commit_time=commit.split()[1], files_match=True, working_tree_dirty=bool(dirty))
