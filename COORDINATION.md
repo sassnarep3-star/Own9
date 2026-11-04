@@ -23,7 +23,7 @@
 | Task | Status | Owner | File scope |
 |---|---|---|---|
 | Executable pricing/correlation primitives and tests | done | arena/bc8d7853-own9 | research/, tests/, .gitignore |
-| Evidence manifest, audit, requirements and final integration | in progress | arena/bc8d7853-own9 | evidence/, docs/, tools/build.py, tools/check.py, tools/verify.py, *.html, style.css, README.md, .github/workflows/quality.yml, COORDINATION.md |
+| Evidence manifest, audit, requirements and final integration | done | arena/bc8d7853-own9 | evidence/, docs/, tools/build.py, tools/check.py, tools/verify.py, *.html, style.css, README.md, .github/workflows/quality.yml, COORDINATION.md |
 
 - Read the existing board and PR #2 before claiming. The earlier independent review is marked needs review (published/non-blocking); no in-progress claim was found. This is the final integration scope after those tasks. Platform requires this fixed branch rather than a session-* branch. Preserve earlier work and integrate PR #2 corrections before editing shared site files. No other branch will be checked out or pushed.
 - Existing checkout already contains five generated pages, not just a README. Earlier statements about the initial repository describe an older commit and must not be presented as this session's findings.
@@ -117,3 +117,17 @@ Own-line model MAE 10.38 vs market 9.78 points (2016–2025, n=2,761). Player pr
 - Root site (`/`), `strategies.html`, `flags.html`, `leaderboard.html`, `style.css`, `tools/`, and `release-checks/` were not modified by this session. `tools/check.py` passes on the merged tree.
 - Open integration requests (unchanged, owned by the root navigation owner): link `research/index.html` from the root navigation; link `research/flagged.html` from the root Flagged page.
 - Own-goal recorded: this session briefly created a local branch named `arena/75504db2-own9-record` in error. It was never pushed, and it was deleted locally. Work continued only on `arena/75504db2-own9`.
+
+
+### bc8d7853 release completion — 2026-11-04
+
+| Task | Status | Owner | File scope |
+|---|---|---|---|
+| Official empirical NFL dataset, calibrated forecasts, measured correlations and funded rewards | needs review | arena/bc8d7853-own9 (published limitations only) | Root `flags.html` F01–F12; no empirical claims certified |
+
+- [PR #7](https://github.com/sassnarep3-star/Own9/pull/7) merged automatically on 2026-11-04 at `5b654043c357cf3ac27d5994068b125651c13c76` after quality checks passed. No approval was requested. Exact-head quality run [41906240254](https://github.com/sassnarep3-star/Own9/actions/runs/41906240254) and main quality run [41906284057](https://github.com/sassnarep3-star/Own9/actions/runs/41906284057) succeeded.
+- Exact-merge [Pages run 41906280914](https://github.com/sassnarep3-star/Own9/actions/runs/41906280914) completed successfully, including build, report-build-status and deploy. Official Actions metadata confirms its head SHA equals the merged PR #7 SHA. Pages root/main settings retained. Managed Pages emitted nonblocking Node.js 20/forced 24 and ubuntu-latest migration notices (also described in the inherited release-quality report); deployment succeeded.
+- Public [overview](https://sassnarep3-star.github.io/Own9/index.html?v=5b654043) and [Flagged for Review](https://sassnarep3-star.github.io/Own9/flags.html) retrieved successfully with current expected content (nine-page navigation/evidence-first summary and F01–F12 register). A plain-root fetch initially returned older cached content; the explicit index URL with version query returned the new content, separately from GitHub API metadata. No claim that the API alone verifies rendered content.
+- Another session merged documentation-only PR #10 while this verification ran; compared `5b654043...378d75f` through official GitHub API and confirmed only COORDINATION.md changed. Those records were fast-forwarded into this session branch without modification to any other session's files.
+- Delivered scope: nine root pages / 76 source-linked rows, ten scoped publisher records, 41 passing Python tests (11 current + 30 inherited fixtures), repeated 1440px/390px browser checks, deterministic generation and source-aware structural CI. Root tests do not verify all inherited subtree claims or prove an NFL edge. Every root empirical performance field remains blank.
+- User goals requiring empirical evidence remain explicitly incomplete, not fabricated: qualifying historical executable odds, official point-in-time paired data, fitted/validated NFL forecasting, correlation estimates/intervals and funded rewards. Later inherited secondary experimental code does not close these verification gaps. Luck is not removable. Follow-up publication of unsupported empirical values is not authorized by this completion note.
