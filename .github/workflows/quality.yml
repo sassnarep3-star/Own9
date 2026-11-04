@@ -1,0 +1,25 @@
+name: Research quality
+on:
+  pull_request:
+  push:
+    branches: [main, arena/bc8d7853-own9]
+permissions:
+  contents: read
+jobs:
+  static-and-math:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Check committed generated pages and references
+        run: python tools/verify.py
+      - name: Test arithmetic and site integrity
+        run: python -m unittest discover -s tests -v
+      - name: Test inherited release checker fixtures
+        run: python -m unittest discover -s release-checks -p 'test_*.py' -v
+      - name: Confirm deterministic regeneration
+        run: |
+          python tools/build.py
+          git diff --exit-code -- '*.html'
