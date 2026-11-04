@@ -1,0 +1,16 @@
+{
+  "version": "proposal-1",
+  "status": "proposed, not a registered or funded competition",
+  "gates": [
+    {"id": "G1", "name": "Source provenance", "requirement": "Official outcome and operator price snapshots; content hashes, revisions, rights and independent reconciliation."},
+    {"id": "G2", "name": "Point-in-time integrity", "requirement": "Feature availability and quote timestamps at or before forecast; forecast before kickoff; frozen forecast artifact and code hash."},
+    {"id": "G3", "name": "Sealed chronological test", "requirement": "Train earlier, tune later, seal final later weeks; keep all legs of the same game together. No random-row split."},
+    {"id": "G4", "name": "Power and calibration", "requirement": "Predeclare effect size and cluster-aware power calculation; at least 30 independent clusters for exploratory bootstrap only, not proof of sufficient power; publish reliability bins and coverage."},
+    {"id": "G5", "name": "Predictive improvement", "requirement": "Paired out-of-sample log-loss improvement versus simultaneous proportional no-vig market baseline; 95% cluster-bootstrap lower bound greater than zero. Brier and calibration also reported."},
+    {"id": "G6", "name": "Economic robustness", "requirement": "Executable quoted payouts, pushes/voids and costs; positive 95% cluster-bootstrap lower bound on net return per unit; repeat under predeclared price-delay stress; publish drawdown and exposure."},
+    {"id": "G7", "name": "Selection and dependence", "requirement": "Register all variants and pair tests; Holm-adjust all valid prespecified family p-values at family-wise alpha 0.05; estimate joint outcomes directly for combos, not products of marginals."},
+    {"id": "G8", "name": "Prospective replication", "requirement": "Freeze finalist, complete untouched prospective paper trial using predeclared power and stopping rules; reproduce independently; fail closed on missing evidence or drift."}
+  ],
+  "bootstrap": {"confidence": 0.95, "replicates": 2000, "min_exploratory_clusters": 30, "seed": 9},
+  "reward_policy": "Proposed noncash recognition only: Gold, Silver and Bronze research badges for eligible top three within each matched market track. No funded prize or payout is authorized."
+}

@@ -55,7 +55,10 @@ def main():
         ['Synthetic regression tests', str(test['count']), 'Passed; fixtures are not NFL observations', anchor(GITHUB + '/tree/main/release-checks', 'Test source')],
         ['Verified NFL strategy claims', '', 'Unverified; outside technical checker scope', anchor(GITHUB + '/blob/' + commit + '/leaderboard.html', 'Audited leaderboard')],
     ]
-    content = intro + '<h2>Executive findings</h2>' + table(['Check', 'Value', 'Meaning', 'Official / project source'], summary)
+    content = intro
+    if (HERE / 'expanded-review.html').exists():
+        content += '<div class="notice"><strong>New pages need separate review.</strong> A parallel session subsequently added a research subsite. ' + anchor('expanded-review.html', 'Read expanded-site source-policy findings') + '. The frozen five-page audit below does not certify that later work.</div>'
+    content += '<h2>Executive findings</h2>' + table(['Check', 'Value', 'Meaning', 'Official / project source'], summary)
     if pages:
         content += '<h2>GitHub Pages metadata snapshot</h2><p>This is a dated API observation, not a public HTTP or browser test. Later commits may have newer deployments.</p>'
         deployment_rows = [

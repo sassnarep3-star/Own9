@@ -1,0 +1,1072 @@
+{
+  "checked_at_utc": "2026-11-04T20:25:10.679591+00:00",
+  "source_commit": "de9a1cca12cae00db933c09de6f0ef3c955b9b70",
+  "scope": "Root HTML and research/*.html only; not every file in the repository",
+  "files": [
+    {
+      "path": "flags.html",
+      "sha256": "30d79d4ae07dc5694f268d38ed6dd5fb975767e490b6ca725e03c37a79a2b17b"
+    },
+    {
+      "path": "index.html",
+      "sha256": "59b7f6a53f770bc3de053e1c24231fef01c5ecf6ea4c294dfbd6be009f0b942a"
+    },
+    {
+      "path": "leaderboard.html",
+      "sha256": "832d050de8cd795e9f9b4029f7f3ba8692ae9fb1ec3d1209f13981fd25889d12"
+    },
+    {
+      "path": "research/correlations.html",
+      "sha256": "0dfa8f15c56a2a78d05ebf74db3af58751032104ae77f10656ecb73157480001"
+    },
+    {
+      "path": "research/flagged.html",
+      "sha256": "a535201dad4a0cfc1c3c924684816f2b6398a4ea52b71dbce18217a4a7130487"
+    },
+    {
+      "path": "research/games.html",
+      "sha256": "0f10e3231e74596fefd496333442f3b18765b873f6dc1afe4cebf9b0e4333734"
+    },
+    {
+      "path": "research/index.html",
+      "sha256": "73821b31c07cdb578d57a024331d91307b827881f60cbe0b15f8683612e1035f"
+    },
+    {
+      "path": "research/own-lines.html",
+      "sha256": "a28c916841247938e69a52ba239bcf744789647b9707f4841a7918c9f887771b"
+    },
+    {
+      "path": "research/props.html",
+      "sha256": "4b49ff15831757192891e996427b4f592250088c4b8a5348503a0c68092002bf"
+    },
+    {
+      "path": "research/rules.html",
+      "sha256": "ff9d7d860944f139fde2e49d95653b1b63913c96c8ba8619409da5ca527e7f78"
+    },
+    {
+      "path": "research/sources.html",
+      "sha256": "4ff1a990a0907009090355ef95ced2d99624181109cb00e7d0ad9d1680a49e86"
+    },
+    {
+      "path": "research/strategies.html",
+      "sha256": "b56b9e9ebc51c7a9365eb46b220720e943e668540b3c0f209bd39eb01f156f6e"
+    },
+    {
+      "path": "research/summary.html",
+      "sha256": "fcb8dede95241798c9fe20e4370306443ded4a6f51d1a7d26da68805a656d75e"
+    },
+    {
+      "path": "strategies.html",
+      "sha256": "122e96c5a2998de8d1a136310786440f12e789aa71eb98f79001936e92309ac0"
+    },
+    {
+      "path": "validation.html",
+      "sha256": "4ab105cdf079713ade7620879f7c90fc189fb299035bbac1f05a6a73518d3d20"
+    }
+  ],
+  "finding_counts": {
+    "unnamed-nav": 10,
+    "row-no-source": 113
+  },
+  "local_target_failures": [],
+  "rows_needing_source_policy_review": [
+    {
+      "path": "research/correlations.html",
+      "row": 1,
+      "line": 23,
+      "links": [
+        "https://github.com/nflverse/nfldata/blob/master/data/games.csv"
+      ],
+      "classification": "outside narrow contextual registry"
+    },
+    {
+      "path": "research/correlations.html",
+      "row": 2,
+      "line": 23,
+      "links": [
+        "https://github.com/nflverse/nfldata/blob/master/data/games.csv"
+      ],
+      "classification": "outside narrow contextual registry"
+    },
+    {
+      "path": "research/correlations.html",
+      "row": 3,
+      "line": 23,
+      "links": [
+        "https://github.com/nflverse/nfldata/blob/master/data/games.csv"
+      ],
+      "classification": "outside narrow contextual registry"
+    },
+    {
+      "path": "research/correlations.html",
+      "row": 4,
+      "line": 23,
+      "links": [
+        "https://github.com/nflverse/nfldata/blob/master/data/games.csv"
+      ],
+      "classification": "outside narrow contextual registry"
+    },
+    {
+      "path": "research/correlations.html",
+      "row": 5,
+      "line": 23,
+      "links": [
+        "https://github.com/nflverse/nfldata/blob/master/data/games.csv"
+      ],
+      "classification": "outside narrow contextual registry"
+    },
+    {
+      "path": "research/correlations.html",
+      "row": 6,
+      "line": 23,
+      "links": [
+        "https://github.com/nflverse/nfldata/blob/master/data/games.csv"
+      ],
+      "classification": "outside narrow contextual registry"
+    },
+    {
+      "path": "research/correlations.html",
+      "row": 7,
+      "line": 23,
+      "links": [
+        "https://github.com/nflverse/nfldata/blob/master/data/games.csv"
+      ],
+      "classification": "outside narrow contextual registry"
+    },
+    {
+      "path": "research/correlations.html",
+      "row": 8,
+      "line": 23,
+      "links": [
+        "https://github.com/nflverse/nfldata/blob/master/data/games.csv"
+      ],
+      "classification": "outside narrow contextual registry"
+    },
+    {
+      "path": "research/correlations.html",
+      "row": 9,
+      "line": 23,
+      "links": [
+        "https://github.com/nflverse/nfldata/blob/master/data/games.csv"
+      ],
+      "classification": "outside narrow contextual registry"
+    },
+    {
+      "path": "research/correlations.html",
+      "row": 10,
+      "line": 23,
+      "links": [
+        "https://github.com/nflverse/nfldata/blob/master/data/games.csv"
+      ],
+      "classification": "outside narrow contextual registry"
+    },
+    {
+      "path": "research/correlations.html",
+      "row": 11,
+      "line": 23,
+      "links": [
+        "https://github.com/nflverse/nfldata/blob/master/data/games.csv"
+      ],
+      "classification": "outside narrow contextual registry"
+    },
+    {
+      "path": "research/correlations.html",
+      "row": 12,
+      "line": 23,
+      "links": [
+        "https://github.com/nflverse/nfldata/blob/master/data/games.csv"
+      ],
+      "classification": "outside narrow contextual registry"
+    },
+    {
+      "path": "research/correlations.html",
+      "row": 13,
+      "line": 23,
+      "links": [
+        "https://github.com/nflverse/nfldata/blob/master/data/games.csv"
+      ],
+      "classification": "outside narrow contextual registry"
+    },
+    {
+      "path": "research/correlations.html",
+      "row": 14,
+      "line": 23,
+      "links": [
+        "https://github.com/nflverse/nfldata/blob/master/data/games.csv"
+      ],
+      "classification": "outside narrow contextual registry"
+    },
+    {
+      "path": "research/correlations.html",
+      "row": 15,
+      "line": 23,
+      "links": [
+        "https://github.com/nflverse/nfldata/blob/master/data/games.csv"
+      ],
+      "classification": "outside narrow contextual registry"
+    },
+    {
+      "path": "research/correlations.html",
+      "row": 16,
+      "line": 23,
+      "links": [
+        "https://github.com/nflverse/nfldata/blob/master/data/games.csv"
+      ],
+      "classification": "outside narrow contextual registry"
+    },
+    {
+      "path": "research/correlations.html",
+      "row": 17,
+      "line": 23,
+      "links": [
+        "https://github.com/nflverse/nfldata/blob/master/data/games.csv"
+      ],
+      "classification": "outside narrow contextual registry"
+    },
+    {
+      "path": "research/correlations.html",
+      "row": 18,
+      "line": 23,
+      "links": [
+        "https://github.com/nflverse/nfldata/blob/master/data/games.csv"
+      ],
+      "classification": "outside narrow contextual registry"
+    },
+    {
+      "path": "research/correlations.html",
+      "row": 19,
+      "line": 23,
+      "links": [
+        "https://github.com/nflverse/nfldata/blob/master/data/games.csv"
+      ],
+      "classification": "outside narrow contextual registry"
+    },
+    {
+      "path": "research/correlations.html",
+      "row": 20,
+      "line": 23,
+      "links": [
+        "https://github.com/nflverse/nfldata/blob/master/data/games.csv"
+      ],
+      "classification": "outside narrow contextual registry"
+    },
+    {
+      "path": "research/correlations.html",
+      "row": 21,
+      "line": 23,
+      "links": [
+        "https://github.com/nflverse/nfldata/blob/master/data/games.csv"
+      ],
+      "classification": "outside narrow contextual registry"
+    },
+    {
+      "path": "research/correlations.html",
+      "row": 22,
+      "line": 27,
+      "links": [
+        "https://github.com/nflverse/nfldata/blob/master/data/games.csv"
+      ],
+      "classification": "outside narrow contextual registry"
+    },
+    {
+      "path": "research/correlations.html",
+      "row": 23,
+      "line": 27,
+      "links": [
+        "https://github.com/nflverse/nfldata/blob/master/data/games.csv"
+      ],
+      "classification": "outside narrow contextual registry"
+    },
+    {
+      "path": "research/correlations.html",
+      "row": 24,
+      "line": 27,
+      "links": [
+        "https://github.com/nflverse/nfldata/blob/master/data/games.csv"
+      ],
+      "classification": "outside narrow contextual registry"
+    },
+    {
+      "path": "research/correlations.html",
+      "row": 25,
+      "line": 27,
+      "links": [
+        "https://github.com/nflverse/nfldata/blob/master/data/games.csv"
+      ],
+      "classification": "outside narrow contextual registry"
+    },
+    {
+      "path": "research/correlations.html",
+      "row": 26,
+      "line": 27,
+      "links": [
+        "https://github.com/nflverse/nfldata/blob/master/data/games.csv"
+      ],
+      "classification": "outside narrow contextual registry"
+    },
+    {
+      "path": "research/correlations.html",
+      "row": 27,
+      "line": 27,
+      "links": [
+        "https://github.com/nflverse/nfldata/blob/master/data/games.csv"
+      ],
+      "classification": "outside narrow contextual registry"
+    },
+    {
+      "path": "research/flagged.html",
+      "row": 1,
+      "line": 20,
+      "links": [
+        "https://nflreadr.nflverse.com/articles/dictionary_schedules.html",
+        "https://github.com/nflverse/nflreadr/blob/main/vignettes/dictionary_schedules.Rmd",
+        "https://github.com/nflverse/nfldata/blob/master/data/games.csv"
+      ],
+      "classification": "outside narrow contextual registry"
+    },
+    {
+      "path": "research/flagged.html",
+      "row": 2,
+      "line": 20,
+      "links": [
+        "https://github.com/nflverse/nfldata/blob/master/data/games.csv"
+      ],
+      "classification": "outside narrow contextual registry"
+    },
+    {
+      "path": "research/flagged.html",
+      "row": 6,
+      "line": 20,
+      "links": [
+        "https://github.com/nflverse/nfldata/blob/master/data/games.csv"
+      ],
+      "classification": "outside narrow contextual registry"
+    },
+    {
+      "path": "research/flagged.html",
+      "row": 10,
+      "line": 20,
+      "links": [
+        "https://nflreadr.nflverse.com/articles/dictionary_schedules.html"
+      ],
+      "classification": "outside narrow contextual registry"
+    },
+    {
+      "path": "research/flagged.html",
+      "row": 11,
+      "line": 22,
+      "links": [],
+      "classification": "no HTTPS source link in row"
+    },
+    {
+      "path": "research/flagged.html",
+      "row": 12,
+      "line": 22,
+      "links": [],
+      "classification": "no HTTPS source link in row"
+    },
+    {
+      "path": "research/flagged.html",
+      "row": 13,
+      "line": 22,
+      "links": [],
+      "classification": "no HTTPS source link in row"
+    },
+    {
+      "path": "research/own-lines.html",
+      "row": 1,
+      "line": 27,
+      "links": [
+        "https://github.com/nflverse/nfldata/blob/master/data/games.csv"
+      ],
+      "classification": "outside narrow contextual registry"
+    },
+    {
+      "path": "research/own-lines.html",
+      "row": 2,
+      "line": 27,
+      "links": [
+        "https://github.com/nflverse/nfldata/blob/master/data/games.csv"
+      ],
+      "classification": "outside narrow contextual registry"
+    },
+    {
+      "path": "research/own-lines.html",
+      "row": 3,
+      "line": 27,
+      "links": [
+        "https://github.com/nflverse/nfldata/blob/master/data/games.csv"
+      ],
+      "classification": "outside narrow contextual registry"
+    },
+    {
+      "path": "research/own-lines.html",
+      "row": 19,
+      "line": 36,
+      "links": [
+        "https://github.com/nflverse/nfldata/blob/master/data/games.csv"
+      ],
+      "classification": "outside narrow contextual registry"
+    },
+    {
+      "path": "research/own-lines.html",
+      "row": 20,
+      "line": 36,
+      "links": [
+        "https://github.com/nflverse/nfldata/blob/master/data/games.csv"
+      ],
+      "classification": "outside narrow contextual registry"
+    },
+    {
+      "path": "research/own-lines.html",
+      "row": 21,
+      "line": 36,
+      "links": [
+        "https://github.com/nflverse/nfldata/blob/master/data/games.csv"
+      ],
+      "classification": "outside narrow contextual registry"
+    },
+    {
+      "path": "research/own-lines.html",
+      "row": 22,
+      "line": 36,
+      "links": [
+        "https://github.com/nflverse/nfldata/blob/master/data/games.csv"
+      ],
+      "classification": "outside narrow contextual registry"
+    },
+    {
+      "path": "research/own-lines.html",
+      "row": 23,
+      "line": 36,
+      "links": [
+        "https://github.com/nflverse/nfldata/blob/master/data/games.csv"
+      ],
+      "classification": "outside narrow contextual registry"
+    },
+    {
+      "path": "research/own-lines.html",
+      "row": 24,
+      "line": 36,
+      "links": [
+        "https://github.com/nflverse/nfldata/blob/master/data/games.csv"
+      ],
+      "classification": "outside narrow contextual registry"
+    },
+    {
+      "path": "research/own-lines.html",
+      "row": 25,
+      "line": 36,
+      "links": [
+        "https://github.com/nflverse/nfldata/blob/master/data/games.csv"
+      ],
+      "classification": "outside narrow contextual registry"
+    },
+    {
+      "path": "research/own-lines.html",
+      "row": 26,
+      "line": 36,
+      "links": [
+        "https://github.com/nflverse/nfldata/blob/master/data/games.csv"
+      ],
+      "classification": "outside narrow contextual registry"
+    },
+    {
+      "path": "research/own-lines.html",
+      "row": 27,
+      "line": 36,
+      "links": [
+        "https://github.com/nflverse/nfldata/blob/master/data/games.csv"
+      ],
+      "classification": "outside narrow contextual registry"
+    },
+    {
+      "path": "research/own-lines.html",
+      "row": 28,
+      "line": 36,
+      "links": [
+        "https://github.com/nflverse/nfldata/blob/master/data/games.csv"
+      ],
+      "classification": "outside narrow contextual registry"
+    },
+    {
+      "path": "research/own-lines.html",
+      "row": 29,
+      "line": 36,
+      "links": [
+        "https://github.com/nflverse/nfldata/blob/master/data/games.csv"
+      ],
+      "classification": "outside narrow contextual registry"
+    },
+    {
+      "path": "research/own-lines.html",
+      "row": 30,
+      "line": 36,
+      "links": [
+        "https://github.com/nflverse/nfldata/blob/master/data/games.csv"
+      ],
+      "classification": "outside narrow contextual registry"
+    },
+    {
+      "path": "research/own-lines.html",
+      "row": 31,
+      "line": 36,
+      "links": [
+        "https://github.com/nflverse/nfldata/blob/master/data/games.csv"
+      ],
+      "classification": "outside narrow contextual registry"
+    },
+    {
+      "path": "research/own-lines.html",
+      "row": 32,
+      "line": 36,
+      "links": [
+        "https://github.com/nflverse/nfldata/blob/master/data/games.csv"
+      ],
+      "classification": "outside narrow contextual registry"
+    },
+    {
+      "path": "research/own-lines.html",
+      "row": 33,
+      "line": 36,
+      "links": [
+        "https://github.com/nflverse/nfldata/blob/master/data/games.csv"
+      ],
+      "classification": "outside narrow contextual registry"
+    },
+    {
+      "path": "research/own-lines.html",
+      "row": 34,
+      "line": 36,
+      "links": [
+        "https://github.com/nflverse/nfldata/blob/master/data/games.csv"
+      ],
+      "classification": "outside narrow contextual registry"
+    },
+    {
+      "path": "research/own-lines.html",
+      "row": 35,
+      "line": 36,
+      "links": [
+        "https://github.com/nflverse/nfldata/blob/master/data/games.csv"
+      ],
+      "classification": "outside narrow contextual registry"
+    },
+    {
+      "path": "research/own-lines.html",
+      "row": 36,
+      "line": 36,
+      "links": [
+        "https://github.com/nflverse/nfldata/blob/master/data/games.csv"
+      ],
+      "classification": "outside narrow contextual registry"
+    },
+    {
+      "path": "research/own-lines.html",
+      "row": 37,
+      "line": 36,
+      "links": [
+        "https://github.com/nflverse/nfldata/blob/master/data/games.csv"
+      ],
+      "classification": "outside narrow contextual registry"
+    },
+    {
+      "path": "research/own-lines.html",
+      "row": 38,
+      "line": 36,
+      "links": [
+        "https://github.com/nflverse/nfldata/blob/master/data/games.csv"
+      ],
+      "classification": "outside narrow contextual registry"
+    },
+    {
+      "path": "research/own-lines.html",
+      "row": 39,
+      "line": 36,
+      "links": [
+        "https://github.com/nflverse/nfldata/blob/master/data/games.csv"
+      ],
+      "classification": "outside narrow contextual registry"
+    },
+    {
+      "path": "research/own-lines.html",
+      "row": 40,
+      "line": 36,
+      "links": [
+        "https://github.com/nflverse/nfldata/blob/master/data/games.csv"
+      ],
+      "classification": "outside narrow contextual registry"
+    },
+    {
+      "path": "research/own-lines.html",
+      "row": 41,
+      "line": 36,
+      "links": [
+        "https://github.com/nflverse/nfldata/blob/master/data/games.csv"
+      ],
+      "classification": "outside narrow contextual registry"
+    },
+    {
+      "path": "research/own-lines.html",
+      "row": 42,
+      "line": 36,
+      "links": [
+        "https://github.com/nflverse/nfldata/blob/master/data/games.csv"
+      ],
+      "classification": "outside narrow contextual registry"
+    },
+    {
+      "path": "research/own-lines.html",
+      "row": 43,
+      "line": 36,
+      "links": [
+        "https://github.com/nflverse/nfldata/blob/master/data/games.csv"
+      ],
+      "classification": "outside narrow contextual registry"
+    },
+    {
+      "path": "research/own-lines.html",
+      "row": 44,
+      "line": 36,
+      "links": [
+        "https://github.com/nflverse/nfldata/blob/master/data/games.csv"
+      ],
+      "classification": "outside narrow contextual registry"
+    },
+    {
+      "path": "research/own-lines.html",
+      "row": 45,
+      "line": 36,
+      "links": [
+        "https://github.com/nflverse/nfldata/blob/master/data/games.csv"
+      ],
+      "classification": "outside narrow contextual registry"
+    },
+    {
+      "path": "research/own-lines.html",
+      "row": 46,
+      "line": 36,
+      "links": [
+        "https://github.com/nflverse/nfldata/blob/master/data/games.csv"
+      ],
+      "classification": "outside narrow contextual registry"
+    },
+    {
+      "path": "research/own-lines.html",
+      "row": 47,
+      "line": 36,
+      "links": [
+        "https://github.com/nflverse/nfldata/blob/master/data/games.csv"
+      ],
+      "classification": "outside narrow contextual registry"
+    },
+    {
+      "path": "research/own-lines.html",
+      "row": 48,
+      "line": 36,
+      "links": [
+        "https://github.com/nflverse/nfldata/blob/master/data/games.csv"
+      ],
+      "classification": "outside narrow contextual registry"
+    },
+    {
+      "path": "research/own-lines.html",
+      "row": 49,
+      "line": 36,
+      "links": [
+        "https://github.com/nflverse/nfldata/blob/master/data/games.csv"
+      ],
+      "classification": "outside narrow contextual registry"
+    },
+    {
+      "path": "research/own-lines.html",
+      "row": 50,
+      "line": 36,
+      "links": [
+        "https://github.com/nflverse/nfldata/blob/master/data/games.csv"
+      ],
+      "classification": "outside narrow contextual registry"
+    },
+    {
+      "path": "research/own-lines.html",
+      "row": 51,
+      "line": 36,
+      "links": [
+        "https://github.com/nflverse/nfldata/blob/master/data/games.csv"
+      ],
+      "classification": "outside narrow contextual registry"
+    },
+    {
+      "path": "research/own-lines.html",
+      "row": 52,
+      "line": 36,
+      "links": [
+        "https://github.com/nflverse/nfldata/blob/master/data/games.csv"
+      ],
+      "classification": "outside narrow contextual registry"
+    },
+    {
+      "path": "research/own-lines.html",
+      "row": 53,
+      "line": 36,
+      "links": [
+        "https://github.com/nflverse/nfldata/blob/master/data/games.csv"
+      ],
+      "classification": "outside narrow contextual registry"
+    },
+    {
+      "path": "research/props.html",
+      "row": 5,
+      "line": 21,
+      "links": [],
+      "classification": "no HTTPS source link in row"
+    },
+    {
+      "path": "research/rules.html",
+      "row": 1,
+      "line": 21,
+      "links": [
+        "https://wsgc.wa.gov/tribal-partnerships/sports-wagering/sports-wagering-requirements-and-rules"
+      ],
+      "classification": "outside narrow contextual registry"
+    },
+    {
+      "path": "research/rules.html",
+      "row": 2,
+      "line": 21,
+      "links": [
+        "https://wsgc.wa.gov/tribal-partnerships/sports-wagering/sports-wagering-requirements-and-rules"
+      ],
+      "classification": "outside narrow contextual registry"
+    },
+    {
+      "path": "research/rules.html",
+      "row": 3,
+      "line": 21,
+      "links": [
+        "https://wsgc.wa.gov/tribal-partnerships/sports-wagering/sports-wagering-requirements-and-rules"
+      ],
+      "classification": "outside narrow contextual registry"
+    },
+    {
+      "path": "research/rules.html",
+      "row": 4,
+      "line": 21,
+      "links": [
+        "https://wsgc.wa.gov/tribal-partnerships/sports-wagering/sports-wagering-requirements-and-rules"
+      ],
+      "classification": "outside narrow contextual registry"
+    },
+    {
+      "path": "research/rules.html",
+      "row": 5,
+      "line": 21,
+      "links": [
+        "https://wsgc.wa.gov/tribal-partnerships/sports-wagering/sports-wagering-requirements-and-rules"
+      ],
+      "classification": "outside narrow contextual registry"
+    },
+    {
+      "path": "research/rules.html",
+      "row": 6,
+      "line": 21,
+      "links": [
+        "https://wsgc.wa.gov/tribal-partnerships/sports-wagering/sports-wagering-requirements-and-rules"
+      ],
+      "classification": "outside narrow contextual registry"
+    },
+    {
+      "path": "research/rules.html",
+      "row": 7,
+      "line": 21,
+      "links": [
+        "https://wsgc.wa.gov/tribal-partnerships/sports-wagering"
+      ],
+      "classification": "outside narrow contextual registry"
+    },
+    {
+      "path": "research/rules.html",
+      "row": 8,
+      "line": 26,
+      "links": [
+        "https://operations.nfl.com/rules-officiating/2026-nfl-rulebook"
+      ],
+      "classification": "outside narrow contextual registry"
+    },
+    {
+      "path": "research/rules.html",
+      "row": 9,
+      "line": 26,
+      "links": [
+        "https://operations.nfl.com/rules-officiating/2026-nfl-rulebook"
+      ],
+      "classification": "outside narrow contextual registry"
+    },
+    {
+      "path": "research/rules.html",
+      "row": 10,
+      "line": 26,
+      "links": [
+        "https://operations.nfl.com/rules-officiating/2026-nfl-rulebook"
+      ],
+      "classification": "outside narrow contextual registry"
+    },
+    {
+      "path": "research/rules.html",
+      "row": 11,
+      "line": 26,
+      "links": [
+        "https://operations.nfl.com/rules-officiating/2026-nfl-rulebook"
+      ],
+      "classification": "outside narrow contextual registry"
+    },
+    {
+      "path": "research/sources.html",
+      "row": 1,
+      "line": 20,
+      "links": [
+        "https://wsgc.wa.gov/tribal-partnerships/sports-wagering/sports-wagering-requirements-and-rules"
+      ],
+      "classification": "outside narrow contextual registry"
+    },
+    {
+      "path": "research/sources.html",
+      "row": 2,
+      "line": 20,
+      "links": [
+        "https://wsgc.wa.gov/tribal-partnerships/sports-wagering"
+      ],
+      "classification": "outside narrow contextual registry"
+    },
+    {
+      "path": "research/sources.html",
+      "row": 3,
+      "line": 20,
+      "links": [
+        "https://operations.nfl.com/rules-officiating/2026-nfl-rulebook"
+      ],
+      "classification": "outside narrow contextual registry"
+    },
+    {
+      "path": "research/sources.html",
+      "row": 7,
+      "line": 20,
+      "links": [
+        "https://github.com/nflverse/nfldata/blob/master/data/games.csv"
+      ],
+      "classification": "outside narrow contextual registry"
+    },
+    {
+      "path": "research/sources.html",
+      "row": 8,
+      "line": 20,
+      "links": [
+        "https://github.com/nflverse/nfldata"
+      ],
+      "classification": "outside narrow contextual registry"
+    },
+    {
+      "path": "research/sources.html",
+      "row": 9,
+      "line": 20,
+      "links": [
+        "https://nflreadr.nflverse.com/articles/dictionary_schedules.html"
+      ],
+      "classification": "outside narrow contextual registry"
+    },
+    {
+      "path": "research/sources.html",
+      "row": 10,
+      "line": 20,
+      "links": [
+        "https://github.com/nflverse/nflreadr/blob/main/vignettes/dictionary_schedules.Rmd"
+      ],
+      "classification": "outside narrow contextual registry"
+    },
+    {
+      "path": "research/sources.html",
+      "row": 12,
+      "line": 22,
+      "links": [],
+      "classification": "no HTTPS source link in row"
+    },
+    {
+      "path": "research/sources.html",
+      "row": 13,
+      "line": 22,
+      "links": [],
+      "classification": "no HTTPS source link in row"
+    },
+    {
+      "path": "research/sources.html",
+      "row": 14,
+      "line": 22,
+      "links": [],
+      "classification": "no HTTPS source link in row"
+    },
+    {
+      "path": "research/sources.html",
+      "row": 15,
+      "line": 22,
+      "links": [],
+      "classification": "no HTTPS source link in row"
+    },
+    {
+      "path": "research/sources.html",
+      "row": 16,
+      "line": 22,
+      "links": [],
+      "classification": "no HTTPS source link in row"
+    },
+    {
+      "path": "research/sources.html",
+      "row": 17,
+      "line": 22,
+      "links": [],
+      "classification": "no HTTPS source link in row"
+    },
+    {
+      "path": "research/sources.html",
+      "row": 18,
+      "line": 22,
+      "links": [],
+      "classification": "no HTTPS source link in row"
+    },
+    {
+      "path": "research/strategies.html",
+      "row": 1,
+      "line": 23,
+      "links": [
+        "https://github.com/nflverse/nfldata/blob/master/data/games.csv"
+      ],
+      "classification": "outside narrow contextual registry"
+    },
+    {
+      "path": "research/strategies.html",
+      "row": 2,
+      "line": 23,
+      "links": [
+        "https://github.com/nflverse/nfldata/blob/master/data/games.csv"
+      ],
+      "classification": "outside narrow contextual registry"
+    },
+    {
+      "path": "research/strategies.html",
+      "row": 3,
+      "line": 23,
+      "links": [
+        "https://github.com/nflverse/nfldata/blob/master/data/games.csv"
+      ],
+      "classification": "outside narrow contextual registry"
+    },
+    {
+      "path": "research/strategies.html",
+      "row": 4,
+      "line": 23,
+      "links": [
+        "https://github.com/nflverse/nfldata/blob/master/data/games.csv"
+      ],
+      "classification": "outside narrow contextual registry"
+    },
+    {
+      "path": "research/strategies.html",
+      "row": 5,
+      "line": 23,
+      "links": [
+        "https://github.com/nflverse/nfldata/blob/master/data/games.csv"
+      ],
+      "classification": "outside narrow contextual registry"
+    },
+    {
+      "path": "research/strategies.html",
+      "row": 6,
+      "line": 23,
+      "links": [
+        "https://github.com/nflverse/nfldata/blob/master/data/games.csv"
+      ],
+      "classification": "outside narrow contextual registry"
+    },
+    {
+      "path": "research/strategies.html",
+      "row": 7,
+      "line": 23,
+      "links": [
+        "https://github.com/nflverse/nfldata/blob/master/data/games.csv"
+      ],
+      "classification": "outside narrow contextual registry"
+    },
+    {
+      "path": "research/strategies.html",
+      "row": 8,
+      "line": 23,
+      "links": [
+        "https://github.com/nflverse/nfldata/blob/master/data/games.csv"
+      ],
+      "classification": "outside narrow contextual registry"
+    },
+    {
+      "path": "research/strategies.html",
+      "row": 9,
+      "line": 23,
+      "links": [
+        "https://github.com/nflverse/nfldata/blob/master/data/games.csv"
+      ],
+      "classification": "outside narrow contextual registry"
+    },
+    {
+      "path": "research/strategies.html",
+      "row": 10,
+      "line": 23,
+      "links": [
+        "https://github.com/nflverse/nfldata/blob/master/data/games.csv"
+      ],
+      "classification": "outside narrow contextual registry"
+    },
+    {
+      "path": "research/strategies.html",
+      "row": 11,
+      "line": 23,
+      "links": [
+        "https://github.com/nflverse/nfldata/blob/master/data/games.csv"
+      ],
+      "classification": "outside narrow contextual registry"
+    },
+    {
+      "path": "research/strategies.html",
+      "row": 12,
+      "line": 23,
+      "links": [
+        "https://github.com/nflverse/nfldata/blob/master/data/games.csv"
+      ],
+      "classification": "outside narrow contextual registry"
+    },
+    {
+      "path": "research/strategies.html",
+      "row": 13,
+      "line": 23,
+      "links": [
+        "https://github.com/nflverse/nfldata/blob/master/data/games.csv"
+      ],
+      "classification": "outside narrow contextual registry"
+    },
+    {
+      "path": "research/strategies.html",
+      "row": 14,
+      "line": 23,
+      "links": [
+        "https://github.com/nflverse/nfldata/blob/master/data/games.csv"
+      ],
+      "classification": "outside narrow contextual registry"
+    },
+    {
+      "path": "research/strategies.html",
+      "row": 15,
+      "line": 23,
+      "links": [
+        "https://github.com/nflverse/nfldata/blob/master/data/games.csv"
+      ],
+      "classification": "outside narrow contextual registry"
+    }
+  ],
+  "limitation": "Registry failures do not establish that a URL is broken or unofficial. No external source claim verification. No unverified NFL numerical values reproduced."
+}

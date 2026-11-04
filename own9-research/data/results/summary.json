@@ -1,0 +1,749 @@
+{
+  "generated_from": {
+    "file": "data/source/games.csv",
+    "sha256": "81a2786fd69546abbd4af6756100cfc6c12e5acbdbac884fe6f50054c02d222f",
+    "rows_total": 7548,
+    "rows_with_scores": 7397
+  },
+  "parameters": {
+    "K": 20.0,
+    "home_field_elo": 65.0,
+    "elo_per_point": 25.0,
+    "season_reversion": 0.6666666666666666,
+    "train": [
+      2006,
+      2015
+    ],
+    "test": [
+      2016,
+      2025
+    ],
+    "forward": 2026,
+    "thresholds": [
+      1.0,
+      2.0,
+      3.0
+    ],
+    "primary_threshold": 2.0,
+    "pricing": "-110 both sides (assumed)",
+    "breakeven": 0.5238,
+    "family_size": 4,
+    "alpha": 0.05
+  },
+  "checks": {
+    "sign_check_corr_line_vs_result": 0.4299,
+    "sign_convention_ok": true
+  },
+  "strategies": {
+    "S_T1": {
+      "threshold": 1.0,
+      "periods": {
+        "train": {
+          "bets": 2016,
+          "wins": 1010,
+          "losses": 960,
+          "pushes": 46,
+          "hit_rate": 0.5127,
+          "ci95": [
+            0.4906,
+            0.5347
+          ],
+          "p_value": 0.2696,
+          "roi_110": -0.0212
+        },
+        "test": {
+          "bets": 2130,
+          "wins": 1044,
+          "losses": 1034,
+          "pushes": 52,
+          "hit_rate": 0.5024,
+          "ci95": [
+            0.4809,
+            0.5239
+          ],
+          "p_value": 0.8435,
+          "roi_110": -0.0409
+        },
+        "forward": {
+          "bets": 88,
+          "wins": 47,
+          "losses": 37,
+          "pushes": 4,
+          "hit_rate": 0.5595,
+          "ci95": [
+            0.4531,
+            0.6608
+          ],
+          "p_value": 0.3261,
+          "roi_110": 0.0682
+        }
+      },
+      "seasons_test": {
+        "2016": {
+          "bets": 200,
+          "wins": 98,
+          "losses": 100,
+          "pushes": 2,
+          "hit_rate": 0.4949,
+          "ci95": [
+            0.4261,
+            0.564
+          ],
+          "p_value": 0.9434,
+          "roi_110": -0.0551
+        },
+        "2017": {
+          "bets": 211,
+          "wins": 99,
+          "losses": 106,
+          "pushes": 6,
+          "hit_rate": 0.4829,
+          "ci95": [
+            0.4155,
+            0.551
+          ],
+          "p_value": 0.6753,
+          "roi_110": -0.078
+        },
+        "2018": {
+          "bets": 203,
+          "wins": 105,
+          "losses": 91,
+          "pushes": 7,
+          "hit_rate": 0.5357,
+          "ci95": [
+            0.4659,
+            0.6042
+          ],
+          "p_value": 0.3531,
+          "roi_110": 0.0227
+        },
+        "2019": {
+          "bets": 208,
+          "wins": 103,
+          "losses": 97,
+          "pushes": 8,
+          "hit_rate": 0.515,
+          "ci95": [
+            0.4461,
+            0.5833
+          ],
+          "p_value": 0.7238,
+          "roi_110": -0.0168
+        },
+        "2020": {
+          "bets": 215,
+          "wins": 117,
+          "losses": 98,
+          "pushes": 0,
+          "hit_rate": 0.5442,
+          "ci95": [
+            0.4774,
+            0.6094
+          ],
+          "p_value": 0.2195,
+          "roi_110": 0.0389
+        },
+        "2021": {
+          "bets": 224,
+          "wins": 112,
+          "losses": 108,
+          "pushes": 4,
+          "hit_rate": 0.5091,
+          "ci95": [
+            0.4434,
+            0.5744
+          ],
+          "p_value": 0.8398,
+          "roi_110": -0.0281
+        },
+        "2022": {
+          "bets": 223,
+          "wins": 108,
+          "losses": 106,
+          "pushes": 9,
+          "hit_rate": 0.5047,
+          "ci95": [
+            0.4382,
+            0.571
+          ],
+          "p_value": 0.9455,
+          "roi_110": -0.0365
+        },
+        "2023": {
+          "bets": 217,
+          "wins": 98,
+          "losses": 107,
+          "pushes": 12,
+          "hit_rate": 0.478,
+          "ci95": [
+            0.4107,
+            0.5462
+          ],
+          "p_value": 0.5764,
+          "roi_110": -0.0874
+        },
+        "2024": {
+          "bets": 220,
+          "wins": 106,
+          "losses": 111,
+          "pushes": 3,
+          "hit_rate": 0.4885,
+          "ci95": [
+            0.4228,
+            0.5546
+          ],
+          "p_value": 0.7861,
+          "roi_110": -0.0674
+        },
+        "2025": {
+          "bets": 209,
+          "wins": 98,
+          "losses": 110,
+          "pushes": 1,
+          "hit_rate": 0.4712,
+          "ci95": [
+            0.4045,
+            0.5389
+          ],
+          "p_value": 0.4457,
+          "roi_110": -0.1005
+        }
+      }
+    },
+    "S_T2": {
+      "threshold": 2.0,
+      "periods": {
+        "train": {
+          "bets": 1555,
+          "wins": 779,
+          "losses": 740,
+          "pushes": 36,
+          "hit_rate": 0.5128,
+          "ci95": [
+            0.4877,
+            0.5379
+          ],
+          "p_value": 0.3296,
+          "roi_110": -0.0209
+        },
+        "test": {
+          "bets": 1633,
+          "wins": 807,
+          "losses": 795,
+          "pushes": 31,
+          "hit_rate": 0.5037,
+          "ci95": [
+            0.4793,
+            0.5282
+          ],
+          "p_value": 0.7835,
+          "roi_110": -0.0383
+        },
+        "forward": {
+          "bets": 59,
+          "wins": 33,
+          "losses": 24,
+          "pushes": 2,
+          "hit_rate": 0.5789,
+          "ci95": [
+            0.4498,
+            0.6981
+          ],
+          "p_value": 0.2892,
+          "roi_110": 0.1053
+        }
+      },
+      "seasons_test": {
+        "2016": {
+          "bets": 138,
+          "wins": 67,
+          "losses": 70,
+          "pushes": 1,
+          "hit_rate": 0.4891,
+          "ci95": [
+            0.4068,
+            0.5719
+          ],
+          "p_value": 0.8644,
+          "roi_110": -0.0664
+        },
+        "2017": {
+          "bets": 166,
+          "wins": 80,
+          "losses": 83,
+          "pushes": 3,
+          "hit_rate": 0.4908,
+          "ci95": [
+            0.4152,
+            0.5669
+          ],
+          "p_value": 0.8756,
+          "roi_110": -0.063
+        },
+        "2018": {
+          "bets": 155,
+          "wins": 81,
+          "losses": 71,
+          "pushes": 3,
+          "hit_rate": 0.5329,
+          "ci95": [
+            0.4537,
+            0.6104
+          ],
+          "p_value": 0.4655,
+          "roi_110": 0.0173
+        },
+        "2019": {
+          "bets": 158,
+          "wins": 78,
+          "losses": 74,
+          "pushes": 6,
+          "hit_rate": 0.5132,
+          "ci95": [
+            0.4344,
+            0.5913
+          ],
+          "p_value": 0.8078,
+          "roi_110": -0.0203
+        },
+        "2020": {
+          "bets": 165,
+          "wins": 92,
+          "losses": 73,
+          "pushes": 0,
+          "hit_rate": 0.5576,
+          "ci95": [
+            0.4813,
+            0.6312
+          ],
+          "p_value": 0.1609,
+          "roi_110": 0.0645
+        },
+        "2021": {
+          "bets": 188,
+          "wins": 94,
+          "losses": 91,
+          "pushes": 3,
+          "hit_rate": 0.5081,
+          "ci95": [
+            0.4366,
+            0.5792
+          ],
+          "p_value": 0.8831,
+          "roi_110": -0.03
+        },
+        "2022": {
+          "bets": 177,
+          "wins": 90,
+          "losses": 82,
+          "pushes": 5,
+          "hit_rate": 0.5233,
+          "ci95": [
+            0.4489,
+            0.5966
+          ],
+          "p_value": 0.5936,
+          "roi_110": -0.0011
+        },
+        "2023": {
+          "bets": 165,
+          "wins": 73,
+          "losses": 83,
+          "pushes": 9,
+          "hit_rate": 0.4679,
+          "ci95": [
+            0.3914,
+            0.5461
+          ],
+          "p_value": 0.4713,
+          "roi_110": -0.1066
+        },
+        "2024": {
+          "bets": 164,
+          "wins": 77,
+          "losses": 86,
+          "pushes": 1,
+          "hit_rate": 0.4724,
+          "ci95": [
+            0.3973,
+            0.5488
+          ],
+          "p_value": 0.531,
+          "roi_110": -0.0982
+        },
+        "2025": {
+          "bets": 157,
+          "wins": 75,
+          "losses": 82,
+          "pushes": 0,
+          "hit_rate": 0.4777,
+          "ci95": [
+            0.401,
+            0.5554
+          ],
+          "p_value": 0.6322,
+          "roi_110": -0.088
+        }
+      }
+    },
+    "S_T3": {
+      "threshold": 3.0,
+      "periods": {
+        "train": {
+          "bets": 1142,
+          "wins": 567,
+          "losses": 549,
+          "pushes": 26,
+          "hit_rate": 0.5081,
+          "ci95": [
+            0.4788,
+            0.5373
+          ],
+          "p_value": 0.6109,
+          "roi_110": -0.0301
+        },
+        "test": {
+          "bets": 1241,
+          "wins": 618,
+          "losses": 597,
+          "pushes": 26,
+          "hit_rate": 0.5086,
+          "ci95": [
+            0.4805,
+            0.5367
+          ],
+          "p_value": 0.5661,
+          "roi_110": -0.029
+        },
+        "forward": {
+          "bets": 42,
+          "wins": 22,
+          "losses": 18,
+          "pushes": 2,
+          "hit_rate": 0.55,
+          "ci95": [
+            0.3983,
+            0.6929
+          ],
+          "p_value": 0.6358,
+          "roi_110": 0.05
+        }
+      },
+      "seasons_test": {
+        "2016": {
+          "bets": 94,
+          "wins": 46,
+          "losses": 47,
+          "pushes": 1,
+          "hit_rate": 0.4946,
+          "ci95": [
+            0.3953,
+            0.5944
+          ],
+          "p_value": 1.0,
+          "roi_110": -0.0557
+        },
+        "2017": {
+          "bets": 136,
+          "wins": 64,
+          "losses": 69,
+          "pushes": 3,
+          "hit_rate": 0.4812,
+          "ci95": [
+            0.398,
+            0.5654
+          ],
+          "p_value": 0.7289,
+          "roi_110": -0.0813
+        },
+        "2018": {
+          "bets": 117,
+          "wins": 61,
+          "losses": 54,
+          "pushes": 2,
+          "hit_rate": 0.5304,
+          "ci95": [
+            0.4397,
+            0.6192
+          ],
+          "p_value": 0.576,
+          "roi_110": 0.0126
+        },
+        "2019": {
+          "bets": 129,
+          "wins": 68,
+          "losses": 57,
+          "pushes": 4,
+          "hit_rate": 0.544,
+          "ci95": [
+            0.4567,
+            0.6287
+          ],
+          "p_value": 0.3712,
+          "roi_110": 0.0385
+        },
+        "2020": {
+          "bets": 128,
+          "wins": 72,
+          "losses": 56,
+          "pushes": 0,
+          "hit_rate": 0.5625,
+          "ci95": [
+            0.476,
+            0.6454
+          ],
+          "p_value": 0.1847,
+          "roi_110": 0.0739
+        },
+        "2021": {
+          "bets": 149,
+          "wins": 68,
+          "losses": 78,
+          "pushes": 3,
+          "hit_rate": 0.4658,
+          "ci95": [
+            0.3868,
+            0.5465
+          ],
+          "p_value": 0.4565,
+          "roi_110": -0.1108
+        },
+        "2022": {
+          "bets": 130,
+          "wins": 69,
+          "losses": 57,
+          "pushes": 4,
+          "hit_rate": 0.5476,
+          "ci95": [
+            0.4606,
+            0.6318
+          ],
+          "p_value": 0.3271,
+          "roi_110": 0.0455
+        },
+        "2023": {
+          "bets": 118,
+          "wins": 53,
+          "losses": 56,
+          "pushes": 9,
+          "hit_rate": 0.4862,
+          "ci95": [
+            0.3945,
+            0.5789
+          ],
+          "p_value": 0.8482,
+          "roi_110": -0.0717
+        },
+        "2024": {
+          "bets": 121,
+          "wins": 56,
+          "losses": 65,
+          "pushes": 0,
+          "hit_rate": 0.4628,
+          "ci95": [
+            0.3765,
+            0.5514
+          ],
+          "p_value": 0.4672,
+          "roi_110": -0.1165
+        },
+        "2025": {
+          "bets": 119,
+          "wins": 61,
+          "losses": 58,
+          "pushes": 0,
+          "hit_rate": 0.5126,
+          "ci95": [
+            0.4238,
+            0.6006
+          ],
+          "p_value": 0.8546,
+          "roi_110": -0.0214
+        }
+      }
+    }
+  },
+  "gate4": {
+    "n_test_games": 2639,
+    "mae_own_line": 10.416,
+    "mae_market": 9.788,
+    "mae_difference": 0.628,
+    "diff_ci95": [
+      0.537,
+      0.716
+    ]
+  },
+  "correlations": {
+    "cross_game_same_week_phi": -0.0121,
+    "cross_game_ci95": [
+      -0.024,
+      0.002
+    ],
+    "cross_game_pairs": 17785,
+    "same_game": {
+      "home_cover_vs_over": {
+        "phi": 0.0235,
+        "n": 2553,
+        "approx_ci95": 0.0388
+      },
+      "home_win_vs_over": {
+        "phi": 0.0092,
+        "n": 2629,
+        "approx_ci95": 0.0382
+      }
+    },
+    "score_only_margin_vs_total_r": 0.0208,
+    "score_only_n": 2639
+  },
+  "parlay": {
+    "legs": 2,
+    "primary_strategy": "S_T2",
+    "n_pairs": 6914,
+    "joint_win_rate": 0.2505,
+    "product_of_marginals": 0.2538,
+    "lift_vs_independence": 0.9872,
+    "breakeven_joint": 0.2744,
+    "decimal_price_assumed": 3.6446,
+    "roi_assumed_price": -0.087,
+    "roi_ci95_week_bootstrap": [
+      -0.181,
+      0.0038
+    ]
+  },
+  "forward_2026_primary": {
+    "bets": 59,
+    "wins": 33,
+    "losses": 24,
+    "pushes": 2,
+    "hit_rate": 0.5789,
+    "ci95": [
+      0.4498,
+      0.6981
+    ],
+    "p_value": 0.2892,
+    "roi_110": 0.1053
+  },
+  "gates": {
+    "S_T1": {
+      "G1 Provenance": {
+        "status": "FAIL",
+        "note": "Market lines (spread_line, total_line) have no documented origin in the repository; line-dependent results are unverified."
+      },
+      "G2 Point in time": {
+        "status": "PARTIAL",
+        "note": "Own line uses only earlier games (verified by code). Lines are closing-type values with no timestamp, so timing of execution is unknown."
+      },
+      "G3 Evaluation split": {
+        "status": "PASS",
+        "note": "Tuning 2006-2015, sealed test 2016-2025, forward 2026."
+      },
+      "G4 Predictive quality vs market": {
+        "status": "FAIL",
+        "note": "Own-line MAE minus market MAE = 0.628 points (95% CI 0.537 to 0.716)."
+      },
+      "G5 Economics": {
+        "status": "NOT RUN",
+        "note": "No executable, timestamped sportsbook prices or limits were verified; -110 is an assumption."
+      },
+      "G6 Selection control": {
+        "status": "FAIL",
+        "note": "Test p-value 0.8435 vs Bonferroni threshold 0.0125 (family of 4)."
+      },
+      "G7 Stability": {
+        "status": "FAIL",
+        "note": "2 of 10 test seasons above breakeven 0.5238; rule requires 7 of 10."
+      }
+    },
+    "S_T2": {
+      "G1 Provenance": {
+        "status": "FAIL",
+        "note": "Market lines (spread_line, total_line) have no documented origin in the repository; line-dependent results are unverified."
+      },
+      "G2 Point in time": {
+        "status": "PARTIAL",
+        "note": "Own line uses only earlier games (verified by code). Lines are closing-type values with no timestamp, so timing of execution is unknown."
+      },
+      "G3 Evaluation split": {
+        "status": "PASS",
+        "note": "Tuning 2006-2015, sealed test 2016-2025, forward 2026."
+      },
+      "G4 Predictive quality vs market": {
+        "status": "FAIL",
+        "note": "Own-line MAE minus market MAE = 0.628 points (95% CI 0.537 to 0.716)."
+      },
+      "G5 Economics": {
+        "status": "NOT RUN",
+        "note": "No executable, timestamped sportsbook prices or limits were verified; -110 is an assumption."
+      },
+      "G6 Selection control": {
+        "status": "FAIL",
+        "note": "Test p-value 0.7835 vs Bonferroni threshold 0.0125 (family of 4)."
+      },
+      "G7 Stability": {
+        "status": "FAIL",
+        "note": "2 of 10 test seasons above breakeven 0.5238; rule requires 7 of 10."
+      }
+    },
+    "S_T3": {
+      "G1 Provenance": {
+        "status": "FAIL",
+        "note": "Market lines (spread_line, total_line) have no documented origin in the repository; line-dependent results are unverified."
+      },
+      "G2 Point in time": {
+        "status": "PARTIAL",
+        "note": "Own line uses only earlier games (verified by code). Lines are closing-type values with no timestamp, so timing of execution is unknown."
+      },
+      "G3 Evaluation split": {
+        "status": "PASS",
+        "note": "Tuning 2006-2015, sealed test 2016-2025, forward 2026."
+      },
+      "G4 Predictive quality vs market": {
+        "status": "FAIL",
+        "note": "Own-line MAE minus market MAE = 0.628 points (95% CI 0.537 to 0.716)."
+      },
+      "G5 Economics": {
+        "status": "NOT RUN",
+        "note": "No executable, timestamped sportsbook prices or limits were verified; -110 is an assumption."
+      },
+      "G6 Selection control": {
+        "status": "FAIL",
+        "note": "Test p-value 0.5661 vs Bonferroni threshold 0.0125 (family of 4)."
+      },
+      "G7 Stability": {
+        "status": "FAIL",
+        "note": "4 of 10 test seasons above breakeven 0.5238; rule requires 7 of 10."
+      }
+    },
+    "P2_parlay": {
+      "G1 Provenance": {
+        "status": "FAIL",
+        "note": "Depends on unverified market lines."
+      },
+      "G2 Point in time": {
+        "status": "PARTIAL",
+        "note": "Legs chosen from pre-game own lines; joint prices not available."
+      },
+      "G3 Evaluation split": {
+        "status": "PASS",
+        "note": "Test period only; no tuning on the parlay."
+      },
+      "G4 Predictive quality vs market": {
+        "status": "NOT RUN",
+        "note": "No market joint-probability baseline."
+      },
+      "G5 Economics": {
+        "status": "NOT RUN",
+        "note": "No executable parlay prices; price assumes independence of legs x -110 each."
+      },
+      "G6 Selection control": {
+        "status": "FAIL",
+        "note": "Leg correlation not priced; family not corrected."
+      },
+      "G7 Stability": {
+        "status": "NOT RUN",
+        "note": "Pairs overlap within weeks; not evaluated by season."
+      }
+    }
+  }
+}

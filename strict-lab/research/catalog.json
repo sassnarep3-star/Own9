@@ -1,0 +1,558 @@
+{
+  "as_of": "2026-11-04",
+  "sources": [
+    {
+      "id": "NFL-STATS",
+      "publisher": "NFL",
+      "kind": "League primary source",
+      "title": "NFL player statistics",
+      "url": "https://www.nfl.com/stats/player-stats/",
+      "excerpt": "2026 Player Stats - Category",
+      "scope": "Passing, rushing and receiving categories are visible. No statistics imported or used to fit a model; season totals are not a point-in-time game-level dataset.",
+      "checked_at": "2026-11-04",
+      "status": "Checked · scoped"
+    },
+    {
+      "id": "NFL-SCORES",
+      "publisher": "NFL",
+      "kind": "League primary source",
+      "title": "NFL scores and game links",
+      "url": "https://www.nfl.com/scores/",
+      "excerpt": "SCORES2026",
+      "scope": "Game links and schedule context checked. No complete historical scores archive was obtained.",
+      "checked_at": "2026-11-04",
+      "status": "Checked · scoped"
+    },
+    {
+      "id": "NFL-INJ",
+      "publisher": "NFL",
+      "kind": "League primary source",
+      "title": "Official NFL injury report",
+      "url": "https://www.nfl.com/injuries/",
+      "excerpt": "Practice Status | Game Status",
+      "scope": "Practice and game-status fields are visible; blank fields and No Injuries Reported must not be interpreted as verified availability. Historical revision timestamps not established.",
+      "checked_at": "2026-11-04",
+      "status": "Checked · scoped"
+    },
+    {
+      "id": "SCI-RHO",
+      "publisher": "SciPy",
+      "kind": "Official maintainer documentation",
+      "title": "Pearson correlation",
+      "url": "https://docs.scipy.org/doc/scipy/reference/generated/scipy.stats.pearsonr.html",
+      "excerpt": "The correlation coefficient is calculated as follows:",
+      "scope": "Formula, [-1,1] range, constant-input warning and degenerate bootstrap warning checked in chunks 0–1. Default normal-theory p-value is not suitable as automatic evidence for dependent binary NFL legs.",
+      "checked_at": "2026-11-04",
+      "status": "Checked · scoped"
+    },
+    {
+      "id": "SCI-BOOT",
+      "publisher": "SciPy",
+      "kind": "Official maintainer documentation",
+      "title": "Bootstrap confidence intervals",
+      "url": "https://docs.scipy.org/doc/scipy/reference/generated/scipy.stats.bootstrap.html",
+      "excerpt": "confidence_level=0.95",
+      "scope": "Signature checked. Cluster-percentile bootstrap in Own9 is a project implementation, not a claim that SciPy automatically handles NFL clustering.",
+      "checked_at": "2026-11-04",
+      "status": "Checked · scoped"
+    },
+    {
+      "id": "SK-TIME",
+      "publisher": "scikit-learn",
+      "kind": "Official maintainer documentation",
+      "title": "TimeSeriesSplit",
+      "url": "https://scikit-learn.org/stable/modules/generated/sklearn.model_selection.TimeSeriesSplit.html",
+      "excerpt": "training on future data and evaluating on past data",
+      "scope": "Time-order warning checked. Equal spacing assumption noted. Project uses week/group-aware design rather than blindly splitting irregular player rows.",
+      "checked_at": "2026-11-04",
+      "status": "Checked · scoped"
+    },
+    {
+      "id": "SK-SCORE",
+      "publisher": "scikit-learn",
+      "kind": "Official maintainer documentation",
+      "title": "Metrics and scoring",
+      "url": "https://scikit-learn.org/stable/modules/model_evaluation.html",
+      "excerpt": "Strictly proper scoring rules",
+      "scope": "Proper scoring discussion and classification table identifying Brier score and log loss checked. No NFL edge or numerical project thresholds are endorsed by this source.",
+      "checked_at": "2026-11-04",
+      "status": "Checked · scoped"
+    },
+    {
+      "id": "SK-CAL",
+      "publisher": "scikit-learn",
+      "kind": "Official maintainer documentation",
+      "title": "Probability calibration",
+      "url": "https://scikit-learn.org/stable/modules/calibration.html",
+      "excerpt": "A lower Brier loss, for instance, does not necessarily mean a better calibrated model",
+      "scope": "Calibration curves and warning that Brier/log loss also reflect resolution and uncertainty checked. Must inspect calibration separately.",
+      "checked_at": "2026-11-04",
+      "status": "Checked · scoped"
+    },
+    {
+      "id": "SM-HOLM",
+      "publisher": "statsmodels",
+      "kind": "Official maintainer documentation",
+      "title": "Multiple-test correction",
+      "url": "https://www.statsmodels.org/stable/generated/statsmodels.stats.multitest.multipletests.html",
+      "excerpt": "holm : step-down method using Bonferroni adjustments",
+      "scope": "Holm method, corrected p-values and family-wise error-rate parameter checked. Source does not validate project-generated p-values.",
+      "checked_at": "2026-11-04",
+      "status": "Checked · scoped"
+    },
+    {
+      "id": "DK-GENERAL",
+      "publisher": "DraftKings",
+      "kind": "Operator primary source · Virginia example",
+      "title": "General betting rules",
+      "url": "https://sportsbook.draftkings.com/help/general-betting-rules/general-rules",
+      "excerpt": "only while you are physically located in the Commonwealth of Virginia",
+      "scope": "Jurisdiction, terms precedence and rules-revision caveats checked in introduction only. Not applicable-law verification for Washington or any other jurisdiction; no odds obtained.",
+      "checked_at": "2026-11-04",
+      "status": "Checked · scoped"
+    },
+    {
+      "id": "DK-MARKET",
+      "publisher": "DraftKings",
+      "kind": "Operator primary source · scoped example",
+      "title": "Bet types and market rules",
+      "url": "https://sportsbook.draftkings.com/help/general-betting-rules/market-rules",
+      "excerpt": "bets will be settled as Push",
+      "scope": "Two-way moneyline ties, whole-number spread and total push definitions checked. Do not extrapolate to all operators or prop/SGP void rules.",
+      "checked_at": "2026-11-04",
+      "status": "Checked · scoped"
+    },
+    {
+      "id": "NIST-TAIL",
+      "publisher": "NIST",
+      "kind": "Government statistical reference",
+      "title": "Skewness and kurtosis",
+      "url": "https://www.itl.nist.gov/div898/handbook/eda/section3/eda35b.htm",
+      "excerpt": "Kurtosis is a measure of whether the data are heavy-tailed or light-tailed relative to a normal distribution",
+      "scope": "Definitions and outlier sensitivity checked. Tail risk is a methodological consideration, not a measured property of absent NFL returns.",
+      "checked_at": "2026-11-04",
+      "status": "Checked · scoped"
+    },
+    {
+      "id": "UKGC",
+      "publisher": "UK Gambling Commission",
+      "kind": "Regulator research · UK scope",
+      "title": "Exploring online staking",
+      "url": "https://www.gamblingcommission.gov.uk/about-us/guide/consumer-voice-2020-exploring-online-staking",
+      "excerpt": "the views of respondents in this research may not represent that of the wider population",
+      "scope": "Qualitative research and sample limitation checked. Context for risk controls, not a US legality or staking recommendation.",
+      "checked_at": "2026-11-04",
+      "status": "Checked · scoped"
+    },
+    {
+      "id": "GH-PAGES",
+      "publisher": "GitHub",
+      "kind": "Official platform documentation",
+      "title": "Custom workflows with GitHub Pages",
+      "url": "https://docs.github.com/en/pages/getting-started-with-github-pages/using-custom-workflows-with-github-pages",
+      "excerpt": "The job must have a minimum of pages: write and id-token: write permissions.",
+      "scope": "Workflow artifact and deployment permissions checked. Repository deployment is independently confirmed through GitHub API, not inferred from this document.",
+      "checked_at": "2026-11-04",
+      "status": "Checked · scoped"
+    }
+  ],
+  "strategies": [
+    {
+      "id": "S01",
+      "track": "Game single",
+      "name": "Opponent-adjusted scoring",
+      "design": "Estimate recency-weighted offense/defense strength with shrinkage toward a league baseline; integrate a joint score distribution for moneyline/spread/total.",
+      "inputs": "Prior official game scores, opponent IDs, home/neutral venue and input availability timestamps.",
+      "falsification": "Compare with historical-mean and simultaneous no-vig market baselines; ablate opponent adjustment and recency separately.",
+      "sources": [
+        "NFL-SCORES",
+        "SK-TIME"
+      ],
+      "status": "Blocked",
+      "evidence": "Project proposal · unvalidated"
+    },
+    {
+      "id": "S02",
+      "track": "Game single",
+      "name": "Availability adjustment",
+      "design": "Treat documented availability as a scenario mixture, not a guaranteed starter; estimate incremental predictive value relative to S01.",
+      "inputs": "Official injury report snapshots, inactive lists and time-stamped lineup changes; no post-kickoff information.",
+      "falsification": "Ablate availability effects; check missing-status sensitivity and probability calibration.",
+      "sources": [
+        "NFL-INJ",
+        "SK-CAL"
+      ],
+      "status": "Blocked",
+      "evidence": "Project proposal · unvalidated"
+    },
+    {
+      "id": "S03",
+      "track": "Game single",
+      "name": "Schedule and rest",
+      "design": "Test rest days, travel/venue and schedule changes only after obtaining official kickoffs and venue records.",
+      "inputs": "Official schedule history and revisions; travel distances and weather values stay blank until independently sourced.",
+      "falsification": "Register features before selection; use rolling week/season folds and pooled-versus-team effects.",
+      "sources": [
+        "NFL-SCORES",
+        "SK-TIME"
+      ],
+      "status": "Blocked",
+      "evidence": "Project proposal · unvalidated"
+    },
+    {
+      "id": "S04",
+      "track": "Player prop",
+      "name": "Volume × efficiency",
+      "design": "Model attempts/targets/participation and conditional efficiency jointly with overdispersion; integrate the entire stat distribution at each quoted line.",
+      "inputs": "Official player game logs, participation evidence and exact operator prop definitions with odds.",
+      "falsification": "Compare to player rolling baseline; ablate volume and efficiency; evaluate tails and zero participation.",
+      "sources": [
+        "NFL-STATS",
+        "SK-CAL"
+      ],
+      "status": "Blocked",
+      "evidence": "Project proposal · unvalidated"
+    },
+    {
+      "id": "S05",
+      "track": "Player prop",
+      "name": "Role-change scenario",
+      "design": "Test whether officially documented roster/availability changes improve conditional opportunity forecasts beyond a pooled player baseline.",
+      "inputs": "Time-stamped official team/league role evidence; no inferred promotions or injury severity.",
+      "falsification": "Separate documented information from model assumptions; sensitivity to usage uncertainty; hold out affected games.",
+      "sources": [
+        "NFL-INJ",
+        "SK-TIME"
+      ],
+      "status": "Blocked",
+      "evidence": "Project proposal · unvalidated"
+    },
+    {
+      "id": "S06",
+      "track": "Cross-game parlay",
+      "name": "Joint outcome calibration",
+      "design": "Use a predeclared two-leg universe and paired contemporaneous forecast errors; estimate joint probability rather than silently multiplying legs.",
+      "inputs": "Aligned dated outcomes and simultaneous actual combo payouts; common-week clustering.",
+      "falsification": "Test dependence across weeks/seasons and compare joint forecast with independence benchmark; validate offered combo prices.",
+      "sources": [
+        "SCI-RHO",
+        "SK-SCORE"
+      ],
+      "status": "Blocked",
+      "evidence": "Project proposal · unvalidated"
+    },
+    {
+      "id": "S07",
+      "track": "Same-game combo",
+      "name": "Quarterback + receiver",
+      "design": "Jointly model team passing volume, receiver target allocation, catches and yards under shared game scenarios. No assumed positive correlation coefficient.",
+      "inputs": "Paired official player-game outcomes; quote line/payout/void-rule snapshots for the precise combination.",
+      "falsification": "Estimate binary outcome phi for exact thresholds and joint win rate; validate full distribution out of sample.",
+      "sources": [
+        "NFL-STATS",
+        "SCI-RHO"
+      ],
+      "status": "Blocked",
+      "evidence": "Project proposal · unvalidated"
+    },
+    {
+      "id": "S08",
+      "track": "Same-game combo",
+      "name": "Game script + player usage",
+      "design": "Test shared score/possession scenarios for side/total and rushing/receiving legs; dependence sign must be measured, not asserted.",
+      "inputs": "Official game/player outcomes and exact thresholds plus executable operator combo quotes.",
+      "falsification": "Shared-scenario simulation must honor marginal calibration and logical constraints; model 3+ legs directly.",
+      "sources": [
+        "NFL-SCORES",
+        "SCI-RHO"
+      ],
+      "status": "Blocked",
+      "evidence": "Project proposal · unvalidated"
+    }
+  ],
+  "flags": [
+    {
+      "id": "F01",
+      "item": "Historical market evidence",
+      "finding": "No verified official, executable historical singles/prop/combo quote archive or permitted feed was obtained. Prices, ROI and CLV remain blank.",
+      "resolution": "Required before economic claims; do not substitute league stats for sportsbook prices.",
+      "sources": [
+        "DK-GENERAL",
+        "DK-MARKET"
+      ],
+      "status": "Needs review"
+    },
+    {
+      "id": "F02",
+      "item": "Point-in-time outcomes",
+      "finding": "Official pages were inspected, but a complete reconciled game-level dataset with preserved original snapshots was not collected.",
+      "resolution": "No fitted model or real forecast is published by this strict-source lab. Empty lab observations are intentional; other sessions may publish separately labeled exploratory work.",
+      "sources": [
+        "NFL-STATS",
+        "NFL-SCORES"
+      ],
+      "status": "Needs review"
+    },
+    {
+      "id": "F03",
+      "item": "Measured correlations",
+      "finding": "No eligible paired leg sample; coefficients, confidence intervals and sample sizes remain blank in result tables.",
+      "resolution": "Do not enter zero or infer correlation signs from football intuition.",
+      "sources": [
+        "SCI-RHO"
+      ],
+      "status": "Needs review"
+    },
+    {
+      "id": "F04",
+      "item": "Skill versus luck",
+      "finding": "Random outcomes remain uncertain even for well-calibrated probabilities. Neither positive historical returns nor a small p-value proves future profit.",
+      "resolution": "Require all gates, replication and uncertainty. No strategy is certified.",
+      "sources": [
+        "SK-SCORE",
+        "SK-CAL"
+      ],
+      "status": "Needs review"
+    },
+    {
+      "id": "F05",
+      "item": "Policy thresholds",
+      "finding": "30 exploratory clusters, 95% intervals, 2,000 replicates, seed 9 and family-wise alpha 0.05 are proposed engineering settings, not source-verified adequacy guarantees.",
+      "resolution": "Perform strategy-specific power and dependence analysis before preregistration.",
+      "sources": [
+        "SCI-BOOT",
+        "SM-HOLM"
+      ],
+      "status": "Needs review"
+    },
+    {
+      "id": "F06",
+      "item": "Inherited citation mismatch",
+      "finding": "Earlier dashboard used a NIST heat-flow-meter case study as broad support for NFL validation policies. That does not establish those policies.",
+      "resolution": "Replaced active citations with specific methods docs; historical source: https://www.itl.nist.gov/div898/handbook/eda/section4/eda4283.htm",
+      "sources": [
+        "NIST-TAIL",
+        "SK-TIME"
+      ],
+      "status": "Needs review"
+    },
+    {
+      "id": "F07",
+      "item": "Failed candidate source",
+      "finding": "Candidate NFL injury-policy URL returned an NFL 404 page despite successful retrieval. No policy text was verified.",
+      "resolution": "Excluded from active references: https://www.nfl.com/playerhealthandsafety/health-and-wellness/player-care/injury-report-policy ; use checked injuries listing only.",
+      "sources": [
+        "NFL-INJ"
+      ],
+      "status": "Needs review"
+    },
+    {
+      "id": "F08",
+      "item": "Jurisdiction and settlement",
+      "finding": "DraftKings general-rules page inspected is explicitly Virginia-scoped. UK staking research is not US law. Washington eligibility and any specific sportsbook access are unverified.",
+      "resolution": "No wagering, account creation, legal eligibility or universal prop/SGP settlement claim.",
+      "sources": [
+        "DK-GENERAL",
+        "UKGC"
+      ],
+      "status": "Needs review"
+    },
+    {
+      "id": "F09",
+      "item": "Rewards and competition",
+      "finding": "No funded sponsor, cash prize, entrants or validated rankings were verified.",
+      "resolution": "Only a proposed paper-research competition with noncash recognition badges; rewards fields stay blank.",
+      "sources": [
+        "GH-PAGES",
+        "SK-SCORE"
+      ],
+      "status": "Needs review"
+    },
+    {
+      "id": "F10",
+      "item": "Source and code verification limits",
+      "finding": "A checked URL or passing unit test does not prove a strategy claim. Official maintainers document statistical tools; NFL does not endorse Own9 models.",
+      "resolution": "Structural/link checks and synthetic tests are not a real-data backtest. The legacy independent checker reported 52 findings when pointed at this lab: 50 references outside its older narrow allowlist and 2 valid cross-section links outside its chosen root. These are scope mismatches, not source-coverage passes; the lab-specific checker and HTTP/browser smoke tests pass. Independent release report remains a dated baseline.",
+      "sources": [
+        "NFL-STATS",
+        "SK-SCORE"
+      ],
+      "status": "Needs review"
+    },
+    {
+      "id": "F11",
+      "item": "Automation limits",
+      "finding": "Static Pages cannot obtain paid feeds or preserve past quotes retroactively. The pipeline runs automatically but stops without independently reviewed evidence.",
+      "resolution": "No fake fallback data, no credentials requested, no automatic wagering. The runner executes without inputs; it does not acquire feeds or schedule itself. Root publishing and workflow configuration belong to the integration owner.",
+      "sources": [
+        "GH-PAGES",
+        "DK-GENERAL"
+      ],
+      "status": "Needs review"
+    },
+    {
+      "id": "F12",
+      "item": "Multiple sessions and history",
+      "finding": "Several sessions claimed overlapping scopes from the same initial checkout; later main updates and published boards exposed the overlap.",
+      "resolution": "Preserved main and prior logs; relocated this session entirely into strict-lab/. Root-site and CI navigation changes are requests to the active owners, not unauthorized edits.",
+      "sources": [
+        "GH-PAGES"
+      ],
+      "status": "Needs review"
+    }
+  ],
+  "requirements": [
+    {
+      "id": "R01",
+      "requirement": "Repository review",
+      "delivery": "Baseline and inherited generator/checker inspected; code reviewed by scope, static checks and tests. No claim of exhaustive semantic proof.",
+      "status": "Complete · scoped",
+      "sources": [
+        "GH-PAGES"
+      ]
+    },
+    {
+      "id": "R02",
+      "requirement": "Executive summary",
+      "delivery": "Landing page and downloadable executive summary distinguish evidence from proposals.",
+      "status": "Complete",
+      "sources": [
+        "SK-SCORE"
+      ]
+    },
+    {
+      "id": "R03",
+      "requirement": "NFL line origination",
+      "delivery": "Joint-score PMF integrator computes fair two-way moneyline, spread and total prices from supplied distributions. No fitted distribution is available.",
+      "status": "Utilities complete · model blocked",
+      "sources": [
+        "NFL-SCORES",
+        "DK-MARKET"
+      ]
+    },
+    {
+      "id": "R04",
+      "requirement": "Single and player signals",
+      "delivery": "Five candidate designs, input requirements and falsification tests registered in the research catalog.",
+      "status": "Proposed",
+      "sources": [
+        "NFL-STATS",
+        "NFL-INJ"
+      ]
+    },
+    {
+      "id": "R05",
+      "requirement": "Parlays and prop combos",
+      "delivery": "Three joint modeling candidates; two-leg binary feasibility calculator; 3+ legs require full joint model.",
+      "status": "Proposed · utility tested",
+      "sources": [
+        "SCI-RHO"
+      ]
+    },
+    {
+      "id": "R06",
+      "requirement": "Validation gates",
+      "delivery": "Eight fail-closed evidence gates; none have evidence and no strategy is eligible.",
+      "status": "Framework complete · gates blocked",
+      "sources": [
+        "SK-TIME",
+        "SK-CAL"
+      ]
+    },
+    {
+      "id": "R07",
+      "requirement": "Correlation values",
+      "delivery": "Phi and cluster-bootstrap routines implemented; no official paired dataset, so real coefficients withheld.",
+      "status": "Blocked · unverified values",
+      "sources": [
+        "SCI-RHO",
+        "SCI-BOOT"
+      ]
+    },
+    {
+      "id": "R08",
+      "requirement": "Skill and uncertainty",
+      "delivery": "Matched market comparisons, proper scoring, family control and prospective replication specified; luck is not removable.",
+      "status": "Proposed",
+      "sources": [
+        "SK-SCORE",
+        "SM-HOLM"
+      ]
+    },
+    {
+      "id": "R09",
+      "requirement": "Leaderboard and rewards",
+      "delivery": "Unranked entries, eligibility-first ranking policy, proposed noncash badges; no funded reward claim.",
+      "status": "Framework complete",
+      "sources": [
+        "SK-SCORE"
+      ]
+    },
+    {
+      "id": "R10",
+      "requirement": "Official row references",
+      "delivery": "Every displayed data row has checked official contextual references, claim type and scope; source links do not endorse proposals.",
+      "status": "Complete · scoped",
+      "sources": [
+        "NFL-STATS",
+        "SK-SCORE"
+      ]
+    },
+    {
+      "id": "R11",
+      "requirement": "No invented values",
+      "delivery": "Absent measured values are JSON null and empty table cells with accessible Unverified labels, never zeros.",
+      "status": "Checked by tests",
+      "sources": [
+        "SK-SCORE"
+      ]
+    },
+    {
+      "id": "R12",
+      "requirement": "Clean categorized site",
+      "delivery": "Eight-page strict-lab/ static responsive section with category navigation, table search, scope labels and CSV downloads.",
+      "status": "Complete",
+      "sources": [
+        "GH-PAGES"
+      ]
+    },
+    {
+      "id": "R13",
+      "requirement": "Flagged review page",
+      "delivery": "Open evidence gaps, failed URL, citation mismatch and jurisdiction caveat are published and nonblocking for site delivery.",
+      "status": "Needs review",
+      "sources": [
+        "NFL-INJ",
+        "DK-GENERAL"
+      ]
+    },
+    {
+      "id": "R14",
+      "requirement": "Autonomous operation",
+      "delivery": "Lab build/test/readiness runner needs no inputs or secrets and remains blocked pending evidence. Automatic Pages publishing is controlled by root integration owners; no scheduled lab workflow installed.",
+      "status": "Runner complete · scheduling not installed",
+      "sources": [
+        "GH-PAGES"
+      ]
+    },
+    {
+      "id": "R15",
+      "requirement": "Coordination and integration",
+      "delivery": "Claims pushed; overlapping ownership discovered and resolved by additive strict-lab/ scope. Root work retained; PR and deployment tracked in shared log.",
+      "status": "Tracked",
+      "sources": [
+        "GH-PAGES"
+      ]
+    },
+    {
+      "id": "R16",
+      "requirement": "Verified performance",
+      "delivery": "No official verified point-in-time quotes, paired outcomes, trained model or independent sealed test in this strict-lab evidence input. Other sessions’ exploratory data are outside this lab’s validation scope.",
+      "status": "Blocked",
+      "sources": [
+        "NFL-SCORES",
+        "DK-GENERAL"
+      ]
+    }
+  ]
+}

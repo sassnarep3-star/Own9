@@ -1,0 +1,6 @@
+game_id,matchup,date,nfl_away_score,nfl_home_score,data_away_score,data_home_score,match,official_url
+2025_09_CHI_CIN,CHI at CIN,2025-11-02,47,42,47,42,yes,https://www.nfl.com/games/bears-at-bengals-2025-reg-9
+2025_15_IND_SEA,IND at SEA,2025-12-14,16,18,16,18,yes,https://www.nfl.com/games/colts-at-seahawks-2025-reg-15
+2019_06_TEN_DEN,TEN at DEN,2019-10-13,0,16,0,16,yes,https://www.nfl.com/games/titans-at-broncos-2019-reg-6
+2021_03_NYJ_DEN,NYJ at DEN,2021-09-26,0,26,0,26,yes,https://www.nfl.com/games/jets-at-broncos-2021-reg-3
+2025_04_LAC_NYG,LAC at NYG,2025-09-28,18,21,18,21,yes,https://www.nfl.com/games/chargers-at-giants-2025-reg-4
