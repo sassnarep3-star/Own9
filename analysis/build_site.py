@@ -368,6 +368,7 @@ nfl_w9 = {
     "TB_CHI": ("Sun Nov 8, 2026", "8:20 PM", "NBC"),
     "BUF_MIN": ("Mon Nov 9, 2026", "8:15 PM", "ESPN"),
 }
+NFLCOM_GAME = {g["game_id"]: g["nfl_com"] for g in json.loads((DATA / "games.json").read_text()) if g.get("nfl_com")}
 own_rows = []
 flag_lv = []
 for r in wk9:
@@ -393,7 +394,7 @@ for r in wk9:
         match, E(nn),
         f"{r['market_spread_home']:+.1f} <span class='tag unv'>Unverified</span>",
         f"{r['own_line_home']:+.2f}", f"{r['edge_home_pts']:+.2f}",
-        f"<a href='https://www.nfl.com/games/{r['away'].lower()}-at-{r['home'].lower()}-2026-reg-9' target='_blank' rel='noopener'>nfl.com game ↗</a> · "
+        f"<a href='{NFLCOM_GAME[r['game_id']]}' target='_blank' rel='noopener'>nfl.com game ↗</a> · "
         f"<a href='https://www.nfl.com/schedules/' target='_blank' rel='noopener'>schedule ↗</a>",
     ])
 own_body = f"""
@@ -485,7 +486,7 @@ for key, (name, url, kind) in SRC.items():
     src_rows.append([E(name), f'<a href="{E(url)}" target="_blank" rel="noopener">{E(url)}</a>', E(kind), E(checked),
                      {"nfl_g1": "Score matched (KC 21, LAC 27)",
                       "nfl_g2": "Score matched (BAL 28, MIA 6)",
-                      "nfl_sched": "15 Week 9 games matched (14 times, 1 kickoff mismatch)",
+                      "nfl_sched": "15 Week 9 games: 14 match, 1 kickoff mismatch (LV @ SF)",
                       "nflverse_games": "Used for analysis; 2 scores verified; lines Unverified",
                       "nflreadr_dict": "Result = home − away and total confirmed; spread_line definition not retrieved",
                       "wsgc_rules": "Quoted on Rules page",

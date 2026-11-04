@@ -374,13 +374,28 @@ for a, b, label in PARLAY_PAIRS:
 # ----------------------------------------------------------------------------
 # Game-level table for the site (all seasons; unverified flags)
 # ----------------------------------------------------------------------------
-def nflcom_url(row):
-    slug = lambda t: t.lower()
-    wk = int(row.week)
-    gt = row.game_type
-    if gt != "REG":
-        return None
-    return f"https://www.nfl.com/games/{slug(row.away_team)}-at-{slug(row.home_team)}-{int(row.season)}-reg-{wk}"
+# nfl.com game-page URLs confirmed on nfl.com in this session (exact slugs, team nicknames).
+# No URL is generated from abbreviations: nfl.com uses nicknames, so a pattern would guess.
+NFLCOM_VERIFIED = {
+    "2025_01_KC_LAC": "https://www.nfl.com/games/chiefs-at-chargers-2025-reg-1",
+    "2025_09_BAL_MIA": "https://www.nfl.com/games/ravens-at-dolphins-2025-reg-9",
+    "2026_09_JAX_BAL": "https://www.nfl.com/games/jaguars-at-ravens-2026-reg-9",
+    "2026_09_CIN_ATL": "https://www.nfl.com/games/bengals-at-falcons-2026-reg-9",
+    "2026_09_DEN_CAR": "https://www.nfl.com/games/broncos-at-panthers-2026-reg-9",
+    "2026_09_DAL_IND": "https://www.nfl.com/games/cowboys-at-colts-2026-reg-9",
+    "2026_09_NYJ_KC": "https://www.nfl.com/games/jets-at-chiefs-2026-reg-9",
+    "2026_09_DET_MIA": "https://www.nfl.com/games/lions-at-dolphins-2026-reg-9",
+    "2026_09_CLE_NO": "https://www.nfl.com/games/browns-at-saints-2026-reg-9",
+    "2026_09_NYG_PHI": "https://www.nfl.com/games/giants-at-eagles-2026-reg-9",
+    "2026_09_LA_WAS": "https://www.nfl.com/games/rams-at-commanders-2026-reg-9",
+    "2026_09_HOU_LAC": "https://www.nfl.com/games/texans-at-chargers-2026-reg-9",
+    "2026_09_LV_SF": "https://www.nfl.com/games/raiders-at-49ers-2026-reg-9",
+    "2026_09_GB_NE": "https://www.nfl.com/games/packers-at-patriots-2026-reg-9",
+    "2026_09_ARI_SEA": "https://www.nfl.com/games/cardinals-at-seahawks-2026-reg-9",
+    "2026_09_TB_CHI": "https://www.nfl.com/games/buccaneers-at-bears-2026-reg-9",
+    "2026_09_BUF_MIN": "https://www.nfl.com/games/bills-at-vikings-2026-reg-9",
+}
+
 
 games_out = []
 for _, r in g.iterrows():
@@ -398,7 +413,7 @@ for _, r in g.iterrows():
         status="played" if played.loc[_] else "scheduled",
         model_line_home=None if pd.isna(r.model_line) else round(float(r.model_line), 2),
         nflverse_row=f"https://github.com/nflverse/nfldata/blob/master/data/games.csv",
-        nfl_com=nflcom_url(r),
+        nfl_com=NFLCOM_VERIFIED.get(r.game_id),
     )
     games_out.append(gi)
 
