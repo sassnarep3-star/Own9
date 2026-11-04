@@ -1,0 +1,42 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Home · Own9 NFL research</title>
+<link rel="stylesheet" href="assets/style.css">
+
+</head>
+<body>
+<header class="top">
+  <div class="brand"><a href="index.html">Own9 · NFL signal research</a></div>
+  <nav><a href="index.html" class="active">Home</a><a href="summary.html" class="">Executive summary</a><a href="games.html" class="">Games &amp; lines</a><a href="strategies.html" class="">Strategies</a><a href="correlations.html" class="">Correlations &amp; parlays</a><a href="own-lines.html" class="">Own lines</a><a href="props.html" class="">Player props</a><a href="rules.html" class="">Rules &amp; legal</a><a href="sources.html" class="">Sources</a><a href="flagged.html" class="">Flagged for review</a></nav>
+</header>
+<main>
+
+<section class="hero">
+  <h1>NFL signal research dashboard</h1>
+  <p class="lede">Own9 builds its own NFL lines, tests simple betting strategies (single bets, parlay
+  correlations, and player-prop status) against strict validation gates, and publishes every number with a source.</p>
+  <p class="notice"><strong>Bottom line:</strong> none of the 15 tested strategies passes all validation gates,
+  and our own line model is less accurate than the market on 2016–2025 games. Nothing here is a verified betting edge.</p>
+</section>
+<section class="kpis"><div class="kpi"><div class="kv">15</div><div class="kl">strategies tested</div></div><div class="kpi"><div class="kv">0</div><div class="kl">pass all validation gates</div></div><div class="kpi"><div class="kv">52.38%</div><div class="kl">break-even win rate at -110</div></div><div class="kpi"><div class="kv">10.38 vs 9.78</div><div class="kl">own-model vs market error (points, 2016–25)</div></div></section>
+<section><h2>Explore</h2><div class="cards"><a class="card" href="summary.html"><h3>Executive summary</h3><p>What was tested, what passed, and what it means.</p></a><a class="card" href="games.html"><h3>Games &amp; lines</h3><p>All 7,548 games 1999–2026 with verification status.</p></a><a class="card" href="strategies.html"><h3>Strategies</h3><p>15 pre-specified strategies scored against validation gates.</p></a><a class="card" href="correlations.html"><h3>Correlations &amp; parlays</h3><p>Outcome correlations and empirical parlay joint probabilities.</p></a><a class="card" href="own-lines.html"><h3>Own lines</h3><p>Our walk-forward power-rating model and this week&#x27;s own lines.</p></a><a class="card" href="props.html"><h3>Player props</h3><p>Status of prop-bet data: not available from a verified source yet.</p></a><a class="card" href="rules.html"><h3>Rules &amp; legal</h3><p>Official NFL rule changes and Washington sports-wagering law.</p></a><a class="card" href="sources.html"><h3>Sources</h3><p>Every source, its type, and when it was checked.</p></a><a class="card" href="flagged.html"><h3>Flagged for review</h3><p>Irregularities and unverified items, with links for manual review.</p></a></div></section>
+<section>
+  <h2>Sources at a glance</h2>
+  <ul>
+    <li>Official: <a href="https://wsgc.wa.gov/tribal-partnerships/sports-wagering/sports-wagering-requirements-and-rules" target="_blank" rel="noopener">Washington State Gambling Commission - Sports wagering requirements and rules</a>; <a href="https://operations.nfl.com/rules-officiating/2026-nfl-rulebook" target="_blank" rel="noopener">NFL Football Operations - 2026 NFL Rulebook</a>; <a href="https://www.nfl.com/schedules/" target="_blank" rel="noopener">NFL.com - Schedule (2026, Week 9 games)</a>; <a href="https://www.nfl.com/games/chiefs-at-chargers-2025-reg-1" target="_blank" rel="noopener">NFL.com Game Center - Chiefs at Chargers, 2025 REG Week 1</a>; <a href="https://www.nfl.com/games/ravens-at-dolphins-2025-reg-9" target="_blank" rel="noopener">NFL.com Game Center - Ravens at Dolphins, 2025 REG Week 9</a>.</li>
+    <li>Secondary (not official, labelled Unverified): <a href="https://github.com/nflverse/nfldata/blob/master/data/games.csv" target="_blank" rel="noopener">nflverse / nfldata - data/games.csv (Lee Sharpe&#x27;s nfldata; repo snapshot d5c8272)</a>, documented by <a href="https://nflreadr.nflverse.com/articles/dictionary_schedules.html" target="_blank" rel="noopener">nflreadr - Data Dictionary: Schedules</a>.</li>
+  </ul>
+</section>
+
+</main>
+<footer>
+  <p>Research only, not betting advice. Data as of 2026-11-04. Secondary-source values are labelled
+  <span class="tag unv">Unverified</span>. Gambling is only legal in Washington at tribal casinos
+  (see <a href="rules.html">Rules &amp; legal</a>). Problem gambling help: call or text 1-800-GAMBLER (US).</p>
+  <p>Repository: <a href="https://github.com/sassnarep3-star/Own9">github.com/sassnarep3-star/Own9</a></p>
+</footer>
+</body>
+</html>

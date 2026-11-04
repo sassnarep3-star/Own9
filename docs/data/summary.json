@@ -1,0 +1,67 @@
+{
+ "generated_for_date": "2026-11-04",
+ "rows": 7548,
+ "seasons": [
+  1999,
+  2026
+ ],
+ "played_rows": 7397,
+ "scheduled_rows": 151,
+ "duplicate_game_ids": 0,
+ "missing": {
+  "spread_line": 124,
+  "total_line": 124,
+  "home_moneyline": 2105,
+  "temp": 2297,
+  "gametime": 259,
+  "roof": 25
+ },
+ "sign_check": {
+  "corr_result_spread_1999_2015": 0.4156,
+  "corr_result_spread_2016_2025": 0.4427,
+  "mean_margin_minus_spread_2016_2025": 0.1023,
+  "note": "Positive correlation & mean(margin - spread) ~ 0 => spread_line is home-perspective (positive = home favored)."
+ },
+ "spot_checks_nflcom": [
+  {
+   "game_id": "2025_01_KC_LAC",
+   "nfl_com": "https://www.nfl.com/games/chiefs-at-chargers-2025-reg-1",
+   "nflverse": {
+    "away": "KC",
+    "away_score": 21,
+    "home": "LAC",
+    "home_score": 27
+   },
+   "nfl_com_score": {
+    "KC": 21,
+    "LAC": 27
+   },
+   "match": true
+  },
+  {
+   "game_id": "2025_09_BAL_MIA",
+   "nfl_com": "https://www.nfl.com/games/ravens-at-dolphins-2025-reg-9",
+   "nflverse": {
+    "away": "BAL",
+    "away_score": 28,
+    "home": "MIA",
+    "home_score": 6
+   },
+   "nfl_com_score": {
+    "BAL": 28,
+    "MIA": 6
+   },
+   "match": true
+  }
+ ],
+ "model": {
+  "evaluated_games_2016_2025": 2761,
+  "mae_model_vs_margin": 10.383,
+  "mae_market_vs_margin": 9.777,
+  "note": "Lower mean absolute error is better. Model is walk-forward (no look-ahead)."
+ },
+ "strategies_tested": 15,
+ "bonferroni_alpha": 0.003333,
+ "breakeven_110": 0.5238,
+ "strategies_passing_all_gates": 0
+}

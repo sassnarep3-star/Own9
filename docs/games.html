@@ -1,0 +1,44 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Games &amp; lines · Own9 NFL research</title>
+<link rel="stylesheet" href="assets/style.css">
+<script src="assets/games.js" defer></script>
+</head>
+<body>
+<header class="top">
+  <div class="brand"><a href="index.html">Own9 · NFL signal research</a></div>
+  <nav><a href="index.html" class="">Home</a><a href="summary.html" class="">Executive summary</a><a href="games.html" class="active">Games &amp; lines</a><a href="strategies.html" class="">Strategies</a><a href="correlations.html" class="">Correlations &amp; parlays</a><a href="own-lines.html" class="">Own lines</a><a href="props.html" class="">Player props</a><a href="rules.html" class="">Rules &amp; legal</a><a href="sources.html" class="">Sources</a><a href="flagged.html" class="">Flagged for review</a></nav>
+</header>
+<main>
+
+<section>
+<h1>Games &amp; lines</h1>
+<p class="meta">Source: <a href="https://github.com/nflverse/nfldata/blob/master/data/games.csv" target="_blank" rel="noopener">nflverse / nfldata - data/games.csv (Lee Sharpe&#x27;s nfldata; repo snapshot d5c8272)</a> (Secondary). Status shows whether a value was confirmed against an official site.
+Scores and lines are <strong>hidden by default</strong> because they are unverified. Tick the box to show them as analysis inputs.</p>
+<div class="filters">
+  <label>Season <select id="f-season"><option value="">All</option></select></label>
+  <label>Team <input id="f-team" placeholder="e.g. BUF"></label>
+  <label>Status <select id="f-status"><option value="">All</option><option value="verified">Verified</option><option value="scheduled">Scheduled</option><option value="unverified">Unverified</option></select></label>
+  <label class="chk"><input type="checkbox" id="f-show"> Show unverified analysis inputs</label>
+  <span id="count" class="meta"></span>
+</div>
+<div class="tablewrap"><table class="data" id="games-table">
+<thead><tr>
+<th>Season</th><th>Type</th><th>Wk</th><th>Date</th><th>Away</th><th>Home</th><th>Score (A–H)</th>
+<th>Spread (home)</th><th>Total</th><th>Home ML</th><th>Own line (home)</th><th>Status</th><th>Sources</th>
+</tr></thead><tbody></tbody></table></div>
+<div class="pager"><button id="prev">Prev</button><span id="pg"></span><button id="next">Next</button></div>
+</section>
+
+</main>
+<footer>
+  <p>Research only, not betting advice. Data as of 2026-11-04. Secondary-source values are labelled
+  <span class="tag unv">Unverified</span>. Gambling is only legal in Washington at tribal casinos
+  (see <a href="rules.html">Rules &amp; legal</a>). Problem gambling help: call or text 1-800-GAMBLER (US).</p>
+  <p>Repository: <a href="https://github.com/sassnarep3-star/Own9">github.com/sassnarep3-star/Own9</a></p>
+</footer>
+</body>
+</html>
