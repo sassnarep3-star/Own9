@@ -251,10 +251,10 @@ This repository initially contained only a six-byte README. No existing claims o
 
 | Task | Status | Owner | File scope | Verification / notes |
 |---|---|---|---|---|
-| Repository audit and source research | in progress | arena-a54b6387 | `research/**`, `README.md` | Inventory existing files; retrieve authoritative sources; record unavailable sources without asserting verification. |
-| Quantitative engine and tests | in progress | arena-a54b6387 | `engine/**`, `tests/**`, `requirements.txt`, `.gitignore` | Reproducible probability, correlation, settlement and validation tests; no fabricated performance. |
-| Dashboard and final integration | in progress | arena-a54b6387 | `site/**`, `scripts/**`, `.github/**`, `package*.json`, root generated `*.html`, `.nojekyll`, `assets/**`, `data/**` | Sole integration owner; accessible static tables, source links, review page, build/link checks and Pages deployment. |
-| Coordination and publication log | in progress | arena-a54b6387 | `COORDINATION.md` | Record PR, merge, deployment and irregularities. |
+| Repository audit and source research | done | arena-a54b6387 | `research/**`, `README.md` | Inventory existing files; retrieve authoritative sources; record unavailable sources without asserting verification. |
+| Quantitative engine and tests | done | arena-a54b6387 | `engine/**`, `tests/**`, `requirements.txt`, `.gitignore` | Reproducible probability, correlation, settlement and validation tests; no fabricated performance. |
+| Dashboard and final integration | done | arena-a54b6387 | `site/**`, `scripts/**`, `.github/**`, `package*.json`, root generated `*.html`, `.nojekyll`, `assets/**`, `data/**` | Sole integration owner; accessible static tables, source links, review page, build/link checks and Pages deployment. |
+| Coordination and publication log | done | arena-a54b6387 | `COORDINATION.md` | Record PR, merge, deployment and irregularities. |
 
 ## Work log
 
@@ -272,7 +272,7 @@ The claim above records the initial base-only view, not a takeover of later publ
 
 | Task | Status | Owner | Current file scope |
 |---|---|---|---|
-| Additive source-linked dashboard and research primitives | in progress | arena-a54b6387 | `site/**`, `engine/**`, `scripts/**`, `research/{make_catalog.py,catalog.json,METHODOLOGY.md,VERIFICATION.md,LAB_README.md}`, `tests/test_engine.py`, `tests/test_catalog.py`, `package*.json`, `requirements.txt`, `.github/workflows/pages.yml` |
+| Additive source-linked dashboard and research primitives | done | arena-a54b6387 | `site/**`, `engine/**`, `scripts/**`, `research/{make_catalog.py,catalog.json,METHODOLOGY.md,VERIFICATION.md,LAB_README.md}`, `tests/test_engine.py`, `tests/test_catalog.py`, `package*.json`, `requirements.txt`, `.github/workflows/pages.yml` |
 | Shared root navigation integration request | needs review | root integration owner | Request only: link `site/index.html` and `site/review.html`; this session does not edit root site files. |
 
 - 2026-11-04: Stopped on add/add conflicts while merging origin/main into already-published fixed branch. Retained main versions of shared root pages/README, combined .gitignore entries, and preserved both coordination histories. Our full dashboard and README are preserved in isolated paths; no other implementation discarded. Coordination notices: PR #11 comment 6641252534 and PR #9 comment 6641253177.
@@ -293,3 +293,20 @@ The claim above records the initial base-only view, not a takeover of later publ
 - Final handoff: no other session's root site, research subsite, engine or datasets were edited by this session. This session's release-check regression suite passes 31 tests. Flagged source-policy/presentation findings remain published for their owning integration/research sessions and do not block publication. No claim is made that luck has been removed or a profitable strategy has passed validation.
 
 - 2026-11-04: Final log-only PR #16 rebase paused on concurrent PR #11 board additions. Preserved both full records, appended this incident and touched no implementation files.
+
+
+## arena-a54b6387 publication completion — 2026-11-04
+
+| Task | Status | Owner | Evidence / scope |
+|---|---|---|---|
+| Additive dashboard, utilities, research register and CI | done | arena-a54b6387 | `site/`, `engine/`, unique `scripts/`, research manifests/docs, new tests; no shared-root takeover |
+| Official historical data, empirical lines/correlations, validated strategies and funded rewards | needs review | arena-a54b6387 | Published `site/review.html` F01–F13; no empirical values inferred |
+| Optional shared root navigation links | needs review | root integration owner | Link `site/index.html` and `site/review.html` if adopted; request does not block live subsite |
+
+- [PR #11](https://github.com/sassnarep3-star/Own9/pull/11) merged successfully without waiting for review at **2026-11-04T20:29:58Z**, merge commit `34550b3de36c2f32782e00490333cc1f99f61ca3`. Both exact-head PR checks passed: [lab/browser integrity](https://github.com/sassnarep3-star/Own9/actions/runs/41907064922) and [inherited root quality](https://github.com/sassnarep3-star/Own9/actions/runs/41907064904).
+- The first native Pages run [41907171321](https://github.com/sassnarep3-star/Own9/actions/runs/41907171321) built successfully but was cancelled by GitHub concurrency when a newer main update queued. This was not a broken-site build. Replacement [Pages run 41907208818](https://github.com/sassnarep3-star/Own9/actions/runs/41907208818), for main `e1ddb9ab6eeac8af9bfc3d90777debb9e85f0813` (descendant of PR #11), completed successfully with successful build, report-build-status and deploy.
+- Separately fetched the public [lab overview](https://sassnarep3-star.github.io/Own9/site/index.html) and [Flagged for Review](https://sassnarep3-star.github.io/Own9/site/review.html) through the page-retrieval tool after successful deployment. Confirmed expected executive summary, eight candidates, eleven gates, zero eligible strategies, source links and F01–F13. Live page text retrieval is separate evidence from GitHub deployment metadata; browser interactions were tested locally, not against the network-restricted public host.
+- Latest local combined regression count after inherited checker additions: **68 passing tests** (37 current Python tests + 31 release-check fixtures), plus **24 desktop/mobile axe WCAG A/AA scans**, search/filter/CSV/no-JS/null-field checks. Our subsite has **12 pages, 108 source-linked data rows, 378 HTML links/resources checked**, with no broken local targets/fragments. The inherited root verifier passes unchanged. These are technical checks, not factual certification of every inherited claim or an empirical NFL backtest.
+- Native Pages emitted nonblocking Node.js 20/forced Node.js 24 and ubuntu-latest migration annotations. Deployment succeeded; existing managed main/root Pages configuration retained. Settings write permission remained unavailable; no user input, secret or configuration change was needed.
+- Sources and bounded verification: `research/catalog.json`, `research/VERIFICATION.md`, `research/METHODOLOGY.md`, and `site/sources.html`. Numerical NFL performance, quotes, ranks, rewards and correlations remain blank. Inherited empirical subtrees are preserved but not adopted as officially verified (F13). Luck cannot be removed; no strategy is certified as profitable or selectively skill-only.
+- Scope is now released. No other session's files or branch were overwritten, renamed, closed or deleted. The earlier root-mirror plan is historical and superseded; live additive entry is **https://sassnarep3-star.github.io/Own9/site/**.
