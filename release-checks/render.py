@@ -66,6 +66,20 @@ def main():
             ['Public HTTP content', '', 'Not tested by metadata script; requires separate observation', anchor(DOCS, 'Metadata scope')],
         ]
         content += table(['Check', 'Value', 'Detail', 'Official source'], deployment_rows)
+    publication_path = HERE / 'publication.json'
+    if publication_path.exists():
+        publication = json.loads(publication_path.read_text())
+        content += '<h2>Publication record and flagged deployment notices</h2><p>Dated observation for the initial release-quality publication, not a promise about future deployments. ' + anchor('publication.json', 'Machine-readable publication record') + '.</p>'
+        publication_rows = [
+            ['Release-quality PR', escape(publication['pr_state']), escape(publication['merge_commit']), anchor(publication['pr_url'], 'Official pull request')],
+            ['Pages deployment', escape(publication['deployment_conclusion']), 'Build and deploy jobs completed successfully', anchor(publication['deployment_url'], 'Official deployment run')],
+        ]
+        for observation in publication['public_content_observed']:
+            publication_rows.append(['Public content observation', anchor(observation['url'], 'Published content'), escape(observation['expected_content_observed']), anchor(publication['pr_url'], 'Published source PR')])
+        for notice in publication['nonblocking_annotations']:
+            publication_rows.append(['Flagged for Review', 'Nonblocking platform notice', escape(notice), anchor(publication['deployment_url'], 'Official run annotation')])
+        content += table(['Item', 'Result', 'Observed detail', 'Official project source'], publication_rows)
+        content += '<p>Public content was observed separately using the fetch-page tool, not by the metadata checker. Record saved: ' + escape(publication['http_observation_recorded_at_utc']) + '. This is not a browser, visual or full-site HTTP test.</p>'
     content += '<h2>Files inspected</h2>' + table(['File', 'SHA-256', 'Data rows', 'Official project source'], [
         [escape(p['path']), '<code>' + p['sha256'] + '</code>', str(len(p['rows'])),
          anchor(GITHUB + '/blob/' + commit + '/' + p['path'], 'Audited file')]
