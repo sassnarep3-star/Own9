@@ -73,7 +73,7 @@
       "kind": "Official maintainer documentation",
       "title": "Metrics and scoring",
       "url": "https://scikit-learn.org/stable/modules/model_evaluation.html",
-      "excerpt": "Strictly proper scoring rules",
+      "excerpt": "Brier score",
       "scope": "Proper scoring discussion and classification table identifying Brier score and log loss checked. No NFL edge or numerical project thresholds are endorsed by this source.",
       "checked_at": "2026-11-04",
       "status": "Checked · scoped"
