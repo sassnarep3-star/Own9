@@ -9,7 +9,7 @@ Stat-ID semantics (inferred from the play descriptions stored in the same feed, 
 pipeline/verify.py -- see data/verified/):
     10 rush att+yds      11 rush TD (att+yds)     14 incomplete pass (att)   15 completion (att,cmp,yds)
     16 passing TD (att,cmp,yds)      19 interception thrown (att)     20 sack taken (yds negative)
-    21 reception (rec,yds)   22 receiving TD (rec,yds)   115 pass target
+    21 reception (rec,yds)   22 receiving TD (rec,yds)   23 lateral reception (yards only)   115 pass target
 Scoring plays on 2-point conversions use different IDs (75-78, 104-105) and are intentionally not counted, matching the
 official convention that 2-point attempts are excluded from passing/rushing/receiving statistics.
 """
@@ -91,7 +91,7 @@ def parse_game(path: str):
             sid = st["statId"]; gid = st.get("gsisPlayer.id") or ""
             tm = norm(st.get("team.abbreviation") or "")
             y = st.get("yards") or 0
-            if sid in (14, 15, 16, 19, 20, 10, 11, 21, 22, 115) and gid and tm in team:
+            if sid in (14, 15, 16, 19, 20, 10, 11, 21, 22, 23, 115) and gid and tm in team:
                 names.setdefault(gid, st.get("playerName") or "")
                 S = players[(gid, tm)]
                 if sid in (14, 15, 16, 19):
@@ -108,6 +108,8 @@ def parse_game(path: str):
                     S["rush_att"] += 1; S["rush_yds"] += y; S["rush_td"] += 1 if sid == 11 else 0
                 elif sid in (21, 22):
                     S["rec"] += 1; S["rec_yds"] += y; S["rec_td"] += 1 if sid == 22 else 0
+                elif sid == 23:
+                    S["rec_yds"] += y        # lateral reception: NFL.com credits lateral yardage as receiving yards (no reception/target)
                 elif sid == 115:
                     S["targets"] += 1
         for (gid, tm), r in pass_rec.items():

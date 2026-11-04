@@ -51,5 +51,57 @@ def main():
         print("\nMISMATCHES:"); print(bad[cols].to_string(index=False))
 
 
+import re
+
+SUFFIX = re.compile(r"\b(jr|sr|ii|iii|iv|v)\b\.?", re.I)
+
+
+def _letters(x: str) -> str:
+    return re.sub(r"[^a-z]", "", x.lower())
+
+
+def verify_player_leaders():
+    """Compare official NFL.com season leader tables with sums of the parsed game-center feed.
+
+    A row is verified only when ALL transcribed counting stats equal the feed sums for exactly one player whose
+    (abbreviated) feed name is consistent with the official full name. Players are summed across teams (season totals).
+    """
+    players = pd.read_csv(DERIVED / "player_games_feed.csv.gz")
+    out = []
+    for f in sorted((VERIFIED / "nfl_player_leaders").glob("*.csv")):
+        off = pd.read_csv(f)
+        season = int(off.season.iloc[0]); cat = off.category.iloc[0]
+        stat_cols = [c for c in off.columns if c not in ("season", "category", "rank", "player", "source_url", "retrieved_utc")]
+        feed_cols = {c: ("sack_yds_lost" if c == "sack_yds" else c) for c in stat_cols}
+        players["sack_yds_lost"] = -players["sack_yds"]            # NFL.com lists sack yards lost as a positive number
+        reg = players[(players.season == season) & (players.game_type == "REG")]
+        agg = reg.groupby("gsis_id", as_index=False).agg({**{feed_cols[c]: "sum" for c in stat_cols}, "name": "first"})
+        agg = agg.rename(columns={"sack_yds_lost": "sack_yds"})
+        for _, row in off.iterrows():
+            want = _letters(SUFFIX.sub("", row.player))
+            cand = agg[agg.name.map(lambda n: want.endswith(_letters(n.split(".", 1)[-1])) and len(_letters(n.split(".", 1)[-1])) > 1)]
+            exact = cand[(cand[stat_cols] == row[stat_cols].astype(float)).all(axis=1)]
+            rec = dict(season=season, category=cat, rank=row["rank"], player_nfl=row.player, matched_feed_name=exact.name.iloc[0] if len(exact) == 1 else "",
+                       gsis_id=exact.gsis_id.iloc[0] if len(exact) == 1 else "", match=len(exact) == 1, source_url=row.source_url)
+            for c in stat_cols:
+                rec[f"{c}_nfl"] = row[c]
+            if len(exact) != 1 and len(cand):          # closest candidate for diagnosis
+                near = cand.iloc[(cand[stat_cols[0]] - row[stat_cols[0]]).abs().argsort().iloc[0]]
+                for c in stat_cols:
+                    rec[f"{c}_feed"] = near[c]
+                rec["matched_feed_name"] = "NEAREST: " + near["name"]
+            out.append(rec)
+    res = pd.DataFrame(out)
+    res.to_csv(VERIFIED / "reconciliation_player_leaders.csv", index=False)
+    summ = res.groupby(["season", "category"]).agg(rows_official=("match", "size"), rows_matched=("match", "sum")).reset_index()
+    print(summ.to_string(index=False))
+    bad = res[~res.match]
+    if len(bad):
+        print("\nUNMATCHED:"); print(bad.to_string(index=False))
+    return res
+
+
 if __name__ == "__main__":
     main()
+    print()
+    verify_player_leaders()
