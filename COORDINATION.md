@@ -232,3 +232,46 @@ Own-line model MAE 10.38 vs market 9.78 points (2016–2025, n=2,761). Player pr
 - Corrections in this follow-up: the Flagged page's "only session" sentence was stale and is replaced with an accurate statement; flag order fixed (F10 now before F11–F15).
 - Still unverified and not changed: the WSGC page (direct fetch denied), the nflverse license, 7,392 unverified game scores, all betting-line values. Parallel NFL sessions (root site, research/, lab/, pipeline/, evidence/) overlap this one; this session did not edit them.
 
+
+
+---
+
+# Session arena-a54b6387 — original claim record
+
+Session: `arena-a54b6387` · started 2026-11-04 UTC · integration owner.
+
+This repository initially contained only a six-byte README. No existing claims or implementation were present. Arena fixes this session to branch `arena/a54b6387-own9`; no additional branch or worktree will be created. Other sessions must not edit the scopes below while claimed.
+
+| Task | Status | Owner | File scope | Verification / notes |
+|---|---|---|---|---|
+| Repository audit and source research | in progress | arena-a54b6387 | `research/**`, `README.md` | Inventory existing files; retrieve authoritative sources; record unavailable sources without asserting verification. |
+| Quantitative engine and tests | in progress | arena-a54b6387 | `engine/**`, `tests/**`, `requirements.txt`, `.gitignore` | Reproducible probability, correlation, settlement and validation tests; no fabricated performance. |
+| Dashboard and final integration | in progress | arena-a54b6387 | `site/**`, `scripts/**`, `.github/**`, `package*.json`, root generated `*.html`, `.nojekyll`, `assets/**`, `data/**` | Sole integration owner; accessible static tables, source links, review page, build/link checks and Pages deployment. |
+| Coordination and publication log | in progress | arena-a54b6387 | `COORDINATION.md` | Record PR, merge, deployment and irregularities. |
+
+## Work log
+
+- 2026-11-04: Inspected clean working tree, branch, repository inventory and GitHub default branch. No legacy model, data, tests, site or dependencies existed. Claimed all scopes as a single final integration session; no competing claims found. Empirical NFL prices, correlations and strategy performance must remain blank until supported by usable, provenance-tracked data and out-of-sample evaluation.
+- 2026-11-04: Initial `git pull --rebase origin arena/a54b6387-own9` could not find the not-yet-published remote branch. Rebased against `origin/main` and immediately pushed the claim to the fixed session branch; no conflict or discarded work.
+- 2026-11-04: Checked primary NFL, operator, regulator and official statistical software documentation through page retrieval. Direct sandbox HTTP to NFL failed; official legacy injury-policy and attempted NIST URLs returned 404 content. Research evidence is scope-limited, not raw immutable training snapshots. Recorded source limitations and flags in `research/catalog.json` and `research/VERIFICATION.md`.
+- 2026-11-04: Implemented and passed 21 synthetic unit tests for pricing, discrete push-aware outcomes, Bernoulli feasibility, joint samples, scores, correlation, grouped folds, Holm correction, block-bootstrap repeatability and fail-closed gate structure. No fixture is real NFL performance.
+
+- 2026-11-04: Local dashboard checks pass: 12 pages, 106 source-linked data rows (before added platform-permission flag), 364 HTML links/resources, 26 unit tests and 24 desktop/mobile axe WCAG scans. Browser testing exposed contrast, assistive-label markup and off-screen-label overflow issues; fixed all and reran successfully. Bundled Chromium supplies missing sandbox NSS/NSPR libraries; no system libraries modified.
+- 2026-11-04: GitHub Pages API reports existing main/root legacy publishing. Settings write and Actions-settings read returned HTTP 403 (integration permissions); not a git authentication failure. Retained authorized existing publishing mode, expanded sole-integration scope to generated root mirror, and added byte-equivalence checks. No other session owns these files. Checked official GitHub branch-publishing documentation and published F12 as a review item.
+
+## arena-a54b6387 scope correction after concurrent main discovery
+
+The claim above records the initial base-only view, not a takeover of later published work. At integration, origin/main had advanced through other sessions. Preserved all main root pages, README, inherited analysis/data/research, release-checks, tools, tests and logs. Moved all our root dashboard output back to its distinct `site/` scope; no root navigation or inherited data edited. Earlier root-mirror plan is superseded.
+
+| Task | Status | Owner | Current file scope |
+|---|---|---|---|
+| Additive source-linked dashboard and research primitives | in progress | arena-a54b6387 | `site/**`, `engine/**`, `scripts/**`, `research/{make_catalog.py,catalog.json,METHODOLOGY.md,VERIFICATION.md,LAB_README.md}`, `tests/test_engine.py`, `tests/test_catalog.py`, `package*.json`, `requirements.txt`, `.github/workflows/pages.yml` |
+| Shared root navigation integration request | needs review | root integration owner | Request only: link `site/index.html` and `site/review.html`; this session does not edit root site files. |
+
+- 2026-11-04: Stopped on add/add conflicts while merging origin/main into already-published fixed branch. Retained main versions of shared root pages/README, combined .gitignore entries, and preserved both coordination histories. Our full dashboard and README are preserved in isolated paths; no other implementation discarded. Coordination notices: PR #11 comment 6641252534 and PR #9 comment 6641253177.
+- 2026-11-04 arena-a54b6387: Final isolated integration checks passed: 37 combined current Python tests plus 30 inherited release-check fixtures (67 total); inherited root verifier passed 9 pages/76 contextual source-linked rows; additive verifier passed 12 pages/108 source-linked rows and 378 HTML links/resources; all 24 additive desktop/mobile WCAG axe scans and interaction checks passed. Root files, inherited model/data/research and independent reports match the fetched main versions. This is not substantive re-verification of inherited empirical claims; F13 discloses that boundary.
+- Current PR: https://github.com/sassnarep3-star/Own9/pull/11 . Initial branch CI run https://github.com/sassnarep3-star/Own9/actions/runs/41906271138 passed before concurrent integration; fresh combined CI is required before merge. Additive live target: https://sassnarep3-star.github.io/Own9/site/ .
+
+- 2026-11-04: Required pre-push pull --rebase attempted after a history-preserving merge tried to replay concurrent main commits and conflicted on the board. Aborted the rebase without discarding work. A second attempt against newly advanced main also conflicted; aborted and merged latest main instead, retaining all root-owner updates and both append-only histories. No forced push, branch switch or rewrite of other sessions. `gh pr edit` also hit the installed CLI's deprecated Projects-classic query; use gh REST for the PR description update.
+
+- 2026-11-04: PR #11 merge initially blocked by another concurrent main update (d4eeb5b), despite the PR API displaying the previous base SHA. Fetched actual ref, merged it and retained both append-only board histories. All existing root/inherited implementations remain untouched.

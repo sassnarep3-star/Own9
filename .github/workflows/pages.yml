@@ -1,0 +1,52 @@
+name: Verify NFL research for Pages
+
+on:
+  push:
+    branches: [main, arena/a54b6387-own9]
+  pull_request:
+    branches: [main]
+  workflow_dispatch:
+  schedule:
+    - cron: '23 11 * * *'
+
+permissions:
+  contents: read
+
+concurrency:
+  group: own9-${{ github.event_name == 'pull_request' && github.ref || 'publication' }}
+  cancel-in-progress: false
+
+jobs:
+  verify:
+    name: Research integrity and site checks
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - name: Check out source
+        uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262 # v4
+      - name: Set up Python
+        uses: actions/setup-python@a26af69be951a213d495a4c3e4e4022e16d87065 # v5
+        with:
+          python-version: '3.12'
+      - name: Set up Node
+        uses: actions/setup-node@49933ea5288caeca8642d1e84afbd3f7d6820020 # v4
+        with:
+          node-version: '22'
+          cache: npm
+      - name: Install locked browser-test tools (site runtime is dependency-free)
+        run: npm ci --ignore-scripts
+      - name: Regenerate source registry and static site
+        run: |
+          python research/make_catalog.py
+          python scripts/build_site.py
+          git diff --exit-code -- research/catalog.json site
+      - name: Test arithmetic and fail-closed research status
+        run: python -m unittest discover -s tests -v
+      - name: Check every local link and row source reference
+        run: python scripts/check_site.py
+      - name: Test desktop, mobile, accessibility and exports
+        run: node scripts/browser_test.cjs
+
+# This additive dashboard publishes at /Own9/site/ under existing main/root Pages.
+# GitHub runs its native pages-build-deployment workflow after PR merge.
+# No settings writes, extra publishing branch or privileged deploy token required.
