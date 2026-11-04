@@ -4,9 +4,16 @@ Active scope: `strict-lab/**` only, plus this session’s coordination records. 
 
 | Task | Status | Owner | Files |
 | --- | --- | --- | --- |
-| Additive strict-source lab, math tests and publication | in progress | 80085c01 | `strict-lab/**` |
+| Additive strict-source lab, math tests and publication | done | 80085c01 | `strict-lab/**` |
+| Missing empirical evidence and documented limitations | needs review | 80085c01 | `strict-lab/flags.html` (published) |
 
-PR: https://github.com/sassnarep3-star/Own9/pull/12 (publication pending).
+PR: https://github.com/sassnarep3-star/Own9/pull/12 — **merged** on 2026-11-04 at `aa1405939b09fe5c286bdb4343e3e27635b405c9`.
+
+- PR CI [41906556858](https://github.com/sassnarep3-star/Own9/actions/runs/41906556858) passed before merge. Root integration verification, 11 root tests, 30 inherited tests and 27 lab synthetic tests passed locally before merge.
+- GitHub Pages [41906880256](https://github.com/sassnarep3-star/Own9/actions/runs/41906880256) **succeeded** for descendant main commit `d4eeb5b88205704fa6e75635e339b0e6b862e97a`. Git ancestry confirms it includes PR #12. Earlier Pages runs were superseded/cancelled by concurrent updates, not a failure of lab code.
+- GitHub API reports Pages status `built`. Public retrieval confirmed the actual [strict-source landing page](https://sassnarep3-star.github.io/Own9/strict-lab/), [Flagged for Review](https://sassnarep3-star.github.io/Own9/strict-lab/flags.html) and [pricing/correlation page](https://sassnarep3-star.github.io/Own9/strict-lab/methodology.html), including the expected warnings and blank observed measurements. Public Pages was initially 404 before deployment; it now serves the intended content.
+- Managed Pages emitted Node.js/runner migration warnings, but build and deployment succeeded. Configuration belongs to the root integration owner and was not changed here.
+- All implementation tasks in the isolated lab are complete. Scientific evidence gaps remain **needs review**, published as F01–F12; no empirical gate pass, removed luck, funded rewards or full-document/whole-repository semantic certification is claimed. Root navigation/scheduling remain optional requests to their owners, not unauthorized scope edits.
 
 ---
 
