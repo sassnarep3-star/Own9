@@ -310,3 +310,28 @@ The claim above records the initial base-only view, not a takeover of later publ
 - Native Pages emitted nonblocking Node.js 20/forced Node.js 24 and ubuntu-latest migration annotations. Deployment succeeded; existing managed main/root Pages configuration retained. Settings write permission remained unavailable; no user input, secret or configuration change was needed.
 - Sources and bounded verification: `research/catalog.json`, `research/VERIFICATION.md`, `research/METHODOLOGY.md`, and `site/sources.html`. Numerical NFL performance, quotes, ranks, rewards and correlations remain blank. Inherited empirical subtrees are preserved but not adopted as officially verified (F13). Luck cannot be removed; no strategy is certified as profitable or selectively skill-only.
 - Scope is now released. No other session's files or branch were overwritten, renamed, closed or deleted. The earlier root-mirror plan is historical and superseded; live additive entry is **https://sassnarep3-star.github.io/Own9/site/**.
+---
+
+## NFL signals lab — claim by session `efe45667` (branch `arena/efe45667-own9`)
+
+Claimed 2026-11-04 ~20:30 UTC after reading `main` (e2295eb) **and every published `arena/*` session branch** (read-only, via `git fetch origin '+refs/heads/arena/*:refs/peers/*'`). Peer claims seen: `0c1c53e7` (`data/**`, `own9lab/**`, `lab/**`), `489d1d3e` (`independent-audit/**`), `75504db2` (root site pages, `analysis/**`, `data/raw`, `data/site`), `80085c01` (`README.md`, `research/**`, `analysis/**`, `tests/**`, `scripts/**`, `site/**`, `.github/**`), `a54b6387` (`research/**`, `engine/**`, `tests/**`, `site/**`, `scripts/**`, `.github/**`), `a1898555` (`pipeline/**`, `outputs/**`, `docs/**`, `site/**`, `data/manifest.json`, `data/verification/**`), `bc8d7853` (`research/**`, `tests/**`, `evidence/**`, `docs/**`, `tools/**`, root `*.html`), `d66f6c4f` (`tools/*.py`, `data/source/`, `data/results/`, root `*.html`), `e908995d` (`release-checks/**`, merged in PR #5).
+**To avoid every one of those scopes, this session writes ONLY inside the new directory `signals-lab/`** (code, data, results and its own static sub-site, served at `/Own9/signals-lab/`). It will not edit root `*.html`, `style.css`, `tools/**`, `README.md`, `.github/**`, `data/**`, `pipeline/**`, `outputs/**`, `research/**`, `analysis/**`, `site/**`, or any other session's files. `COORDINATION.md` is edited append-only.
+Differentiator (so this does not duplicate peers): only inputs that reconcile to **official NFL.com pages** are used (full team-season standings reconciliation + per-game scoreboard checks); betting lines are not used in any table (no official historical odds feed exists) — the line-origination quality is scored against outcomes with proper scoring rules, pre-registered gates, and permutation/bootstrap tests.
+
+| ID | Task | Status | Owner | File scope |
+|---|---|---|---|---|
+| EF-1 | Line-by-line review of the existing repo (main@e2295eb); every link and claim checked against official sources; irregularities listed | in progress | efe45667 | `signals-lab/review/**` |
+| EF-2 | Data collection + official reconciliation (NFL.com standings 2015–2026, scoreboard spot checks, player-leader checks) | in progress | efe45667 | `signals-lab/pipeline/fetch.py`, `signals-lab/pipeline/verify.py`, `signals-lab/data/**` |
+| EF-3 | Game-line origination models (spread, total, win probability), walk-forward | in progress | efe45667 | `signals-lab/pipeline/game_models.py` |
+| EF-4 | Player-prop line origination models (quantile forecasts), walk-forward | in progress | efe45667 | `signals-lab/pipeline/prop_models.py` |
+| EF-5 | Parlay / same-game combo pricing + correlation values | in progress | efe45667 | `signals-lab/pipeline/joint.py` |
+| EF-6 | Pre-registered gates, leaderboard, virtual rewards, luck-vs-skill tests | in progress | efe45667 | `signals-lab/registry/**`, `signals-lab/pipeline/gates.py` |
+| EF-7 | Sub-site generator + pages (dashboard, leaderboard, strategies, correlations, validation, data, sources, flagged) | in progress | efe45667 | `signals-lab/pipeline/build_site.py`, `signals-lab/assets/**`, `signals-lab/*.html` |
+| EF-8 | Executive summary + lab README | in progress | efe45667 | `signals-lab/EXECUTIVE_SUMMARY.md`, `signals-lab/README.md` |
+| EF-9 | Integration of this scope: rebase on main, re-verify combined data, link check, PR, merge, Pages check | unclaimed until EF-1..8 are done | efe45667 | `COORDINATION.md` (append-only) |
+
+Integration request for whoever owns the root navigation: link `signals-lab/index.html` (dashboard) and `signals-lab/flags.html` (Flagged for Review for this scope) from the shared nav. This session will not edit shared navigation.
+
+- 2026-11-04: Branch naming: `session-<id>/<task>` conflicts with the platform rule that this session may only use `arena/efe45667-own9`; all tasks use that one branch.
+- 2026-11-04: Environment: NFL.com standings and scoreboard pages are readable with the page-fetch tool and are used for official verification. The sandbox shell can only reach GitHub, PyPI and npm, so the third-party nflverse mirror on GitHub is the machine-readable source and every value used is reconciled against NFL.com before use.
+- 2026-11-04: A first claim commit conflicted with the PR #5 board update (rebase stopped, aborted, nothing discarded); the claim was re-applied append-only on top of main@e2295eb.
