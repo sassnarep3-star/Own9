@@ -17,6 +17,8 @@ jobs:
         run: python tools/verify.py
       - name: Test arithmetic and site integrity
         run: python -m unittest discover -s tests -v
+      - name: Test inherited release checker fixtures
+        run: python -m unittest discover -s release-checks -p 'test_*.py' -v
       - name: Confirm deterministic regeneration
         run: |
           python tools/build.py
