@@ -168,6 +168,46 @@
       "last_season": 2026
     },
     {
+      "id": "S14",
+      "name": "Under in windy outdoor games (wind >= 15 mph)",
+      "description": "Every outdoor game with wind of at least 15 mph: bet the under at the real price.",
+      "market": "total",
+      "price_source": "real price (games.csv)",
+      "gate_flags": [
+        "A13",
+        "wind column undocumented"
+      ],
+      "n_bets": 430,
+      "wins": 234,
+      "losses": 191,
+      "pushes": 5,
+      "staked_units": 430.0,
+      "profit_units": 30.714,
+      "roi_pct": 7.143,
+      "first_season": 2006,
+      "last_season": 2025
+    },
+    {
+      "id": "S15",
+      "name": "Under on short rest (either team <= 4 days)",
+      "description": "Short-week games suppress scoring: bet the under whenever either team has four days or less of rest.",
+      "market": "total",
+      "price_source": "real price (games.csv)",
+      "gate_flags": [
+        "A13",
+        "rest columns undocumented"
+      ],
+      "n_bets": 279,
+      "wins": 138,
+      "losses": 136,
+      "pushes": 5,
+      "staked_units": 279.0,
+      "profit_units": -4.98,
+      "roi_pct": -1.785,
+      "first_season": 2006,
+      "last_season": 2026
+    },
+    {
       "id": "S06",
       "name": "Moneyline EV 5%+",
       "description": "Bet the moneyline side whose model win probability implies at least 5% expected value at the listed price.",

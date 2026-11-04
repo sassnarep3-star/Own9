@@ -72,7 +72,8 @@ def build_frame() -> pd.DataFrame:
     # strategies so that ROI numbers are comparable across the leaderboard.
     l = l[l.season >= E.EVAL_FIRST_SEASON].copy()
     games = E.load_games()
-    extra = games[["game_id", "home_rest", "away_rest", "div_game", "roof", "surface"]]
+    extra = games[["game_id", "home_rest", "away_rest", "div_game", "roof", "surface",
+                   "temp", "wind"]]
     l = l.merge(extra, on="game_id", how="left")
     l["total_score"] = l.home_score + l.away_score
     l["home_implied_team_total"] = l.total_line / 2 + l.spread_line / 2
@@ -248,6 +249,35 @@ def run_singles(f: pd.DataFrame, opens: pd.DataFrame) -> list[tuple[str, dict, p
                           ["A08", "A13"]))
     out.append(total_bets(dt, 1.5, "S05", "Totals edge 1.5+ (flat 1u)",
                           "Wider net on totals: >= 1.5 points of disagreement.", ["A08", "A13"]))
+
+    # ---- weather / rest totals signals (no model line involved: pure situational filters)
+    def situational_total(sid, sname, desc, mask, side, flags, price_col):
+        picks = []
+        for row in dt[mask(dt)].itertuples():
+            price = price_or_none(row, side, "total")
+            if not np.isfinite(price):
+                continue
+            oc, pr = settle(row, "total", side, row.total_line, price)
+            picks.append({
+                "strategy_id": sid, "game_id": row.game_id, "season": row.season, "week": row.week,
+                "gameday": row.gameday, "market": "total", "side": side, "line": row.total_line,
+                "price": price, "price_source": "games.csv over_odds/under_odds",
+                "stake": 1.0, "outcome": oc, "profit": pr, "model_edge": np.nan,
+                "closing_line": row.total_line, "own_line": round(float(row.model_total), 3),
+            })
+        df = bets_from(picks)
+        return sid, evaluate(df, sid, sname, desc, "total", "real price (games.csv)", flags), df
+
+    out.append(situational_total(
+        "S14", "Under in windy outdoor games (wind >= 15 mph)",
+        "Every outdoor game with wind of at least 15 mph: bet the under at the real price.",
+        lambda x: x.wind.fillna(0) >= 15, "under", ["A13", "wind column undocumented"],
+        "under_odds"))
+    out.append(situational_total(
+        "S15", "Under on short rest (either team <= 4 days)",
+        "Short-week games suppress scoring: bet the under whenever either team has four days or "
+        "less of rest.", lambda x: (x.home_rest.fillna(99) <= 4) | (x.away_rest.fillna(99) <= 4),
+        "under", ["A13", "rest columns undocumented"], "under_odds"))
 
     # ---- moneyline value
     picks = []

@@ -1,0 +1,87 @@
+{
+  "retrieved_at_utc": "2026-11-04T20:20:00Z",
+  "retrieved_with": "Arena browsing tool (fetch_page) against nfl.com; the sandbox itself cannot reach nfl.com (egress restricted to github.com/codeload/api.github.com/PyPI/npm).",
+  "transcription_note": "Values below were copied from the official NFL.com pages named in `source_url`. Nothing was inferred, rounded or filled in. Where a page did not show a value, the value is absent rather than guessed.",
+  "score_crosschecks": [
+    {
+      "id": "V01",
+      "label": "2026 regular season, week 8 final scores",
+      "source_url": "https://www.nfl.com/scores/2026/week-8",
+      "requested_url": "https://www.nfl.com/scores/2026/reg8",
+      "games": [
+        {"away": "CAR", "home": "GB", "away_score": 19, "home_score": 27},
+        {"away": "BAL", "home": "BUF", "away_score": 10, "home_score": 36},
+        {"away": "TEN", "home": "CIN", "away_score": 36, "home_score": 43},
+        {"away": "ARI", "home": "DAL", "away_score": 33, "home_score": 30},
+        {"away": "MIN", "home": "DET", "away_score": 15, "home_score": 19},
+        {"away": "IND", "home": "JAX", "away_score": 7, "home_score": 42},
+        {"away": "LV", "home": "NYJ", "away_score": 38, "home_score": 33},
+        {"away": "CLE", "home": "PIT", "away_score": 6, "home_score": 27},
+        {"away": "ATL", "home": "TB", "away_score": 0, "home_score": 16},
+        {"away": "LAC", "home": "LA", "away_score": 9, "home_score": 24},
+        {"away": "KC", "home": "DEN", "away_score": 24, "home_score": 28},
+        {"away": "NE", "home": "MIA", "away_score": 24, "home_score": 19},
+        {"away": "PHI", "home": "WAS", "away_score": 10, "home_score": 27},
+        {"away": "CHI", "home": "SEA", "away_score": 34, "home_score": 17}
+      ]
+    },
+    {
+      "id": "V02",
+      "label": "2025 regular season, week 3 final scores",
+      "source_url": "https://www.nfl.com/scores/2025/week-3",
+      "requested_url": "https://www.nfl.com/scores/2025/reg3",
+      "games": [
+        {"away": "MIA", "home": "BUF", "away_score": 21, "home_score": 31},
+        {"away": "ATL", "home": "CAR", "away_score": 0, "home_score": 30},
+        {"away": "GB", "home": "CLE", "away_score": 10, "home_score": 13},
+        {"away": "HOU", "home": "JAX", "away_score": 10, "home_score": 17},
+        {"away": "CIN", "home": "MIN", "away_score": 10, "home_score": 48},
+        {"away": "PIT", "home": "NE", "away_score": 21, "home_score": 14},
+        {"away": "LA", "home": "PHI", "away_score": 26, "home_score": 33},
+        {"away": "NYJ", "home": "TB", "away_score": 27, "home_score": 29},
+        {"away": "IND", "home": "TEN", "away_score": 41, "home_score": 20},
+        {"away": "LV", "home": "WAS", "away_score": 24, "home_score": 41},
+        {"away": "DEN", "home": "LAC", "away_score": 20, "home_score": 23},
+        {"away": "NO", "home": "SEA", "away_score": 13, "home_score": 44},
+        {"away": "DAL", "home": "CHI", "away_score": 14, "home_score": 31},
+        {"away": "ARI", "home": "SF", "away_score": 15, "home_score": 16},
+        {"away": "KC", "home": "NYG", "away_score": 22, "home_score": 9},
+        {"away": "DET", "home": "BAL", "away_score": 38, "home_score": 30}
+      ]
+    }
+  ],
+  "record_crosschecks": [
+    {
+      "id": "V03",
+      "label": "2026 club records through week 8",
+      "source_url": "https://www.nfl.com/standings/",
+      "records": {
+        "ARI": null, "ATL": "3-5-0", "BAL": "4-4-0", "BUF": "6-1-0", "CAR": "3-4-0",
+        "CHI": "6-2-0", "CIN": "5-2-0", "CLE": "5-3-0", "DAL": "3-5-0", "DEN": "6-2-0",
+        "DET": "5-2-0", "GB": "5-3-0", "HOU": "2-5-0", "IND": "2-6-0", "JAX": "5-2-0",
+        "KC": "5-2-0", "LA": null, "LAC": "0-7-0", "LV": "4-4-0", "MIA": "1-6-0",
+        "MIN": "6-1-0", "NE": "5-3-0", "NO": "2-5-0", "NYG": "4-2-1", "NYJ": "2-6-0",
+        "PHI": "2-6-0", "PIT": "6-2-0", "SEA": null, "SF": "6-1-0", "TB": null,
+        "TEN": "1-7-0", "WAS": "2-4-1"
+      },
+      "notes": "24 clubs read from the standings page and 4 bye-week clubs (HOU, NO, NYG, SF) from the week-8 scores page footer. ARI, LA, SEA and TB were not displayed in the retrieved page chunks and are therefore null (unverified), not filled in."
+    }
+  ],
+  "schedule_crosschecks": [
+    {
+      "id": "V04",
+      "label": "2026 week 9 matchups (upcoming week) shown on nfl.com",
+      "source_url": "https://www.nfl.com/schedules",
+      "requested_url": "https://www.nfl.com/schedules/2026/REG18",
+      "note": "The requested URL redirected to the current-week view (week 9), so the 18-week structure of the 2026 regular season could NOT be verified here and is flagged as unverified.",
+      "matchups": [
+        {"away": "JAX", "home": "BAL", "gameday": "2026-11-05", "label": "Thursday, November 5th, 8:15 PM"},
+        {"away": "CIN", "home": "ATL", "gameday": "2026-11-08", "label": "International Game, Madrid, 9:30 AM"},
+        {"away": "DEN", "home": "CAR", "gameday": "2026-11-08", "label": "Sunday, November 8th, 1:00 PM"},
+        {"away": "DAL", "home": "IND", "gameday": "2026-11-08", "label": "Sunday, November 8th, 1:00 PM"},
+        {"away": "NYJ", "home": "KC", "gameday": "2026-11-08", "label": "Sunday, November 8th, 1:00 PM"},
+        {"away": "DET", "home": "MIA", "gameday": "2026-11-08", "label": "Sunday, November 8th, 1:00 PM"}
+      ]
+    }
+  ]
+}
