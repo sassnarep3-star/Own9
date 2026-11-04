@@ -1,0 +1,29 @@
+{
+ "preregistration": {
+  "prereg_commit": "50a4cd7f5f84710666708173717f25765158dc23",
+  "prereg_commit_time": "2026-11-04T20:59:27+00:00",
+  "files_match": true,
+  "working_tree_dirty": false
+ },
+ "audit_games": {
+  "blocks_tested": 10,
+  "mismatches": 0,
+  "ok": true
+ },
+ "audit_props": {
+  "rows_tested": 300,
+  "mismatches": 0,
+  "ok": true
+ },
+ "eval_split": "test",
+ "prov_games": true,
+ "prov_2026": true,
+ "leader_rows": 75,
+ "n_strategies": 31,
+ "alpha": 0.05,
+ "sigmas": {
+  "margin": 13.211809924373911,
+  "total": 13.697549275558925
+ },
+ "seconds": 55
+}

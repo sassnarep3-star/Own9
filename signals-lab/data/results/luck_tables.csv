@@ -1,0 +1,10 @@
+metric,value,note
+"Variance of team win% (observed, mean of 11 seasons)",0.036354930118106005,32 teams per season; ties counted 0.5
+"Variance expected if every game were a coin flip (binomial, p=0.5)",0.01521244151069519,0.25 / games played
+Share of win% variance explained by pure luck (binomial / observed),0.41844232573889256,remainder = persistent skill + schedule
+"Split-half reliability of win% (odd vs even weeks, Spearman-Brown corrected)",0.572527280178126,raw half-vs-half r = 0.401
+Persistence: Win% (year-over-year correlation),0.35901018666658724,320 team-season pairs
+Persistence: Point differential per game,0.4102295708827252,320 team-season pairs
+Persistence: Turnover margin per game,0.17164161171556888,320 team-season pairs
+Persistence: Record in one-score games (<= 8 pts) win%,0.08332062944837082,320 team-season pairs
+Persistence: Pythagorean residual (win% minus points-implied win%),0.03384445502034024,320 team-season pairs
