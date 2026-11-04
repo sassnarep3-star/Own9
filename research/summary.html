@@ -1,0 +1,82 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Executive summary · Own9 NFL research</title>
+<link rel="stylesheet" href="assets/style.css">
+
+</head>
+<body>
+<header class="top">
+  <div class="brand"><a href="index.html">Own9 · NFL signal research</a></div>
+  <nav><a href="index.html" class="">Home</a><a href="summary.html" class="active">Executive summary</a><a href="games.html" class="">Games &amp; lines</a><a href="strategies.html" class="">Strategies</a><a href="correlations.html" class="">Correlations &amp; parlays</a><a href="own-lines.html" class="">Own lines</a><a href="props.html" class="">Player props</a><a href="rules.html" class="">Rules &amp; legal</a><a href="sources.html" class="">Sources</a><a href="flagged.html" class="">Flagged for review</a><a href="../" class="mainlink">Main site ↗</a></nav>
+</header>
+<main>
+
+<article class="prose">
+<h1>Executive summary</h1>
+<p class="meta">Prepared 2026-11-04 · Data: nflverse/nfldata games snapshot (7,548 rows, 1999–2026) ·
+Code: <a href="https://github.com/sassnarep3-star/Own9/tree/main/analysis">analysis/</a></p>
+
+<h2>1. What was asked</h2>
+<p>Originate our own NFL lines, research strategies (single bets, parlays, player-prop combinations), remove luck as much as possible,
+measure correlations, and rank strategies on a leaderboard with validation gates. This report covers single-game ATS, totals,
+rule-based situational strategies, and our own line model. Player props are <strong>not analyzed</strong> because no verified
+historical prop-line source was available (see <a href="props.html">Player props</a>).</p>
+
+<h2>2. Method (how luck is controlled)</h2>
+<ul>
+  <li><strong>Pre-specified strategies only:</strong> 15 rules are fixed in code and were not tuned after seeing validation results. Totals use the pre-game line, never the final total.</li>
+  <li><strong>Discovery vs validation:</strong> 1999–2015 is used for a stability check; 2016–2025 is the out-of-sample window where gates are judged; 2026 completed games are a forward window (reported, not gated).</li>
+  <li><strong>Gates:</strong> G1 at least 150 bets · G2 Wilson 95% lower bound above the 52.38% break-even at -110 · G3 one-sided binomial p below the Bonferroni threshold (0.0033) · G4 same direction in discovery and both validation halves · G5 positive ROI in validation.</li>
+  <li><strong>Our own line model:</strong> time-decayed ridge team ratings with home-field, walk-forward (each game priced only with earlier games).</li>
+</ul>
+
+<h2>3. Results</h2>
+<ul>
+  <li><strong>Strategies passing all gates: 0 of 15.</strong> Leaderboard ranking puts gate-passing strategies first, then validation ROI. Because none qualify, no strategy earns a reward under the stated rule.</li>
+  <li>Top three by validation ROI (none pass):</li>
+</ul>
+<ul><li><strong>S04 Home big underdog ATS (spread &lt;= -7)</strong>: validation n=220, win 55.0%, ROI 5.0%, p=0.239; fails gates G2, G3, G4.</li><li><strong>M03 Model edge &gt;= 4 pts (either side)</strong>: validation n=931, win 51.8%, ROI -1.2%, p=0.657; fails gates G2, G3.</li><li><strong>S11 Divisional games: bet the underdog</strong>: validation n=958, win 51.7%, ROI -1.4%, p=0.682; fails gates G2, G3.</li></ul>
+<ul>
+  <li><strong>Own model vs market:</strong> mean absolute error over 2,761 games (2016–2025) is
+  10.38 points for our model and 9.78 for the closing spread. The market was more accurate.</li>
+  <li><strong>Correlations:</strong> home covering and home winning are strongly correlated
+  (r = 0.67, 95% CI 0.66 to 0.69). Two legs from the same game are not independent:
+  in the sample, "home covers AND home wins" happens 44.1% of the time versus 27.4% if the legs were independent.
+  Parlay math that assumes independence therefore misprices correlated legs.</li>
+  <li><strong>Week 9 (2026) own lines:</strong> 15 games priced. The largest disagreement with the market is JAX at BAL
+  (+10.9 points). That line is flagged as an outlier for review, not as a recommendation.</li>
+</ul>
+
+<h2>4. Legal context (Washington)</h2>
+<p>Per the Washington State Gambling Commission, sports wagering is authorized in Washington only at tribal casinos, and mobile wagers
+must be placed while the bettor is physically on the premises (geofenced). Under-18 bettors are prohibited. See
+<a href="rules.html">Rules &amp; legal</a> for the verified text.</p>
+
+<h2>5. Limits and honesty notes</h2>
+<ul>
+  <li>Historical betting lines are <strong>not published by the NFL</strong>, so spreads, totals, and moneylines cannot be confirmed from an official source. They are labelled Unverified everywhere.</li>
+  <li>Official verification coverage is small: 2 completed game scores were checked against nfl.com, and all 15 Week 9 (2026) games were checked against the nfl.com schedule (14 match; 1 kickoff time differs and is flagged). The remaining rows are Unverified.</li>
+  <li>An early draft graded totals against final scores (a look-ahead bug). It was caught and fixed before any result above was produced.</li>
+  <li>A passing backtest would still need out-of-sample confirmation and real execution costs (limits, juice, and line movement) before it counted as an edge.</li>
+</ul>
+
+<h2>6. Recommendations</h2>
+<ol>
+  <li>Source verified historical closing lines and prop prices under a license that permits use (none verified yet).</li>
+  <li>Resolve the flagged items on the <a href="flagged.html">Flagged for review</a> page, starting with the spread sign convention and the LV at SF kickoff mismatch.</li>
+  <li>Re-run the pipeline each week (<code>python analysis/analyze.py &amp;&amp; python analysis/build_site.py</code>); the forward 2026 window will grow.</li>
+</ol>
+</article>
+
+</main>
+<footer>
+  <p>Research only, not betting advice. Data as of 2026-11-04. Secondary-source values are labelled
+  <span class="tag unv">Unverified</span>. Gambling is only legal in Washington at tribal casinos
+  (see <a href="rules.html">Rules &amp; legal</a>). Problem gambling help: call or text 1-800-GAMBLER (US).</p>
+  <p>Repository: <a href="https://github.com/sassnarep3-star/Own9">github.com/sassnarep3-star/Own9</a></p>
+</footer>
+</body>
+</html>

@@ -61,3 +61,14 @@ and mobile navigation, filtering, CSV export, console errors and null metrics
 when Playwright/Chromium are installed. External accessibility was checked only
 for the limited source pages above via retrieval, not via a universal automated
 live-link crawler. Publication/deployment status is in the coordination board.
+
+## Concurrent work discovered during integration
+
+The original session base was README-only; origin/main advanced through multiple
+other sessions while work proceeded. Shared-file conflicts were resolved by
+retaining origin/main root site/README and all inherited analysis/data/research
+and release-checks. Both coordination histories were kept. This additive site
+does not certify secondary-source empirical numbers in inherited subtrees. They
+are flagged as F13, not copied into this site. The integration owner was asked
+to add navigation links; this session does not overwrite that owner's files.
+The earlier root-mirror publication plan is superseded by isolated `site/` output.

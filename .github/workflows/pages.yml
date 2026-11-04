@@ -39,7 +39,7 @@ jobs:
         run: |
           python research/make_catalog.py
           python scripts/build_site.py
-          git diff --exit-code -- research/catalog.json site assets data *.html .nojekyll
+          git diff --exit-code -- research/catalog.json site
       - name: Test arithmetic and fail-closed research status
         run: python -m unittest discover -s tests -v
       - name: Check every local link and row source reference
@@ -47,6 +47,6 @@ jobs:
       - name: Test desktop, mobile, accessibility and exports
         run: node scripts/browser_test.cjs
 
-# Publishing uses the existing main/root GitHub Pages configuration.
+# This additive dashboard publishes at /Own9/site/ under existing main/root Pages.
 # GitHub runs its native pages-build-deployment workflow after PR merge.
 # No settings writes, extra publishing branch or privileged deploy token required.

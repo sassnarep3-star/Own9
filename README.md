@@ -1,106 +1,80 @@
-# Own9 · NFL Research Lab
+# Own9 · Evidence-first NFL research
 
-**[Open the dashboard](https://sassnarep3-star.github.io/Own9/)** ·
-[Flagged for Review](https://sassnarep3-star.github.io/Own9/review.html) ·
-[Methodology](research/METHODOLOGY.md) ·
-[Verification scope](research/VERIFICATION.md) ·
-[Coordination and publication log](COORDINATION.md)
+**Live dashboard:** https://sassnarep3-star.github.io/Own9/
+
+An auditable NFL research workspace covering line origination, singles, parlays,
+player-prop combos, seven validation gates, a proposed competition, correlation
+requirements, official source scopes and a published review register.
 
 ## Executive summary
 
-Own9 is an evidence-first foundation for originating NFL probabilities and
-comparing single bets, parlays and player-prop combinations. The initial repository
-contained only a README; there was no existing dataset, model, site or code to verify.
+- **Implemented:** nine static dashboard pages; dependency-free pricing, binary scoring,
+  Pearson/phi and two-leg joint-probability primitives; fail-closed eligibility; tests and CI.
+- **Not established:** an NFL edge, a numerical NFL line, empirical correlation, completed
+  model/backtest, historical executable quote archive, verified skill or funded rewards.
+- **Do not confuse software tests with strategy validation.** All candidates remain unvalidated;
+  empirical values are blank. No bets are placed or recommended. Luck cannot be removed.
+- Every table row links to an official publisher or the primary project repository record.
+  Scope labels distinguish facts, context, mathematical definitions and project proposals.
+  An official contextual source does **not** substantiate an untested strategy.
 
-- **8 candidate strategies**, explicitly unvalidated, covering all requested bet classes.
-- **11 promotion gates** addressing provenance, as-of leakage, holdouts, calibration,
-  correlation, execution, statistical uncertainty, multiplicity and forward paper results.
-- **13 checked primary-source pages**, each with a limited observed claim and direct
-  link; every dashboard data row has an official source/method reference.
-- **12 static pages** with category navigation, searchable tables, CSV exports,
-  machine-readable manifests and a clearly labeled review register.
-- **Tested pricing/evaluation primitives**, not a trained NFL model: push-aware fair
-  payouts/EV, discrete PMFs, probability scores, two-event dependence constraints,
-  complete-week splits, week-cluster bootstrap and Holm adjustment.
+## Explore
 
-**No proven winning strategies, actual NFL lines, ROI, ranks or correlations are
-published.** No provenance-complete historical as-of NFL dataset or executable
-odds archive was admitted. Unknown values remain blank and flagged. Luck cannot
-be eliminated, finite samples do not certify skill, and past results cannot
-guarantee future returns. The leaderboard is a paper-research design, not a
-funded competition, automated sportsbook, or wagering recommendation.
+[Strategies](strategies.html) · [Validation](validation.html) ·
+[Leaderboard](leaderboard.html) · [Correlations](correlations.html) ·
+[Data requirements](data.html) · [Sources](sources.html) ·
+[Repository audit](audit.html) · [Flagged for Review](flags.html)
 
-### Important findings
+Full [research specification](docs/RESEARCH_SPEC.md) and machine-readable
+[source review manifest](evidence/sources.json). The audit describes every starting tracked
+file scope. Official pages were read only within the manifest's stated scope; unsupported
+NFL values were not imported. Acquisition, fitting, uncertainty inference and prospective
+paper evaluation remain unimplemented and explicitly flagged.
 
-The official NFL injury page distinguishes practice status from game status;
-blank fields are not inferred. Extracted NFL numerical team-stat rows lacked
-reliable column headings and were excluded. A legacy NFL injury-policy link and
-an attempted NIST URL returned 404 content. Retrieved operator general rules are
-Virginia-specific and cannot establish Washington applicability. See the
-[verification register](research/VERIFICATION.md) and [source manifest](research/catalog.json).
-
-## Run without secrets or manual inputs
-
-Python 3.11+ is sufficient for the report, engine tests, build and link checks.
-The deployed site has no runtime dependencies, analytics, external fonts, API
-keys or user-data collection.
+## Reproduce (Python 3.10+, no third-party packages)
 
 ```sh
-python research/make_catalog.py
-python scripts/build_site.py
-python -m unittest discover -s tests -v
-python scripts/check_site.py
-python -m engine.report
-python -m http.server 3000 --bind 0.0.0.0 --directory site
+python3 tools/build.py
+python3 tools/verify.py
+python3 -m unittest discover -s tests -v
+python3 -m http.server 8000 --bind 0.0.0.0
 ```
 
-Optional browser verification uses Node 22.12+ on Linux x64 (or another environment
-supported by the bundled Chromium package). Browser tools are dev-only and locked:
+The last command is optional for local viewing. GitHub Pages publishes repository root from
+`main`, with relative assets compatible with `/Own9/`. `tools/check.py` remains a compatibility
+alias. Generation is deterministic, and CI checks committed outputs before regeneration.
+The verifier checks all source-linked rows, local assets/fragments, navigation, and missing
+empirical fields; **it does not prove external link availability or factual entailment**.
 
-```sh
-npm ci --ignore-scripts
-npm run test:browser
+`research/metrics.py` accepts supplied numbers, not verified market inputs. Test fixtures are
+synthetic except a clearly identified arithmetic example from official sklearn documentation.
+No secret, API key, paid feed, user data entry, cash prize or automatic wagering is required.
+
+See [COORDINATION.md](COORDINATION.md) for claims, preserved concurrent-session records,
+verification performed, irregularities, PRs and deployment results.
+
+---
+
+## Separate inherited research (not certified by this dashboard)
+
+PR #6 later added a secondary-source analysis subtree. Its empirical numbers have not passed this integration’s official row-level verification requirement and are not adopted as verified results. Its original description is retained below as an attributed session record.
+
+## Research site (`research/`) — NFL signal research (arena/75504db2-own9)
+
+Separate from the root site above. The research pipeline builds its own pages and data.
+
+- Live: https://sassnarep3-star.github.io/Own9/research/
+- `analysis/analyze.py` — data pipeline (`research/data/site/*.json`): 15 pre-specified strategies graded with gates G1–G5,
+  correlations and parlay joint probabilities, walk-forward own-line model.
+- `analysis/build_site.py` — builds `research/*.html` (landing, executive summary, games, strategies, correlations,
+  own lines, player props, rules & legal, sources, flagged for review).
+- `data/raw/games.csv` — copy of `nflverse/nfldata` `data/games.csv` (commit `d5c8272`, secondary source).
+
+Reproduce:
+```bash
+python -m venv .venv && . .venv/bin/activate && pip install pandas numpy scipy
+python analysis/analyze.py && python analysis/build_site.py
 ```
 
-This checks all pages at desktop/mobile widths, WCAG A/AA rules using axe, search,
-status filtering, CSV source URLs, blank empirical cells, no-JavaScript navigation
-and browser errors. Automated accessibility scans are not a full accessibility audit.
-Screenshots are temporary ignored files under `build/`, not source artifacts.
-
-## Repository map
-
-| Scope | Purpose |
-|---|---|
-| `research/make_catalog.py` | Curated source/strategy/requirement registry definition; edit here before regenerating |
-| `research/catalog.json` | Generated canonical row manifest; missing empirical data are JSON null |
-| `research/METHODOLOGY.md` | Executive brief, data contract, derivations, assumptions, validation and reward design |
-| `research/VERIFICATION.md` | Checked scope, source limitations and verification levels |
-| `engine/` | Dependency-free probability/evaluation utilities and abstaining status report |
-| `tests/` | Synthetic arithmetic fixtures and manifest invariants, never NFL backtests |
-| `scripts/` | Deterministic site build, HTML/link/source checks and browser verification |
-| `site/` | Deployable static output and local assets; readable without JavaScript |
-| `.github/workflows/pages.yml` | Tests on branch/PR; verifies generated output; existing main/root Pages publishing deploys after merge |
-| `COORDINATION.md` | Shared claims, file scopes, irregularities and publication evidence |
-
-The workflow reruns daily and on changes. It checks existing evidence; it **does
-not fetch fresh NFL data**, automatically fit models or place wagers. The research
-snapshot date remains 2026-11-04 until research is actually refreshed. A rebuild
-never turns old evidence into new evidence. Generated root HTML, `assets/` and
-`data/` are byte-identical mirrors of `site/` for existing main/root Pages publishing.
-The offline checker enforces equivalence. Settings writes were not permitted; no
-configuration change or extra publishing branch is required.
-
-## What remains necessary before empirical claims
-
-Rights-cleared official historical game/player/play snapshots, publication/as-of
-metadata, synchronized actual singles/prop/combo quotes, ticket-specific settlement
-rules, fitted and independently evaluated models, registered statistical thresholds,
-and forward paper evidence. Until then, automatic abstention is the correct output.
-Local source references and passing code tests do not substitute for these inputs.
-
-## Coordination
-
-Read `COORDINATION.md` before editing. The integration owner alone changes shared
-catalog/site/navigation outputs. Arena fixes this session's branch to
-`arena/a54b6387-own9`; all work and pushes remain on that branch. Open a PR from it
-to main and use a successful verification run before merging and publishing.
+Betting lines are not published by the NFL, so all lines are labelled **Unverified** (`research/flagged.html`).
+Research only, not betting advice. Sports wagering in Washington is limited to tribal casinos (Washington State Gambling Commission).

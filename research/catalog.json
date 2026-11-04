@@ -129,7 +129,7 @@
       "status": "checked",
       "checked_on": "2026-11-04",
       "evidence": "Branch publishing supports repository root or docs; pushes to the configured source publish the site. A .nojekyll file permits static output without Jekyll processing.",
-      "scope": "Existing main/root Pages configuration retained because settings writes return HTTP 403. Actual deployment result is recorded separately."
+      "scope": "Existing main/root Pages configuration retained. Our additive site/ dashboard publishes beneath it; shared root files are preserved."
     }
   ],
   "strategies": [
@@ -611,9 +611,19 @@
       ]
     },
     {
+      "id": "F13",
+      "title": "Concurrent inherited evidence",
+      "detail": "Other sessions added analysis, raw data and empirical research pages while this session worked from the original base. Those files are retained, but their numerical claims are not officially verified or adopted here.",
+      "impact": "This dashboard keeps empirical cells blank. Root integration is requested, not overwritten.",
+      "status": "needs review",
+      "source_ids": [
+        "NFL-STATS"
+      ]
+    },
+    {
       "id": "F12",
       "title": "Pages settings permission",
-      "detail": "GitHub Pages configuration writes returned HTTP 403. Existing main/root branch publishing is retained, with byte-identical generated root files.",
+      "detail": "GitHub Pages settings writes returned HTTP 403. Existing main/root branch publishing is retained; our additive dashboard is isolated in site/.",
       "impact": "No settings change required; deployment result tracked separately in coordination log.",
       "status": "needs review",
       "source_ids": [
@@ -688,7 +698,7 @@
       "id": "R01",
       "requirement": "Review repository",
       "status": "done",
-      "delivery": "Initial repository had only README.md; no legacy data/model to certify.",
+      "delivery": "Original session base was README-only; later concurrent work was preserved. This is not a complete substantive audit of inherited data.",
       "source_ids": [
         "NFL-STATS"
       ]
@@ -769,7 +779,7 @@
       "id": "R10",
       "requirement": "GitHub Pages category site",
       "status": "done",
-      "delivery": "Static multi-page dashboard with row-level official-source links and review page; deployment tracked in coordination log.",
+      "delivery": "Additive site/ multi-page dashboard with official-source links; existing root dashboard preserved. Deployment tracked in coordination log.",
       "source_ids": [
         "GH-PAGES"
       ]
@@ -797,7 +807,7 @@
     {
       "id": "A01",
       "area": "Initial repository",
-      "finding": "README.md contained only # Own9; no application, data, lockfiles, tests or hidden implementation outside .git.",
+      "finding": "Original base 4828ac0 had README.md only. Concurrent main integrations later added root pages, analysis/data, research and release-checks; all retained, not recertified.",
       "status": "local inventory checked",
       "source_ids": [
         "GH-PAGES"
@@ -806,7 +816,7 @@
     {
       "id": "A02",
       "area": "Coordination",
-      "finding": "No pre-existing board or claims. One integration session owns non-overlapping scopes; fixed Arena branch retained.",
+      "finding": "No board existed at the original base. Later concurrent claims were discovered at merge; all logs and root-owner scopes preserved. Our dashboard is additive in site/.",
       "status": "local Git checked",
       "source_ids": [
         "GH-PAGES"

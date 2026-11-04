@@ -49,7 +49,7 @@ def page(slug,title,kicker,description,body,active=None):
     nav=''.join(f'<a href="{s}.html" class="nav-link {"active" if (active or slug)==s else ""}" '+('aria-current="page"' if (active or slug)==s else '')+f'><span class="nav-number">{num}</span>{e(label)}'+(f'<span class="nav-count">{len(DATA["flags"])}</span>' if s=='review' else '')+'</a>' for s,label,num in NAV)
     html=f'''<!doctype html>
 <html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="description" content="{e(description)}"><meta name="color-scheme" content="light"><title>{e(title)} · Own9 NFL Research</title><link rel="icon" href="assets/favicon.svg" type="image/svg+xml"><link rel="stylesheet" href="assets/styles.css"><script src="assets/app.js" defer></script></head>
-<body><a class="skip" href="#main">Skip to content</a><aside class="sidebar"><a class="brand" href="index.html"><span class="brand-mark">O<span>9</span></span><span>OWN9<small>NFL RESEARCH LAB</small></span></a><p class="sidebar-label">RESEARCH WORKSPACE</p><nav aria-label="Main navigation">{nav}</nav><div class="sidebar-bottom"><span class="live-dot"></span> Evidence before edge<p>Independent research.<br>No bets. No invented results.</p><a href="https://github.com/sassnarep3-star/Own9" target="_blank" rel="noopener noreferrer">View repository ↗</a></div></aside>
+<body><a class="skip" href="#main">Skip to content</a><aside class="sidebar"><a class="brand" href="index.html"><span class="brand-mark">O<span>9</span></span><span>OWN9<small>NFL RESEARCH LAB</small></span></a><p class="sidebar-label">RESEARCH WORKSPACE</p><nav aria-label="Main navigation">{nav}</nav><div class="sidebar-bottom"><a href="../index.html">← Main project dashboard</a><p></p><span class="live-dot"></span> Evidence before edge<p>Independent research.<br>No bets. No invented results.</p><a href="https://github.com/sassnarep3-star/Own9" target="_blank" rel="noopener noreferrer">View repository ↗</a></div></aside>
 <div class="workspace"><header class="topbar"><span class="breadcrumb">Workspace <span>/</span> NFL <span>/</span> <strong>{e(title)}</strong></span><span class="top-status"><span class="live-dot"></span> Research mode <span class="date">04 NOV 2026</span></span></header><main id="main"><div class="page-heading"><div class="eyebrow">{e(kicker)}</div><h1>{e(title)}</h1><p>{e(description)}</p></div>{body}<footer><span>OWN9 / NFL Research Lab</span><span>Research snapshot: 2026-11-04 UTC · Not a live odds feed</span><a href="review.html">Limitations & review ↗</a></footer></main></div></body></html>'''
     (OUT/f'{slug}.html').write_text(html)
 
@@ -101,10 +101,4 @@ def build():
 
 if __name__=='__main__':
     build()
-    # Preserve the repository's existing GitHub Pages main/root source.
-    for html in OUT.glob('*.html'):
-        shutil.copyfile(html, ROOT/html.name)
-    for directory in ('assets', 'data'):
-        shutil.copytree(OUT/directory, ROOT/directory, dirs_exist_ok=True)
-    shutil.copyfile(OUT/'.nojekyll', ROOT/'.nojekyll')
     print(f'Built {len(list(OUT.glob("*.html")))} pages from {len(SOURCES)} primary source records.')

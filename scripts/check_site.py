@@ -45,13 +45,6 @@ def check():
         p.feed(path.read_text())
         pages[path.resolve()] = p
     errors, count, link_count = [], 0, 0
-    # Published main/root bytes must match the site artifact that tests exercise.
-    generated = list(SITE.glob('*.html')) + list((SITE/'assets').rglob('*')) + list((SITE/'data').rglob('*')) + [SITE/'.nojekyll']
-    for file in generated:
-        if file.is_file():
-            mirror = ROOT/file.relative_to(SITE)
-            if not mirror.is_file() or mirror.read_bytes() != file.read_bytes():
-                errors.append(f'{file.name}: published root mirror missing or differs')
     for path, p in pages.items():
         errors.extend(f'{path.name}: {err}' for err in p.errors)
         if not p.title or not p.lang: errors.append(f'{path.name}: title or language missing')
@@ -67,7 +60,7 @@ def check():
                 errors.append(f'{path.name}: unexpected link scheme {href}')
                 continue
             target = (path.parent / unquote(url.path)).resolve() if url.path else path
-            if not target.is_relative_to(SITE.resolve()) or not target.is_file():
+            if not target.is_relative_to(ROOT.resolve()) or not target.is_file():
                 errors.append(f'{path.name}: missing or escaping local target {href}')
             elif url.fragment and target in pages and unquote(url.fragment) not in pages[target].ids:
                 errors.append(f'{path.name}: unknown local fragment {href}')

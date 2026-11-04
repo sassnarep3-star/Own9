@@ -4,7 +4,9 @@
 
 ## Executive summary
 
-Own9 started as a repository containing only a README. This session establishes
+This session began at the original README-only commit 4828ac0. Other sessions later
+merged root dashboards, analysis/data, research and release-checks into main; their
+files and claims are preserved but are not certified by this additive site. This session establishes
 an auditable research foundation, static dashboard, tested probability utilities,
 and a deliberately empty empirical leaderboard. Eight candidate strategies cover
 singles, cross-game parlays, and player-prop combinations. Eleven validation gates
@@ -189,3 +191,12 @@ To advance beyond this foundation, automated official historical archive access,
 rights, parser/snapshot tests, model fitting and an independently audited forward
 paper record are still necessary. Until those exist, the honest autonomous action
 is to abstain, preserve blanks, and publish the blockers for review.
+
+## Concurrent integration boundary
+
+Our dashboard lives at `/Own9/site/`. The current root dashboard and inherited
+`analysis/`, `data/raw/`, `research/` empirical pages and `release-checks/` remain
+unchanged. No inherited numeric result is adopted as officially verified by this
+lab. The root owner was asked to link the additive site and review register. Our
+checks are scoped to our manifests/engine/site plus the inherited regression
+suites; passing regressions cannot substantiate inherited numerical claims.
