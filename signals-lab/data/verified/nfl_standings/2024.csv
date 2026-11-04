@@ -1,0 +1,33 @@
+season,nfl_code,team_name,w,l,t,pf,pa,source_url,retrieved_utc
+2024,DET,Detroit Lions,15,2,0,564,342,https://www.nfl.com/standings/league/2024/REG,2026-11-04
+2024,KC,Kansas City Chiefs,15,2,0,385,326,https://www.nfl.com/standings/league/2024/REG,2026-11-04
+2024,MIN,Minnesota Vikings,14,3,0,432,332,https://www.nfl.com/standings/league/2024/REG,2026-11-04
+2024,PHI,Philadelphia Eagles,14,3,0,463,303,https://www.nfl.com/standings/league/2024/REG,2026-11-04
+2024,BUF,Buffalo Bills,13,4,0,525,368,https://www.nfl.com/standings/league/2024/REG,2026-11-04
+2024,BAL,Baltimore Ravens,12,5,0,518,361,https://www.nfl.com/standings/league/2024/REG,2026-11-04
+2024,WAS,Washington Commanders,12,5,0,485,391,https://www.nfl.com/standings/league/2024/REG,2026-11-04
+2024,GB,Green Bay Packers,11,6,0,460,338,https://www.nfl.com/standings/league/2024/REG,2026-11-04
+2024,LAC,Los Angeles Chargers,11,6,0,402,301,https://www.nfl.com/standings/league/2024/REG,2026-11-04
+2024,DEN,Denver Broncos,10,7,0,425,311,https://www.nfl.com/standings/league/2024/REG,2026-11-04
+2024,HOU,Houston Texans,10,7,0,372,372,https://www.nfl.com/standings/league/2024/REG,2026-11-04
+2024,LA,Los Angeles Rams,10,7,0,367,386,https://www.nfl.com/standings/league/2024/REG,2026-11-04
+2024,PIT,Pittsburgh Steelers,10,7,0,380,347,https://www.nfl.com/standings/league/2024/REG,2026-11-04
+2024,SEA,Seattle Seahawks,10,7,0,375,368,https://www.nfl.com/standings/league/2024/REG,2026-11-04
+2024,TB,Tampa Bay Buccaneers,10,7,0,502,385,https://www.nfl.com/standings/league/2024/REG,2026-11-04
+2024,CIN,Cincinnati Bengals,9,8,0,472,434,https://www.nfl.com/standings/league/2024/REG,2026-11-04
+2024,AZ,Arizona Cardinals,8,9,0,400,379,https://www.nfl.com/standings/league/2024/REG,2026-11-04
+2024,ATL,Atlanta Falcons,8,9,0,389,423,https://www.nfl.com/standings/league/2024/REG,2026-11-04
+2024,IND,Indianapolis Colts,8,9,0,377,427,https://www.nfl.com/standings/league/2024/REG,2026-11-04
+2024,MIA,Miami Dolphins,8,9,0,345,364,https://www.nfl.com/standings/league/2024/REG,2026-11-04
+2024,DAL,Dallas Cowboys,7,10,0,350,468,https://www.nfl.com/standings/league/2024/REG,2026-11-04
+2024,SF,San Francisco 49ers,6,11,0,389,436,https://www.nfl.com/standings/league/2024/REG,2026-11-04
+2024,CAR,Carolina Panthers,5,12,0,341,534,https://www.nfl.com/standings/league/2024/REG,2026-11-04
+2024,CHI,Chicago Bears,5,12,0,310,370,https://www.nfl.com/standings/league/2024/REG,2026-11-04
+2024,NO,New Orleans Saints,5,12,0,338,398,https://www.nfl.com/standings/league/2024/REG,2026-11-04
+2024,NYJ,New York Jets,5,12,0,338,404,https://www.nfl.com/standings/league/2024/REG,2026-11-04
+2024,JAX,Jacksonville Jaguars,4,13,0,320,435,https://www.nfl.com/standings/league/2024/REG,2026-11-04
+2024,LV,Las Vegas Raiders,4,13,0,309,434,https://www.nfl.com/standings/league/2024/REG,2026-11-04
+2024,NE,New England Patriots,4,13,0,289,417,https://www.nfl.com/standings/league/2024/REG,2026-11-04
+2024,CLE,Cleveland Browns,3,14,0,258,435,https://www.nfl.com/standings/league/2024/REG,2026-11-04
+2024,NYG,New York Giants,3,14,0,273,415,https://www.nfl.com/standings/league/2024/REG,2026-11-04
+2024,TEN,Tennessee Titans,3,14,0,311,460,https://www.nfl.com/standings/league/2024/REG,2026-11-04

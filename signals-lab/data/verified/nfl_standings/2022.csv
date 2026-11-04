@@ -1,0 +1,33 @@
+season,nfl_code,team_name,w,l,t,pf,pa,source_url,retrieved_utc
+2022,KC,Kansas City Chiefs,14,3,0,496,369,https://www.nfl.com/standings/league/2022/REG,2026-11-04
+2022,PHI,Philadelphia Eagles,14,3,0,477,344,https://www.nfl.com/standings/league/2022/REG,2026-11-04
+2022,BUF,Buffalo Bills,13,3,0,455,286,https://www.nfl.com/standings/league/2022/REG,2026-11-04
+2022,MIN,Minnesota Vikings,13,4,0,424,427,https://www.nfl.com/standings/league/2022/REG,2026-11-04
+2022,SF,San Francisco 49ers,13,4,0,450,277,https://www.nfl.com/standings/league/2022/REG,2026-11-04
+2022,CIN,Cincinnati Bengals,12,4,0,418,322,https://www.nfl.com/standings/league/2022/REG,2026-11-04
+2022,DAL,Dallas Cowboys,12,5,0,467,342,https://www.nfl.com/standings/league/2022/REG,2026-11-04
+2022,BAL,Baltimore Ravens,10,7,0,350,315,https://www.nfl.com/standings/league/2022/REG,2026-11-04
+2022,LAC,Los Angeles Chargers,10,7,0,391,384,https://www.nfl.com/standings/league/2022/REG,2026-11-04
+2022,NYG,New York Giants,9,7,1,365,371,https://www.nfl.com/standings/league/2022/REG,2026-11-04
+2022,DET,Detroit Lions,9,8,0,453,427,https://www.nfl.com/standings/league/2022/REG,2026-11-04
+2022,JAX,Jacksonville Jaguars,9,8,0,404,350,https://www.nfl.com/standings/league/2022/REG,2026-11-04
+2022,MIA,Miami Dolphins,9,8,0,397,399,https://www.nfl.com/standings/league/2022/REG,2026-11-04
+2022,PIT,Pittsburgh Steelers,9,8,0,308,346,https://www.nfl.com/standings/league/2022/REG,2026-11-04
+2022,SEA,Seattle Seahawks,9,8,0,407,401,https://www.nfl.com/standings/league/2022/REG,2026-11-04
+2022,WAS,Washington Commanders,8,8,1,321,343,https://www.nfl.com/standings/league/2022/REG,2026-11-04
+2022,GB,Green Bay Packers,8,9,0,370,371,https://www.nfl.com/standings/league/2022/REG,2026-11-04
+2022,NE,New England Patriots,8,9,0,364,347,https://www.nfl.com/standings/league/2022/REG,2026-11-04
+2022,TB,Tampa Bay Buccaneers,8,9,0,313,358,https://www.nfl.com/standings/league/2022/REG,2026-11-04
+2022,ATL,Atlanta Falcons,7,10,0,365,386,https://www.nfl.com/standings/league/2022/REG,2026-11-04
+2022,CAR,Carolina Panthers,7,10,0,347,374,https://www.nfl.com/standings/league/2022/REG,2026-11-04
+2022,CLE,Cleveland Browns,7,10,0,361,381,https://www.nfl.com/standings/league/2022/REG,2026-11-04
+2022,NO,New Orleans Saints,7,10,0,330,345,https://www.nfl.com/standings/league/2022/REG,2026-11-04
+2022,NYJ,New York Jets,7,10,0,296,316,https://www.nfl.com/standings/league/2022/REG,2026-11-04
+2022,TEN,Tennessee Titans,7,10,0,298,359,https://www.nfl.com/standings/league/2022/REG,2026-11-04
+2022,LV,Las Vegas Raiders,6,11,0,395,418,https://www.nfl.com/standings/league/2022/REG,2026-11-04
+2022,DEN,Denver Broncos,5,12,0,287,359,https://www.nfl.com/standings/league/2022/REG,2026-11-04
+2022,LA,Los Angeles Rams,5,12,0,307,384,https://www.nfl.com/standings/league/2022/REG,2026-11-04
+2022,IND,Indianapolis Colts,4,12,1,289,427,https://www.nfl.com/standings/league/2022/REG,2026-11-04
+2022,AZ,Arizona Cardinals,4,13,0,340,449,https://www.nfl.com/standings/league/2022/REG,2026-11-04
+2022,HOU,Houston Texans,3,13,1,289,420,https://www.nfl.com/standings/league/2022/REG,2026-11-04
+2022,CHI,Chicago Bears,3,14,0,326,463,https://www.nfl.com/standings/league/2022/REG,2026-11-04

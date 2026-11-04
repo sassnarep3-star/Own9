@@ -1,0 +1,33 @@
+season,nfl_code,team_name,w,l,t,pf,pa,source_url,retrieved_utc
+2015,CAR,Carolina Panthers,15,1,0,500,308,https://www.nfl.com/standings/league/2015/REG,2026-11-04
+2015,AZ,Arizona Cardinals,13,3,0,489,313,https://www.nfl.com/standings/league/2015/REG,2026-11-04
+2015,CIN,Cincinnati Bengals,12,4,0,419,279,https://www.nfl.com/standings/league/2015/REG,2026-11-04
+2015,DEN,Denver Broncos,12,4,0,355,296,https://www.nfl.com/standings/league/2015/REG,2026-11-04
+2015,NE,New England Patriots,12,4,0,465,315,https://www.nfl.com/standings/league/2015/REG,2026-11-04
+2015,KC,Kansas City Chiefs,11,5,0,405,287,https://www.nfl.com/standings/league/2015/REG,2026-11-04
+2015,MIN,Minnesota Vikings,11,5,0,365,302,https://www.nfl.com/standings/league/2015/REG,2026-11-04
+2015,GB,Green Bay Packers,10,6,0,368,323,https://www.nfl.com/standings/league/2015/REG,2026-11-04
+2015,NYJ,New York Jets,10,6,0,387,314,https://www.nfl.com/standings/league/2015/REG,2026-11-04
+2015,PIT,Pittsburgh Steelers,10,6,0,423,319,https://www.nfl.com/standings/league/2015/REG,2026-11-04
+2015,SEA,Seattle Seahawks,10,6,0,423,277,https://www.nfl.com/standings/league/2015/REG,2026-11-04
+2015,HOU,Houston Texans,9,7,0,339,313,https://www.nfl.com/standings/league/2015/REG,2026-11-04
+2015,WAS,Washington Commanders,9,7,0,388,379,https://www.nfl.com/standings/league/2015/REG,2026-11-04
+2015,ATL,Atlanta Falcons,8,8,0,339,345,https://www.nfl.com/standings/league/2015/REG,2026-11-04
+2015,BUF,Buffalo Bills,8,8,0,379,359,https://www.nfl.com/standings/league/2015/REG,2026-11-04
+2015,IND,Indianapolis Colts,8,8,0,333,408,https://www.nfl.com/standings/league/2015/REG,2026-11-04
+2015,DET,Detroit Lions,7,9,0,358,400,https://www.nfl.com/standings/league/2015/REG,2026-11-04
+2015,LV,Las Vegas Raiders,7,9,0,359,399,https://www.nfl.com/standings/league/2015/REG,2026-11-04
+2015,LA,Los Angeles Rams,7,9,0,280,330,https://www.nfl.com/standings/league/2015/REG,2026-11-04
+2015,NO,New Orleans Saints,7,9,0,408,476,https://www.nfl.com/standings/league/2015/REG,2026-11-04
+2015,PHI,Philadelphia Eagles,7,9,0,377,430,https://www.nfl.com/standings/league/2015/REG,2026-11-04
+2015,CHI,Chicago Bears,6,10,0,335,397,https://www.nfl.com/standings/league/2015/REG,2026-11-04
+2015,MIA,Miami Dolphins,6,10,0,310,389,https://www.nfl.com/standings/league/2015/REG,2026-11-04
+2015,NYG,New York Giants,6,10,0,420,442,https://www.nfl.com/standings/league/2015/REG,2026-11-04
+2015,TB,Tampa Bay Buccaneers,6,10,0,342,417,https://www.nfl.com/standings/league/2015/REG,2026-11-04
+2015,BAL,Baltimore Ravens,5,11,0,328,401,https://www.nfl.com/standings/league/2015/REG,2026-11-04
+2015,JAX,Jacksonville Jaguars,5,11,0,376,448,https://www.nfl.com/standings/league/2015/REG,2026-11-04
+2015,SF,San Francisco 49ers,5,11,0,238,387,https://www.nfl.com/standings/league/2015/REG,2026-11-04
+2015,DAL,Dallas Cowboys,4,12,0,275,374,https://www.nfl.com/standings/league/2015/REG,2026-11-04
+2015,LAC,Los Angeles Chargers,4,12,0,320,398,https://www.nfl.com/standings/league/2015/REG,2026-11-04
+2015,CLE,Cleveland Browns,3,13,0,278,432,https://www.nfl.com/standings/league/2015/REG,2026-11-04
+2015,TEN,Tennessee Titans,3,13,0,299,423,https://www.nfl.com/standings/league/2015/REG,2026-11-04

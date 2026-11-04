@@ -1,0 +1,33 @@
+season,nfl_code,team_name,w,l,t,pf,pa,source_url,retrieved_utc
+2020,KC,Kansas City Chiefs,14,2,0,473,362,https://www.nfl.com/standings/league/2020/REG,2026-11-04
+2020,BUF,Buffalo Bills,13,3,0,501,375,https://www.nfl.com/standings/league/2020/REG,2026-11-04
+2020,GB,Green Bay Packers,13,3,0,509,369,https://www.nfl.com/standings/league/2020/REG,2026-11-04
+2020,NO,New Orleans Saints,12,4,0,482,337,https://www.nfl.com/standings/league/2020/REG,2026-11-04
+2020,PIT,Pittsburgh Steelers,12,4,0,416,312,https://www.nfl.com/standings/league/2020/REG,2026-11-04
+2020,SEA,Seattle Seahawks,12,4,0,459,371,https://www.nfl.com/standings/league/2020/REG,2026-11-04
+2020,BAL,Baltimore Ravens,11,5,0,468,303,https://www.nfl.com/standings/league/2020/REG,2026-11-04
+2020,CLE,Cleveland Browns,11,5,0,408,419,https://www.nfl.com/standings/league/2020/REG,2026-11-04
+2020,IND,Indianapolis Colts,11,5,0,451,362,https://www.nfl.com/standings/league/2020/REG,2026-11-04
+2020,TB,Tampa Bay Buccaneers,11,5,0,492,355,https://www.nfl.com/standings/league/2020/REG,2026-11-04
+2020,TEN,Tennessee Titans,11,5,0,491,439,https://www.nfl.com/standings/league/2020/REG,2026-11-04
+2020,LA,Los Angeles Rams,10,6,0,372,296,https://www.nfl.com/standings/league/2020/REG,2026-11-04
+2020,MIA,Miami Dolphins,10,6,0,404,338,https://www.nfl.com/standings/league/2020/REG,2026-11-04
+2020,AZ,Arizona Cardinals,8,8,0,410,367,https://www.nfl.com/standings/league/2020/REG,2026-11-04
+2020,CHI,Chicago Bears,8,8,0,372,370,https://www.nfl.com/standings/league/2020/REG,2026-11-04
+2020,LV,Las Vegas Raiders,8,8,0,434,478,https://www.nfl.com/standings/league/2020/REG,2026-11-04
+2020,LAC,Los Angeles Chargers,7,9,0,384,426,https://www.nfl.com/standings/league/2020/REG,2026-11-04
+2020,MIN,Minnesota Vikings,7,9,0,430,475,https://www.nfl.com/standings/league/2020/REG,2026-11-04
+2020,NE,New England Patriots,7,9,0,326,353,https://www.nfl.com/standings/league/2020/REG,2026-11-04
+2020,WAS,Washington Commanders,7,9,0,335,329,https://www.nfl.com/standings/league/2020/REG,2026-11-04
+2020,DAL,Dallas Cowboys,6,10,0,395,473,https://www.nfl.com/standings/league/2020/REG,2026-11-04
+2020,NYG,New York Giants,6,10,0,280,357,https://www.nfl.com/standings/league/2020/REG,2026-11-04
+2020,SF,San Francisco 49ers,6,10,0,376,390,https://www.nfl.com/standings/league/2020/REG,2026-11-04
+2020,CAR,Carolina Panthers,5,11,0,350,402,https://www.nfl.com/standings/league/2020/REG,2026-11-04
+2020,DEN,Denver Broncos,5,11,0,323,446,https://www.nfl.com/standings/league/2020/REG,2026-11-04
+2020,DET,Detroit Lions,5,11,0,377,519,https://www.nfl.com/standings/league/2020/REG,2026-11-04
+2020,CIN,Cincinnati Bengals,4,11,1,311,424,https://www.nfl.com/standings/league/2020/REG,2026-11-04
+2020,PHI,Philadelphia Eagles,4,11,1,334,418,https://www.nfl.com/standings/league/2020/REG,2026-11-04
+2020,ATL,Atlanta Falcons,4,12,0,396,414,https://www.nfl.com/standings/league/2020/REG,2026-11-04
+2020,HOU,Houston Texans,4,12,0,384,464,https://www.nfl.com/standings/league/2020/REG,2026-11-04
+2020,NYJ,New York Jets,2,14,0,243,457,https://www.nfl.com/standings/league/2020/REG,2026-11-04
+2020,JAX,Jacksonville Jaguars,1,15,0,306,492,https://www.nfl.com/standings/league/2020/REG,2026-11-04

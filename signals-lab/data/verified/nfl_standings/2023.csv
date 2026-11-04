@@ -1,0 +1,33 @@
+season,nfl_code,team_name,w,l,t,pf,pa,source_url,retrieved_utc
+2023,BAL,Baltimore Ravens,13,4,0,483,280,https://www.nfl.com/standings/league/2023/REG,2026-11-04
+2023,DAL,Dallas Cowboys,12,5,0,509,315,https://www.nfl.com/standings/league/2023/REG,2026-11-04
+2023,DET,Detroit Lions,12,5,0,461,395,https://www.nfl.com/standings/league/2023/REG,2026-11-04
+2023,SF,San Francisco 49ers,12,5,0,491,298,https://www.nfl.com/standings/league/2023/REG,2026-11-04
+2023,BUF,Buffalo Bills,11,6,0,451,311,https://www.nfl.com/standings/league/2023/REG,2026-11-04
+2023,CLE,Cleveland Browns,11,6,0,396,362,https://www.nfl.com/standings/league/2023/REG,2026-11-04
+2023,KC,Kansas City Chiefs,11,6,0,371,294,https://www.nfl.com/standings/league/2023/REG,2026-11-04
+2023,MIA,Miami Dolphins,11,6,0,496,391,https://www.nfl.com/standings/league/2023/REG,2026-11-04
+2023,PHI,Philadelphia Eagles,11,6,0,433,428,https://www.nfl.com/standings/league/2023/REG,2026-11-04
+2023,HOU,Houston Texans,10,7,0,377,353,https://www.nfl.com/standings/league/2023/REG,2026-11-04
+2023,LA,Los Angeles Rams,10,7,0,404,377,https://www.nfl.com/standings/league/2023/REG,2026-11-04
+2023,PIT,Pittsburgh Steelers,10,7,0,304,324,https://www.nfl.com/standings/league/2023/REG,2026-11-04
+2023,CIN,Cincinnati Bengals,9,8,0,366,384,https://www.nfl.com/standings/league/2023/REG,2026-11-04
+2023,GB,Green Bay Packers,9,8,0,383,350,https://www.nfl.com/standings/league/2023/REG,2026-11-04
+2023,IND,Indianapolis Colts,9,8,0,396,415,https://www.nfl.com/standings/league/2023/REG,2026-11-04
+2023,JAX,Jacksonville Jaguars,9,8,0,377,371,https://www.nfl.com/standings/league/2023/REG,2026-11-04
+2023,NO,New Orleans Saints,9,8,0,402,327,https://www.nfl.com/standings/league/2023/REG,2026-11-04
+2023,SEA,Seattle Seahawks,9,8,0,364,402,https://www.nfl.com/standings/league/2023/REG,2026-11-04
+2023,TB,Tampa Bay Buccaneers,9,8,0,348,325,https://www.nfl.com/standings/league/2023/REG,2026-11-04
+2023,DEN,Denver Broncos,8,9,0,357,413,https://www.nfl.com/standings/league/2023/REG,2026-11-04
+2023,LV,Las Vegas Raiders,8,9,0,332,331,https://www.nfl.com/standings/league/2023/REG,2026-11-04
+2023,ATL,Atlanta Falcons,7,10,0,321,373,https://www.nfl.com/standings/league/2023/REG,2026-11-04
+2023,CHI,Chicago Bears,7,10,0,360,379,https://www.nfl.com/standings/league/2023/REG,2026-11-04
+2023,MIN,Minnesota Vikings,7,10,0,344,362,https://www.nfl.com/standings/league/2023/REG,2026-11-04
+2023,NYJ,New York Jets,7,10,0,268,355,https://www.nfl.com/standings/league/2023/REG,2026-11-04
+2023,NYG,New York Giants,6,11,0,266,407,https://www.nfl.com/standings/league/2023/REG,2026-11-04
+2023,TEN,Tennessee Titans,6,11,0,305,367,https://www.nfl.com/standings/league/2023/REG,2026-11-04
+2023,LAC,Los Angeles Chargers,5,12,0,346,398,https://www.nfl.com/standings/league/2023/REG,2026-11-04
+2023,AZ,Arizona Cardinals,4,13,0,330,455,https://www.nfl.com/standings/league/2023/REG,2026-11-04
+2023,NE,New England Patriots,4,13,0,236,366,https://www.nfl.com/standings/league/2023/REG,2026-11-04
+2023,WAS,Washington Commanders,4,13,0,329,518,https://www.nfl.com/standings/league/2023/REG,2026-11-04
+2023,CAR,Carolina Panthers,2,15,0,236,416,https://www.nfl.com/standings/league/2023/REG,2026-11-04

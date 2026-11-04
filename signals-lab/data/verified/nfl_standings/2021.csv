@@ -1,0 +1,33 @@
+season,nfl_code,team_name,w,l,t,pf,pa,source_url,retrieved_utc
+2021,GB,Green Bay Packers,13,4,0,450,371,https://www.nfl.com/standings/league/2021/REG,2026-11-04
+2021,TB,Tampa Bay Buccaneers,13,4,0,511,353,https://www.nfl.com/standings/league/2021/REG,2026-11-04
+2021,DAL,Dallas Cowboys,12,5,0,530,358,https://www.nfl.com/standings/league/2021/REG,2026-11-04
+2021,KC,Kansas City Chiefs,12,5,0,480,364,https://www.nfl.com/standings/league/2021/REG,2026-11-04
+2021,LA,Los Angeles Rams,12,5,0,460,372,https://www.nfl.com/standings/league/2021/REG,2026-11-04
+2021,TEN,Tennessee Titans,12,5,0,419,354,https://www.nfl.com/standings/league/2021/REG,2026-11-04
+2021,AZ,Arizona Cardinals,11,6,0,449,366,https://www.nfl.com/standings/league/2021/REG,2026-11-04
+2021,BUF,Buffalo Bills,11,6,0,483,289,https://www.nfl.com/standings/league/2021/REG,2026-11-04
+2021,CIN,Cincinnati Bengals,10,7,0,460,376,https://www.nfl.com/standings/league/2021/REG,2026-11-04
+2021,LV,Las Vegas Raiders,10,7,0,374,439,https://www.nfl.com/standings/league/2021/REG,2026-11-04
+2021,NE,New England Patriots,10,7,0,462,303,https://www.nfl.com/standings/league/2021/REG,2026-11-04
+2021,SF,San Francisco 49ers,10,7,0,427,365,https://www.nfl.com/standings/league/2021/REG,2026-11-04
+2021,PIT,Pittsburgh Steelers,9,7,1,343,398,https://www.nfl.com/standings/league/2021/REG,2026-11-04
+2021,IND,Indianapolis Colts,9,8,0,451,365,https://www.nfl.com/standings/league/2021/REG,2026-11-04
+2021,LAC,Los Angeles Chargers,9,8,0,474,459,https://www.nfl.com/standings/league/2021/REG,2026-11-04
+2021,MIA,Miami Dolphins,9,8,0,341,373,https://www.nfl.com/standings/league/2021/REG,2026-11-04
+2021,NO,New Orleans Saints,9,8,0,364,335,https://www.nfl.com/standings/league/2021/REG,2026-11-04
+2021,PHI,Philadelphia Eagles,9,8,0,444,385,https://www.nfl.com/standings/league/2021/REG,2026-11-04
+2021,BAL,Baltimore Ravens,8,9,0,387,392,https://www.nfl.com/standings/league/2021/REG,2026-11-04
+2021,CLE,Cleveland Browns,8,9,0,349,371,https://www.nfl.com/standings/league/2021/REG,2026-11-04
+2021,MIN,Minnesota Vikings,8,9,0,425,426,https://www.nfl.com/standings/league/2021/REG,2026-11-04
+2021,ATL,Atlanta Falcons,7,10,0,313,459,https://www.nfl.com/standings/league/2021/REG,2026-11-04
+2021,DEN,Denver Broncos,7,10,0,335,322,https://www.nfl.com/standings/league/2021/REG,2026-11-04
+2021,SEA,Seattle Seahawks,7,10,0,395,366,https://www.nfl.com/standings/league/2021/REG,2026-11-04
+2021,WAS,Washington Commanders,7,10,0,335,434,https://www.nfl.com/standings/league/2021/REG,2026-11-04
+2021,CHI,Chicago Bears,6,11,0,311,407,https://www.nfl.com/standings/league/2021/REG,2026-11-04
+2021,CAR,Carolina Panthers,5,12,0,304,404,https://www.nfl.com/standings/league/2021/REG,2026-11-04
+2021,HOU,Houston Texans,4,13,0,280,452,https://www.nfl.com/standings/league/2021/REG,2026-11-04
+2021,NYG,New York Giants,4,13,0,258,416,https://www.nfl.com/standings/league/2021/REG,2026-11-04
+2021,NYJ,New York Jets,4,13,0,310,504,https://www.nfl.com/standings/league/2021/REG,2026-11-04
+2021,DET,Detroit Lions,3,13,1,325,467,https://www.nfl.com/standings/league/2021/REG,2026-11-04
+2021,JAX,Jacksonville Jaguars,3,14,0,253,457,https://www.nfl.com/standings/league/2021/REG,2026-11-04

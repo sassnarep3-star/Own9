@@ -1,0 +1,33 @@
+season,nfl_code,team_name,w,l,t,pf,pa,source_url,retrieved_utc
+2018,LA,Los Angeles Rams,13,3,0,527,384,https://www.nfl.com/standings/league/2018/REG,2026-11-04
+2018,NO,New Orleans Saints,13,3,0,504,353,https://www.nfl.com/standings/league/2018/REG,2026-11-04
+2018,CHI,Chicago Bears,12,4,0,421,283,https://www.nfl.com/standings/league/2018/REG,2026-11-04
+2018,KC,Kansas City Chiefs,12,4,0,565,421,https://www.nfl.com/standings/league/2018/REG,2026-11-04
+2018,LAC,Los Angeles Chargers,12,4,0,428,329,https://www.nfl.com/standings/league/2018/REG,2026-11-04
+2018,HOU,Houston Texans,11,5,0,402,316,https://www.nfl.com/standings/league/2018/REG,2026-11-04
+2018,NE,New England Patriots,11,5,0,436,325,https://www.nfl.com/standings/league/2018/REG,2026-11-04
+2018,BAL,Baltimore Ravens,10,6,0,389,287,https://www.nfl.com/standings/league/2018/REG,2026-11-04
+2018,DAL,Dallas Cowboys,10,6,0,339,324,https://www.nfl.com/standings/league/2018/REG,2026-11-04
+2018,IND,Indianapolis Colts,10,6,0,433,344,https://www.nfl.com/standings/league/2018/REG,2026-11-04
+2018,SEA,Seattle Seahawks,10,6,0,428,347,https://www.nfl.com/standings/league/2018/REG,2026-11-04
+2018,PIT,Pittsburgh Steelers,9,6,1,428,360,https://www.nfl.com/standings/league/2018/REG,2026-11-04
+2018,PHI,Philadelphia Eagles,9,7,0,367,348,https://www.nfl.com/standings/league/2018/REG,2026-11-04
+2018,TEN,Tennessee Titans,9,7,0,310,303,https://www.nfl.com/standings/league/2018/REG,2026-11-04
+2018,MIN,Minnesota Vikings,8,7,1,360,341,https://www.nfl.com/standings/league/2018/REG,2026-11-04
+2018,CLE,Cleveland Browns,7,8,1,359,392,https://www.nfl.com/standings/league/2018/REG,2026-11-04
+2018,ATL,Atlanta Falcons,7,9,0,414,423,https://www.nfl.com/standings/league/2018/REG,2026-11-04
+2018,CAR,Carolina Panthers,7,9,0,376,382,https://www.nfl.com/standings/league/2018/REG,2026-11-04
+2018,MIA,Miami Dolphins,7,9,0,319,433,https://www.nfl.com/standings/league/2018/REG,2026-11-04
+2018,WAS,Washington Commanders,7,9,0,281,359,https://www.nfl.com/standings/league/2018/REG,2026-11-04
+2018,GB,Green Bay Packers,6,9,1,376,400,https://www.nfl.com/standings/league/2018/REG,2026-11-04
+2018,BUF,Buffalo Bills,6,10,0,269,374,https://www.nfl.com/standings/league/2018/REG,2026-11-04
+2018,CIN,Cincinnati Bengals,6,10,0,368,455,https://www.nfl.com/standings/league/2018/REG,2026-11-04
+2018,DEN,Denver Broncos,6,10,0,329,349,https://www.nfl.com/standings/league/2018/REG,2026-11-04
+2018,DET,Detroit Lions,6,10,0,324,360,https://www.nfl.com/standings/league/2018/REG,2026-11-04
+2018,JAX,Jacksonville Jaguars,5,11,0,245,316,https://www.nfl.com/standings/league/2018/REG,2026-11-04
+2018,NYG,New York Giants,5,11,0,369,412,https://www.nfl.com/standings/league/2018/REG,2026-11-04
+2018,TB,Tampa Bay Buccaneers,5,11,0,396,464,https://www.nfl.com/standings/league/2018/REG,2026-11-04
+2018,LV,Las Vegas Raiders,4,12,0,290,467,https://www.nfl.com/standings/league/2018/REG,2026-11-04
+2018,NYJ,New York Jets,4,12,0,333,441,https://www.nfl.com/standings/league/2018/REG,2026-11-04
+2018,SF,San Francisco 49ers,4,12,0,342,435,https://www.nfl.com/standings/league/2018/REG,2026-11-04
+2018,AZ,Arizona Cardinals,3,13,0,225,425,https://www.nfl.com/standings/league/2018/REG,2026-11-04

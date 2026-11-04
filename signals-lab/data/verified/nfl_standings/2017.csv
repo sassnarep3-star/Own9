@@ -1,0 +1,33 @@
+season,nfl_code,team_name,w,l,t,pf,pa,source_url,retrieved_utc
+2017,MIN,Minnesota Vikings,13,3,0,382,252,https://www.nfl.com/standings/league/2017/REG,2026-11-04
+2017,NE,New England Patriots,13,3,0,458,296,https://www.nfl.com/standings/league/2017/REG,2026-11-04
+2017,PHI,Philadelphia Eagles,13,3,0,457,295,https://www.nfl.com/standings/league/2017/REG,2026-11-04
+2017,PIT,Pittsburgh Steelers,13,3,0,406,308,https://www.nfl.com/standings/league/2017/REG,2026-11-04
+2017,CAR,Carolina Panthers,11,5,0,363,327,https://www.nfl.com/standings/league/2017/REG,2026-11-04
+2017,LA,Los Angeles Rams,11,5,0,478,329,https://www.nfl.com/standings/league/2017/REG,2026-11-04
+2017,NO,New Orleans Saints,11,5,0,448,326,https://www.nfl.com/standings/league/2017/REG,2026-11-04
+2017,ATL,Atlanta Falcons,10,6,0,353,315,https://www.nfl.com/standings/league/2017/REG,2026-11-04
+2017,JAX,Jacksonville Jaguars,10,6,0,417,268,https://www.nfl.com/standings/league/2017/REG,2026-11-04
+2017,KC,Kansas City Chiefs,10,6,0,415,339,https://www.nfl.com/standings/league/2017/REG,2026-11-04
+2017,BAL,Baltimore Ravens,9,7,0,395,303,https://www.nfl.com/standings/league/2017/REG,2026-11-04
+2017,BUF,Buffalo Bills,9,7,0,302,359,https://www.nfl.com/standings/league/2017/REG,2026-11-04
+2017,DAL,Dallas Cowboys,9,7,0,354,332,https://www.nfl.com/standings/league/2017/REG,2026-11-04
+2017,DET,Detroit Lions,9,7,0,410,376,https://www.nfl.com/standings/league/2017/REG,2026-11-04
+2017,LAC,Los Angeles Chargers,9,7,0,355,272,https://www.nfl.com/standings/league/2017/REG,2026-11-04
+2017,SEA,Seattle Seahawks,9,7,0,366,332,https://www.nfl.com/standings/league/2017/REG,2026-11-04
+2017,TEN,Tennessee Titans,9,7,0,334,356,https://www.nfl.com/standings/league/2017/REG,2026-11-04
+2017,AZ,Arizona Cardinals,8,8,0,295,361,https://www.nfl.com/standings/league/2017/REG,2026-11-04
+2017,CIN,Cincinnati Bengals,7,9,0,290,349,https://www.nfl.com/standings/league/2017/REG,2026-11-04
+2017,GB,Green Bay Packers,7,9,0,320,384,https://www.nfl.com/standings/league/2017/REG,2026-11-04
+2017,WAS,Washington Commanders,7,9,0,342,388,https://www.nfl.com/standings/league/2017/REG,2026-11-04
+2017,LV,Las Vegas Raiders,6,10,0,301,373,https://www.nfl.com/standings/league/2017/REG,2026-11-04
+2017,MIA,Miami Dolphins,6,10,0,281,393,https://www.nfl.com/standings/league/2017/REG,2026-11-04
+2017,SF,San Francisco 49ers,6,10,0,331,383,https://www.nfl.com/standings/league/2017/REG,2026-11-04
+2017,CHI,Chicago Bears,5,11,0,264,320,https://www.nfl.com/standings/league/2017/REG,2026-11-04
+2017,DEN,Denver Broncos,5,11,0,289,382,https://www.nfl.com/standings/league/2017/REG,2026-11-04
+2017,NYJ,New York Jets,5,11,0,298,382,https://www.nfl.com/standings/league/2017/REG,2026-11-04
+2017,TB,Tampa Bay Buccaneers,5,11,0,335,382,https://www.nfl.com/standings/league/2017/REG,2026-11-04
+2017,HOU,Houston Texans,4,12,0,338,436,https://www.nfl.com/standings/league/2017/REG,2026-11-04
+2017,IND,Indianapolis Colts,4,12,0,263,404,https://www.nfl.com/standings/league/2017/REG,2026-11-04
+2017,NYG,New York Giants,3,13,0,246,388,https://www.nfl.com/standings/league/2017/REG,2026-11-04
+2017,CLE,Cleveland Browns,0,16,0,234,410,https://www.nfl.com/standings/league/2017/REG,2026-11-04
