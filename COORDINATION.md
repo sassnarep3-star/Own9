@@ -16,7 +16,7 @@ Status values: `unclaimed` | `in progress` | `done` | `needs review`
 | T1 | Repo review + irregularity log | done | arena/75504db2-own9 | arena/75504db2-own9 | `COORDINATION.md`, `flagged.html`, `sources.html` |
 | T2 | Data pipeline, validation gates, correlations, own-line model | done | arena/75504db2-own9 | arena/75504db2-own9 | `analysis/analyze.py`, `data/raw/`, `data/site/` |
 | T3 | Static GitHub Pages site (landing + category subpages) | done | arena/75504db2-own9 | arena/75504db2-own9 | repo root site files (`*.html`, `assets/`, `data/site/`), `analysis/build_site.py`, `README.md` |
-| T4 | Integration: rebuild data, link check, publish, PR, merge | in progress | arena/75504db2-own9 | arena/75504db2-own9 → main | all |
+| T4 | Integration: rebuild data, link check, publish, PR, merge | in progress (PR #6: https://github.com/sassnarep3-star/Own9/pull/6) | arena/75504db2-own9 | arena/75504db2-own9 → main | all |
 
 ## Task records
 
@@ -59,3 +59,8 @@ Status values: `unclaimed` | `in progress` | `done` | `needs review`
 
 ## Handoff notes
 - None. All work done by this session; no claims were left stale.
+
+## Integration record (T4)
+- PR: https://github.com/sassnarep3-star/Own9/pull/6 (`arena/75504db2-own9` → `main`). Summary, sources, and flagged irregularities are in the PR body.
+- Verification before merge: pipeline re-run; 0 broken local links; games page tested against the real JSON; 17 nfl.com game URLs confirmed (2 scores + 15 Week 9 games).
+- Merge: see the record below (filled in after merge).
