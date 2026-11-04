@@ -1,0 +1,29 @@
+{
+  "pr_url": "https://github.com/sassnarep3-star/Own9/pull/5",
+  "pr_state": "MERGED",
+  "merge_commit": "e2295eb1246f791389cb835ef0d388841e4c96d7",
+  "merged_at_utc": "2026-11-04T20:20:02Z",
+  "deployment_url": "https://github.com/sassnarep3-star/Own9/actions/runs/41905598503",
+  "deployment_conclusion": "success",
+  "http_observation_method": "fetch_page tool returned the expected published content, separately from the GitHub metadata script; not a browser or pixel-level test",
+  "public_content_observed": [
+    {
+      "url": "https://sassnarep3-star.github.io/Own9/release-checks/",
+      "expected_content_observed": "Release quality \u00b7 Own9; Links are not evidence.; dated audit and original row inventory"
+    },
+    {
+      "url": "https://sassnarep3-star.github.io/Own9/release-checks/README.md",
+      "expected_content_observed": "Independent release-quality checks; commands and scope limitations"
+    },
+    {
+      "url": "https://sassnarep3-star.github.io/Own9/release-checks/audit-snapshot.json",
+      "expected_content_observed": "schema_version 1; frozen audit row records and file hashes"
+    }
+  ],
+  "nonblocking_annotations": [
+    "Managed Pages build warns that actions/upload-artifact@v4 targets deprecated Node.js 20 and is being forced to Node.js 24; build and deployment succeeded.",
+    "GitHub runner notice: ubuntu-latest migration to Ubuntu 26 beginning October 19, 2026; build and deployment succeeded."
+  ],
+  "scope_note": "Observation for PR #5 and this timestamp only; later commits may have different deployments. Modeling and shared-site work remains owned by parallel sessions.",
+  "http_observation_recorded_at_utc": "2026-11-04T20:21:24.246914+00:00"
+}
