@@ -1,0 +1,18 @@
+season,week,away_nfl_code,home_nfl_code,kickoff_day,kickoff_local_time_official,network,official_game_url,note,schedule_url,retrieved_utc
+2026,9,JAX,BAL,Thu 2026-11-05,8:15 PM,PRIME,https://www.nfl.com/games/jaguars-at-ravens-2026-reg-9,,https://www.nfl.com/schedules/2026/REG9,2026-11-04
+2026,9,CIN,ATL,Sun 2026-11-08,9:30 AM,NFLN,https://www.nfl.com/games/bengals-at-falcons-2026-reg-9,"International game, Madrid (neutral site)",https://www.nfl.com/schedules/2026/REG9,2026-11-04
+2026,9,DEN,CAR,Sun 2026-11-08,1:00 PM,CBS,https://www.nfl.com/games/broncos-at-panthers-2026-reg-9,,https://www.nfl.com/schedules/2026/REG9,2026-11-04
+2026,9,DAL,IND,Sun 2026-11-08,1:00 PM,FOX,https://www.nfl.com/games/cowboys-at-colts-2026-reg-9,,https://www.nfl.com/schedules/2026/REG9,2026-11-04
+2026,9,NYJ,KC,Sun 2026-11-08,1:00 PM,CBS,https://www.nfl.com/games/jets-at-chiefs-2026-reg-9,,https://www.nfl.com/schedules/2026/REG9,2026-11-04
+2026,9,DET,MIA,Sun 2026-11-08,1:00 PM,CBS,https://www.nfl.com/games/lions-at-dolphins-2026-reg-9,,https://www.nfl.com/schedules/2026/REG9,2026-11-04
+2026,9,CLE,NO,Sun 2026-11-08,1:00 PM,CBS,https://www.nfl.com/games/browns-at-saints-2026-reg-9,,https://www.nfl.com/schedules/2026/REG9,2026-11-04
+2026,9,NYG,PHI,Sun 2026-11-08,1:00 PM,FOX,https://www.nfl.com/games/giants-at-eagles-2026-reg-9,,https://www.nfl.com/schedules/2026/REG9,2026-11-04
+2026,9,LA,WAS,Sun 2026-11-08,1:00 PM,FOX,https://www.nfl.com/games/rams-at-commanders-2026-reg-9,,https://www.nfl.com/schedules/2026/REG9,2026-11-04
+2026,9,HOU,LAC,Sun 2026-11-08,4:05 PM,CBS,https://www.nfl.com/games/texans-at-chargers-2026-reg-9,,https://www.nfl.com/schedules/2026/REG9,2026-11-04
+2026,9,LV,SF,Sun 2026-11-08,4:25 PM,FOX,https://www.nfl.com/games/raiders-at-49ers-2026-reg-9,nflverse/nfldata lists 16:05 (wrong); official page says 4:25 PM,https://www.nfl.com/schedules/2026/REG9,2026-11-04
+2026,9,GB,NE,Sun 2026-11-08,4:25 PM,FOX,https://www.nfl.com/games/packers-at-patriots-2026-reg-9,,https://www.nfl.com/schedules/2026/REG9,2026-11-04
+2026,9,AZ,SEA,Sun 2026-11-08,4:25 PM,FOX,https://www.nfl.com/games/cardinals-at-seahawks-2026-reg-9,,https://www.nfl.com/schedules/2026/REG9,2026-11-04
+2026,9,TB,CHI,Sun 2026-11-08,8:20 PM,NBC,https://www.nfl.com/games/buccaneers-at-bears-2026-reg-9,,https://www.nfl.com/schedules/2026/REG9,2026-11-04
+2026,9,BUF,MIN,Mon 2026-11-09,8:15 PM,ESPN,https://www.nfl.com/games/bills-at-vikings-2026-reg-9,,https://www.nfl.com/schedules/2026/REG9,2026-11-04
+2026,9,PIT,,bye,,,,Team on bye (official page: PIT 6-2),https://www.nfl.com/schedules/2026/REG9,2026-11-04
+2026,9,TEN,,bye,,,,Team on bye (official page: TEN 1-7),https://www.nfl.com/schedules/2026/REG9,2026-11-04

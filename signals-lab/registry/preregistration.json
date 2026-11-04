@@ -1,0 +1,30 @@
+{
+ "session": "efe45667",
+ "written_utc": "2026-11-04T20:58:16Z",
+ "splits": {
+  "burn_in": "2015-2017 (fit only)",
+  "dev": "2018-2022 (hyper-parameter selection)",
+  "sealed_test": "2023-2025 (single run)",
+  "forward_holdout": "2026 weeks 1-8 (game level only)"
+ },
+ "thresholds": {
+  "alpha_holm": 0.05,
+  "ci_halfwidth_max": 0.03,
+  "coverage_mean_abs_err_max": 0.03,
+  "coverage_max_abs_err_max": 0.06,
+  "bootstrap_resamples": 2000,
+  "calibration_bootstrap": 500,
+  "seasons_positive_sealed": "at least 2 of 3",
+  "seasons_positive_dev": "at least 3 of 5"
+ },
+ "n_strategies_in_family": 31,
+ "sha256": {
+  "pipeline/common.py": "6cb1dd09a82f4b9a184f27968f76fafd49647034a9b7882caba946397d63813d",
+  "pipeline/game_models.py": "dec0f21c0082138ae24bad7caa28626f059ae326522b0a93105101132641ef9f",
+  "pipeline/prop_models.py": "d8d271bc675e064407a218d4dabee9b6ea01ebea0f74b0ac21fdfe133dfca76f",
+  "pipeline/joint.py": "2bfc9b6b242ac778660ce3ff9e7b683a74f237b5f42613099c8c3fca441561bf",
+  "pipeline/gates.py": "3d43e6d5d77710bbe62d2e5c3e1bb1069667b22662ebd573c7da66ad0698321b",
+  "registry/hyperparameters.json": "05ef6626d369b0be4676a35b6cccd6c337f441f899cc4171b4f8dedc2969d1b5",
+  "registry/PREREGISTRATION.md": "a600c80096fb03ba97a4eb1018f9eb0b4fe5292421b0540de1f84dc100fb67d7"
+ }
+}

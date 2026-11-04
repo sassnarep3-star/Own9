@@ -1,0 +1,27 @@
+{
+ "elo": {
+  "K": 20.0,
+  "hfa": 35.0,
+  "regress": 0.33
+ },
+ "ridge": {
+  "hl": 15.0,
+  "lam": 5.0
+ },
+ "proc": {
+  "hl": 20.0,
+  "lam": 10.0
+ },
+ "_selected_on": "seasons 2018-2022 only (walk-forward); 2023+ never loaded",
+ "props": {
+  "ewma_hl": 5.0,
+  "shrink_k": 2.0,
+  "gbm": {
+   "max_depth": 2,
+   "max_iter": 150,
+   "learning_rate": 0.05,
+   "min_samples_leaf": 40
+  },
+  "_selected_on": "seasons 2018-2022 only (expanding windows); 2023+ never loaded"
+ }
+}
