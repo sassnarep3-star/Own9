@@ -88,15 +88,17 @@ class Page(HTMLParser):
         if tag == "th" and self.table_headers:
             self.table_headers[-1] += 1
         if tag == "tr":
-            self.row = {"line": self.getpos()[0], "cells": 0, "text": [], "sources": []}
+            self.row = {"line": self.getpos()[0], "cells": 0, "text": [], "sources": [], "links": []}
         if tag == "td" and self.row is not None:
             self.row["cells"] += 1
         for attribute in ("href", "src"):
             if attribute in a and tag in {"a", "area", "link", "img", "script", "iframe", "source"}:
                 link = a[attribute].strip()
                 self.links.append({"url": link, "line": self.getpos()[0]})
-                if self.row is not None and tag == "a" and contextual_source(link):
-                    self.row["sources"].append(link)
+                if self.row is not None and tag == "a":
+                    self.row["links"].append(link)
+                    if contextual_source(link):
+                        self.row["sources"].append(link)
 
     def handle_data(self, data):
         if self.in_title:
