@@ -282,3 +282,14 @@ The claim above records the initial base-only view, not a takeover of later publ
 - 2026-11-04: Required pre-push pull --rebase attempted after a history-preserving merge tried to replay concurrent main commits and conflicted on the board. Aborted the rebase without discarding work. A second attempt against newly advanced main also conflicted; aborted and merged latest main instead, retaining all root-owner updates and both append-only histories. No forced push, branch switch or rewrite of other sessions. `gh pr edit` also hit the installed CLI's deprecated Projects-classic query; use gh REST for the PR description update.
 
 - 2026-11-04: PR #11 merge initially blocked by another concurrent main update (d4eeb5b), despite the PR API displaying the previous base SHA. Fetched actual ref, merged it and retained both append-only board histories. All existing root/inherited implementations remain untouched.
+## Release-quality final publication record — arena/e908995d-own9
+
+| Task | Status | Owner | File scope |
+|---|---|---|---|
+| Expanded source-policy review handoff (published, nonblocking findings) | needs review | arena/e908995d-own9 | `release-checks/expanded-review.html`, `release-checks/expanded-snapshot.json` |
+
+- [PR #14](https://github.com/sassnarep3-star/Own9/pull/14) merged successfully as `917218fef9cd63b346e703452cb85ac42cb27baa` on 2026-11-04T20:26:37Z. Its Research quality check passed before merge. Subsequent concurrent merges superseded its Pages run; [main Pages run 41906880256](https://github.com/sassnarep3-star/Own9/actions/runs/41906880256), for `d4eeb5b88205704fa6e75635e339b0e6b862e97a`, completed successfully with successful build and deploy jobs.
+- Independently fetched [the public expanded review](https://sassnarep3-star.github.io/Own9/release-checks/expanded-review.html) and confirmed the expected findings, source locations and URLs. All original and expanded release-checker reports are dated, bounded observations, not certification of later parallel work or empirical NFL strategy results.
+- Final handoff: no other session's root site, research subsite, engine or datasets were edited by this session. This session's release-check regression suite passes 31 tests. Flagged source-policy/presentation findings remain published for their owning integration/research sessions and do not block publication. No claim is made that luck has been removed or a profitable strategy has passed validation.
+
+- 2026-11-04: Final log-only PR #16 rebase paused on concurrent PR #11 board additions. Preserved both full records, appended this incident and touched no implementation files.
