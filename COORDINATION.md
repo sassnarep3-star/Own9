@@ -9,7 +9,8 @@
 - 2026-11-04: Initial checkout reviewed: README contained only the repository title; no existing dataset, code, strategies, or other claims were present. The initial pull of the not-yet-created remote session branch failed; rebased on main before creating it.
 - 2026-11-04: Completed a static research framework and integration. Checked the reference pages at [NFL statistics](https://www.nfl.com/stats/), [NIST randomness and uncertainty](https://www.itl.nist.gov/div898/handbook/eda/section4/eda4283.htm), [NIST tails](https://www.itl.nist.gov/div898/handbook/eda/section3/eda35b.htm), [Gambling Commission staking research](https://www.gamblingcommission.gov.uk/about-us/guide/consumer-voice-2020-exploring-online-staking), and [GitHub Pages documentation](https://docs.github.com/en/pages/getting-started-with-github-pages/what-is-github-pages). Each table row has an official contextual reference; proposals are not assertions endorsed by the source. Checked local links and source presence using tools/check.py. A searched-for odds page returned not found and was excluded.
 - Irregularities: no verified historical executable odds, point-in-time dataset, model, empirical correlations, completed backtest, actual competition or rewards. These are explicitly flagged on the site. Consequently no strategy is certified and there is no claim to have removed luck.
-- PR: https://github.com/sassnarep3-star/Own9/pull/1 (merge and Pages deployment pending).
+- PR: https://github.com/sassnarep3-star/Own9/pull/1 (merged; see deployment record below).
+- PR #1 merged into main at 71236ddd74208838537d87ecfe722e578671f69f on 2026-11-04. GitHub Pages deployment [41904578120](https://github.com/sassnarep3-star/Own9/actions/runs/41904578120) completed successfully. GitHub emitted a Node.js 20 deprecation warning in its managed Pages action; the build and deployment succeeded.
 
 | Task | Status | Owner | File scope |
 |---|---|---|---|
@@ -28,3 +29,6 @@
 - Existing checkout already contains five generated pages, not just a README. Earlier statements about the initial repository describe an older commit and must not be presented as this session's findings.
 
 - 2026-11-04: Claim rebase overlapped PR #2 merging into main. Stopped and resolved only the shared board conflict by preserving both logs and task tables; all PR #2 corrections now inherited from main.
+- 2026-11-04: PR #3 encountered a coordination-board conflict after PR #2 merged concurrently. Preserved both sessions’ records and merged main into this session branch; no other session changes were discarded.
+
+- 2026-11-04 bc8d7853: A subsequent main update again touched the board. Aborted the rebase of already-pushed commits; pulled this session branch with --rebase and merged main instead, retaining both records without rewriting published history.
