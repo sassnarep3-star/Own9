@@ -3,9 +3,9 @@
 NFL signal research pipeline (Own9).
 
 Inputs  : data/raw/games.csv  (copy of nflverse/nfldata data/games.csv, commit d5c8272)
-Outputs : docs/data/*.json    (consumed by the static GitHub Pages site)
+Outputs : data/site/*.json    (consumed by the static GitHub Pages site at repo root)
 
-Conventions (verified against the data, see docs/flagged.html):
+Conventions (verified against the data, see flagged.html):
   * result   = home_score - away_score (nflverse data dictionary: "Equals h_score - v_score").
   * spread_line s is HOME-perspective and positive = home favored. Evidence: slope of result on
     spread_line is ~1.04 across 1999-2026 and mean(result - s) ~ 0. Official field definition
@@ -34,7 +34,7 @@ from scipy import stats
 
 ROOT = Path(__file__).resolve().parents[1]
 RAW = ROOT / "data" / "raw" / "games.csv"
-OUT = ROOT / "docs" / "data"
+OUT = ROOT / "data" / "site"
 OUT.mkdir(parents=True, exist_ok=True)
 
 RNG = np.random.default_rng(20261104)

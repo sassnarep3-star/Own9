@@ -53,7 +53,7 @@
     page = 0; render();
   }
 
-  fetch("data/games.json").then(function (r) { return r.json(); }).then(function (data) {
+  fetch("data/site/games.json").then(function (r) { return r.json(); }).then(function (data) {
     rows = data.slice().reverse(); // newest first
     var seasons = Array.from(new Set(data.map(function (g) { return g.season; }))).sort(function (a, b) { return b - a; });
     seasons.forEach(function (y) { var o = document.createElement("option"); o.value = y; o.textContent = y; el("f-season").appendChild(o); });
@@ -61,5 +61,5 @@
     el("prev").onclick = function () { if (page > 0) { page--; render(); } };
     el("next").onclick = function () { page++; render(); };
     apply();
-  }).catch(function () { el("count").textContent = "Could not load data/games.json"; });
+  }).catch(function () { el("count").textContent = "Could not load data/site/games.json"; });
 })();

@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Builds the static GitHub Pages site in docs/ from docs/data/*.json and verified source facts.
+"""Builds the static GitHub Pages site at the repo root from data/site/*.json and verified source facts.
 
 Run after analyze.py:  python analysis/build_site.py
 Every table row carries a source link (official site or the named secondary dataset) and a
@@ -11,8 +11,8 @@ import json
 from pathlib import Path
 
 ROOT = Path(__file__).resolve().parents[1]
-DOCS = ROOT / "docs"
-DATA = DOCS / "data"
+DOCS = ROOT  # site is served from the repository root (GitHub Pages: main /)
+DATA = ROOT / "data" / "site"
 TODAY = "2026-11-04"
 
 S = json.loads((DATA / "summary.json").read_text())
@@ -204,7 +204,7 @@ body = f"""
 <article class="prose">
 <h1>Executive summary</h1>
 <p class="meta">Prepared {TODAY} · Data: nflverse/nfldata games snapshot ({S['rows']:,} rows, {S['seasons'][0]}–{S['seasons'][1]}) ·
-Code: <a href="https://github.com/sassnarep3-star/Own9/tree/arena/75504db2-own9/analysis">analysis/</a></p>
+Code: <a href="https://github.com/sassnarep3-star/Own9/tree/main/analysis">analysis/</a></p>
 
 <h2>1. What was asked</h2>
 <p>Originate our own NFL lines, research strategies (single bets, parlays, player-prop combinations), remove luck as much as possible,
