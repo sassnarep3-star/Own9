@@ -1,0 +1,23 @@
+game_id,official_url,official_away_score,official_home_score,observed_on,retrieved_utc
+2025_01_DAL_PHI,https://www.nfl.com/games/cowboys-at-eagles-2025-reg-1,20,24,game page,2026-11-04
+2025_22_SEA_NE,https://www.nfl.com/games/seahawks-at-patriots-2025-post-4,29,13,game page,2026-11-04
+2010_01_MIN_NO,https://www.nfl.com/games/vikings-at-saints-2010-reg-1,9,14,game page,2026-11-04
+2015_01_MIA_WAS,https://www.nfl.com/games/dolphins-at-redskins-2015-reg-1,17,10,game page,2026-11-04
+2020_01_PHI_WAS,https://www.nfl.com/games/eagles-at-football-team-2020-reg-1,17,27,game page,2026-11-04
+2016_12_CIN_BAL,https://www.nfl.com/games/bengals-at-ravens-2016-reg-12,14,19,game page (resolves archived-feed mismatch 12-19),2026-11-04
+2009_20_MIN_NO,https://www.nfl.com/games/vikings-at-saints-2009-post-3,28,31,previous-matchup panel on vikings-at-saints-2010-reg-1,2026-11-04
+2024_02_SEA_NE,https://www.nfl.com/games/seahawks-at-patriots-2024-reg-2,23,20,previous-matchup panel on seahawks-at-patriots-2025-post-4,2026-11-04
+2011_10_WAS_MIA,https://www.nfl.com/games/redskins-at-dolphins-2011-reg-10,9,20,previous-matchup panel on dolphins-at-redskins-2015-reg-1,2026-11-04
+2019_15_PHI_WAS,https://www.nfl.com/games/eagles-at-redskins-2019-reg-15,37,27,previous-matchup panel on eagles-at-football-team-2020-reg-1,2026-11-04
+2015_17_BAL_CIN,https://www.nfl.com/games/ravens-at-bengals-2015-reg-17,16,24,previous-matchup panel on bengals-at-ravens-2016-reg-12,2026-11-04
+2025_01_KC_LAC,https://www.nfl.com/schedules/2025/by-week/week-1,21,27,by-week schedule page link text,2026-11-04
+2025_01_TB_ATL,https://www.nfl.com/schedules/2025/by-week/week-1,23,20,by-week schedule page link text,2026-11-04
+2025_01_CIN_CLE,https://www.nfl.com/schedules/2025/by-week/week-1,17,16,by-week schedule page link text,2026-11-04
+2025_01_MIA_IND,https://www.nfl.com/schedules/2025/by-week/week-1,8,33,by-week schedule page link text,2026-11-04
+2025_01_CAR_JAX,https://www.nfl.com/schedules/2025/by-week/week-1,10,26,by-week schedule page link text,2026-11-04
+2025_01_LV_NE,https://www.nfl.com/schedules/2025/by-week/week-1,20,13,by-week schedule page link text,2026-11-04
+2025_01_ARI_NO,https://www.nfl.com/schedules/2025/by-week/week-1,20,13,by-week schedule page link text,2026-11-04
+2025_01_PIT_NYJ,https://www.nfl.com/schedules/2025/by-week/week-1,34,32,by-week schedule page link text,2026-11-04
+2025_01_NYG_WAS,https://www.nfl.com/schedules/2025/by-week/week-1,6,21,by-week schedule page link text,2026-11-04
+2025_01_TEN_DEN,https://www.nfl.com/schedules/2025/by-week/week-1,12,20,by-week schedule page link text,2026-11-04
+2025_01_SF_SEA,https://www.nfl.com/schedules/2025/by-week/week-1,17,13,by-week schedule page link text,2026-11-04

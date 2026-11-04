@@ -1,0 +1,44 @@
+{
+  "retrieved_at_utc": "2026-11-04T20:27:57+00:00",
+  "sources": [
+    {
+      "name": "nflverse/nfldata data/games.csv",
+      "url": "https://github.com/nflverse/nfldata/blob/d48ea039e3683aabdf1f1f610320b3e1d1c86409/data/games.csv",
+      "commit": "d48ea039e3683aabdf1f1f610320b3e1d1c86409",
+      "bytes": 2188866,
+      "sha256": "7ffb1700463531efc3909f486a3fa793a350876d495a7be3afd2d64a656ddd8c",
+      "git_blob_sha": "706071c610f11090ae34609cff4ff8abce2276a1",
+      "github_api_blob_sha": "706071c610f11090ae34609cff4ff8abce2276a1",
+      "integrity_ok": true
+    },
+    {
+      "name": "nflverse/nfldata data/initial_lines.csv",
+      "url": "https://github.com/nflverse/nfldata/blob/d48ea039e3683aabdf1f1f610320b3e1d1c86409/data/initial_lines.csv",
+      "commit": "d48ea039e3683aabdf1f1f610320b3e1d1c86409",
+      "bytes": 45068,
+      "sha256": "654770173d11fdb2074537d520f6b1213d663e3bbf47689e5cc9994c1af255e5",
+      "git_blob_sha": "7f30231aa6d49f883b09ac0676c66d1ea33885ac",
+      "github_api_blob_sha": "7f30231aa6d49f883b09ac0676c66d1ea33885ac",
+      "integrity_ok": true
+    },
+    {
+      "name": "nflverse/nfldata data/sc_lines.csv",
+      "url": "https://github.com/nflverse/nfldata/blob/d48ea039e3683aabdf1f1f610320b3e1d1c86409/data/sc_lines.csv",
+      "commit": "d48ea039e3683aabdf1f1f610320b3e1d1c86409",
+      "bytes": 140765,
+      "sha256": "384039e92630831eaf4d851471ba9e521f4a7b0207d0d7da7d376c4a1cc5004e",
+      "git_blob_sha": "11612c11c4bfaafc6805758e5ea7bf2dc235112a",
+      "github_api_blob_sha": "11612c11c4bfaafc6805758e5ea7bf2dc235112a",
+      "integrity_ok": true
+    },
+    {
+      "name": "NFL.com GameCenter JSON feeds (archived in nflgame-redux 3.0.0 wheel)",
+      "url": "https://pypi.org/project/nflgame-redux/3.0.0/",
+      "download_url": "https://files.pythonhosted.org/packages/76/fe/f1234ab8d4906fb0710f40f5295809e034c9f2d50824b3456b31cb4a2f8c/nflgame_redux-3.0.0-py3-none-any.whl",
+      "bytes": 51134984,
+      "sha256": "92cef44692808ef2f185ed08940a1afde749ea2ef72a20e01e826bb1ecbd883a",
+      "pypi_published_sha256": "92cef44692808ef2f185ed08940a1afde749ea2ef72a20e01e826bb1ecbd883a",
+      "integrity_ok": true
+    }
+  ]
+}

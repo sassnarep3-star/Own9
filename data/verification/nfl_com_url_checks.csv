@@ -1,0 +1,8 @@
+url,page_title,result,retrieved_utc
+https://www.nfl.com/games/cowboys-at-eagles-2025-reg-1,Dallas Cowboys at Philadelphia Eagles 2025 REG 1,ok,2026-11-04
+https://www.nfl.com/games/seahawks-at-patriots-2025-post-4,Seattle Seahawks at New England Patriots 2025 POST 4 - Game Center,ok,2026-11-04
+https://www.nfl.com/games/vikings-at-saints-2010-reg-1,Minnesota Vikings at New Orleans Saints 2010 REG 1 - Game Center,ok,2026-11-04
+https://www.nfl.com/games/dolphins-at-redskins-2015-reg-1,Miami Dolphins at Washington Commanders 2015 REG 1 - Game Center,ok (slug 'redskins' for <=2019),2026-11-04
+https://www.nfl.com/games/eagles-at-football-team-2020-reg-1,Philadelphia Eagles at Washington Commanders 2020 REG 1 - Game Center,ok (slug 'football-team' for 2020-2021),2026-11-04
+https://www.nfl.com/games/49ers-at-chiefs-2019-post-4,San Francisco 49ers at Kansas City Chiefs 2019 POST 4 - Game Center,ok (Super Bowl = post-4 in Pro Bowl era); IRREGULARITY: page renders 'Hidden Score',2026-11-04
+https://www.nfl.com/games/bengals-at-ravens-2016-reg-12,Cincinnati Bengals at Baltimore Ravens 2016 REG 12 - Game Center,ok,2026-11-04
