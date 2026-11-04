@@ -1,0 +1,842 @@
+[
+ {
+  "id": "S04",
+  "name": "Home big underdog ATS (spread <= -7)",
+  "desc": "Bet the home team to cover when it is a 7+ underdog.",
+  "price": -110,
+  "disc": {
+   "n": 289,
+   "wins": 163,
+   "win_rate": 0.564,
+   "roi": 0.0768,
+   "wilson_lo": 0.5064,
+   "p_value": 0.09500456424624569
+  },
+  "val": {
+   "n": 220,
+   "wins": 121,
+   "win_rate": 0.55,
+   "roi": 0.05,
+   "wilson_lo": 0.484,
+   "p_value": 0.2389596745999757
+  },
+  "val_a": {
+   "n": 107,
+   "wins": 50,
+   "win_rate": 0.4673,
+   "roi": -0.1079,
+   "wilson_lo": 0.3755,
+   "p_value": 0.8974337379490638
+  },
+  "val_b": {
+   "n": 113,
+   "wins": 71,
+   "win_rate": 0.6283,
+   "roi": 0.1995,
+   "wilson_lo": 0.5364,
+   "p_value": 0.01612383615021158
+  },
+  "fwd": {
+   "n": 4,
+   "wins": 3,
+   "win_rate": 0.75,
+   "roi": 0.4318,
+   "wilson_lo": 0.3006,
+   "p_value": 0.34903666682092344
+  },
+  "gates": {
+   "G1_sample": true,
+   "G2_wilson_lo_above_breakeven": false,
+   "G3_bonferroni_p": false,
+   "G4_stable_disc_and_halves": false,
+   "G5_roi_positive_val": "True"
+  },
+  "passed_all": false,
+  "bonferroni_alpha": 0.003333,
+  "rank": 1
+ },
+ {
+  "id": "M03",
+  "name": "Model edge >= 4 pts (either side)",
+  "desc": "Largest-disagreement games: |model - market| >= 4, bet the model side.",
+  "price": -110,
+  "disc": {
+   "n": 1166,
+   "wins": 603,
+   "win_rate": 0.5172,
+   "roi": -0.0127,
+   "wilson_lo": 0.4885,
+   "p_value": 0.6860856491714953
+  },
+  "val": {
+   "n": 931,
+   "wins": 482,
+   "win_rate": 0.5177,
+   "roi": -0.0116,
+   "wilson_lo": 0.4856,
+   "p_value": 0.6572881181971852
+  },
+  "val_a": {
+   "n": 455,
+   "wins": 238,
+   "win_rate": 0.5231,
+   "roi": -0.0014,
+   "wilson_lo": 0.4772,
+   "p_value": 0.5314638494586335
+  },
+  "val_b": {
+   "n": 476,
+   "wins": 244,
+   "win_rate": 0.5126,
+   "roi": -0.0214,
+   "wilson_lo": 0.4678,
+   "p_value": 0.7039520343979869
+  },
+  "fwd": {
+   "n": 26,
+   "wins": 14,
+   "win_rate": 0.5385,
+   "roi": 0.028,
+   "wilson_lo": 0.3546,
+   "p_value": 0.5198398667776649
+  },
+  "gates": {
+   "G1_sample": true,
+   "G2_wilson_lo_above_breakeven": false,
+   "G3_bonferroni_p": false,
+   "G4_stable_disc_and_halves": true,
+   "G5_roi_positive_val": "False"
+  },
+  "passed_all": false,
+  "bonferroni_alpha": 0.003333,
+  "rank": 2
+ },
+ {
+  "id": "S11",
+  "name": "Divisional games: bet the underdog",
+  "desc": "In divisional games, bet the underdog to cover.",
+  "price": -110,
+  "disc": {
+   "n": 1693,
+   "wins": 886,
+   "win_rate": 0.5233,
+   "roi": -0.0009,
+   "wilson_lo": 0.4995,
+   "p_value": 0.5255572151270318
+  },
+  "val": {
+   "n": 958,
+   "wins": 495,
+   "win_rate": 0.5167,
+   "roi": -0.0136,
+   "wilson_lo": 0.4851,
+   "p_value": 0.6819730399022863
+  },
+  "val_a": {
+   "n": 475,
+   "wins": 241,
+   "win_rate": 0.5074,
+   "roi": -0.0314,
+   "wilson_lo": 0.4625,
+   "p_value": 0.7774617779445634
+  },
+  "val_b": {
+   "n": 483,
+   "wins": 254,
+   "win_rate": 0.5259,
+   "roi": 0.004,
+   "wilson_lo": 0.4813,
+   "p_value": 0.4821241482491937
+  },
+  "fwd": {
+   "n": 40,
+   "wins": 24,
+   "win_rate": 0.6,
+   "roi": 0.1455,
+   "wilson_lo": 0.446,
+   "p_value": 0.210411729280647
+  },
+  "gates": {
+   "G1_sample": true,
+   "G2_wilson_lo_above_breakeven": false,
+   "G3_bonferroni_p": false,
+   "G4_stable_disc_and_halves": true,
+   "G5_roi_positive_val": "False"
+  },
+  "passed_all": false,
+  "bonferroni_alpha": 0.003333,
+  "rank": 3
+ },
+ {
+  "id": "S07",
+  "name": "Under in cold outdoor games (< 35F)",
+  "desc": "Bet the under in outdoor/open-roof games with temp < 35F.",
+  "price": -110,
+  "disc": {
+   "n": 300,
+   "wins": 141,
+   "win_rate": 0.47,
+   "roi": -0.1027,
+   "wilson_lo": 0.4143,
+   "p_value": 0.972753704837657
+  },
+  "val": {
+   "n": 179,
+   "wins": 92,
+   "win_rate": 0.514,
+   "roi": -0.0188,
+   "wilson_lo": 0.4412,
+   "p_value": 0.6328544720098277
+  },
+  "val_a": {
+   "n": 84,
+   "wins": 46,
+   "win_rate": 0.5476,
+   "roi": 0.0455,
+   "wilson_lo": 0.4414,
+   "p_value": 0.3722709497271743
+  },
+  "val_b": {
+   "n": 95,
+   "wins": 46,
+   "win_rate": 0.4842,
+   "roi": -0.0756,
+   "wilson_lo": 0.3863,
+   "p_value": 0.8094077377560799
+  },
+  "fwd": {
+   "n": 0,
+   "wins": 0,
+   "win_rate": null,
+   "roi": null,
+   "wilson_lo": null,
+   "p_value": null
+  },
+  "gates": {
+   "G1_sample": true,
+   "G2_wilson_lo_above_breakeven": false,
+   "G3_bonferroni_p": false,
+   "G4_stable_disc_and_halves": false,
+   "G5_roi_positive_val": "False"
+  },
+  "passed_all": false,
+  "bonferroni_alpha": 0.003333,
+  "rank": 4
+ },
+ {
+  "id": "M01",
+  "name": "Model edge >= 2 pts (home)",
+  "desc": "Own-line model says home is >= 2 pts better than the market.",
+  "price": -110,
+  "disc": {
+   "n": 1167,
+   "wins": 581,
+   "win_rate": 0.4979,
+   "roi": -0.0495,
+   "wilson_lo": 0.4692,
+   "p_value": 0.9643576060164529
+  },
+  "val": {
+   "n": 885,
+   "wins": 454,
+   "win_rate": 0.513,
+   "roi": -0.0206,
+   "wilson_lo": 0.4801,
+   "p_value": 0.7511516077737026
+  },
+  "val_a": {
+   "n": 418,
+   "wins": 214,
+   "win_rate": 0.512,
+   "roi": -0.0226,
+   "wilson_lo": 0.4642,
+   "p_value": 0.7034866357000031
+  },
+  "val_b": {
+   "n": 467,
+   "wins": 240,
+   "win_rate": 0.5139,
+   "roi": -0.0189,
+   "wilson_lo": 0.4687,
+   "p_value": 0.6825371299947613
+  },
+  "fwd": {
+   "n": 32,
+   "wins": 15,
+   "win_rate": 0.4688,
+   "roi": -0.1051,
+   "wilson_lo": 0.3087,
+   "p_value": 0.7883818711822874
+  },
+  "gates": {
+   "G1_sample": true,
+   "G2_wilson_lo_above_breakeven": false,
+   "G3_bonferroni_p": false,
+   "G4_stable_disc_and_halves": false,
+   "G5_roi_positive_val": "False"
+  },
+  "passed_all": false,
+  "bonferroni_alpha": 0.003333,
+  "rank": 5
+ },
+ {
+  "id": "S09",
+  "name": "Rest edge: 3+ more rest days",
+  "desc": "Bet the team with 3+ more rest days to cover.",
+  "price": -110,
+  "disc": {
+   "n": 790,
+   "wins": 398,
+   "win_rate": 0.5038,
+   "roi": -0.0382,
+   "wilson_lo": 0.469,
+   "p_value": 0.877320788461438
+  },
+  "val": {
+   "n": 596,
+   "wins": 304,
+   "win_rate": 0.5101,
+   "roi": -0.0262,
+   "wilson_lo": 0.47,
+   "p_value": 0.7620869186477376
+  },
+  "val_a": {
+   "n": 301,
+   "wins": 153,
+   "win_rate": 0.5083,
+   "roi": -0.0296,
+   "wilson_lo": 0.4521,
+   "p_value": 0.7246676425813001
+  },
+  "val_b": {
+   "n": 295,
+   "wins": 151,
+   "win_rate": 0.5119,
+   "roi": -0.0228,
+   "wilson_lo": 0.455,
+   "p_value": 0.6807158856079911
+  },
+  "fwd": {
+   "n": 24,
+   "wins": 17,
+   "win_rate": 0.7083,
+   "roi": 0.3523,
+   "wilson_lo": 0.5083,
+   "p_value": 0.05260943233889788
+  },
+  "gates": {
+   "G1_sample": true,
+   "G2_wilson_lo_above_breakeven": false,
+   "G3_bonferroni_p": false,
+   "G4_stable_disc_and_halves": true,
+   "G5_roi_positive_val": "False"
+  },
+  "passed_all": false,
+  "bonferroni_alpha": 0.003333,
+  "rank": 6
+ },
+ {
+  "id": "S10",
+  "name": "Road team on short rest (<= 6 days)",
+  "desc": "Bet the home team to cover when the road team has <= 6 days of rest.",
+  "price": -110,
+  "disc": {
+   "n": 460,
+   "wins": 226,
+   "win_rate": 0.4913,
+   "roi": -0.0621,
+   "wilson_lo": 0.4459,
+   "p_value": 0.925357437624281
+  },
+  "val": {
+   "n": 382,
+   "wins": 194,
+   "win_rate": 0.5079,
+   "roi": -0.0305,
+   "wilson_lo": 0.4579,
+   "p_value": 0.7504835580423933
+  },
+  "val_a": {
+   "n": 169,
+   "wins": 85,
+   "win_rate": 0.503,
+   "roi": -0.0398,
+   "wilson_lo": 0.4284,
+   "p_value": 0.7324751517899211
+  },
+  "val_b": {
+   "n": 213,
+   "wins": 109,
+   "win_rate": 0.5117,
+   "roi": -0.023,
+   "wilson_lo": 0.445,
+   "p_value": 0.6635388124594968
+  },
+  "fwd": {
+   "n": 11,
+   "wins": 9,
+   "win_rate": 0.8182,
+   "roi": 0.562,
+   "wilson_lo": 0.523,
+   "p_value": 0.045983943165882904
+  },
+  "gates": {
+   "G1_sample": true,
+   "G2_wilson_lo_above_breakeven": false,
+   "G3_bonferroni_p": false,
+   "G4_stable_disc_and_halves": false,
+   "G5_roi_positive_val": "False"
+  },
+  "passed_all": false,
+  "bonferroni_alpha": 0.003333,
+  "rank": 7
+ },
+ {
+  "id": "S08",
+  "name": "Over in domes / closed roofs",
+  "desc": "Bet the over in dome or closed-roof games.",
+  "price": -110,
+  "disc": {
+   "n": 1005,
+   "wins": 523,
+   "win_rate": 0.5204,
+   "roi": -0.0065,
+   "wilson_lo": 0.4895,
+   "p_value": 0.5981566034826262
+  },
+  "val": {
+   "n": 788,
+   "wins": 400,
+   "win_rate": 0.5076,
+   "roi": -0.0309,
+   "wilson_lo": 0.4728,
+   "p_value": 0.8279242085645786
+  },
+  "val_a": {
+   "n": 346,
+   "wins": 175,
+   "win_rate": 0.5058,
+   "roi": -0.0344,
+   "wilson_lo": 0.4533,
+   "p_value": 0.7659671656825885
+  },
+  "val_b": {
+   "n": 442,
+   "wins": 225,
+   "win_rate": 0.509,
+   "roi": -0.0282,
+   "wilson_lo": 0.4626,
+   "p_value": 0.748342940439404
+  },
+  "fwd": {
+   "n": 36,
+   "wins": 18,
+   "win_rate": 0.5,
+   "roi": -0.0455,
+   "wilson_lo": 0.3447,
+   "p_value": 0.6751425066875132
+  },
+  "gates": {
+   "G1_sample": true,
+   "G2_wilson_lo_above_breakeven": false,
+   "G3_bonferroni_p": false,
+   "G4_stable_disc_and_halves": true,
+   "G5_roi_positive_val": "False"
+  },
+  "passed_all": false,
+  "bonferroni_alpha": 0.003333,
+  "rank": 8
+ },
+ {
+  "id": "M02",
+  "name": "Model edge >= 2 pts (away)",
+  "desc": "Own-line model says away is >= 2 pts better than the market.",
+  "price": -110,
+  "disc": {
+   "n": 1153,
+   "wins": 599,
+   "win_rate": 0.5195,
+   "roi": -0.0082,
+   "wilson_lo": 0.4907,
+   "p_value": 0.6262391426383511
+  },
+  "val": {
+   "n": 852,
+   "wins": 429,
+   "win_rate": 0.5035,
+   "roi": -0.0387,
+   "wilson_lo": 0.47,
+   "p_value": 0.8887361169214173
+  },
+  "val_a": {
+   "n": 418,
+   "wins": 215,
+   "win_rate": 0.5144,
+   "roi": -0.0181,
+   "wilson_lo": 0.4665,
+   "p_value": 0.66879938747553
+  },
+  "val_b": {
+   "n": 434,
+   "wins": 214,
+   "win_rate": 0.4931,
+   "roi": -0.0587,
+   "wilson_lo": 0.4463,
+   "p_value": 0.9081027635085515
+  },
+  "fwd": {
+   "n": 30,
+   "wins": 19,
+   "win_rate": 0.6333,
+   "roi": 0.2091,
+   "wilson_lo": 0.4551,
+   "p_value": 0.15423542183625558
+  },
+  "gates": {
+   "G1_sample": true,
+   "G2_wilson_lo_above_breakeven": false,
+   "G3_bonferroni_p": false,
+   "G4_stable_disc_and_halves": false,
+   "G5_roi_positive_val": "False"
+  },
+  "passed_all": false,
+  "bonferroni_alpha": 0.003333,
+  "rank": 9
+ },
+ {
+  "id": "S03",
+  "name": "Home underdog ATS (-7 to -1)",
+  "desc": "Bet the home underdog to cover when it is +1 to +7 underdog.",
+  "price": -110,
+  "disc": {
+   "n": 1227,
+   "wins": 599,
+   "win_rate": 0.4882,
+   "roi": -0.068,
+   "wilson_lo": 0.4603,
+   "p_value": 0.9942285836564227
+  },
+  "val": {
+   "n": 860,
+   "wins": 427,
+   "win_rate": 0.4965,
+   "roi": -0.0521,
+   "wilson_lo": 0.4632,
+   "p_value": 0.9491196587315399
+  },
+  "val_a": {
+   "n": 399,
+   "wins": 202,
+   "win_rate": 0.5063,
+   "roi": -0.0335,
+   "wilson_lo": 0.4574,
+   "p_value": 0.7739955939217906
+  },
+  "val_b": {
+   "n": 461,
+   "wins": 225,
+   "win_rate": 0.4881,
+   "roi": -0.0682,
+   "wilson_lo": 0.4427,
+   "p_value": 0.9432246796761602
+  },
+  "fwd": {
+   "n": 40,
+   "wins": 18,
+   "win_rate": 0.45,
+   "roi": -0.1409,
+   "wilson_lo": 0.3071,
+   "p_value": 0.8627768350552887
+  },
+  "gates": {
+   "G1_sample": true,
+   "G2_wilson_lo_above_breakeven": false,
+   "G3_bonferroni_p": false,
+   "G4_stable_disc_and_halves": false,
+   "G5_roi_positive_val": "False"
+  },
+  "passed_all": false,
+  "bonferroni_alpha": 0.003333,
+  "rank": 10
+ },
+ {
+  "id": "S12",
+  "name": "Thursday games: under",
+  "desc": "Bet the under in Thursday games.",
+  "price": -110,
+  "disc": {
+   "n": 144,
+   "wins": 75,
+   "win_rate": 0.5208,
+   "roi": -0.0057,
+   "wilson_lo": 0.4398,
+   "p_value": 0.5620408958974816
+  },
+  "val": {
+   "n": 179,
+   "wins": 88,
+   "win_rate": 0.4916,
+   "roi": -0.0615,
+   "wilson_lo": 0.4193,
+   "p_value": 0.8256794257448533
+  },
+  "val_a": {
+   "n": 83,
+   "wins": 39,
+   "win_rate": 0.4699,
+   "roi": -0.103,
+   "wilson_lo": 0.3662,
+   "p_value": 0.8629174829855537
+  },
+  "val_b": {
+   "n": 96,
+   "wins": 49,
+   "win_rate": 0.5104,
+   "roi": -0.0256,
+   "wilson_lo": 0.412,
+   "p_value": 0.6428380861145889
+  },
+  "fwd": {
+   "n": 8,
+   "wins": 4,
+   "win_rate": 0.5,
+   "roi": -0.0455,
+   "wilson_lo": 0.2152,
+   "p_value": 0.6874482733531904
+  },
+  "gates": {
+   "G1_sample": true,
+   "G2_wilson_lo_above_breakeven": false,
+   "G3_bonferroni_p": false,
+   "G4_stable_disc_and_halves": false,
+   "G5_roi_positive_val": "False"
+  },
+  "passed_all": false,
+  "bonferroni_alpha": 0.003333,
+  "rank": 11
+ },
+ {
+  "id": "S02",
+  "name": "Away side vs big home favorite (spread >= 7)",
+  "desc": "Bet the road team to cover when home is favored by 7+.",
+  "price": -110,
+  "disc": {
+   "n": 1081,
+   "wins": 555,
+   "win_rate": 0.5134,
+   "roi": -0.0198,
+   "wilson_lo": 0.4836,
+   "p_value": 0.7627102294344656
+  },
+  "val": {
+   "n": 555,
+   "wins": 272,
+   "win_rate": 0.4901,
+   "roi": -0.0644,
+   "wilson_lo": 0.4487,
+   "p_value": 0.9486960942496775
+  },
+  "val_a": {
+   "n": 279,
+   "wins": 140,
+   "win_rate": 0.5018,
+   "roi": -0.042,
+   "wilson_lo": 0.4435,
+   "p_value": 0.787146675865863
+  },
+  "val_b": {
+   "n": 276,
+   "wins": 132,
+   "win_rate": 0.4783,
+   "roi": -0.087,
+   "wilson_lo": 0.42,
+   "p_value": 0.9423360317037844
+  },
+  "fwd": {
+   "n": 21,
+   "wins": 16,
+   "win_rate": 0.7619,
+   "roi": 0.4545,
+   "wilson_lo": 0.5491,
+   "p_value": 0.022692313903599007
+  },
+  "gates": {
+   "G1_sample": true,
+   "G2_wilson_lo_above_breakeven": false,
+   "G3_bonferroni_p": false,
+   "G4_stable_disc_and_halves": false,
+   "G5_roi_positive_val": "False"
+  },
+  "passed_all": false,
+  "bonferroni_alpha": 0.003333,
+  "rank": 12
+ },
+ {
+  "id": "S06",
+  "name": "Under when total <= 40",
+  "desc": "Bet the under when total line is 40 or lower.",
+  "price": -110,
+  "disc": {
+   "n": 1466,
+   "wins": 726,
+   "win_rate": 0.4952,
+   "roi": -0.0546,
+   "wilson_lo": 0.4697,
+   "p_value": 0.9866681213466895
+  },
+  "val": {
+   "n": 338,
+   "wins": 164,
+   "win_rate": 0.4852,
+   "roi": -0.0737,
+   "wilson_lo": 0.4324,
+   "p_value": 0.9298765608811905
+  },
+  "val_a": {
+   "n": 130,
+   "wins": 63,
+   "win_rate": 0.4846,
+   "roi": -0.0748,
+   "wilson_lo": 0.4004,
+   "p_value": 0.8371001614427105
+  },
+  "val_b": {
+   "n": 208,
+   "wins": 101,
+   "win_rate": 0.4856,
+   "roi": -0.073,
+   "wilson_lo": 0.4185,
+   "p_value": 0.8796477260241681
+  },
+  "fwd": {
+   "n": 14,
+   "wins": 9,
+   "win_rate": 0.6429,
+   "roi": 0.2273,
+   "wilson_lo": 0.3876,
+   "p_value": 0.2679846734634979
+  },
+  "gates": {
+   "G1_sample": true,
+   "G2_wilson_lo_above_breakeven": false,
+   "G3_bonferroni_p": false,
+   "G4_stable_disc_and_halves": false,
+   "G5_roi_positive_val": "False"
+  },
+  "passed_all": false,
+  "bonferroni_alpha": 0.003333,
+  "rank": 13
+ },
+ {
+  "id": "S01",
+  "name": "Home favorite ATS (spread >= 3)",
+  "desc": "Bet the home team to cover when home is favored by 3+.",
+  "price": -110,
+  "disc": {
+   "n": 2482,
+   "wins": 1187,
+   "win_rate": 0.4782,
+   "roi": -0.087,
+   "wilson_lo": 0.4586,
+   "p_value": 0.9999974684064012
+  },
+  "val": {
+   "n": 1334,
+   "wins": 647,
+   "win_rate": 0.485,
+   "roi": -0.0741,
+   "wilson_lo": 0.4583,
+   "p_value": 0.997903031326846
+  },
+  "val_a": {
+   "n": 668,
+   "wins": 317,
+   "win_rate": 0.4746,
+   "roi": -0.094,
+   "wilson_lo": 0.4369,
+   "p_value": 0.9951481488273852
+  },
+  "val_b": {
+   "n": 666,
+   "wins": 330,
+   "win_rate": 0.4955,
+   "roi": -0.0541,
+   "wilson_lo": 0.4577,
+   "p_value": 0.9333630505875835
+  },
+  "fwd": {
+   "n": 60,
+   "wins": 25,
+   "win_rate": 0.4167,
+   "roi": -0.2045,
+   "wilson_lo": 0.3006,
+   "p_value": 0.9634272125914812
+  },
+  "gates": {
+   "G1_sample": true,
+   "G2_wilson_lo_above_breakeven": false,
+   "G3_bonferroni_p": false,
+   "G4_stable_disc_and_halves": false,
+   "G5_roi_positive_val": "False"
+  },
+  "passed_all": false,
+  "bonferroni_alpha": 0.003333,
+  "rank": 14
+ },
+ {
+  "id": "S05",
+  "name": "Over when total >= 50",
+  "desc": "Bet the over when total line is 50 or higher.",
+  "price": -110,
+  "disc": {
+   "n": 309,
+   "wins": 151,
+   "win_rate": 0.4887,
+   "roi": -0.0671,
+   "wilson_lo": 0.4334,
+   "p_value": 0.9020403003963018
+  },
+  "val": {
+   "n": 400,
+   "wins": 193,
+   "win_rate": 0.4825,
+   "roi": -0.0789,
+   "wilson_lo": 0.4339,
+   "p_value": 0.9557607319947776
+  },
+  "val_a": {
+   "n": 245,
+   "wins": 122,
+   "win_rate": 0.498,
+   "roi": -0.0494,
+   "wilson_lo": 0.4359,
+   "p_value": 0.8090206137338356
+  },
+  "val_b": {
+   "n": 155,
+   "wins": 71,
+   "win_rate": 0.4581,
+   "roi": -0.1255,
+   "wilson_lo": 0.3816,
+   "p_value": 0.9571580439438288
+  },
+  "fwd": {
+   "n": 18,
+   "wins": 11,
+   "win_rate": 0.6111,
+   "roi": 0.1667,
+   "wilson_lo": 0.3862,
+   "p_value": 0.30824679275791533
+  },
+  "gates": {
+   "G1_sample": true,
+   "G2_wilson_lo_above_breakeven": false,
+   "G3_bonferroni_p": false,
+   "G4_stable_disc_and_halves": false,
+   "G5_roi_positive_val": "False"
+  },
+  "passed_all": false,
+  "bonferroni_alpha": 0.003333,
+  "rank": 15
+ }
+]
