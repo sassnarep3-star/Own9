@@ -1,28 +1,31 @@
-# Own9 — NFL signal research
+# Own9 · NFL research
 
-Research project to build our own NFL lines, test single-bet, parlay, and prop-combo strategies
-against validation gates, measure outcome correlations, and publish every number with a source.
+A static research dashboard for proposed NFL line-origination strategies, validation gates, a placeholder leaderboard and flagged limitations. Open `index.html` locally or visit the [GitHub Pages site](https://sassnarep3-star.github.io/Own9/).
 
-**Live site:** https://sassnarep3-star.github.io/Own9/
+**Status:** research framework only. No predictions, market data, measured correlations, validated strategies, actual rewards or automated wagering are provided. Luck cannot be removed. References on proposal rows provide context, not endorsement. Blank values are unverified.
 
-## Layout
-- `analysis/analyze.py` — data pipeline: loads `data/raw/games.csv`, runs the walk-forward own-line model,
-  grades 15 pre-specified strategies with gates G1–G5, computes correlations and parlay joint probabilities.
-  Writes `data/site/*.json`.
-- `analysis/build_site.py` — builds the static pages at the repo root (landing, executive summary, games, strategies,
-  correlations, own lines, props, rules & legal, sources, flagged for review).
-- `data/raw/games.csv` — copy of `nflverse/nfldata` `data/games.csv` (commit `d5c8272`). Secondary source.
-- Site root (`index.html`, `*.html`, `assets/`, `data/site/`) — the GitHub Pages site (Pages source: `main`, `/`).
-- `COORDINATION.md` — shared task board for parallel agent sessions.
+## Build and check
 
-## Reproduce
+Requires Python 3. Run `python3 tools/build.py` to regenerate the five HTML pages and `python3 tools/check.py` to check local link targets and the presence of permitted reference hosts in every table row. This is not an external link checker or a verification of source relevance. Pages deploys from the repository root on `main`.
+
+---
+
+## Research site (`research/`) — NFL signal research (arena/75504db2-own9)
+
+Separate from the root site above. The research pipeline builds its own pages and data.
+
+- Live: https://sassnarep3-star.github.io/Own9/research/
+- `analysis/analyze.py` — data pipeline (`research/data/site/*.json`): 15 pre-specified strategies graded with gates G1–G5,
+  correlations and parlay joint probabilities, walk-forward own-line model.
+- `analysis/build_site.py` — builds `research/*.html` (landing, executive summary, games, strategies, correlations,
+  own lines, player props, rules & legal, sources, flagged for review).
+- `data/raw/games.csv` — copy of `nflverse/nfldata` `data/games.csv` (commit `d5c8272`, secondary source).
+
+Reproduce:
 ```bash
 python -m venv .venv && . .venv/bin/activate && pip install pandas numpy scipy
-python analysis/analyze.py
-python analysis/build_site.py
+python analysis/analyze.py && python analysis/build_site.py
 ```
 
-## Important
-- Betting lines are not published by the NFL; all lines are labelled **Unverified** (see `flagged.html`).
-- Research only, not betting advice. Sports wagering in Washington is limited to tribal casinos
-  (Washington State Gambling Commission).
+Betting lines are not published by the NFL, so all lines are labelled **Unverified** (`research/flagged.html`).
+Research only, not betting advice. Sports wagering in Washington is limited to tribal casinos (Washington State Gambling Commission).

@@ -1,0 +1,300 @@
+{
+  "schema_version": 1,
+  "scope": "root HTML by default; no external HTTP or semantic claim verification",
+  "pages": [
+    {
+      "path": "flags.html",
+      "sha256": "30d79d4ae07dc5694f268d38ed6dd5fb975767e490b6ca725e03c37a79a2b17b",
+      "rows": [
+        {
+          "line": 1,
+          "cells": 4,
+          "text": "Historical market prices No official, timestamped and executable historical price source was obtained. Unverified Context / source \u2197",
+          "sources": [
+            "https://www.nfl.com/stats/"
+          ],
+          "claim_support": "unverified; link presence only"
+        },
+        {
+          "line": 1,
+          "cells": 4,
+          "text": "Model and evaluation No ingestion, trained model, predictions, backtest or independent test was present in the initial repository. Not implemented Context / source \u2197",
+          "sources": [
+            "https://github.com/sassnarep3-star/Own9/tree/4828ac07f28eb71d0e497836ec363926b5b2be3f"
+          ],
+          "claim_support": "unverified; link presence only"
+        },
+        {
+          "line": 1,
+          "cells": 4,
+          "text": "Correlation values No verified paired observations or estimates are available. Unverified Context / source \u2197",
+          "sources": [
+            "https://www.itl.nist.gov/div898/handbook/eda/section4/eda4283.htm"
+          ],
+          "claim_support": "unverified; link presence only"
+        },
+        {
+          "line": 1,
+          "cells": 4,
+          "text": "Strategy rewards No competition rules, sponsor or rewards were verified. Unverified Context / source \u2197",
+          "sources": [
+            "https://github.com/sassnarep3-star/Own9/tree/4828ac07f28eb71d0e497836ec363926b5b2be3f"
+          ],
+          "claim_support": "unverified; link presence only"
+        },
+        {
+          "line": 1,
+          "cells": 4,
+          "text": "Luck No statistical procedure can remove randomness from individual outcomes; confidence intervals quantify uncertainty under assumptions. Limitation Context / source \u2197",
+          "sources": [
+            "https://www.itl.nist.gov/div898/handbook/eda/section4/eda4283.htm"
+          ],
+          "claim_support": "unverified; link presence only"
+        },
+        {
+          "line": 1,
+          "cells": 4,
+          "text": "Source scope References on proposal and missing-data rows are contextual, not evidence that the proposed policy, reward or strategy works. The source links alone do not verify those rows. Needs review Context / source \u2197",
+          "sources": [
+            "https://www.nfl.com/stats/"
+          ],
+          "claim_support": "unverified; link presence only"
+        },
+        {
+          "line": 1,
+          "cells": 4,
+          "text": "NFL page scope The NFL statistics page is dynamic; no point-in-time snapshot, game-level extract or historical price series has been preserved here. Needs review Context / source \u2197",
+          "sources": [
+            "https://www.nfl.com/stats/"
+          ],
+          "claim_support": "unverified; link presence only"
+        },
+        {
+          "line": 1,
+          "cells": 4,
+          "text": "Tail risk Skew and heavy tails can distort summaries; inspect return distributions rather than relying on averages alone. Review Context / source \u2197",
+          "sources": [
+            "https://www.itl.nist.gov/div898/handbook/eda/section3/eda35b.htm"
+          ],
+          "claim_support": "unverified; link presence only"
+        }
+      ],
+      "link_count": 15
+    },
+    {
+      "path": "index.html",
+      "sha256": "59b7f6a53f770bc3de053e1c24231fef01c5ecf6ea4c294dfbd6be009f0b942a",
+      "rows": [
+        {
+          "line": 1,
+          "cells": 4,
+          "text": "Repository Initial checkout contained only a README; no model or dataset to audit. Reviewed Context / source \u2197",
+          "sources": [
+            "https://github.com/sassnarep3-star/Own9/tree/4828ac07f28eb71d0e497836ec363926b5b2be3f"
+          ],
+          "claim_support": "unverified; link presence only"
+        },
+        {
+          "line": 1,
+          "cells": 4,
+          "text": "Line origination Proposed probability models require time-stamped inputs and market prices before validation. Not implemented Context / source \u2197",
+          "sources": [
+            "https://www.nfl.com/stats/"
+          ],
+          "claim_support": "unverified; link presence only"
+        },
+        {
+          "line": 1,
+          "cells": 4,
+          "text": "Skill versus luck Out-of-sample testing and uncertainty can reduce misinterpretation; they cannot eliminate luck. Proposed Context / source \u2197",
+          "sources": [
+            "https://www.itl.nist.gov/div898/handbook/eda/section4/eda4283.htm"
+          ],
+          "claim_support": "unverified; link presence only"
+        },
+        {
+          "line": 1,
+          "cells": 4,
+          "text": "Correlation No paired game-level sample was verified; no values are reported. Unverified Context / source \u2197",
+          "sources": [
+            "https://www.nfl.com/stats/"
+          ],
+          "claim_support": "unverified; link presence only"
+        },
+        {
+          "line": 1,
+          "cells": 4,
+          "text": "Risk This is research, not betting advice; set limits and never risk money needed for essentials. Safety Context / source \u2197",
+          "sources": [
+            "https://www.gamblingcommission.gov.uk/about-us/guide/consumer-voice-2020-exploring-online-staking"
+          ],
+          "claim_support": "unverified; link presence only"
+        }
+      ],
+      "link_count": 16
+    },
+    {
+      "path": "leaderboard.html",
+      "sha256": "832d050de8cd795e9f9b4029f7f3ba8692ae9fb1ec3d1209f13981fd25889d12",
+      "rows": [
+        {
+          "line": 1,
+          "cells": 6,
+          "text": "Game single Not run Context / source \u2197",
+          "sources": [
+            "https://www.nfl.com/stats/"
+          ],
+          "claim_support": "unverified; link presence only"
+        },
+        {
+          "line": 1,
+          "cells": 6,
+          "text": "Player prop single Not run Context / source \u2197",
+          "sources": [
+            "https://www.nfl.com/stats/"
+          ],
+          "claim_support": "unverified; link presence only"
+        },
+        {
+          "line": 1,
+          "cells": 6,
+          "text": "Cross-game parlay Not run Context / source \u2197",
+          "sources": [
+            "https://www.itl.nist.gov/div898/handbook/eda/section4/eda4283.htm"
+          ],
+          "claim_support": "unverified; link presence only"
+        },
+        {
+          "line": 1,
+          "cells": 6,
+          "text": "Same-game prop combo Not run Context / source \u2197",
+          "sources": [
+            "https://www.nfl.com/stats/"
+          ],
+          "claim_support": "unverified; link presence only"
+        }
+      ],
+      "link_count": 11
+    },
+    {
+      "path": "strategies.html",
+      "sha256": "122e96c5a2998de8d1a136310786440f12e789aa71eb98f79001936e92309ac0",
+      "rows": [
+        {
+          "line": 1,
+          "cells": 5,
+          "text": "Single \u00b7 game Model a distribution of team scores from prior team performance, availability and home/away; derive win, spread and total probabilities. Point-in-time inputs, historical executable prices and settlement rules. Unvalidated Context / source \u2197",
+          "sources": [
+            "https://www.nfl.com/stats/"
+          ],
+          "claim_support": "unverified; link presence only"
+        },
+        {
+          "line": 1,
+          "cells": 5,
+          "text": "Single \u00b7 player prop Model volume and efficiency conditional on expected participation; price the full outcome distribution, including push and void cases. Official player game statistics, availability timestamps and prop quotes. Unvalidated Context / source \u2197",
+          "sources": [
+            "https://www.nfl.com/stats/"
+          ],
+          "claim_support": "unverified; link presence only"
+        },
+        {
+          "line": 1,
+          "cells": 5,
+          "text": "Parlay \u00b7 different games Estimate joint win probability; compare with actual offered payout rather than assuming independence. Paired outcomes, concurrent quotes and joint out-of-sample calibration. Unvalidated Context / source \u2197",
+          "sources": [
+            "https://www.itl.nist.gov/div898/handbook/eda/section4/eda4283.htm"
+          ],
+          "claim_support": "unverified; link presence only"
+        },
+        {
+          "line": 1,
+          "cells": 5,
+          "text": "Combo \u00b7 same game props Jointly simulate shared game and player usage; estimate joint outcomes and settlement. Paired player-game data, injury/void rules and actual combo prices. Unvalidated Context / source \u2197",
+          "sources": [
+            "https://www.nfl.com/stats/"
+          ],
+          "claim_support": "unverified; link presence only"
+        }
+      ],
+      "link_count": 11
+    },
+    {
+      "path": "validation.html",
+      "sha256": "4ab105cdf079713ade7620879f7c90fc189fb299035bbac1f05a6a73518d3d20",
+      "rows": [
+        {
+          "line": 1,
+          "cells": 4,
+          "text": "1 \u00b7 Provenance Retain original official outcomes, source links, snapshots, timestamps, identifiers and applicable permissions; reconcile revisions. Not run Context / source \u2197",
+          "sources": [
+            "https://www.nfl.com/stats/"
+          ],
+          "claim_support": "unverified; link presence only"
+        },
+        {
+          "line": 1,
+          "cells": 4,
+          "text": "2 \u00b7 Point in time Every feature and price must have been available before the forecast; freeze code and predictions before outcomes. Not run Context / source \u2197",
+          "sources": [
+            "https://www.nfl.com/stats/"
+          ],
+          "claim_support": "unverified; link presence only"
+        },
+        {
+          "line": 1,
+          "cells": 4,
+          "text": "3 \u00b7 Evaluation Train on earlier periods only; tune on a later validation period; seal a later test period. Report all folds and missingness. Not run Context / source \u2197",
+          "sources": [
+            "https://www.itl.nist.gov/div898/handbook/eda/section4/eda4283.htm"
+          ],
+          "claim_support": "unverified; link presence only"
+        },
+        {
+          "line": 1,
+          "cells": 4,
+          "text": "4 \u00b7 Predictive quality Compare against a predeclared market baseline with log loss, Brier score and calibration; report sample size and uncertainty. Not run Context / source \u2197",
+          "sources": [
+            "https://www.itl.nist.gov/div898/handbook/eda/section4/eda4283.htm"
+          ],
+          "claim_support": "unverified; link presence only"
+        },
+        {
+          "line": 1,
+          "cells": 4,
+          "text": "5 \u00b7 Economics Use executable timestamped prices, market-specific push/void rules and costs. Report net return, drawdown and uncertainty, not only hit rate. Not run Context / source \u2197",
+          "sources": [
+            "https://www.gamblingcommission.gov.uk/about-us/guide/consumer-voice-2020-exploring-online-staking"
+          ],
+          "claim_support": "unverified; link presence only"
+        },
+        {
+          "line": 1,
+          "cells": 4,
+          "text": "6 \u00b7 Selection control Register the full candidate family and correct for multiple comparisons; cluster or block resampling by game/week; reserve a final untouched test. Not run Context / source \u2197",
+          "sources": [
+            "https://www.itl.nist.gov/div898/handbook/eda/section4/eda4283.htm"
+          ],
+          "claim_support": "unverified; link presence only"
+        },
+        {
+          "line": 1,
+          "cells": 4,
+          "text": "7 \u00b7 Stability Check seasons, market types and sensitivity to price, injury and lineup revisions. Fail closed on sparse data or drift. Not run Context / source \u2197",
+          "sources": [
+            "https://www.itl.nist.gov/div898/handbook/eda/section4/eda4283.htm"
+          ],
+          "claim_support": "unverified; link presence only"
+        }
+      ],
+      "link_count": 14
+    }
+  ],
+  "findings": [],
+  "errors": 0,
+  "warnings": 0,
+  "rows_with_claim_support_unverified": 28,
+  "checked_at_utc": "2026-11-04T20:18:57.515624+00:00",
+  "checkout_commit": "d48f84f51793cb1a20378952022f4d4fba7a5c27",
+  "audited_files_modified": false
+}
