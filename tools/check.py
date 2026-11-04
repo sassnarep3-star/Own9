@@ -8,7 +8,7 @@ from urllib.parse import urlparse
 ROOT = Path(__file__).resolve().parent.parent
 PAGES = ['index.html', 'summary.html', 'singles.html', 'parlays.html', 'correlations.html', 'props.html',
          'strategies.html', 'validation.html', 'leaderboard.html', 'games.html', 'sources.html', 'flags.html']
-OFFICIAL = {'www.nfl.com', 'wsgc.wa.gov', 'www.itl.nist.gov'}
+OFFICIAL = {'www.nfl.com', 'wsgc.wa.gov', 'www.itl.nist.gov', 'docs.github.com'}
 
 
 class Audit(HTMLParser):
