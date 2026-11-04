@@ -1,0 +1,17 @@
+{
+  "name": "own9-nfl-research",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Source-linked NFL research dashboard; no live wagering",
+  "scripts": {
+    "build": "python3 scripts/build_site.py",
+    "test": "python3 -m unittest discover -s tests -v && python3 scripts/check_site.py",
+    "test:browser": "node scripts/browser_test.cjs",
+    "preview": "python3 -m http.server 3000 --bind 0.0.0.0 --directory site"
+  },
+  "devDependencies": {
+    "@sparticuz/chromium": "153.0.0",
+    "axe-core": "4.14.0",
+    "playwright-core": "1.64.1"
+  }
+}

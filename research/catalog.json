@@ -123,13 +123,13 @@
     },
     {
       "id": "GH-PAGES",
-      "title": "GitHub Pages workflow documentation",
-      "url": "https://docs.github.com/en/pages/getting-started-with-github-pages/using-custom-workflows-with-github-pages",
+      "title": "GitHub Pages publishing source documentation",
+      "url": "https://docs.github.com/en/pages/getting-started-with-github-pages/configuring-a-publishing-source-for-your-github-pages-site",
       "kind": "Official platform documentation",
       "status": "checked",
       "checked_on": "2026-11-04",
-      "evidence": "Custom workflows build Pages through Actions; deploy requires pages:write, id-token:write and a dependent build job.",
-      "scope": "Deployment workflow reference only; actual deployment result recorded separately."
+      "evidence": "Branch publishing supports repository root or docs; pushes to the configured source publish the site. A .nojekyll file permits static output without Jekyll processing.",
+      "scope": "Existing main/root Pages configuration retained because settings writes return HTTP 403. Actual deployment result is recorded separately."
     }
   ],
   "strategies": [
@@ -608,6 +608,16 @@
       "status": "needs review",
       "source_ids": [
         "SK-CAL"
+      ]
+    },
+    {
+      "id": "F12",
+      "title": "Pages settings permission",
+      "detail": "GitHub Pages configuration writes returned HTTP 403. Existing main/root branch publishing is retained, with byte-identical generated root files.",
+      "impact": "No settings change required; deployment result tracked separately in coordination log.",
+      "status": "needs review",
+      "source_ids": [
+        "GH-PAGES"
       ]
     },
     {

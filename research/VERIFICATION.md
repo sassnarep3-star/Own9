@@ -23,7 +23,7 @@ Checked sources: NFL rulebook; NFL team statistics categories (not values); NFL
 injury report schema; scikit-learn cross-validation, TimeSeriesSplit, calibration;
 SciPy Pearson correlation and bootstrap; statsmodels multiple testing;
 DraftKings general/market rules (retrieved Virginia scope); Washington regulator
-sports wagering landing page; GitHub custom Pages workflow documentation.
+sports wagering landing page; GitHub Pages publishing-source documentation.
 All direct URLs and evidence scopes are in the catalog and Sources page.
 
 ## Retrieval irregularities

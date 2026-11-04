@@ -1,0 +1,110 @@
+"""Build Own9 static multi-page dashboard from a source-linked manifest."""
+import json
+import shutil
+import sys
+from html import escape as e
+from pathlib import Path
+sys.path.insert(0,str(Path(__file__).resolve().parents[1]))
+from engine.report import report
+ROOT=Path(__file__).resolve().parents[1]
+OUT=ROOT/'site'
+DATA=json.loads((ROOT/'research/catalog.json').read_text())
+SOURCES={s['id']:s for s in DATA['sources']}
+NAV=[('index','Overview','01'),('strategies','Strategy library','02'),('lines','Line origination','03'),('validation','Validation gates','04'),('correlations','Correlations','05'),('leaderboard','Leaderboard','06'),('sources','Sources & evidence','07'),('review','Flagged for Review','08'),('audit','Repo & requirements','09')]
+
+
+def refs(ids):
+    return '<div class="source-links">'+''.join(f'<a href="{e(SOURCES[i]["url"])}" target="_blank" rel="noopener noreferrer" title="{e(SOURCES[i]["title"])}">{e(i)} <span aria-hidden="true">↗</span></a>' for i in ids)+'</div>'
+
+
+def text(v):
+    if v is None:
+        return '<span class="missing" title="Unverified — not supplied or inferred"><span class="sr-only">Unverified; value unavailable</span></span>'
+    return e(str(v))
+
+
+def badge(v):
+    cls='amber' if any(s in v.lower() for s in ['blocked','review','partial','unverified','not evaluated']) else 'green' if any(s in v.lower() for s in ['checked','done']) else 'neutral'
+    return f'<span class="badge {cls}">{e(v)}</span>'
+
+
+def table(title,columns,rows,description=''):
+    # Rows: (id, [(value, kind), ...], source IDs). All external sources are direct.
+    result=f'<section class="table-section"><div class="section-head"><div><h2>{e(title)}</h2><p>{e(description)}</p></div><button class="export" type="button">Export CSV <span aria-hidden="true">↓</span></button></div><div class="table-scroll" tabindex="0" role="region" aria-label="{e(title)}"><table data-title="{e(title)}"><caption class="sr-only">{e(title)}. Blank values are unavailable or unverified; see status and source.</caption><thead><tr>'+''.join(f'<th scope="col">{e(c)}</th>' for c in columns+['Official source / method'])+'</tr></thead><tbody>'
+    for id,cells,ids in rows:
+        result+=f'<tr id="{e(id)}">'
+        for value,kind in cells:
+            content=badge(value) if kind=='status' else value if kind=='html' else text(value)
+            result+=f'<td>{content}</td>'
+        result+=f'<td>{refs(ids)}</td></tr>'
+    result+='</tbody></table></div><p class="empty" hidden>No rows match this filter. Try a different search.</p><div class="table-foot"><span class="row-count">'+str(len(rows))+' entries</span><span>Source-linked · blanks are not estimates</span></div></section>'
+    return result
+
+
+def callout(title,body,kind='notice'):
+    return f'<aside class="callout {kind}"><span class="callout-icon" aria-hidden="true">i</span><div><strong>{e(title)}</strong><p>{body}</p></div></aside>'
+
+
+def page(slug,title,kicker,description,body,active=None):
+    nav=''.join(f'<a href="{s}.html" class="nav-link {"active" if (active or slug)==s else ""}" '+('aria-current="page"' if (active or slug)==s else '')+f'><span class="nav-number">{num}</span>{e(label)}'+(f'<span class="nav-count">{len(DATA["flags"])}</span>' if s=='review' else '')+'</a>' for s,label,num in NAV)
+    html=f'''<!doctype html>
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="description" content="{e(description)}"><meta name="color-scheme" content="light"><title>{e(title)} · Own9 NFL Research</title><link rel="icon" href="assets/favicon.svg" type="image/svg+xml"><link rel="stylesheet" href="assets/styles.css"><script src="assets/app.js" defer></script></head>
+<body><a class="skip" href="#main">Skip to content</a><aside class="sidebar"><a class="brand" href="index.html"><span class="brand-mark">O<span>9</span></span><span>OWN9<small>NFL RESEARCH LAB</small></span></a><p class="sidebar-label">RESEARCH WORKSPACE</p><nav aria-label="Main navigation">{nav}</nav><div class="sidebar-bottom"><span class="live-dot"></span> Evidence before edge<p>Independent research.<br>No bets. No invented results.</p><a href="https://github.com/sassnarep3-star/Own9" target="_blank" rel="noopener noreferrer">View repository ↗</a></div></aside>
+<div class="workspace"><header class="topbar"><span class="breadcrumb">Workspace <span>/</span> NFL <span>/</span> <strong>{e(title)}</strong></span><span class="top-status"><span class="live-dot"></span> Research mode <span class="date">04 NOV 2026</span></span></header><main id="main"><div class="page-heading"><div class="eyebrow">{e(kicker)}</div><h1>{e(title)}</h1><p>{e(description)}</p></div>{body}<footer><span>OWN9 / NFL Research Lab</span><span>Research snapshot: 2026-11-04 UTC · Not a live odds feed</span><a href="review.html">Limitations & review ↗</a></footer></main></div></body></html>'''
+    (OUT/f'{slug}.html').write_text(html)
+
+
+def toolbar():
+    return '<div class="toolbar"><label class="search-label"><span aria-hidden="true">⌕</span><input type="search" id="table-search" placeholder="Search entries, methods, sources…" aria-label="Search rows on this page"></label><label class="filter-label">Show <select id="table-filter"><option value="">All entries</option><option value="blocked">Blocked</option><option value="review">Needs review</option><option value="checked">Checked</option><option value="unverified">Unverified</option><option value="done">Done</option><option value="not evaluated">Not evaluated</option></select></label><span id="search-status" class="sr-only" role="status" aria-live="polite"></span></div>'
+
+
+def strategy_rows(entries):
+    return [(s['id'],[(s['id'],'text'),(f'<strong>{e(s["name"])}</strong><small>{e(s["category"])}</small>','html'),(s['method'],'text'),(s['inputs'],'text'),(s['risk'],'text'),(s['status'],'status')],s['source_ids']) for s in entries]
+
+
+def build():
+    OUT.mkdir(exist_ok=True)
+    (OUT/'data').mkdir(exist_ok=True)
+    (OUT/'data/catalog.json').write_text(json.dumps(DATA,indent=2,ensure_ascii=False)+'\n')
+    (OUT/'data/status.json').write_text(json.dumps(report(DATA),indent=2,ensure_ascii=False)+'\n')
+    shutil.copy(ROOT/'research/METHODOLOGY.md',OUT/'data/methodology.md')
+    shutil.copy(ROOT/'research/VERIFICATION.md',OUT/'data/verification.md')
+    (OUT/'.nojekyll').write_text('')
+    cards='''<div class="stats-grid"><a class="stat-card" href="strategies.html"><span>Candidate strategies</span><strong>08 <span class="stat-symbol" aria-hidden="true">↗</span></strong><small>Singles, parlays & player combos</small></a><a class="stat-card" href="validation.html"><span>Validation gates</span><strong>11 <span class="stat-symbol" aria-hidden="true">◈</span></strong><small>Required before any promotion</small></a><a class="stat-card" href="leaderboard.html"><span>Eligible strategies</span><strong>00 <span class="pill">ABSTAIN</span></strong><small>No verified backtest evidence</small></a><a class="stat-card" href="sources.html"><span>Primary source pages</span><strong>13 <span class="stat-symbol" aria-hidden="true">↗</span></strong><small>Scoped claims, linked for review</small></a></div>'''
+    hero='''<section class="hero"><div class="hero-copy"><span class="hero-kicker">THE RESEARCH MANDATE</span><h2>Build the line.<br>Prove the edge.</h2><p>An evidence-first workspace for originating NFL probabilities and testing strategies. Reward repeatable forecasting quality—not a lucky run.</p><a class="button-light" href="strategies.html">Explore strategy library <span aria-hidden="true">↗</span></a></div><div class="hero-diagram" aria-label="Proposed research sequence"><span class="diagram-label">PROPOSED EVIDENCE PIPELINE</span><div><span>01</span> Official observations <b>↘</b></div><div><span>02</span> Original probabilities <b>↘</b></div><div><span>03</span> Out-of-sample evidence <b>↘</b></div><div class="diagram-final"><span>04</span> Eligible leaderboard <b>◎</b></div><small>Current stage: data admission blocked</small></div></section>'''
+    summary=callout('An honest starting point, not a winning system.','No historical as-of dataset or executable odds archive has been admitted. Actual NFL lines, correlations, ROI and ranks remain blank. Luck cannot be eliminated. <a href="review.html">Read the evidence gaps ↗</a>')
+    overview=[('E01',[('Decision','text'),('Paper research only. No strategy is cleared to bet or receive a reward.','text'),('All empirical gates remain unevaluated.','text')],['SK-CV']),('E02',[('What is built','text'),('Source registry, eight research specifications, pricing utilities, synthetic tests and this dashboard.','text'),('Model specifications are not fitted or validated NFL models.','text')],['NFL-STATS','SP-R']),('E03',[('What would establish an edge','text'),('Calibrated original distributions, synchronized actual quotes, cost-aware execution and untouched forward holdouts.','text'),('A source link or high ROI alone is not proof of skill.','text')],['SK-CAL','DK-GENERAL']),('E04',[('Priority','text'),('Acquire rights-cleared official as-of histories and archived market quotes; then fit and evaluate frozen candidates.','text'),('No invented substitute for unavailable evidence.','text')],['NFL-STATS','NFL-INJURY']),('E05',[('Competition','text'),('Separate market tracks; reward proper-score improvement only after every gate passes.','text'),('Proposed recognition points; no funded prize pool.','text')],['SK-CAL','SM-MULTI'])]
+    obs=[(o['id'],[(o['subject'],'text'),(o['finding'],'text'),(o['value'],'text'),(o['status'],'status')],o['source_ids']) for o in DATA['observations']]
+    downloads='<div class="download-strip"><div><strong>Inspect the work, not just the interface.</strong><p>Full methodology, verification limits and machine-readable evidence.</p></div><a href="data/methodology.md">Methodology ↓</a><a href="data/catalog.json">Research JSON ↓</a><a href="data/status.json">Gate report ↓</a></div>'
+    page('index','Research overview','NFL / EXECUTIVE SUMMARY','An independent line-origination lab. Designed for transparency, selective signals and evidence-led decisions.',hero+cards+summary+toolbar()+table('Executive brief',['Area','Finding / decision','Limitation'],overview,'Project findings and priorities; method sources are context, not endorsements.')+table('Checked source observations',['Subject','Verified scope','Confirmed value','Status'],obs,'Only the limited statements below were checked. Blank values are intentionally not inferred.')+downloads)
+    tabs='<nav class="tabs" aria-label="Strategy categories"><a href="strategies.html">All candidates</a><a href="singles.html">Single bets</a><a href="parlays.html">Parlays</a><a href="props.html">Player props & combos</a></nav>'
+    for slug,title,entries in [('strategies','Strategy library',DATA['strategies']),('singles','Single-bet strategies',[s for s in DATA['strategies'] if s['category']=='Singles']),('parlays','Parlay strategies',[s for s in DATA['strategies'] if s['category']=='Parlays']),('props','Player props & combos',[s for s in DATA['strategies'] if s['category'] in ['Player props','Prop combos']])]:
+        page(slug,title,'RESEARCH / CANDIDATE REGISTRY','Explicit hypotheses to investigate—not proven signals, recommendations or trained models.',tabs+callout('All candidates are blocked.','The formulas are tested, but historical-data ingestion, model fitting and strategy backtests are not implemented. Sources below support the method or input category, not strategy profitability.')+toolbar()+table('Candidate specifications',['ID','Strategy / track','Proposed model','Required official evidence','Failure mode','Validation status'],strategy_rows(entries),'No forecast, correlation sign or performance value is inferred.'),active='strategies')
+    line_rows=[('L01',[('Home moneyline','text'),('Discrete joint final-score distribution → win / push / loss mass','text'),('Fair decimal = 1 + P(loss) / P(win), when P(win) > 0','text'),(None,'text'),('unverified — no admitted forecast distribution','status')],['NFL-RULES','DK-MARKETS']),('L02',[('Home spread','text'),('P(home score − away score + home handicap > 0); equality is push under stated two-way convention','text'),('Reference home spread = negative median margin; use full PMF to price each threshold','text'),(None,'text'),('unverified — no admitted forecast distribution','status')],['NFL-RULES','DK-MARKETS']),('L03',[('Game total','text'),('P(home score + away score > line); equality is push under stated convention','text'),('Reference total = median combined score; not necessarily a balanced-odds quote','text'),(None,'text'),('unverified — no admitted forecast distribution','status')],['NFL-RULES','DK-MARKETS']),('L04',[('Player proposition','text'),('Opportunity and conditional efficiency distribution, including verified participation rules','text'),('Integrate probability above the exact ticket threshold','text'),(None,'text'),('unverified — player model not fitted','status')],['NFL-STATS','DK-GENERAL']),('L05',[('Two-leg non-push combo','text'),('Two Bernoulli marginals and an estimated feasible hit-event correlation','text'),('Joint = pA·pB + ρ√[pA(1−pA)pB(1−pB)]; bounds checked','text'),(None,'text'),('unverified — no paired observations','status')],['SP-R']),('L06',[('Three-plus-leg combo','text'),('Full joint samples across all legs; actual operator combo quote','text'),('Count simultaneous hits; pairwise correlations alone are insufficient','text'),(None,'text'),('unverified — no joint model or executable quote','status')],['SP-R','DK-GENERAL'])]
+    impl=[('I01',[('Implemented','text'),('Odds conversion; proportional no-vig; push-aware fair payouts and EV; discrete PMF integration; median reference lines.','text'),('Synthetic arithmetic only, not learned NFL probabilities.','text')],['DK-MARKETS']),('I02',[('Implemented','text'),('Two-event feasibility; simultaneous hit counts; Pearson r; proper scores; grouped folds; Holm correction; week-cluster intervals.','text'),('Helpers cannot establish provenance, valid p-values or future skill.','text')],['SP-R','SK-CAL','SM-MULTI']),('I03',[('Not implemented','text'),('Official historical ingestion, trained score/player models, all ticket settlement cases, power analysis and independent gate review.','text'),('No live feed, automated wagering or funded reward distribution.','text')],['NFL-STATS','DK-GENERAL'])]
+    page('lines','Line origination','MODELING / DISTRIBUTIONS FIRST','Start with original outcome probabilities. Price the ticket only after its rules, inputs and uncertainty are verified.',callout('No current NFL lines are published.','The expressions below are project mathematics under explicit payoff assumptions, not numbers quoted from an official source. Actual values remain blank. <a href="data/methodology.md">Read assumptions and derivations ↗</a>')+toolbar()+table('Pricing map',['Market','Required distribution / assumption','Project formula / convention','Actual NFL value','Status'],line_rows)+table('Implementation boundary',['Level','Capability','Limit'],impl))
+    gate_rows=[(g['id'],[(g['id'],'text'),(g['name'],'text'),(g['rule'],'text'),(g['status'],'status')],g['source_ids']) for g in DATA['gates']]
+    page('validation','Validation gates','EVALUATION / FAIL CLOSED','An attractive hypothesis is not evidence. Every candidate must clear every gate before it can rank.',callout('Gate specifications are not passed gates.','The engine checks evidence-record structure and blocks missing records. It cannot certify the truth of a document, source URL, hash or status flag.')+toolbar()+table('Promotion requirements',['Gate','Checkpoint','Required evidence / proposed policy','Current status'],gate_rows,'All candidates currently lack evaluated evidence records. Numeric research thresholds must be pre-registered, not chosen after seeing outcomes.'))
+    cor_rows=[(c['id'],[(c['id'],'text'),(c['leg_a'],'text'),(c['leg_b'],'text'),(c['pearson_r'],'text'),(None,'text'),(c['n_pairs'],'text'),(c['note'],'text'),(c['status'],'status')],c['source_ids']) for c in DATA['correlations']]
+    page('correlations','Correlation register','DEPENDENCE / JOINT OUTCOMES','A correlation is an estimate with a target, sample and uncertainty—not a story about how a game might unfold.',callout('Blank is not zero.','No approved paired official dataset exists here. Coefficients, intervals and sample counts are blank. Continuous stat correlation is not binary hit-event correlation; pairwise values do not price three-plus legs.')+toolbar()+table('Pairs to investigate',['ID','Variable / leg A','Variable / leg B','Pearson r','Confidence interval','Paired sample n','Design note','Evidence status'],cor_rows,'Do not infer signs or assume independence from this list. Method reference only.'))
+    leader_rows=[(s['id'],[(s['id'],'text'),(s['name'],'text'),(s['category'],'text'),(None,'text'),(None,'text'),(None,'text'),(None,'text'),(None,'text'),('blocked — 11 gates unevaluated','status')],s['source_ids']) for s in DATA['strategies']]
+    policy_rows=[('P01',[('Eligibility','text'),('All eleven gates pass; independently reviewed final holdout and forward paper evidence required.','text'),('project proposal','status')],['SK-CV']),('P02',[('Rank','text'),('Within comparable tracks: lower confidence bound of paired out-of-sample Brier improvement; tie-break by log loss, then paper drawdown.','text'),('project proposal','status')],['SK-CAL','SP-BOOT']),('P03',[('Rewards','text'),('Recognition points only after eligibility; schedule frozen before competition. No sponsor, monetary pool or payout exists.','text'),('project proposal — not funded','status')],['SM-MULTI']),('P04',[('Fair comparison','text'),('Same target, fixed capped paper stakes, cutoff, settlement and costs. Log every tried version; no reward for high leverage or lucky payout.','text'),('project proposal','status')],['DK-GENERAL','SK-CV'])]
+    page('leaderboard','Strategy leaderboard','COMPETITION / EARNED, NOT ASSUMED','Reward forecasting quality that survives out-of-sample scrutiny. There are no eligible entries or awards yet.',callout('No winners declared.','All rank, sample, ROI, Brier and reward cells are blank. Blank performance is not 0% ROI, and the registry order is not a ranking.')+toolbar()+table('Unranked candidate registry',['Entry','Candidate','Track','Rank','Bet sample n','Net ROI','Brier score','Reward points','Gate status'],leader_rows)+table('Competition policy',['Area','Proposed rule','Status'],policy_rows,'Local project design. Documentation links explain methods, not a sponsored or externally approved competition.'))
+    src_rows=[(s['id'],[(s['id'],'text'),(f'<strong>{e(s["title"])}</strong><small>{e(s["kind"])}</small>','html'),(s['evidence'],'text'),(s['scope'],'text'),(s['checked_on'],'text'),(s['status'],'status')],[s['id']]) for s in DATA['sources']]
+    page('sources','Sources & evidence','PROVENANCE / PRIMARY PUBLISHERS','Direct links, observed scope and explicit limitations. A credible source does not automatically verify every use of it.',callout('Checked content, not a modeling dataset.','These are scoped page-reading observations from 2026-11-04. Full raw snapshots and source publication timestamps were not captured, so these readings do not pass historical data admission. Stable documentation URLs can change. <a href="data/verification.md">Verification register ↗</a>')+toolbar()+table('Official-source catalog',['ID','Publisher / document','Observed statement','Verification boundary','Checked UTC date','Status'],src_rows,'NFL, operator, regulator, platform and official statistical-project documentation; no third-party performance claims.'))
+    flag_rows=[(f['id'],[(f['id'],'text'),(f['title'],'text'),(f['detail'],'text'),(f['impact'],'text'),(f['status'],'status')],f['source_ids']) for f in DATA['flags']]
+    page('review','Flagged for Review','TRANSPARENCY / OPEN LIMITATIONS','Published irregularities do not prevent the research site from going live. They do prevent unsupported claims from becoming results.',callout('No action is required to use this site.','These flags are disclosed for later review. Unknown empirical values stay blank; unresolved research evidence blocks strategy promotion, not access to the dashboard.')+toolbar()+table('Open review register',['ID','Issue','What was observed / unavailable','Impact / safe behavior','Status'],flag_rows,'Source links are relevant review targets. Broken attempted URLs are documented in the verification register rather than used as evidence.'))
+    req_rows=[(r['id'],[(r['id'],'text'),(r['requirement'],'text'),(r['delivery'],'text'),(r['status'],'status')],r['source_ids']) for r in DATA['requirements']]
+    aud_rows=[(a['id'],[(a['area'],'text'),(a['finding'],'text'),(a['status'],'status')],a['source_ids']) for a in DATA['audit']]
+    page('audit','Repo & requirements','INTEGRATION / DELIVERY AUDIT','What existed, what was built, what was checked—and what this session cannot honestly mark complete.',callout('Local facts vs external sources.','Repository observations are supported by local Git and code inspection. Official links on those rows provide method/platform context, not independent attestation of this repository.')+toolbar()+table('Requirement coverage',['ID','Requested outcome','Delivery / limitation','Status'],req_rows)+table('Repository review',['Area','Finding','Verification scope'],aud_rows))
+
+
+if __name__=='__main__':
+    build()
+    # Preserve the repository's existing GitHub Pages main/root source.
+    for html in OUT.glob('*.html'):
+        shutil.copyfile(html, ROOT/html.name)
+    for directory in ('assets', 'data'):
+        shutil.copytree(OUT/directory, ROOT/directory, dirs_exist_ok=True)
+    shutil.copyfile(OUT/'.nojekyll', ROOT/'.nojekyll')
+    print(f'Built {len(list(OUT.glob("*.html")))} pages from {len(SOURCES)} primary source records.')
