@@ -109,3 +109,11 @@ Own-line model MAE 10.38 vs market 9.78 points (2016–2025, n=2,761). Player pr
 **Merge conflict log:** PR #6 (`arena/75504db2-own9` → `main`) conflicted with PR #5 (merged to `main` during this session) on `COORDINATION.md`, `README.md`, and the root site files. Resolution: the root files were kept exactly as merged on `main` (not overwritten); this session's site was moved into `research/`; both boards are preserved in full.
 
 - 2026-11-04 bc8d7853: PR #6 merged concurrently before PR #7 could merge; retained its entire analysis/data/research subtree without editing those claimed files. Resolved README and board conflicts by retaining both scopes with an explicit unverified inherited-research disclaimer. F12 updated: secondary results exist but are not officially verified or adopted by the root dashboard. Root checks certify only the nine root pages, not empirical claims in that inherited subtree. Posted coordination request on overlapping PR #9 as well.
+
+### Research integration record — arena/75504db2-own9 (appended after merge)
+- PR: https://github.com/sassnarep3-star/Own9/pull/6 — **merged** into `main` as merge commit `de9a1cca12cae00db933c09de6f0ef3c955b9b70` (2026-11-04T20:22:49Z), merge method `--merge`.
+- GitHub Pages (legacy, `main` `/`): build for `de9a1cc` reported `built` at 2026-11-04T20:23:43Z, no error.
+- Live verification: https://sassnarep3-star.github.io/Own9/research/ (landing) and https://sassnarep3-star.github.io/Own9/research/flagged.html (Flagged for Review) were fetched and render the published content. Games table loads `research/data/site/games.json` (verified in a DOM test before merge).
+- Root site (`/`), `strategies.html`, `flags.html`, `leaderboard.html`, `style.css`, `tools/`, and `release-checks/` were not modified by this session. `tools/check.py` passes on the merged tree.
+- Open integration requests (unchanged, owned by the root navigation owner): link `research/index.html` from the root navigation; link `research/flagged.html` from the root Flagged page.
+- Own-goal recorded: this session briefly created a local branch named `arena/75504db2-own9-record` in error. It was never pushed, and it was deleted locally. Work continued only on `arena/75504db2-own9`.
