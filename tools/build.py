@@ -5,16 +5,17 @@ NFL='https://www.nfl.com/stats/'
 NIST='https://www.itl.nist.gov/div898/handbook/eda/section4/eda4283.htm'
 TAIL='https://www.itl.nist.gov/div898/handbook/eda/section3/eda35b.htm'
 SAFE='https://www.gamblingcommission.gov.uk/about-us/guide/consumer-voice-2020-exploring-online-staking'
-PAGES='https://docs.github.com/en/pages/getting-started-with-github-pages/about-github-pages'
+PAGES='https://docs.github.com/en/pages/getting-started-with-github-pages/what-is-github-pages'
+REPO='https://github.com/sassnarep3-star/Own9/tree/4828ac07f28eb71d0e497836ec363926b5b2be3f'
 
 def row(*cells, source):
-    return '<tr>'+''.join('<td>'+escape(str(c))+'</td>' for c in cells)+f'<td><a href="{source}">Official source ↗</a></td></tr>'
+    return '<tr>'+''.join('<td>'+escape(str(c))+'</td>' for c in cells)+f'<td><a href="{source}">Context / source ↗</a></td></tr>'
 def table(headers, rows):
     return '<div class="table-wrap"><table><thead><tr>'+''.join('<th>'+escape(h)+'</th>' for h in [*headers,'Reference'])+'</tr></thead><tbody>'+''.join(rows)+'</tbody></table></div>'
 
 pages={
-'index.html': ('Overview','Executive summary', '''<p class="lead">A research workspace for originating NFL lines and testing whether strategies add predictive value—not a promise of profit.</p><div class="notice"><strong>Research status: not validated.</strong> No historical odds dataset, executable forecasts, backtest, correlation estimates, or live bets are available in this repository. No strategy has passed the gates.</div><div class="cards"><a href="strategies.html"><span>01 / RESEARCH</span><b>Strategy concepts</b><p>Singles, parlays and player props</p></a><a href="validation.html"><span>02 / PROCESS</span><b>Validation gates</b><p>How evidence earns a place</p></a><a href="leaderboard.html"><span>03 / RESULTS</span><b>Leaderboard</b><p>Evidence before rewards</p></a><a href="flags.html"><span>04 / REVIEW</span><b>Flagged for review</b><p>Open gaps and limitations</p></a></div><h2>At a glance</h2>'''+table(['Area','Finding','Status'],[
-row('Repository','Initial checkout contained only a README; no model or dataset to audit.','Reviewed',source=PAGES),
+'index.html': ('Overview','Executive summary', '''<p class="lead">A research workspace for originating NFL lines and testing whether strategies add predictive value—not a promise of profit. References are contextual unless explicitly described as evidence; proposals have not been independently validated.</p><div class="notice"><strong>Research status: not validated.</strong> No historical odds dataset, executable forecasts, backtest, correlation estimates, or live bets are available in this repository. No strategy has passed the gates.</div><div class="cards"><a href="strategies.html"><span>01 / RESEARCH</span><b>Strategy concepts</b><p>Singles, parlays and player props</p></a><a href="validation.html"><span>02 / PROCESS</span><b>Validation gates</b><p>How evidence earns a place</p></a><a href="leaderboard.html"><span>03 / RESULTS</span><b>Leaderboard</b><p>Evidence before rewards</p></a><a href="flags.html"><span>04 / REVIEW</span><b>Flagged for review</b><p>Open gaps and limitations</p></a></div><h2>At a glance</h2>'''+table(['Area','Finding','Status'],[
+row('Repository','Initial checkout contained only a README; no model or dataset to audit.','Reviewed',source=REPO),
 row('Line origination','Proposed probability models require time-stamped inputs and market prices before validation.','Not implemented',source=NFL),
 row('Skill versus luck','Out-of-sample testing and uncertainty can reduce misinterpretation; they cannot eliminate luck.','Proposed',source=NIST),
 row('Correlation','No paired game-level sample was verified; no values are reported.','Unverified',source=NFL),
@@ -36,13 +37,14 @@ row('7 · Stability','Check seasons, market types and sensitivity to price, inju
 row('Game single','Not run','','','',source=NFL),row('Player prop single','Not run','','','',source=NFL),row('Cross-game parlay','Not run','','','',source=NIST),row('Same-game prop combo','Not run','','','',source=NFL)])+'''<p>Blank cells mean unavailable, not zero. Proposed ranking: among strategies passing every gate, order by improvement in out-of-sample log loss against a matched market baseline; publish uncertainty, sample size, return and drawdown alongside it. Predeclare ties and eligibility before evaluation. Rewards should only be hypothetical until a sponsor and rules exist.</p>'''),
 'flags.html':('Flagged for Review','Open items', '''<p class="lead">Unverified fields remain blank throughout this site. These items do not represent claims of a verified betting edge.</p>'''+table(['Item','Irregularity / next evidence','Status'],[
 row('Historical market prices','No official, timestamped and executable historical price source was obtained.','Unverified',source=NFL),
-row('Model and evaluation','No ingestion, trained model, predictions, backtest or independent test was present in the initial repository.','Not implemented',source=NFL),
+row('Model and evaluation','No ingestion, trained model, predictions, backtest or independent test was present in the initial repository.','Not implemented',source=REPO),
 row('Correlation values','No verified paired observations or estimates are available.','Unverified',source=NIST),
-row('Strategy rewards','No competition rules, sponsor or rewards were verified.','Unverified',source=PAGES),
+row('Strategy rewards','No competition rules, sponsor or rewards were verified.','Unverified',source=REPO),
 row('Luck','No statistical procedure can remove randomness from individual outcomes; confidence intervals quantify uncertainty under assumptions.','Limitation',source=NIST),
-row('Source scope','NFL stats provide outcome context, not sportsbook odds or proof of strategy profitability.','Review',source=NFL),
+row('Source scope','References on proposal and missing-data rows are contextual, not evidence that the proposed policy, reward or strategy works. The source links alone do not verify those rows.','Needs review',source=NFL),
+row('NFL page scope','The NFL statistics page is dynamic; no point-in-time snapshot, game-level extract or historical price series has been preserved here.','Needs review',source=NFL),
 row('Tail risk','Skew and heavy tails can distort summaries; inspect return distributions rather than relying on averages alone.','Review',source=TAIL)]) )}
 
 nav=''.join(f'<a href="{href}">{escape(info[0])}</a>' for href,info in pages.items())
 for filename,(label,title,content) in pages.items():
-    Path(filename).write_text(f'''<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>{escape(title)} · Own9</title><link rel="stylesheet" href="style.css"></head><body><header><div class="shell top"><a class="brand" href="index.html"><span>O9</span> OWN9 <small> / NFL RESEARCH</small></a><nav aria-label="Main navigation">{nav}</nav></div></header><main class="shell"><div class="eyebrow">NFL / {escape(label.upper())}</div><h1>{escape(title)}</h1>{content}</main><footer class="shell">OWN9 · Research workspace <span>Evidence over assumptions · Reviewed 04 Nov 2026</span></footer></body></html>''')
+    Path(filename).write_text(f'''<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>{escape(title)} · Own9</title><link rel="stylesheet" href="style.css"></head><body><header><div class="shell top"><a class="brand" href="index.html"><span>O9</span> OWN9 <small> / NFL RESEARCH</small></a><nav aria-label="Main navigation">{nav}</nav></div></header><main class="shell"><div class="eyebrow">NFL / {escape(label.upper())}</div><h1>{escape(title)}</h1>{content}</main><footer class="shell">OWN9 · Research workspace <span>Evidence over assumptions · Research framework</span></footer></body></html>''')
