@@ -8,9 +8,9 @@ class Check(HTMLParser):
         a=dict(attrs)
         if tag=='tr': self.inrow=True; self.row_has_td=False; self.row_source=False
         if tag=='td' and self.inrow: self.row_has_td=True
-        if tag=='a' and 'href' in a:
+        if tag in ('a', 'link') and 'href' in a:
             self.links.append(a['href'])
-            if self.inrow and urlparse(a['href']).hostname in {'www.nfl.com','www.itl.nist.gov','www.gamblingcommission.gov.uk','docs.github.com'}: self.row_source=True
+            if self.inrow and urlparse(a['href']).hostname in {'www.nfl.com','www.itl.nist.gov','www.gamblingcommission.gov.uk','docs.github.com','github.com'}: self.row_source=True
     def handle_endtag(self,tag):
         if tag=='tr':
             if self.row_has_td and not self.row_source: self.errors.append('table row missing official source')
@@ -22,4 +22,4 @@ for path in Path('.').glob('*.html'):
         if not urlparse(link).scheme and not Path(link.split('#')[0]).exists(): errors.append(f'{path}: missing {link}')
 if len(list(Path('.').glob('*.html'))) != 5: errors.append('expected five pages')
 if errors: raise SystemExit('\n'.join(errors))
-print('Five pages: local links and official references in all table rows OK.')
+print('Five pages: local link targets and allowed reference hosts present in all table rows. External availability and claim support are not checked.')

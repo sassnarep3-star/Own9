@@ -6,4 +6,4 @@ A static research dashboard for proposed NFL line-origination strategies, valida
 
 ## Build and check
 
-Requires Python 3. Run `python3 tools/build.py` to regenerate the five HTML pages and `python3 tools/check.py` to check generated pages, local links, and source links in every table row. Pages deploys from the repository root on `main`.
+Requires Python 3. Run `python3 tools/build.py` to regenerate the five HTML pages and `python3 tools/check.py` to check local link targets and the presence of permitted reference hosts in every table row. This is not an external link checker or a verification of source relevance. Pages deploys from the repository root on `main`.
