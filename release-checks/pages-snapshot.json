@@ -1,0 +1,31 @@
+{
+  "repository": "sassnarep3-star/Own9",
+  "site_url": "https://sassnarep3-star.github.io/Own9/",
+  "site_status": "built",
+  "source": {
+    "branch": "main",
+    "path": "/"
+  },
+  "build_type": "legacy",
+  "build_status": "built",
+  "build_commit": "9f6eb6f3409feefd3005b5f84aa464b7867bf40d",
+  "build_created_at": "2026-11-04T20:17:29Z",
+  "build_updated_at": "2026-11-04T20:18:10Z",
+  "build_api_url": "https://api.github.com/repos/sassnarep3-star/Own9/pages/builds/1341622138",
+  "build_error": null,
+  "expected_commit": "9f6eb6f3409feefd3005b5f84aa464b7867bf40d",
+  "expected_commit_matches": true,
+  "metadata_checks_pass": true,
+  "deployment_workflow_success": true,
+  "workflow_run_url": "https://github.com/sassnarep3-star/Own9/actions/runs/41905191630",
+  "workflow_status": "completed",
+  "workflow_conclusion": "success",
+  "http_content_verified": false,
+  "limitation": "GitHub API metadata only. HTTP response, page content and browser behavior are not checked.",
+  "sources": [
+    "https://api.github.com/repos/sassnarep3-star/Own9/pages",
+    "https://api.github.com/repos/sassnarep3-star/Own9/pages/builds/latest",
+    "https://docs.github.com/en/rest/pages/pages#get-the-latest-pages-build"
+  ],
+  "checked_at_utc": "2026-11-04T20:18:58.423623+00:00"
+}
