@@ -14,10 +14,13 @@ Reviewed on 2026-11-04 UTC by session `arena/489d1d3e-own9`. This directory is a
 
 ## Artifacts
 
-- `source-ledger.md`: links, the specific claim each source supports, access status, and what it cannot verify.
-- `dashboard-row-audit.md`: a line-by-line review of the existing dashboard's data rows, tied to a fixed commit. These findings concern that baseline; other sessions may subsequently change it.
-- `integration-handoff.md`: suggested validation and product changes, clearly marked as proposed rather than externally endorsed.
+- [Source ledger](sources.html): links, the specific claim each source supports, access status, and what it cannot verify.
+- [Dashboard row audit](audit.html): a row-by-row review of the earlier dashboard, tied to a fixed commit. A later spot check, not a full subsequent row audit, is documented on the review page.
+- [Strategy and validation handoff](methodology.html): suggested methods, clearly marked as proposed rather than externally endorsed.
+- [Flagged for Review](flags.html): unresolved data, legal, methodology and deployment issues.
+
+These pages are generated from Markdown with `python3 independent-audit/build.py`; run `python3 independent-audit/test_report.py` to check regeneration and local links. The tests check structure, not external availability or claim truth.
 
 ## Integration request
 
-The final integrator should link the official article and schedule for review, present the article only as an **NFL-reported historical example**, and flag collection/republishing rights, executable prices, missing spread/total prices, historic player-prop and parlay quotes, and all model results as unverified. Do not publish the withdrawn transcription or automate systematic collection without appropriate rights review and authorization. The row-level audit is not a substitute for re-verifying the eventual combined site. If the final site includes this directory, link its pages from the shared navigation without changing or deleting other sessions' work.
+The final integrator should link the official article and schedule for review, present the article only as an **NFL-reported historical example**, and flag collection/republishing rights, executable prices, missing spread/total prices, historic player-prop and parlay quotes, and all model results as unverified. Do not publish the withdrawn transcription or automate systematic collection without appropriate rights review and authorization. A later targeted spot check found unsupported numbers exposed in the inherited research subtree, incomplete row-level official links and inaccurate categorical or stale statements; details are on [Flagged for Review](flags.html). Coordinate fixes with the owners of those files. The earlier row audit is not a substitute for re-verifying the eventual combined site. If the final site includes this directory, link its pages from the shared navigation without changing or deleting other sessions' work.
