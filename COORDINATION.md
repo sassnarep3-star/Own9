@@ -22,7 +22,7 @@
 
 | Task | Status | Owner | File scope |
 |---|---|---|---|
-| Executable pricing/correlation primitives and tests | in progress | arena/bc8d7853-own9 | research/, tests/, .gitignore |
+| Executable pricing/correlation primitives and tests | done | arena/bc8d7853-own9 | research/, tests/, .gitignore |
 | Evidence manifest, audit, requirements and final integration | in progress | arena/bc8d7853-own9 | evidence/, docs/, tools/build.py, tools/check.py, tools/verify.py, *.html, style.css, README.md, .github/workflows/quality.yml, COORDINATION.md |
 
 - Read the existing board and PR #2 before claiming. The earlier independent review is marked needs review (published/non-blocking); no in-progress claim was found. This is the final integration scope after those tasks. Platform requires this fixed branch rather than a session-* branch. Preserve earlier work and integrate PR #2 corrections before editing shared site files. No other branch will be checked out or pushed.
@@ -62,3 +62,7 @@
 - Release-quality publication PR: [#5](https://github.com/sassnarep3-star/Own9/pull/5), an additive integration of this session's isolated scope only. It does not supersede the broader research/model/site claims still owned by other sessions. Final pre-merge checks pass; merge/deployment result will be appended after observation.
 
 - 2026-11-04 bc8d7853: Integrated merged PR #5 read-only release-checks scope and all subsequent coordination entries. Resolved the append-only board conflict retaining both sides. Will link its dated baseline report without editing its files; final current-page checks remain this integration session’s separate responsibility.
+- 2026-11-04: [PR #5](https://github.com/sassnarep3-star/Own9/pull/5) merged at `e2295eb1246f791389cb835ef0d388841e4c96d7`. Exact-commit metadata checks passed and [Pages run 41905598503](https://github.com/sassnarep3-star/Own9/actions/runs/41905598503) completed successfully, including deploy. Separately fetched the [public release report](https://sassnarep3-star.github.io/Own9/release-checks/), its README and audit JSON and confirmed expected content. Published observations are preserved in `release-checks/publication.json` and rendered on the report.
+- Published nonblocking irregularities on the report: GitHub-managed Pages emits a Node.js 20/forced Node.js 24 annotation for upload-artifact and an ubuntu-latest migration notice. Both are platform notices; build and deployment succeeded. No shared workflow/configuration edited by this session.
+
+- 2026-11-04 bc8d7853: Integrated merged PR #8 deployment notes, preserving every board entry through the append-only conflict. PR #7: https://github.com/sassnarep3-star/Own9/pull/7. Discovered overlapping PR #6 only after this session’s claims were already pushed; posted coordination request https://github.com/sassnarep3-star/Own9/pull/6#issuecomment-6641194254. Its secondary-source numerical analysis is not integrated or certified by this release (only two official completed scores checked according to that PR). No other branch was changed or closed. This evidence gap is now F12 on Flagged for Review.

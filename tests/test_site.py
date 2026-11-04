@@ -8,7 +8,7 @@ class SiteVerification(unittest.TestCase):
     def test_site(self):
         errors,rows=check()
         self.assertEqual(errors,[])
-        self.assertEqual(rows,75)
+        self.assertEqual(rows,76)
     def test_parser(self):
         p=Page();p.feed('<main id="x"><h1>Title</h1><table><tr><td>A</td><td><a href="https://example.com">Ref</a></td></tr></table></main>')
         self.assertTrue(p.main)
