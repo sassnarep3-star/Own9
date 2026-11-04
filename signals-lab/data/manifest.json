@@ -1,0 +1,36 @@
+{
+  "generated_utc": "2026-11-04T20:28:03+00:00",
+  "sources": {
+    "nfl_game_center_feed": {
+      "repo": "https://github.com/nflverse/nflfastR-raw",
+      "commit": "61ab6b3dd2179d06766834784c8ba24649c8ba6c",
+      "commit_date": "2026-02-08T22:36:14-05:00",
+      "path_pattern": "raw/<season>/<season>_<week>_<away>_<home>.json.gz",
+      "files_per_season": {
+        "2015": 267,
+        "2016": 267,
+        "2017": 267,
+        "2018": 267,
+        "2019": 267,
+        "2020": 269,
+        "2021": 285,
+        "2022": 284,
+        "2023": 285,
+        "2024": 285,
+        "2025": 285
+      },
+      "files_total": 3028,
+      "combined_sha256_of_name_and_file_hashes": "0ab12bf97257b7c819e8ff75d3b06621aa0613efd4504686d434a46979f7138f",
+      "note": "Archived copy of the NFL game-center JSON feed; every value used is reconciled to NFL.com pages in data/verified/."
+    },
+    "nfldata_games_csv": {
+      "repo": "https://github.com/nflverse/nfldata",
+      "commit": "d48ea039e3683aabdf1f1f610320b3e1d1c86409",
+      "commit_date": "2026-11-04T20:15:17+00:00",
+      "path": "data/games.csv",
+      "bytes": 2188866,
+      "sha256": "7ffb1700463531efc3909f486a3fa793a350876d495a7be3afd2d64a656ddd8c",
+      "note": "Third-party schedule/results table. Betting-line columns are never used. Scores are reconciled to NFL.com before use."
+    }
+  }
+}

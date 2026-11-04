@@ -1,0 +1,5 @@
+# raw downloads live outside the repo (default ~/.cache/own9/raw); never commit them
+data/raw/
+__pycache__/
+*.pyc
+.venv/
