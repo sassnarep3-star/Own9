@@ -360,17 +360,18 @@ flags = [
     ('F7', 'Forward check is tiny', f"2026 forward sample: {fw2['bets']} bets. Result {pct(fw2['hit_rate'])} with p = {num(fw2['p_value'], 3)}. Not evidence of skill.", NFL_SCHED, 'Flagged'),
     ('F8', 'Season URL redirects', 'https://www.nfl.com/schedules/2025 redirected to the current 2026 schedule page when fetched. Season-specific links were not used.', NFL_SCHED, 'Flagged'),
     ('F9', 'Upstream data license not verified', 'The nflverse nfldata repository was downloaded without a confirmed license for redistribution. Verify before publishing data beyond this site. Third-party source: nflverse/nfldata.', NFL_SCHED, 'Unverified'),
+    ('F10', 'Own-line model underperforms market', f"MAE gap {num(g4['mae_difference'])} points (CI {num(g4['diff_ci95'][0], 3)} to {num(g4['diff_ci95'][1], 3)}). This is a finding, not a bug, but it blocks every strategy that relies on the model.", NFL_SCHED, 'Flagged'),
     ('F11', 'Carried forward: source scope', 'Contextual references (NIST, nfl.com, WSGC) support methods and context. They do not show that any strategy, reward or proposal works. Earlier review wording (source scope) still applies.', NFL_SCHED, 'Needs review'),
     ('F12', 'Carried forward: NFL page scope', 'The nfl.com stats page is dynamic. No point-in-time stats snapshot is kept here. This site stores only the 5 verified game pages and the third-party games file.', NFL_STATS, 'Needs review'),
     ('F13', 'Carried forward: tail risk', 'Skew and heavy tails can distort averages. Margin and bet-return distributions were summarised by hit rate and ROI only; no distribution-level review was done.', NFL_SCHED, 'Needs review'),
     ('F14', 'Carried forward: luck', 'Randomness cannot be removed from single-game outcomes. Confidence intervals quantify uncertainty under assumptions; they do not remove luck.', NIST, 'Limitation'),
     ('F15', 'Independent release-quality report', 'A separate read-only HTML/link/accessibility report on the shared pages, from another session, is published at release-checks/index.html. It checks structure and source presence only. It does not verify factual claims. Open the report: <a href="../release-checks/index.html">release-checks/index.html</a>.', 'https://docs.github.com/en/pages/getting-started-with-github-pages/what-is-github-pages', 'Needs review'),
-    ('F10', 'Own-line model underperforms market', f"MAE gap {num(g4['mae_difference'])} points (CI {num(g4['diff_ci95'][0], 3)} to {num(g4['diff_ci95'][1], 3)}). This is a finding, not a bug, but it blocks every strategy that relies on the model.", NFL_SCHED, 'Flagged'),
+
 ]
 body = f'''{notice('<strong>Flagged for Review.</strong> These items do not block publication. Each row shows what needs checking and where. Please review and request changes.', 'warn')}
 {table(['ID', 'Item', 'Irregularity or gap', 'Status', 'Official reference'], [
     [f, t, d, tag(s), link(u)] for f, t, d, u, s in flags])}
-<h2>Coordination</h2><p>This session is the only one working on the NFL research task on this branch. Open PR #2 from another session is noted in COORDINATION.md and was not merged or changed by this session.</p>'''
+<h2>Coordination</h2><p>Several sessions have worked on NFL research in parallel (see COORDINATION.md). This page covers only the <code>own9-research/</code> scope. Root-level dashboard files, root tools and root data belong to other sessions and were not edited.</p>'''
 page('flags.html', 'Flagged for review', 'NFL / FLAGGED FOR REVIEW', body)
 
 print('built', len(NAV), 'pages')
