@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Builds the static GitHub Pages site at the repo root from data/site/*.json and verified source facts.
+"""Builds the research site in research/ from research/data/site/*.json and verified source facts.
 
 Run after analyze.py:  python analysis/build_site.py
 Every table row carries a source link (official site or the named secondary dataset) and a
@@ -11,8 +11,8 @@ import json
 from pathlib import Path
 
 ROOT = Path(__file__).resolve().parents[1]
-DOCS = ROOT  # site is served from the repository root (GitHub Pages: main /)
-DATA = ROOT / "data" / "site"
+DOCS = ROOT / "research"  # research site lives in research/ so it does not collide with the root site
+DATA = DOCS / "data" / "site"
 TODAY = "2026-11-04"
 
 S = json.loads((DATA / "summary.json").read_text())
@@ -113,7 +113,7 @@ def page(fname, title, body, active=None, extra_head=""):
 <body>
 <header class="top">
   <div class="brand"><a href="index.html">Own9 · NFL signal research</a></div>
-  <nav>{nav}</nav>
+  <nav>{nav}<a href="../" class="mainlink">Main site ↗</a></nav>
 </header>
 <main>
 {body}
