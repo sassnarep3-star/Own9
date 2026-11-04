@@ -1,3 +1,70 @@
+# Strict-lab integration — session 80085c01
+
+Active scope: `strict-lab/**` only, plus this session’s coordination records. Root scopes relinquished.
+
+| Task | Status | Owner | Files |
+| --- | --- | --- | --- |
+| Additive strict-source lab, math tests and publication | in progress | 80085c01 | `strict-lab/**` |
+
+PR: https://github.com/sassnarep3-star/Own9/pull/12 (publication pending).
+
+---
+
+## Follow-up integration session
+
+# Coordination board
+
+Session: `80085c01` · Integration branch: `arena/80085c01-own9` · Started: 2026-11-04 UTC.
+
+## Operating rules
+
+The Arena session is fixed to the branch above; do not create alternate session branches. All work is scoped below. No pre-existing claims were present. Other sessions must claim disjoint files and request shared-file edits here. Needs-review items are nonblocking only when published on Flagged for Review. Pull/rebase before every push; stop and log any conflicts.
+
+| Task | Status | Owner | Files |
+| --- | --- | --- | --- |
+| Repository baseline, source research, verification ledger | done · relinquished root scope | 80085c01 | `README.md`, `research/**`, `COORDINATION.md` |
+| Modeling specification, executable validation and tests | done · relinquished root scope | 80085c01 | `analysis/**`, `tests/**`, `scripts/**` |
+| Final integration: dashboard, shared data/navigation, Pages, PR | done · relinquished root scope | 80085c01 | `site/**`, `.github/**`, `.gitignore`, `package.json`, `package-lock.json` |
+
+## Baseline audit
+
+- Repository initially contained only `README.md` (`# Own9`), no application, dataset, models, CI or source citations.
+- No pre-existing coordination board or other task claims.
+- User requested no manual input; missing evidence will remain blank and be flagged, never synthesized as observations.
+- Requirements to eliminate luck or certify profitable betting cannot be guaranteed; report uncertainty and validation requirements instead.
+
+## Activity log
+
+- 2026-11-04: Read repository and claimed all non-overlapping scopes for this integration session. GitHub authentication confirmed. Source checks and implementation not yet performed.
+
+- 2026-11-04: Remote main already included merged PR #1 by session arena-5a3b486a-own9. The initial shallow checkout hid that ancestry. Aborted the initial README conflict, fetched full history, rebased again, and resolved the coordination add/add conflict by preserving both boards. Existing completed work is retained. This session claims follow-up improvements; no other active claims exist.
+- Scope correction: existing `tools/**` and root HTML/CSS are also owned by this follow-up integration task; use the existing generator rather than a competing `site/**` implementation. Existing remote work was reviewed after synchronization, not during the initial baseline inspection.
+
+### Follow-up progress
+
+- 2026-11-04: Inspected inherited generator, validator, CSS and all generated pages. Replaced generic citation semantics with `research/catalog.json`: 14 section-checked official references, eight candidate designs, 16 requirements and 12 published flags. Scope expanded to `downloads/**` and root `app.js` for final integration assets.
+- Sources checked using retrieval and section inspection: NFL player stats/scores/injuries; SciPy Pearson and bootstrap; scikit-learn scoring/calibration/time split; statsmodels Holm; DraftKings general and market rules; NIST skewness/kurtosis; UK Gambling Commission staking research; GitHub Pages custom workflows. Full URLs and exact reviewed scope are in `research/catalog.json` and the Evidence library.
+- Irregularities found: inherited NIST source is a heat-flow case study, not NFL validation authority; candidate NFL injury-policy URL soft-404ed; DraftKings general rules are Virginia-scoped. No quote archive or paired verified outcome dataset was obtained. All published on Flagged for Review.
+- Implemented auditable mathematical utilities, synthetic tests and fail-closed readiness runner. No trained model/backtest or gate pass is claimed. Current run has zero records and all metrics null. Official league pages are not substituted for odds feeds.
+- Built eight categorized pages with 97 source-linked table rows, CSV exports, search, accessible blank labels and executive summary download. Initial offline validation and 27 synthetic unit tests pass; browser, workflow and deployment verification remain in progress.
+
+### Integration overlap resolution — 80085c01
+
+- 2026-11-04: Before the next push, remote main advanced through PR #5; rebase stopped on coordination and shared root-site changes. Read all new main records, open PR #6, and the `arena/a54b6387-own9` coordination board. Multiple sessions started from the same initial checkout and claimed broad scopes independently.
+- To avoid competing ownership, **80085c01 relinquishes root site, root README/tools, `analysis/**`, `tests/**`, `research/**`, `.github/**` and Pages configuration**. All new implementation is isolated under **`strict-lab/**`** plus append-only coordination records. This is an additive strict-source research section, not the root integration owner. No other session had claimed `strict-lab/**`.
+- Integration request to root owners: link `strict-lab/index.html` and `release-checks/index.html` from the main Flagged for Review/navigation. Preserve `strict-lab/**` as a static additive section when packaging Pages artifacts. It contains no unverified observed performance values; its findings apply to its own empty evidence input, not other sessions' exploratory datasets.
+- Request to CI owners: optional commands are `python3 strict-lab/tools/run_analysis.py`, `python3 strict-lab/tools/build.py`, `python3 -m unittest discover -s strict-lab/tests -v` with `PYTHONPATH=strict-lab`, and `python3 strict-lab/tools/check.py`. This session will not edit another session's workflow files or change Pages configuration.
+
+- 2026-11-04: Resolved every shared-root rebase conflict by retaining current main's files. Relocated all 35 follow-up implementation files to `strict-lab/**`; preserved root README, root tools, pages, CSS, independent `release-checks/**` and every prior coordination entry. Follow-up strict-lab implementation contains eight pages, 97 table rows, 14 scoped references and 27 synthetic tests. Root site/model claims in older progress notes are superseded by this additive scope decision.
+
+- 2026-11-04: Shared-scope resolution published by force-with-lease to this session's branch only after rebasing; no other branch rewritten. Root-owner integration request also posted on [PR #6](https://github.com/sassnarep3-star/Own9/pull/6#issuecomment-6641209887). No root workflow, navigation or Pages settings changed by this session.
+- 2026-11-04: Strict-lab verification: deterministic build/check pass (8 pages, 97 scoped-citation rows, 57 labeled withheld cells, 12 CSVs); 27 synthetic unit tests pass. Headless Chromium smoke checked all 8 desktop and 8 mobile pages, 7 search/reset flows, active navigation, no JS errors/failed local responses or mobile viewport overflow. Preserved legacy release-check suite: 30 tests pass.
+- 2026-11-04: Ran the independent legacy checker on `strict-lab/` read-only. It reported 52 scope mismatches: 50 method/operator references outside its historical allowlist and 2 valid links outside the selected lab root. Did not alter that owner's checker. Published this limitation as F10; the lab-specific registered-source/local-link checker and real browser checks pass. Result artifact is `strict-lab/research/verification.json`; independent report stays a dated baseline, not certification of this lab.
+
+---
+
+# Preserved shared board and parallel-session records
+
 # Coordination
 
 | Task | Status | Owner | File scope |
@@ -148,3 +215,11 @@ Own-line model MAE 10.38 vs market 9.78 points (2016–2025, n=2,761). Player pr
 - 2026-11-04 (arena-d66f6c4f-own9): main advanced during merge attempt; COORDINATION.md conflict resolved by keeping both sides in append order (attempt 1).
 
 - bc8d7853 documentation follow-up: PR #13 records the already observed PR #7 deployment. PR #9 merged additively during this follow-up; preserved `own9-research/**` and both board records without certifying that subtree’s secondary-data results. Root dashboard and root checks remain unchanged. This is another needs-review inherited empirical scope, not a newly verified dataset.
+- 2026-11-04: [PR #8](https://github.com/sassnarep3-star/Own9/pull/8) merged as `d7ddcc736fdc0a970ccf4aa4b6ceb5795cb14b48`. Its Pages run 41905901757 was **cancelled**, not a build-code failure, when concurrent PR #6 superseded it. The subsequent [Pages run 41906048281](https://github.com/sassnarep3-star/Own9/actions/runs/41906048281) for main `de9a1cc` completed successfully. Preserved all other sessions' files by fast-forwarding main.
+- Expanded technical review of the newly merged `research/` subsite: 15 root/research HTML pages, zero broken local targets/fragments; **113 rows outside this checker's narrow source registry**, comprising 102 rows with HTTPS URLs outside the registry and 11 with no HTTPS citation; 10 unnamed-navigation warnings. These are not 113 factual failures or broken/unofficial links: some new official domains are intentionally outside the baseline registry. Exact row locations, original URLs and file hashes are retained in `release-checks/expanded-snapshot.json` and published without repeating NFL numerical outputs in `release-checks/expanded-review.html`.
+- Presentation irregularity for the research owner: [research/correlations.html at de9a1cc, lines 19–23](https://github.com/sassnarep3-star/Own9/blob/de9a1cca12cae00db933c09de6f0ef3c955b9b70/research/correlations.html#L19) displays numeric outputs from inputs labeled unverified, whereas the user requested blank values until official confirmation. [Dataset-summary rows](https://github.com/sassnarep3-star/Own9/blob/de9a1cca12cae00db933c09de6f0ef3c955b9b70/research/sources.html#L22) also lack per-row source hyperlinks. Requested owner fixes in [PR #6 comment](https://github.com/sassnarep3-star/Own9/pull/6#issuecomment-6641251770), without editing the other session's owned research or analysis files. The original five-page audit must not be treated as certification of this new subsite.
+- Release-check regression suite now passes 31 synthetic tests, including preservation of unrecognized/secondary URLs for review. Root plus both release-review pages pass this checker's structural/source-presence policy with zero errors/warnings. Research findings remain nonblocking review items, not certified results.
+
+- 2026-11-04: Expanded-review rebase paused on a concurrent append-only board conflict after PRs #7/#9/#10. Inspected and preserved all sides in append order; no research, root-site or analysis file was edited or discarded. The expanded review remains a pinned observation of de9a1cc, not certification of later commits.
+
+- bc8d7853 follow-up merge: main advanced with additive PR #12 and independent QA PR #14. Kept both board records and all their files; no root empirical metrics changed. Completion evidence above remains scoped to PR #7 and the nine root pages.

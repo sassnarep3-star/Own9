@@ -84,6 +84,14 @@ class ReleaseAuditTests(unittest.TestCase):
         result = self.run_fixture('<table><tr><th>Claim</th></tr><tr><td>Missing source</td></tr></table>')
         self.assertIn('row-no-source', self.codes(result))
 
+    def test_unrecognized_citations_retained_for_review(self):
+        url = 'https://github.com/nflverse/nfldata/blob/master/data/games.csv'
+        result = self.run_fixture(f'<table><tr><th>Claim</th></tr><tr><td><a href="{url}">Secondary</a></td></tr></table>')
+        row = result['pages'][0]['rows'][0]
+        self.assertEqual(row['links'], [url])
+        self.assertEqual(row['sources'], [])
+        self.assertIn('row-no-source', self.codes(result))
+
     def test_headers_required(self):
         result = self.run_fixture(f'<table><tr><td><a href="{SOURCE}">Context</a></td></tr></table>')
         self.assertIn('table-no-headers', self.codes(result))

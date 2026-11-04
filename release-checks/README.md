@@ -32,3 +32,9 @@ The rendered report links each audited row to its original source URLs and its e
 ## Integration request
 
 Link `release-checks/index.html` from the main dashboard's Flagged for Review page. Only the shared-page owner should make that edit. This report can be visited directly without navigation changes.
+
+## Expanded research-subsite handoff
+
+`python3 release-checks/expand.py` audits the root pages and `research/*.html` added by another session after our baseline. It refuses to pin evidence URLs if those audited HTML files have uncommitted changes. It writes `expanded-snapshot.json` and `expanded-review.html` with exact row locations and URLs, **without copying unverified NFL numerical results**. Run `render.py` afterwards to link that review from the original report.
+
+Its narrow-registry failures distinguish an absent HTTPS source from a present but unrecognized URL. A registry miss is neither a broken-link finding nor proof that a domain is unofficial. Official-domain additions require explicit review; secondary datasets must not be silently promoted to verified official outcomes. Dynamic JavaScript-rendered rows remain outside this static HTML scan.

@@ -1,0 +1,13 @@
+{
+  "review_date": "2026-11-04",
+  "scope": "strict-lab only; other sessions' models and datasets are not certified",
+  "unit_tests": {"synthetic_only": true, "passed": 27, "failed": 0},
+  "static_check": {"pages": 8, "cited_table_rows": 97, "withheld_cells": 57, "csv_tables": 12, "deterministic": true, "local_links_and_assets": "passed"},
+  "browser_smoke": {"engine": "Chromium via Playwright", "desktop_viewport": [1440, 1050], "mobile_viewport": [390, 844], "desktop_pages": 8, "mobile_pages": 8, "search_reset_flows": 7, "javascript_errors": 0, "failed_local_responses": 0, "mobile_viewport_overflow": false},
+  "preserved_legacy_tests": {"release_checks_synthetic_tests_passed": 30},
+  "legacy_checker_on_lab": {"findings": 52, "source_hosts_outside_old_allowlist": 50, "cross_section_links_outside_selected_root": 2, "handling": "Published as scope mismatch in Flag F10; did not edit another session's checker"},
+  "semantic_source_review": "14 official contextual documents, inspected sections and limitations in catalog.json; not full-document certification",
+  "real_data_backtest": "not run; blocked",
+  "strategy_gates_passed": 0,
+  "wagering": "not implemented"
+}
