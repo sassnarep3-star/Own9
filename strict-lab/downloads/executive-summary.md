@@ -6,7 +6,8 @@ Evidence review: 2026-11-04 UTC.
 Do not deploy capital. This is a research framework with tested mathematical
 utilities, not a verified NFL pricing model or profitable betting system. Luck
 cannot be removed. No independently verified point-in-time market dataset,
-trained model, measured correlation, sealed backtest or funded reward exists.
+trained model, measured correlation, sealed backtest or funded reward exists in
+this strict-source lab. Other sessions’ exploratory work is outside its scope.
 
 ## Research design
 Eight candidate designs cover opponent-adjusted game lines, availability,
@@ -26,7 +27,8 @@ noncash recognition only, with no funded program or winners.
 Static dashboard; source-linked tables and CSV exports; score-PMF price
 integration; refund-aware EV; two-leg joint feasibility; phi and cluster bootstrap;
 Brier/log loss; Holm adjustment; timestamp checks; fail-closed readiness report;
-synthetic unit tests; automated build and deployment checks.
+synthetic unit tests; deterministic build and local-link checks. Root integration
+owners control automated publication; no lab-specific workflow is installed.
 
 ## Evidence boundary
 Official NFL pages establish potential input fields, not sportsbook prices or

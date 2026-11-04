@@ -106,7 +106,7 @@ def check_all():
                     errors.append(f'{filename}: unregistered official link {link}')
                 continue
             target=ROOT/unquote(parsed.path) if parsed.path else ROOT/filename
-            if not target.resolve().is_relative_to(ROOT): errors.append(f'{filename}: escaping local link')
+            if not target.resolve().is_relative_to(ROOT.parent): errors.append(f'{filename}: escaping local link')
             elif not target.is_file(): errors.append(f'{filename}: missing local asset {link}')
             if parsed.fragment and target.suffix=='.html' and target.name in parsed_pages:
                 if unquote(parsed.fragment) not in parsed_pages[target.name].ids:

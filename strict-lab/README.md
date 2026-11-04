@@ -1,10 +1,10 @@
 # Own9 · NFL Research Lab
 
-**Live site:** https://sassnarep3-star.github.io/Own9/
+**Live site:** https://sassnarep3-star.github.io/Own9/strict-lab/
 
 A source-linked, static research dashboard for originating NFL fair lines,
 registering signal hypotheses and evaluating reproducible forecasting skill.
-The original dashboard from PR #1 is preserved and expanded by this integration.
+This additive `strict-lab/` section preserves all root site and parallel-session work. It makes no certification of another session’s exploratory dataset or model.
 
 ## Executive decision
 
@@ -15,8 +15,8 @@ funded reward exists. Luck cannot be removed. Missing measured values stay
 `null` in JSON and blank (explicitly labeled unverified) in tables.
 
 The [executive summary](downloads/executive-summary.md),
-[Evidence library](https://sassnarep3-star.github.io/Own9/sources.html), and
-[Flagged for Review](https://sassnarep3-star.github.io/Own9/flags.html) describe
+[Evidence library](https://sassnarep3-star.github.io/Own9/strict-lab/sources.html), and
+[Flagged for Review](https://sassnarep3-star.github.io/Own9/strict-lab/flags.html) describe
 verified source scope, proposals and remaining evidence gaps separately.
 
 ## Contents
@@ -38,6 +38,8 @@ verified source scope, proposals and remaining evidence gaps separately.
 
 ## Run locally (Python 3.11+; no dependencies or secrets)
 
+From the repository root, first `cd strict-lab`.
+
 ```sh
 python3 tools/run_analysis.py
 python3 tools/build.py
@@ -46,9 +48,10 @@ python3 tools/check.py
 python3 -m http.server 8000 --bind 0.0.0.0
 ```
 
-Open `http://localhost:8000/Own9/` only when the server serves a parent directory
-containing `Own9`; with the commands above, open `http://localhost:8000/` instead.
-The deployed site uses relative paths and works under GitHub Pages `/Own9/`.
+With the lab directory as the server root, open `http://localhost:8000/`.
+To include the cross-links to the main site and independent release baseline,
+serve from the repository root and open `/strict-lab/` instead. The deployed
+section uses relative paths under GitHub Pages `/Own9/strict-lab/`.
 
 `tools/check.py` checks local links, fragments, assets, table citation registration,
 source scopes, exports, explicit empty-value labels and deterministic generation.
@@ -63,10 +66,12 @@ without user input. Even structurally valid records cannot promote a strategy:
 independent provenance, model and experiment review have not been implemented.
 Licensed data cannot be obtained by a static site or reconstructed retroactively.
 
-GitHub Actions builds/tests on PRs and main, with a weekly readiness rebuild.
-Only checked static site assets and research artifacts are uploaded for Pages.
-Deployment runs only from main after the build checks. This does not place bets,
-request credentials, obtain paid data or re-certify dynamic source facts.
+Existing root publishing is preserved. Root integration owners control Pages
+configuration and workflow files; this session does not modify their scopes.
+There is no lab-specific scheduled workflow installed. The readiness runner is
+automatic when invoked and requires no manual data input; it does not acquire
+paid feeds or re-certify dynamic source facts. Integration requests are in the
+shared `../COORDINATION.md` board.
 
 ## File map
 
@@ -79,7 +84,7 @@ request credentials, obtain paid data or re-certify dynamic source facts.
 | `tests/` | Synthetic tests only, not empirical findings |
 | `tools/` | Readiness, deterministic site generation, structural checks, deployment packaging |
 | Root HTML/CSS/JS, `downloads/` | Published dashboard and exports |
-| `COORDINATION.md` | Shared claims, preserved session history, sources, conflicts, PR and deployment log |
+| `../COORDINATION.md` | Shared claims, preserved session history, sources, conflicts, PR and deployment log |
 
 ## Important flags
 
