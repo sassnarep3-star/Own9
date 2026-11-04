@@ -1,0 +1,7 @@
+# Raw third-party data is fetched at a pinned commit by pipeline/00_fetch_data.py.
+# It is not committed: the upstream nflverse/nfldata repo carries no LICENSE file,
+# so redistribution terms are undefined (flagged in docs/VERIFICATION_LOG.md).
+data/raw/
+__pycache__/
+*.pyc
+.venv/
