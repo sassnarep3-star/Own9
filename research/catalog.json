@@ -622,13 +622,14 @@
     },
     {
       "id": "F12",
-      "title": "Pages settings permission",
-      "detail": "GitHub Pages settings writes returned HTTP 403. Existing main/root branch publishing is retained; our additive dashboard is isolated in site/.",
-      "impact": "No settings change required; deployment result tracked separately in coordination log.",
+      "title": "Pages metadata / permission discrepancy",
+      "detail": "At the 2026-11-04 publication check, Actions run 41907622262 and deployment 7557168775 reported success and public lab pages loaded, but the legacy Pages build API reported errored for the same commit. Settings/build-request APIs returned HTTP 403.",
+      "impact": "Conflicting platform metadata is not hidden. Native rerun was unavailable; the live site and successful deployment record were independently checked. Existing publishing source retained.",
       "status": "needs review",
       "source_ids": [
         "GH-PAGES"
-      ]
+      ],
+      "review_url": "https://github.com/sassnarep3-star/Own9/actions/runs/41907622262"
     },
     {
       "id": "F11",

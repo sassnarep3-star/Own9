@@ -72,3 +72,18 @@ does not certify secondary-source empirical numbers in inherited subtrees. They
 are flagged as F13, not copied into this site. The integration owner was asked
 to add navigation links; this session does not overwrite that owner's files.
 The earlier root-mirror publication plan is superseded by isolated `site/` output.
+
+## Publication metadata discrepancy (dated observation)
+
+Actions run `41907622262` completed all build/report/deploy jobs successfully,
+and deployment `7557168775` reported success for commit
+`e974a18ccd6d1903d4121ae24302624fd14ed044`. Public lab overview and review pages
+were independently retrieved. The legacy Pages `/pages/builds/latest` and site
+status nevertheless reported errored for that same commit. No cause is inferred.
+A selected-public-fields snapshot is preserved at
+`research/publication/2026-11-04.json` (repository-relative path). Native dynamic
+workflow rerun was rejected by the available CLI endpoint; POST build request
+and settings writes returned HTTP 403. This discrepancy is published as F12
+with a direct official deployment-record link; successful deployment and live
+content do not erase conflicting metadata. Detailed run-log download was blocked
+by the sandbox network allowlist; no log content is invented.
