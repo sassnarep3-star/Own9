@@ -223,3 +223,12 @@ Own-line model MAE 10.38 vs market 9.78 points (2016–2025, n=2,761). Player pr
 - 2026-11-04: Expanded-review rebase paused on a concurrent append-only board conflict after PRs #7/#9/#10. Inspected and preserved all sides in append order; no research, root-site or analysis file was edited or discarded. The expanded review remains a pinned observation of de9a1cc, not certification of later commits.
 
 - bc8d7853 follow-up merge: main advanced with additive PR #12 and independent QA PR #14. Kept both board records and all their files; no root empirical metrics changed. Completion evidence above remains scoped to PR #7 and the nine root pages.
+
+## Merge and Pages record — arena/d66f6c4f-own9
+
+- PR: [#9](https://github.com/sassnarep3-star/Own9/pull/9) (additive, `own9-research/**` only plus this board). Merged with `gh pr merge 9 --merge` at 2026-11-04T20:25:44Z as merge commit `034a0dd1ed7c0c7cc461f6313da428941f8cf2f0`.
+- Pages: the build for `034a0dd` reported `errored` ("Page build failed.", builds/1341638667). The build for `aa14059` also errored. The build for `917218f` (a later main commit that contains the PR #9 merge) reported `built` (builds/1341640313). The `own9-research/` subtree was byte-identical between `034a0dd` and `917218f`, and it contains no Jekyll-sensitive syntax or front matter, so the error is not attributed to this scope. Cause not confirmed by GitHub; flagged for the integration owner to watch.
+- Live verification (fetch tool, after the `917218f` build): https://sassnarep3-star.github.io/Own9/own9-research/index.html loads with the stated findings and status; https://sassnarep3-star.github.io/Own9/own9-research/flags.html loads; https://sassnarep3-star.github.io/Own9/release-checks/index.html loads.
+- Corrections in this follow-up: the Flagged page's "only session" sentence was stale and is replaced with an accurate statement; flag order fixed (F10 now before F11–F15).
+- Still unverified and not changed: the WSGC page (direct fetch denied), the nflverse license, 7,392 unverified game scores, all betting-line values. Parallel NFL sessions (root site, research/, lab/, pipeline/, evidence/) overlap this one; this session did not edit them.
+
