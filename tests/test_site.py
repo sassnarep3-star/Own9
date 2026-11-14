@@ -11,6 +11,21 @@ class SiteVerification(unittest.TestCase):
         # Row count grows as verified evidence is added; it must never shrink silently.
         self.assertGreaterEqual(rows,458)
 
+    def test_live_to_paper_demotion_gate_is_fail_closed_and_sourced(self):
+        root=Path(__file__).resolve().parents[1]
+        html=(root/'leaderboard.html').read_text()
+        p=Page();p.feed(html);p.close()
+        self.assertIn('Live-to-paper demotion gate',html)
+        self.assertIn('Immediately stop new live issuance',html)
+        self.assertIn('Missing/invalid evidence counts as not passing',html)
+        self.assertIn('live activation is blocked until frozen',html)
+        self.assertIn('Full requalification against all seven frozen gates',html)
+        gate_rows=[r for r in p.rows if r['cells'] and r['cells'][0].startswith((
+            'Integrity or operational breach:', 'Scheduled validation:', 'Re-entry after a performance demotion'))]
+        self.assertEqual(len(gate_rows),3)
+        self.assertTrue(all('https://github.com/sassnarep3-star/Own9' in r['links'] for r in gate_rows))
+        self.assertIn('not operationally active',html)
+
     def test_preserved_decision_questions_page(self):
         # Session 8de532d1's page is preserved verbatim in substance on its own
         # route, because this session's questions.html is a different register.

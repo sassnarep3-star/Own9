@@ -1,0 +1,8 @@
+game_id,season,week,home_team,away_team,home_score,away_score,status,source_url,retrieved_utc,overtime,total_line,spread_line
+# Verified results feed schema — populated only from official NFL publications.
+# Required columns: game_id, season, week, home_team, away_team, status,
+#   source_url, retrieved_utc.
+# Optional columns: home_score, away_score (blank for non-final games),
+#   overtime, total_line, spread_line.
+# Scores stay blank until confirmed by an official game center or Game Book.
+# No outcome is inferred from a schedule listing or a team record.
