@@ -751,7 +751,15 @@ No empirical NFL line, correlation, ROI, rank or reward was inferred. Other sess
 
 | Task | Status | Owner | File scope |
 | --- | --- | --- | --- |
-| Define and publish a fail-closed live-to-paper demotion gate; add regression coverage | in progress | `arena/feaa600b-own9` | `tools/build.py`, generated `leaderboard.html`, `tests/test_site.py`, append-only `COORDINATION.md` |
+| Define and publish a fail-closed live-to-paper demotion gate; add regression coverage | done | `arena/feaa600b-own9` | `tools/build.py`, generated `leaderboard.html`, `tests/test_site.py`, append-only `COORDINATION.md` |
 
 - Read the coordination board before starting. Existing scopes relevant to the shared root dashboard are recorded complete; no current in-progress claim covers these exact files. Work remains on Arena's fixed branch `arena/feaa600b-own9`; no alternate branch/worktree.
 - Scope deliberately excludes measured NFL metrics, historical injury/depth transcription, source manifests and unrelated dashboards. Gate design will be labeled as project policy, distinguish immediate integrity/data-safety triggers from frozen statistical triggers, keep empirical thresholds blank until justified, and block live eligibility until the operating parameters are specified. Every row will retain a source link.
+
+### Completion — session `feaa600b`, 2026-11-14 UTC
+
+- Added a dedicated live-to-paper gate to the generated root `leaderboard.html`. Integrity, provenance, settlement, stale/corrupt input, unauthorized-version, or frozen kill-switch failures stop new live issuance immediately and put the strategy in Paper; performance/stability demotion occurs automatically when any frozen mandatory gate ceases to pass, with missing evidence treated as failure. Re-entry requires complete seven-gate requalification on untouched prospective evidence; a changed version starts a new sealed evaluation.
+- Made the honest boundary prominent: gate is a **defined project proposal, not an operational system**. No strategy is live or performance-validated. The monitoring window, minimum n, confidence method/alpha, cadence, stale-data tolerance, and exposure cap remain unset and block any live activation; no thresholds or NFL values were invented. Each gate row links to the repository policy record and, where applicable, the existing scikit-learn method reference.
+- Added regression test `test_live_to_paper_demotion_gate_is_fail_closed_and_sourced` to verify all three gate rows, mandatory source links, automatic fail-closed behavior, unset operating settings, requalification and inactive status.
+- Verification: `npm test` passed (107 tests; root verifier reports 19 pages / 661 source-linked rows; availability and decision-register validators pass; 15-page additive-site checker passes); deterministic root regeneration passed; `git diff --check` passed; root browser suite passed 19 pages at desktop/mobile, 38 axe scans, no console errors. `npm ci --ignore-scripts` installed the locked browser tooling (0 reported vulnerabilities).
+- Push coordination: `git pull --rebase origin arena/feaa600b-own9` could not run because the remote branch did not exist yet; the claim commit was pushed to create the fixed current branch. Subsequent pushes will fetch/rebase against it first. No other task scope was changed.
