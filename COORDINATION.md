@@ -336,6 +336,8 @@ The claim above records the initial base-only view, not a takeover of later publ
 
 | Task | Status | Owner | Files |
 |---|---|---|---|
-| Add dedicated, decision-ready suggestions register to NFL dashboard | in progress | `arena/1e706e6a-own9` | `scripts/build_site.py`, `scripts/check_site.py`, `tests/test_site.py`, generated `site/suggestions.html`, generated `site/index.html`, `COORDINATION.md` |
+| Add dedicated, decision-ready suggestions register to NFL dashboard | in progress | `arena/1e706e6a-own9` | `scripts/build_site.py`, `scripts/check_site.py`, `scripts/browser_test.cjs`, `tests/test_site.py`, generated `site/*.html`, `COORDINATION.md` |
+
+Scope extension: the existing browser test asserts a fixed nine-link navigation count. Updating it to verify the new shared navigation and exercising the suggestions page is required for a valid full-suite run; the browser test is now included in this claim.
 
 Scope is additive and limited to this branch. Existing empirical claims/data will not be promoted or edited. Purpose: list proposal, decision questions, known/unknown evidence, discovery step, risk, and decision status so a reviewer can choose a path before implementation. Test source-link requirements and all local navigation; do not claim external/live evidence not verified in this session.
