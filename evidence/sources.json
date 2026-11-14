@@ -72,6 +72,15 @@
   "scope": "Chunks 0, 3 and 11 were read in full. Team-level efficiency context and notes only; no player-level availability tier, price or participation record. Publication and republication rights are separate from this research use."
  },
  {
+  "id": "nfl-depth-chart-404",
+  "publisher": "NFL",
+  "url": "https://www.nfl.com/teams/washington-commanders/depth-chart",
+  "checked": "2026-11-14",
+  "status": "retrieved",
+  "supports": "The club depth-chart route on nfl.com returns the NFL '404 - Flag on the Play' page, so no depth chart is served at that address.",
+  "scope": "A single-route negative result, not proof that no depth chart exists anywhere or in any season. Supports only the narrower statement that this project could not obtain a depth chart from the league site, and therefore leaves every depth tier blank."
+ },
+ {
   "id": "nfl-gamebook-w10",
   "publisher": "NFL",
   "url": "https://static.www.nfl.com/image/upload/v1794570519/gamecenter/ab5828d9-4feb-11f1-abca-2c54536568a9.pdf",

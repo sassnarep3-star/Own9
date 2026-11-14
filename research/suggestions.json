@@ -71,7 +71,7 @@
    "id": "S-04",
    "title": "Distinguish a changed starter from a depth-chart demotion, and leave the tier blank",
    "category": "Availability",
-   "problem": "The request asks for second, third and fourth string replacement tracking. The NFL publishes no depth chart and no string designation. Claiming one would be fabrication.",
+   "problem": "The request asks for second, third and fourth string replacement tracking. No depth chart could be obtained from the league site (the club route returns a 404) and no string designation was found, so claiming one would be fabrication.",
    "proposal": "Track the thing that is actually published: the eleven starters in each official Game Book. Diff consecutive weeks, list who left and who entered, and record cause and depth tier as null with an explicit 'not published' label.",
    "why_it_improves_decisions": "A verified change of starters is real signal. A guessed depth tier is noise that looks like signal, which is worse than missing.",
    "cost": "Two Game Books per club-game; already done for one Week 9 to Week 10 pair.",

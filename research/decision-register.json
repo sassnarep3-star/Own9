@@ -27,13 +27,15 @@
    "group": "Outcomes and participation",
    "question": "Does the NFL publish first, second, third or fourth string depth designations?",
    "information_needed": "A league-published depth chart or string label per player.",
-   "answer": "No. The official roster page publishes number, position, roster status code, height, weight, age and college. No depth tier or starter flag is published, so every depth tier in this project stays blank.",
+   "answer": "No depth chart was obtainable. The Washington club depth-chart route on nfl.com returns the NFL '404 - Flag on the Play' page, and the official roster page publishes only number, position, roster status code, height, weight, age and college. Every depth tier in this project therefore stays blank.",
    "state": "answered",
    "sources": [
     "nfl-roster",
+    "nfl-depth-chart-404",
     "nfl-gamebook-w10"
    ],
-   "basis": "publisher"
+   "basis": "publisher",
+   "blocked_by": null
   },
   {
    "id": "Q-03",
