@@ -1,0 +1,329 @@
+{
+  "as_of": "2026-11-14",
+  "note": "Suggestions only. Nothing on this list has been implemented. Each item stays 'Awaiting decision' until the owner records an option ID in the decision log. The 'Recommended order' is a sequencing note, not a decision.",
+  "decision_log": [],
+  "items": [
+    {
+      "id": "SX01",
+      "area": "Site structure",
+      "problem": "Two dashboards and several sub-sites publish overlapping pages with different counts and wording (F36).",
+      "options": [
+        {
+          "id": "A",
+          "label": "Make this ledger site the front door and link the other sites from its directory",
+          "tradeoff": "Smallest change; old pages remain and must be kept in step."
+        },
+        {
+          "id": "B",
+          "label": "Retire the duplicates after a page-by-page check",
+          "tradeoff": "Clean, but removes work other sessions published; needs an owner ruling per page."
+        }
+      ],
+      "effort": "Low for A; medium for B",
+      "evidence_needed": "Owner choice of front door.",
+      "status": "Awaiting decision",
+      "sources": [
+        "REPO-ROOT-FLAGS"
+      ]
+    },
+    {
+      "id": "SX02",
+      "area": "Price capture",
+      "problem": "No opening or closing prices exist (Q02).",
+      "options": [
+        {
+          "id": "A",
+          "label": "Manual, time-stamped capture before each kickoff (for example T-72h, T-24h, T-1h, kickoff) from a named market page",
+          "tradeoff": "Gives real opening and closing evidence going forward; labour per week; only as good as the page snapshot time."
+        },
+        {
+          "id": "B",
+          "label": "License an archive with timestamps and settlement rules",
+          "tradeoff": "Historical depth; cost and licence terms unknown; must pass Q10 first."
+        },
+        {
+          "id": "C",
+          "label": "Do not capture prices; keep the signal track research-only",
+          "tradeoff": "No market comparison, so no closing-line value, no ROI."
+        }
+      ],
+      "effort": "Medium (A); unknown (B)",
+      "evidence_needed": "Owner choice; for B, a licence quote.",
+      "status": "Awaiting decision",
+      "sources": [
+        "DK-NFL-LEAGUE"
+      ]
+    },
+    {
+      "id": "SX03",
+      "area": "Results feed scope",
+      "problem": "Sixteen verified results cannot support a model (Q01, Q03).",
+      "options": [
+        {
+          "id": "A",
+          "label": "Load the 2026 season from official weekly pages (Weeks 1 to 10 first)",
+          "tradeoff": "Small, auditable and quick; still too few for a stable rating."
+        },
+        {
+          "id": "B",
+          "label": "Load several prior seasons from official weekly pages",
+          "tradeoff": "Enough for a rating model; many pages to read, so the work is large and must be checked row by row."
+        },
+        {
+          "id": "C",
+          "label": "Use a licensed or third-party dataset after a licence check",
+          "tradeoff": "Fastest; provenance is weaker and must be flagged (F37)."
+        }
+      ],
+      "effort": "Medium (A); high (B); low but risky (C)",
+      "evidence_needed": "Owner choice of scope and acceptable provenance.",
+      "status": "Awaiting decision",
+      "sources": [
+        "NFL-SCHED-W9",
+        "NFL-SCHED-W10"
+      ]
+    },
+    {
+      "id": "SX04",
+      "area": "Fair-line model",
+      "problem": "No fair line can be published from verified inputs (Q03).",
+      "options": [
+        {
+          "id": "A",
+          "label": "Team power ratings from verified results, refit each week on earlier weeks only",
+          "tradeoff": "Simple and transparent; weak for early-season estimates."
+        },
+        {
+          "id": "B",
+          "label": "Market-free regression on team and situational features",
+          "tradeoff": "More features; more ways to overfit; needs more data than A."
+        },
+        {
+          "id": "C",
+          "label": "Publish no fair line until SX03 Option B is done",
+          "tradeoff": "Honest but delays all originated lines."
+        }
+      ],
+      "effort": "Medium (A); high (B)",
+      "evidence_needed": "Owner choice; SX03 data scope.",
+      "status": "Awaiting decision",
+      "sources": [
+        "SK-TIME",
+        "SK-CAL"
+      ]
+    },
+    {
+      "id": "SX05",
+      "area": "Demotion thresholds",
+      "problem": "The demotion gate has no numeric thresholds yet (Q12).",
+      "options": [
+        {
+          "id": "A",
+          "label": "Conservative: N_min = 400 forecasts, n_bin = 50",
+          "tradeoff": "Slow to demote and slow to promote; fewer false alarms."
+        },
+        {
+          "id": "B",
+          "label": "Standard: N_min = 200 forecasts, n_bin = 30 (the proposed values in policy.json)",
+          "tradeoff": "Balanced; still depends on data volume."
+        },
+        {
+          "id": "C",
+          "label": "Fast: N_min = 100 forecasts, n_bin = 20",
+          "tradeoff": "Quick reaction; high false-alarm rate."
+        }
+      ],
+      "effort": "Low",
+      "evidence_needed": "Owner choice; forecast volume expected from SX02 and SX03.",
+      "status": "Awaiting decision",
+      "sources": [
+        "SK-CAL",
+        "SP-BOOT"
+      ]
+    },
+    {
+      "id": "SX06",
+      "area": "Leaderboard",
+      "problem": "A lucky staking run could hide a weak signal.",
+      "options": [
+        {
+          "id": "A",
+          "label": "Keep two tracks; rank only on signal; staking shown beside it (as built in policy.json)",
+          "tradeoff": "Directly addresses the requirement; staking still informs but cannot rank."
+        },
+        {
+          "id": "B",
+          "label": "Single combined score with a weight on staking",
+          "tradeoff": "Lets staking mask signal; not recommended by this register."
+        }
+      ],
+      "effort": "Low (already specified)",
+      "evidence_needed": "Owner acceptance.",
+      "status": "Awaiting decision",
+      "sources": [
+        "SP-BOOT"
+      ]
+    },
+    {
+      "id": "SX07",
+      "area": "Replacement depth",
+      "problem": "The NFL publishes no depth tier, so depth columns are blank (Q09).",
+      "options": [
+        {
+          "id": "A",
+          "label": "Keep tiers blank; track the chain, the injury evidence and the prior status only",
+          "tradeoff": "Strictly verifiable; less information for deficiency analysis."
+        },
+        {
+          "id": "B",
+          "label": "Use club depth charts that the clubs label unofficial, shown in a separate column",
+          "tradeoff": "More information; must never be mixed with official columns."
+        },
+        {
+          "id": "C",
+          "label": "Ask the NFL for an official depth-chart feed",
+          "tradeoff": "Best source if available; no timeline known."
+        }
+      ],
+      "effort": "Low (A); medium (B); unknown (C)",
+      "evidence_needed": "Owner choice.",
+      "status": "Awaiting decision",
+      "sources": [
+        "NFL-INJURY-W10"
+      ]
+    },
+    {
+      "id": "SX08",
+      "area": "Jurisdiction and rewards",
+      "problem": "Gambling is an offence under Articles 185 and 186 of the Penal Code. The user's location is unconfirmed, so the applicable jurisdiction is unconfirmed (Q10, F28).",
+      "options": [
+        {
+          "id": "A",
+          "label": "Stay in paper research only; no stakes or cash rewards",
+          "tradeoff": "No legal exposure from this project; no staking track in practice."
+        },
+        {
+          "id": "B",
+          "label": "Obtain a written legal opinion for the confirmed jurisdiction before any staking or reward step",
+          "tradeoff": "Cost and time; required before any real-money step."
+        },
+        {
+          "id": "C",
+          "label": "Use a non-monetary paper competition with no prize",
+          "tradeoff": "Keeps the leaderboard; removes the reward incentive."
+        }
+      ],
+      "effort": "Owner and legal review",
+      "evidence_needed": "Owner choice; if B, legal advice.",
+      "status": "Awaiting decision",
+      "sources": [
+        "EGOV-PENAL-CODE"
+      ]
+    },
+    {
+      "id": "SX09",
+      "area": "Correlation publication",
+      "problem": "No paired official data exists; the n threshold has not been chosen.",
+      "options": [
+        {
+          "id": "A",
+          "label": "n_min = 30 (proposed in policy.json)",
+          "tradeoff": "Publishes sooner; intervals are wide."
+        },
+        {
+          "id": "B",
+          "label": "n_min = 100",
+          "tradeoff": "Narrower intervals; much later publication."
+        }
+      ],
+      "effort": "Low",
+      "evidence_needed": "Owner choice.",
+      "status": "Awaiting decision",
+      "sources": [
+        "SP-R"
+      ]
+    },
+    {
+      "id": "SX10",
+      "area": "Verification",
+      "problem": "Game-centre pages for the 15 Week 9 games were not opened one by one (F31).",
+      "options": [
+        {
+          "id": "A",
+          "label": "Open each game centre and record its read time before the next integration",
+          "tradeoff": "About 15 manual checks; most reliable."
+        },
+        {
+          "id": "B",
+          "label": "Add a scheduled check that reads the schedule page each week and diffs the scores",
+          "tradeoff": "Automates detection; the diff itself still needs a human review."
+        }
+      ],
+      "effort": "Low (A); medium (B)",
+      "evidence_needed": "Owner choice.",
+      "status": "Awaiting decision",
+      "sources": [
+        "NFL-SCHED-W9"
+      ]
+    },
+    {
+      "id": "SX11",
+      "area": "Review workflow",
+      "problem": "COORDINATION.md is about 130 KB and the flagged items are spread across several pages.",
+      "options": [
+        {
+          "id": "A",
+          "label": "Keep the flags page as the single review queue, with a decision column the owner fills in",
+          "tradeoff": "One place to review; the owner must edit the register."
+        },
+        {
+          "id": "B",
+          "label": "Move the board into a structured register with one file per item",
+          "tradeoff": "Easier to scan; requires a migration."
+        }
+      ],
+      "effort": "Low (A); medium (B)",
+      "evidence_needed": "Owner choice.",
+      "status": "Awaiting decision",
+      "sources": [
+        "REPO-COORD"
+      ]
+    }
+  ],
+  "candidate_paths": [
+    {
+      "id": "P1",
+      "name": "Research-only, forward capture",
+      "steps": [
+        "SX08 Option A",
+        "SX02 Option A",
+        "SX10 Option A",
+        "Keep SX03 at Option A"
+      ],
+      "outcome": "Begins real opening and closing evidence for the 2026 season. No model claim before a model is fitted."
+    },
+    {
+      "id": "P2",
+      "name": "Historical build, then forward",
+      "steps": [
+        "SX08 Option B",
+        "SX03 Option B",
+        "SX04 Option A",
+        "SX05 Option B",
+        "SX02 Option A"
+      ],
+      "outcome": "Builds a model on prior seasons and tests it forward. Slowest; largest data load; legal opinion first."
+    },
+    {
+      "id": "P3",
+      "name": "Stop and archive",
+      "steps": [
+        "SX08 Option A",
+        "SX02 Option C",
+        "SX04 Option C"
+      ],
+      "outcome": "Keeps the verified evidence and publishes the limits. No new numbers."
+    }
+  ],
+  "recommended_order": "Resolve SX08 (jurisdiction) first, because it decides whether any staking or reward step can happen. Then SX02 and SX03, which set the data. SX04, SX05 and SX09 follow the data. SX01, SX06, SX07, SX10 and SX11 are independent of the data and can be decided at any time."
+}

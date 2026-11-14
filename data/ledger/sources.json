@@ -1,0 +1,249 @@
+{
+  "as_of": "2026-11-14",
+  "note": "Sources used by the ledger pages. 'retrieved' means read in this session with the fetch tool on the date shown. 'carried' means read in an earlier session and recorded in evidence/ or research/catalog.json; not reopened here. A market publisher is not an official league source and is labelled as such.",
+  "sources": [
+    {
+      "id": "NFL-SCHED-W9",
+      "publisher": "National Football League (official)",
+      "type": "Official schedule and final scores",
+      "url": "https://www.nfl.com/schedules/2026/by-week/week-9",
+      "checked": "2026-11-14",
+      "status": "retrieved (2 of 2 chunks)",
+      "scope": "Week 9 2026 final scores in game-centre link text; byes listed (PIT, TEN)."
+    },
+    {
+      "id": "NFL-SCHED-W10",
+      "publisher": "National Football League (official)",
+      "type": "Official schedule and final scores",
+      "url": "https://www.nfl.com/schedules/2026/REG10/",
+      "checked": "2026-11-14",
+      "status": "retrieved (1 of 3 chunks)",
+      "scope": "Week 10 2026: Thursday game final (Commanders 24, Giants 21). Sunday games not final at retrieval."
+    },
+    {
+      "id": "NFL-GB-W9-LARWAS",
+      "publisher": "National Football League (official Game Book)",
+      "type": "Official Game Book PDF",
+      "url": "https://static.www.nfl.com/image/upload/v1794224919/gamecenter/ab382331-4feb-11f1-abca-2c54536568a9.pdf",
+      "checked": "2026-11-14",
+      "status": "carried (evidence/lineups)",
+      "scope": "Week 9 Rams at Commanders starting lineups and final score."
+    },
+    {
+      "id": "NFL-GB-W9-NYGPHI",
+      "publisher": "National Football League (official Game Book)",
+      "type": "Official Game Book PDF",
+      "url": "https://static.www.nfl.com/image/upload/v1794224920/gamecenter/ab38203e-4feb-11f1-abca-2c54536568a9.pdf",
+      "checked": "2026-11-14",
+      "status": "carried (evidence/lineups)",
+      "scope": "Week 9 Giants at Eagles starting lineups and final score."
+    },
+    {
+      "id": "NFL-GB-W10-WASNYG",
+      "publisher": "National Football League (official Game Book)",
+      "type": "Official Game Book PDF",
+      "url": "https://static.www.nfl.com/image/upload/v1794570519/gamecenter/ab5828d9-4feb-11f1-abca-2c54536568a9.pdf",
+      "checked": "2026-11-14",
+      "status": "carried (evidence/lineups)",
+      "scope": "Week 10 Commanders at Giants starting lineups, inactives and final score."
+    },
+    {
+      "id": "NFL-INJURY-W10",
+      "publisher": "National Football League (official)",
+      "type": "Official injury report",
+      "url": "https://www.nfl.com/injuries/",
+      "checked": "2026-11-14",
+      "status": "carried (evidence/availability)",
+      "scope": "Week 10 2026 injury report for the two clubs in evidence/lineups."
+    },
+    {
+      "id": "NFL-GC-W10-PAT-DET",
+      "publisher": "National Football League (official)",
+      "type": "Game centre (matchup)",
+      "url": "https://www.nfl.com/games/patriots-at-lions-2026-reg-10",
+      "checked": "2026-11-14",
+      "status": "link read on schedule page; page not opened",
+      "scope": "Matchup and kickoff listing for Week 10."
+    },
+    {
+      "id": "NFL-GC-W10-KC-ATL",
+      "publisher": "National Football League (official)",
+      "type": "Game centre (matchup)",
+      "url": "https://www.nfl.com/games/chiefs-at-falcons-2026-reg-10",
+      "checked": "2026-11-14",
+      "status": "link read on schedule page; page not opened",
+      "scope": "Matchup listing for Week 10."
+    },
+    {
+      "id": "NFL-GC-W10-HOU-CLE",
+      "publisher": "National Football League (official)",
+      "type": "Game centre (matchup)",
+      "url": "https://www.nfl.com/games/texans-at-browns-2026-reg-10",
+      "checked": "2026-11-14",
+      "status": "link read on schedule page; page not opened",
+      "scope": "Matchup listing for Week 10."
+    },
+    {
+      "id": "NFL-GC-W10-MIN-GB",
+      "publisher": "National Football League (official)",
+      "type": "Game centre (matchup)",
+      "url": "https://www.nfl.com/games/vikings-at-packers-2026-reg-10",
+      "checked": "2026-11-14",
+      "status": "link read on schedule page; page not opened",
+      "scope": "Matchup listing for Week 10."
+    },
+    {
+      "id": "NFL-GC-W10-MIA-IND",
+      "publisher": "National Football League (official)",
+      "type": "Game centre (matchup)",
+      "url": "https://www.nfl.com/games/dolphins-at-colts-2026-reg-10",
+      "checked": "2026-11-14",
+      "status": "link read on schedule page; page not opened",
+      "scope": "Matchup listing for Week 10."
+    },
+    {
+      "id": "NFL-GC-W10-CAR-NO",
+      "publisher": "National Football League (official)",
+      "type": "Game centre (matchup)",
+      "url": "https://www.nfl.com/games/panthers-at-saints-2026-reg-10",
+      "checked": "2026-11-14",
+      "status": "link read on schedule page; page not opened",
+      "scope": "Matchup listing for Week 10."
+    },
+    {
+      "id": "DK-NFL-LEAGUE",
+      "publisher": "DraftKings (sportsbook operator; NOT an official league source)",
+      "type": "Market page (point-in-time)",
+      "url": "https://sportsbook.draftkings.com/leagues/football/nfl",
+      "checked": "2026-11-14",
+      "status": "retrieved (1 of 5 chunks)",
+      "scope": "Spread, total and moneyline for the first eight Week 10 games shown. Page has no archive, no timestamp and no opening or closing values."
+    },
+    {
+      "id": "DK-EVENT-NE-DET",
+      "publisher": "DraftKings (market; NOT official)",
+      "type": "Market event page link",
+      "url": "https://sportsbook.draftkings.com/event/ne-patriots-%40-det-lions/34118220",
+      "checked": "2026-11-14",
+      "status": "link read on league page; event page not opened",
+      "scope": "Week 10 Patriots at Lions market."
+    },
+    {
+      "id": "EGOV-PENAL-CODE",
+      "publisher": "Government of Japan, e-Gov Laws (official)",
+      "type": "Statute text",
+      "url": "https://laws.e-gov.go.jp/law/140AC0000000045",
+      "checked": "2026-11-14",
+      "status": "retrieved (Chapter 23, Articles 185 to 187, chunk 7 of 10)",
+      "scope": "Penal Code (刑法), current text in force from 21 May 2026 as displayed. Article 185: gambling offence with a proviso for stakes that are only temporary entertainment. Article 186(2): running a gambling place or organising gamblers for profit. Text only: this is not a legal opinion on any activity."
+    },
+    {
+      "id": "SP-BOOT",
+      "publisher": "SciPy project (method reference)",
+      "type": "Method",
+      "url": "https://docs.scipy.org/doc/scipy/reference/generated/scipy.stats.bootstrap.html",
+      "checked": "2026-11-14",
+      "status": "carried (research/catalog.json)",
+      "scope": "Bootstrap interval method used for D2 and D4 definitions."
+    },
+    {
+      "id": "SK-CAL",
+      "publisher": "scikit-learn project (method reference)",
+      "type": "Method",
+      "url": "https://scikit-learn.org/stable/modules/calibration.html",
+      "checked": "2026-11-14",
+      "status": "carried (research/catalog.json)",
+      "scope": "Calibration reference for D3."
+    },
+    {
+      "id": "SK-TIME",
+      "publisher": "scikit-learn project (method reference)",
+      "type": "Method",
+      "url": "https://scikit-learn.org/stable/modules/generated/sklearn.model_selection.TimeSeriesSplit.html",
+      "checked": "2026-11-14",
+      "status": "carried (research/catalog.json)",
+      "scope": "Time-ordered splits for G02 and G04."
+    },
+    {
+      "id": "SP-R",
+      "publisher": "SciPy project (method reference)",
+      "type": "Method",
+      "url": "https://docs.scipy.org/doc/scipy/reference/generated/scipy.stats.pearsonr.html",
+      "checked": "2026-11-14",
+      "status": "carried (research/catalog.json)",
+      "scope": "Pearson correlation definition for the correlation table."
+    },
+    {
+      "id": "GH-PAGES",
+      "publisher": "GitHub (platform documentation)",
+      "type": "Platform",
+      "url": "https://docs.github.com/en/pages/getting-started-with-github-pages/configuring-a-publishing-source-for-your-github-pages-site",
+      "checked": "2026-11-14",
+      "status": "carried (research/catalog.json)",
+      "scope": "Publishing source for the Pages site."
+    },
+    {
+      "id": "REPO-LEDGER",
+      "publisher": "Own9 repository (project record; not an external source)",
+      "type": "Project record",
+      "url": "https://github.com/sassnarep3-star/Own9/tree/main/data/ledger",
+      "checked": "2026-11-14",
+      "status": "inspected (this session's files)",
+      "scope": "Ledger stores, policy and registers committed by this session."
+    },
+    {
+      "id": "REPO-ROOT-FLAGS",
+      "publisher": "Own9 repository (project record; not an external source)",
+      "type": "Project record",
+      "url": "https://github.com/sassnarep3-star/Own9/blob/main/flags.html",
+      "checked": "2026-11-14",
+      "status": "inspected",
+      "scope": "Root findings F01 to F27 and their numbering."
+    },
+    {
+      "id": "REPO-COORD",
+      "publisher": "Own9 repository (project record; not an external source)",
+      "type": "Project record",
+      "url": "https://github.com/sassnarep3-star/Own9/blob/main/COORDINATION.md",
+      "checked": "2026-11-14",
+      "status": "inspected",
+      "scope": "Coordination board, claims and logs."
+    },
+    {
+      "id": "REPO-OWN9-SUMMARY",
+      "publisher": "Own9 repository (project record; not an external source)",
+      "type": "Project record (inherited analysis)",
+      "url": "https://github.com/sassnarep3-star/Own9/blob/main/own9-research/data/results/summary.json",
+      "checked": "2026-11-14",
+      "status": "inspected",
+      "scope": "States pricing as '-110 both sides (assumed)'."
+    },
+    {
+      "id": "REPO-CATALOG",
+      "publisher": "Own9 repository (project record; not an external source)",
+      "type": "Project record",
+      "url": "https://github.com/sassnarep3-star/Own9/blob/main/research/catalog.json",
+      "checked": "2026-11-14",
+      "status": "inspected",
+      "scope": "Gates G01 to G11, strategies S01 to S08, flags and correlation pairs C01 to C08."
+    },
+    {
+      "id": "DK-GENERAL",
+      "publisher": "DraftKings (operator; not an official league source)",
+      "type": "Operator rules",
+      "url": "https://sportsbook.draftkings.com/help/general-betting-rules/general-rules",
+      "checked": "2026-11-04",
+      "status": "checked (catalog record, research/catalog.json)",
+      "scope": "Virginia snapshot only. Not proof of access or applicable rules in any other state or country."
+    },
+    {
+      "id": "DK-MARKETS",
+      "publisher": "DraftKings (operator; not an official league source)",
+      "type": "Operator rules",
+      "url": "https://sportsbook.draftkings.com/help/general-betting-rules/market-rules",
+      "checked": "2026-11-04",
+      "status": "checked (catalog record, research/catalog.json)",
+      "scope": "Generic market definitions only; sport-specific, jurisdiction and ticket terms must also be verified."
+    }
+  ]
+}

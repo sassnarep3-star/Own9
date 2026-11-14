@@ -1,0 +1,52 @@
+{
+  "as_of": "2026-11-14",
+  "status": "Policy specification. Numeric thresholds marked PROPOSED have not been set by the owner; nothing is evaluated against them yet.",
+  "origination_order": [
+    {"order": 1, "market": "Side (point spread)", "rule": "Originated first. Own fair spread is published before any total or moneyline is priced."},
+    {"order": 2, "market": "Total (over/under)", "rule": "Originated second, after the side is recorded."},
+    {"order": 3, "market": "Moneyline", "rule": "Originated last. Moneyline is derived from the same own distribution used for the side and total, not priced independently."}
+  ],
+  "line_columns": {
+    "fair_line": "Own model output. Blank until a model is fitted on verified inputs and its as-of cutoff is recorded.",
+    "market_line": "Latest snapshot from the price store for the same market and side. Blank if no verified snapshot exists.",
+    "difference": "fair_line minus market_line, in points for spread and total, in implied-probability points for moneyline. Computed only when both inputs are present; otherwise blank."
+  },
+  "price_store_rules": [
+    "Every originated market needs an opening and a closing record. A missing opening or closing value is shown blank and flagged, never filled from another snapshot.",
+    "Each row records the book, the market page URL, the observation time in UTC (blank when not captured) and a verification status.",
+    "A single observation is recorded as an observation. It is not an opening or closing line."
+  ],
+  "results_feed_rules": [
+    "Only final scores read from an official NFL page or Game Book count as verified results.",
+    "Every row links the official game-center page and the schedule page it was read from.",
+    "Results are never used as features for a forecast made for the same game (as-of rule G02)."
+  ],
+  "leaderboard_rules": [
+    "Two separate tracks. SIGNAL: probability quality against the no-vig market (log loss, Brier score, closing-line value, calibration). STAKING: bankroll path (ROI, drawdown, bet sizing).",
+    "Signal rank orders strategies on signal metrics only. Staking metrics are displayed beside the signal rank and cannot change it.",
+    "Eligibility for ranking requires every signal-track gate (G01 to G09) to pass. A favourable staking result cannot offset a failed signal gate.",
+    "Reward eligibility (G10) requires an eligible signal track, no open demotion trigger and a completed forward paper window (G11).",
+    "No strategy is ranked, rewarded or treated as live while any gate is not evaluated."
+  ],
+  "demotion_gate": {
+    "applies_to": "Any strategy with status LIVE. No strategy has LIVE status today.",
+    "effect": "Demote to PAPER at the next evaluation. Re-entry needs a new registered version (G03) and a fresh forward window.",
+    "evaluation_cadence": "After each completed NFL week, using only verified results (G02) and archived executable quotes (G07).",
+    "non_offset_rule": "Any trigger D1 to D5 demotes the strategy. A favourable staking result does not cancel a trigger, and no trigger can be overridden by ROI.",
+    "override_rule": "No override. Any exception is logged in COORDINATION.md with its trigger ID and source links before it takes effect.",
+    "triggers": [
+      {"id": "D1", "name": "Provenance or as-of breach", "rule": "Any G01 or G02 failure within a live period. Immediate demotion.", "threshold": "Any failure", "threshold_status": "Defined"},
+      {"id": "D2", "name": "Signal quality breach", "rule": "Lower bound of the 95% bootstrap interval for (strategy log loss minus no-vig market log loss) is above 0 over the trailing window of non-push forecasts.", "threshold": "Minimum forecasts N_min = 200 (PROPOSED)", "threshold_status": "PROPOSED, not set by owner"},
+      {"id": "D3", "name": "Calibration breach", "rule": "Any reliability bin with at least n_bin forecasts whose observed frequency falls outside the pre-registered tolerance.", "threshold": "n_bin = 30 and tolerance = pre-registered in the registration record (PROPOSED values)", "threshold_status": "PROPOSED, not set by owner"},
+      {"id": "D4", "name": "Closing-line breach", "rule": "Mean closing-line value below 0 with a 95% interval entirely below 0 over at least N_min priced bets.", "threshold": "N_min = 200 (PROPOSED)", "threshold_status": "PROPOSED, not set by owner"},
+      {"id": "D5", "name": "Dependence breach (combinations)", "rule": "A measured pairwise dependence outside its pre-registered band with n at least n_corr_min, or a joint model that fails G06.", "threshold": "n_corr_min = 30 (PROPOSED)", "threshold_status": "PROPOSED, not set by owner"},
+      {"id": "D6", "name": "Staking breach (separate track)", "rule": "Maximum drawdown above the pre-registered cap, or any stake outside the pre-registered sizing rule. Demotes the strategy to paper even if the signal track passes.", "threshold": "Cap to be pre-registered by owner", "threshold_status": "Not set"}
+    ]
+  },
+  "correlation_publication_rule": [
+    "n (number of paired observations) is always published, even when it is 0.",
+    "A coefficient r is published only when every paired observation comes from an official source with a link, n is at least n_min = 30 (PROPOSED), and a 95% interval is shown.",
+    "Below that, r and its interval are blank and the status states the reason. No coefficient is estimated from unofficial or assumed prices."
+  ],
+  "jurisdiction_rule": "No wager, stake or cash reward is placed, recommended or funded by this project. Any step beyond paper research requires a written legal determination for the user's jurisdiction (see Q10 and F28)."
+}
