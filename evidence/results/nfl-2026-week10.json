@@ -1,0 +1,26 @@
+{
+  "dataset": "NFL 2026 Week 10 slate (official schedule page) and the one completed game",
+  "retrieved_utc": "2026-11-14",
+  "source": "nfl-sched-w10",
+  "notes": [
+    "Kickoff times/networks transcribed only where the retrieved page printed them; blank = not in retrieved content.",
+    "Byes per the official page: CHI, DEN, PHI, TB.",
+    "The BUF@NYJ game fell across two page chunks of the weekly schedule; the game page confirms BUF at NYJ (MetLife Stadium) and is cited on that row."
+  ],
+  "games": [
+    {"away":"WAS","home":"NYG","status":"FINAL","away_score":24,"home_score":21,"date":"2026-11-12","note":"Thursday Night Football","source":"nfl-sched-w10"},
+    {"away":"BUF","home":"NYJ","status":"scheduled","date":"2026-11-15","source":"nfl-gamecenter-buf-nyj-w10"},
+    {"away":"NE","home":"DET","status":"scheduled","date":"2026-11-15","kickoff":"9:30 AM","network":"FOX","note":"International Game, Munich","source":"nfl-sched-w10"},
+    {"away":"KC","home":"ATL","status":"scheduled","date":"2026-11-15","kickoff":"1:00 PM","network":"CBS","source":"nfl-sched-w10"},
+    {"away":"HOU","home":"CLE","status":"scheduled","date":"2026-11-15","kickoff":"1:00 PM","network":"FOX","source":"nfl-sched-w10"},
+    {"away":"MIN","home":"GB","status":"scheduled","date":"2026-11-15","kickoff":"1:00 PM","network":"FOX","source":"nfl-sched-w10"},
+    {"away":"MIA","home":"IND","status":"scheduled","date":"2026-11-15","kickoff":"1:00 PM","network":"CBS","source":"nfl-sched-w10"},
+    {"away":"CAR","home":"NO","status":"scheduled","date":"2026-11-15","kickoff":"1:00 PM","network":"FOX","source":"nfl-sched-w10"},
+    {"away":"JAX","home":"TEN","status":"scheduled","date":"2026-11-15","source":"nfl-sched-w10"},
+    {"away":"LA","home":"AZ","status":"scheduled","date":"2026-11-15","kickoff":"4:05 PM","network":"CBS","source":"nfl-sched-w10"},
+    {"away":"SEA","home":"LV","status":"scheduled","date":"2026-11-15","kickoff":"4:05 PM","network":"CBS","source":"nfl-sched-w10"},
+    {"away":"SF","home":"DAL","status":"scheduled","date":"2026-11-15","kickoff":"4:25 PM","network":"FOX","source":"nfl-sched-w10"},
+    {"away":"PIT","home":"CIN","status":"scheduled","date":"2026-11-15","kickoff":"8:20 PM","network":"NBC","note":"Sunday Night Football","source":"nfl-sched-w10"},
+    {"away":"LAC","home":"BAL","status":"scheduled","date":"2026-11-16","kickoff":"8:15 PM","network":"ESPN","note":"Monday Night Football","source":"nfl-sched-w10"}
+  ]
+}
