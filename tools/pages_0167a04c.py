@@ -8,14 +8,14 @@ register that publishes n, and a requirements coverage review.
 
 Registered additively through the shared generator: no page owned by another
 session is rewritten. Every number on these pages is computed at build time from
-files in `data/` by `engine/origination.py`, so a figure cannot be retyped into
+files in `data/` by `engine/origination_0167a04c.py`, so a figure cannot be retyped into
 prose and drift. The one exception is the worked origination example, which runs
 on a synthetic distribution and says so in every row that shows a number.
 """
 import json
 from pathlib import Path
 
-from engine.origination import (DEMOTION_POLICY, MARKET_FAMILIES, ORIGINATION_ORDER,
+from engine.origination_0167a04c import (DEMOTION_POLICY, MARKET_FAMILIES, ORIGINATION_ORDER,
                                 ORDER_RATIONALE, PRICE_FIELDS, SIGNAL_FIELDS,
                                 STAKING_FIELDS, demotion_gate, dependence_record,
                                 depth_register, feed_coverage, leaderboard_entry,
@@ -239,7 +239,7 @@ page('origination.html', 'Origination engine', 'Side, then total,\\nthen moneyli
      + table('Order consistency checks on the worked run below',
              ['Check', 'Result', 'Detail'],
              [row([c['check'], 'Passed' if c['passed'] else 'FAILED', c['detail']],
-                  ('repo',), 'Executable check in engine/origination.py')
+                  ('repo',), 'Executable check in engine/origination_0167a04c.py')
               for c in ORIGINATED['consistency']])
 
      + '<h2>Worked origination on a synthetic distribution</h2>'
@@ -344,23 +344,23 @@ page('origination.html', 'Origination engine', 'Side, then total,\\nthen moneyli
              [row(['The opening capture is not later than the closing capture.',
                    'A row where the "opening" number was recorded after the "closing" one is '
                    'not a price history, it is a labelling error.'], ('repo',),
-                  'Validation rule in engine/origination.py'),
+                  'Validation rule in engine/origination_0167a04c.py'),
               row(['The closing capture is not later than kickoff.',
                    'A price captured after kickoff is not a closing price and cannot be bet.'],
-                  ('repo',), 'Validation rule in engine/origination.py'),
+                  ('repo',), 'Validation rule in engine/origination_0167a04c.py'),
               row(['Both prices are present and parse as American prices.',
                    'A half-record would let one number be judged against a number that was '
-                   'never available.'], ('repo',), 'Validation rule in engine/origination.py'),
+                   'never available.'], ('repo',), 'Validation rule in engine/origination_0167a04c.py'),
               row(['Side and total rows carry a line as well as a price.',
                    'A spread or total without its handicap cannot be settled against a score.'],
-                  ('repo',), 'Validation rule in engine/origination.py'),
+                  ('repo',), 'Validation rule in engine/origination_0167a04c.py'),
               row(['The source is a registered source and a raw artefact hash is recorded.',
                    'An untraceable number cannot be re-checked, so it cannot support a claim.'],
-                  ('repo',), 'Validation rule in engine/origination.py'),
+                  ('repo',), 'Validation rule in engine/origination_0167a04c.py'),
               row(['The settlement rule version is recorded.',
                    'Overtime, pushes and voids are settled differently by different books; '
                    'without the rule version a price has no defined meaning.'], ('repo',),
-                  'Validation rule in engine/origination.py')])
+                  'Validation rule in engine/origination_0167a04c.py')])
      + table('Three columns, never fewer', ['Column', 'Definition', 'When it is blank'],
              [row(['Model fair line', 'The number the joint distribution implies, with no vig.',
                    'Blank until a frozen distribution has been originated for that market.'],
@@ -467,7 +467,7 @@ page('results.html', 'Verified results', 'Official scores,\\nnothing inferred.',
                    'categories were reviewed and none was imported.'],
                   ('nfl-stats', 'repo'), 'Checked scope / not imported')])
      + table('Backtest and ROI readiness gate', ['Condition', 'Status', 'Detail'],
-             [row([reason, 'BLOCKED', 'Fixed in advance by engine/origination.py; the gate '
+             [row([reason, 'BLOCKED', 'Fixed in advance by engine/origination_0167a04c.py; the gate '
                    'returns not-ready rather than a partial ROI.'],
                   ('repo',), 'Executable gate on committed files')
               for reason in ROI['reasons']]
@@ -653,7 +653,7 @@ page('dependence.html', 'Dependence register', 'Every correlation\\npublished wi
              [row(['A correlation is computed only from officially sourced numbers.',
                    'The register function raises if no source id is supplied with the series.',
                    'The value is not published at all.'], ('repo',),
-                  'Executable rule in engine/origination.py'),
+                  'Executable rule in engine/origination_0167a04c.py'),
               row(['n is published with every value.',
                    'n is a required column of every row on this page.',
                    'A row without an n cannot be rendered.'], ('repo',),
@@ -748,7 +748,7 @@ page('signal-staking.html', 'Signal vs staking', 'Two columns.\\nTwo ranks. Neve
                    'The entry builder raises on any staking key in the signal mapping or any '
                    'signal key in the staking mapping.',
                    'A return figure cannot be smuggled into a skill rank.'],
-                  ('repo',), 'Executable rule in engine/origination.py'),
+                  ('repo',), 'Executable rule in engine/origination_0167a04c.py'),
               row(['The signal rank is computed only from proper scoring rules and abstention '
                    'behaviour.',
                    'The ranking function reads brier and eligibility only; ROI is never an '
@@ -764,7 +764,7 @@ page('signal-staking.html', 'Signal vs staking', 'Two columns.\\nTwo ranks. Neve
                    'Minimum markets, minimum coverage and a reported proper score must all '
                    'hold; otherwise the row is unranked rather than ranked last.',
                    'A three-hundred-market sample cannot out-rank a four-hundred-market one on '
-                   'noise.'], ('repo',), 'Executable rule in engine/origination.py')])
+                   'noise.'], ('repo',), 'Executable rule in engine/origination_0167a04c.py')])
      + '<h2>Worked example, synthetic submissions</h2>'
        '<p>Three synthetic submissions, invented to show the split working. They are not '
        'strategies, no market is attached to them and none of the numbers is an NFL result: '

@@ -20,7 +20,7 @@ sys.path.insert(0, str(ROOT))
 sys.path.insert(0, str(ROOT / 'tools'))
 
 from engine.core import Outcome  # noqa: E402
-from engine.origination import (DEMOTION_POLICY, ORIGINATION_ORDER, PRICE_FIELDS,
+from engine.origination_0167a04c import (DEMOTION_POLICY, ORIGINATION_ORDER, PRICE_FIELDS,
                                 demotion_gate, dependence_record, depth_register,
                                 feed_coverage, find_slot, leaderboard_entry,
                                 line_columns, load_depth_charts, load_results,
@@ -209,7 +209,7 @@ class OriginationOrder(unittest.TestCase):
         self.assertAlmostEqual(side_zero['loss'], money['loss'], places=12)
 
     def test_a_later_step_refuses_to_run_before_its_predecessor(self):
-        from engine.origination import _require_done
+        from engine.origination_0167a04c import _require_done
         with self.assertRaises(ValueError):
             _require_done([{'market': 'side'}], 'moneyline')
         with self.assertRaises(ValueError):
