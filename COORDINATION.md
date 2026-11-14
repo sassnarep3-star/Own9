@@ -314,6 +314,97 @@ The claim above records the initial base-only view, not a takeover of later publ
 - 2026-11-04 arena-a54b6387 final metadata audit: Documentation [PR #19](https://github.com/sassnarep3-star/Own9/pull/19) merged at `e974a18ccd6d1903d4121ae24302624fd14ed044`. Exact-commit [Pages run 41907622262](https://github.com/sassnarep3-star/Own9/actions/runs/41907622262) succeeded in all three jobs, and official deployment `7557168775` status is success. Both main quality workflows succeeded. **Irregularity:** legacy Pages site/build API reports errored for the same commit despite successful Actions/deployment and separately retrieved live pages. No root cause inferred. Native rerun rejected by available CLI endpoint; POST build request returned HTTP 403; detailed log-download host blocked by sandbox allowlist. Selected public fields saved in `research/publication/2026-11-04.json`; F12 expanded with a direct deployment-record link. This is a disclosed platform-status discrepancy, not a claim that all metadata is green or that a failed endpoint was fixed.
 - Scope clarification: `research/publication/2026-11-04.json` is this session's additive dated status evidence. No other session's source or report file edited. Dashboard remains live, and empirical evidence requirements remain needs review.
 
+---
+
+---
+
+## Integration session 1cc6b33d — suggestions, decision brief, availability tracker
+
+Session: `1cc6b33d` · Branch: `arena/1cc6b33d-own9` · Started: 2026-11-14 UTC.
+Role: **final integration session** (per the user's instruction that shared outputs — table data,
+site index and navigation — change only here, after every other task is done).
+
+| Task | Status | Owner | File scope |
+|---|---|---|---|
+| Repo line-by-line review, official-source re-verification, irregularities | done | 1cc6b33d | `evidence/**`, `docs/**` |
+| Dedicated Suggestions section + Decision brief (questions / known / unknown / how to find out) | done | 1cc6b33d | `tools/build.py`, `research/*.json`, `engine/registers.py` |
+| Availability & roster-depth tracker (injuries, replacement tiers) | done (tier field published as unavailable) | 1cc6b33d | `engine/availability.py`, `evidence/availability/**`, `evidence/lineups/**` |
+| Correlation decision math (interval + predeclared deadband gate; measured values stay blank) | done | 1cc6b33d | `engine/core.py`, `tests/**` |
+| Root site landing page, categorized navigation | done | 1cc6b33d | root `*.html`, `style.css`, `site.js`, `tools/**` |
+| Final integration: combined data re-verification, Pages build, PR, merge, deploy record | in progress | 1cc6b33d | `README.md`, `.github/**`, `COORDINATION.md` |
+
+Scope notes for other sessions:
+
+- This session edits **only** the files listed above. It does **not** edit `site/**`, `strict-lab/**`,
+  `own9-research/**`, `release-checks/**`, `research/**` or `independent-audit/**` (PR #18 is open from
+  session `arena/489d1d3e` and owns `independent-audit/**`). Requests to those owners are recorded
+  below instead of being applied.
+- Shared-file rule followed: `COORDINATION.md` is append-only for this session; on rebase conflicts both
+  histories are preserved.
+- No other live claim exists on the current `main` (all prior sessions are `done` / `needs review`).
+
+### Open requests to other owners (non-blocking)
+
+- **Root integration owner (superseded by this session):** the root dashboard now carries the canonical
+  index and navigation. `site/index.html` and `site/review.html` remain an additive, separately
+  generated lab; please link it from the root landing page rather than replacing it.
+- **`independent-audit/**` owner (PR #18):** the root site and this session's new sections were created
+  after PR #18 was opened. PR #18's dashboard-row audit was written against the earlier five-page
+  dashboard, so its row counts and page inventory predate the current root site. Root pages were
+  re-rendered and re-verified by this session; no file of that PR was edited here.
+
+### Verification performed (1cc6b33d)
+
+Official documents retrieved and read for this session (all in `evidence/sources.json`, now 26 records):
+
+- Three official NFL Game Books, full lineup/inactive/final-statistics blocks:
+  [Week 10 WAS at NYG](https://static.www.nfl.com/image/upload/v1794570519/gamecenter/ab5828d9-4feb-11f1-abca-2c54536568a9.pdf),
+  [Week 9 LAR at WAS](https://static.www.nfl.com/image/upload/v1794224919/gamecenter/ab382331-4feb-11f1-abca-2c54536568a9.pdf),
+  [Week 9 NYG at PHI](https://static.www.nfl.com/image/upload/v1794224920/gamecenter/ab38203e-4feb-11f1-abca-2c54536568a9.pdf).
+- [Official Week 10 injury report](https://www.nfl.com/injuries/), re-read to confirm the stored 18 rows and the blank-cell semantics.
+- [Week 9](https://www.nfl.com/schedules/2026/by-week/week-9) and [Week 10](https://www.nfl.com/schedules/2026/REG10/) schedules; [Week 9](https://www.nfl.com/games/rams-at-commanders-2026-reg-9) and [Week 10 game centers](https://www.nfl.com/games/commanders-at-giants-2026-reg-10) for scores and Game Book links.
+- [DraftKings market rules](https://sportsbook.draftkings.com/help/general-betting-rules/market-rules), [statsmodels multipletests](https://www.statsmodels.org/stable/generated/statsmodels.stats.multitest.multipletests.html), [WSGC sports wagering](https://wsgc.wa.gov/tribal-partnerships/sports-wagering), [2026 NFL rulebook](https://operations.nfl.com/rules-officiating/2026-nfl-rulebook).
+
+Verified findings, each traceable to a linked document:
+
+1. All four published starting elevens (WAS offense/defense, NYG offense/defense) changed between Week 9 and Week 10. Diffs are set differences, not the NFL's own opinion.
+2. One documented replacement chain: L.Patrick (C, WAS) started Week 9, ruled **Out** (concussion) in Week 10, printed under **Not Active**, with N.Allegretti starting at C.
+3. Two official counterexamples that punish naive designation use: T.Burks did not practise and then started (2 rec, 27 yd); 6 of 7 NYG inactives had no injury designation.
+4. The club depth-chart route on nfl.com returns an NFL **404**. Recorded as a narrow negative result (F17), not as proof the league has no depth chart anywhere.
+
+Test and build state at this commit:
+
+- **79 Python tests** pass (`tests/`), including 10 new dependence-gate tests and 17 availability/register tests.
+- `engine/availability.py` and `engine/registers.py` both pass their fail-closed validators.
+- `tools/verify.py`: **13 pages, 204 source-linked rows**, no duplicate IDs, one `<h1>`, one `aria-current` per page, every row carries a registered publisher reference, empirical blanks preserved.
+- `scripts/browser_test_root.cjs` (new): **13 root pages × 2 viewports, 26 WCAG A/AA axe scans**, grouped nav, single current item, filter reaches zero rows, no depth tier rendered, navigation usable with JS disabled, no console errors.
+- `scripts/browser_test.cjs`: the additive `site/` dashboard still passes (12 pages × 2 viewports, 24 axe scans).
+- `release-checks` fixtures: 31 tests pass.
+- The new browser test caught a real defect and it was fixed: navigation group labels at `#8b9aa6` failed WCAG contrast; now `#4b6072`.
+
+### Irregularities flagged for review (published, non-blocking)
+
+- **F13** Replacement depth tier is unobtainable. Substituted with verified changed starters; every tier cell blank.
+- **F14** Three of four verified Week 10 lineup changes have no published cause; 6 of 7 inactives had no designation.
+- **F15** Official Game Books carry an NFL copyright restriction; short excerpts only, originals linked, no permission obtained.
+- **F16** Availability coverage is two clubs across two consecutive weeks and each diff is against a different opponent, so a lineup effect cannot be separated from an opponent effect.
+- **F17** Depth-chart route returns 404 — a single-route negative result, stated no more strongly than that.
+- **F18** (carried) No executable historical prices; every line, correlation and return stays blank. Nothing here is a recommendation.
+
+### Notes for the integration owner
+
+- `research/**` is edited by this session as the final integration session: three new advisory
+  registers. No other session holds a live claim on `research/**`, so no request is needed.
+- PR #18 (`independent-audit/**`) remains untouched and unmerged by this session.
+- This session added no derived NFL number. Every new numeric value on the site is either a
+  published statistic, a computed set difference over published names, or a count of rows.
+---
+
+## Concurrent sessions integrated in this merge
+
+The blocks below were merged from `origin/main` and are preserved as written by their
+own sessions. Nothing in them was edited or withdrawn.
+
 ## Decision questions and improvement suggestions — arena/8de532d1-own9
 
 | Task | Status | Owner | File scope |
@@ -366,4 +457,27 @@ The claim above records the initial base-only view, not a takeover of later publ
 - The shared renderer previously labeled every page “As of 04 Nov 2026”; the new Decision Questions page also reflects official NFL source pages retrieved on 14 Nov. Set that page's displayed as-of date to **14 Nov 2026** while retaining the original date on other pages whose source register states Nov 4. No underlying empirical values or claims changed.
 - Verification: regenerated all 10 pages; root verifier passed with 90 source-linked rows; all 38 root Python tests passed, including a regression assertion for the Decision Questions date; `git diff --check` clean. Official pages and method scope remain as recorded above.
 
-- 2026-11-14 8b05dd6d merge record: [PR #22](https://github.com/sassnarep3-star/Own9/pull/22) **merged** into `main` as `24d1cfeaf2df41691ee5c610bd1a2945df686b33` at 2026-11-14T01:03:02Z (method `--merge`). Pre-merge checks passed on head `4f63c63`: [integrity run 43537963362](https://github.com/sassnarep3-star/Own9/actions/runs/43537963362) and [static-and-math run 43537963386]. Post-merge: [Research quality 43538162705](https://github.com/sassnarep3-star/Own9/actions/runs/43538162705) and [Verify NFL research for Pages 43538162540] succeeded on the merge commit. GitHub Pages build for `24d1cfe` reported `built` (API), and [pages-build-deployment run 43538162176](https://github.com/sassnarep3-star/Own9/actions/runs/43538162176) completed successfully. Live pages fetched successfully: [overview](https://sassnarep3-star.github.io/Own9/session-8b05dd6d/index.html) and [Flagged for Review](https://sassnarep3-star.github.io/Own9/session-8b05dd6d/flags.html). Main advanced twice during this session (PRs #21 and #23); shared-board conflicts were resolved by keeping both sides. No other session's files were edited.
+### Merge and handoff note — session 1cc6b33d (2026-11-14)
+
+- `origin/main` advanced while this session worked. Rebased attempt conflicted in `COORDINATION.md`
+  because both boards appended to the same tail, so the remote was integrated by **merge** instead of
+  rebase, and both boards are kept in full. No branch was renamed, no other session's claim withdrawn.
+- **Conflict: `questions.html`.** Session `arena/8de532d1-own9` had already published a page at that
+  path containing 8 decision questions and 6 improvement suggestions. This session's independent
+  question register also targeted `questions.html`. Resolution, chosen so nothing is discarded:
+  - `questions.html` now serves this session's 22-row question register (three explicit states).
+  - Their page is preserved at **`decisions-questions.html`**, rendered from
+    `tools/pages_8de532d1.py`, which contains their rows, alternatives, recommended paths and scope
+    labels verbatim. Only the filename and navigation label differ. It is linked from the navigation
+    ("Decide" group), the homepage and their own ported regression test.
+  - Their `tests/test_site.py` assertions were kept and retargeted to the new path rather than deleted.
+- **Conflict: `tools/build.py` and generated `*.html`.** Kept this session's generator (grouped
+  navigation, new pages) and regenerated all HTML, so no generated file is a hand-merged artefact.
+  Their page is injected through the same `page()`/`table()` helpers, so it inherits the shared shell.
+- **Conflict: as-of date.** Their fix (per-page date, questions page at 14 Nov) is generalized into a
+  `KEEP_DATE_14` set covering every page whose tables rest on 14 Nov retrievals.
+- Combined verification after resolution: **14 pages, 219 source-linked rows**, 80 Python tests,
+  28 WCAG axe scans across two viewports, release-check fixtures, and both validators pass.
+- Their `session-8b05dd6d/**` subtree and its requests were merged unchanged and are **not** adopted
+  as verified by this dashboard; its own irregularity list stands as that session published it.
+
