@@ -313,3 +313,26 @@ The claim above records the initial base-only view, not a takeover of later publ
 
 - 2026-11-04 arena-a54b6387 final metadata audit: Documentation [PR #19](https://github.com/sassnarep3-star/Own9/pull/19) merged at `e974a18ccd6d1903d4121ae24302624fd14ed044`. Exact-commit [Pages run 41907622262](https://github.com/sassnarep3-star/Own9/actions/runs/41907622262) succeeded in all three jobs, and official deployment `7557168775` status is success. Both main quality workflows succeeded. **Irregularity:** legacy Pages site/build API reports errored for the same commit despite successful Actions/deployment and separately retrieved live pages. No root cause inferred. Native rerun rejected by available CLI endpoint; POST build request returned HTTP 403; detailed log-download host blocked by sandbox allowlist. Selected public fields saved in `research/publication/2026-11-04.json`; F12 expanded with a direct deployment-record link. This is a disclosed platform-status discrepancy, not a claim that all metadata is green or that a failed endpoint was fixed.
 - Scope clarification: `research/publication/2026-11-04.json` is this session's additive dated status evidence. No other session's source or report file edited. Dashboard remains live, and empirical evidence requirements remain needs review.
+
+---
+
+# Final integration session `4f2e0291` — claimed 2026-11-14
+
+Session: `arena/4f2e0291-own9` · base `92ae4159587d8eaa2b066bd7a3731cff737982d0` (= current `origin/main`). Arena fixes this branch; no other branch will be created, checked out or pushed.
+
+This session takes the **final integration** role that the shared board reserves for one session: root generated site (`index.html`, `tools/build.py`, `tools/verify.py`, `evidence/sources.json`, root `*.html`, `style.css`, `site.js`, `README.md`) plus new decision-support pages. The prior broad integration claims (bc8d7853, a54b6387, 80085c01, e908995d, d66f6c4f, 75504db2, 5a3b486a, 4f78d4b5) are all recorded `done` or `needs review` with scopes relinquished, so no live claim overlaps.
+
+| Task | Status | Owner | Files |
+|---|---|---|---|
+| Root site integration: clean category landing + site directory for the six sibling dashboards | in progress | 4f2e0291 | `index.html`, `tools/build.py`, `tools/verify.py`, `README.md` |
+| Suggestion register (dedicated review-before-implement page) | in progress | 4f2e0291 | `suggestions.html`, `tools/build.py` |
+| Decision-readiness question/information/answer ledger | in progress | 4f2e0291 | `questions.html`, `tools/build.py` |
+| Availability & roster-deficiency (injury / 2nd–4th string backup) research and specification | in progress | 4f2e0291 | `injuries.html`, `evidence/sources.json`, `tools/build.py` |
+| Executive summary refresh + flag register extension | in progress | 4f2e0291 | `index.html`, `flags.html`, `tools/build.py` |
+| Regression tests for new pages | in progress | 4f2e0291 | `tests/test_site.py`, `tests/test_verify_extension.py` |
+
+Not edited by this session: `strict-lab/**`, `own9-research/**`, `release-checks/**`, `analysis/**`, `data/**`, `engine/**`, `scripts/**`, `site/**`, `research/**`, `.github/**` other workflows, and any other session's subtree. Those are read-only inputs to the directory and cross-status table.
+
+- 2026-11-14: Read the full board and repository (75 commits after `git fetch --unshallow`; the initial checkout was shallow at 1 commit, which is why earlier sessions repeatedly mis-saw the baseline). Confirmed `origin/main` == this base, no commits behind.
+- 2026-11-14: Gap analysis over all 156 tracked files: the strings `suggest`, `depth chart`, `backup`, `2nd string`, `4th string`, `queue` do not appear in any HTML/MD/PY file — the user's suggestion section and injury/depth-deficiency requirements are unimplemented by every prior session. `injuries` appears only as a source row.
+- 2026-11-14: PR #18 (`arena/489d1d3e-own9`, `independent-audit/**`) is open, last updated 2026-11-04T20:31:55Z, GitHub API reports `mergeable:false`. Its owning session has been silent far beyond the 60-minute rule. This session cannot rebase another session's branch (Arena fixes this one), so #18 is published as a nonblocking review item instead of being merged or discarded; its files are not on `main` and the directory will not link unpublished paths.
