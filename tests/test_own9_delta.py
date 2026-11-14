@@ -244,7 +244,10 @@ class Structural(unittest.TestCase):
 
     def test_page_count_is_theirs_plus_this_delta(self):
         rendered = len([f for f in ROOT.glob('*.html')])
-        self.assertEqual(rendered, 19, 'fifteen pages from main plus this session\'s four')
+        # 15 from main + 4 from 4f2e0291 + 5 from 1cfcb957 (requirements, price-feed,
+        # signal-staking, depth-correlations, missing-information). Re-pin on merge, never by
+        # deleting a page: the count is the register of what the site actually publishes.
+        self.assertEqual(rendered, 24)
 
     def test_new_pages_are_linked_from_nav_exactly_once(self):
         for name in ('lines.html', 'availability-evidence.html', 'question-ledger.html',

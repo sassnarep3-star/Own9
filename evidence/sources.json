@@ -360,4 +360,38 @@
   "checked": "2026-11-14",
   "status": "retrieved"
  }
+ ,
+ {
+  "id": "nfl-schedule-w8-byweek",
+  "publisher": "NFL",
+  "url": "https://www.nfl.com/schedules/2026/by-week/week-8",
+  "checked": "2026-11-14",
+  "status": "retrieved",
+  "supports": "Official 2026 Week 8 schedule page, read 2026-11-14: 14 games each shown as a link label with both scores and a winner indicator beside each club, plus that club's W-L-T record as printed on the card, and a 'Teams on Bye' block naming HOU, NO, NYG and SF.",
+  "scope": "Scores and records only; no odds, no lines. Verified limitation: the bye block prints each club's record as of retrieval, not as of Week 8 (HOU 3-5, NO 3-5, NYG 5-3-1 and SF 7-1 displayed although their Week 9 game cards imply 2-5, 2-5, 4-2-1 and 6-1), so only the 28 game-card records are usable as a Week 8 baseline. Published as F28."
+ },{
+  "id": "nfl-schedule-w10-byweek",
+  "publisher": "NFL",
+  "url": "https://www.nfl.com/schedules/2026/by-week/week-10",
+  "checked": "2026-11-14",
+  "status": "retrieved",
+  "supports": "Official 2026 Week 10 schedule page, read 2026-11-14: fourteen games listed - Commanders 24, Giants 21 FINAL on Thursday November 12, thirteen games scheduled November 15-16 with times and networks, and CHI, DEN, PHI and TB on bye.",
+  "scope": "Results, status and records only. No odds or lines are published on this page. Thirteen of the fourteen games carry no score at retrieval, so a results feed built today cannot settle a Week 10 bet on them."
+ },{
+  "id": "nfl-gamecenter-w10-standings",
+  "publisher": "NFL",
+  "url": "https://www.nfl.com/games/commanders-at-giants-2026-reg-10",
+  "checked": "2026-11-14",
+  "status": "retrieved",
+  "supports": "Game center for Commanders at Giants, Week 10 2026, read 2026-11-14: marks the game Final, gives location EAST RUTHERFORD, NJ and METLIFE STADIUM, links the official Game Book PDF, and prints the NFC East table NYG 5-3-1 .611, DAL 4-5 .444, WAS 3-5-1 .389, PHI 2-7 .222.",
+  "scope": "Used as the second official rendering for the record and win-percentage cross-check of the Week 10 results feed. The quarter-score cells render as hidden placeholders in the retrieved text, so quarter splits are not claimed from this page."
+ },{
+  "id": "seahawks-depth-1cf",
+  "publisher": "Seattle Seahawks (official club site)",
+  "url": "https://www.seahawks.com/team/depth-chart/",
+  "checked": "2026-11-14",
+  "status": "retrieved",
+  "supports": "Seahawks depth chart read again on 2026-11-14 in this session: QB Sam Darnold / Drew Lock / Jalen Milroe; LT Charles Cross / Josh Jones; LG Quenton Nelson / Anthony Bradford; DT Leonard Williams / Rylie Mills; plus the full offense, defense and special-teams tables.",
+  "scope": "Column order is the published string order. The page text retrieved in this session (both chunks, title 'Seattle Seahawks') displays no 'unofficial depth chart' heading, unlike the Chiefs and Lions pages, so the self-labelled-unofficial caveat is recorded per club and not applied blanket-wide; see F29. Not a league-certified game-day depth record."
+ }
 ]
