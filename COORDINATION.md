@@ -773,3 +773,63 @@ Gap analysis before claiming (searched the whole tree on 2026-11-14): the eight 
 **File scope claimed by this session (nothing here was claimed by anyone else):** `engine/origination.py`, `tools/pages_0167a04c.py`, `tests/test_origination.py`, `data/snapshots/**`, `data/results/**`, `origination.html`, `results.html`, `replacement-depth.html`, `signal-staking.html`, `dependence.html`, `requirements.html`, plus append-only edits to `COORDINATION.md`, `evidence/sources.json`, `README.md` and one additive navigation group in `tools/build.py`.
 
 **Explicitly NOT edited:** every page another session owns (`index.html`, `decision.html`, `questions.html`, `decisions-questions.html`, `suggestions.html`, `suggestion-costs.html`, `question-ledger.html`, `availability.html`, `availability-evidence.html`, `injuries.html`, `lines.html`, `flags.html` content beyond an appended table, `audit.html`, `data.html`, `sources.html`, `strategies.html`, `validation.html`, `correlations.html`, `leaderboard.html`), and every subtree (`site/**`, `research/**`, `strict-lab/**`, `own9-research/**`, `release-checks/**`, `independent-audit/**`, `session-8b05dd6d/**`, `analysis/**`, `engine/core.py`, `engine/availability.py`, `engine/registers.py`, `tools/build.py` apart from the additive nav group, `tools/verify.py`, `.github/**`).
+
+## 0167a04c completion record — 2026-11-14
+
+| Task | Status | Evidence / scope |
+| --- | --- | --- |
+| R1 price-snapshot store | done · contract implemented, store empty | `engine/origination.py`, `data/snapshots/price-snapshots.csv` (header-only), `data/snapshots/CONTRACT.md` |
+| R2 verified results feed | done · 16 official games | `data/results/verified-results.csv`, `results.html` |
+| R3 origination order side → total → moneyline | done · reconciled | `engine/origination.py::originate`, `origination.html` |
+| R4 fair / market / difference columns | done | `engine/origination.py::line_columns`, `price_columns` |
+| R5 signal vs staking | done | `engine/origination.py`, `signal-staking.html` |
+| R6 depth of replacement | done · measured, not inferred | `replacement-depth.html`, `data/depth/**` |
+| R7 correlation with n | done · 4 values, all gated | `dependence.html` |
+| R8 demotion gate | done · implemented, unrun | `engine/origination.py::demotion_gate` |
+| Repository + requirements review, line by line | done | `requirements.html` |
+| Tests, build, verify, browser, PR, merge, Pages | done | this record |
+
+### Sources read on 2026-11-14 (all retrieved by this session, not inherited, except where stated)
+
+- [NFL Week 9 2026 schedule by week](https://www.nfl.com/schedules/2026/by-week/week-9) — 2 chunks read in full; all 15 Week 9 results transcribed verbatim from the game link text.
+- [NFL schedules, current week](https://www.nfl.com/schedules/2026/REG9/) — resolves to the current-week (10) schedule; the one final game, Commanders 24 Giants 21, is transcribed from it. Registered as `nfl-schedule-w10`.
+- [Commanders at Giants game centre](https://www.nfl.com/games/commanders-at-giants-2026-reg-10) — retrieved to test the route for a result feed; the score renders as "Hidden Score" (checked absence, F28).
+- [Week 10 scores](https://www.nfl.com/scores/2026/REG10) — same checked absence.
+- [Chiefs depth chart](https://www.chiefs.com/team/depth-chart) — page title "Kansas City Chiefs Unofficial Depth Chart"; all 28 rows transcribed.
+- [Seahawks depth chart](https://www.seahawks.com/team/depth-chart/) — all 29 rows transcribed.
+- [Lions depth chart](https://www.detroitlions.com/team/depth-chart/) — page title "2026 Unofficial Depth Chart Compiled by Lions Football Communications"; all 27 rows transcribed.
+- Reused, not re-transcribed: the Week 10 2026 injury report game-status entries published on `injuries.html` by session `9cb2a884` (same URL, same retrieval date), and the three official Game Books already registered by earlier sessions, which are used here only as cross-checks on three scores.
+
+### Verification performed
+
+- `python3 tools/build.py` → 25 fresh pages, deterministic. `python3 tools/verify.py` → PASS, 861 source-linked rows, local assets/fragments, nav landmarks, empirical blanks.
+- `python3 -m unittest discover -s tests -v` → **158 tests OK** (106 inherited + 52 new in `tests/test_origination.py`). `python3 -m unittest discover -s release-checks -p 'test_*.py'` → 31 OK.
+- `python3 engine/availability.py` and `python3 engine/registers.py` → PASS. `python3 scripts/check_site.py` → PASS (15 pages, 147 rows, 551 links).
+- `node scripts/browser_test_root.cjs` → PASS: 25 root pages × 2 viewports, 50 WCAG axe checks, grouped nav, single current item, filter behaviour, blank depth tiers, JS-disabled navigation, no console errors. `node scripts/browser_test.cjs` → PASS: 15 pages × 2 viewports, 30 axe checks.
+- Three of the sixteen published results are cross-checked against official Game Books and agree exactly (NYG 19 PHI 11, LAR 20 WAS 13, WAS 24 NYG 21).
+- The price-snapshot store was verified empty by test, and the CSV was verified header-only, so no invented quote can enter the pipeline unnoticed.
+
+### Shared files touched, and why (all additive)
+
+- `tools/build.py`: one exec block registering this session's page module (the same mechanism already used for `pages_8de532d1.py` and `pages_4f2e0291.py`), one new navigation group, and six filenames added to `KEEP_DATE_14`. No page function of another session was edited.
+- `flags.html`: appended as `PAGES['flags.html']` content, exactly as session 4f2e0291 does. The caption is deliberately **not** "Review register extension" so that session 4f2e0291's own row-count test keeps measuring their six findings.
+- `README.md`: one new section and three links inserted; nothing above rewritten.
+- `evidence/sources.json`: **unchanged** — every source this session needed was already registered, including `nfl-schedule-w9`.
+- `tools/verify.py`: **unchanged** — no new publisher host was required.
+
+### Cross-session test edits (logged, not silent)
+
+Two brittle equality assertions counted things that later additive work legitimately changes. Both were relaxed to assertions that still guarantee the original intent, with a comment naming this session:
+
+- `tests/test_own9_delta.py::test_page_count_is_theirs_plus_this_delta` asserted exactly 19 root pages. It now asserts that session 4f2e0291's four pages are still a subset of the rendered set (25 today). Their other assertions, including the F22–F27 row count and content, are untouched and pass.
+- `scripts/browser_test_root.cjs` asserted exactly 4 navigation groups. It now asserts at least 4 (5 today), preserving "navigation is grouped by intent".
+
+No other session's page, data file, subtree or claim content was modified.
+
+### Irregularities published (F28–F33, non-blocking)
+
+F28 high — the NFL game-centre and scores routes do not expose final scores as retrievable text, so an automated feed must use the schedule route and Game Book PDFs. F29 high — two ruled-out players appear in no column of their own club chart (Omarr Norman-Lott, Kerby Joseph), so their depth is withheld (the DET conflict is also F20). F30 medium — injury-report position labels ("T", "G") do not resolve to chart slots (LT/RT, LG/RG), so matching is by player name. F31 medium — the feed has no verified kickoff time or overtime flag, which blocks uniform totals settlement. F32 medium — Week 10 2026 was still in progress at capture (1 of 15 games final). F33 critical — the price store is empty, so closing-line value, ROI and the demotion gate's live triggers are implemented but unevaluable (the operating consequence of F22); this is stated as unevaluable, never as passed.
+
+### Boundaries kept
+
+No model was fitted, no NFL line was published, no strategy was promoted, no reward funded, no wager placed. Correlation values are published with their n and then gated out of use. Worked examples carry a SYNTHETIC marker in every row, enforced by test. Where two official sources conflict, the value is withheld and the conflict published.

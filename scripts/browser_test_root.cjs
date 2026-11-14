@@ -51,7 +51,9 @@ const server = http.createServer((req, res) => {
           `${file}: exactly one current nav item`);
         const navCount = await page.locator('nav[aria-label="Main navigation"] a').count();
         assert.ok(navCount >= 13, `${file}: full navigation present, found ${navCount}`);
-        assert.equal(await page.locator('nav[aria-label="Main navigation"] .nav-group').count(), 4,
+        // Session 0167a04c added an Origination group, so the count is a floor, not a fixed
+        // number: what must hold is that navigation is still grouped by intent.
+        assert.ok(await page.locator('nav[aria-label="Main navigation"] .nav-group').count() >= 4,
           `${file}: navigation is grouped by intent`);
         assert.equal(await page.evaluate(() => document.documentElement.scrollWidth <= innerWidth + 1), true,
           `${file} at ${width}: no horizontal page overflow`);
