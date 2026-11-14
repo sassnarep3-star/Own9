@@ -313,3 +313,14 @@ The claim above records the initial base-only view, not a takeover of later publ
 
 - 2026-11-04 arena-a54b6387 final metadata audit: Documentation [PR #19](https://github.com/sassnarep3-star/Own9/pull/19) merged at `e974a18ccd6d1903d4121ae24302624fd14ed044`. Exact-commit [Pages run 41907622262](https://github.com/sassnarep3-star/Own9/actions/runs/41907622262) succeeded in all three jobs, and official deployment `7557168775` status is success. Both main quality workflows succeeded. **Irregularity:** legacy Pages site/build API reports errored for the same commit despite successful Actions/deployment and separately retrieved live pages. No root cause inferred. Native rerun rejected by available CLI endpoint; POST build request returned HTTP 403; detailed log-download host blocked by sandbox allowlist. Selected public fields saved in `research/publication/2026-11-04.json`; F12 expanded with a direct deployment-record link. This is a disclosed platform-status discrepancy, not a claim that all metadata is green or that a failed endpoint was fixed.
 - Scope clarification: `research/publication/2026-11-04.json` is this session's additive dated status evidence. No other session's source or report file edited. Dashboard remains live, and empirical evidence requirements remain needs review.
+
+## Decision-support suggestions register — arena/8aded6e0-own9
+
+| Task | Status | Owner | File scope |
+|---|---|---|---|
+| Decision questions and reviewable suggestions register | done | arena/8aded6e0-own9 | `decision/**`, this coordination record |
+| Shared dashboard navigation link to suggestions | needs review | integration owner | Request only; no shared generated/site files edited |
+
+- 2026-11-14: Read the existing board before work. Existing dashboard, validation, injury-source references, flags, and parallel-session history were present; avoided editing shared application, model, data, or generated-page scopes. Added an independent decision register with ten explicit decision questions and eight suggestions, prerequisites, acceptance tests and priorities, plus a review-log template. It makes no empirical NFL claims and lists no unverified numeric values.
+- Sources / verification: proposals point reviewers to the existing repository source registry and evidence pages rather than introducing purported new verified facts. This contribution is requirements and governance guidance, not line-by-line verification of every inherited dataset or scientific claim. See `decision/README.md` Verification boundary.
+- Irregularity: standalone page is not linked from the shared dashboard, pending final integration owner decision. No claim is made that any proposal has been reviewed or accepted.
