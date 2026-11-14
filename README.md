@@ -68,6 +68,11 @@ Fifteen pages, `tools/build.py`, `tools/verify.py`, verified snapshots and synth
 [Decision questions (earlier register)](decisions-questions.html) ·
 [Repository audit](audit.html) · [Flagged for Review](flags.html)
 
+**Decision support** (canonical dashboard at [`site/`](site/index.html)):
+[Suggestions](site/suggestions.html) to review and choose a path before changes ·
+[Decision questions](site/questions.html) to answer before deciding ·
+[Injury & depth](site/injuries.html) starter/backup deficiency tracking.
+
 Full [research specification](docs/RESEARCH_SPEC.md) and machine-readable
 [source review manifest](evidence/sources.json). The audit describes every starting tracked
 file scope. Official pages were read only within the manifest's stated scope; unsupported

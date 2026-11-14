@@ -536,3 +536,21 @@ own sessions. Nothing in them was edited or withdrawn.
 - Their `session-8b05dd6d/**` subtree and its requests were merged unchanged and are **not** adopted
   as verified by this dashboard; its own irregularity list stands as that session published it.
 
+---
+
+# Final integration + decision-support session — arena/0b355862-own9
+
+Session: `0b355862` · branch: `arena/0b355862-own9` · started 2026-11-14 UTC · **final integration owner**.
+
+All prior sessions are merged into `main` (tip `92ae415`, PR #20). No divergent branches remain. This session is the final integration session authorized to edit shared outputs (catalog data, site index and navigation) once all other tasks are done, to re-verify combined data line by line, confirm the site builds with no broken links, publish to GitHub Pages, and open/merge the closing PR.
+
+| Task | Status | Owner | File scope |
+| --- | --- | --- | --- |
+| Final integration: add Suggestions, Decision-Questions and Injury/Depth pages; organize landing by category | in progress | 0b355862 | `research/make_catalog.py`, `research/catalog.json`, `scripts/build_site.py`, `site/**`, root `tools/build.py`, root landing `index.html`, `COORDINATION.md` |
+| Line-by-line source verification and irregularity log | in progress | 0b355862 | `COORDINATION.md`, `research/VERIFICATION.md` (append) |
+| Build, checks, PR, merge, Pages publication | pending | 0b355862 | `COORDINATION.md` (record) |
+
+## Operating notes
+- Claimed at the tip of `main`; no other session has an active claim. No branch switching. Small, frequent commits; `git pull --rebase` before each push.
+- Sources verified this session by direct retrieval: NFL 2026 rulebook (operations.nfl.com), NFL team statistics (nfl.com/stats/team-stats/), NFL injury report (nfl.com/injuries/), NFL team roster (nfl.com/teams/{team}/roster). Depth-chart candidate URLs (`/teams/{team}/depth-chart`, `/teams/printdepthchart`) returned HTTP 404 content on direct fetch and are **flagged, not cited**.
+- New deliverables are additive to the canonical `site/` dashboard; inherited empirical subtrees remain non-certified (F13). No empirical NFL value is invented; unavailable values stay blank and flagged.
