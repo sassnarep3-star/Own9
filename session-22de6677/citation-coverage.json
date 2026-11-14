@@ -1,0 +1,908 @@
+{
+  "revision": "462a7e92d66dbd3bfc7398a396abc25d3cc58885",
+  "manifest_entries": 40,
+  "page_count": 82,
+  "data_row_count": 1700,
+  "coverage": {
+    "rows_with_root_manifest_publisher": 933,
+    "rows_with_project_record": 526,
+    "rows_with_https_absent_from_root_manifest": 692,
+    "rows_without_https": 11
+  },
+  "counts_overlap": true,
+  "limitations": [
+    "The scan measures HTML structure and HTTPS-link presence only; it does not request any URL.",
+    "A URL in the root manifest is not automatically an official NFL source, current source, or proof that a cited claim is entailed. Several sibling sections also maintain their own catalogs or source ledgers, which are not crosswalked here.",
+    "GitHub/project-record links document repository artifacts and are not counted as external publisher evidence.",
+    "Rows without HTTPS links may be proposals, placeholders, or intentionally source-free; they require human claim-level review before being called defects. Other published sections may also keep their own catalogs or source ledgers, which this root-manifest match does not crosswalk.",
+    "Only tracked .html files at the pinned Git tree are included. Data files and linked external pages are not semantically audited."
+  ],
+  "sections": [
+    {
+      "section": "independent-audit",
+      "data_rows": 81,
+      "rows_with_root_manifest_publisher": 13,
+      "rows_with_project_record": 21,
+      "rows_with_https_absent_from_root_manifest": 72,
+      "rows_without_https": 0
+    },
+    {
+      "section": "own9-research",
+      "data_rows": 104,
+      "rows_with_root_manifest_publisher": 10,
+      "rows_with_project_record": 0,
+      "rows_with_https_absent_from_root_manifest": 94,
+      "rows_without_https": 0
+    },
+    {
+      "section": "release-checks",
+      "data_rows": 167,
+      "rows_with_root_manifest_publisher": 21,
+      "rows_with_project_record": 163,
+      "rows_with_https_absent_from_root_manifest": 167,
+      "rows_without_https": 0
+    },
+    {
+      "section": "research",
+      "data_rows": 142,
+      "rows_with_root_manifest_publisher": 12,
+      "rows_with_project_record": 91,
+      "rows_with_https_absent_from_root_manifest": 118,
+      "rows_without_https": 11
+    },
+    {
+      "section": "root",
+      "data_rows": 658,
+      "rows_with_root_manifest_publisher": 486,
+      "rows_with_project_record": 222,
+      "rows_with_https_absent_from_root_manifest": 0,
+      "rows_without_https": 0
+    },
+    {
+      "section": "session-8b05dd6d",
+      "data_rows": 304,
+      "rows_with_root_manifest_publisher": 233,
+      "rows_with_project_record": 28,
+      "rows_with_https_absent_from_root_manifest": 75,
+      "rows_without_https": 0
+    },
+    {
+      "section": "site",
+      "data_rows": 147,
+      "rows_with_root_manifest_publisher": 100,
+      "rows_with_project_record": 1,
+      "rows_with_https_absent_from_root_manifest": 89,
+      "rows_without_https": 0
+    },
+    {
+      "section": "strict-lab",
+      "data_rows": 97,
+      "rows_with_root_manifest_publisher": 58,
+      "rows_with_project_record": 0,
+      "rows_with_https_absent_from_root_manifest": 77,
+      "rows_without_https": 0
+    }
+  ],
+  "pages": [
+    {
+      "path": "audit.html",
+      "section": "root",
+      "sha256": "0709ce341f8c55098ad960a9ad2866b0a317da0fea5655c8999e5d8e357356d8",
+      "data_rows": 13,
+      "rows_with_root_manifest_publisher": 0,
+      "rows_with_project_record": 13,
+      "rows_with_https_absent_from_root_manifest": 0,
+      "rows_without_https": 0
+    },
+    {
+      "path": "availability-evidence.html",
+      "section": "root",
+      "sha256": "3363afdae80b5d2fccd1946585e4c6c2acf611072aebda49f861c8aa5e19948d",
+      "data_rows": 72,
+      "rows_with_root_manifest_publisher": 69,
+      "rows_with_project_record": 3,
+      "rows_with_https_absent_from_root_manifest": 0,
+      "rows_without_https": 0
+    },
+    {
+      "path": "availability.html",
+      "section": "root",
+      "sha256": "8f5491f1c077a256b999c73f2a420c1602b8197fd4973e091c033fcf2673e193",
+      "data_rows": 39,
+      "rows_with_root_manifest_publisher": 39,
+      "rows_with_project_record": 0,
+      "rows_with_https_absent_from_root_manifest": 0,
+      "rows_without_https": 0
+    },
+    {
+      "path": "correlations.html",
+      "section": "root",
+      "sha256": "5a5e3c42f0af837a8ac625336de574c787d9f91d99a95638f4662ab7b7445bc7",
+      "data_rows": 11,
+      "rows_with_root_manifest_publisher": 8,
+      "rows_with_project_record": 8,
+      "rows_with_https_absent_from_root_manifest": 0,
+      "rows_without_https": 0
+    },
+    {
+      "path": "data.html",
+      "section": "root",
+      "sha256": "981f5358ca07691578d06802d1f0832133e253e0cb0b720d6a91da6c879a0b96",
+      "data_rows": 5,
+      "rows_with_root_manifest_publisher": 3,
+      "rows_with_project_record": 3,
+      "rows_with_https_absent_from_root_manifest": 0,
+      "rows_without_https": 0
+    },
+    {
+      "path": "decision.html",
+      "section": "root",
+      "sha256": "4bb8e8a876b89ea8f6eb9fb9dde7a601713f6de5eeec4c88eba206beb328bcc7",
+      "data_rows": 16,
+      "rows_with_root_manifest_publisher": 0,
+      "rows_with_project_record": 16,
+      "rows_with_https_absent_from_root_manifest": 0,
+      "rows_without_https": 0
+    },
+    {
+      "path": "decisions-questions.html",
+      "section": "root",
+      "sha256": "97fb76098b3dc9318fc841da14ed5a92b39512e764748d5515420aac84c3b8cf",
+      "data_rows": 14,
+      "rows_with_root_manifest_publisher": 10,
+      "rows_with_project_record": 14,
+      "rows_with_https_absent_from_root_manifest": 0,
+      "rows_without_https": 0
+    },
+    {
+      "path": "flags.html",
+      "section": "root",
+      "sha256": "87f3b401cb3049637737dcde22af1d1476e867a6134f0ea5969c1922de4b5698",
+      "data_rows": 27,
+      "rows_with_root_manifest_publisher": 15,
+      "rows_with_project_record": 18,
+      "rows_with_https_absent_from_root_manifest": 0,
+      "rows_without_https": 0
+    },
+    {
+      "path": "independent-audit/audit.html",
+      "section": "independent-audit",
+      "sha256": "0d4a8d0b685fbdbe097008398be48c2e2ecc5ce8bff6cf04ab68548242f5f61c",
+      "data_rows": 28,
+      "rows_with_root_manifest_publisher": 4,
+      "rows_with_project_record": 12,
+      "rows_with_https_absent_from_root_manifest": 25,
+      "rows_without_https": 0
+    },
+    {
+      "path": "independent-audit/flags.html",
+      "section": "independent-audit",
+      "sha256": "eea01653bae49c7b81698b513fe9083a8abaac5bd3b4a2676c37bf217e661d20",
+      "data_rows": 15,
+      "rows_with_root_manifest_publisher": 1,
+      "rows_with_project_record": 6,
+      "rows_with_https_absent_from_root_manifest": 15,
+      "rows_without_https": 0
+    },
+    {
+      "path": "independent-audit/index.html",
+      "section": "independent-audit",
+      "sha256": "597fe6073f3e8ef3dd31e22dcb80c47787c375b8dc9617e9c31fd29abc1609c1",
+      "data_rows": 0,
+      "rows_with_root_manifest_publisher": 0,
+      "rows_with_project_record": 0,
+      "rows_with_https_absent_from_root_manifest": 0,
+      "rows_without_https": 0
+    },
+    {
+      "path": "independent-audit/methodology.html",
+      "section": "independent-audit",
+      "sha256": "d3db7f9447903b41d15a7bd91ac9a8147547041f19eb0165ff8a7c3dce5e7bc4",
+      "data_rows": 13,
+      "rows_with_root_manifest_publisher": 3,
+      "rows_with_project_record": 0,
+      "rows_with_https_absent_from_root_manifest": 12,
+      "rows_without_https": 0
+    },
+    {
+      "path": "independent-audit/sources.html",
+      "section": "independent-audit",
+      "sha256": "6af238e1d447d626091c4709aea7a905a7a771bc9a49e6731107a7af034df81f",
+      "data_rows": 25,
+      "rows_with_root_manifest_publisher": 5,
+      "rows_with_project_record": 3,
+      "rows_with_https_absent_from_root_manifest": 20,
+      "rows_without_https": 0
+    },
+    {
+      "path": "index.html",
+      "section": "root",
+      "sha256": "64bc5f2bf2ba2fc4320c66a4ed04b97b63906c6b7e92dc479172297a3de80199",
+      "data_rows": 22,
+      "rows_with_root_manifest_publisher": 4,
+      "rows_with_project_record": 19,
+      "rows_with_https_absent_from_root_manifest": 0,
+      "rows_without_https": 0
+    },
+    {
+      "path": "injuries.html",
+      "section": "root",
+      "sha256": "4919054d77c52ecf59f1f4456d05e42ac1eb8cc23f15053ab68a08d4a80a9fbf",
+      "data_rows": 226,
+      "rows_with_root_manifest_publisher": 224,
+      "rows_with_project_record": 7,
+      "rows_with_https_absent_from_root_manifest": 0,
+      "rows_without_https": 0
+    },
+    {
+      "path": "leaderboard.html",
+      "section": "root",
+      "sha256": "1f65bca20a518e649d19d256ee1aab9d16bc44934de2a79549e0c9d513a459d0",
+      "data_rows": 8,
+      "rows_with_root_manifest_publisher": 2,
+      "rows_with_project_record": 8,
+      "rows_with_https_absent_from_root_manifest": 0,
+      "rows_without_https": 0
+    },
+    {
+      "path": "lines.html",
+      "section": "root",
+      "sha256": "8e9a88e3339aa67ba7b190eeff5d39094526e869a487256d04ef935da8c5f28e",
+      "data_rows": 31,
+      "rows_with_root_manifest_publisher": 5,
+      "rows_with_project_record": 26,
+      "rows_with_https_absent_from_root_manifest": 0,
+      "rows_without_https": 0
+    },
+    {
+      "path": "own9-research/correlations.html",
+      "section": "own9-research",
+      "sha256": "1168a7542cfc2e194fc1240c302052da516d635c8f6d2510f13de0360d8ade64",
+      "data_rows": 4,
+      "rows_with_root_manifest_publisher": 0,
+      "rows_with_project_record": 0,
+      "rows_with_https_absent_from_root_manifest": 4,
+      "rows_without_https": 0
+    },
+    {
+      "path": "own9-research/flags.html",
+      "section": "own9-research",
+      "sha256": "f27ab7ab4406d4bb634c2e65db42da2376fe0b0bf4c9fdc3efbdd651c833c1cb",
+      "data_rows": 15,
+      "rows_with_root_manifest_publisher": 3,
+      "rows_with_project_record": 0,
+      "rows_with_https_absent_from_root_manifest": 12,
+      "rows_without_https": 0
+    },
+    {
+      "path": "own9-research/games.html",
+      "section": "own9-research",
+      "sha256": "84bf35c22eaf6ef3c74a53251f4437a1a39fcba0ca2bd330eb56c7b110cf8a01",
+      "data_rows": 5,
+      "rows_with_root_manifest_publisher": 0,
+      "rows_with_project_record": 0,
+      "rows_with_https_absent_from_root_manifest": 5,
+      "rows_without_https": 0
+    },
+    {
+      "path": "own9-research/index.html",
+      "section": "own9-research",
+      "sha256": "7e4b5a9db318c5898dd60623988cf39f5303173cc2dd09daf91be14521d96396",
+      "data_rows": 6,
+      "rows_with_root_manifest_publisher": 1,
+      "rows_with_project_record": 0,
+      "rows_with_https_absent_from_root_manifest": 5,
+      "rows_without_https": 0
+    },
+    {
+      "path": "own9-research/leaderboard.html",
+      "section": "own9-research",
+      "sha256": "cf4628d372257f219e7c4c6f03efd77c29372b6469c3ec344d517658ef74e97f",
+      "data_rows": 4,
+      "rows_with_root_manifest_publisher": 0,
+      "rows_with_project_record": 0,
+      "rows_with_https_absent_from_root_manifest": 4,
+      "rows_without_https": 0
+    },
+    {
+      "path": "own9-research/parlays.html",
+      "section": "own9-research",
+      "sha256": "e9d0870105539a2f2c4016a4ca39c3879944acd0fde89ed98a56950067508845",
+      "data_rows": 7,
+      "rows_with_root_manifest_publisher": 0,
+      "rows_with_project_record": 0,
+      "rows_with_https_absent_from_root_manifest": 7,
+      "rows_without_https": 0
+    },
+    {
+      "path": "own9-research/props.html",
+      "section": "own9-research",
+      "sha256": "a61e13d730fe80eb03e7f1ee18766319768d373d4e8f8e1b02eddefe95598f98",
+      "data_rows": 3,
+      "rows_with_root_manifest_publisher": 3,
+      "rows_with_project_record": 0,
+      "rows_with_https_absent_from_root_manifest": 0,
+      "rows_without_https": 0
+    },
+    {
+      "path": "own9-research/singles.html",
+      "section": "own9-research",
+      "sha256": "f2104a676e6459d9d47d7aca825f20934768e6704004c228b98725b67d1b19ab",
+      "data_rows": 19,
+      "rows_with_root_manifest_publisher": 0,
+      "rows_with_project_record": 0,
+      "rows_with_https_absent_from_root_manifest": 19,
+      "rows_without_https": 0
+    },
+    {
+      "path": "own9-research/sources.html",
+      "section": "own9-research",
+      "sha256": "d534c197bb09080ee50650d975878174d63bda0959282044ef427de54b78d7a5",
+      "data_rows": 7,
+      "rows_with_root_manifest_publisher": 1,
+      "rows_with_project_record": 0,
+      "rows_with_https_absent_from_root_manifest": 6,
+      "rows_without_https": 0
+    },
+    {
+      "path": "own9-research/strategies.html",
+      "section": "own9-research",
+      "sha256": "9182075bddb10b9dbd8f122d6d9848587f855fa9d5e34d5b785c97e36b07b518",
+      "data_rows": 7,
+      "rows_with_root_manifest_publisher": 2,
+      "rows_with_project_record": 0,
+      "rows_with_https_absent_from_root_manifest": 5,
+      "rows_without_https": 0
+    },
+    {
+      "path": "own9-research/summary.html",
+      "section": "own9-research",
+      "sha256": "a425b33b4669a70805e298b2949d64b9fccfbafd6735ac905fbac85e17af7f75",
+      "data_rows": 6,
+      "rows_with_root_manifest_publisher": 0,
+      "rows_with_project_record": 0,
+      "rows_with_https_absent_from_root_manifest": 6,
+      "rows_without_https": 0
+    },
+    {
+      "path": "own9-research/validation.html",
+      "section": "own9-research",
+      "sha256": "f447ead3c48a9c2f7eeca81f10bf6b64b73201b619368f6e2da6b1a5d52387f4",
+      "data_rows": 21,
+      "rows_with_root_manifest_publisher": 0,
+      "rows_with_project_record": 0,
+      "rows_with_https_absent_from_root_manifest": 21,
+      "rows_without_https": 0
+    },
+    {
+      "path": "question-ledger.html",
+      "section": "root",
+      "sha256": "3421ff2059fcdcc37567e53a6912a140c84d8ca5d0434fedb5c2b2d14e57040a",
+      "data_rows": 39,
+      "rows_with_root_manifest_publisher": 25,
+      "rows_with_project_record": 21,
+      "rows_with_https_absent_from_root_manifest": 0,
+      "rows_without_https": 0
+    },
+    {
+      "path": "questions.html",
+      "section": "root",
+      "sha256": "41a484df650ca9afb4c2954abb88db3e1d1edc8982a057832a70f5d0be32b05e",
+      "data_rows": 22,
+      "rows_with_root_manifest_publisher": 20,
+      "rows_with_project_record": 4,
+      "rows_with_https_absent_from_root_manifest": 0,
+      "rows_without_https": 0
+    },
+    {
+      "path": "release-checks/expanded-review.html",
+      "section": "release-checks",
+      "sha256": "74b7e5922f73857c1f6fbdb8a3741a85071afb235ea8d5637ffe4f1b1a56d2f2",
+      "data_rows": 118,
+      "rows_with_root_manifest_publisher": 7,
+      "rows_with_project_record": 118,
+      "rows_with_https_absent_from_root_manifest": 118,
+      "rows_without_https": 0
+    },
+    {
+      "path": "release-checks/index.html",
+      "section": "release-checks",
+      "sha256": "0fdf8978b5ff382b92903f66c31c81e15bbf3672798e4a7c42e19db776601b16",
+      "data_rows": 49,
+      "rows_with_root_manifest_publisher": 14,
+      "rows_with_project_record": 45,
+      "rows_with_https_absent_from_root_manifest": 49,
+      "rows_without_https": 0
+    },
+    {
+      "path": "research/correlations.html",
+      "section": "research",
+      "sha256": "0dfa8f15c56a2a78d05ebf74db3af58751032104ae77f10656ecb73157480001",
+      "data_rows": 27,
+      "rows_with_root_manifest_publisher": 0,
+      "rows_with_project_record": 27,
+      "rows_with_https_absent_from_root_manifest": 27,
+      "rows_without_https": 0
+    },
+    {
+      "path": "research/flagged.html",
+      "section": "research",
+      "sha256": "a535201dad4a0cfc1c3c924684816f2b6398a4ea52b71dbce18217a4a7130487",
+      "data_rows": 13,
+      "rows_with_root_manifest_publisher": 0,
+      "rows_with_project_record": 7,
+      "rows_with_https_absent_from_root_manifest": 9,
+      "rows_without_https": 3
+    },
+    {
+      "path": "research/games.html",
+      "section": "research",
+      "sha256": "0f10e3231e74596fefd496333442f3b18765b873f6dc1afe4cebf9b0e4333734",
+      "data_rows": 0,
+      "rows_with_root_manifest_publisher": 0,
+      "rows_with_project_record": 0,
+      "rows_with_https_absent_from_root_manifest": 0,
+      "rows_without_https": 0
+    },
+    {
+      "path": "research/index.html",
+      "section": "research",
+      "sha256": "73821b31c07cdb578d57a024331d91307b827881f60cbe0b15f8683612e1035f",
+      "data_rows": 0,
+      "rows_with_root_manifest_publisher": 0,
+      "rows_with_project_record": 0,
+      "rows_with_https_absent_from_root_manifest": 0,
+      "rows_without_https": 0
+    },
+    {
+      "path": "research/own-lines.html",
+      "section": "research",
+      "sha256": "a28c916841247938e69a52ba239bcf744789647b9707f4841a7918c9f887771b",
+      "data_rows": 53,
+      "rows_with_root_manifest_publisher": 1,
+      "rows_with_project_record": 38,
+      "rows_with_https_absent_from_root_manifest": 53,
+      "rows_without_https": 0
+    },
+    {
+      "path": "research/props.html",
+      "section": "research",
+      "sha256": "4b49ff15831757192891e996427b4f592250088c4b8a5348503a0c68092002bf",
+      "data_rows": 5,
+      "rows_with_root_manifest_publisher": 4,
+      "rows_with_project_record": 0,
+      "rows_with_https_absent_from_root_manifest": 0,
+      "rows_without_https": 1
+    },
+    {
+      "path": "research/rules.html",
+      "section": "research",
+      "sha256": "ff9d7d860944f139fde2e49d95653b1b63913c96c8ba8619409da5ca527e7f78",
+      "data_rows": 11,
+      "rows_with_root_manifest_publisher": 5,
+      "rows_with_project_record": 0,
+      "rows_with_https_absent_from_root_manifest": 6,
+      "rows_without_https": 0
+    },
+    {
+      "path": "research/sources.html",
+      "section": "research",
+      "sha256": "4ff1a990a0907009090355ef95ced2d99624181109cb00e7d0ad9d1680a49e86",
+      "data_rows": 18,
+      "rows_with_root_manifest_publisher": 2,
+      "rows_with_project_record": 4,
+      "rows_with_https_absent_from_root_manifest": 8,
+      "rows_without_https": 7
+    },
+    {
+      "path": "research/strategies.html",
+      "section": "research",
+      "sha256": "b56b9e9ebc51c7a9365eb46b220720e943e668540b3c0f209bd39eb01f156f6e",
+      "data_rows": 15,
+      "rows_with_root_manifest_publisher": 0,
+      "rows_with_project_record": 15,
+      "rows_with_https_absent_from_root_manifest": 15,
+      "rows_without_https": 0
+    },
+    {
+      "path": "research/summary.html",
+      "section": "research",
+      "sha256": "fcb8dede95241798c9fe20e4370306443ded4a6f51d1a7d26da68805a656d75e",
+      "data_rows": 0,
+      "rows_with_root_manifest_publisher": 0,
+      "rows_with_project_record": 0,
+      "rows_with_https_absent_from_root_manifest": 0,
+      "rows_without_https": 0
+    },
+    {
+      "path": "session-8b05dd6d/flags.html",
+      "section": "session-8b05dd6d",
+      "sha256": "274f01a4d3363c03d54f579bae187ee2cd7f0db6c9983706ebe88d034678f6a8",
+      "data_rows": 14,
+      "rows_with_root_manifest_publisher": 6,
+      "rows_with_project_record": 5,
+      "rows_with_https_absent_from_root_manifest": 9,
+      "rows_without_https": 0
+    },
+    {
+      "path": "session-8b05dd6d/games.html",
+      "section": "session-8b05dd6d",
+      "sha256": "b93c8300de2f2ed52d134feb8fca8af8b3f4639de142437f2011a47b336a72c2",
+      "data_rows": 14,
+      "rows_with_root_manifest_publisher": 14,
+      "rows_with_project_record": 0,
+      "rows_with_https_absent_from_root_manifest": 0,
+      "rows_without_https": 0
+    },
+    {
+      "path": "session-8b05dd6d/index.html",
+      "section": "session-8b05dd6d",
+      "sha256": "6e8e13fe25071f38d247bcfa80899cbb9ed0fecae26685657d6a2c6a28c58ab5",
+      "data_rows": 5,
+      "rows_with_root_manifest_publisher": 3,
+      "rows_with_project_record": 1,
+      "rows_with_https_absent_from_root_manifest": 2,
+      "rows_without_https": 0
+    },
+    {
+      "path": "session-8b05dd6d/injuries.html",
+      "section": "session-8b05dd6d",
+      "sha256": "76812252a6ac5be4226cae79ce3f41e6a26eecc5daadb4fba60d80ce76a8547e",
+      "data_rows": 203,
+      "rows_with_root_manifest_publisher": 188,
+      "rows_with_project_record": 0,
+      "rows_with_https_absent_from_root_manifest": 15,
+      "rows_without_https": 0
+    },
+    {
+      "path": "session-8b05dd6d/questions.html",
+      "section": "session-8b05dd6d",
+      "sha256": "4ef9af63f8ffe32554e97b3d8b32127ff1dd20f1284a3de8525d35d58d9b0ce4",
+      "data_rows": 14,
+      "rows_with_root_manifest_publisher": 6,
+      "rows_with_project_record": 4,
+      "rows_with_https_absent_from_root_manifest": 8,
+      "rows_without_https": 0
+    },
+    {
+      "path": "session-8b05dd6d/repo-review.html",
+      "section": "session-8b05dd6d",
+      "sha256": "7854fed92577c5d999a046b2fb114ee304e81b20e563139499d26517115597ab",
+      "data_rows": 12,
+      "rows_with_root_manifest_publisher": 0,
+      "rows_with_project_record": 12,
+      "rows_with_https_absent_from_root_manifest": 11,
+      "rows_without_https": 0
+    },
+    {
+      "path": "session-8b05dd6d/sources.html",
+      "section": "session-8b05dd6d",
+      "sha256": "d0557cc7403d604006c4cc44399795fff01c29e0625e69bb1d14b7def2be098b",
+      "data_rows": 12,
+      "rows_with_root_manifest_publisher": 3,
+      "rows_with_project_record": 0,
+      "rows_with_https_absent_from_root_manifest": 9,
+      "rows_without_https": 0
+    },
+    {
+      "path": "session-8b05dd6d/starters.html",
+      "section": "session-8b05dd6d",
+      "sha256": "97dbc6a7d8042474fd2e03023e4d22b3c39c982fe2e11547c6980ec0cd9eab02",
+      "data_rows": 8,
+      "rows_with_root_manifest_publisher": 3,
+      "rows_with_project_record": 0,
+      "rows_with_https_absent_from_root_manifest": 8,
+      "rows_without_https": 0
+    },
+    {
+      "path": "session-8b05dd6d/strategies.html",
+      "section": "session-8b05dd6d",
+      "sha256": "b22a6dc7483bc7849879c42195ff59857a86088a0f75cae1b1a6227c8ca78f7d",
+      "data_rows": 6,
+      "rows_with_root_manifest_publisher": 5,
+      "rows_with_project_record": 0,
+      "rows_with_https_absent_from_root_manifest": 2,
+      "rows_without_https": 0
+    },
+    {
+      "path": "session-8b05dd6d/suggestions.html",
+      "section": "session-8b05dd6d",
+      "sha256": "4358c330bee4bd3a2690bfe08068ef2d7ea5bed72bb4dd14c98c83fb1e38f6e7",
+      "data_rows": 11,
+      "rows_with_root_manifest_publisher": 4,
+      "rows_with_project_record": 3,
+      "rows_with_https_absent_from_root_manifest": 7,
+      "rows_without_https": 0
+    },
+    {
+      "path": "session-8b05dd6d/summary.html",
+      "section": "session-8b05dd6d",
+      "sha256": "98ab10dfac7f8d2248ac96d02992d6efa3cae6fe2db5007081af1a19631daa86",
+      "data_rows": 5,
+      "rows_with_root_manifest_publisher": 1,
+      "rows_with_project_record": 3,
+      "rows_with_https_absent_from_root_manifest": 4,
+      "rows_without_https": 0
+    },
+    {
+      "path": "site/audit.html",
+      "section": "site",
+      "sha256": "546afa8c320099de219a6180e40aea79eb87b224e6882f6b51423989faca049b",
+      "data_rows": 16,
+      "rows_with_root_manifest_publisher": 8,
+      "rows_with_project_record": 0,
+      "rows_with_https_absent_from_root_manifest": 9,
+      "rows_without_https": 0
+    },
+    {
+      "path": "site/correlations.html",
+      "section": "site",
+      "sha256": "41ed23814136a57a753813bfaa2e8a1bea087b038676561520b7c2ebe2f6758d",
+      "data_rows": 8,
+      "rows_with_root_manifest_publisher": 8,
+      "rows_with_project_record": 0,
+      "rows_with_https_absent_from_root_manifest": 0,
+      "rows_without_https": 0
+    },
+    {
+      "path": "site/index.html",
+      "section": "site",
+      "sha256": "48f68b93d8f4639dd8dcc05fbe0bb657c8f6307a121812e913724b93dd60b12a",
+      "data_rows": 10,
+      "rows_with_root_manifest_publisher": 9,
+      "rows_with_project_record": 0,
+      "rows_with_https_absent_from_root_manifest": 4,
+      "rows_without_https": 0
+    },
+    {
+      "path": "site/injuries.html",
+      "section": "site",
+      "sha256": "1a7f201e0a47b1a13ceab7d918a6096f1aa0e763ab5e4cdd6c952d5f9b66d8e5",
+      "data_rows": 14,
+      "rows_with_root_manifest_publisher": 11,
+      "rows_with_project_record": 0,
+      "rows_with_https_absent_from_root_manifest": 12,
+      "rows_without_https": 0
+    },
+    {
+      "path": "site/leaderboard.html",
+      "section": "site",
+      "sha256": "6956bd738beccfcde1851c99c4b216b5bf9ca009c2caefd35ef4f76849289c22",
+      "data_rows": 12,
+      "rows_with_root_manifest_publisher": 10,
+      "rows_with_project_record": 0,
+      "rows_with_https_absent_from_root_manifest": 7,
+      "rows_without_https": 0
+    },
+    {
+      "path": "site/lines.html",
+      "section": "site",
+      "sha256": "7982feac4f0d247d42f1b8013e45b50d23a3e76deb2e3ac53b79fa5b2e5b6f35",
+      "data_rows": 9,
+      "rows_with_root_manifest_publisher": 7,
+      "rows_with_project_record": 0,
+      "rows_with_https_absent_from_root_manifest": 4,
+      "rows_without_https": 0
+    },
+    {
+      "path": "site/parlays.html",
+      "section": "site",
+      "sha256": "d54995247f655846483bb4e5d396a73cebdb2a0d843228fa2576ec773c0b55cc",
+      "data_rows": 1,
+      "rows_with_root_manifest_publisher": 1,
+      "rows_with_project_record": 0,
+      "rows_with_https_absent_from_root_manifest": 1,
+      "rows_without_https": 0
+    },
+    {
+      "path": "site/props.html",
+      "section": "site",
+      "sha256": "3096d6def402b148d4e5e5d7746cf2eea9f025443e976f1d5874c75740cf89ec",
+      "data_rows": 4,
+      "rows_with_root_manifest_publisher": 3,
+      "rows_with_project_record": 0,
+      "rows_with_https_absent_from_root_manifest": 1,
+      "rows_without_https": 0
+    },
+    {
+      "path": "site/questions.html",
+      "section": "site",
+      "sha256": "b90a71e757ca4ebe0f133d20c2e2d90bfac3501c00bc2ab7117cdd5254c9b5a9",
+      "data_rows": 12,
+      "rows_with_root_manifest_publisher": 10,
+      "rows_with_project_record": 0,
+      "rows_with_https_absent_from_root_manifest": 11,
+      "rows_without_https": 0
+    },
+    {
+      "path": "site/review.html",
+      "section": "site",
+      "sha256": "e910c1f933984910c638c61b0caf5cbbe5c117beceff0e22885ee13741966145",
+      "data_rows": 15,
+      "rows_with_root_manifest_publisher": 5,
+      "rows_with_project_record": 1,
+      "rows_with_https_absent_from_root_manifest": 10,
+      "rows_without_https": 0
+    },
+    {
+      "path": "site/singles.html",
+      "section": "site",
+      "sha256": "eff3dbc682a944234990dacb791f55cdf6d9599d10e0d11c36180499b80728f1",
+      "data_rows": 3,
+      "rows_with_root_manifest_publisher": 3,
+      "rows_with_project_record": 0,
+      "rows_with_https_absent_from_root_manifest": 3,
+      "rows_without_https": 0
+    },
+    {
+      "path": "site/sources.html",
+      "section": "site",
+      "sha256": "1d4ba2be8610273f1aa38f212c8e7f6d5d0a2e691b3207f71be6f82cd1f5f6bb",
+      "data_rows": 14,
+      "rows_with_root_manifest_publisher": 7,
+      "rows_with_project_record": 0,
+      "rows_with_https_absent_from_root_manifest": 7,
+      "rows_without_https": 0
+    },
+    {
+      "path": "site/strategies.html",
+      "section": "site",
+      "sha256": "941d6cb8ce5b41b7b149401325fb20e14ff5e24650a08844dc9562f760184ff7",
+      "data_rows": 8,
+      "rows_with_root_manifest_publisher": 7,
+      "rows_with_project_record": 0,
+      "rows_with_https_absent_from_root_manifest": 5,
+      "rows_without_https": 0
+    },
+    {
+      "path": "site/suggestions.html",
+      "section": "site",
+      "sha256": "10ab434cb7a5fc47d7577d35f41cca3fda2de2b00f235160022c0b208928e117",
+      "data_rows": 10,
+      "rows_with_root_manifest_publisher": 7,
+      "rows_with_project_record": 0,
+      "rows_with_https_absent_from_root_manifest": 8,
+      "rows_without_https": 0
+    },
+    {
+      "path": "site/validation.html",
+      "section": "site",
+      "sha256": "0675ccac6046788179f7dcc734b4ae3ec8cfdda9a87ec337c26cb4ecda4b0e0c",
+      "data_rows": 11,
+      "rows_with_root_manifest_publisher": 4,
+      "rows_with_project_record": 0,
+      "rows_with_https_absent_from_root_manifest": 7,
+      "rows_without_https": 0
+    },
+    {
+      "path": "sources.html",
+      "section": "root",
+      "sha256": "334515e636f424f26973a5134c257f293daea689b14c172e7417b2d66cedeac7",
+      "data_rows": 40,
+      "rows_with_root_manifest_publisher": 39,
+      "rows_with_project_record": 1,
+      "rows_with_https_absent_from_root_manifest": 0,
+      "rows_without_https": 0
+    },
+    {
+      "path": "strategies.html",
+      "section": "root",
+      "sha256": "fed944e44f263f65a0b3e686f0441d56b1959216287f8b9f666c2586b3763c3b",
+      "data_rows": 9,
+      "rows_with_root_manifest_publisher": 5,
+      "rows_with_project_record": 6,
+      "rows_with_https_absent_from_root_manifest": 0,
+      "rows_without_https": 0
+    },
+    {
+      "path": "strict-lab/flags.html",
+      "section": "strict-lab",
+      "sha256": "a6ff323bc9675a0dd96654603568d0c322e31168feed9b567355ec21f71deafc",
+      "data_rows": 12,
+      "rows_with_root_manifest_publisher": 7,
+      "rows_with_project_record": 0,
+      "rows_with_https_absent_from_root_manifest": 10,
+      "rows_without_https": 0
+    },
+    {
+      "path": "strict-lab/index.html",
+      "section": "strict-lab",
+      "sha256": "a87229d76b61b4f1860933250558713ca49c1f07a313e1625e542ef1555cb5bb",
+      "data_rows": 5,
+      "rows_with_root_manifest_publisher": 5,
+      "rows_with_project_record": 0,
+      "rows_with_https_absent_from_root_manifest": 3,
+      "rows_without_https": 0
+    },
+    {
+      "path": "strict-lab/leaderboard.html",
+      "section": "strict-lab",
+      "sha256": "829f6e8c5d17e268f3dde12c221d1fdaafffc9dc3c645d10f63534a30d803ca2",
+      "data_rows": 13,
+      "rows_with_root_manifest_publisher": 9,
+      "rows_with_project_record": 0,
+      "rows_with_https_absent_from_root_manifest": 13,
+      "rows_without_https": 0
+    },
+    {
+      "path": "strict-lab/methodology.html",
+      "section": "strict-lab",
+      "sha256": "e7ed98866f2aeed0afd3387954704aee97187c3ae9ca9cc9a720811402ccc1e0",
+      "data_rows": 10,
+      "rows_with_root_manifest_publisher": 9,
+      "rows_with_project_record": 0,
+      "rows_with_https_absent_from_root_manifest": 5,
+      "rows_without_https": 0
+    },
+    {
+      "path": "strict-lab/requirements.html",
+      "section": "strict-lab",
+      "sha256": "561f6d8811d7113e6f68f744887f2002b2100f1519289b113a971c1770335857",
+      "data_rows": 22,
+      "rows_with_root_manifest_publisher": 9,
+      "rows_with_project_record": 0,
+      "rows_with_https_absent_from_root_manifest": 20,
+      "rows_without_https": 0
+    },
+    {
+      "path": "strict-lab/sources.html",
+      "section": "strict-lab",
+      "sha256": "b83d603033957398468ec74efad902486e4b01fae173542bc035e15f1716ab3f",
+      "data_rows": 14,
+      "rows_with_root_manifest_publisher": 6,
+      "rows_with_project_record": 0,
+      "rows_with_https_absent_from_root_manifest": 8,
+      "rows_without_https": 0
+    },
+    {
+      "path": "strict-lab/strategies.html",
+      "section": "strict-lab",
+      "sha256": "cb6c3ca9c6554889e3d9bdf8be4c20f0ce3c7b5021929ac242f617eab5da19a6",
+      "data_rows": 8,
+      "rows_with_root_manifest_publisher": 6,
+      "rows_with_project_record": 0,
+      "rows_with_https_absent_from_root_manifest": 7,
+      "rows_without_https": 0
+    },
+    {
+      "path": "strict-lab/validation.html",
+      "section": "strict-lab",
+      "sha256": "6fec5e70f193e0238da57ac14c4ffde49a1b16c6df8a36729a44118f9249434a",
+      "data_rows": 13,
+      "rows_with_root_manifest_publisher": 7,
+      "rows_with_project_record": 0,
+      "rows_with_https_absent_from_root_manifest": 11,
+      "rows_without_https": 0
+    },
+    {
+      "path": "suggestion-costs.html",
+      "section": "root",
+      "sha256": "256160eef9f43eb6c16d3a63766d0e88060b296ebe02b4b457dc002d7e03da96",
+      "data_rows": 35,
+      "rows_with_root_manifest_publisher": 11,
+      "rows_with_project_record": 28,
+      "rows_with_https_absent_from_root_manifest": 0,
+      "rows_without_https": 0
+    },
+    {
+      "path": "suggestions.html",
+      "section": "root",
+      "sha256": "63a139737d56923e90c5b7318e4dc868bdc9789b86377293d70c789699fa5c81",
+      "data_rows": 22,
+      "rows_with_root_manifest_publisher": 0,
+      "rows_with_project_record": 22,
+      "rows_with_https_absent_from_root_manifest": 0,
+      "rows_without_https": 0
+    },
+    {
+      "path": "validation.html",
+      "section": "root",
+      "sha256": "8a4d6156f5abad0171c2f6bb01ff6e3b98f239fd4226b82e2b7d1bc6e3d0bcdf",
+      "data_rows": 7,
+      "rows_with_root_manifest_publisher": 7,
+      "rows_with_project_record": 5,
+      "rows_with_https_absent_from_root_manifest": 0,
+      "rows_without_https": 0
+    }
+  ]
+}
