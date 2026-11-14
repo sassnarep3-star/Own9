@@ -949,3 +949,76 @@ session's files.
 - Empirical NFL numbers published here are read from official NFL.com pages on 2026-11-14 and are stored
   with a retrieval timestamp; they are point-in-time, not a historical archive.
 >>>>>>> c9554b8 (Claim session 00cf851d scope: independent official-source verification, executive summary and decision registers)
+
+# Session 00cf851d — done
+
+**Task:** Independent official-source verification of committed NFL claims, with an
+executive summary, a questions register and a suggestions register. Final integration
+session for this branch.
+**Status:** done
+**Owning session:** 00cf851d
+**Branch:** arena/00cf851d-own9
+
+## Files touched
+
+- `session-00cf851d/` — new, self-contained: `README.md`, 13 rendered pages,
+  `assets/style.css`, `assets/app.js`, `tools/{analysis,results_audit,build,check,browser_test}.{py,cjs}`,
+  `tests/test_analysis.py`, `tests/test_build.py`, `data/*.json` (13 registers).
+- `.github/workflows/quality.yml` — two additive steps: a Python verify/build/check/test
+  step for the section, and a Node browser-test step (plus Node setup, since the job
+  previously had none).
+
+`data/raw/games.csv` opened read-only. No other session's file edited.
+
+## Sources read (all official, all on 2026-11-14)
+
+- https://www.nfl.com/standings/ — official 2026 standings, all 8 divisions
+- https://www.nfl.com/injuries/ — official Week 10 injury report, 347 rows / 28 clubs
+- https://www.nfl.com/schedules/2026/by-week/week-9 — 12 Week 9 finals
+- https://www.nfl.com/scores/2026/REG10/ — WAS@NYG final
+- https://static.www.nfl.com/image/upload/v1794570519/gamecenter/ab5828d9-4feb-11f1-abca-2c54536568a9.pdf — WAS@NYG Week 10 Game Book
+- https://static.www.nfl.com/image/upload/v1794224919/gamecenter/ab382331-4feb-11f1-abca-2c54536568a9.pdf — LAR@WAS Week 9 Game Book
+- https://static.www.nfl.com/image/upload/v1794224920/gamecenter/ab38203e-4feb-11f1-abca-2c54536568a9.pdf — NYG@PHI Week 9 Game Book
+- https://www.nfl.com/teams/kansas-city-chiefs/depth-chart/ — 404, no league depth chart exists
+- https://github.com/sassnarep3-star/Own9/blob/main/data/raw/games.csv — the committed file, read-only
+
+## Verification performed
+
+- **369 checks against official documents: 369 match, 0 mismatch, 0 unverifiable.**
+  Lineups (all 4 elevens, 11 slots × 2 fields), inactives, substitutions, finals,
+  receiving totals, standings, injury designations.
+- Committed results file reconciled against the official standings: **2 of 32 clubs
+  reconcile exactly** (PIT 6-2-0 PF 180 PA 144; TEN 1-7-0 PF 144 PA 199). The other 30
+  are blocked solely by 16 missing results, not by any wrong value.
+- 39 Python tests + 13 axe WCAG 2.1 AA scans + 26 page loads at two viewports, all green.
+- Build is deterministic; a test asserts a fresh rebuild reproduces the committed bytes.
+- `tools/check.py` fails closed: a table with no official source link breaks the build,
+  and a test proves it by passing fabricated pages through the same rules.
+
+## Findings that change what should be built next
+
+1. The repository **already holds an odds archive** (`data/raw/closing_lines.csv`,
+   20,490 rows, 2006–2018) that a standing flag describes as absent. The flag is wrong.
+2. **No opening price exists anywhere in the committed data.** Requirement 1 cannot be
+   met from what is committed. The column is published empty, not duplicated from the close.
+3. The results feed is **two rounds stale**: 16 played 2026 games are priced but unscored.
+   Official standings already include the outcome the file lacks. Nothing notices.
+4. **Replacement depth is measurable** from lists the league does print (starters /
+   substitutions / did-not-play / not-active), even though no string tier is published.
+   n=8 this week: T1=0, T2=6, T3=2, T4=0. A demonstration, not a validated predictor.
+5. n=2 is not a correlation. Both T3 players produced; no conclusion is drawn from it.
+6. Nothing is live, so the demotion gate has nothing to act on yet.
+
+## Irregularities (12, namespaced F-00cf851d-01 … -12)
+
+Published on https://sassnarep3-star.github.io/Own9/session-00cf851d/flags.html with a
+source link each. Namespaced deliberately — this session does **not** renumber or append
+to the root Flagged for Review register owned by other sessions. Notable: the club-code
+alias defect (`games.csv` uses ARI/LA where the league prints AZ/LAR); no opening price
+anywhere; 16 missing 2026 results; the incorrect "no odds archive" flag; P.Richard /
+P.Ricard spelling inconsistency across two official Game Books.
+
+## Where it published
+
+https://sassnarep3-star.github.io/Own9/session-00cf851d/
+>>>>>>> c7988c9 (Wire session-00cf851d into CI and record its completion on the board)
