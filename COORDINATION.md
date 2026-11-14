@@ -1322,6 +1322,19 @@ PR #46 (session `9a409d93`) landed while this branch was integrating PR #45. It 
 
 Final verification on the fully merged tree: `tools/build.py` → 39 pages deterministic; `tools/verify.py` → PASS, 1755 source-linked rows; 282 tests OK; 31 release-check tests OK; 27 strict-lab tests OK; `session-00cf851d` suite OK; `engine/availability.py` and `engine/registers.py` PASS; `scripts/check_site.py` PASS; `research/make_catalog.py` and `scripts/build_site.py` reproduce their outputs with no diff; `node scripts/browser_test_root.cjs` → PASS (39 root pages × 2 viewports, 78 axe checks); `node scripts/browser_test.cjs` → PASS (15 pages, 30 axe checks); `node session-00cf851d/tools/browser_test.cjs` → PASS (13 pages, 13 axe checks).
 
+## 0167a04c — PR result (recorded as required)
+
+**PR #39 — https://github.com/sassnarep3-star/Own9/pull/39 — MERGED at 2026-11-14T23:14:24Z** (merge commit `de66dfd`), without waiting for review, as instructed.
+
+Checks on the merge commit `de66dfd` on `main`: `Research quality` success, `Verify NFL research for Pages` success, `pages build and deployment` success. GitHub Pages status: `built`, legacy build, live at https://sassnarep3-star.github.io/Own9/ . The site is not broken: the deployment and both research workflows succeeded after the merge.
+
+The branch absorbed five separate advances of `main` (PRs #43/#44 from `1cfcb957`, #45 from `00cf851d`, #41 and #46 from `9a409d93`) before it could be merged. In every case another session's work was retained in full; where a name collided this session moved, never the other.
+
+Open items left for the owner, none of which block the site:
+- **F50–F57** are this session's eight findings; all are published on the Flagged for Review page with source links. F57 records the consolidation decision among the five coexisting implementations of these eight requirements.
+- The `session-00cf851d` inventory check fires on every merge that adds a page (see the fifth-overlap note above) — a structural fix is an owner decision.
+- No ROI, closing-line value or demotion decision is published anywhere on the site, because no timestamped executable quote archive exists. Those cells are blank and flagged, not zero.
+
 ---
 
 ---
