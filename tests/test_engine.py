@@ -2,6 +2,7 @@
 import math
 import unittest
 from engine.core import *
+from engine.core import _normal_quantile
 
 
 class PricingTests(unittest.TestCase):
@@ -103,6 +104,58 @@ class ValidationTests(unittest.TestCase):
         self.assertTrue(eligibility(gates)['eligible'])
         gates['G01']['evidence']['sha256']='invalid'
         self.assertEqual(eligibility(gates)['blockers'],['G01'])
+
+
+class DependenceGateTests(unittest.TestCase):
+    """SYNTHETIC values only. No NFL correlation is asserted anywhere here."""
+    def test_normal_quantile(self):
+        self.assertAlmostEqual(_normal_quantile(.975),1.959963985,places=6)
+        self.assertAlmostEqual(_normal_quantile(.5),0,places=9)
+        self.assertAlmostEqual(_normal_quantile(.025),-1.959963985,places=6)
+        for p in (0,1,-.1,1.1):
+            with self.assertRaises(ValueError): _normal_quantile(p)
+    def test_interval_shrinks_with_n(self):
+        wide=correlation_interval(.4,25); narrow=correlation_interval(.4,2500)
+        self.assertLess(narrow[1]-narrow[0],wide[1]-wide[0])
+        self.assertTrue(wide[0]<.4<wide[1] and narrow[0]<.4<narrow[1])
+    def test_interval_degenerate(self):
+        self.assertIsNone(correlation_interval(.4,3))
+        self.assertIsNone(correlation_interval(1,100))
+        for r in (.4,):
+            with self.assertRaises(ValueError): correlation_interval(r,100,confidence=0)
+    def test_fisher_bounds(self):
+        for r in (-1,1,2):
+            with self.assertRaises(ValueError): fisher_z(r)
+        self.assertAlmostEqual(fisher_z(0),0)
+    def test_gate_directional(self):
+        self.assertEqual(dependence_gate(.30,400,200,.95,.05)['verdict'],'significantly_positive')
+        self.assertEqual(dependence_gate(-.30,400,200,.95,.05)['verdict'],'significantly_negative')
+    def test_gate_zero_not_used(self):
+        g=dependence_gate(.005,400,200,.95,.05)
+        self.assertEqual(g['verdict'],'indistinguishable_from_zero')
+        self.assertFalse(g['may_price_joint'])
+    def test_gate_insufficient(self):
+        g=dependence_gate(.9,10,200)
+        self.assertEqual(g['verdict'],'insufficient_evidence')
+        self.assertIsNone(g['interval'])
+        self.assertFalse(g['may_price_joint'])
+    def test_gate_rejects_bad_input(self):
+        for args in ((1.5,100,20),(.2,100,2),(.2,100,20,.95,-.1)):
+            with self.assertRaises(ValueError): dependence_gate(*args)
+    def test_joint_price_refuses_independence_default(self):
+        blocked=dependence_gate(.005,400,200,.95,.05)
+        self.assertIsNone(joint_price_from_dependence(.5,.5,blocked))
+        self.assertIsNone(joint_price_from_dependence(.5,.5,None))
+        self.assertIsNone(joint_price_from_dependence(.5,.5,{}))
+    def test_joint_price_when_gate_passes(self):
+        allowed=dependence_gate(.30,400,200,.95,.05)
+        p=joint_price_from_dependence(.5,.5,allowed)
+        self.assertAlmostEqual(p,.25+.30*.25)  # sqrt(.25*.25)=.25
+        lo,hi=max(0,.5+.5-1),min(.5,.5)
+        self.assertTrue(lo<=p<=hi)
+    def test_joint_price_with_negative_dependence(self):
+        allowed=dependence_gate(-.40,400,200,.95,.05)
+        self.assertAlmostEqual(joint_price_from_dependence(.5,.5,allowed),.25-.40*.25)
 
 
 if __name__=='__main__': unittest.main()

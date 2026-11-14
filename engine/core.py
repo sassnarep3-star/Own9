@@ -5,7 +5,7 @@ See research/METHODOLOGY.md for assumptions and evidence requirements.
 """
 from collections import defaultdict
 from dataclasses import dataclass
-from math import isfinite, log, sqrt
+from math import exp, isfinite, log, sqrt
 from random import Random
 from statistics import mean
 
@@ -249,3 +249,136 @@ def eligibility(gates):
                 or any(c not in '0123456789abcdef' for c in digest)):
             blockers.append(name)
     return {'eligible': not blockers, 'blockers': blockers}
+
+
+# --- Correlation decision gate -------------------------------------------------
+# These functions decide what a measured correlation is allowed to do to a
+# decision. They never invent a correlation and never default to independence.
+
+DEPENDENCE_VERDICTS = (
+    'significantly_positive',
+    'significantly_negative',
+    'indistinguishable_from_zero',
+    'insufficient_evidence',
+)
+
+
+def fisher_z(rho):
+    """Fisher variance-stabilising transform. Undefined at |rho| = 1."""
+    r = finite(rho)
+    if not -1 < r < 1:
+        raise ValueError('Fisher z is undefined at |rho| = 1')
+    return 0.5 * log((1 + r) / (1 - r))
+
+
+def correlation_interval(rho, n, confidence=.95):
+    """Fisher-z interval for a Pearson correlation.
+
+    Independence assumption: n paired observations drawn independently. NFL
+    legs inside one week are NOT independent, so this interval is only valid
+    for a design whose dependence is already handled (for example one
+    observation per week, or a block bootstrap). Returns None when n < 4 or
+    when the interval cannot be formed.
+    """
+    r = finite(rho)
+    n = finite(n)
+    if not 0 < finite(confidence) < 1:
+        raise ValueError('invalid confidence level')
+    if n != int(n) or n < 4:
+        return None
+    if not -1 < r < 1:
+        return None
+    # Normal quantile via the standard library-free Acklam-free approach:
+    # use a fixed table-free approximation of the two-sided normal quantile.
+    alpha = (1 - confidence) / 2
+    z_crit = _normal_quantile(1 - alpha)
+    centre = fisher_z(r)
+    half = z_crit / sqrt(n - 3)
+    lo, hi = centre - half, centre + half
+
+    def inverse(z):
+        e = exp(2 * z)
+        return (e - 1) / (e + 1)
+
+    return (max(-1.0, inverse(lo)), min(1.0, inverse(hi)))
+
+
+def _normal_quantile(p):
+    """Inverse standard-normal CDF via the Acklam rational approximation."""
+    if not 0 < p < 1:
+        raise ValueError('quantile probability must be in (0, 1)')
+    a = (-3.969683028665376e+01, 2.209460984245205e+02, -2.759285104469687e+02,
+         1.383577518672690e+02, -3.066479806614716e+01, 2.506628277459239e+00)
+    b = (-5.447609879822406e+01, 1.615858368580409e+02, -1.556989798598866e+02,
+         6.680131188771972e+01, -1.328068155288572e+01)
+    c = (-7.784894002430293e-03, -3.223964580411365e-01, -2.400758277161838e+00,
+         -2.549732539343734e+00, 4.374664141464968e+00, 2.938163982698783e+00)
+    d = (7.784695709041462e-03, 3.224671290700398e-01, 2.445134137142996e+00,
+         3.754408661907416e+00)
+    plow, phigh = 0.02425, 1 - 0.02425
+    if p < plow:
+        q = sqrt(-2 * log(p))
+        return (((((c[0]*q+c[1])*q+c[2])*q+c[3])*q+c[4])*q+c[5]) / ((((d[0]*q+d[1])*q+d[2])*q+d[3])*q+1)
+    if p > phigh:
+        q = sqrt(-2 * log(1 - p))
+        return -(((((c[0]*q+c[1])*q+c[2])*q+c[3])*q+c[4])*q+c[5]) / ((((d[0]*q+d[1])*q+d[2])*q+d[3])*q+1)
+    q = p - 0.5
+    r = q * q
+    return (((((a[0]*r+a[1])*r+a[2])*r+a[3])*r+a[4])*r+a[5])*q / (((((b[0]*r+b[1])*r+b[2])*r+b[3])*r+b[4])*r+1)
+
+
+def dependence_gate(rho, n, min_n, confidence=.95, deadband=0.0):
+    """Decide how a measured correlation may change a parlay decision.
+
+    Fail-closed policy:
+      - fewer than min_n paired observations        -> insufficient_evidence
+      - interval straddles the deadband +/- tolerance -> indistinguishable_from_zero
+      - interval entirely above/below the deadband   -> significantly +/-
+
+    Only a directional verdict may be used to price a joint bet. Any other
+    verdict must leave the joint price blank rather than assume independence.
+    deadband is the smallest |rho| the project will act on; it must be
+    predeclared before the test, never tuned after seeing the estimate.
+    """
+    r = finite(rho)
+    n = finite(n)
+    min_n = finite(min_n)
+    band = finite(deadband)
+    if not -1 <= r <= 1:
+        raise ValueError('correlation outside [-1, 1]')
+    if band < 0:
+        raise ValueError('deadband cannot be negative')
+    if min_n < 4:
+        raise ValueError('min_n below 4 cannot support an interval')
+    interval = correlation_interval(r, n, confidence) if n >= min_n else None
+    if interval is None:
+        return {'verdict': 'insufficient_evidence', 'rho': r, 'n': n,
+                'interval': None, 'deadband': band,
+                'may_price_joint': False,
+                'reason': 'Too few paired observations for a usable interval.'}
+    lo, hi = interval
+    if lo > band:
+        verdict, reason = 'significantly_positive', 'Whole interval above the predeclared deadband.'
+    elif hi < -band:
+        verdict, reason = 'significantly_negative', 'Whole interval below the predeclared deadband.'
+    else:
+        verdict = 'indistinguishable_from_zero'
+        reason = 'Interval overlaps the predeclared deadband; the sign is not established.'
+    return {'verdict': verdict, 'rho': r, 'n': n, 'interval': (lo, hi),
+            'deadband': band, 'may_price_joint': verdict in
+            ('significantly_positive', 'significantly_negative'), 'reason': reason}
+
+
+def joint_price_from_dependence(p_a, p_b, gate):
+    """Price a two-leg joint ONLY when the dependence gate directionally passed.
+
+    Returns None instead of assuming independence. This is the single place a
+    correlation is allowed to enter a price.
+    """
+    probability(p_a); probability(p_b)
+    if not isinstance(gate, dict) or not gate.get('may_price_joint'):
+        return None
+    rho = gate.get('rho')
+    if rho is None:
+        return None
+    return bernoulli_joint(p_a, p_b, rho)

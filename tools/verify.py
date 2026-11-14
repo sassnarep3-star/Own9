@@ -10,17 +10,16 @@ class Page(HTMLParser):
     def __init__(self):
         super().__init__(convert_charrefs=True)
         self.links=[]; self.ids=set(); self.errors=[]; self.row=None; self.rows=[]
-        self.current=0; self.main=False; self.h1=0; self.caption=None; self.in_caption=False
+        self.current=0; self.main=False; self.h1=0
     def handle_starttag(self, tag, attrs):
         a=dict(attrs)
-        if tag=='caption': self.in_caption=True; self.caption=''
-        if tag=='tr': self.row={'data':False,'links':[],'cells':[],'caption':self.caption}
         if 'id' in a:
             if a['id'] in self.ids: self.errors.append('duplicate id: '+a['id'])
             self.ids.add(a['id'])
         if tag=='main': self.main=True
         if tag=='h1': self.h1+=1
         if a.get('aria-current')=='page': self.current+=1
+        if tag=='tr': self.row={'data':False,'links':[],'cells':[]}
         if self.row is not None and tag in ('td','th'):
             if tag=='td': self.row['data']=True
             self.row['cells'].append('')
@@ -29,10 +28,8 @@ class Page(HTMLParser):
                 self.links.append(a[attr])
                 if self.row is not None: self.row['links'].append(a[attr])
     def handle_data(self, data):
-        if self.in_caption and self.caption is not None: self.caption+=data
         if self.row is not None and self.row['cells']: self.row['cells'][-1]+=data
     def handle_endtag(self, tag):
-        if tag=='caption': self.in_caption=False
         if tag=='tr' and self.row is not None:
             if self.row['data']: self.rows.append(self.row)
             self.row=None
@@ -41,11 +38,9 @@ def check():
     errors=[]; parsed={}; expected=render()
     manifest=json.loads((ROOT/'evidence/sources.json').read_text())
     known={s['url'] for s in manifest}
-    # Hosts actually read by a session. www.patriots.com is admitted only as a
-    # club-published substitute for a league depth chart that does not exist, and
-    # only for the page whose own text declares the chart unofficial.
-    allowed={'www.nfl.com','www.itl.nist.gov','docs.scipy.org','scikit-learn.org','docs.github.com','github.com',
-             'www.patriots.com'}
+    allowed={'www.nfl.com','static.www.nfl.com','media.nfl.com','operations.nfl.com',
+             'www.itl.nist.gov','docs.scipy.org','scikit-learn.org','www.statsmodels.org',
+             'docs.github.com','github.com','sportsbook.draftkings.com','wsgc.wa.gov','www.patriots.com'}
     if len({s['id'] for s in manifest}) != len(manifest): errors.append('duplicate source id')
     for s in manifest:
         if urlsplit(s['url']).scheme!='https' or urlsplit(s['url']).hostname not in allowed:
@@ -69,13 +64,35 @@ def check():
         if filename=='correlations.html':
             for row in parser.rows[:5]:
                 if any(cell.strip() for cell in row['cells'][2:5]): errors.append('invented NFL correlation metric')
-        # Availability candidates must not carry a measured result: the column exists
-        # so a future verified value can land in it, and it stays empty until then.
-        for row in parser.rows:
-            if row['caption']=='Availability signal candidates' and row['cells'][4].strip():
-                errors.append('invented availability measurement: '+row['cells'][0])
-            if row['caption']=='Current own-line standing' and row['cells'][1].strip() not in ('','None'):
-                errors.append('own-line value asserted without a source: '+row['cells'][0])
+        if filename=='availability.html':
+            # The NFL publishes no depth tier, so no row may render one.
+            banned = ('1st string','2nd string','3rd string','4th string',
+                      'second string','third string','fourth string')
+            tiers = [c.strip() for r in parser.rows for c in r['cells']
+                     if c.strip().lower() in banned]
+            if tiers:
+                errors.append('availability: an invented depth tier was rendered: '+', '.join(tiers))
+        if filename=='suggestions.html':
+            for r in parser.rows:
+                cells = [c.strip() for c in r['cells']]
+                if len(cells) >= 7 and ('S-' in cells[0]):
+                    if not cells[5]:
+                        errors.append('suggestions: a row has no falsification statement')
+        if filename=='questions.html':
+            for r in parser.rows:
+                cells = [c.strip() for c in r['cells']]
+                if len(cells) >= 6 and cells[0].startswith('Q-'):
+                    answered = cells[5] == 'Answered'
+                    if not answered and cells[3]:
+                        errors.append('questions: an unanswered row rendered an answer')
+                    if answered and not cells[3]:
+                        errors.append('questions: an answered row rendered no answer')
+        if filename=='decision.html':
+            for r in parser.rows:
+                cells = [c.strip() for c in r['cells']]
+                if len(cells) >= 7 and cells[0].startswith('D-'):
+                    if not cells[4]:
+                        errors.append('decision: a row has no stopping rule')
     for filename,parser in parsed.items():
         for link in parser.links:
             u=urlsplit(link)

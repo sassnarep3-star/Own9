@@ -4,66 +4,91 @@
 
 An auditable NFL research workspace covering line origination, singles, parlays,
 player-prop combos, seven validation gates, a proposed competition, correlation
-requirements, an availability and roster-deficiency layer, a decision question
-ledger, a suggestion register and a published review register.
+requirements, official source scopes and a published review register.
+
+Eighteen pages, `tools/build.py`, `tools/verify.py`, synthetic data only, plus one measured
+market-data audit computed at build time from the committed files in `data/raw/`.
+
+## Start with the decisions, not the archive
+
+| If you want to | Read |
+| --- | --- |
+| Know what is actually open and what would close it | [Decision brief](decision.html) |
+| Know what must be known before deciding | [Questions & answers](questions.html) |
+| Review and choose an improvement before it is built | [Suggestions](suggestions.html) |
+| See who actually started and who replaced them | [Availability tracker](availability.html) |
+| Check a claim against a publisher | [Sources](sources.html) |
+| See what is still wrong or unverified | [Flagged for Review](flags.html) |
+| Know what the committed price file actually contains | [Own lines](lines.html) |
+| Know which official source answers an availability question | [Availability sources](availability-evidence.html) |
+| See which questions are answered, open, or blocked on a decision | [Question ledger](question-ledger.html) |
+
+## What was verified this session
+
+- Three official NFL Game Books (Weeks 9 and 10, 2026) were read for their
+  game-day lineups, inactive lists and final statistics. All four published
+  starting elevens for Washington and New York changed between the two weeks.
+- One starting slot has a fully documented replacement: Lucas Patrick started at
+  center in Week 9, was ruled **Out** with a concussion in Week 10, was printed
+  under **Not Active**, and Nick Allegretti started at center.
+- Two official counterexamples on WHY a designation feed is not a participation
+  record: Treylon Burks did not practise yet started and caught 2 passes for 27
+  yards, and six of seven Giants inactives carried no injury designation at all.
+- **Depth tiers are deliberately blank.** The club depth-chart route on nfl.com
+  returns an NFL 404; no first/second/third/fourth-string field was found. The
+  site reports changed starters, which is published, and refuses to rank backups,
+  which is not.
+- Correlation handling is implemented, not asserted. A joint price is produced
+  only when a Fisher-z interval clears a predeclared deadband; otherwise the joint
+  price is left blank instead of assuming independence.
 
 ## Executive summary
 
-- **Implemented:** thirteen static dashboard pages organised by decision category;
-  dependency-free pricing, binary scoring, Pearson/phi and two-leg joint-probability
-  primitives; fail-closed eligibility; a build-time audit of the committed market-lines
-  snapshot; tests and CI.
+- **Implemented:** eighteen static dashboard pages; dependency-free pricing, binary scoring,
+  Pearson/phi, a Fisher-z correlation interval with a predeclared-deadband dependence gate,
+  a joint price that refuses to default to independence, fail-closed eligibility, verified
+  two-week lineup evidence with a fail-closed validator, and three validated registers
+  (16 suggestions, 22 questions, 16 decisions), extended on 14 Nov 2026 by a costed suggestion
+  sheet (18 items, 4 candidate paths), a question ledger (32 questions, 7 discovery probes), an
+  official availability-source register with two checked absences, and a measured audit of the
+  committed market-lines file; 102 Python tests, 2 browser suites and CI.
 - **Not established:** an NFL edge, a numerical NFL line, empirical correlation, completed
-  model/backtest, a verified executable quote archive, demonstrated skill or funded rewards.
-- **Do not confuse software tests with strategy validation.** All candidates remain
-  unvalidated; empirical values are blank. No bets are placed or recommended. Luck cannot
-  be removed, only bounded by a frozen design.
+  model/backtest, historical executable quote archive, verified skill or funded rewards.
+- **Do not confuse software tests with strategy validation.** All candidates remain unvalidated;
+  empirical values are blank. No bets are placed or recommended. Luck cannot be removed.
 - Every table row links to an official publisher or the primary project repository record.
   Scope labels distinguish facts, context, mathematical definitions and project proposals.
   An official contextual source does **not** substantiate an untested strategy.
-- No page requires manual input to read, reproduce or audit.
 
 ## Explore
 
-**Decide:** [Questions](questions.html) · [Suggestions](suggestions.html)
-**Research:** [Strategies](strategies.html) · [Own lines](lines.html) ·
-[Injuries & depth](injuries.html) · [Correlations](correlations.html)
-**Judge:** [Validation](validation.html) · [Leaderboard](leaderboard.html) ·
-[Data requirements](data.html)
-**Prove:** [Sources](sources.html) · [Repository audit](audit.html) ·
-[Flagged for Review](flags.html)
+[Decision brief](decision.html) · [Questions & answers](questions.html) ·
+[Question ledger](question-ledger.html) · [Suggestion costs](suggestion-costs.html) ·
+[Own lines](lines.html) · [Availability sources](availability-evidence.html) ·
+[Availability](availability.html) · [Suggestions](suggestions.html) ·
+[Strategies](strategies.html) · [Validation](validation.html) ·
+[Leaderboard](leaderboard.html) · [Correlations](correlations.html) ·
+[Data requirements](data.html) · [Sources](sources.html) ·
+[Decision questions (earlier register)](decisions-questions.html) ·
+[Repository audit](audit.html) · [Flagged for Review](flags.html)
 
 Full [research specification](docs/RESEARCH_SPEC.md) and machine-readable
 [source review manifest](evidence/sources.json). The audit describes every starting tracked
-file scope plus this release’s review. Official pages were read only within the manifest’s
-stated scope; unsupported NFL values were not imported. Acquisition, fitting, uncertainty
-inference and prospective paper evaluation remain unimplemented and explicitly flagged.
-
-## Availability and depth layer
-
-`injuries.html` records what the league actually publishes about player availability, read
-on 14 Nov 2026: the club injury report, the official participation and game-status
-definitions, reserve-list transactions and club roster status codes. It transcribes real
-Week 10 report rows, states two checked absences (no league depth chart, no official
-participation denominator), and specifies six availability signal candidates whose measured
-result column the verifier keeps empty. See flag F16 and F17.
-
-## Market data audit
-
-`tools/lines_audit.py` measures `data/raw/closing_lines.csv` at build time and
-`lines.html` publishes the result, so the page cannot drift from the file: row and game
-counts, the join key that actually works, settlement recomputation against the sibling
-score snapshot, missing-price coverage and push coding. The file is **quarantined for use**
-because its provenance and licence are unrecorded (flag F13); it is described, not deleted.
+file scope. Official pages were read only within the manifest's stated scope; unsupported
+NFL values were not imported. Acquisition, fitting, uncertainty inference and prospective
+paper evaluation remain unimplemented and explicitly flagged.
 
 ## Reproduce (Python 3.10+, no third-party packages)
 
 ```sh
-python3 tools/build.py
-python3 tools/verify.py
-python3 tools/lines_audit.py
+python3 tools/build.py                 # regenerate the 18 root pages
+python3 tools/verify.py                # rows, links, fragments, nav, blanks
+python3 engine/availability.py         # lineup + injury evidence rules
+python3 engine/registers.py            # suggestions, questions, decisions
+python3 tools/lines_audit.py           # measure the committed market-lines file
 python3 -m unittest discover -s tests -v
-python3 -m http.server 8000 --bind 0.0.0.0
+npm ci && node scripts/browser_test_root.cjs   # published pages, real browser
+npm test                               # additive site/ dashboard too
 ```
 
 The last command is optional for local viewing. GitHub Pages publishes repository root from
@@ -81,7 +106,33 @@ verification performed, irregularities, PRs and deployment results.
 
 ---
 
+## Added by session `4f2e0291` on 14 Nov 2026
+
+Nothing in the pages above was rewritten to make room for this. The four additions register
+through the same `page()` API in `tools/build.py` and live in `tools/pages_4f2e0291.py`:
+
+- **`lines.html`** — the committed `data/raw/closing_lines.csv` is measured, not described: 20,490
+  rows, seasons 2006–2018, joins to scores only through an alternate identifier, 85.2% of spread
+  and total rows unpriced, and 18 rows disagreeing with outcomes recomputed from the sibling score
+  snapshot. No edge, ROI or backtest claim is drawn from it and the file stays quarantined.
+- **`availability-evidence.html`** — the ten official and club sources read on 14 Nov 2026, each
+  with what the page publishes and its limits, plus two *checked absences* (no league depth chart at
+  the path tried; no snap or participation category among the eleven statistics categories) and the
+  six candidate availability signals with their measured columns left blank.
+- **`question-ledger.html`** — 32 questions split into answered-from-official, answered-from-repo,
+  closable with data work and needing an owner decision, plus 7 probes for discovering missing input.
+- **`suggestion-costs.html`** — 18 suggestions with cost, decision value and status, four unranked
+  candidate paths, and a decision log that records "none yet" instead of implying approval.
+
+Findings F13–F20 from this work are appended to `flags.html`, and the overview gained a directory of
+all seven published sections with per-section certification status.
+
 ## Separate inherited research (not certified by this dashboard)
+
+Other sessions published their own artefacts under the same Pages root: `site/`, `research/`,
+`own9-research/`, `strict-lab/`, `release-checks/` and `session-8b05dd6d/` (a Week 10 availability
+subtree merged on 14 Nov 2026). They are listed, counted and labelled in the directory on the
+[overview](index.html); none of them was re-verified by this integration.
 
 PR #6 later added a secondary-source analysis subtree. Its empirical numbers have not passed this integration’s official row-level verification requirement and are not adopted as verified results. Its original description is retained below as an attributed session record.
 

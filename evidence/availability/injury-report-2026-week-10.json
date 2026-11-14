@@ -1,0 +1,36 @@
+{
+  "document_title": "Official Latest NFL Injury Report for Players - Week 10 of the 2026 Season",
+  "source_url": "https://www.nfl.com/injuries/",
+  "publisher": "NFL",
+  "season": 2026,
+  "week": 10,
+  "retrieved_utc": "2026-11-14",
+  "retrieved_by": "session 1cc6b33d",
+  "rights_note": "Short verification excerpt only: two club tables from one official weekly report, kept to prove the tracker parses the real published fields. It is not a republication of the full league report and is not a substitute for a licensed as-of archive.",
+  "field_definitions": {
+    "practice_status": "Practice participation wording exactly as published: Full Participation in Practice, Limited Participation in Practice, Did Not Participate In Practice.",
+    "game_status": "Game designation exactly as published: Out, Doubtful, Questionable. Null means the published table showed no designation in that cell, which is not a clearance to play.",
+    "injuries": "Injury wording as published. An empty list means the published Injury cell was blank, which is not an absence of injury.",
+    "position": "Position label as published by the NFL, for example C, G, T, OT, TE, WR, RB, QB, DE, DT, LB, CB, SAF, S, DB, FB, LS, K, P."
+  },
+  "observations": [
+    {"team": "Washington Commanders", "abbr": "WAS", "player": "John Bates", "position": "TE", "injuries": [], "practice_status": "Full Participation in Practice", "game_status": null},
+    {"team": "Washington Commanders", "abbr": "WAS", "player": "Treylon Burks", "position": "WR", "injuries": [], "practice_status": "Did Not Participate In Practice", "game_status": null},
+    {"team": "Washington Commanders", "abbr": "WAS", "player": "Jayden Daniels", "position": "QB", "injuries": [], "practice_status": "Full Participation in Practice", "game_status": null},
+    {"team": "Washington Commanders", "abbr": "WAS", "player": "Matt Gulbin", "position": "C", "injuries": [], "practice_status": "Full Participation in Practice", "game_status": null},
+    {"team": "Washington Commanders", "abbr": "WAS", "player": "Chig Okonkwo", "position": "TE", "injuries": [], "practice_status": "Full Participation in Practice", "game_status": null},
+    {"team": "Washington Commanders", "abbr": "WAS", "player": "Lucas Patrick", "position": "C", "injuries": ["Concussion"], "practice_status": "Did Not Participate In Practice", "game_status": "Out"},
+    {"team": "Washington Commanders", "abbr": "WAS", "player": "Amik Robertson", "position": "CB", "injuries": [], "practice_status": "Limited Participation in Practice", "game_status": null},
+    {"team": "Washington Commanders", "abbr": "WAS", "player": "Shy Tuttle", "position": "DT", "injuries": [], "practice_status": "Full Participation in Practice", "game_status": null},
+    {"team": "Washington Commanders", "abbr": "WAS", "player": "Colson Yankoff", "position": "TE", "injuries": ["Knee"], "practice_status": "Did Not Participate In Practice", "game_status": "Out"},
+    {"team": "Detroit Lions", "abbr": "DET", "player": "Brian Branch", "position": "S", "injuries": [], "practice_status": "Full Participation in Practice", "game_status": null},
+    {"team": "Detroit Lions", "abbr": "DET", "player": "Jared Goff", "position": "QB", "injuries": [], "practice_status": "Full Participation in Practice", "game_status": null},
+    {"team": "Detroit Lions", "abbr": "DET", "player": "Kerby Joseph", "position": "S", "injuries": ["Knee"], "practice_status": "Did Not Participate In Practice", "game_status": "Out"},
+    {"team": "Detroit Lions", "abbr": "DET", "player": "Cade Mays", "position": "C", "injuries": ["Ankle"], "practice_status": "Did Not Participate In Practice", "game_status": "Out"},
+    {"team": "Detroit Lions", "abbr": "DET", "player": "D.J. Reed", "position": "CB", "injuries": ["Hip"], "practice_status": "Did Not Participate In Practice", "game_status": "Out"},
+    {"team": "Detroit Lions", "abbr": "DET", "player": "Jacob Saylors", "position": "RB", "injuries": [], "practice_status": "Full Participation in Practice", "game_status": null},
+    {"team": "Detroit Lions", "abbr": "DET", "player": "Amon-Ra St. Brown", "position": "WR", "injuries": ["Rib"], "practice_status": "Limited Participation in Practice", "game_status": "Questionable"},
+    {"team": "Detroit Lions", "abbr": "DET", "player": "Sione Vaki", "position": "RB", "injuries": ["Ankle"], "practice_status": "Limited Participation in Practice", "game_status": "Questionable"},
+    {"team": "Detroit Lions", "abbr": "DET", "player": "DJ Wonnum", "position": "DE", "injuries": [], "practice_status": "Full Participation in Practice", "game_status": null}
+  ]
+}

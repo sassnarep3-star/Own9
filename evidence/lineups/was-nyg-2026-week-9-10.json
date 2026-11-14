@@ -1,0 +1,196 @@
+{
+  "document_title": "Official starting-lineup comparison: Washington Commanders and New York Giants, 2026 Week 9 to Week 10",
+  "purpose": "Record what the NFL itself published about who started each game, and what changed one week later, so that replacement of a listed starter can be shown from primary sources rather than inferred.",
+  "retrieved_utc": "2026-11-14",
+  "retrieved_by": "session 1cc6b33d",
+  "rights_note": "Short verification excerpt only. Lineup membership is quoted from two official NFL Game Book PDFs so the diff can be re-checked by hand. This is not a republication of the Game Books and is not a licensed historical archive.",
+  "critical_limits": [
+    "The NFL publishes a game-day starting lineup. It does not publish a depth chart, a starter flag per snap, a snap count, or a first/second/third/fourth-string tier.",
+    "Therefore a changed starter is verifiable. WHY it changed, and the replaced player's depth tier, are NOT published and are recorded as null with cause_unpublished.",
+    "A starting lineup lists eleven players per side of the ball for a specific opening package. It is not a participation record and does not show who played the most snaps.",
+    "Absence from the weekly injury report is not evidence of health, and presence on it is not evidence of unavailability. Practice status and game status are separate official fields.",
+    "Consecutive official Game Books cover only the two club-games listed here. No league-wide, season-long, or season-to-date participation dataset is claimed."
+  ],
+  "sources": {
+    "gamebook_week9_lar_was": "https://static.www.nfl.com/image/upload/v1794224919/gamecenter/ab382331-4feb-11f1-abca-2c54536568a9.pdf",
+    "gamebook_week9_nyg_phi": "https://static.www.nfl.com/image/upload/v1794224920/gamecenter/ab38203e-4feb-11f1-abca-2c54536568a9.pdf",
+    "gamebook_week10_was_nyg": "https://static.www.nfl.com/image/upload/v1794570519/gamecenter/ab5828d9-4feb-11f1-abca-2c54536568a9.pdf",
+    "gamecenter_week9_lar_was": "https://www.nfl.com/games/rams-at-commanders-2026-reg-9",
+    "gamecenter_week9_nyg_phi": "https://www.nfl.com/games/giants-at-eagles-2026-reg-9",
+    "gamecenter_week10_was_nyg": "https://www.nfl.com/games/commanders-at-giants-2026-reg-10",
+    "schedule_week9": "https://www.nfl.com/schedules/2026/by-week/week-9",
+    "schedule_week10": "https://www.nfl.com/schedules/2026/REG10/",
+    "injury_week10": "https://www.nfl.com/injuries/"
+  },
+  "games": [
+    {
+      "id": "2026-REG9-LAR-WAS",
+      "week": 9,
+      "date": "2026-11-08",
+      "kickoff_local": "1:03 PM EST",
+      "venue": "Northwest Stadium, Landover, MD",
+      "away": "Los Angeles Rams",
+      "home": "Washington Commanders",
+      "final": {"away": 20, "home": 13},
+      "gamebook": "gamebook_week9_lar_was",
+      "gamecenter": "gamecenter_week9_lar_was"
+    },
+    {
+      "id": "2026-REG9-NYG-PHI",
+      "week": 9,
+      "date": "2026-11-08",
+      "kickoff_local": "1:02 PM EST",
+      "venue": "Lincoln Financial Field, Philadelphia, PA",
+      "away": "New York Giants",
+      "home": "Philadelphia Eagles",
+      "final": {"away": 19, "home": 11},
+      "gamebook": "gamebook_week9_nyg_phi",
+      "gamecenter": "gamecenter_week9_nyg_phi"
+    },
+    {
+      "id": "2026-REG10-WAS-NYG",
+      "week": 10,
+      "date": "2026-11-12",
+      "kickoff_local": "8:15 PM EST",
+      "venue": "MetLife Stadium, East Rutherford, NJ",
+      "away": "Washington Commanders",
+      "home": "New York Giants",
+      "final": {"away": 24, "home": 21},
+      "gamebook": "gamebook_week10_was_nyg",
+      "gamecenter": "gamecenter_week10_was_nyg"
+    }
+  ],
+  "field_definitions": {
+    "slot": "The position label printed beside the player in the official Game Book lineup block, in published order.",
+    "number_name": "Jersey number and abbreviated name exactly as printed in the Game Book.",
+    "membership_change": "computed by set difference across the eleven published starters for that side of the ball. 'same' means the eleven names are unchanged; order within the block is not treated as meaningful.",
+    "cause_unpublished": "null when the NFL published no reason for the change. Never filled from inference, reporting or the injury report unless the injury report itself states the designation and the player is independently listed inactive/did-not-play."
+  },
+  "lineups": [
+    {
+      "team": "Washington Commanders",
+      "abbr": "WAS",
+      "side": "offense",
+      "week9_source": "gamebook_week9_lar_was",
+      "week10_source": "gamebook_week10_was_nyg",
+      "week9": [["TE","87 J.Bates"],["LT","74 B.Coleman"],["LG","75 C.Paul"],["C","63 L.Patrick"],["RG","76 S.Cosmi"],["RT","72 J.Conerly"],["TE","82 B.Sinnott"],["TE","85 C.Okonkwo"],["WR","12 V.Jefferson"],["QB","5 J.Daniels"],["RB","1 R.White"]],
+      "week10": [["WR","14 A.Williams"],["TE","87 J.Bates"],["LT","74 B.Coleman"],["LG","75 C.Paul"],["C","67 N.Allegretti"],["RG","76 S.Cosmi"],["RT","72 J.Conerly"],["TE","82 B.Sinnott"],["WR","13 T.Burks"],["QB","5 J.Daniels"],["RB","1 R.White"]],
+      "membership_change": "changed",
+      "out": ["63 L.Patrick","85 C.Okonkwo","12 V.Jefferson"],
+      "in": ["67 N.Allegretti","14 A.Williams","13 T.Burks"],
+      "retained": ["87 J.Bates","74 B.Coleman","75 C.Paul","76 S.Cosmi","72 J.Conerly","82 B.Sinnott","5 J.Daniels","1 R.White"],
+      "cause_unpublished": null
+    },
+    {
+      "team": "Washington Commanders",
+      "abbr": "WAS",
+      "side": "defense",
+      "week9_source": "gamebook_week9_lar_was",
+      "week10_source": "gamebook_week10_was_nyg",
+      "week9": [["OLB","98 O.Oweh"],["DE","90 C.Omenihu"],["DT","96 S.Tuttle"],["DT","97 T.Settle"],["OLB","45 K.Chaisson"],["LB","52 S.Styles"],["LB","4 F.Luvu"],["CB","23 T.Amos"],["CB","2 A.Robertson"],["S","39 J.Reaves"],["S","25 N.Cross"]],
+      "week10": [["OLB","98 O.Oweh"],["DT","97 T.Settle"],["DT","96 S.Tuttle"],["OLB","45 K.Chaisson"],["LB","52 S.Styles"],["LB","4 F.Luvu"],["CB","23 T.Amos"],["CB","2 A.Robertson"],["S","39 J.Reaves"],["S","25 N.Cross"],["S","20 Q.Martin"]],
+      "membership_change": "changed",
+      "out": ["90 C.Omenihu"],
+      "in": ["20 Q.Martin"],
+      "retained": ["98 O.Oweh","97 T.Settle","96 S.Tuttle","45 K.Chaisson","52 S.Styles","4 F.Luvu","23 T.Amos","2 A.Robertson","39 J.Reaves","25 N.Cross"],
+      "cause_unpublished": null,
+      "note": "C.Omenihu was listed among Week 10 substitutions and recorded 2 tackles for loss in the Week 10 Game Book, so the change is a change of opening package rather than an absence from the game."
+    },
+    {
+      "team": "New York Giants",
+      "abbr": "NYG",
+      "side": "offense",
+      "week9_source": "gamebook_week9_nyg_phi",
+      "week10_source": "gamebook_week10_was_nyg",
+      "week9": [["WR","1 M.Nabers"],["TE","9 I.Likely"],["LT","78 A.Thomas"],["LG","76 J.Runyan"],["C","60 B.Hudson"],["RG","65 F.Mauigoa"],["RT","72 J.Eluemunor"],["TE","85 C.Manhertz"],["FB","45 P.Richard"],["QB","18 J.McCarthy"],["RB","26 D.Singletary"]],
+      "week10": [["WR","17 D.Mooney"],["TE","84 T.Johnson"],["LT","78 A.Thomas"],["LG","76 J.Runyan"],["C","60 B.Hudson"],["RG","65 F.Mauigoa"],["RT","72 J.Eluemunor"],["WR","1 M.Nabers"],["TE","9 I.Likely"],["QB","18 J.McCarthy"],["RB","44 C.Skattebo"]],
+      "membership_change": "changed",
+      "out": ["85 C.Manhertz","45 P.Richard","26 D.Singletary"],
+      "in": ["17 D.Mooney","84 T.Johnson","44 C.Skattebo"],
+      "retained": ["1 M.Nabers","9 I.Likely","78 A.Thomas","76 J.Runyan","60 B.Hudson","65 F.Mauigoa","72 J.Eluemunor","18 J.McCarthy"],
+      "cause_unpublished": null,
+      "note": "C.Skattebo was printed under 'Not Active' in the Week 9 Game Book and started in Week 10 with 18 rushes for 78 yards and 2 touchdowns. The Week 10 injury report lists him at full participation with no injury, so the official record shows a return to the lineup without publishing a cause."
+    },
+    {
+      "team": "New York Giants",
+      "abbr": "NYG",
+      "side": "defense",
+      "week9_source": "gamebook_week9_nyg_phi",
+      "week10_source": "gamebook_week10_was_nyg",
+      "week9": [["OLB","3 A.Carter"],["DL","98 D.Reader"],["DL","93 S.Harris"],["OLB","5 K.Thibodeaux"],["LB","41 M.McFadden"],["LB","52 A.Reese"],["CB","20 G.Newsome"],["CB","22 A.Phillips"],["CB","2 D.Banks"],["S","8 J.Holland"],["S","24 A.Washington"]],
+      "week10": [["OLB","5 K.Thibodeaux"],["DL","93 S.Harris"],["DL","97 B.Jamison-Travis"],["DL","98 D.Reader"],["OLB","3 A.Carter"],["LB","41 M.McFadden"],["LB","52 A.Reese"],["CB","20 G.Newsome"],["CB","2 D.Banks"],["S","8 J.Holland"],["S","24 A.Washington"]],
+      "membership_change": "changed",
+      "out": ["22 A.Phillips"],
+      "in": ["97 B.Jamison-Travis"],
+      "retained": ["3 A.Carter","98 D.Reader","93 S.Harris","5 K.Thibodeaux","41 M.McFadden","52 A.Reese","20 G.Newsome","2 D.Banks","8 J.Holland","24 A.Washington"],
+      "cause_unpublished": null,
+      "note": "A.Phillips was listed among Week 10 substitutions. B.Jamison-Travis was listed among Week 9 substitutions."
+    }
+  ],
+  "replacement_chain": [
+    {
+      "player_out": "Lucas Patrick",
+      "position": "C",
+      "team": "WAS",
+      "replacement_started": "Nick Allegretti",
+      "replacement_number": 67,
+      "injury_report_week10": {"injuries": ["Concussion"], "practice_status": "Did Not Participate In Practice", "game_status": "Out"},
+      "independently_inactive": true,
+      "evidence": "Week 10 Game Book prints 'G 63 L.Patrick' under Not Active; Week 10 injury report prints Concussion / Did Not Participate In Practice / Out. Week 9 Game Book printed L.Patrick as the starting center; Week 10 Game Book prints C 67 N.Allegretti as the starting center.",
+      "depth_tier_of_replacement": null,
+      "depth_tier_note": "The NFL does not publish a depth tier, so this value is deliberately blank rather than guessed."
+    },
+    {
+      "player_out": "Malik Harrison",
+      "position": "LB",
+      "team": "NYG",
+      "replacement_started": null,
+      "replacement_number": null,
+      "injury_report_week10": {"injuries": ["Groin"], "practice_status": "Limited Participation in Practice", "game_status": "Questionable"},
+      "independently_inactive": true,
+      "evidence": "Week 10 Game Book prints 'LB 54 M.Harrison' under Not Active. He was not a Week 9 starter, so no starting-lineup slot changed.",
+      "depth_tier_of_replacement": null,
+      "depth_tier_note": "Blank: the NFL publishes no depth tier and no replacement is identifiable from the starting lineup alone."
+    },
+    {
+      "player_out": "Colson Yankoff",
+      "position": "TE",
+      "team": "WAS",
+      "replacement_started": null,
+      "replacement_number": null,
+      "injury_report_week10": {"injuries": ["Knee"], "practice_status": "Did Not Participate In Practice", "game_status": "Out"},
+      "independently_inactive": true,
+      "evidence": "Week 10 Game Book prints 'TE 80 C.Yankoff' under Not Active; Week 10 injury report prints Knee / Did Not Participate In Practice / Out. He was not a Week 9 starter.",
+      "depth_tier_of_replacement": null,
+      "depth_tier_note": "Blank: no depth tier published and no starting slot changed."
+    }
+  ],
+  "practice_status_counterexample": [
+    {
+      "player": "Treylon Burks",
+      "position": "WR",
+      "team": "WAS",
+      "injury_report_week10": {"injuries": [], "practice_status": "Did Not Participate In Practice", "game_status": null},
+      "week10_outcome": "Printed as a starting receiver in the Week 10 Game Book and recorded 2 receptions for 27 yards.",
+      "lesson": "A 'Did Not Participate In Practice' line with a blank game status did not mean the player was unavailable. Practice status alone must not be treated as a projection input.",
+      "source": "gamebook_week10_was_nyg"
+    }
+  ],
+  "no_designation_inactive_counterexample": [
+    {
+      "team": "NYG",
+      "inactive_count": 7,
+      "inactives_with_a_week10_injury_designation": 1,
+      "inactives_without_any_week10_injury_designation": 6,
+      "inactive_list": ["CB 21 P.Adebo","CB 35 N.Reed","LB 54 M.Harrison","OL 67 J.Sills","OL 74 J.Davis","TE 86 T.Fidone","DL 99 B.Okoye"],
+      "lesson": "Six of seven Giants inactives carried no injury designation at all. Absence from the injury report is not evidence that a player will be active.",
+      "source": "gamebook_week10_was_nyg"
+    }
+  ],
+  "unavailable_fields": [
+    "Depth-chart tier of any player (1st/2nd/3rd/4th string) — not published by the NFL.",
+    "Snap counts and participation percentages — not present in the Game Book summary fields read here.",
+    "Reason for a lineup change, unless the injury report itself supplies an Out/Questionable/Doubtful designation.",
+    "Offensive-line combination continuity metrics — derivable only from a season-long lineup archive that has not been acquired."
+  ]
+}
