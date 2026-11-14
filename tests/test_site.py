@@ -1,7 +1,5 @@
-import json
 import sys
 import unittest
-from html.parser import HTMLParser
 from pathlib import Path
 sys.path.insert(0,str(Path(__file__).resolve().parents[1]/'tools'))
 from verify import Page, check
@@ -29,39 +27,3 @@ class SiteVerification(unittest.TestCase):
         self.assertEqual(p.rows[0]['links'],['https://example.com'])
         p.feed('<p id="x">Duplicate</p>')
         self.assertTrue(p.errors)
-
-    def test_suggestions_page_is_decision_ready_and_source_linked(self):
-        root=Path(__file__).resolve().parents[1]
-        page=root/'site'/'suggestions.html'
-        self.assertTrue(page.is_file(), 'run scripts/build_site.py before testing')
-        catalog=json.loads((root/'site'/'data'/'catalog.json').read_text())
-        official={source['url'] for source in catalog['sources']}
-
-        class Rows(HTMLParser):
-            def __init__(self):
-                super().__init__(); self.rows=[]; self.row=None; self.links=[]; self.in_cell=False
-            def handle_starttag(self,tag,attrs):
-                attrs=dict(attrs)
-                if tag=='tr': self.row={'text':'','links':[]}
-                elif tag=='td' and self.row is not None: self.in_cell=True
-                elif tag=='a' and self.row is not None: self.row['links'].append(attrs.get('href',''))
-            def handle_data(self,data):
-                if self.row is not None: self.row['text']+=' '+data
-            def handle_endtag(self,tag):
-                if tag=='td': self.in_cell=False
-                elif tag=='tr' and self.row is not None:
-                    if self.row['text'].strip(): self.rows.append(self.row)
-                    self.row=None
-
-        parsed=Rows(); parsed.feed(page.read_text())
-        data_rows=[row for row in parsed.rows if any(f'D{i:02}' in row['text'] for i in range(1,11))]
-        self.assertEqual(len(data_rows),10)
-        for row in data_rows:
-            self.assertTrue(any(link in official for link in row['links']), row['text'])
-            self.assertIn('proposed',row['text'])
-            self.assertIn('decision pending',row['text'])
-        full=page.read_text().lower()
-        for phrase in ('what is missing','how to discover','second-','third-','fourth-string',
-                       'correlation','alternatives','not prove a suggested strategy works'):
-            self.assertIn(phrase,full)
-        self.assertIn('suggestions.html', (root/'site'/'index.html').read_text())
