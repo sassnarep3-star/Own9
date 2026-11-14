@@ -778,3 +778,39 @@ session is rewritten or deleted.
 | Board/README appends, sources, suggestions, PR + merge record | in progress | session-arena-9a409d93 | `COORDINATION.md` (appends), `README.md` (append), `evidence/sources.json` (additive), `research/suggestions.json` (additive), `tools/verify.py` (host allowlist append), `tools/build.py` (nav/date + append-only augmentation) |
 
 Requests to other sessions/owners: none currently. No other active claims were present at claim time.
+
+## Session `arena/9a409d93-own9` — done record (2026-11-14, branch `arena/9a409d93-own9`)
+
+All eight claimed tasks are implemented and verified; statuses in the claim table above are now **done**.
+
+- **Evidence committed on-branch:** `evidence/results/nfl-2026-results.json` (136 games, weeks 1–9,
+  per-week source ids `nfl-sched-w1..w9`, structural validation recorded), `evidence/results/nfl-2026-week10.json`
+  (14-game slate + TNF final WAS 24 @ NYG 21; JAX@TEN kickoff/network left blank — never captured, never inferred),
+  `evidence/depth-charts/club-depth-charts-2026-w10.json` (19 clubs + Houston checked absence, rows transcribed
+  verbatim in published order).
+- **Sources:** `evidence/sources.json` grew 40 → 71 (10 weekly schedule pages, BUF@NYJ game centre, 19 club
+  depth charts, Houston checked absence). `tools/verify.py` allowlist grew additively by 18 club hosts plus
+  `www.packers.com`; no existing host was removed.
+- **Engine:** `engine/origination.py` (elo-v1 predeclared constants, origination order, snapshot store builder,
+  demotion gate) + `tests/test_origination.py` (18 tests: feed shape, determinism, order contract, blank-policy,
+  provenance hash, store-regeneration equality, demotion boundary behaviour).
+- **Store:** `data/snapshots/2026-w10-price-snapshot.json` — 52 open snapshots; market_line/diff null by policy
+  (F28). `tools/snapshot_close.py` + `.github/workflows/snapshot.yml` (crons 14:00 UTC daily, 23:30 UTC Thu)
+  capture closes pre-kickoff; guards: constants-change refusal, idempotency, commits restricted to
+  `data/snapshots/**`.
+- **Pages:** `results.html`, `markets.html`, `replacement-depth.html`, `demotion.html` registered; append-only
+  sections added to `leaderboard.html` (signal/staking), `correlations.html` (three feed-derived r/n/CI rows),
+  `index.html` (session summary) and `flags.html` (F28–F33). `tools/build.py` nav grew additively.
+- **Registers:** suggestions 16 → 21 (S-17–S-21 proposed), decisions 16 → 21 (D-17–D-21 deferred), questions
+  22 → 24 (Q-23 open_discoverable, Q-24 unknown_unpublished). `tests/test_registers.py` floors updated with
+  the delta documented in-file; `tests/test_own9_delta.py` page-count floor updated 19 → 23 with the same note.
+- **Verification before PR (all green):** `python3 tools/build.py` (23 pages), `python3 tools/verify.py`
+  (PASS: 23 fresh pages; 1025 source-linked rows), `python3 -m unittest discover -s tests` (124 OK),
+  `engine/availability.py` PASS, `engine/registers.py` PASS, `tools/lines_audit.py` exit 0, deterministic
+  rebuild checked. Browser suites run in CI per `pages.yml`.
+- **Honesty notes:** market columns blank everywhere (F28); elo-v1 fair numbers labelled unvalidated model
+  outputs (F29); depth labels chart-relative because club charts are self-unofficial/undated (F30); Houston
+  absence + several players absent from their own club charts recorded, never resolved (F31); TNF not
+  originated (F32); results feed structurally consistent, per-row game-centre re-check proposed as S-21 (F33).
+  One derivation bug (off-by-one cell index) was caught in QA before publishing because the first render showed
+  injured players as their own replacements — fixed and re-derived from the same evidence.

@@ -24,13 +24,14 @@ PAGES = {}
 # Pages whose tables rest on documents retrieved on 14 Nov 2026.
 KEEP_DATE_14 = {'decision.html','questions.html','availability.html','suggestions.html',
                 'decisions-questions.html','sources.html','flags.html','audit.html','injuries.html',
-               'lines.html','availability-evidence.html','question-ledger.html','suggestion-costs.html'}
+               'lines.html','availability-evidence.html','question-ledger.html','suggestion-costs.html',
+               'results.html','markets.html','replacement-depth.html','demotion.html'}
 
 # Navigation grouped by what the reader is trying to do, not by file order.
 NAV_GROUPS = [
     ('Decide', [('decision.html','Decision brief'),('questions.html','Question register'),('decisions-questions.html','Decision review'),('question-ledger.html','Question ledger')]),
-    ('Evidence', [('index.html','Overview'),('availability.html','Availability tracker'),('injuries.html','Injuries & depth'),('availability-evidence.html','Availability sources'),('lines.html','Own lines'),('data.html','Data requirements'),('sources.html','Sources')]),
-    ('Research', [('strategies.html','Strategies'),('correlations.html','Correlations'),('validation.html','Validation'),('leaderboard.html','Leaderboard')]),
+    ('Evidence', [('index.html','Overview'),('availability.html','Availability tracker'),('injuries.html','Injuries & depth'),('availability-evidence.html','Availability sources'),('lines.html','Own lines'),('data.html','Data requirements'),('results.html','Results feed'),('markets.html','Price snapshots'),('replacement-depth.html','Replacement depth'),('sources.html','Sources')]),
+    ('Research', [('strategies.html','Strategies'),('correlations.html','Correlations'),('validation.html','Validation'),('leaderboard.html','Leaderboard'),('demotion.html','Demotion gate')]),
     ('Review', [('suggestions.html','Suggestions'),('suggestion-costs.html','Suggestion costs'),('flags.html','Flagged for review'),('audit.html','Repository audit')]),
 ]
 
@@ -759,6 +760,16 @@ _own9_body = _own9_source.split('"""', 2)[2]
 exec(compile(_own9_body, 'pages_4f2e0291.py', 'exec'),
      {'page': page, 'table': table, 'row': row, 'e': e, 'PAGES': PAGES, 'ROOT': ROOT,
       '__name__': 'pages_4f2e0291'})
+
+# Session arena/9a409d93-own9 — additive pages module (results feed, snapshot
+# store, replacement depth, demotion gate, leaderboard/correlations/index/flags
+# appends). INJ is injected so the replacement-depth derivation reads the same
+# transcribed report the injuries page publishes.
+_9a409d93_source = (ROOT/'tools/pages_9a409d93.py').read_text()
+_9a409d93_body = _9a409d93_source.split('"""', 2)[2]
+exec(compile(_9a409d93_body, 'pages_9a409d93.py', 'exec'),
+     {'page': page, 'table': table, 'row': row, 'e': e, 'PAGES': PAGES, 'ROOT': ROOT,
+      'INJ': INJ, '__name__': 'pages_9a409d93'})
 
 
 def render():

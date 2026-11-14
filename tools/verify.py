@@ -38,7 +38,7 @@ def check():
     errors=[]; parsed={}; expected=render()
     manifest=json.loads((ROOT/'evidence/sources.json').read_text())
     known={s['url'] for s in manifest}
-    allowed={'docs.github.com','docs.scipy.org','github.com','media.nfl.com','operations.nfl.com','scikit-learn.org','sportsbook.draftkings.com','static.www.nfl.com','wsgc.wa.gov','www.chiefs.com','www.detroitlions.com','www.itl.nist.gov','www.nfl.com','www.patriots.com','www.seahawks.com','www.statsmodels.org'}
+    allowed={'docs.github.com','docs.scipy.org','github.com','media.nfl.com','operations.nfl.com','scikit-learn.org','sportsbook.draftkings.com','static.www.nfl.com','wsgc.wa.gov','www.49ers.com','www.atlantafalcons.com','www.azcardinals.com','www.bengals.com','www.buffalobills.com','www.chiefs.com','www.clevelandbrowns.com','www.colts.com','www.commanders.com','www.dallascowboys.com','www.detroitlions.com','www.houstontexans.com','www.itl.nist.gov','www.jaguars.com','www.miamidolphins.com','www.neworleanssaints.com','www.newyorkjets.com','www.nfl.com','www.packers.com','www.panthers.com','www.patriots.com','www.seahawks.com','www.statsmodels.org','www.tennesseetitans.com','www.therams.com','www.vikings.com'}
     if len({s['id'] for s in manifest}) != len(manifest): errors.append('duplicate source id')
     for s in manifest:
         if urlsplit(s['url']).scheme!='https' or urlsplit(s['url']).hostname not in allowed:

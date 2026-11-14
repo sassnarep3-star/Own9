@@ -285,6 +285,33 @@
    "sources": [
     "nfl-roster"
    ]
+  },
+  {
+   "id": "Q-23",
+   "group": "Prices and grading",
+   "question": "Which operator\u2019s settlement and push conventions will Own9 use to grade originated markets once a price archive exists?",
+   "information_needed": "A named operator document with jurisdiction, market rules, push/void handling and a timestamped quote archive; recorded with its reuse terms.",
+   "answer": null,
+   "state": "open_discoverable",
+   "blocked_by": "No officially verifiable market price exists (F28); the store\u2019s market_line and diff columns stay blank until a licensed archive is acquired (S-17/D-17). The tie-push convention is registered as operator context only; the grading operator is a decision, not a fact to discover on an NFL page.",
+   "basis": "project_record",
+   "sources": [
+    "dk-markets",
+    "repo"
+   ]
+  },
+  {
+   "id": "Q-24",
+   "group": "Live discipline",
+   "question": "What thresholds re-promote a demoted strategy from paper back to live?",
+   "information_needed": "An owner decision recorded as a decision-brief row: candidate designs are re-clearing the seven gates, or a lighter trailing-window rule that still fails closed.",
+   "answer": null,
+   "state": "unknown_unpublished",
+   "blocked_by": "The demotion gate (engine/origination.py) is defined and armed but has never triggered, so no empirical basis exists for a re-promotion rule; deciding one now would be an unfalsifiable guess. The gate currently leaves re-promotion undefined.",
+   "basis": "project_record",
+   "sources": [
+    "repo"
+   ]
   }
  ],
  "basis_values": {

@@ -192,3 +192,37 @@ single point-in-time retrieval (F21).
 [own9-research/](own9-research/index.html) · [release-checks/](release-checks/index.html) ·
 [independent-audit/](independent-audit/index.html) (integrated from PR #18, 2026-11-14).
 Subsite findings remain governed by their owning sessions' scopes and review registers.
+
+## Verified results, price snapshots, replacement depth and the demotion gate (2026-11-14, session arena/9a409d93-own9)
+
+The verified-outcome gap is closed for the 2026 season and the origination machinery now exists:
+
+- **[Results feed](results.html)** — all 136 completed 2026 games (weeks 1–9), transcribed verbatim
+  from the official weekly schedule pages ([by-week/week-1 … week-9](https://www.nfl.com/schedules/2026/by-week/week-1)),
+  validated structurally (weekly counts, 32 teams, per-team game counts match each page's byes).
+  This is the outcome input for grading; it carries no betting lines.
+- **[Price snapshot store](markets.html)** (`data/snapshots/2026-w10-price-snapshot.json`) — 52 originated
+  Week 10 markets (13 games × spread, total, two moneylines; the Thursday game kicked off before the store
+  existed and is explicitly not originated). Every row records `model_fair`, `market_line`, `diff`,
+  `opened_at`/`closed_at` as separate fields. `market_line` is null everywhere: the NFL publishes no betting
+  lines and no licensed price archive exists (F28), so the difference column stays blank rather than inferred.
+  Model fair numbers come from the predeclared `elo-v1` method (`engine/origination.py`) computed only from
+  official scores; they are unvalidated outputs, not prices.
+- **Origination order** — side → total → moneyline, fixed in `engine/origination.py` and enforced by tests.
+- **[Replacement depth](replacement-depth.html)** — for the Week 10 report's 76 Out/Doubtful players, the
+  replacement **and its depth** (published chart order), derived only where a club depth chart places both
+  players: 33 chains across 17 clubs from 19 newly retrieved club charts; 43 withheld chains published with
+  reasons (co-listed ties, last-listed, absent from chart, [Houston's checked absence](https://www.houstontexans.com/team/depth-chart/)).
+- **[Demotion gate](demotion.html)** — predeclared live → paper triggers (trailing ROI, mean edge, CLV rate,
+  Brier drift, feed staleness, fail-closed below 20 graded bets) in `engine/origination.py::demotion_gate`,
+  boundary-tested in `tests/test_origination.py`. Nothing is live, so the gate is armed but never triggered.
+- **Leaderboard signal/staking split and official-sample correlations with n** — appended to
+  [leaderboard.html](leaderboard.html) and [correlations.html](correlations.html); correlations are computed
+  only from the verified feed with r, n and a Fisher-z interval per value.
+- **Close capture** — `tools/snapshot_close.py` + scheduled [snapshot.yml](.github/workflows/snapshot.yml)
+  record `closed_at` (and, if the feed grew, `model_fair_close`) before kickoff, refusing to run if the
+  declared method constants changed, and committing only under `data/snapshots/`.
+
+New suggestions S-17–S-21 (price archive, close-capture adoption, sealed backtest, signal/staking adoption,
+game-centre row verification) and open questions Q-23/Q-24 (grading operator; re-promotion thresholds) are in
+the registers awaiting review. Findings F28–F33 are on [flags.html](flags.html).

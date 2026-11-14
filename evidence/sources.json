@@ -359,5 +359,284 @@
   "scope": "Used as one official cross-check of the repository score snapshot. One verified game does not certify the remaining 7,548 rows or any lines value.",
   "checked": "2026-11-14",
   "status": "retrieved"
+ },
+ {
+  "id": "nfl-sched-w1",
+  "publisher": "NFL",
+  "url": "https://www.nfl.com/schedules/2026/by-week/week-1",
+  "checked": "2026-11-14",
+  "status": "retrieved",
+  "supports": "Official 2026 week-1 schedule page: every game headline with final scores for completed games (read as \"Away H, Home A, FINAL\"), kickoff listings, network and byes.",
+  "scope": "Week 1 slate and final scores only; no betting lines, no player detail. Headlines transcribed verbatim."
+ },
+ {
+  "id": "nfl-sched-w2",
+  "publisher": "NFL",
+  "url": "https://www.nfl.com/schedules/2026/by-week/week-2",
+  "checked": "2026-11-14",
+  "status": "retrieved",
+  "supports": "Official 2026 week-2 schedule page: every game headline with final scores for completed games (read as \"Away H, Home A, FINAL\"), kickoff listings, network and byes.",
+  "scope": "Week 2 slate and final scores only; no betting lines, no player detail. Headlines transcribed verbatim."
+ },
+ {
+  "id": "nfl-sched-w3",
+  "publisher": "NFL",
+  "url": "https://www.nfl.com/schedules/2026/by-week/week-3",
+  "checked": "2026-11-14",
+  "status": "retrieved",
+  "supports": "Official 2026 week-3 schedule page: every game headline with final scores for completed games (read as \"Away H, Home A, FINAL\"), kickoff listings, network and byes.",
+  "scope": "Week 3 slate and final scores only; no betting lines, no player detail. Headlines transcribed verbatim."
+ },
+ {
+  "id": "nfl-sched-w4",
+  "publisher": "NFL",
+  "url": "https://www.nfl.com/schedules/2026/by-week/week-4",
+  "checked": "2026-11-14",
+  "status": "retrieved",
+  "supports": "Official 2026 week-4 schedule page: every game headline with final scores for completed games (read as \"Away H, Home A, FINAL\"), kickoff listings, network and byes.",
+  "scope": "Week 4 slate and final scores only; no betting lines, no player detail. Headlines transcribed verbatim."
+ },
+ {
+  "id": "nfl-sched-w5",
+  "publisher": "NFL",
+  "url": "https://www.nfl.com/schedules/2026/by-week/week-5",
+  "checked": "2026-11-14",
+  "status": "retrieved",
+  "supports": "Official 2026 week-5 schedule page: every game headline with final scores for completed games (read as \"Away H, Home A, FINAL\"), kickoff listings, network and byes.",
+  "scope": "Week 5 slate and final scores only; no betting lines, no player detail. Headlines transcribed verbatim."
+ },
+ {
+  "id": "nfl-sched-w6",
+  "publisher": "NFL",
+  "url": "https://www.nfl.com/schedules/2026/by-week/week-6",
+  "checked": "2026-11-14",
+  "status": "retrieved",
+  "supports": "Official 2026 week-6 schedule page: every game headline with final scores for completed games (read as \"Away H, Home A, FINAL\"), kickoff listings, network and byes.",
+  "scope": "Week 6 slate and final scores only; no betting lines, no player detail. Headlines transcribed verbatim."
+ },
+ {
+  "id": "nfl-sched-w7",
+  "publisher": "NFL",
+  "url": "https://www.nfl.com/schedules/2026/by-week/week-7",
+  "checked": "2026-11-14",
+  "status": "retrieved",
+  "supports": "Official 2026 week-7 schedule page: every game headline with final scores for completed games (read as \"Away H, Home A, FINAL\"), kickoff listings, network and byes.",
+  "scope": "Week 7 slate and final scores only; no betting lines, no player detail. Headlines transcribed verbatim."
+ },
+ {
+  "id": "nfl-sched-w8",
+  "publisher": "NFL",
+  "url": "https://www.nfl.com/schedules/2026/by-week/week-8",
+  "checked": "2026-11-14",
+  "status": "retrieved",
+  "supports": "Official 2026 week-8 schedule page: every game headline with final scores for completed games (read as \"Away H, Home A, FINAL\"), kickoff listings, network and byes.",
+  "scope": "Week 8 slate and final scores only; no betting lines, no player detail. Headlines transcribed verbatim."
+ },
+ {
+  "id": "nfl-sched-w9",
+  "publisher": "NFL",
+  "url": "https://www.nfl.com/schedules/2026/by-week/week-9",
+  "checked": "2026-11-14",
+  "status": "retrieved",
+  "supports": "Official 2026 week-9 schedule page: every game headline with final scores for completed games (read as \"Away H, Home A, FINAL\"), kickoff listings, network and byes.",
+  "scope": "Week 9 slate and final scores only; no betting lines, no player detail. Headlines transcribed verbatim."
+ },
+ {
+  "id": "nfl-sched-w10",
+  "publisher": "NFL",
+  "url": "https://www.nfl.com/schedules/2026/by-week/week-10",
+  "checked": "2026-11-14",
+  "status": "retrieved",
+  "supports": "Official 2026 week-10 schedule page: every game headline with final scores for completed games (read as \"Away H, Home A, FINAL\"), kickoff listings, network and byes.",
+  "scope": "Week 10 slate and final scores only; no betting lines, no player detail. Headlines transcribed verbatim."
+ },
+ {
+  "id": "nfl-gamecenter-buf-nyj-w10",
+  "publisher": "NFL",
+  "url": "https://www.nfl.com/games/bills-at-jets-2026-reg-10",
+  "checked": "2026-11-14",
+  "status": "retrieved",
+  "supports": "Official game centre confirming the Week 10 BUF @ NYJ matchup (MetLife Stadium) after the weekly page chunk boundary obscured it.",
+  "scope": "Single game identity confirmation; no line or injury detail used."
+ },
+ {
+  "id": "atl-depth",
+  "publisher": "Atlanta Falcons",
+  "url": "https://www.atlantafalcons.com/team/depth-chart/",
+  "checked": "2026-11-14",
+  "status": "retrieved",
+  "supports": "Club-published depth chart (self-labelled unofficial by the club): position slots with players in published order, read 14 Nov 2026 for Week 10.",
+  "scope": "Slot rows transcribed verbatim into evidence/depth-charts/club-depth-charts-2026-w10.json; tier labels are chart-relative, not certified game-day depth. Co-listed ties preserved, never reordered."
+ },
+ {
+  "id": "az-depth",
+  "publisher": "Arizona Cardinals",
+  "url": "https://www.azcardinals.com/team/depth-chart/",
+  "checked": "2026-11-14",
+  "status": "retrieved",
+  "supports": "Club-published depth chart (self-labelled unofficial by the club): position slots with players in published order, read 14 Nov 2026 for Week 10.",
+  "scope": "Slot rows transcribed verbatim into evidence/depth-charts/club-depth-charts-2026-w10.json; tier labels are chart-relative, not certified game-day depth. Co-listed ties preserved, never reordered."
+ },
+ {
+  "id": "buf-depth",
+  "publisher": "Buffalo Bills",
+  "url": "https://www.buffalobills.com/team/depth-chart/",
+  "checked": "2026-11-14",
+  "status": "retrieved",
+  "supports": "Club-published depth chart (self-labelled unofficial by the club): position slots with players in published order, read 14 Nov 2026 for Week 10.",
+  "scope": "Slot rows transcribed verbatim into evidence/depth-charts/club-depth-charts-2026-w10.json; tier labels are chart-relative, not certified game-day depth. Co-listed ties preserved, never reordered."
+ },
+ {
+  "id": "car-depth",
+  "publisher": "Carolina Panthers",
+  "url": "https://www.panthers.com/team/depth-chart/",
+  "checked": "2026-11-14",
+  "status": "retrieved",
+  "supports": "Club-published depth chart (self-labelled unofficial by the club): position slots with players in published order, read 14 Nov 2026 for Week 10.",
+  "scope": "Slot rows transcribed verbatim into evidence/depth-charts/club-depth-charts-2026-w10.json; tier labels are chart-relative, not certified game-day depth. Co-listed ties preserved, never reordered."
+ },
+ {
+  "id": "cin-depth",
+  "publisher": "Cincinnati Bengals",
+  "url": "https://www.bengals.com/team/depth-chart/",
+  "checked": "2026-11-14",
+  "status": "retrieved",
+  "supports": "Club-published depth chart (self-labelled unofficial by the club): position slots with players in published order, read 14 Nov 2026 for Week 10.",
+  "scope": "Slot rows transcribed verbatim into evidence/depth-charts/club-depth-charts-2026-w10.json; tier labels are chart-relative, not certified game-day depth. Co-listed ties preserved, never reordered."
+ },
+ {
+  "id": "cle-depth",
+  "publisher": "Cleveland Browns",
+  "url": "https://www.clevelandbrowns.com/team/depth-chart/",
+  "checked": "2026-11-14",
+  "status": "retrieved",
+  "supports": "Club-published depth chart (self-labelled unofficial by the club): position slots with players in published order, read 14 Nov 2026 for Week 10.",
+  "scope": "Slot rows transcribed verbatim into evidence/depth-charts/club-depth-charts-2026-w10.json; tier labels are chart-relative, not certified game-day depth. Co-listed ties preserved, never reordered."
+ },
+ {
+  "id": "dal-depth",
+  "publisher": "Dallas Cowboys",
+  "url": "https://www.dallascowboys.com/team/depth-chart/",
+  "checked": "2026-11-14",
+  "status": "retrieved",
+  "supports": "Club-published depth chart (self-labelled unofficial by the club): position slots with players in published order, read 14 Nov 2026 for Week 10.",
+  "scope": "Slot rows transcribed verbatim into evidence/depth-charts/club-depth-charts-2026-w10.json; tier labels are chart-relative, not certified game-day depth. Co-listed ties preserved, never reordered."
+ },
+ {
+  "id": "gb-depth",
+  "publisher": "Green Bay Packers",
+  "url": "https://www.packers.com/team/depth-chart/",
+  "checked": "2026-11-14",
+  "status": "retrieved",
+  "supports": "Club-published depth chart (self-labelled unofficial by the club): position slots with players in published order, read 14 Nov 2026 for Week 10.",
+  "scope": "Slot rows transcribed verbatim into evidence/depth-charts/club-depth-charts-2026-w10.json; tier labels are chart-relative, not certified game-day depth. Co-listed ties preserved, never reordered."
+ },
+ {
+  "id": "ind-depth",
+  "publisher": "Indianapolis Colts",
+  "url": "https://www.colts.com/team/depth-chart/",
+  "checked": "2026-11-14",
+  "status": "retrieved",
+  "supports": "Club-published depth chart (self-labelled unofficial by the club): position slots with players in published order, read 14 Nov 2026 for Week 10.",
+  "scope": "Slot rows transcribed verbatim into evidence/depth-charts/club-depth-charts-2026-w10.json; tier labels are chart-relative, not certified game-day depth. Co-listed ties preserved, never reordered."
+ },
+ {
+  "id": "jax-depth",
+  "publisher": "Jacksonville Jaguars",
+  "url": "https://www.jaguars.com/team/depth-chart/",
+  "checked": "2026-11-14",
+  "status": "retrieved",
+  "supports": "Club-published depth chart (self-labelled unofficial by the club): position slots with players in published order, read 14 Nov 2026 for Week 10.",
+  "scope": "Slot rows transcribed verbatim into evidence/depth-charts/club-depth-charts-2026-w10.json; tier labels are chart-relative, not certified game-day depth. Co-listed ties preserved, never reordered."
+ },
+ {
+  "id": "lar-depth",
+  "publisher": "Los Angeles Rams",
+  "url": "https://www.therams.com/team/depth-chart/",
+  "checked": "2026-11-14",
+  "status": "retrieved",
+  "supports": "Club-published depth chart (self-labelled unofficial by the club): position slots with players in published order, read 14 Nov 2026 for Week 10.",
+  "scope": "Slot rows transcribed verbatim into evidence/depth-charts/club-depth-charts-2026-w10.json; tier labels are chart-relative, not certified game-day depth. Co-listed ties preserved, never reordered."
+ },
+ {
+  "id": "mia-depth",
+  "publisher": "Miami Dolphins",
+  "url": "https://www.miamidolphins.com/team/depth-chart/",
+  "checked": "2026-11-14",
+  "status": "retrieved",
+  "supports": "Club-published depth chart (self-labelled unofficial by the club): position slots with players in published order, read 14 Nov 2026 for Week 10.",
+  "scope": "Slot rows transcribed verbatim into evidence/depth-charts/club-depth-charts-2026-w10.json; tier labels are chart-relative, not certified game-day depth. Co-listed ties preserved, never reordered."
+ },
+ {
+  "id": "min-depth",
+  "publisher": "Minnesota Vikings",
+  "url": "https://www.vikings.com/team/depth-chart/",
+  "checked": "2026-11-14",
+  "status": "retrieved",
+  "supports": "Club-published depth chart (self-labelled unofficial by the club): position slots with players in published order, read 14 Nov 2026 for Week 10.",
+  "scope": "Slot rows transcribed verbatim into evidence/depth-charts/club-depth-charts-2026-w10.json; tier labels are chart-relative, not certified game-day depth. Co-listed ties preserved, never reordered."
+ },
+ {
+  "id": "ne-depth",
+  "publisher": "New England Patriots",
+  "url": "https://www.patriots.com/team/depth-chart/",
+  "checked": "2026-11-14",
+  "status": "retrieved",
+  "supports": "Club-published depth chart (self-labelled unofficial by the club): position slots with players in published order, read 14 Nov 2026 for Week 10.",
+  "scope": "Slot rows transcribed verbatim into evidence/depth-charts/club-depth-charts-2026-w10.json; tier labels are chart-relative, not certified game-day depth. Co-listed ties preserved, never reordered."
+ },
+ {
+  "id": "no-depth",
+  "publisher": "New Orleans Saints",
+  "url": "https://www.neworleanssaints.com/team/depth-chart/",
+  "checked": "2026-11-14",
+  "status": "retrieved",
+  "supports": "Club-published depth chart (self-labelled unofficial by the club): position slots with players in published order, read 14 Nov 2026 for Week 10.",
+  "scope": "Slot rows transcribed verbatim into evidence/depth-charts/club-depth-charts-2026-w10.json; tier labels are chart-relative, not certified game-day depth. Co-listed ties preserved, never reordered."
+ },
+ {
+  "id": "nyj-depth",
+  "publisher": "New York Jets",
+  "url": "https://www.newyorkjets.com/team/depth-chart/",
+  "checked": "2026-11-14",
+  "status": "retrieved",
+  "supports": "Club-published depth chart (self-labelled unofficial by the club): position slots with players in published order, read 14 Nov 2026 for Week 10.",
+  "scope": "Slot rows transcribed verbatim into evidence/depth-charts/club-depth-charts-2026-w10.json; tier labels are chart-relative, not certified game-day depth. Co-listed ties preserved, never reordered."
+ },
+ {
+  "id": "sf-depth",
+  "publisher": "San Francisco 49ers",
+  "url": "https://www.49ers.com/team/depth-chart/",
+  "checked": "2026-11-14",
+  "status": "retrieved",
+  "supports": "Club-published depth chart (self-labelled unofficial by the club): position slots with players in published order, read 14 Nov 2026 for Week 10.",
+  "scope": "Slot rows transcribed verbatim into evidence/depth-charts/club-depth-charts-2026-w10.json; tier labels are chart-relative, not certified game-day depth. Co-listed ties preserved, never reordered."
+ },
+ {
+  "id": "ten-depth",
+  "publisher": "Tennessee Titans",
+  "url": "https://www.tennesseetitans.com/team/depth-chart/",
+  "checked": "2026-11-14",
+  "status": "retrieved",
+  "supports": "Club-published depth chart (self-labelled unofficial by the club): position slots with players in published order, read 14 Nov 2026 for Week 10.",
+  "scope": "Slot rows transcribed verbatim into evidence/depth-charts/club-depth-charts-2026-w10.json; tier labels are chart-relative, not certified game-day depth. Co-listed ties preserved, never reordered."
+ },
+ {
+  "id": "was-depth",
+  "publisher": "Washington Commanders",
+  "url": "https://www.commanders.com/team/depth-chart/",
+  "checked": "2026-11-14",
+  "status": "retrieved",
+  "supports": "Club-published depth chart (self-labelled unofficial by the club): position slots with players in published order, read 14 Nov 2026 for Week 10.",
+  "scope": "Slot rows transcribed verbatim into evidence/depth-charts/club-depth-charts-2026-w10.json; tier labels are chart-relative, not certified game-day depth. Co-listed ties preserved, never reordered."
+ },
+ {
+  "id": "hou-depth-absence",
+  "publisher": "Houston Texans",
+  "url": "https://www.houstontexans.com/team/depth-chart/",
+  "checked": "2026-11-14",
+  "status": "inspected",
+  "supports": "Checked absence: the page is titled \"Unofficial Depth Chart\" but no tabular chart rendered in the content retrieved 14 Nov 2026.",
+  "scope": "Absence record only; nothing was inferred for Houston from it."
  }
 ]

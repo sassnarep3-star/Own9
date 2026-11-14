@@ -11,9 +11,14 @@ class CommittedRegisterTests(unittest.TestCase):
     def test_committed_registers_are_valid(self):
         problems, summary = rg.validate(S, Q, B)
         self.assertEqual(problems, [])
-        self.assertEqual(summary['suggestions'], 16)
-        self.assertEqual(summary['decisions'], 16)
-        self.assertEqual(summary['questions'], 22)
+        # 16 through session 4f2e0291; +5 proposed by session 9a409d93
+        # (price archive, close capture, sealed backtest, signal/staking
+        # adoption, game-centre row verification).
+        self.assertEqual(summary['suggestions'], 21)
+        self.assertEqual(summary['decisions'], 21)
+        # 22 through session 4f2e0291; +2 open questions by session 9a409d93
+        # (grading operator, re-promotion thresholds).
+        self.assertEqual(summary['questions'], 24)
 
     def test_every_suggestion_has_a_falsification_statement(self):
         for item in S['suggestions']:

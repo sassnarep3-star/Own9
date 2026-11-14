@@ -244,7 +244,10 @@ class Structural(unittest.TestCase):
 
     def test_page_count_is_theirs_plus_this_delta(self):
         rendered = len([f for f in ROOT.glob('*.html')])
-        self.assertEqual(rendered, 19, 'fifteen pages from main plus this session\'s four')
+        # 15 from main + 4 (session 4f2e0291: lines, availability-evidence,
+        # question-ledger, suggestion-costs) + 4 (session 9a409d93: results,
+        # markets, replacement-depth, demotion) = 23.
+        self.assertEqual(rendered, 23, 'fifteen pages from main plus four (4f2e0291) plus four (9a409d93)')
 
     def test_new_pages_are_linked_from_nav_exactly_once(self):
         for name in ('lines.html', 'availability-evidence.html', 'question-ledger.html',
