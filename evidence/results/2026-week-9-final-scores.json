@@ -1,0 +1,193 @@
+{
+  "document_title": "2026 Week 9 final scores, transcribed from the official league schedule page",
+  "publisher": "NFL",
+  "source_url": "https://www.nfl.com/schedules/2026/by-week/week-9",
+  "season": 2026,
+  "week": 9,
+  "retrieved_utc": "2026-11-14",
+  "retrieved_by": "session 1cfcb957",
+  "rights_note": "Score and record fields only, transcribed from a public schedule page for verification use. No page text is republished beyond the per-game label the site itself renders as a link title.",
+  "transcription_rule": "Each game records the two independent renderings the page provides: the match-link label (e.g. 'Rams 20, Commanders 13, FINAL, Sunday, November 8th') and the per-team points cells with the winner indicator. Both are stored verbatim so the feed can require them to agree.",
+  "field_definitions": {
+    "link_label": "The link title text of the game's own URL, as displayed on the page.",
+    "away_points/home_points": "The points cells shown under each club on the same game card.",
+    "winner_indicator": "The club the page marked with its winner indicator; null when no club is marked.",
+    "listed_records": "Each club's W-L-T record as printed on that page, i.e. after the game shown."
+  },
+  "records_after": {
+    "JAX": "6-2", "BAL": "4-5", "CIN": "6-2", "ATL": "3-6", "DEN": "7-2", "CAR": "3-5",
+    "DAL": "4-5", "IND": "2-7", "NYJ": "2-7", "KC": "6-2", "DET": "6-2", "MIA": "1-7",
+    "CLE": "5-4", "NO": "3-5", "NYG": "5-2-1", "PHI": "2-7", "LA": "5-4", "WAS": "2-5-1",
+    "HOU": "3-5", "LAC": "0-8", "LV": "4-5", "SF": "7-1", "GB": "6-3", "NE": "5-4",
+    "AZ": "3-6", "SEA": "5-4", "TB": "3-6", "CHI": "7-2", "BUF": "7-1", "MIN": "6-2",
+    "PIT": "6-2", "TEN": "1-7"
+  },
+  "bye_teams": {"PIT": "6-2", "TEN": "1-7"},
+  "games": [
+    {
+      "game_id": "jaguars-at-ravens-2026-reg-9",
+      "source_url": "https://www.nfl.com/games/jaguars-at-ravens-2026-reg-9",
+      "section_label": "Thursday Night Football, November 5th",
+      "date_label": "Nov 5",
+      "status": "final",
+      "away_abbr": "JAX", "away_name": "Jaguars", "home_abbr": "BAL", "home_name": "Ravens",
+      "link_label": "Jaguars 33, Ravens 10, FINAL, Thursday, November 5th",
+      "away_points": 33, "home_points": 10, "winner_indicator": "JAX",
+      "listed_records": {"JAX": "6-2", "BAL": "4-5"}
+    },
+    {
+      "game_id": "bengals-at-falcons-2026-reg-9",
+      "source_url": "https://www.nfl.com/games/bengals-at-falcons-2026-reg-9",
+      "section_label": "International Game, November 8th (Madrid)",
+      "date_label": "Nov 8",
+      "status": "final",
+      "away_abbr": "CIN", "away_name": "Bengals", "home_abbr": "ATL", "home_name": "Falcons",
+      "link_label": "Bengals 34, Falcons 17, FINAL, Sunday, November 8th",
+      "away_points": 34, "home_points": 17, "winner_indicator": "CIN",
+      "listed_records": {"CIN": "6-2", "ATL": "3-6"}
+    },
+    {
+      "game_id": "broncos-at-panthers-2026-reg-9",
+      "source_url": "https://www.nfl.com/games/broncos-at-panthers-2026-reg-9",
+      "section_label": "Sunday, November 8th",
+      "date_label": "Nov 8",
+      "status": "final",
+      "away_abbr": "DEN", "away_name": "Broncos", "home_abbr": "CAR", "home_name": "Panthers",
+      "link_label": "Broncos 26, Panthers 21, FINAL, Sunday, November 8th",
+      "away_points": 26, "home_points": 21, "winner_indicator": "DEN",
+      "listed_records": {"DEN": "7-2", "CAR": "3-5"}
+    },
+    {
+      "game_id": "cowboys-at-colts-2026-reg-9",
+      "source_url": "https://www.nfl.com/games/cowboys-at-colts-2026-reg-9",
+      "section_label": "Sunday, November 8th",
+      "date_label": "Nov 8",
+      "status": "final",
+      "away_abbr": "DAL", "away_name": "Cowboys", "home_abbr": "IND", "home_name": "Colts",
+      "link_label": "Cowboys 27, Colts 23, FINAL, Sunday, November 8th",
+      "away_points": 27, "home_points": 23, "winner_indicator": "DAL",
+      "listed_records": {"DAL": "4-5", "IND": "2-7"}
+    },
+    {
+      "game_id": "jets-at-chiefs-2026-reg-9",
+      "source_url": "https://www.nfl.com/games/jets-at-chiefs-2026-reg-9",
+      "section_label": "Sunday, November 8th",
+      "date_label": "Nov 8",
+      "status": "final",
+      "away_abbr": "NYJ", "away_name": "Jets", "home_abbr": "KC", "home_name": "Chiefs",
+      "link_label": "Jets 12, Chiefs 35, FINAL, Sunday, November 8th",
+      "away_points": 12, "home_points": 35, "winner_indicator": "KC",
+      "listed_records": {"NYJ": "2-7", "KC": "6-2"}
+    },
+    {
+      "game_id": "lions-at-dolphins-2026-reg-9",
+      "source_url": "https://www.nfl.com/games/lions-at-dolphins-2026-reg-9",
+      "section_label": "Sunday, November 8th",
+      "date_label": "Nov 8",
+      "status": "final",
+      "away_abbr": "DET", "away_name": "Lions", "home_abbr": "MIA", "home_name": "Dolphins",
+      "link_label": "Lions 19, Dolphins 9, FINAL, Sunday, November 8th",
+      "away_points": 19, "home_points": 9, "winner_indicator": "DET",
+      "listed_records": {"DET": "6-2", "MIA": "1-7"}
+    },
+    {
+      "game_id": "browns-at-saints-2026-reg-9",
+      "source_url": "https://www.nfl.com/games/browns-at-saints-2026-reg-9",
+      "section_label": "Sunday, November 8th",
+      "date_label": "Nov 8",
+      "status": "final",
+      "away_abbr": "CLE", "away_name": "Browns", "home_abbr": "NO", "home_name": "Saints",
+      "link_label": "Browns 22, Saints 23, FINAL, Sunday, November 8th",
+      "away_points": 22, "home_points": 23, "winner_indicator": "NO",
+      "listed_records": {"CLE": "5-4", "NO": "3-5"}
+    },
+    {
+      "game_id": "giants-at-eagles-2026-reg-9",
+      "source_url": "https://www.nfl.com/games/giants-at-eagles-2026-reg-9",
+      "section_label": "Sunday, November 8th",
+      "date_label": "Nov 8",
+      "status": "final",
+      "away_abbr": "NYG", "away_name": "Giants", "home_abbr": "PHI", "home_name": "Eagles",
+      "link_label": "Giants 19, Eagles 11, FINAL, Sunday, November 8th",
+      "away_points": 19, "home_points": 11, "winner_indicator": "NYG",
+      "listed_records": {"NYG": "5-2-1", "PHI": "2-7"}
+    },
+    {
+      "game_id": "rams-at-commanders-2026-reg-9",
+      "source_url": "https://www.nfl.com/games/rams-at-commanders-2026-reg-9",
+      "section_label": "Sunday, November 8th",
+      "date_label": "Nov 8",
+      "status": "final",
+      "away_abbr": "LA", "away_name": "Rams", "home_abbr": "WAS", "home_name": "Commanders",
+      "link_label": "Rams 20, Commanders 13, FINAL, Sunday, November 8th",
+      "away_points": 20, "home_points": 13, "winner_indicator": "LA",
+      "listed_records": {"LA": "5-4", "WAS": "2-5-1"}
+    },
+    {
+      "game_id": "texans-at-chargers-2026-reg-9",
+      "source_url": "https://www.nfl.com/games/texans-at-chargers-2026-reg-9",
+      "section_label": "Sunday, November 8th",
+      "date_label": "Nov 8",
+      "status": "final",
+      "away_abbr": "HOU", "away_name": "Texans", "home_abbr": "LAC", "home_name": "Chargers",
+      "link_label": "Texans 44, Chargers 22, FINAL, Sunday, November 8th",
+      "away_points": 44, "home_points": 22, "winner_indicator": "HOU",
+      "listed_records": {"HOU": "3-5", "LAC": "0-8"}
+    },
+    {
+      "game_id": "raiders-at-49ers-2026-reg-9",
+      "source_url": "https://www.nfl.com/games/raiders-at-49ers-2026-reg-9",
+      "section_label": "Sunday, November 8th",
+      "date_label": "Nov 8",
+      "status": "final",
+      "away_abbr": "LV", "away_name": "Raiders", "home_abbr": "SF", "home_name": "49ers",
+      "link_label": "Raiders 17, 49ers 38, FINAL, Sunday, November 8th",
+      "away_points": 17, "home_points": 38, "winner_indicator": "SF",
+      "listed_records": {"LV": "4-5", "SF": "7-1"}
+    },
+    {
+      "game_id": "packers-at-patriots-2026-reg-9",
+      "source_url": "https://www.nfl.com/games/packers-at-patriots-2026-reg-9",
+      "section_label": "Sunday, November 8th",
+      "date_label": "Nov 8",
+      "status": "final",
+      "away_abbr": "GB", "away_name": "Packers", "home_abbr": "NE", "home_name": "Patriots",
+      "link_label": "Packers 45, Patriots 27, FINAL, Sunday, November 8th",
+      "away_points": 45, "home_points": 27, "winner_indicator": "GB",
+      "listed_records": {"GB": "6-3", "NE": "5-4"}
+    },
+    {
+      "game_id": "cardinals-at-seahawks-2026-reg-9",
+      "source_url": "https://www.nfl.com/games/cardinals-at-seahawks-2026-reg-9",
+      "section_label": "Sunday, November 8th",
+      "date_label": "Nov 8",
+      "status": "final",
+      "away_abbr": "AZ", "away_name": "Cardinals", "home_abbr": "SEA", "home_name": "Seahawks",
+      "link_label": "Cardinals 3, Seahawks 17, FINAL, Sunday, November 8th",
+      "away_points": 3, "home_points": 17, "winner_indicator": "SEA",
+      "listed_records": {"AZ": "3-6", "SEA": "5-4"}
+    },
+    {
+      "game_id": "buccaneers-at-bears-2026-reg-9",
+      "source_url": "https://www.nfl.com/games/buccaneers-at-bears-2026-reg-9",
+      "section_label": "Sunday Night Football, November 8th",
+      "date_label": "Nov 8",
+      "status": "final",
+      "away_abbr": "TB", "away_name": "Buccaneers", "home_abbr": "CHI", "home_name": "Bears",
+      "link_label": "Buccaneers 24, Bears 27, FINAL, Sunday, November 8th",
+      "away_points": 24, "home_points": 27, "winner_indicator": "CHI",
+      "listed_records": {"TB": "3-6", "CHI": "7-2"}
+    },
+    {
+      "game_id": "bills-at-vikings-2026-reg-9",
+      "source_url": "https://www.nfl.com/games/bills-at-vikings-2026-reg-9",
+      "section_label": "Monday Night Football, November 9th",
+      "date_label": "Nov 9",
+      "status": "final",
+      "away_abbr": "BUF", "away_name": "Bills", "home_abbr": "MIN", "home_name": "Vikings",
+      "link_label": "Bills 23, Vikings 6, FINAL, Monday, November 9th",
+      "away_points": 23, "home_points": 6, "winner_indicator": "BUF",
+      "listed_records": {"BUF": "7-1", "MIN": "6-2"}
+    }
+  ]
+}

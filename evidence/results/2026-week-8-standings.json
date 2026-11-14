@@ -1,0 +1,57 @@
+{
+  "document_title": "2026 Week 8 club records, transcribed from the game cards of the official Week 8 schedule page",
+  "publisher": "NFL",
+  "source_url": "https://www.nfl.com/schedules/2026/by-week/week-8",
+  "season": 2026,
+  "week": 8,
+  "retrieved_utc": "2026-11-14",
+  "retrieved_by": "session 1cfcb957",
+  "rights_note": "Record fields only, transcribed from a public schedule page so that Week 9 results can be corroborated from two independent official retrievals.",
+  "why_only_twenty_eight_clubs": "The Week 8 page prints a W-L-T record beside every club on a game card, which covers the 28 clubs that played. The four clubs on bye appear only in the 'Teams on Bye' block, and that block does NOT show an as-of-week record: it shows each club's record as of retrieval. Reading it as a Week 8 record would import four later results into a Week 8 baseline. The four values are recorded below, labelled, and excluded from the reconciliation.",
+  "records_after": {
+    "CAR": "3-4", "GB": "5-3", "BAL": "4-4", "BUF": "6-1", "TEN": "1-7", "CIN": "5-2",
+    "AZ": "3-5", "DAL": "3-5", "MIN": "6-1", "DET": "5-2", "IND": "2-6", "JAX": "5-2",
+    "LV": "4-4", "NYJ": "2-6", "CLE": "5-3", "PIT": "6-2", "ATL": "3-5", "TB": "3-5",
+    "LAC": "0-7", "LA": "4-4", "KC": "5-2", "DEN": "6-2", "NE": "5-3", "MIA": "1-6",
+    "PHI": "2-6", "WAS": "2-4-1", "CHI": "6-2", "SEA": "4-4"
+  },
+  "bye_block_as_retrieved": {
+    "HOU": "3-5", "NO": "3-5", "NYG": "5-3-1", "SF": "7-1"
+  },
+  "bye_block_evidence": {
+    "HOU": "3-5 displayed; the Week 9 card shows 3-5 after a Week 9 win, so the as-of-Week-8 record was 2-5",
+    "NO": "3-5 displayed; the Week 9 card shows 3-5 after a Week 9 win, so the as-of-Week-8 record was 2-5",
+    "NYG": "5-3-1 displayed; the Week 9 card shows 5-2-1 after a Week 9 win, so the as-of-Week-8 record was 4-2-1",
+    "SF": "7-1 displayed; the Week 9 card shows 7-1 after a Week 9 win, so the as-of-Week-8 record was 6-1"
+  },
+  "week8_games": [
+    {"away": "CAR", "home": "GB", "away_points": 19, "home_points": 27, "winner": "GB",
+     "link_label": "Panthers 19, Packers 27, FINAL, Thursday, October 29th"},
+    {"away": "BAL", "home": "BUF", "away_points": 10, "home_points": 36, "winner": "BUF",
+     "link_label": "Ravens 10, Bills 36, FINAL, Sunday, November 1st"},
+    {"away": "TEN", "home": "CIN", "away_points": 36, "home_points": 43, "winner": "CIN",
+     "link_label": "Titans 36, Bengals 43, FINAL, Sunday, November 1st"},
+    {"away": "AZ", "home": "DAL", "away_points": 33, "home_points": 30, "winner": "AZ",
+     "link_label": "Cardinals 33, Cowboys 30, FINAL, Sunday, November 1st"},
+    {"away": "MIN", "home": "DET", "away_points": 15, "home_points": 19, "winner": "DET",
+     "link_label": "Vikings 15, Lions 19, FINAL, Sunday, November 1st"},
+    {"away": "IND", "home": "JAX", "away_points": 7, "home_points": 42, "winner": "JAX",
+     "link_label": "Colts 7, Jaguars 42, FINAL, Sunday, November 1st"},
+    {"away": "LV", "home": "NYJ", "away_points": 38, "home_points": 33, "winner": "LV",
+     "link_label": "Raiders 38, Jets 33, FINAL, Sunday, November 1st"},
+    {"away": "CLE", "home": "PIT", "away_points": 6, "home_points": 27, "winner": "PIT",
+     "link_label": "Browns 6, Steelers 27, FINAL, Sunday, November 1st"},
+    {"away": "ATL", "home": "TB", "away_points": 0, "home_points": 16, "winner": "TB",
+     "link_label": "Falcons 0, Buccaneers 16, FINAL, Sunday, November 1st"},
+    {"away": "LAC", "home": "LA", "away_points": 9, "home_points": 24, "winner": "LA",
+     "link_label": "Chargers 9, Rams 24, FINAL, Sunday, November 1st"},
+    {"away": "KC", "home": "DEN", "away_points": 24, "home_points": 28, "winner": "DEN",
+     "link_label": "Chiefs 24, Broncos 28, FINAL, Sunday, November 1st"},
+    {"away": "NE", "home": "MIA", "away_points": 24, "home_points": 19, "winner": "NE",
+     "link_label": "Patriots 24, Dolphins 19, FINAL, Sunday, November 1st"},
+    {"away": "PHI", "home": "WAS", "away_points": 10, "home_points": 27, "winner": "WAS",
+     "link_label": "Eagles 10, Commanders 27, FINAL, Sunday, November 1st"},
+    {"away": "CHI", "home": "SEA", "away_points": 34, "home_points": 17, "winner": "CHI",
+     "link_label": "Bears 34, Seahawks 17, FINAL, Monday, November 2nd"}
+  ]
+}

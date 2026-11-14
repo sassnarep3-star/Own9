@@ -17,7 +17,7 @@ Every computed number on these pages is derived at build time from committed
 evidence (the verified results feed, the snapshot store, the injury report, the
 club depth charts) so the regeneration check in CI reproduces them exactly.
 Market-line and difference columns stay blank on every row: the NFL publishes
-no betting lines and no official market price source was obtained (F34).
+no betting lines and no official market price source was obtained (F42).
 """
 import json
 import math
@@ -193,7 +193,7 @@ _results_feed_append = (
     + table('Grading readiness — what ROI/backtests still need',
             ['Requirement', 'State', 'Blocker if missing'], [
         row(['Executable market prices', '0 rows — no official or licensed price source exists',
-             'Every market_line and diff column stays blank; ROI/CLV remain uncomputable (F01/F34)'],
+             'Every market_line and diff column stays blank; ROI/CLV remain uncomputable (F01/F42)'],
             ('repo',), 'Project gap / no source'),
         row(['Settlement rules', 'Operator push conventions registered as context only',
              'A chosen grading operator and jurisdiction must be decided before any grade'],
@@ -215,8 +215,8 @@ PAGES['results-feed.html'] = (*PAGES['results-feed.html'][:3],
 # ===========================================================================
 _schema_rows = [
     row(['market_id', 'Stable per-market key (season-week-away-home-TYPE[-side]).', 'Deterministic join key across open and close snapshots.'], ('repo',), 'Store schema'),
-    row(['model_fair', 'The model\u2019s fair number at the snapshot: fair home spread (points), fair total (points) or fair two-way American price.', 'Computed output of the elo-v1 method from official scores; unvalidated, no edge claim (F35).'], ('repo',), 'Store schema'),
-    row(['market_line', 'The market\u2019s quoted number at the snapshot.', 'Always blank: no official market price source exists; never inferred (F01/F34).'], ('repo',), 'Store schema'),
+    row(['model_fair', 'The model\u2019s fair number at the snapshot: fair home spread (points), fair total (points) or fair two-way American price.', 'Computed output of the elo-v1 method from official scores; unvalidated, no edge claim (F43).'], ('repo',), 'Store schema'),
+    row(['market_line', 'The market\u2019s quoted number at the snapshot.', 'Always blank: no official market price source exists; never inferred (F01/F42).'], ('repo',), 'Store schema'),
     row(['diff', 'model_fair − market_line.', 'Blank whenever market_line is blank — the difference of an unavailable value is unavailable.'], ('repo',), 'Store schema'),
     row(['opened_at / closed_at', 'UTC timestamps of the open and close snapshots.', 'Open = store deployment (2026-11-14). Close = scheduled pre-kickoff capture; null until captured.'], ('repo',), 'Store schema'),
     row(['status', 'Snapshot lifecycle state.', 'open · close capture pending — for all 52 Week 10 markets at deployment.'], ('repo',), 'Store schema'),
@@ -235,7 +235,7 @@ _order_row = row([' → '.join(f'{t} ({_type_counts[t]})' for t in MARKET_ORDER)
                  ('repo',), 'Origination contract / tested')
 _tnf_row = row(['WAS 24 @ NYG 21 (Thu 12 Nov) — FINAL',
                 'Not originated: kickoff preceded store deployment (2026-11-14)',
-                'No open or close can exist for a market the store never held (F38)'],
+                'No open or close can exist for a market the store never held (F46)'],
                ('repo', 'nfl-sched-w10'), 'Official schedule / store policy')
 
 page('markets.html', 'W10 snapshots', 'Every market we originate, opened and closed.',
@@ -248,7 +248,7 @@ page('markets.html', 'W10 snapshots', 'Every market we originate, opened and clo
      'computed from the verified official results feed. It is unvalidated and claims '
      'no edge; the market_line and diff columns are blank on every row because the NFL '
      'publishes no betting lines and no officially verifiable price archive was '
-     'obtained (F01, F34). Acquiring that archive is suggestion S-17.</p></div>'
+     'obtained (F01, F42). Acquiring that archive is suggestion S-17.</p></div>'
      + table('Store schema (data/snapshots/2026-w10-price-snapshot.json)',
              ['Field', 'Meaning', 'Policy'], _schema_rows)
      + table('Origination order (fixed)',
@@ -321,7 +321,7 @@ page('replacement-chains.html', 'Replacement chains', 'Not just who replaced —
      '(e.g. second player at RB = \u201c2nd string (chart order)\u201d). Where the injured player is '
      'absent from the chart, tied in a co-listed cell, or last in the slot, no chain is derived '
      'and the row is published under conflicts with the reason — never resolved by inference. '
-     'Chart-relative labels are weaker than certified game-day depth (F13, F36).</p></div>'
+     'Chart-relative labels are weaker than certified game-day depth (F13, F44).</p></div>'
      + table(f'Derived replacement chains ({len(_depth_rows)} chains across {len(_covered_teams)} clubs)',
              ['Team', 'Unavailable player (report)', 'Chart slot', 'Replacement (chart order)',
               'Depth of replacement', 'Chart date'], _depth_rows)
@@ -437,21 +437,21 @@ PAGES['index.html'] = (*PAGES['index.html'][:3],
                          'charts; a quantitative <a href="demotion.html">demotion gate</a> with unit-tested '
                          'thresholds behind the leaderboard\u2019s policy gate; and a signal/staking table on '
                          '<a href="leaderboard.html">the leaderboard</a>. Market-line columns are blank '
-                         'everywhere: no official price source exists (F34).</p></div>')
+                         'everywhere: no official price source exists (F42).</p></div>')
 
-_flags_append = table('Session findings F34–F39 (arena/9a409d93-own9, 14 Nov 2026)',
+_flags_append = table('Session findings F42–F47 (arena/9a409d93-own9, 14 Nov 2026)',
                       ['ID / severity', 'Finding', 'Required evidence / disposition', 'State'], [
-    row(['F34 · Critical', 'No official or licensed market-price source exists, so every market_line and diff column in the snapshot store is blank and ROI/CLV remain uncomputable.',
+    row(['F42 · Critical', 'No official or licensed market-price source exists, so every market_line and diff column in the snapshot store is blank and ROI/CLV remain uncomputable.',
          'Acquire a timestamped, permissioned price archive with settlement rules (S-17); never infer prices.', 'Unverified'], ('repo',), 'Project gap / no source'),
-    row(['F35 · Review', 'The elo-v1 fair numbers are unvalidated model outputs from a 136-game in-sample official feed; they are not market prices and carry no edge claim.',
+    row(['F43 · Review', 'The elo-v1 fair numbers are unvalidated model outputs from a 136-game in-sample official feed; they are not market prices and carry no edge claim.',
          'Sealed multi-season validation before any leaderboard eligibility; constants were predeclared, not tuned.', 'Unvalidated model output'], ('repo',), 'Model artefact / no claim'),
-    row(['F36 · Review', 'Club depth charts are self-labelled unofficial and mostly undated on the page; derived replacement depths are chart-relative, not certified game-day depth.',
+    row(['F44 · Review', 'Club depth charts are self-labelled unofficial and mostly undated on the page; derived replacement depths are chart-relative, not certified game-day depth.',
          'Point-in-time chart archives per week would be needed before any availability-weighted signal.', 'Chart-relative only'], (f'{_covered_teams[0].lower()}-depth', 'repo'), 'Publisher limitation'),
-    row(['F37 · Review', 'Houston publishes no retrievable depth-chart table in the fetched content; several injured players are absent from their own club charts.',
+    row(['F45 · Review', 'Houston publishes no retrievable depth-chart table in the fetched content; several injured players are absent from their own club charts.',
          'Checked absences are recorded; no replacement was inferred for any of them.', 'Checked absence'], ('hou-depth-absence', 'repo'), 'Checked absence'),
-    row(['F38 · Review', 'The Week 10 Thursday game kicked off before the store existed, so no open/close snapshot can exist for it.',
+    row(['F46 · Review', 'The Week 10 Thursday game kicked off before the store existed, so no open/close snapshot can exist for it.',
          'Future weeks get opens at deployment and closes from the scheduled capture (.github/workflows/snapshot.yml — also the scheduled close run a77d40e1\u2019s F30 asks for, adopted here for the Week 10 store).', 'Never originated'], ('repo',), 'Store policy'),
-    row(['F39 · Review', 'The results feed was transcribed from official weekly pages with structural cross-checks (weekly counts, bye arithmetic, 32 teams); per-game independent re-checks against game centres were not performed.',
+    row(['F47 · Review', 'The results feed was transcribed from official weekly pages with structural cross-checks (weekly counts, bye arithmetic, 32 teams); per-game independent re-checks against game centres were not performed.',
          'S-21 proposes a per-row game-centre re-check before any ROI use; see also a77d40e1\u2019s F28 (per-row revision timestamps).', 'Structurally consistent'], ('repo',), 'Verification scope'),
 ])
 PAGES['flags.html'] = (*PAGES['flags.html'][:3],
