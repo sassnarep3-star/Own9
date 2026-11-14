@@ -333,8 +333,11 @@ page('leaderboard.html','Leaderboard','Performance must earn its rank.',
          row(['Reward','Hypothetical non-cash “research leader” badge per eligible track. None if no candidate qualifies.','No actual award']),
          row(['Funding and integrity','No sponsor, monetary pool or cash schedule. Publish pre-outcome submission hashes, all variants, exclusions and immutable test results.','Unfunded / not implemented']),
          row(['Signal vs staking separation','Signal metrics are predictive quality (log-loss, Brier, calibration, coverage). Staking metrics are financial outcomes (return, drawdown, win rate, ROI, turnover). A lucky staking run cannot mask a bad signal because they are published as separate tables.','Proposed'],('holdout','brier','tails'),'Policy specified, not active'),
-     ]))
-
+     ]) + table('Live-to-paper demotion gate',['Trigger','Automatic action','Re-entry condition / state'],[
+         row(['Integrity or operational breach: invalid/missing price or result provenance, corrupted or stale required inputs, settlement mismatch, unauthorized strategy version, or a frozen exposure/data kill-switch trip.','Immediately stop new live issuance; freeze the affected version and evidence; set status to Paper pending incident review. Do not wait for a performance sample.','Paper immediately. Resume only after the incident is resolved, the version and data are re-audited, and all affected entry gates pass again.'],('repo',),'Proposed project control; no live deployment'),
+         row(['Scheduled validation: any mandatory entry gate is no longer demonstrated for the locked strategy version. In particular, the predeclared predictive-quality or net-return lower bound is not strictly positive, or drift/stability fails. Missing/invalid evidence counts as not passing.','Automatically demote to Paper at that checkpoint; retain the full monitoring window, exclusions, and trigger record. No discretionary threshold relaxation.','Use the same gate definitions as entry. Monitoring window, minimum n, confidence procedure/alpha, review cadence, stale-data tolerance, and exposure cap are not yet specified; live activation is blocked until frozen.'],('repo','logloss'),'Proposed project control; numeric operating settings unresolved'),
+         row(['Re-entry after a performance demotion','No immediate flip back to live when a short run improves. Keep the failed strategy version in Paper.','Full requalification against all seven frozen gates on untouched prospective evidence; any changed model, feature, or rule is a new version and requires a new sealed evaluation.','Not authorized / not implemented'],('repo','holdout'),'Proposed project control; no strategy is live')
+     ]) + '<p class=\"disclaimer\"><strong>Gate status: defined as a fail-closed policy, not operationally active.</strong> There is no live strategy in this repository. The site contains no validated NFL performance evidence, and the operating settings listed above must be frozen before any live eligibility could be considered.</p>')
 page('correlations.html','Correlations','Dependence is not optional.',
      'No empirical NFL correlation values are available. The tested functions are descriptive math; no default zero, inferred sign or assumed independence is used.',
      table('Correlation register',['Predeclared pair / level','Required alignment','n','Pearson / phi','Interval','Status'],[
@@ -464,20 +467,6 @@ page('validation.html','Validation','Seven gates. No shortcuts.',
          row(['Correlation gate OK','The two-leg dependence interval still clears its predeclared deadband','Joint pricing still permitted']),
          row(['Drift within tolerance','Every measured metric is inside its predeclared tolerance band','Signal and staking both stable']),
      ]) + '<p>Demotion reasons: gate_fail, drift_exceeds_tolerance, missing_data, correlation_interval_lost, price_source_lost, manual_review. Each reason must cite the observation that triggered it—never a model output alone.</p>')
-
-page('leaderboard.html','Leaderboard','Performance must earn its rank.',
-     'Four proposed tracks, matched targets, full disclosure. Signal metrics measure predictive quality; staking metrics measure financial outcomes. A lucky staking run cannot mask a bad signal—each group is judged on its own evidence. Empty metric cells mean unavailable—not zero. No strategy has passed validation.',
-     table('Strategy leaderboard — signal metrics (predictive quality)',['Track','Eligibility','Log-loss gain LCB','Brier score vs market','Calibration error','Coverage'],[
-         row([track,'Not run',None,None,None,None]) for track in ['G1 · Game single','P1 · Player prop','X1 · Cross-game parlay','S1 · Same-game combo']
-     ]) + table('Strategy leaderboard — staking metrics (financial outcomes)',['Track','Net-return LCB','Max drawdown','Win rate','ROI','Turnover'],[
-         row([track,None,None,None,None,None]) for track in ['G1 · Game single','P1 · Player prop','X1 · Cross-game parlay','S1 · Same-game combo']
-     ]) + table('Competition policy',['Rule','Proposed treatment','State'],[
-         row(['Ranking','Only all-gate-pass candidates within each matched-target track; rank by simultaneous lower confidence bound on log-loss improvement (signal only). Staking metrics are reported beside but never aggregated into the ranking.','Not active'],('logloss','repo'),'Metric support / project rule'),
-         row(['Ties','Lower Brier, then lower frozen model complexity; unresolved ties share rank. No cross-track global winner.','Proposed'],('brier','repo'),'Metric support / project rule'),
-         row(['Reward','Hypothetical non-cash “research leader” badge per eligible track. None if no candidate qualifies.','No actual award']),
-         row(['Funding and integrity','No sponsor, monetary pool or cash schedule. Publish pre-outcome submission hashes, all variants, exclusions and immutable test results.','Unfunded / not implemented']),
-         row(['Signal vs staking separation','Signal metrics are predictive quality (log-loss, Brier, calibration, coverage). Staking metrics are financial outcomes (return, drawdown, win rate, ROI, turnover). A lucky staking run cannot mask a bad signal because they are published as separate tables.','Proposed'],('holdout','brier','tails'),'Policy specified, not active'),
-     ]))
 
 page('correlations.html','Correlations','Dependence is not optional.',
      'No empirical NFL correlation values are available. The tested functions are descriptive math; no default zero, inferred sign or assumed independence is used.',
