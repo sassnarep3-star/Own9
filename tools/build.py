@@ -7,6 +7,210 @@ ROOT = Path(__file__).resolve().parents[1]
 SOURCES = {s['id']: s for s in json.loads((ROOT/'evidence/sources.json').read_text())}
 PAGES = {}
 
+# --- Injury & depth tracking data: transcribed verbatim from the official NFL Week 10 2026
+# --- injury report (https://www.nfl.com/injuries/, retrieved 2026-11-14, 8 chunks). Only players
+# --- with an explicit Game Status (Out / Doubtful / Questionable) are included; a blank injury
+# --- description means the report listed no injury, not that the player is healthy.
+WEEK10 = ('Week 10 · 2026 season · retrieved 2026-11-14 UTC')
+INJ = [
+ # (team, player, position, injuries, practice status, game status) — order follows the report page
+ ('WAS','Lucas Patrick','C','Concussion','Did Not Participate In Practice','Out'),
+ ('WAS','Colson Yankoff','TE','Knee','Did Not Participate In Practice','Out'),
+ ('NYG','Malik Harrison','LB','Groin','Limited Participation in Practice','Questionable'),
+ ('NE','Ben Brown','C','Knee','Did Not Participate In Practice','Out'),
+ ('NE','A.J. Brown','WR','Ankle, Knee','Limited Participation in Practice','Questionable'),
+ ('NE','Kevin Byard','S','Chest','Full Participation in Practice','Questionable'),
+ ('NE','Carlton Davis III','CB','Knee','Did Not Participate In Practice','Out'),
+ ('NE','Reggie Gilliam','FB','Knee','Limited Participation in Practice','Questionable'),
+ ('NE','TreVeyon Henderson','RB','Illness','Did Not Participate In Practice','Out'),
+ ('NE','Cameron Latu','TE','Back','Limited Participation in Practice','Questionable'),
+ ('NE','Walter Rouse','T','Concussion','Limited Participation in Practice','Questionable'),
+ ('NE','Brenden Schooler','S','Hamstring','Limited Participation in Practice','Questionable'),
+ ('NE','Rhamondre Stevenson','RB','Knee','Limited Participation in Practice','Questionable'),
+ ('NE','Greg Van Roten','G','Hamstring','Full Participation in Practice','Questionable'),
+ ('NE','Charles Woods','CB','Hamstring','Full Participation in Practice','Questionable'),
+ ('DET','Kerby Joseph','S','Knee','Did Not Participate In Practice','Out'),
+ ('DET','Cade Mays','C','Ankle','Did Not Participate In Practice','Out'),
+ ('DET','D.J. Reed','CB','Hip','Did Not Participate In Practice','Out'),
+ ('DET','Amon-Ra St. Brown','WR','Rib','Limited Participation in Practice','Questionable'),
+ ('DET','Sione Vaki','RB','Ankle','Limited Participation in Practice','Questionable'),
+ ('KC','Mansoor Delane','CB','Shoulder','Full Participation in Practice','Questionable'),
+ ('KC','Jaylon Moore','T','Ankle','Did Not Participate In Practice','Out'),
+ ('KC','Omarr Norman-Lott','DT','Knee','Limited Participation in Practice','Out'),
+ ('KC','Jaydn Ott','RB','Hamstring','Limited Participation in Practice','Questionable'),
+ ('KC','Kenneth Walker III','RB','Groin','Did Not Participate In Practice','Questionable'),
+ ('KC','Peter Woods','DT','Neck','Did Not Participate In Practice','Out'),
+ ('ATL','Zachariah Branch','WR','Hamstring','Did Not Participate In Practice','Out'),
+ ('ATL','Divine Deablo','LB','Forearm','Did Not Participate In Practice','Doubtful'),
+ ('ATL','Gervon Dexter Sr.','DT','Illness','Limited Participation in Practice','Questionable'),
+ ('ATL','James Pearce Jr.','DE','Back','Limited Participation in Practice','Questionable'),
+ ('ATL','Josh Woods','LB','Ankle','Full Participation in Practice','Questionable'),
+ ('MIN','Jordan Addison','WR','Thumb','Limited Participation in Practice','Questionable'),
+ ('MIN','Blake Cashman','LB','Concussion','Limited Participation in Practice','Out'),
+ ('MIN','T.J. Hockenson','TE','Wrist, Chest','Did Not Participate In Practice','Out'),
+ ('MIN','Tyrion Ingram-Dawkins','DT','Ankle','Did Not Participate In Practice','Out'),
+ ('MIN','Jauan Jennings','WR','Calf','Did Not Participate In Practice','Out'),
+ ('MIN','Josh Metellus','S','Shoulder','Limited Participation in Practice','Questionable'),
+ ('MIN','Kyler Murray','QB','Hamstring','Did Not Participate In Practice','Out'),
+ ('MIN','Kyle Van Noy','LB','Calf','Limited Participation in Practice','Questionable'),
+ ('GB','Chris Brooks','RB','Ankle','Limited Participation in Practice','Questionable'),
+ ('GB','Javon Bullard','S','Ankle, Knee','Limited Participation in Practice','Questionable'),
+ ('GB','Zaire Franklin','LB','Shin','Did Not Participate In Practice','Doubtful'),
+ ('GB','Travis Glover','G','Knee','Limited Participation in Practice','Questionable'),
+ ('GB','Josh Jacobs','RB','Finger','Did Not Participate In Practice','Out'),
+ ('GB','Xavier McKinney','S','Foot','Limited Participation in Practice','Questionable'),
+ ('GB','Skyy Moore','WR','Ankle','Limited Participation in Practice','Questionable'),
+ ('GB','Micah Parsons','LB','Knee, Illness','Limited Participation in Practice','Out'),
+ ('GB','Sean Rhyan','C','Ankle','Did Not Participate In Practice','Out'),
+ ('GB','Lukas Van Ness','LB','Back','Limited Participation in Practice','Questionable'),
+ ('GB','Josh Whyle','TE','Concussion','Did Not Participate In Practice','Out'),
+ ('GB','Kevin Zeitler','G','Ankle, Triceps','Did Not Participate In Practice','Questionable'),
+ ('JAX','Jessie Bates','S','Not injury related - resting player','Limited Participation in Practice','Out'),
+ ('JAX','Jordan Davis','DT','Not injury related - resting player','Limited Participation in Practice','Out'),
+ ('JAX','BJ Green II','DE','Forearm','Full Participation in Practice','Out'),
+ ('JAX','Robert Hainsey','C','Concussion','Limited Participation in Practice','Questionable'),
+ ('TEN','Cody Barton','LB','Concussion','Did Not Participate In Practice','Out'),
+ ('TEN','Anthony Hill Jr.','LB','Neck','Did Not Participate In Practice','Out'),
+ ('TEN','Peter Skoronski','G','Hamstring','Did Not Participate In Practice','Out'),
+ ('TEN','Tyjae Spears','RB','Knee','Full Participation in Practice','Questionable'),
+ ('TEN','Carnell Tate','WR','Shoulder','Did Not Participate In Practice','Out'),
+ ('TEN','Tommy Townsend','P','Knee, Achilles','Did Not Participate In Practice','Out'),
+ ('BUF','Christian Benford','CB','Wrist','Full Participation in Practice','Questionable'),
+ ('BUF','Spencer Brown','T','Ankle','Did Not Participate In Practice','Doubtful'),
+ ('BUF','Sam Franklin Jr.','S','Shoulder','Limited Participation in Practice','Questionable'),
+ ('BUF','Jordan Hancock','CB','Hamstring','Full Participation in Practice','Questionable'),
+ ('BUF','Tyrell Shavers','WR','Knee','Full Participation in Practice','Questionable'),
+ ('NYJ','Jarvis Brownlee Jr.','CB','Illness','Limited Participation in Practice','Questionable'),
+ ('NYJ','Omar Cooper Jr.','WR','Ankle','Full Participation in Practice','Questionable'),
+ ('NYJ','Adonai Mitchell','WR','Knee','Full Participation in Practice','Questionable'),
+ ('NYJ','Joseph Ossai','DE','Ankle','Full Participation in Practice','Questionable'),
+ ('NYJ','VJ Payne','S','Knee','Full Participation in Practice','Questionable'),
+ ('NYJ','Harrison Phillips','DT','Ankle','Full Participation in Practice','Questionable'),
+ ('NYJ','Trevin Wallace','LB','Groin','Did Not Participate In Practice','Out'),
+ ('NYJ','Garrett Wilson','WR','Concussion','Full Participation in Practice','Questionable'),
+ ('NYJ','Nahshon Wright','CB','Back','Full Participation in Practice','Questionable'),
+ ('MIA','Darrell Baker Jr.','CB','Knee','Full Participation in Practice','Questionable'),
+ ('MIA','Chris Bell','WR','Knee','Did Not Participate In Practice','Doubtful'),
+ ('MIA','Aaron Brewer','C','Concussion','Did Not Participate In Practice','Out'),
+ ('MIA','Jared Wayne','WR','Quadricep','Did Not Participate In Practice','Out'),
+ ('IND','Mo Alie-Cox','TE','Groin','Did Not Participate In Practice','Out'),
+ ('IND','Jaylon Carlies','LB','Neck','Did Not Participate In Practice','Out'),
+ ('IND','Akeem Davis-Gaither','LB','Knee','Did Not Participate In Practice','Out'),
+ ('IND','Arden Key','DE','Hamstring','Full Participation in Practice','Questionable'),
+ ('IND','Will Mallory','TE','Hamstring','Limited Participation in Practice','Questionable'),
+ ('IND','Luke Rhodes','LS','Hamstring','Did Not Participate In Practice','Out'),
+ ('IND','Jerry Tillery','DT','Calf','Did Not Participate In Practice','Out'),
+ ('IND','Jalen Travis','T','Knee','Did Not Participate In Practice','Out'),
+ ('CAR','Jonathon Brooks','RB','Groin','Limited Participation in Practice','Doubtful'),
+ ('CAR','Brady Christensen','G','Hamstring','Full Participation in Practice','Questionable'),
+ ('CAR','Mike Jackson','CB','Groin','Limited Participation in Practice','Doubtful'),
+ ('CAR','Will Lee III','CB','Hamstring','Limited Participation in Practice','Questionable'),
+ ('CAR','Xavier Legette','WR','Knee','Full Participation in Practice','Questionable'),
+ ('CAR','Bobby Okereke','LB','Foot','Did Not Participate In Practice','Out'),
+ ('CAR','Jaelan Phillips','LB','Hamstring','Full Participation in Practice','Questionable'),
+ ('NO','CJ Donaldson','RB','Shoulder','Did Not Participate In Practice','Out'),
+ ('NO','Martin Emerson','CB','Shin','Limited Participation in Practice','Questionable'),
+ ('NO','Travis Etienne','RB','Hamstring','Full Participation in Practice','Questionable'),
+ ('NO','Taliese Fuaga','T','Knee','Did Not Participate In Practice','Out'),
+ ('NO','Erik McCoy','C','Biceps','Did Not Participate In Practice','Out'),
+ ('NO','Christen Miller','DT','Knee','Did Not Participate In Practice','Out'),
+ ('HOU','Azeez Al-Shaair','LB','Groin, Not injury related - personal matter','Did Not Participate In Practice','Out'),
+ ('HOU','Will Anderson Jr.','DE','Ankle','Did Not Participate In Practice','Questionable'),
+ ('HOU','Trent Brown','T','Wrist, Illness','Did Not Participate In Practice','Questionable'),
+ ('HOU','Marvin Harrison Jr.','WR','Hamstring','Did Not Participate In Practice','Out'),
+ ('HOU','Jake Hummel','LB','Groin','Full Participation in Practice','Questionable'),
+ ('HOU','Danielle Hunter','DE','Hamstring','Did Not Participate In Practice','Out'),
+ ('HOU','Brevin Jordan','TE','Finger, Foot','Did Not Participate In Practice','Out'),
+ ('HOU','David Montgomery','RB','Groin','Full Participation in Practice','Questionable'),
+ ('HOU','Keylan Rutledge','G','Neck, Shoulder','Did Not Participate In Practice','Out'),
+ ('HOU','Jaylin Smith','CB','Hamstring','Full Participation in Practice','Questionable'),
+ ('HOU','Wyatt Teller','G','Illness, Back','Limited Participation in Practice','Questionable'),
+ ('CLE','Denzel Boston','WR','Toe','Limited Participation in Practice','Questionable'),
+ ('CLE','Michael Burton','FB','Calf','Did Not Participate In Practice','Out'),
+ ('CLE','Ronnie Hickman Jr.','S','Concussion','Did Not Participate In Practice','Out'),
+ ('LAR','Davis Allen','TE','Oblique','Limited Participation in Practice','Questionable'),
+ ('LAR','Steve Avila','G','Hamstring','Did Not Participate In Practice','Out'),
+ ('LAR','Joe Cardona','LS','Ankle','Limited Participation in Practice','Questionable'),
+ ('LAR','Kamren Curl','S','Toe','Limited Participation in Practice','Questionable'),
+ ('LAR','Terrance Ferguson','TE','Ankle, Hamstring','Did Not Participate In Practice','Out'),
+ ('LAR','Myles Garrett','LB','Knee, Not injury related - resting player','Did Not Participate In Practice','Questionable'),
+ ('LAR','Trent McDuffie','CB','Back','Limited Participation in Practice','Questionable'),
+ ('AZ','Zachary Carter','DT','Knee','Limited Participation in Practice','Out'),
+ ('AZ','Hjalte Froholdt','C','Concussion','Did Not Participate In Practice','Out'),
+ ('AZ','Jon Gaines II','G','Ankle','Did Not Participate In Practice','Out'),
+ ('AZ','Hunter Long','TE','Knee','Limited Participation in Practice','Questionable'),
+ ('AZ','Roy Lopez','DT','Toe, Ankle','Limited Participation in Practice','Questionable'),
+ ('AZ','Max Melton','CB','Knee, Hand','Limited Participation in Practice','Questionable'),
+ ('AZ','Darius Robinson','DT','Wrist','Limited Participation in Practice','Questionable'),
+ ('AZ','Jayden Williams','T','Knee','Limited Participation in Practice','Questionable'),
+ ('AZ','Andrew Wingard','S','Groin','Did Not Participate In Practice','Questionable'),
+ ('SEA','Charles Cross','T','Ankle','Did Not Participate In Practice','Out'),
+ ('SEA','Sam Darnold','QB','Ribs, Quadricep','Did Not Participate In Practice','Out'),
+ ('SEA','Quenton Nelson','G','Knee','Did Not Participate In Practice','Out'),
+ ('SEA','Leonard Williams','DT','Stinger','Did Not Participate In Practice','Out'),
+ ('LV','Thomas Booker','DT','Ankle','Full Participation in Practice','Questionable'),
+ ('LV','Dont\'e Thornton Jr.','WR','Back','Did Not Participate In Practice','Questionable'),
+ ('SF','Mike Evans','WR','Achilles','Did Not Participate In Practice','Out'),
+ ('SF','Renardo Green','CB','Back','Limited Participation in Practice','Questionable'),
+ ('SF','Dre Greenlaw','LB','Knee','Limited Participation in Practice','Questionable'),
+ ('SF','Nate Hobbs','CB','Groin','Full Participation in Practice','Questionable'),
+ ('SF','Deommodore Lenoir','CB','Foot','Limited Participation in Practice','Questionable'),
+ ('SF','Upton Stout','CB','Shoulder, Neck','Limited Participation in Practice','Questionable'),
+ ('SF','C.J. West','DT','Knee','Full Participation in Practice','Questionable'),
+ ('SF','Trent Williams','T','Shoulder','Did Not Participate In Practice','Questionable'),
+ ('DAL','DaRon Bland','CB','Ankle','Limited Participation in Practice','Questionable'),
+ ('DAL','Jonathan Bullard','DT','Calf','Full Participation in Practice','Questionable'),
+ ('DAL','Alijah Clark','S','Illness','Did Not Participate In Practice','Questionable'),
+ ('DAL','Donovan Ezeiruaku','LB','Ankle','Did Not Participate In Practice','Out'),
+ ('DAL','Jake Ferguson','TE','Knee, Ankle','Did Not Participate In Practice','Out'),
+ ('DAL','Tyler Goodson','RB','Ankle, Knee','Did Not Participate In Practice','Out'),
+ ('DAL','P.J. Locke','S','Concussion','Did Not Participate In Practice','Out'),
+ ('DAL','Jonathan Mingo','WR','Ankle','Did Not Participate In Practice','Out'),
+ ('DAL','Devin Moore','CB','Hip','Full Participation in Practice','Questionable'),
+ ('DAL','Joey Porter Jr.','CB','Ankle, Foot','Limited Participation in Practice','Questionable'),
+ ('DAL','Juanyeh Thomas','S','Hamstring','Did Not Participate In Practice','Doubtful'),
+ ('PIT','Derrick Harmon','DT','Foot','Full Participation in Practice','Questionable'),
+ ('CIN','Jalen Davis','CB','Hamstring','Full Participation in Practice','Doubtful'),
+ ('CIN','Kyle Dugger','S','Quadricep','Did Not Participate In Practice','Out'),
+ ('CIN','Andrei Iosivas','WR','Thumb','Full Participation in Practice','Doubtful'),
+ ('CIN','Brian Parker II','G','Knee','Full Participation in Practice','Doubtful'),
+]
+SLATE = [  # games as listed on the same report page (team order, records, kickoff and network verbatim)
+ ('WAS','3-5-1','NYG','5-3-1','Thursday, November 12th · 8:15 PM EST','Prime Video'),
+ ('NE','5-4','DET','6-2','Sunday, November 15th · 9:30 AM EST','FOX, FOX Deportes'),
+ ('KC','6-2','ATL','3-6','Sunday, November 15th · 1:00 PM EST','CBS'),
+ ('MIN','6-2','GB','6-3','Sunday, November 15th · 1:00 PM EST','FOX'),
+ ('JAX','6-2','TEN','1-7','Sunday, November 15th · 1:00 PM EST','FOX'),
+ ('BUF','7-1','NYJ','2-7','Sunday, November 15th · 1:00 PM EST','CBS'),
+ ('MIA','1-7','IND','2-7','Sunday, November 15th · 1:00 PM EST','CBS'),
+ ('CAR','3-5','NO','3-5','Sunday, November 15th · 1:00 PM EST','FOX'),
+ ('HOU','3-5','CLE','5-4','Sunday, November 15th · 1:00 PM EST','FOX'),
+ ('LAR','5-4','AZ','3-6','Sunday, November 15th · 4:05 PM EST','CBS'),
+ ('SEA','5-4','LV','4-5','Sunday, November 15th · 4:05 PM EST','CBS'),
+ ('SF','7-1','DAL','4-5','Sunday, November 15th · 4:25 PM EST','FOX, FOX Deportes'),
+ ('PIT','6-2','CIN','6-2','Sunday, November 15th · 8:20 PM EST','NBC, Universo'),
+ ('LAC','0-8','BAL','4-5','Monday, November 16th · 8:15 PM EST','ESPN, ABC, ESPN2, ESPN Deportes'),
+]
+UNIT = {'QB':'Offense','RB':'Offense','FB':'Offense','WR':'Offense','TE':'Offense','T':'Offensive line','G':'Offensive line','C':'Offensive line',
+        'DE':'Defense','DT':'Defense','NT':'Defense','LB':'Defense','CB':'Defense','S':'Defense','DB':'Defense',
+        'LS':'Special teams','P':'Special teams','K':'Special teams','H':'Special teams','KR':'Special teams','PR':'Special teams'}
+SLATE_TEAMS = [(a,ar,b,br) for a,ar,b,br,_n,_tv in SLATE]
+
+def burden_rows():
+    out=[]
+    order=[t for a,_,b,_ in SLATE_TEAMS for t in (a,b)]
+    for team in order:
+        rows=[r for r in INJ if r[0]==team]
+        def cnt(pred): return sum(1 for r in rows if pred(r))
+        out.append((team,
+            cnt(lambda r:r[5]=='Out'), cnt(lambda r:r[5]=='Doubtful'), cnt(lambda r:r[5]=='Questionable'),
+            cnt(lambda r:UNIT.get(r[2])=='Defense'), cnt(lambda r:UNIT.get(r[2]) in ('Offense','Offensive line')), cnt(lambda r:UNIT.get(r[2])=='Special teams'),
+            len(rows)))
+    tot=[sum(x[i] for x in out) for i in range(1,8)]
+    out.append(('League total',*tot))
+    return out
+
+
 
 def table(title, headers, rows):
     output = f'<h2>{e(title)}</h2><div class="table-wrap"><table><caption class="sr-only">{e(title)}</caption><thead><tr>'
@@ -34,15 +238,24 @@ def page(file, label, title, intro, content):
 page('index.html','Overview','Evidence first.\nAn edge must be earned.',
      'An NFL line-origination lab for game singles, player props and joint bets. Built to test skill—not reward a lucky streak.',
      '''<div class="notice"><strong>Research framework · no validated strategies</strong><p>No verified historical executable odds or point-in-time paired dataset was obtained. NFL lines, measured correlations, test scores and cash rewards are intentionally blank. No wagering is enabled.</p></div>
-<div class="cards"><a href="strategies.html"><span>01 / HYPOTHESES</span><b>Signal registry</b><p>Singles, props & joint models</p></a><a href="validation.html"><span>02 / DISCIPLINE</span><b>Seven evidence gates</b><p>Fail closed. Publish all trials.</p></a><a href="correlations.html"><span>03 / DEPENDENCE</span><b>Correlation lab</b><p>Paired evidence, not assumptions</p></a><a href="leaderboard.html"><span>04 / COMPETITION</span><b>Evidence leaderboard</b><p>No eligible entries, no awards</p></a></div>'''
+<div class="cards"><a href="strategies.html"><span>01 / HYPOTHESES</span><b>Signal registry</b><p>Singles, props & joint models</p></a><a href="validation.html"><span>02 / DISCIPLINE</span><b>Seven evidence gates</b><p>Fail closed. Publish all trials.</p></a><a href="correlations.html"><span>03 / DEPENDENCE</span><b>Correlation lab</b><p>Paired evidence, not assumptions</p></a><a href="leaderboard.html"><span>04 / COMPETITION</span><b>Evidence leaderboard</b><p>No eligible entries, no awards</p></a></div><div class="cards"><a href="injuries.html"><span>05 / AVAILABILITY</span><b>Injuries & depth</b><p>Week 10 2026 verified snapshot</p></a><a href="questions.html"><span>06 / REVIEW QUEUE</span><b>Decision questions</b><p>Known, unknown, and next steps</p></a><a href="data.html"><span>07 / INPUTS</span><b>Data requirements</b><p>Acquisition contract, fail closed</p></a><a href="audit.html"><span>08 / RECORDS</span><b>Repository audit</b><p>Implementation and integration log</p></a></div>'''
      + table('Executive summary',['Decision area','Finding','Disposition'],[
          row(['Originate NFL lines','A distribution-first design is specified; tested pricing primitives exist. No officially verified fitted NFL probability model or numerical line is available in this dashboard.','Implemented math / model not implemented']),
          row(['Useful signals','Opponent-adjusted efficiency, pace, participation and shared game script are hypotheses; no direction, effect size or profitability is asserted.','Research proposals'],('nfl-stats','nfl-injury'),'Context only / proposed'),
          row(['Skill versus luck','Use sealed future periods, proper scoring, multiplicity control and uncertainty. These can test evidence of skill, not eliminate chance.','No skill certification'],('holdout','brier','multiplicity'),'Method support / policy proposed'),
          row(['Correlation','No verified aligned sample was obtained. Descriptive Pearson/phi code is tested only on synthetic examples.','Unverified NFL values'],('pearson','repo'),'Formula support / project record'),
          row(['Competition rewards','Separate target-matched tracks and hypothetical recognition badges are proposed. No sponsor, cash pool or awards exist.','No funded program']),
+         row(['Injury & depth tracking','Official Week 10 2026 injury report transcribed with '+str(len(INJ))+' explicit game-status entries; club depth charts (KC, SEA, DET) verified 2026-11-14; starter→replacement derivation demonstrated. Historical archives and certified depth remain missing.','Snapshot + framework'],('nfl-injury-w10','chiefs-depth','repo'),'Direct publisher / project record'),
          row(['Executive recommendation','Continue as a paper-research lab. Missing provenance, prices or validation blocks eligibility—not publication of limitations.','No bets recommended'])
-     ]) + '<p class="download">Read the <a href="questions.html">decision questions &amp; improvement suggestions</a>, <a href="docs/RESEARCH_SPEC.md">full research specification</a>, and <a href="audit.html">repository audit</a>. All empirical gaps appear on <a href="flags.html">Flagged for Review</a>.</p>')
+     ]) + '<p class="download">Read the <a href="questions.html">decision questions &amp; improvement suggestions</a>, <a href="docs/RESEARCH_SPEC.md">full research specification</a>, and <a href="audit.html">repository audit</a>. All empirical gaps appear on <a href="flags.html">Flagged for Review</a>.</p>'
+     + table('Related sections in this repository',['Section','Contents','Publisher / session record','Integration state'],[
+         row(['Additive dashboard','Independent source-linked lab with pricing primitives and 11 gates; publishes at /Own9/site/.','Repository record','Live subsite — linked, not merged'],('repo',),'Project record'),
+         row(['Strict-source lab','Additive strict-lab research section with published evidence flags F01-F12.','Repository record','Live subsite — linked, not merged'],('repo',),'Project record'),
+         row(['Signal research','Secondary-source pipeline: 15 strategies, walk-forward own-line model; findings flagged uncertified.','Repository record','Live subsite — linked, not adopted'],('repo',),'Project record'),
+         row(['Own9 research lab','Separate pipeline and 12-page dashboard; empirical figures flagged unverified.','Repository record','Live subsite — linked, not adopted'],('repo',),'Project record'),
+         row(['Release checks','Independent structural/deployment review reports and snapshots.','Repository record','Live subsite — linked'],('repo',),'Project record'),
+         row(['Independent audit','Five-page official-source audit of the original 28-row dashboard, integrated from PR #18 (stale-session takeover, 2026-11-14).','Repository record','Live subsite — linked'],('repo',),'Project record')
+     ]))
 
 page('strategies.html','Strategies','The signal registry.',
      'Predeclared research candidates. These are designs to test, not discovered edges or recommendations. Contextual references do not endorse a strategy.',
@@ -128,8 +341,50 @@ page('questions.html','Decision questions','Before a decision: what do we know?'
          row(['6 · Leaderboard','A. Offer cash rewards immediately. B. Publish transparent, separate tracks and delay awards until every gate and funding rule is met.','Choose B: keep rewards blank now; if desired later, start with non-cash recognition, fixed scoring/tie rules and an independently checked eligibility record.','No sponsor, pool or eligible strategy is evidenced. This proposal prevents a leaderboard rank from implying proven skill or funded rewards.'],('repo','multiplicity'),'Project proposal / no award authorized')
      ]) + '<h2>Review outcome</h2><p>Current recommended path: keep the site as a no-wager research framework; prioritize source/permission discovery and a prospective timestamped data contract, then freeze validation design. Do not fit or rank a strategy until the data and gates are satisfied. No manual action is needed to see this status; unresolved external permissions, licensed quote access and empirical evidence cannot be manufactured by this session.</p><p>Implementation changes beyond this review page should be selected only after the corresponding source and validation gates are documented. See <a href="flags.html">Flagged for Review</a> for the open limitations and <a href="data.html">Data requirements</a> for the minimum input contract.</p>')
 
+page('injuries.html','Injuries & depth','Track who is actually out.','Injury and replacement tracking from official publications only. The Week 10 2026 snapshot below is transcribed from the league injury report retrieved on 14 Nov 2026; depth order comes from club-published depth charts retrieved the same day. Blank injury text means the report listed no injury description—never a verified healthy status.',
+     '<div class="notice"><strong>What is verified today · what is not</strong><p>Verified: the league\'s Week 10 2026 report (160 players carry an explicit Out/Doubtful/Questionable game status across the 14 listed games), three club depth charts, and league news identifying who is expected to start. Not verified: historical point-in-time injury archives, participation snaps, certified game-day depth order (club charts are self-labeled "unofficial"), and any performance effect of a replacement. See <a href="flags.html">Flagged for Review</a> F13-F15.</p></div>'
+     + table('Availability tracking contract',['Field tracked','Official source','Verified current state','Gap / rule'],[
+         row(['Game status (Out/Doubtful/Questionable)','League injury report, per club per game','Captured for Week 10 2026 on 2026-11-14 ('+str(len(INJ))+' players).','No historical archive: statuses must be snapshotted each week with retrieval time; never infer a missing report as availability.'],('nfl-injury-w10',),'Direct publisher / snapshot'),
+         row(['Practice status','League injury report (DNP / Limited / Full)','Captured for Week 10 2026 on 2026-11-14.','Practice participation is not a verified playing-time predictor; no direction asserted.'],('nfl-injury-w10',),'Direct publisher / snapshot'),
+         row(['Depth order (1st/2nd/3rd/4th string)','Club depth charts (three clubs retrieved)','KC, SEA and DET charts captured 2026-11-14.','Charts are club-published and self-labeled "unofficial"; the other 29 clubs were not retrieved this session. No derived depth label may outlive its chart version.'],('chiefs-depth','seahawks-depth','lions-depth'),'Direct publisher / self-labeled unofficial'),
+         row(['Expected starter changes','League news headlines linked from the report page','QB start changes for SEA, MIA, CLE, AZ and BAL IR placement verified as published links.','Headlines are league news, not box scores; actual lineups must be confirmed from the game before any evaluation.'],('nfl-injury-w10',),'Direct publisher / headline scope'),
+         row(['Replacement performance delta','Not available from any retrieved source','Blank — no verified starter vs replacement performance sample exists.','Requires historical participation and production data with provenance; do not manufacture a drop-off number.'],('repo',),'Project gap / no source'),
+         row(['Point-in-time capture','Project snapshot tables on this page','Snapshot tied to retrieval date 2026-11-14; statuses can change before kickoff.','A published report is not immutable; record retrieval UTC and refresh before lineup lock.'],('repo',),'Project record')
+     ])
+     + table('Verified Week 10 2026 game slate',['Listed first (record)','Listed second (record)','Kickoff · network (as listed)','Snapshot rows'],[
+         row([f'{a} ({ar})',f'{b} ({br})',n, str(sum(1 for r in INJ if r[0] in (a,b)) or '')],('nfl-injury-w10',),'Direct publisher / transcribed') for a,ar,b,br,n,tv in SLATE
+     ])
+     + table('Week 10 2026 availability snapshot (players with an explicit Game Status)', ['Team','Player','Position','Injury (report text)','Practice status','Game status'], [
+         row(list(r),('nfl-injury-w10',),'League injury report / verbatim') for r in INJ
+     ])
+     + table('Derived team availability burden', ['Team','Out','Doubtful','Questionable','Defense positions','Offense + OL positions','Special teams','Snapshot rows'], [
+         row(list(t),('nfl-injury-w10',),'Derived arithmetic / not a performance metric') for t in burden_rows()
+     ])
+     + table('Verified depth-linked replacement examples',['Team · position (chart slot)','Unavailable or conditional','Next player up (published order)','Status of the replacement','News corroboration'],[
+         row(['SEA · QB (1st)','Sam Darnold — Out (report)','Drew Lock — 2nd string (chart)','Limited practice, no game status on report','League news: "Drew Lock ... has no injury designation, will start for Seahawks vs. Raiders"'],('nfl-injury-w10','seahawks-depth'),'Two official sources + league news'),
+         row(['SEA · LT (1st)','Charles Cross — Out (report)','Josh Jones — 2nd string (chart)','Not listed on the report','None retrieved'],('nfl-injury-w10','seahawks-depth'),'Two official sources'),
+         row(['SEA · LG (1st)','Quenton Nelson — Out (report)','Anthony Bradford — 2nd string LG (chart)','Not listed on the report; also 2nd RG on the chart','None retrieved'],('nfl-injury-w10','seahawks-depth'),'Two official sources'),
+         row(['SEA · DT slot 1 (1st)','Leonard Williams — Out (report)','Rylie Mills — 2nd string (chart)','Not listed on the report','None retrieved'],('nfl-injury-w10','seahawks-depth'),'Two official sources'),
+         row(['KC · RT (1st)','Jaylon Moore — Out (report)','Joshua Ezeudu — 2nd string RT (chart)','Not listed on the report; also 2nd LG','None retrieved'],('nfl-injury-w10','chiefs-depth'),'Two official sources'),
+         row(['KC · RB (1st)','Kenneth Walker III — Questionable (report)','Emmett Johnson — 2nd string (chart); Jaydn Ott 3rd is himself Questionable','Conditional: order applies only if the starter cannot play','None retrieved'],('nfl-injury-w10','chiefs-depth'),'Two official sources / conditional'),
+         row(['DET · C (1st)','Cade Mays — Out (report)','Juice Scruggs — 2nd string (chart)','Not listed on the report','None retrieved'],('nfl-injury-w10','lions-depth'),'Two official sources'),
+         row(['DET · CB slot 1 (1st)','D.J. Reed — Out (report)','Rock Ya-Sin — 2nd string (chart)','Not listed on the report','None retrieved'],('nfl-injury-w10','lions-depth'),'Two official sources'),
+         row(['DET · S','Kerby Joseph — Out (report), but absent from the club chart\'s safety rows','Unverified — the two official sources conflict; no replacement may be inferred','—','See Flagged for Review F14'],('nfl-injury-w10','lions-depth','repo'),'Cross-source conflict / withheld'),
+         row(['MIA · QB (1st)','Malik Willis — placed on injured reserve (league news)','Kyle McCord — "in line for first start" (league news)','Depth slot not published on any retrieved chart','League news: "Dolphins place QB Malik Willis (groin) on injured reserve; Kyle McCord in line for first start"'],('nfl-injury-w10',),'League news only / depth unverified'),
+         row(['BAL · QB (1st)','Lamar Jackson — officially placed on injured reserve (league news)','Blank — no verified depth chart or start announcement retrieved this session','—','League news: "Ravens officially place Lamar Jackson on injured reserve"; earlier: right thumb, out 6-9 weeks'],('nfl-injury-w10',),'League news only / replacement unverified'),
+         row(['GB · RB (1st)','Josh Jacobs — Out (report); league news reports finger surgery, return timeline TBD','Blank — no GB depth chart retrieved this session; no replacement inferred','—','League news: "Packers RB Josh Jacobs to undergo surgery on finger this week"'],('nfl-injury-w10',),'Injury verified / replacement unverified'),
+     ])
+     + table('Deficiency signal methodology (proposed; unvalidated)',['Signal','Definition (frozen before use)','Data required','Current state'],[
+         row(['Depth drop index','Strings travelled by the next player up: 1st→2nd = 1, 1st→3rd = 2; unit sums over all Out/Doubtful slots.','Certified per-game depth order plus game-status snapshot, both point-in-time.','Design only; certified depth unavailable (club charts self-labeled unofficial).'],('chiefs-depth','lions-depth','repo'),'Proposal / partially sourced'),
+         row(['Unit availability burden','Count of Out/Doubtful/Questionable in a position unit, as published in the table above.','Weekly report snapshot (verified for Week 10 2026).','Counts published for Week 10; no performance weighting — any effect size is unknown.'],('nfl-injury-w10',),'Derived counts / effect unknown'),
+         row(['Replacement performance delta','Starter\'s baseline vs replacement\'s production in comparable situations, same season.','Historical participation and production with provenance and stable player IDs.','Blank — no verified historical sample; do not invent a drop-off number.'],('nfl-stats','repo'),'No source / blank'),
+         row(['Defense deficiency score','Weighted unit burden on the defensive side (DL/LB/DB) entering a game.','Verified depth order, weight study, and a power-defined sample before use.','Not implemented; weights unset by design until data exists.'],('nfl-injury-w10','multiplicity','repo'),'Proposal / not implemented'),
+         row(['Offense deficiency score','Same construction for offensive units, separate weights and gates.','Same as above; offense and defense never share a weight set.','Not implemented.'],('nfl-injury-w10','repo'),'Proposal / not implemented')
+     ])
+     + '<p>Snapshot integrity: the tables above are a single point-in-time transcription (retrieved 2026-11-14) of the official report; statuses can change before kickoff and the report page does not publish a revision timestamp. Cross-source conflicts are published on <a href="flags.html">Flagged for Review</a>, never silently reconciled. Strategy use of these inputs remains subject to the <a href="validation.html">validation gates</a>; no injury-adjusted edge is asserted. See <a href="questions.html">Decision questions</a> for what must be solved before any depth-weighted signal is trusted.</p>')
+
 page('sources.html','Sources','The evidence register.',
-     'Official publisher pages read on 04 Nov 2026, with the precise claim supported and limits. A retrieved page is not a verified NFL model. Source contents can change.',
+     'Official publisher pages read on 04 Nov 2026 and re-read in full scope on 14 Nov 2026 (all 14 manifest entries), with the precise claim supported and limits. A retrieved page is not a verified NFL model. Source contents can change.',
      table('Official source review',['Reference ID','Supported scope','Limits / evidence state','Checked UTC date'],[
          row([s['id'],s['supports'],s['scope']+' ['+s['status']+']',s['checked']],(s['id'],),'Direct publisher / checked scope') for s in SOURCES.values()
      ]) + '<p>Each row throughout the dashboard links to a publisher reference or this project’s primary repository record. Labels distinguish direct support, contextual background, mathematical specification and project proposals. The <a href="evidence/sources.json">machine-readable manifest</a> records the same scope. References do not endorse betting strategies.</p>')
@@ -164,8 +419,12 @@ page('flags.html','Flagged for Review','Uncertainty, in plain sight.',
          row(['F09 · Review','Source availability and row claim support are not proved by the site checker.','Manifest records pages actually read; local checks are structural only.','Published limitation']),
          row(['F10 · Limitation','Pricing functions support full refunds, not reduced-leg payouts, dead heats or every operator rule.','Use a complete payout-state model before evaluating affected parlays.','Unsupported states rejected by scope']),
          row(['F11 · Review','Prior sessions left deployment notes and broad contextual citations.','PR #2 corrections preserved; this session re-scopes sources and records its own deploy separately.','Historical context preserved']),
-         row(['F12 · Review','Merged PR #6 adds a separate secondary-data analysis subtree; its PR reports only two completed scores officially cross-checked.','Inherited files preserved, but numerical findings not certified or adopted by this dashboard. Official row-level verification and rights remain unresolved.','Unverified inherited research'])
-     ]) + '<p>Independent earlier-baseline technical report: <a href="release-checks/index.html">release quality review</a>. Its stored five-page / 28-row snapshot predates this nine-page integration; it is not a current factual or deployment certification.</p><p>Separate inherited, uncertified analysis: <a href="https://github.com/sassnarep3-star/Own9/pull/6">PR #6 and its stated evidence limitations</a>; <a href="research/flagged.html">its separate review register</a>. Its numerical findings are not adopted by this dashboard.</p>')
+         row(['F12 · Review','Merged PR #6 adds a separate secondary-data analysis subtree; its PR reports only two completed scores officially cross-checked.','Inherited files preserved, but numerical findings not certified or adopted by this dashboard. Official row-level verification and rights remain unresolved.','Unverified inherited research']),
+         row(['F13 · Review','Club depth charts are self-labeled "unofficial" even on official club sites (KC, SEA, DET retrieved 2026-11-14); no league-certified game-day depth order was found in any retrieved source.','Depth-slot attributions on the injury page carry both the chart link and this caveat; verify against actual game participation before any starter-replaced claim is used in a signal. The other 29 clubs were not retrieved this session.','Published limitation'],('chiefs-depth','seahawks-depth','lions-depth','repo'),'Direct publisher observation / scope'),
+         row(['F14 · Review','Cross-source conflict: DET S Kerby Joseph carries an Out game status on the Week 10 2026 league report but is absent from the club depth chart\'s safety rows (both retrieved 2026-11-14).','Conflicting official publications must be surfaced, not reconciled; no replacement is inferred for that slot. Similar conflicts may exist for clubs whose charts were not retrieved.','Unresolved — manual review'],('nfl-injury-w10','lions-depth','repo'),'Cross-source conflict / withheld'),
+         row(['F15 · Review','The Week 10 2026 injury snapshot is a single point-in-time retrieval: the report page publishes no revision timestamp, roster assignments were not cross-verified against a second independent official source, and no historical point-in-time injury/depth archive exists in verified evidence.','Snapshot rows are tied to retrieval UTC 2026-11-14 and must be refreshed before lineup lock; F02/F08 gaps stand. Injury data confers no validated predictive edge.','Snapshot dated / archive missing'],('nfl-injury-w10','repo'),'Snapshot limitation / project gap')
+     ]) + '<p>Independent earlier-baseline technical report: <a href="release-checks/index.html">release quality review</a>. Its stored five-page / 28-row snapshot predates this nine-page integration; it is not a current factual or deployment certification.</p><p>Separate inherited, uncertified analysis: <a href="https://github.com/sassnarep3-star/Own9/pull/6">PR #6 and its stated evidence limitations</a>; <a href="research/flagged.html">its separate review register</a>. Its numerical findings are not adopted by this dashboard.</p>'
+     + '<p>Review registers and reports in linked subsites (each governed by its owning session\'s scope): <a href="site/review.html">site/ review (F01-F13)</a> · <a href="strict-lab/flags.html">strict-lab/ flags (F01-F12)</a> · <a href="research/flagged.html">research/ flagged (F1-F8)</a> · <a href="own9-research/flags.html">own9-research/ flags</a> · <a href="release-checks/index.html">release-checks/ report</a> · <a href="release-checks/expanded-review.html">expanded source-policy review</a> · <a href="independent-audit/flags.html">independent-audit/ flags</a>. Subsite findings are published by their owning sessions; this root dashboard neither certifies nor adopts them.</p>')
 
 
 def render():
@@ -175,7 +434,7 @@ def render():
         files[filename] = f'''<!doctype html>
 <html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="description" content="Evidence-first NFL research dashboard. Strategies, validation, correlation requirements and transparent limitations."><title>{e(label)} · Own9 NFL Research</title><link rel="stylesheet" href="style.css"><script src="site.js" defer></script></head>
 <body><a class="skip" href="#main">Skip to content</a><header><div class="shell top"><a class="brand" href="index.html"><span>O9</span> OWN9 <small> / NFL RESEARCH</small></a><span class="status-dot">Research only · no live wagers</span></div><nav class="shell" aria-label="Main navigation">{nav}</nav></header>
-<main class="shell" id="main"><div class="page-meta"><span class="eyebrow">RESEARCH DESK / {e(label.upper())}</span><span>As of 04 Nov 2026 · UTC</span></div><h1>{e(title).replace(chr(10),'<br>')}</h1><p class="lead">{e(intro)}</p><div class="filter" hidden><label for="row-search">Find a table entry</label><input id="row-search" type="search" placeholder="Filter this page…" autocomplete="off"><span id="row-count" role="status" aria-live="polite"></span></div>{content}<p class="disclaimer">Research, not betting advice. No verified edge or guaranteed return. Blank empirical values are unavailable and unverified, never zero.</p></main>
+<main class="shell" id="main"><div class="page-meta"><span class="eyebrow">RESEARCH DESK / {e(label.upper())}</span><span>As of 14 Nov 2026 · UTC</span></div><h1>{e(title).replace(chr(10),'<br>')}</h1><p class="lead">{e(intro)}</p><div class="filter" hidden><label for="row-search">Find a table entry</label><input id="row-search" type="search" placeholder="Filter this page…" autocomplete="off"><span id="row-count" role="status" aria-live="polite"></span></div>{content}<p class="disclaimer">Research, not betting advice. No verified edge or guaranteed return. Blank empirical values are unavailable and unverified, never zero.</p></main>
 <footer class="shell"><b>OWN9 / NFL RESEARCH</b><span>Evidence over assumptions · <a href="sources.html">Evidence register</a> · <a href="flags.html">Flagged for Review</a></span></footer></body></html>\n'''
     return files
 

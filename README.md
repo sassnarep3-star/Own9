@@ -22,8 +22,31 @@ requirements, official source scopes and a published review register.
 
 [Strategies](strategies.html) · [Validation](validation.html) ·
 [Leaderboard](leaderboard.html) · [Correlations](correlations.html) ·
+[Injuries & depth](injuries.html) · [Decision questions](questions.html) ·
 [Data requirements](data.html) · [Sources](sources.html) ·
 [Repository audit](audit.html) · [Flagged for Review](flags.html)
+
+### Injury & depth tracking (added 14 Nov 2026)
+
+The [injuries & depth page](injuries.html) transcribes the official NFL Week 10 2026
+injury report (retrieved 2026-11-14 from [NFL.com](https://www.nfl.com/injuries/)):
+160 players carry an explicit Out/Doubtful/Questionable game status across the 14 listed
+games. Official club depth charts ([Chiefs](https://www.chiefs.com/team/depth-chart),
+[Seahawks](https://www.seahawks.com/team/depth-chart/),
+[Lions](https://www.detroitlions.com/team/depth-chart/)) were verified the same day and
+cross-referenced against the report to demonstrate starter→2nd/3rd-string replacement
+derivations. All charts are self-labeled "unofficial" by the clubs; conflicts with the
+league report (e.g., DET safety) are published on [Flagged for Review](flags.html) F13-F15,
+never silently reconciled. No injury-adjusted edge is asserted; no historical point-in-time
+injury archive exists in verified evidence.
+
+### Linked subsites (separate owning sessions; not merged into this dashboard)
+
+[site/](site/index.html) (additive dashboard) · [strict-lab/](strict-lab/index.html) ·
+[research/](research/index.html) (secondary-source pipeline) ·
+[own9-research/](own9-research/index.html) · [release-checks/](release-checks/index.html) ·
+[independent-audit/](independent-audit/index.html) (integrated from PR #18, 2026-11-14).
+Subsite findings remain governed by their owning sessions' scopes and review registers.
 
 Full [research specification](docs/RESEARCH_SPEC.md) and machine-readable
 [source review manifest](evidence/sources.json). The audit describes every starting tracked

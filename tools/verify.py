@@ -38,7 +38,7 @@ def check():
     errors=[]; parsed={}; expected=render()
     manifest=json.loads((ROOT/'evidence/sources.json').read_text())
     known={s['url'] for s in manifest}
-    allowed={'www.nfl.com','www.itl.nist.gov','docs.scipy.org','scikit-learn.org','docs.github.com','github.com'}
+    allowed={'www.nfl.com','www.itl.nist.gov','docs.scipy.org','scikit-learn.org','docs.github.com','github.com','www.chiefs.com','www.seahawks.com','www.detroitlions.com'}
     if len({s['id'] for s in manifest}) != len(manifest): errors.append('duplicate source id')
     for s in manifest:
         if urlsplit(s['url']).scheme!='https' or urlsplit(s['url']).hostname not in allowed:
