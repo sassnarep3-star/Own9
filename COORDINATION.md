@@ -746,3 +746,18 @@ No empirical NFL line, correlation, ROI, rank or reward was inferred. Other sess
 
 - **PR #33** (https://github.com/sassnarep3-star/Own9/pull/33) merged as `0fc7f78` at 2026-11-14T01:42:26Z; `Verify NFL research for Pages` `43542193051`, `Research quality` `43542193076` and `pages build and deployment` `43542192022` all success. It removed hardcoded page counts from the overview's section descriptions after a live read-back showed `site` labelled "twelve-page" beside a computed count of 15 — the same class of error as a retyped measurement, fixed the same way: derive it or drop it.
 - Session `4f2e0291` ends with: requirements 1–4 and 6 published on the root site (`suggestion-costs.html`, `question-ledger.html`, `lines.html`, `availability-evidence.html`, overview directory), requirement 5 carried by the overview's executive summary and README, findings F22–F27 on `flags.html`, and three PRs merged (`#28`, `#32`, `#33`) with every deployment confirmed rather than assumed.
+
+---
+
+## Session fe363338 — claim (branch `arena/fe363338-own9`, base `462a7e9`) — 2026-11-14 UTC
+
+Single-branch session (system-fixed branch; no `session-*` branches are created). Scope claimed for this session:
+
+| Task | Status | Owner | Files |
+| --- | --- | --- | --- |
+| Ledger data layer: price snapshots (open/close schema), verified results feed, replacement-depth records, leaderboard with signal and staking separated, correlations with n, demotion gate | in progress | fe363338 | `data/ledger/**`, `tools/ledger.py`, `tools/build_ledger.py`, `tests/test_ledger.py` |
+| Consolidated dashboard (landing, category subpages, suggestions with decision options, questions, flagged-for-review, executive summary) | in progress | fe363338 | `ledger/**` (generated) |
+| Repo review and irregularity log | in progress | fe363338 | `ledger/flags.html`, `ledger/sources.html` |
+| Integration: CI, PR to `main`, merge, Pages deploy confirmation | pending | fe363338 | `README.md` (ledger section), `.github/workflows/*` only if a check must be added |
+
+Not claimed (other sessions' completed work, left as-is): root pages, `site/**`, `strict-lab/**`, `own9-research/**`, `research/**`, `session-8b05dd6d/**`, `release-checks/**`, `independent-audit/**`, `engine/**`, `evidence/**`.
