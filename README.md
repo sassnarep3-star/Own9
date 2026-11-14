@@ -6,7 +6,7 @@ An auditable NFL research workspace covering line origination, singles, parlays,
 player-prop combos, seven validation gates, a proposed competition, correlation
 requirements, official source scopes and a published review register.
 
-Fourteen pages, `tools/build.py`, `tools/verify.py`, synthetic data only.
+Fifteen pages, `tools/build.py`, `tools/verify.py`, verified snapshots and synthetic data only.
 
 ## Start with the decisions, not the archive
 
@@ -16,6 +16,7 @@ Fourteen pages, `tools/build.py`, `tools/verify.py`, synthetic data only.
 | Know what must be known before deciding | [Questions & answers](questions.html) |
 | Review and choose an improvement before it is built | [Suggestions](suggestions.html) |
 | See who actually started and who replaced them | [Availability tracker](availability.html) |
+| See the full Week 10 2026 injury report snapshot and club depth charts | [Injuries & depth](injuries.html) |
 | Check a claim against a publisher | [Sources](sources.html) |
 | See what is still wrong or unverified | [Flagged for Review](flags.html) |
 
@@ -30,10 +31,14 @@ Fourteen pages, `tools/build.py`, `tools/verify.py`, synthetic data only.
 - Two official counterexamples on WHY a designation feed is not a participation
   record: Treylon Burks did not practise yet started and caught 2 passes for 27
   yards, and six of seven Giants inactives carried no injury designation at all.
-- **Depth tiers are deliberately blank.** The club depth-chart route on nfl.com
-  returns an NFL 404; no first/second/third/fourth-string field was found. The
-  site reports changed starters, which is published, and refuses to rank backups,
-  which is not.
+- **Depth tiers stay caveated, not invented.** The club depth-chart route on
+  nfl.com returns an NFL 404, so the availability tracker keeps tier labels blank
+  for Game Book substitution chains. Separately, official club depth charts with
+  first/second/third/fourth-string columns were retrieved from the Chiefs,
+  Seahawks and Lions team sites on 2026-11-14 (self-labeled "unofficial" by the
+  clubs) and are published, with both sources cited, on
+  [Injuries & depth](injuries.html). No chart is treated as a certified game-day
+  depth record; cross-source conflicts are flagged, not reconciled (F19-F21).
 - Correlation handling is implemented, not asserted. A joint price is produced
   only when a Fisher-z interval clears a predeclared deadband; otherwise the joint
   price is left blank instead of assuming independence.
@@ -119,3 +124,25 @@ python analysis/analyze.py && python analysis/build_site.py
 
 Betting lines are not published by the NFL, so all lines are labelled **Unverified** (`research/flagged.html`).
 Research only, not betting advice. Sports wagering in Washington is limited to tribal casinos (Washington State Gambling Commission).
+
+## Injury & depth tracking (2026-11-14)
+
+The [injuries & depth page](injuries.html) transcribes the official NFL Week 10 2026
+injury report (retrieved 2026-11-14 from [NFL.com](https://www.nfl.com/injuries/)):
+160 players carry an explicit Out/Doubtful/Questionable game status across the 14 listed
+games, with derived team availability-burden counts. Official club depth charts
+([Chiefs](https://www.chiefs.com/team/depth-chart),
+[Seahawks](https://www.seahawks.com/team/depth-chart/),
+[Lions](https://www.detroitlions.com/team/depth-chart/)) were verified the same day and
+cross-referenced against the report to demonstrate starter→next-string derivations with
+both sources cited. Where no chart was retrieved, replacement columns stay blank (GB, BAL,
+MIA depth slots) — never inferred. No injury-adjusted edge is asserted; the snapshot is a
+single point-in-time retrieval (F21).
+
+## Linked subsites (separate owning sessions; not merged into this dashboard)
+
+[site/](site/index.html) (additive dashboard) · [strict-lab/](strict-lab/index.html) ·
+[research/](research/index.html) (secondary-source pipeline) ·
+[own9-research/](own9-research/index.html) · [release-checks/](release-checks/index.html) ·
+[independent-audit/](independent-audit/index.html) (integrated from PR #18, 2026-11-14).
+Subsite findings remain governed by their owning sessions' scopes and review registers.

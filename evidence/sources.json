@@ -1,236 +1,272 @@
 [
- {
-  "id": "brier",
-  "publisher": "scikit-learn project",
-  "url": "https://scikit-learn.org/stable/modules/generated/sklearn.metrics.brier_score_loss.html",
-  "checked": "2026-11-04",
-  "status": "retrieved",
-  "supports": "Binary Brier loss is the mean squared probability error; smaller is better. Official example yields 0.0375.",
-  "scope": "Binary convention [0,1]; not the unscaled multiclass convention. Example used only in software tests, not NFL results."
- },
- {
-  "id": "dk-markets",
-  "publisher": "DraftKings",
-  "url": "https://sportsbook.draftkings.com/help/general-betting-rules/market-rules",
-  "checked": "2026-11-14",
-  "status": "retrieved",
-  "supports": "Two-way point spread and handicap bets settle as Push when the outcome is tied after the handicap is applied; two-way moneyline ties settle as Push; totals equal to the stated total settle as Push; grouped markets are void when a listed selection does not participate; dead heat reduction rules apply to grouped markets.",
-  "scope": "Operator market definitions for one operator and one jurisdiction snapshot. Sport-specific, ticket-level and state rules must be re-verified before any pricing use."
- },
- {
-  "id": "holdout",
-  "publisher": "scikit-learn project",
-  "url": "https://scikit-learn.org/stable/modules/cross_validation.html",
-  "checked": "2026-11-04",
-  "status": "retrieved",
-  "supports": "Training and testing on the same observations is a methodological mistake; tuning against a test set leaks information.",
-  "scope": "Read introductory section, chunk 0. NFL time splits and thresholds below are project proposals, not validated by this documentation."
- },
- {
-  "id": "holm",
-  "publisher": "statsmodels project",
-  "url": "https://www.statsmodels.org/stable/generated/statsmodels.stats.multitest.multipletests.html",
-  "checked": "2026-11-14",
-  "status": "retrieved",
-  "supports": "multipletests performs test results and p-value correction for multiple tests; holm is the step-down method using Bonferroni adjustments; procedures control the family-wise error rate in the independent case and are robust in the positively correlated case.",
-  "scope": "Method reference for candidate-family error control. Requires valid input p-values and a pre-registered family; it does not validate any NFL strategy."
- },
- {
-  "id": "logloss",
-  "publisher": "scikit-learn project",
-  "url": "https://scikit-learn.org/stable/modules/generated/sklearn.metrics.log_loss.html",
-  "checked": "2026-11-04",
-  "status": "retrieved",
-  "supports": "Binary log loss is negative y log(p) plus (1-y) log(1-p); logarithm is natural.",
-  "scope": "Own implementation uses exact probabilities, infinity for an impossible realized event; unlike sklearn it does not clip endpoints."
- },
- {
-  "id": "multiplicity",
-  "publisher": "NIST",
-  "url": "https://www.itl.nist.gov/div898/handbook/prc/section4/prc473.htm",
-  "checked": "2026-11-04",
-  "status": "retrieved",
-  "supports": "Bonferroni inequality supports simultaneous coverage via allocation of error probability across a finite family.",
-  "scope": "NIST examples concern mean contrasts; NFL block-bootstrap design and validity require separate evaluation. Not an NFL gate endorsement."
- },
- {
-  "id": "nfl-capsules",
-  "publisher": "NFL Communications",
-  "url": "https://media.nfl.com/football-information/2026/weekly-preview---capsules-/week-10-nfl-preview---capsules",
-  "checked": "2026-11-14",
-  "status": "retrieved",
-  "supports": "Official Week 10 NFL Preview published Nov 10, 2026, linking the Week 10 Capsules PDF and listing official records and matchup storylines.",
-  "scope": "Editorial and statistical preview published before kickoff. Not a market price feed and not a substitute for a licensed as-of archive."
- },
- {
-  "id": "nfl-capsules-pdf",
-  "publisher": "NFL Communications",
-  "url": "https://media.nfl.com/content/dam/communications/football-communications/2026/capsules/Week%2010%20Capsules.pdf",
-  "checked": "2026-11-14",
-  "status": "retrieved",
-  "supports": "Official Week 10 Capsules PDF: per-game team scoring, total, passing and rushing offense/defense with league ranks, sacks and TFL leaders, yardage leaders and per-team player notes.",
-  "scope": "Chunks 0, 3 and 11 were read in full. Team-level efficiency context and notes only; no player-level availability tier, price or participation record. Publication and republication rights are separate from this research use."
- },
- {
-  "id": "nfl-depth-chart-404",
-  "publisher": "NFL",
-  "url": "https://www.nfl.com/teams/washington-commanders/depth-chart",
-  "checked": "2026-11-14",
-  "status": "retrieved",
-  "supports": "The club depth-chart route on nfl.com returns the NFL '404 - Flag on the Play' page, so no depth chart is served at that address.",
-  "scope": "A single-route negative result, not proof that no depth chart exists anywhere or in any season. Supports only the narrower statement that this project could not obtain a depth chart from the league site, and therefore leaves every depth tier blank."
- },
- {
-  "id": "nfl-gamebook-w10",
-  "publisher": "NFL",
-  "url": "https://static.www.nfl.com/image/upload/v1794570519/gamecenter/ab5828d9-4feb-11f1-abca-2c54536568a9.pdf",
-  "checked": "2026-11-14",
-  "status": "retrieved",
-  "supports": "Official NFL Game Book, Commanders at Giants, 11/12/2026: game-day starting lineups for both clubs, substitutions, Did Not Play and Not Active lists, scoring plays, final individual statistics and final team statistics (WAS 24, NYG 21).",
-  "scope": "Chunks 0 and 1 read in full. A game-day lineup is not a depth chart, snap count or participation record. The NFL publishes no depth tier, so replacement tiers are left blank."
- },
- {
-  "id": "nfl-gamebook-w9-lar-was",
-  "publisher": "NFL",
-  "url": "https://static.www.nfl.com/image/upload/v1794224919/gamecenter/ab382331-4feb-11f1-abca-2c54536568a9.pdf",
-  "checked": "2026-11-14",
-  "status": "retrieved",
-  "supports": "Official NFL Game Book, Rams at Commanders, 11/8/2026: Washington starting offensive and defensive lineups, substitutions, inactive list and final statistics (LAR 20, WAS 13).",
-  "scope": "Chunk 0 read. Used only as the previous-week lineup baseline for a two-week comparison; not a season-long archive."
- },
- {
-  "id": "nfl-gamebook-w9-nyg-phi",
-  "publisher": "NFL",
-  "url": "https://static.www.nfl.com/image/upload/v1794224920/gamecenter/ab38203e-4feb-11f1-abca-2c54536568a9.pdf",
-  "checked": "2026-11-14",
-  "status": "retrieved",
-  "supports": "Official NFL Game Book, Giants at Eagles, 11/8/2026: New York starting lineups, substitutions, Not Active list (including C.Skattebo) and final statistics (NYG 19, PHI 11).",
-  "scope": "Chunk 0 read. Used only as the previous-week lineup baseline for a two-week comparison; not a season-long archive."
- },
- {
-  "id": "nfl-gamecenter-w10",
-  "publisher": "NFL",
-  "url": "https://www.nfl.com/games/commanders-at-giants-2026-reg-10",
-  "checked": "2026-11-14",
-  "status": "retrieved",
-  "supports": "Official game center for Commanders at Giants, Week 10 2026: final score, scoring drives, team quarter totals, standings and the official Game Book download link.",
-  "scope": "Live page route that resolved; the earlier /gameday/ route returned a 404. Score and Game Book link verified, not a price or participation feed."
- },
- {
-  "id": "nfl-gamecenter-w9",
-  "publisher": "NFL",
-  "url": "https://www.nfl.com/games/rams-at-commanders-2026-reg-9",
-  "checked": "2026-11-14",
-  "status": "retrieved",
-  "supports": "Official game center for Rams at Commanders, Week 9 2026: final score 20-13, scoring drives, venue and the official Game Book download link.",
-  "scope": "Score and Game Book link verified only; no market or participation data."
- },
- {
-  "id": "nfl-injury",
-  "publisher": "NFL",
-  "url": "https://www.nfl.com/injuries/",
-  "checked": "2026-11-14",
-  "status": "retrieved",
-  "supports": "Official Latest NFL Injury Report for Players - Week 10 of the 2026 Season. Each game table lists Player, Position, Injuries, Practice Status and Game Status for both teams.",
-  "scope": "Practice status and game status are distinct fields and a blank cell is not a clearance to play. Dynamic page, not a point-in-time historical archive; a retrieval is not a licensed archive."
- },
- {
-  "id": "nfl-player-stats",
-  "publisher": "NFL",
-  "url": "https://www.nfl.com/stats/player-stats/",
-  "checked": "2026-11-14",
-  "status": "retrieved",
-  "supports": "Official 2026 player statistics with a category navigation (passing, rushing, receiving, fumbles, tackles, interceptions, field goals, kickoffs, kickoff returns, punting, punt returns) and season selectors back to 1965.",
-  "scope": "Retrieved numeric rows carried no column headers, so no statistic was read off this page. Category navigation only; it is not a participation, starter or snap-count source."
- },
- {
-  "id": "nfl-roster",
-  "publisher": "NFL",
-  "url": "https://www.nfl.com/teams/washington-commanders/roster/",
-  "checked": "2026-11-14",
-  "status": "retrieved",
-  "supports": "Official 2026 club roster page listing each player's number, position, roster status code (for example ACT), height, weight, age and college.",
-  "scope": "Rosters are published alphabetically and no depth-chart tier, starter flag or second/third-string designation is published by the NFL. Membership and status codes only."
- },
- {
-  "id": "nfl-rulebook",
-  "publisher": "NFL Football Operations",
-  "url": "https://operations.nfl.com/rules-officiating/2026-nfl-rulebook",
-  "checked": "2026-11-14",
-  "status": "retrieved",
-  "supports": "Official 2026 NFL Rulebook with the 2026 rule changes (articles 6-1-3, 6-1-5, 6-1-6, 19-2) and the downloadable final rulebook PDF.",
-  "scope": "Game rules only. Says nothing about sportsbook settlement, model calibration or the probability of any event."
- },
- {
-  "id": "nfl-schedule-w10",
-  "publisher": "NFL",
-  "url": "https://www.nfl.com/schedules/2026/REG10/",
-  "checked": "2026-11-14",
-  "status": "retrieved",
-  "supports": "Official 2026 Week 10 schedule with final results and club records, including Commanders 24 Giants 21 on Thursday Nov 12 2026.",
-  "scope": "Results and records only. No odds, totals or closing lines are published on this page."
- },
- {
-  "id": "nfl-schedule-w9",
-  "publisher": "NFL",
-  "url": "https://www.nfl.com/schedules/2026/by-week/week-9",
-  "checked": "2026-11-14",
-  "status": "retrieved",
-  "supports": "Official 2026 Week 9 schedule with final results for every listed game, including Rams 20 Commanders 13 and Giants 19 Eagles 11.",
-  "scope": "Results and records only. No odds, totals or closing lines are published on this page."
- },
- {
-  "id": "nfl-stats",
-  "publisher": "NFL",
-  "url": "https://www.nfl.com/stats/",
-  "checked": "2026-11-04",
-  "status": "retrieved",
-  "supports": "NFL publishes player statistics with season and category navigation.",
-  "scope": "Current aggregate tables are not point-in-time historical features or executable odds. No numerical player statistics imported."
- },
- {
-  "id": "pages",
-  "publisher": "GitHub",
-  "url": "https://docs.github.com/en/pages/getting-started-with-github-pages/what-is-github-pages",
-  "checked": "2026-11-04",
-  "status": "retrieved",
-  "supports": "GitHub Pages hosts static HTML, CSS and JavaScript from a repository.",
-  "scope": "Hosting documentation, not statistical evidence or evidence of funded rewards."
- },
- {
-  "id": "pearson",
-  "publisher": "SciPy project",
-  "url": "https://docs.scipy.org/doc/scipy/reference/generated/scipy.stats.pearsonr.html",
-  "checked": "2026-11-04",
-  "status": "retrieved",
-  "supports": "Pearson measures linear association; constant input correlation is undefined. Documentation gives centered-product formula.",
-  "scope": "Read chunks 0 and 1. Default normal-theory p-values are not a binary NFL cluster-valid inference method. Does not prove any NFL correlation."
- },
- {
-  "id": "repo",
-  "publisher": "Own9 repository (primary project record)",
-  "url": "https://github.com/sassnarep3-star/Own9",
-  "checked": "2026-11-14",
-  "status": "inspected",
-  "supports": "Local tracked files, coordination history, tests and GitHub repository settings inspected in this session.",
-  "scope": "Primary source for project implementation and missing artifacts only. Not an independent authority for NFL performance."
- },
- {
-  "id": "tails",
-  "publisher": "NIST",
-  "url": "https://www.itl.nist.gov/div898/handbook/eda/section3/eda35b.htm",
-  "checked": "2026-11-04",
-  "status": "retrieved",
-  "supports": "Skewness characterizes asymmetry; kurtosis concerns tail weight relative to normal. Extreme tails can distort summaries.",
-  "scope": "Introductory sections read. Does not demonstrate the shape or profitability of NFL strategy returns."
- },
- {
-  "id": "wa-gaming",
-  "publisher": "Washington State Gambling Commission",
-  "url": "https://wsgc.wa.gov/tribal-partnerships/sports-wagering",
-  "checked": "2026-11-14",
-  "status": "retrieved",
-  "supports": "State regulator page linking sports wagering licensing, the requirements and rules for tribal casinos, the permitted sports wagering menu and the history of sports wagering in Washington.",
-  "scope": "Landing-page verification only. Makes no determination about personal eligibility, operator availability or any wager this project might place."
- }
+  {
+    "id": "brier",
+    "publisher": "scikit-learn project",
+    "url": "https://scikit-learn.org/stable/modules/generated/sklearn.metrics.brier_score_loss.html",
+    "checked": "2026-11-14",
+    "status": "retrieved",
+    "supports": "Binary Brier loss is the mean squared probability error; smaller is better. Official example yields 0.0375.",
+    "scope": "Binary convention [0,1]; not the unscaled multiclass convention. Example used only in software tests, not NFL results."
+  },
+  {
+    "id": "dk-markets",
+    "publisher": "DraftKings",
+    "url": "https://sportsbook.draftkings.com/help/general-betting-rules/market-rules",
+    "checked": "2026-11-14",
+    "status": "retrieved",
+    "supports": "Two-way point spread and handicap bets settle as Push when the outcome is tied after the handicap is applied; two-way moneyline ties settle as Push; totals equal to the stated total settle as Push; grouped markets are void when a listed selection does not participate; dead heat reduction rules apply to grouped markets.",
+    "scope": "Operator market definitions for one operator and one jurisdiction snapshot. Sport-specific, ticket-level and state rules must be re-verified before any pricing use."
+  },
+  {
+    "id": "holdout",
+    "publisher": "scikit-learn project",
+    "url": "https://scikit-learn.org/stable/modules/cross_validation.html",
+    "checked": "2026-11-14",
+    "status": "retrieved",
+    "supports": "Training and testing on the same observations is a methodological mistake; tuning against a test set leaks information.",
+    "scope": "Read introductory section, chunk 0. NFL time splits and thresholds below are project proposals, not validated by this documentation."
+  },
+  {
+    "id": "holm",
+    "publisher": "statsmodels project",
+    "url": "https://www.statsmodels.org/stable/generated/statsmodels.stats.multitest.multipletests.html",
+    "checked": "2026-11-14",
+    "status": "retrieved",
+    "supports": "multipletests performs test results and p-value correction for multiple tests; holm is the step-down method using Bonferroni adjustments; procedures control the family-wise error rate in the independent case and are robust in the positively correlated case.",
+    "scope": "Method reference for candidate-family error control. Requires valid input p-values and a pre-registered family; it does not validate any NFL strategy."
+  },
+  {
+    "id": "logloss",
+    "publisher": "scikit-learn project",
+    "url": "https://scikit-learn.org/stable/modules/generated/sklearn.metrics.log_loss.html",
+    "checked": "2026-11-14",
+    "status": "retrieved",
+    "supports": "Binary log loss is negative y log(p) plus (1-y) log(1-p); logarithm is natural.",
+    "scope": "Own implementation uses exact probabilities, infinity for an impossible realized event; unlike sklearn it does not clip endpoints."
+  },
+  {
+    "id": "multiplicity",
+    "publisher": "NIST",
+    "url": "https://www.itl.nist.gov/div898/handbook/prc/section4/prc473.htm",
+    "checked": "2026-11-14",
+    "status": "retrieved",
+    "supports": "Bonferroni inequality supports simultaneous coverage via allocation of error probability across a finite family.",
+    "scope": "NIST examples concern mean contrasts; NFL block-bootstrap design and validity require separate evaluation. Not an NFL gate endorsement."
+  },
+  {
+    "id": "nfl-capsules",
+    "publisher": "NFL Communications",
+    "url": "https://media.nfl.com/football-information/2026/weekly-preview---capsules-/week-10-nfl-preview---capsules",
+    "checked": "2026-11-14",
+    "status": "retrieved",
+    "supports": "Official Week 10 NFL Preview published Nov 10, 2026, linking the Week 10 Capsules PDF and listing official records and matchup storylines.",
+    "scope": "Editorial and statistical preview published before kickoff. Not a market price feed and not a substitute for a licensed as-of archive."
+  },
+  {
+    "id": "nfl-capsules-pdf",
+    "publisher": "NFL Communications",
+    "url": "https://media.nfl.com/content/dam/communications/football-communications/2026/capsules/Week%2010%20Capsules.pdf",
+    "checked": "2026-11-14",
+    "status": "retrieved",
+    "supports": "Official Week 10 Capsules PDF: per-game team scoring, total, passing and rushing offense/defense with league ranks, sacks and TFL leaders, yardage leaders and per-team player notes.",
+    "scope": "Chunks 0, 3 and 11 were read in full. Team-level efficiency context and notes only; no player-level availability tier, price or participation record. Publication and republication rights are separate from this research use."
+  },
+  {
+    "id": "nfl-depth-chart-404",
+    "publisher": "NFL",
+    "url": "https://www.nfl.com/teams/washington-commanders/depth-chart",
+    "checked": "2026-11-14",
+    "status": "retrieved",
+    "supports": "The club depth-chart route on nfl.com returns the NFL '404 - Flag on the Play' page, so no depth chart is served at that address.",
+    "scope": "A single-route negative result, not proof that no depth chart exists anywhere or in any season. Supports only the narrower statement that this project could not obtain a depth chart from the league site, and therefore leaves every depth tier blank."
+  },
+  {
+    "id": "nfl-gamebook-w10",
+    "publisher": "NFL",
+    "url": "https://static.www.nfl.com/image/upload/v1794570519/gamecenter/ab5828d9-4feb-11f1-abca-2c54536568a9.pdf",
+    "checked": "2026-11-14",
+    "status": "retrieved",
+    "supports": "Official NFL Game Book, Commanders at Giants, 11/12/2026: game-day starting lineups for both clubs, substitutions, Did Not Play and Not Active lists, scoring plays, final individual statistics and final team statistics (WAS 24, NYG 21).",
+    "scope": "Chunks 0 and 1 read in full. A game-day lineup is not a depth chart, snap count or participation record. The NFL publishes no depth tier, so replacement tiers are left blank."
+  },
+  {
+    "id": "nfl-gamebook-w9-lar-was",
+    "publisher": "NFL",
+    "url": "https://static.www.nfl.com/image/upload/v1794224919/gamecenter/ab382331-4feb-11f1-abca-2c54536568a9.pdf",
+    "checked": "2026-11-14",
+    "status": "retrieved",
+    "supports": "Official NFL Game Book, Rams at Commanders, 11/8/2026: Washington starting offensive and defensive lineups, substitutions, inactive list and final statistics (LAR 20, WAS 13).",
+    "scope": "Chunk 0 read. Used only as the previous-week lineup baseline for a two-week comparison; not a season-long archive."
+  },
+  {
+    "id": "nfl-gamebook-w9-nyg-phi",
+    "publisher": "NFL",
+    "url": "https://static.www.nfl.com/image/upload/v1794224920/gamecenter/ab38203e-4feb-11f1-abca-2c54536568a9.pdf",
+    "checked": "2026-11-14",
+    "status": "retrieved",
+    "supports": "Official NFL Game Book, Giants at Eagles, 11/8/2026: New York starting lineups, substitutions, Not Active list (including C.Skattebo) and final statistics (NYG 19, PHI 11).",
+    "scope": "Chunk 0 read. Used only as the previous-week lineup baseline for a two-week comparison; not a season-long archive."
+  },
+  {
+    "id": "nfl-gamecenter-w10",
+    "publisher": "NFL",
+    "url": "https://www.nfl.com/games/commanders-at-giants-2026-reg-10",
+    "checked": "2026-11-14",
+    "status": "retrieved",
+    "supports": "Official game center for Commanders at Giants, Week 10 2026: final score, scoring drives, team quarter totals, standings and the official Game Book download link.",
+    "scope": "Live page route that resolved; the earlier /gameday/ route returned a 404. Score and Game Book link verified, not a price or participation feed."
+  },
+  {
+    "id": "nfl-gamecenter-w9",
+    "publisher": "NFL",
+    "url": "https://www.nfl.com/games/rams-at-commanders-2026-reg-9",
+    "checked": "2026-11-14",
+    "status": "retrieved",
+    "supports": "Official game center for Rams at Commanders, Week 9 2026: final score 20-13, scoring drives, venue and the official Game Book download link.",
+    "scope": "Score and Game Book link verified only; no market or participation data."
+  },
+  {
+    "id": "nfl-injury",
+    "publisher": "NFL",
+    "url": "https://www.nfl.com/injuries/",
+    "checked": "2026-11-14",
+    "status": "retrieved",
+    "supports": "Official Latest NFL Injury Report for Players - Week 10 of the 2026 Season. Each game table lists Player, Position, Injuries, Practice Status and Game Status for both teams.",
+    "scope": "Practice status and game status are distinct fields and a blank cell is not a clearance to play. Dynamic page, not a point-in-time historical archive; a retrieval is not a licensed archive."
+  },
+  {
+    "id": "nfl-player-stats",
+    "publisher": "NFL",
+    "url": "https://www.nfl.com/stats/player-stats/",
+    "checked": "2026-11-14",
+    "status": "retrieved",
+    "supports": "Official 2026 player statistics with a category navigation (passing, rushing, receiving, fumbles, tackles, interceptions, field goals, kickoffs, kickoff returns, punting, punt returns) and season selectors back to 1965.",
+    "scope": "Retrieved numeric rows carried no column headers, so no statistic was read off this page. Category navigation only; it is not a participation, starter or snap-count source."
+  },
+  {
+    "id": "nfl-roster",
+    "publisher": "NFL",
+    "url": "https://www.nfl.com/teams/washington-commanders/roster/",
+    "checked": "2026-11-14",
+    "status": "retrieved",
+    "supports": "Official 2026 club roster page listing each player's number, position, roster status code (for example ACT), height, weight, age and college.",
+    "scope": "Rosters are published alphabetically and no depth-chart tier, starter flag or second/third-string designation is published by the NFL. Membership and status codes only."
+  },
+  {
+    "id": "nfl-rulebook",
+    "publisher": "NFL Football Operations",
+    "url": "https://operations.nfl.com/rules-officiating/2026-nfl-rulebook",
+    "checked": "2026-11-14",
+    "status": "retrieved",
+    "supports": "Official 2026 NFL Rulebook with the 2026 rule changes (articles 6-1-3, 6-1-5, 6-1-6, 19-2) and the downloadable final rulebook PDF.",
+    "scope": "Game rules only. Says nothing about sportsbook settlement, model calibration or the probability of any event."
+  },
+  {
+    "id": "nfl-schedule-w10",
+    "publisher": "NFL",
+    "url": "https://www.nfl.com/schedules/2026/REG10/",
+    "checked": "2026-11-14",
+    "status": "retrieved",
+    "supports": "Official 2026 Week 10 schedule with final results and club records, including Commanders 24 Giants 21 on Thursday Nov 12 2026.",
+    "scope": "Results and records only. No odds, totals or closing lines are published on this page."
+  },
+  {
+    "id": "nfl-schedule-w9",
+    "publisher": "NFL",
+    "url": "https://www.nfl.com/schedules/2026/by-week/week-9",
+    "checked": "2026-11-14",
+    "status": "retrieved",
+    "supports": "Official 2026 Week 9 schedule with final results for every listed game, including Rams 20 Commanders 13 and Giants 19 Eagles 11.",
+    "scope": "Results and records only. No odds, totals or closing lines are published on this page."
+  },
+  {
+    "id": "nfl-stats",
+    "publisher": "NFL",
+    "url": "https://www.nfl.com/stats/",
+    "checked": "2026-11-14",
+    "status": "retrieved",
+    "supports": "NFL publishes player statistics with season and category navigation.",
+    "scope": "Current aggregate tables are not point-in-time historical features or executable odds. No numerical player statistics imported."
+  },
+  {
+    "id": "pages",
+    "publisher": "GitHub",
+    "url": "https://docs.github.com/en/pages/getting-started-with-github-pages/what-is-github-pages",
+    "checked": "2026-11-14",
+    "status": "retrieved",
+    "supports": "GitHub Pages hosts static HTML, CSS and JavaScript from a repository.",
+    "scope": "Hosting documentation, not statistical evidence or evidence of funded rewards."
+  },
+  {
+    "id": "pearson",
+    "publisher": "SciPy project",
+    "url": "https://docs.scipy.org/doc/scipy/reference/generated/scipy.stats.pearsonr.html",
+    "checked": "2026-11-14",
+    "status": "retrieved",
+    "supports": "Pearson measures linear association; constant input correlation is undefined. Documentation gives centered-product formula.",
+    "scope": "Read chunks 0 and 1. Default normal-theory p-values are not a binary NFL cluster-valid inference method. Does not prove any NFL correlation."
+  },
+  {
+    "id": "repo",
+    "publisher": "Own9 repository (primary project record)",
+    "url": "https://github.com/sassnarep3-star/Own9",
+    "checked": "2026-11-14",
+    "status": "inspected",
+    "supports": "Local tracked files, coordination history, tests and GitHub repository settings inspected in this session.",
+    "scope": "Primary source for project implementation and missing artifacts only. Not an independent authority for NFL performance."
+  },
+  {
+    "id": "tails",
+    "publisher": "NIST",
+    "url": "https://www.itl.nist.gov/div898/handbook/eda/section3/eda35b.htm",
+    "checked": "2026-11-14",
+    "status": "retrieved",
+    "supports": "Skewness characterizes asymmetry; kurtosis concerns tail weight relative to normal. Extreme tails can distort summaries.",
+    "scope": "Introductory sections read. Does not demonstrate the shape or profitability of NFL strategy returns."
+  },
+  {
+    "id": "wa-gaming",
+    "publisher": "Washington State Gambling Commission",
+    "url": "https://wsgc.wa.gov/tribal-partnerships/sports-wagering",
+    "checked": "2026-11-14",
+    "status": "retrieved",
+    "supports": "State regulator page linking sports wagering licensing, the requirements and rules for tribal casinos, the permitted sports wagering menu and the history of sports wagering in Washington.",
+    "scope": "Landing-page verification only. Makes no determination about personal eligibility, operator availability or any wager this project might place."
+  },
+  {
+    "id": "nfl-injury-w10",
+    "publisher": "NFL",
+    "url": "https://www.nfl.com/injuries/",
+    "checked": "2026-11-14",
+    "status": "retrieved",
+    "supports": "Official 2026 Week 10 injury report: player, position, injury, practice status and game status per club for the 14 listed games of Nov 12-16, 2026; team records and kickoff/network shown per game.",
+    "scope": "Full page retrieved in 8 chunks on 2026-11-14; the only game-status rows transcribed are Out, Doubtful and Questionable entries. Point-in-time snapshot; the page does not publish a revision timestamp, depth order or participation counts. Blank injury description means the report listed none, not that the player is healthy."
+  },
+  {
+    "id": "chiefs-depth",
+    "publisher": "Kansas City Chiefs (official club site)",
+    "url": "https://www.chiefs.com/team/depth-chart",
+    "checked": "2026-11-14",
+    "status": "retrieved",
+    "supports": "Official club depth chart with First/Second/Third/Fourth string columns for offense, defense and special teams, linked to the club roster.",
+    "scope": "Retrieved 2026-11-14. The club itself titles the page 'Unofficial Depth Chart'; published string order is club context, not a league-certified game-day depth record."
+  },
+  {
+    "id": "seahawks-depth",
+    "publisher": "Seattle Seahawks (official club site)",
+    "url": "https://www.seahawks.com/team/depth-chart/",
+    "checked": "2026-11-14",
+    "status": "retrieved",
+    "supports": "Official club depth chart with First/Second/Third/Fourth string columns for offense, defense and special teams, linked to the club roster.",
+    "scope": "Retrieved 2026-11-14. Page is a club-published depth chart; the same self-labeled unofficial caveat as other club charts applies."
+  },
+  {
+    "id": "lions-depth",
+    "publisher": "Detroit Lions (official club site)",
+    "url": "https://www.detroitlions.com/team/depth-chart/",
+    "checked": "2026-11-14",
+    "status": "retrieved",
+    "supports": "Official club page '2026 Unofficial Depth Chart Compiled by Lions Football Communications' with First/Second/Third/Fourth string columns for offense, defense and special teams.",
+    "scope": "Retrieved 2026-11-14. Cross-source conflict with the Week 10 injury report (S Kerby Joseph on the report, absent from the chart's safety rows) is published on Flagged for Review, not silently reconciled."
+  }
 ]
