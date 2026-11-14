@@ -16,6 +16,7 @@ class SiteVerification(unittest.TestCase):
         p=Page();p.feed(html);p.close()
         self.assertEqual(len(p.rows),14)
         self.assertEqual(p.current,1)
+        self.assertIn('As of 14 Nov 2026 · UTC',html)
         self.assertIn('No — critical blocker',html)
         self.assertIn('second-, third- or fourth-choice replacements',html)
         self.assertIn('no manual action',html.lower())

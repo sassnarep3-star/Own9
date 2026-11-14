@@ -340,3 +340,8 @@ The claim above records the initial base-only view, not a takeover of later publ
 - Retrieved the published [Decision Questions page](https://sassnarep3-star.github.io/Own9/questions.html?pr=21) after deployment; confirmed 8 questions, 6 suggestions, source links, published limitations and review links. The site is live at https://sassnarep3-star.github.io/Own9/.
 - Nonblocking platform annotations: GitHub forced pinned/selected actions onto Node.js 24 because Node.js 20 is deprecated; `ubuntu-latest` migration notice. All checks and deployment succeeded. No code change was needed for these warnings.
 - Remaining scientific gaps stay published for review and are not blockers to hosting: no verified NFL model, executable odds archive, historical depth/injury timeline, measured NFL correlations, funded reward pool, or proof that chance has been removed.
+
+### Decision-page freshness correction — 2026-11-14
+
+- The shared renderer previously labeled every page “As of 04 Nov 2026”; the new Decision Questions page also reflects official NFL source pages retrieved on 14 Nov. Set that page's displayed as-of date to **14 Nov 2026** while retaining the original date on other pages whose source register states Nov 4. No underlying empirical values or claims changed.
+- Verification: regenerated all 10 pages; root verifier passed with 90 source-linked rows; all 38 root Python tests passed, including a regression assertion for the Decision Questions date; `git diff --check` clean. Official pages and method scope remain as recorded above.
