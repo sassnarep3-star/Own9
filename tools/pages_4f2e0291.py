@@ -400,6 +400,43 @@ page('lines.html', 'Own lines',
                   'unrecorded.'], ('repo',), 'Not run'),
          ])
 
+         + table('Price-snapshot store — opening and closing numbers for every market originated',
+                 ['Market originated', 'Open price', 'Close price',
+                  'Open captured at', 'Close captured at', 'Source URL'],
+                 [
+                     row(['Side (spread)', None, None, None, None, None],
+                         ('repo',), 'Store defined · no verified prices yet'),
+                     row(['Total', None, None, None, None, None],
+                         ('repo',), 'Store defined · no verified prices yet'),
+                     row(['Moneyline', None, None, None, None, None],
+                         ('repo',), 'Store defined · no verified prices yet'),
+                 ])
+
+         + table('Verified results feed — settled-result inputs for backtests',
+                 ['Event ID', 'Season', 'Week', 'Home club', 'Away club',
+                  'Official result URL', 'Settled at'],
+                 [])
+
+         + table('Own line vs market line — fair line, market line and difference as separate columns',
+                 ['Market', 'Fair line (model)', 'Market line (de-vigged)',
+                  'Difference (fair − market)', 'n'],
+                 [
+                     row(['Side (spread)', None, None, None, None],
+                         ('repo',), 'Blank · no fitted model exists yet'),
+                     row(['Total', None, None, None, None],
+                         ('repo',), 'Blank · no fitted model exists yet'),
+                     row(['Moneyline', None, None, None, None],
+                         ('repo',), 'Blank · no fitted model exists yet'),
+                 ])
+
+         + table('Origination order — side first, then the total, then the moneyline',
+                 ['Step', 'Market', 'Rule'],
+                 [
+                     row(['1', 'Side (spread)', 'Originate the side before any joint market; the spread is the primary market.'], ('repo',), 'Project rule · stated here'),
+                     row(['2', 'Total', 'Originate the total only after the side is fixed for the same game.'], ('repo',), 'Project rule · stated here'),
+                     row(['3', 'Moneyline', 'Originate the moneyline last, derived from the same joint score distribution as the side and total.'], ('repo',), 'Project rule · stated here'),
+                 ])
+
          + '<p>The file in <code>data/raw/</code> is a real dataset, and this release is the first to measure it '
            'instead of describing it as absent. It is also too incomplete and too undocumented to support a claim '
            'of any kind, so it is quarantined and published on <a href="flags.html">Flagged for Review</a> as F22. '

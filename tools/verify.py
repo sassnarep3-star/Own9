@@ -57,14 +57,11 @@ def check():
         for i,row in enumerate(parser.rows,1):
             if not any(link in known for link in row['links']): errors.append(f'{filename}: row {i} has no registered publisher reference')
         if filename=='leaderboard.html':
-            # Two tables: signal metrics (6 data cols + evidence) and staking metrics (6 data cols + evidence).
-            # First 4 rows are signal table; next 4 are staking table.
-            # Signal table: Track(0), Eligibility(1), Log-loss gain LCB(2), Brier(3), Calibration(4), Coverage(5), Evidence(6).
+            # One combined table: Track(0), Signal edge(1), Staking exposure(2), Rank(3),
+            # Test n(4), Log-loss gain LCB(5), Net-return LCB(6), Reward(7), Evidence(8).
+            # All metric cells must be empty (no strategy has passed validation).
             for row in parser.rows[:4]:
-                if any(cell.strip() for cell in row['cells'][2:6]): errors.append('invented leaderboard signal metric')
-            # Staking table: Track(0), Net-return LCB(1), Max drawdown(2), Win rate(3), ROI(4), Turnover(5), Evidence(6).
-            for row in parser.rows[4:8]:
-                if any(cell.strip() for cell in row['cells'][1:6]): errors.append('invented leaderboard staking metric')
+                if any(cell.strip() for cell in row['cells'][1:8]): errors.append('invented leaderboard metric')
         if filename=='correlations.html':
             for row in parser.rows[:5]:
                 if any(cell.strip() for cell in row['cells'][2:5]): errors.append('invented NFL correlation metric')

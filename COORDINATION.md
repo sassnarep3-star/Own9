@@ -571,6 +571,36 @@ All prior sessions are merged into `main` (tip `92ae415`, PR #20). No divergent 
 
 Session: `arena/4f2e0291-own9` · base `92ae4159587d8eaa2b066bd7a3731cff737982d0` (= current `origin/main`). Arena fixes this branch; no other branch will be created, checked out or pushed.
 
+## Session arena/201adb50-own9 — claimed 2026-11-14 (current)
+
+Session: `arena/201adb50-own9` · branched from commit `462a7e92d66dbd3bfc7398a396abc25d3cc58885` of `main` (= current `origin/main`). Arena fixes this branch; no other branch will be created, checked out or pushed.
+
+| Task | Status | Owner | File scope |
+| --- | --- | --- | --- |
+| Repo line-by-line review against official sources; flag irregularities | done | arena/201adb50-own9 | root `*.html`, `tools/build.py`, `tools/pages_4f2e0291.py`, `tools/verify.py`, `evidence/sources.json` |
+| Price-snapshot store: open and close columns for every market originated, left blank and flagged until verified prices exist | done | arena/201adb50-own9 | `tools/pages_4f2e0291.py` (lines.html) |
+| Verified results feed: settled-result inputs for backtests/ROI, left blank and flagged until a verified feed exists | done | arena/201adb50-own9 | `tools/pages_4f2e0291.py` (lines.html) |
+| Origination order: side first, then total, then moneyline, stated explicitly | done | arena/201adb50-own9 | `tools/pages_4f2e0291.py` (lines.html), `tools/build.py` (strategies.html) |
+| Fair line, market line, difference published as separate columns, blank until a fitted model exists | done | arena/201adb50-own9 | `tools/pages_4f2e0291.py` (lines.html) |
+| Signal separated from staking in the leaderboard | done | arena/201adb50-own9 | `tools/build.py` (leaderboard.html) |
+| Demotion gate: explicit conditions that send a live strategy back to paper | done | arena/201adb50-own9 | `tools/build.py` (validation.html) |
+| Executive summary, suggestions, questions, depth-of-replacement, correlation-n review (already present; re-verified) | done | arena/201adb50-own9 | root `*.html`, `flags.html` |
+| Build, checks, PR, merge, GitHub Pages deploy verification, final record | in progress | arena/201adb50-own9 | `README.md`, `.github/**`, `COORDINATION.md` |
+
+### Verification performed (2026-11-14)
+- `python3 tools/build.py` → deterministic, 19 pages, clean `git diff --exit-code -- '*.html'`.
+- `python3 tools/verify.py` → PASS: 19 fresh pages; 658 source-linked rows; local assets/fragments; nav landmarks; empirical blanks held blank.
+- `python3 -m unittest discover -s tests -v`, `python3 engine/availability.py`, `python3 engine/registers.py`, `python3 scripts/check_site.py` → pass.
+- No NFL price, result, correlation, ROI or strategy value was invented; every new cell that lacks an official source is left blank and flagged. All sources cited are read pages recorded in `evidence/sources.json` or the primary project repository record.
+
+### Sources cited for new content
+- Own9 repository (primary project record): https://github.com/sassnarep3-star/Own9
+- DraftKings market rules (settlement/push convention): https://sportsbook.draftkings.com/help/general-betting-rules/market-rules
+- SciPy Pearson (correlation interval): https://docs.scipy.org/doc/scipy/reference/generated/scipy.stats.pearsonr.html
+- scikit-learn holdout / Brier / log-loss: sklearn project pages in `evidence/sources.json`
+- NIST multiplicity / tails: NIST pages in `evidence/sources.json`
+- No NFL betting line, result or price source was used, because the NFL does not publish wagering lines; affected cells stay blank per the verification rule.
+
 This session takes the **final integration** role that the shared board reserves for one session: root generated site (`index.html`, `tools/build.py`, `tools/verify.py`, `evidence/sources.json`, root `*.html`, `style.css`, `site.js`, `README.md`) plus new decision-support pages. The prior broad integration claims (bc8d7853, a54b6387, 80085c01, e908995d, d66f6c4f, 75504db2, 5a3b486a, 4f78d4b5) are all recorded `done` or `needs review` with scopes relinquished, so no live claim overlaps.
 
 | Task | Status | Owner | Files |
@@ -766,3 +796,9 @@ HEAD
 - Added regression test `test_live_to_paper_demotion_gate_is_fail_closed_and_sourced` to verify all three gate rows, mandatory source links, automatic fail-closed behavior, unset operating settings, requalification and inactive status.
 - Verification: `npm test` passed (107 tests; root verifier reports 19 pages / 661 source-linked rows; availability and decision-register validators pass; 15-page additive-site checker passes); deterministic root regeneration passed; `git diff --check` passed; root browser suite passed 19 pages at desktop/mobile, 38 axe scans, no console errors. `npm ci --ignore-scripts` installed the locked browser tooling (0 reported vulnerabilities).
 - Push coordination: `git pull --rebase origin arena/feaa600b-own9` could not run because the remote branch did not exist yet; the claim commit was pushed to create the fixed current branch. Subsequent pushes will fetch/rebase against it first. No other task scope was changed.
+
+### Publication record — session `feaa600b`
+
+- **PR #34** (https://github.com/sassnarep3-star/Own9/pull/34) merged into `main` at 2026-11-14T22:05:09Z as `401393d9ca5deb94d581a56de6b3f89da99c7a0e` (`gh pr merge 34 --merge`). PR checks passed: `Verify NFL research for Pages` run [43646107969](https://github.com/sassnarep3-star/Own9/actions/runs/43646107969) and `Research quality` run [43646107911](https://github.com/sassnarep3-star/Own9/actions/runs/43646107911).
+- Post-merge `Research quality` [43646199681](https://github.com/sassnarep3-star/Own9/actions/runs/43646199681) passed. The post-merge `Verify NFL research for Pages` push event [43646199655](https://github.com/sassnarep3-star/Own9/actions/runs/43646199655) was cancelled when a subsequent concurrent main-branch update superseded it; the same workflow passed on the PR head before merge. Pages deployment [43646199290](https://github.com/sassnarep3-star/Own9/actions/runs/43646199290) succeeded, Pages API reports `built` for merge commit `401393d`, and a public read-back of `/Own9/leaderboard.html` confirmed the three demotion rows and inactive/unresolved-parameters notice are live.
+- The coordination claim, generated page, regression test and publication outcome are recorded on this board. Existing flags and all empirical blanks remain unchanged.
