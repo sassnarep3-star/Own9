@@ -64,6 +64,35 @@ def check():
         if filename=='correlations.html':
             for row in parser.rows[:5]:
                 if any(cell.strip() for cell in row['cells'][2:5]): errors.append('invented NFL correlation metric')
+        if filename=='availability.html':
+            # The NFL publishes no depth tier, so no row may render one.
+            banned = ('1st string','2nd string','3rd string','4th string',
+                      'second string','third string','fourth string')
+            tiers = [c.strip() for r in parser.rows for c in r['cells']
+                     if c.strip().lower() in banned]
+            if tiers:
+                errors.append('availability: an invented depth tier was rendered: '+', '.join(tiers))
+        if filename=='suggestions.html':
+            for r in parser.rows:
+                cells = [c.strip() for c in r['cells']]
+                if len(cells) >= 7 and ('S-' in cells[0]):
+                    if not cells[5]:
+                        errors.append('suggestions: a row has no falsification statement')
+        if filename=='questions.html':
+            for r in parser.rows:
+                cells = [c.strip() for c in r['cells']]
+                if len(cells) >= 6 and cells[0].startswith('Q-'):
+                    answered = cells[5] == 'Answered'
+                    if not answered and cells[3]:
+                        errors.append('questions: an unanswered row rendered an answer')
+                    if answered and not cells[3]:
+                        errors.append('questions: an answered row rendered no answer')
+        if filename=='decision.html':
+            for r in parser.rows:
+                cells = [c.strip() for c in r['cells']]
+                if len(cells) >= 7 and cells[0].startswith('D-'):
+                    if not cells[4]:
+                        errors.append('decision: a row has no stopping rule')
     for filename,parser in parsed.items():
         for link in parser.links:
             u=urlsplit(link)
@@ -80,5 +109,5 @@ def check():
 if __name__=='__main__':
     errors,rows=check()
     if errors: sys.exit('\n'.join(errors))
-    print(f'PASS: 9 fresh pages; {rows} source-linked rows; local assets/fragments; nav landmarks; empirical blanks.')
+    print(f'PASS: {len(render())} fresh pages; {rows} source-linked rows; local assets/fragments; nav landmarks; empirical blanks.')
     print('Scope: structural checks only. Not external reachability or factual claim certification.')
