@@ -1,0 +1,114 @@
+{
+ "register_name": "Session 00cf851d official-source register",
+ "retrieved_on": "2026-11-14",
+ "retrieved_by": "session 00cf851d",
+ "method": "Each entry below was retrieved and read on 2026-11-14 by this session. Nothing in this file is quoted from another session's record; it is this session's own retrieval log.",
+ "sources": [
+  {
+   "id": "nfl-injuries-w10",
+   "publisher": "NFL",
+   "official": true,
+   "url": "https://www.nfl.com/injuries/",
+   "document_title": "Official Latest NFL Injury Report for Players - Week 10 of the 2026 Season",
+   "retrieved_utc": "2026-11-14",
+   "chunks_read": [0, 1, 2, 3, 4, 5, 6, 7],
+   "supports": "The league's own weekly practice-participation and game-designation table for the 28 clubs playing in Week 10 of the 2026 season.",
+   "fields_published": ["Player", "Position", "Injuries", "Practice Status", "Game Status"],
+   "scope": "Point-in-time snapshot read on 2026-11-14. The page as published carries no per-row timestamp and no historical archive of prior weeks' rows; it is a forward-looking report for the current week, not a results record.",
+   "limits": "Four clubs are absent from the Week 10 report: Denver, Chicago, Philadelphia and Tampa Bay. This session did not infer why; no reason is published on the page."
+  },
+  {
+   "id": "nfl-standings-2026",
+   "publisher": "NFL",
+   "official": true,
+   "url": "https://www.nfl.com/standings/",
+   "document_title": "2026 NFL Division Standings",
+   "retrieved_utc": "2026-11-14",
+   "chunks_read": [0, 1],
+   "supports": "Official 2026 regular-season win/loss/tie records, points for, points against, net points, home, road, division, conference records and streak for all 32 clubs.",
+   "fields_published": ["Team", "W", "L", "T", "PCT", "PF", "PA", "NET PTS", "HOME", "ROAD", "DIV", "PCT", "CONF", "PCT", "STRK", "LAST 5"],
+   "scope": "Standings as of the morning of 2026-11-14: Weeks 1-9 complete for all clubs, plus the Week 10 Thursday-night game (WAS at NYG) for those two clubs only."
+  },
+  {
+   "id": "nfl-scores-w10",
+   "publisher": "NFL",
+   "official": true,
+   "url": "https://www.nfl.com/scores/2026/REG10/",
+   "document_title": "NFL 2026 Week 10 Scores and Highlights: Live Updates, Results & Recaps",
+   "retrieved_utc": "2026-11-14",
+   "chunks_read": [0],
+   "supports": "The Week 10 game list and the final score of the one completed Week 10 game (Washington at New York Giants).",
+   "scope": "Games scheduled Sunday 2026-11-15 and Monday 2026-11-16 had not been played when this page was read; no score is published for them and none is recorded here."
+  },
+  {
+   "id": "nfl-schedules-w10",
+   "publisher": "NFL",
+   "official": true,
+   "url": "https://www.nfl.com/schedules/2026/by-week/week-10",
+   "document_title": "NFL Schedules: Games, Times, Matchups & Tickets",
+   "retrieved_utc": "2026-11-14",
+   "chunks_read": [0],
+   "supports": "Official kickoff date, kickoff time, broadcast network and, for finished games, the final score line as printed by the league.",
+   "scope": "Read for the Week 10 slate. The league prints the result inline, for example 'Commanders 24, Giants 21, FINAL, Thursday, November 12th'."
+  },
+  {
+   "id": "gamecenter-was-nyg-w10",
+   "publisher": "NFL",
+   "official": true,
+   "url": "https://www.nfl.com/games/commanders-at-giants-2026-reg-10",
+   "document_title": "Washington Commanders at New York Giants 2026 REG 10 - Game Center",
+   "retrieved_utc": "2026-11-14",
+   "chunks_read": [0],
+   "supports": "Confirms the official Game Book PDF download link for this game, the venue (MetLife Stadium, East Rutherford, NJ) and the NFC East standings block.",
+   "scope": "Quarter-by-quarter and final scores on this page render client-side and were returned as 'Hidden Score' in the retrieved text; the final score used in this register is taken from the league schedule page and the official Game Book, both of which publish it as text."
+  },
+  {
+   "id": "gamebook-was-nyg-w10",
+   "publisher": "NFL",
+   "official": true,
+   "url": "https://static.www.nfl.com/image/upload/v1794570519/gamecenter/ab5828d9-4feb-11f1-abca-2c54536568a9.pdf",
+   "document_title": "National Football League Game Summary - Washington Commanders at New York Giants, 11/12/2026",
+   "retrieved_utc": "2026-11-14",
+   "chunks_read": [0],
+   "supports": "Official published starting lineups for both clubs on offense and defense; Substitutions; Did Not Play; Not Active; scoring plays; final team and individual statistics; officials; weather; paid attendance.",
+   "copyright_notice": "NFL Copyright (c) 2026 by The National Football League. All rights reserved. This summary and play-by-play is for the express purpose of assisting media in their coverage of the game; any other use of this material is prohibited without the written permission of the National Football League.",
+   "scope": "Only the fields listed in this session's gamebooks.json were transcribed. This is a verification excerpt, not a republication of the document."
+  },
+  {
+   "id": "gamebook-lar-was-w9",
+   "publisher": "NFL",
+   "official": true,
+   "url": "https://static.www.nfl.com/image/upload/v1794224919/gamecenter/ab382331-4feb-11f1-abca-2c54536568a9.pdf",
+   "document_title": "National Football League Game Summary - Los Angeles Rams at Washington Commanders, 11/8/2026",
+   "retrieved_utc": "2026-11-14",
+   "chunks_read": [0],
+   "supports": "Official published Washington Commanders starting lineups (offense and defense), Substitutions, Did Not Play and Not Active for Week 9; final score; individual statistics.",
+   "copyright_notice": "NFL Copyright (c) 2026 by The National Football League. All rights reserved. This summary and play-by-play is for the express purpose of assisting media in their coverage of the game; any other use of this material is prohibited without the written permission of the National Football League.",
+   "scope": "Transcribed for the Washington club only, which is the club this session's replacement analysis follows across weeks."
+  },
+  {
+   "id": "gamebook-nyg-phi-w9",
+   "publisher": "NFL",
+   "official": true,
+   "url": "https://static.www.nfl.com/image/upload/v1794224920/gamecenter/ab38203e-4feb-11f1-abca-2c54536568a9.pdf",
+   "document_title": "National Football League Game Summary - New York Giants at Philadelphia Eagles, 11/8/2026",
+   "retrieved_utc": "2026-11-14",
+   "chunks_read": [0],
+   "supports": "Official published New York Giants starting lineups (offense and defense), Substitutions, Did Not Play and Not Active for Week 9; final score; individual statistics.",
+   "copyright_notice": "NFL Copyright (c) 2026 by The National Football League. All rights reserved. This summary and play-by-play is for the express purpose of assisting media in their coverage of the game; any other use of this material is prohibited without the written permission of the National Football League.",
+   "scope": "Transcribed for the New York Giants club only, which is the club this session's replacement analysis follows across weeks."
+  },
+  {
+   "id": "nfl-depth-chart-absence",
+   "publisher": "NFL",
+   "official": true,
+   "url": "https://www.nfl.com/teams/kansas-city-chiefs/depth-chart/",
+   "document_title": "404 - Flag on the Play.",
+   "retrieved_utc": "2026-11-14",
+   "chunks_read": [0],
+   "status": "checked absence",
+   "supports": "Independently re-checked by this session on 2026-11-14: the NFL club depth-chart path returns the league's own 404 page, not a depth chart.",
+   "scope": "One club path checked. This does not prove no depth chart exists anywhere on nfl.com; it proves the published club depth-chart route does not resolve. No first/second/third/fourth-string tier is therefore available from the league, and no tier value in this register is filled from a league source."
+  }
+ ]
+}

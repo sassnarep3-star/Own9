@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Executive summary · Own9 verified research</title>
+<link rel="stylesheet" href="assets/style.css">
+</head>
+<body>
+<header class="masthead">
+  <p class="eyebrow">Own9 · session 00cf851d · official-source verification</p>
+  <h1>Executive summary</h1>
+  <p class="lede">Seven findings, in order of how much they change what should be built next.</p>
+</header>
+<nav aria-label="Section pages"><a href="index.html">Overview</a><a class="active" aria-current="page" href="summary.html">Executive summary</a><a href="sources.html">Sources</a><a href="verification.html">Verification</a><a href="gamebooks.html">Game Books</a><a href="replacement.html">Replacement depth</a><a href="results.html">Results and prices</a><a href="injuries.html">Injuries</a><a href="standings.html">Standings</a><a href="repo-review.html">Repository review</a><a href="questions.html">Questions</a><a href="suggestions.html">Suggestions</a><a href="flags.html">Flagged for review</a></nav>
+<main>
+<section><h2>Executive summary</h2>
+<ol class="findings">
+<li><strong>The committed NFL claims hold up.</strong> 369 checks were run against the official
+documents this session read on 2026-11-14. 369 matched, 0 mismatched and 0 could
+not be checked. Every starting lineup, every inactive list, every final score and every injury-report
+row committed in the repository matched the league's own document.</li>
+
+<li><strong>The repository has an odds archive it has been reporting as absent.</strong>
+The committed results file carries a closing spread and a closing total for 7424 games spanning
+1999 to 2026, and both moneylines for 5443 of them. Part of it was checked against the league: the 2026
+season recomputed from the file gives Pittsburgh 6-2-0 with 180 points for and 144 against, and Tennessee
+1-7-0 with 144 for and 199 against. The official standings say exactly the same. An earlier flag on the
+record says no odds archive exists. That flag is wrong, and a wrong flag is worse than none because it
+stops anyone looking.</li>
+
+<li><strong>But it has no opening price, so half of the price requirement cannot be met.</strong>
+There is no opening column and no timestamp column in any committed file. A store that records only a
+closing number cannot show that a strategy beat a number that was actually available. This is a source
+problem, not a code problem, and it needs an owner decision.</li>
+
+<li><strong>The results feed is two rounds stale and nothing notices.</strong> 137 of the
+272 scheduled 2026 games had been played by 2026-11-14. 16 of them carry no result: the
+entire Week 9 slate plus the Thursday-night game the league published two days earlier. Only two of
+32 clubs can be reconciled against the official standings, and only because they are the two with no
+game in the missing set. This session supplied 13 of the 16 outcomes from the
+league's own pages and left the rest blank.</li>
+
+<li><strong>Depth of replacement is measurable, but not as asked.</strong> The league publishes no
+depth chart; the club route returns the league's own 404 page, re-checked today. What the league does
+publish, in consecutive Game Books, is four lists: starters, substitutions, did not play and not
+active. Measuring how far down those lists a club reached turns an unmeetable requirement into a
+measurable one. Across Washington and New York from Week 9 to Week 10 this session measured
+8 replacements: 6 came from the previous week's substitution list and 2 from the
+inactive list. It is an ordinal provenance scale, not a coaching depth chart, and it must never be
+labelled as one.</li>
+
+<li><strong>Two observations are not a correlation.</strong> Both starters who came off the previous
+week's inactive list produced immediately. It is tempting to read that as "a deep replacement is not a
+negative signal". With n = 2 there is no basis for it, so the number is published with its n and no
+conclusion is drawn. The only correlation published anywhere on this site is n = 7397:
+the closing spread against the actual margin, r = 0.4252.</li>
+
+<li><strong>Nothing is live, so the demotion gate has nothing to act on.</strong> No strategy in the
+repository has passed its validation gates. That makes this the right moment to define the gate,
+before anyone has a result to protect. The honest split is an integrity trigger that fires immediately
+and a performance trigger that waits for a predeclared sample.</li>
+</ol></section><section><h2>What to decide first</h2><div class="tablewrap"><table><thead><tr><th>Decision</th><th>Why it is first</th></tr></thead><tbody><tr><td>Where opening prices come from</td><td>Without a source, the price-snapshot requirement cannot be met and no backtest is honest.</td></tr><tr><td>Who keeps the results feed current</td><td>It is two rounds stale today and no check in the repository would notice.</td></tr><tr><td>Provenance and licence of the committed price file</td><td>7,424 closing spreads are usable in principle and undocumented in fact.</td></tr><tr><td>Minimum n before a correlation or a rank is published</td><td>Chosen now, before there are results to tune it to.</td></tr></tbody></table></div><section><h2>What this session did not do</h2><ul><li>Fit a model, run a backtest, place a wager or fund a reward.</li><li>Fill a single cell from anything other than an official page read today.</li><li>Edit another session's page, register, engine or branch.</li><li>Claim that luck has been removed, or that any strategy is skill-based.</li></ul></section><section><h2>Open irregularities</h2><div class="tablewrap"><table><thead><tr><th>Id</th><th>Severity</th><th>Finding</th></tr></thead><tbody><tr><td>F-00cf851d-01</td><td>medium</td><td><a href="https://static.www.nfl.com/image/upload/v1794224920/gamecenter/ab38203e-4feb-11f1-abca-2c54536568a9.pdf" rel="noopener noreferrer" target="_blank">The league&#x27;s own two Game Books spell the same player two ways</a></td></tr><tr><td>F-00cf851d-02</td><td>critical</td><td><a href="https://www.nfl.com/teams/kansas-city-chiefs/depth-chart/" rel="noopener noreferrer" target="_blank">No league depth chart exists, re-checked independently on 2026-11-14</a></td></tr><tr><td>F-00cf851d-03</td><td>critical</td><td><a href="https://www.nfl.com/injuries/" rel="noopener noreferrer" target="_blank">The official injury report is a forward-looking designation feed, not a results feed</a></td></tr><tr><td>F-00cf851d-04</td><td>medium</td><td><a href="https://www.nfl.com/injuries/" rel="noopener noreferrer" target="_blank">Four clubs are absent from the Week 10 injury report with no published reason</a></td></tr><tr><td>F-00cf851d-05</td><td>high</td><td><a href="https://www.nfl.com/games/commanders-at-giants-2026-reg-10" rel="noopener noreferrer" target="_blank">League game-centre pages render scores inconsistently when read as text</a></td></tr><tr><td>F-00cf851d-06</td><td>medium</td><td><a href="https://static.www.nfl.com/image/upload/v1794570519/gamecenter/ab5828d9-4feb-11f1-abca-2c54536568a9.pdf" rel="noopener noreferrer" target="_blank">Two observations are not a correlation, and are published with n so they cannot be mistaken for one</a></td></tr><tr><td>F-00cf851d-07</td><td>high</td><td><a href="https://github.com/sassnarep3-star/Own9/blob/main/data/raw/" rel="noopener noreferrer" target="_blank">The repository&#x27;s historical price and results files were not re-verified by this session</a></td></tr><tr><td>F-00cf851d-08</td><td>medium</td><td><a href="https://github.com/sassnarep3-star/Own9/blob/main/COORDINATION.md" rel="noopener noreferrer" target="_blank">Three concurrent sessions claimed overlapping eight-requirement scopes from the same base commit</a></td></tr><tr><td>F-00cf851d-09</td><td>critical</td><td><a href="https://www.nfl.com/schedules/2026/by-week/week-9" rel="noopener noreferrer" target="_blank">The committed results file is missing the result of every game it has priced since Week 9</a></td></tr><tr><td>F-00cf851d-10</td><td>high</td><td><a href="https://www.nfl.com/standings/" rel="noopener noreferrer" target="_blank">Two club codes differ between the committed file and the league&#x27;s own abbreviations</a></td></tr><tr><td>F-00cf851d-11</td><td>critical</td><td><a href="https://github.com/sassnarep3-star/Own9/blob/main/data/raw/games.csv" rel="noopener noreferrer" target="_blank">There is no opening price anywhere in the repository</a></td></tr><tr><td>F-00cf851d-12</td><td>high</td><td><a href="https://www.nfl.com/standings/" rel="noopener noreferrer" target="_blank">A standing flag says no odds archive exists. One does exist, and this session reconciled part of it against the league</a></td></tr></tbody></table></div>
+</main>
+<footer>
+  <p>Reviewed on 2026-11-14. Every row on this site carries the official page it was read from.
+  Where the league publishes no value the cell is left visibly blank rather than filled in.</p>
+  <p><a href="https://github.com/sassnarep3-star/Own9/tree/main/session-00cf851d">Source and build scripts on GitHub</a></p>
+</footer>
+<script src="assets/app.js" defer></script>
+</body>
+</html>

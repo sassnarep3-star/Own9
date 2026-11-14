@@ -27,3 +27,11 @@ jobs:
         run: |
           python tools/build.py
           git diff --exit-code -- '*.html'
+      - name: Verify official-source section (session-00cf851d)
+        run: |
+          python session-00cf851d/tools/analysis.py
+          python session-00cf851d/tools/results_audit.py
+          python session-00cf851d/tools/build.py
+          python session-00cf851d/tools/check.py
+          git diff --exit-code -- 'session-00cf851d/*.html'
+          python -m unittest discover -s session-00cf851d/tests

@@ -1,0 +1,120 @@
+{
+ "register_name": "Session 00cf851d irregularity register",
+ "published_on": "2026-11-14",
+ "namespace_note": "These identifiers are namespaced to this session (F-00cf851d-NN). The repository's root Flagged for Review page carries a separate register owned by other sessions; this session does not append to it and does not renumber its entries.",
+ "flags": [
+  {
+   "id": "F-00cf851d-01",
+   "severity": "medium",
+   "title": "The league's own two Game Books spell the same player two ways",
+   "what_was_observed": "The official Week 9 Game Book (New York Giants at Philadelphia Eagles) prints the Giants' starting fullback as 'FB 45 P.Richard'. The official Week 10 Game Book (Washington Commanders at New York Giants) prints 'FB 45 P.Ricard' in its Substitutions list. Same club, same jersey number, same position label, one week apart.",
+   "why_it_matters": "Any availability or replacement tracker that keys a player on a surname string will record two different players and will mis-measure both the Week 9 starting eleven and the Week 10 replacement chain.",
+   "what_this_session_did": "Recorded both spellings verbatim and did not merge them into one identity. The Week 9 to Week 10 set difference on the replacement page therefore shows this player as a departed starter and as a Week 10 substitute, which is how the two documents print him.",
+   "source_url": "https://static.www.nfl.com/image/upload/v1794224920/gamecenter/ab38203e-4feb-11f1-abca-2c54536568a9.pdf",
+   "second_source_url": "https://static.www.nfl.com/image/upload/v1794570519/gamecenter/ab5828d9-4feb-11f1-abca-2c54536568a9.pdf"
+  },
+  {
+   "id": "F-00cf851d-02",
+   "severity": "critical",
+   "title": "No league depth chart exists, re-checked independently on 2026-11-14",
+   "what_was_observed": "The NFL club depth-chart route (checked on the Kansas City Chiefs path) returns the league's own 404 page, titled '404 - Flag on the Play.', not a depth chart.",
+   "why_it_matters": "The requirement to track whether a 2nd, 3rd or 4th string backup is replacing a starter cannot be satisfied from league data, because the league publishes no first/second/third/fourth-string tier. Filling those cells from a club site, a news report or an inference would produce numbers that look official and are not.",
+   "what_this_session_did": "Did not fill a tier. Substituted a provenance scale (T1 to T4) computed only from lists the league itself prints in consecutive Game Books, with the source document named on every row, and said plainly that it is an ordinal provenance scale and not a coaching depth chart.",
+   "source_url": "https://www.nfl.com/teams/kansas-city-chiefs/depth-chart/"
+  },
+  {
+   "id": "F-00cf851d-03",
+   "severity": "critical",
+   "title": "The official injury report is a forward-looking designation feed, not a results feed",
+   "what_was_observed": "The Week 10 injury report publishes Player, Position, Injuries, Practice Status and Game Status for the current week only. It carries no per-row timestamp, no archive of earlier weeks, and no post-game participation or outcome column.",
+   "why_it_matters": "Backtests and ROI cannot be computed from it. It is an input to a pre-game availability model, not a record of what happened. Using it as a results feed would silently produce a look-ahead artifact: the field values are published before kickoff and describe intent, not outcome.",
+   "what_this_session_did": "Published every field the league prints, kept blank cells blank, and recorded the limitation on the page rather than treating a blank as a clearance.",
+   "source_url": "https://www.nfl.com/injuries/"
+  },
+  {
+   "id": "F-00cf851d-04",
+   "severity": "medium",
+   "title": "Four clubs are absent from the Week 10 injury report with no published reason",
+   "what_was_observed": "Denver, Chicago, Philadelphia and Tampa Bay have no table in the Week 10 report. All four appear in the official standings with nine games played.",
+   "why_it_matters": "An availability model that iterates over the report will silently treat four clubs as having zero injury concerns. The page publishes no reason, so any explanation would be a guess.",
+   "what_this_session_did": "Recorded the four clubs by name in the register and left the cause blank.",
+   "source_url": "https://www.nfl.com/injuries/",
+   "cross_check_url": "https://www.nfl.com/standings/"
+  },
+  {
+   "id": "F-00cf851d-05",
+   "severity": "high",
+   "title": "League game-centre pages render scores inconsistently when read as text",
+   "what_was_observed": "Washington at New York Giants (Week 10) and Los Angeles Rams at Washington (Week 9) returned 'Hidden Score' in every quarter and total cell when their game-centre pages were read as text. New York Giants at Philadelphia (Week 9) on the same site did print its quarter scores and final (19 and 11).",
+   "why_it_matters": "A results pipeline that scrapes game-centre HTML will silently collect nothing for some games and correct values for others, with no error raised. The failure is silent, not noisy.",
+   "what_this_session_did": "Took final scores from the two sources that publish them as text: the official Game Book PDF and the league schedule page. Cross-checked the Week 10 result across both and against the league scores page.",
+   "source_url": "https://www.nfl.com/games/commanders-at-giants-2026-reg-10",
+   "second_source_url": "https://www.nfl.com/schedules/2026/REG10/"
+  },
+  {
+   "id": "F-00cf851d-06",
+   "severity": "medium",
+   "title": "Two observations are not a correlation, and are published with n so they cannot be mistaken for one",
+   "what_was_observed": "Two Washington and New York Week 10 starters had T3 provenance, meaning the club had to reach down to the previous week's Not Active list to fill the slot: Cam Skattebo (18 rushes, 78 yards, 2 touchdowns, 3 receptions, 44 yards) and Treylon Burks (2 receptions, 27 yards). Both produced counting stats immediately.",
+   "why_it_matters": "The tempting reading is that a deep replacement is not a negative signal. With n = 2 there is no basis for that reading, and building a staking rule on it would be fitting noise.",
+   "what_this_session_did": "Published both rows with their official production and the sample size, and stated that no correlation, edge or win rate is claimed from them.",
+   "source_url": "https://static.www.nfl.com/image/upload/v1794570519/gamecenter/ab5828d9-4feb-11f1-abca-2c54536568a9.pdf"
+  },
+  {
+   "id": "F-00cf851d-07",
+   "severity": "high",
+   "title": "The repository's historical price and results files were not re-verified by this session",
+   "what_was_observed": "data/raw/closing_lines.csv and data/raw/games.csv are committed in the repository. This session computed their size, shape and date coverage locally but did not re-check their contents against an official source, because the league publishes no downloadable archive of historical closing prices and no official page lists historical game results in a machine-readable form that this session could retrieve and compare.",
+   "why_it_matters": "They are the only committed files that could support a backtest, and their provenance and licence are already recorded as open by earlier sessions. Anything computed from them inherits that gap.",
+   "what_this_session_did": "Measured them, published the measurements on the repo review page, and left every value derived from them blank rather than treating the file as verified.",
+   "source_url": "https://github.com/sassnarep3-star/Own9/blob/main/data/raw/"
+  },
+  {
+   "id": "F-00cf851d-08",
+   "severity": "medium",
+   "title": "Three concurrent sessions claimed overlapping eight-requirement scopes from the same base commit",
+   "what_was_observed": "At 2026-11-14T22:0x UTC, sessions 1cfcb957, fe363338 and feaa600b each claimed work covering the same eight requirements. Sessions 1cfcb957 and feaa600b both claim tools/build.py, and feaa600b additionally claims the generated leaderboard.html and tests/test_site.py, while 1cfcb957 claims leaderboard-related engine modules.",
+   "why_it_matters": "Whichever of those merges second will have to rebase onto the other, and a naive merge could drop one session's work from the shared root generator.",
+   "what_this_session_did": "Logged the overlap in COORDINATION.md at claim time, did not adjudicate it, and chose a scope that needs no shared root file so it can merge in any order.",
+   "source_url": "https://github.com/sassnarep3-star/Own9/blob/main/COORDINATION.md"
+  },
+  {
+   "id": "F-00cf851d-09",
+   "severity": "critical",
+   "title": "The committed results file is missing the result of every game it has priced since Week 9",
+   "what_was_observed": "data/raw/games.csv holds 272 scheduled games for 2026. 137 of them have a kickoff date on or before 2026-11-14, and 121 of those carry a result. The 16 without a result are the entire Week 9 slate plus the 2026-11-12 Thursday-night game. The club reconciliation confirms it: only Pittsburgh and Tennessee, the two clubs with no game in the missing set, can be reconciled against the official standings. The other 30 cannot.",
+   "why_it_matters": "A price is recorded for a game whose outcome is not. Any backtest built on this file today silently drops the sixteen most recent games, and any leaderboard that reads it will report performance on a season that is two rounds behind the league. The gap is invisible unless you count played-but-unresulted rows, which no check in the repository does.",
+   "what_this_session_did": "Counted the gap, published the sixteen game ids, and filled thirteen of the outcomes from the league's own schedule pages. The remaining three were left blank rather than sourced from anywhere else.",
+   "source_url": "https://www.nfl.com/schedules/2026/by-week/week-9",
+   "second_source_url": "https://www.nfl.com/schedules/2026/REG10/"
+  },
+  {
+   "id": "F-00cf851d-10",
+   "severity": "high",
+   "title": "Two club codes differ between the committed file and the league's own abbreviations",
+   "what_was_observed": "data/raw/games.csv uses ARI and LA. The official standings page and the official injury report use AZ and LAR. Without an explicit alias these two clubs silently drop out of every join against an official source; with no alias this session's first reconciliation run reported them as flat mismatches rather than as joins that never happened.",
+   "why_it_matters": "A silent join failure looks like data that disagrees with the league, when in fact the data never met the league. It is the kind of defect that produces confident wrong numbers.",
+   "what_this_session_did": "Added an explicit alias map, re-ran the reconciliation, and confirmed both clubs behave like the other 30. Three further codes (OAK, SD, STL) appear only in historical seasons and are expected, not defects.",
+   "source_url": "https://www.nfl.com/standings/"
+  },
+  {
+   "id": "F-00cf851d-11",
+   "severity": "critical",
+   "title": "There is no opening price anywhere in the repository",
+   "what_was_observed": "data/raw/games.csv carries exactly one price per market: a closing spread, a closing total, and where present a closing moneyline. There is no opening-price column, no timestamp column and no second snapshot, so there is no way to tell when in the week any of those numbers was taken.",
+   "why_it_matters": "The requirement is to record both the opening and the closing number for every market originated. That cannot be built from anything committed here, and a store that records only a closing number cannot measure whether a strategy beat a number that was actually available.",
+   "what_this_session_did": "Left the opening-price column present and empty rather than duplicating the closing value into it, and recorded the gap as a decision the owner has to make about a data source.",
+   "source_url": "https://github.com/sassnarep3-star/Own9/blob/main/data/raw/games.csv"
+  },
+  {
+   "id": "F-00cf851d-12",
+   "severity": "high",
+   "title": "A standing flag says no odds archive exists. One does exist, and this session reconciled part of it against the league",
+   "what_was_observed": "The repository's review register records that no executable odds archive is available. In fact data/raw/games.csv carries a closing spread and a closing total for 7,424 games spanning 1999 to 2026, and closing moneylines for 5,443 of them. This session recomputed the 2026 season from the file for the two clubs with complete data: Pittsburgh 6-2-0 with 180 points for and 144 against, Tennessee 1-7-0 with 144 for and 199 against. Both match the official standings exactly.",
+   "why_it_matters": "The earlier flag is not merely pessimistic, it is wrong, and a wrong flag is worse than no flag because it stops anyone looking. The file is stale and undocumented and has no opening prices, but it is real, it is large, and part of it checks out against the league.",
+   "what_this_session_did": "Recorded the correction here rather than editing the other register, which belongs to another session. Published the reconciliation with the two clubs that can be checked and named the thirty that cannot, so the correction is not overstated either.",
+   "source_url": "https://www.nfl.com/standings/",
+   "second_source_url": "https://github.com/sassnarep3-star/Own9/blob/main/data/raw/games.csv"
+  }
+ ]
+}

@@ -1,0 +1,142 @@
+{
+ "register_name": "Improvement suggestions with candidate paths, for review before anything is built",
+ "compiled_on": "2026-11-14",
+ "compiled_by": "session 00cf851d",
+ "how_to_use_this": "Each suggestion states what it unblocks, then offers two or three candidate paths with what each costs and what can go wrong. Nothing here has been implemented. The intent is that a reviewer picks a path before any code is written, because the paths are not equivalent and the choice is a policy choice, not a technical one.",
+ "suggestions": [
+  {"id": "S01", "requirement": "R1", "title": "Acquire a price source that carries opening numbers",
+   "what_it_unblocks": "The entire price-snapshot store. Without it, only a closing number can ever be recorded, and a store with one snapshot cannot measure whether a strategy beat a number that was actually available.",
+   "evidence_this_session": "No opening column exists in any committed file, and no official league page publishes betting prices.",
+   "paths": [
+    {"id": "S01-a", "label": "Buy a commercial historical odds feed", "cost": "Money and a licence review", "risk": "Licence terms may forbid redistribution or derived publication; the repository would hold data it cannot publish.", "unblocks": "Opening and closing prices with timestamps, historically and prospectively."},
+    {"id": "S01-b", "label": "Capture prices prospectively on a schedule from a public source", "cost": "Small build plus a recurring job", "risk": "Builds history only from the day it starts, so years of backtest remain impossible; the source's terms must still be checked.", "unblocks": "A correct store from today forward, and a real archive in two or three seasons."},
+    {"id": "S01-c", "label": "Drop the opening-number half of the requirement and record closes only", "cost": "Nothing", "risk": "Any backtest silently assumes the closing price was obtainable, which it was not.", "unblocks": "Nothing new; it makes the limitation explicit rather than hidden."}
+   ],
+   "decision_needed": "Which path, and if S01-a or S01-b, who accepts the licence terms."},
+
+  {"id": "S02", "requirement": "R1", "title": "Write the snapshot schema before any price is stored",
+   "what_it_unblocks": "A store that can actually be audited. The schema must carry the market, the side, the number, the odds, the capture timestamp and the source, or no one can later prove which number was available when.",
+   "evidence_this_session": "The committed file has no timestamp column at all, so there is no way to tell when within the week any price was taken.",
+   "paths": [
+    {"id": "S02-a", "label": "One row per market, side, snapshot time", "cost": "Small", "risk": "Verbose, but every value retrievable.", "unblocks": "Opening versus closing comparison, and any-time captures later."},
+    {"id": "S02-b", "label": "One row per market with opening and closing columns", "cost": "Smallest", "risk": "Cannot hold a third snapshot; forces an edit later.", "unblocks": "The literal requirement, no more."}
+   ],
+   "decision_needed": "Whether snapshots beyond opening and closing are ever wanted."},
+
+  {"id": "S03", "requirement": "R1", "title": "Settle the provenance and licence of the committed price file",
+   "what_it_unblocks": "Any use of the file outside the repository. Right now it can be measured but not safely built on.",
+   "evidence_this_session": "7,548 rows, 46 columns, 1999 to 2026. No origin, retrieval date or rights recorded by any session.",
+   "paths": [
+    {"id": "S03-a", "label": "Record the source, retrieval date and licence in a file next to the data", "cost": "Trivial", "risk": "None.", "unblocks": "Informed use, and a reviewer can judge the rights question."},
+    {"id": "S03-b", "label": "Quarantine the file until a rights decision is made", "cost": "Loses the only price data in the repository", "risk": "Removes 7,424 closing spreads and totals from use.", "unblocks": "Certainty, at the cost of the data."}
+   ],
+   "decision_needed": "Who decides, and by when."},
+
+  {"id": "S04", "requirement": "R2", "title": "Make the results feed current and keep it current",
+   "what_it_unblocks": "Backtests and ROI at all. The feed is currently two rounds behind the league and nothing notices.",
+   "evidence_this_session": "16 of the 137 played 2026 games have no result, including one the league published two days before this review. This session supplied 13 of the 16 from the league's own pages; 3 remain blank.",
+   "paths": [
+    {"id": "S04-a", "label": "Scheduled job that pulls finished games from the league schedule pages", "cost": "Small build, recurring job", "risk": "Game-centre pages are unreliable (two of three returned 'Hidden Score'); the schedule pages and Game Book PDFs do publish scores as text, so the job must use those.", "unblocks": "An always-current feed from official sources."},
+    {"id": "S04-b", "label": "Manual weekly refresh with a completeness check", "cost": "Smallest build, ongoing human time", "risk": "Fails the moment someone forgets.", "unblocks": "Currency while attention lasts."},
+    {"id": "S04-c", "label": "Do nothing, and publish the staleness on the dashboard", "cost": "Nothing", "risk": "Any leaderboard reports a season that is two rounds out of date.", "unblocks": "Honesty about the gap, nothing more."}
+   ],
+   "decision_needed": "Who owns the refresh, and whether the job may store league data."},
+
+  {"id": "S05", "requirement": "R2", "title": "Add a check that fails when a played game has no result",
+   "what_it_unblocks": "Turns a silent gap into a visible failure. This is the single cheapest change on this list.",
+   "evidence_this_session": "The gap existed for 16 games and no check in the repository caught it, because nothing compares played-but-unresulted rows against what the league has finished.",
+   "paths": [
+    {"id": "S05-a", "label": "Count games with a kickoff date in the past and no result; fail the build above zero", "cost": "Trivial", "risk": "Requires a trusted kickoff clock; a game finished an hour ago would trip it until the feed catches up.", "unblocks": "A gap that can never again go unnoticed."}
+   ],
+   "decision_needed": "Tolerance window after kickoff before the check fires."},
+
+  {"id": "S06", "requirement": "R3", "title": "Enforce the origination order in code, not in documentation",
+   "what_it_unblocks": "The side-then-total-then-moneyline requirement becomes testable rather than aspirational.",
+   "evidence_this_session": "The committed data holds all three markets per game, so the order is enforceable; nothing in the repository enforces it.",
+   "paths": [
+    {"id": "S06-a", "label": "One function per market, called in a fixed order, each returning before the next is given data", "cost": "Small", "risk": "Needs a test that asserts the order, or it will drift.", "unblocks": "A gate that can prove the order was respected."},
+    {"id": "S06-b", "label": "One model emitting three numbers, with the later ones masked until the earlier ones are committed", "cost": "Medium", "risk": "Harder to attribute a failure to one market.", "unblocks": "A single model with enforced sequencing."}
+   ],
+   "decision_needed": "Separate models or one sequenced model."},
+
+  {"id": "S07", "requirement": "R4", "title": "Publish fair, market and difference as three columns, and let the blanks be blank",
+   "what_it_unblocks": "The column contract the requirement asks for, without fabricating the one value that does not exist yet.",
+   "evidence_this_session": "Market line available for 7,424 games. Fair line unavailable: no model has been fitted and validated. Difference therefore unavailable too. What can be published today is the market's own error, and this session does: n = 121 in 2026, mean absolute spread miss 9.57, mean absolute total miss 10.66.",
+   "paths": [
+    {"id": "S07-a", "label": "Three columns now, fair and difference empty until a model passes its gates", "cost": "Trivial", "risk": "Looks incomplete on the page; that is the point.", "unblocks": "The contract, with the gap visible."},
+    {"id": "S07-b", "label": "Two columns now (market and market error), add fair and difference when a model exists", "cost": "Trivial", "risk": "Reshapes the table later.", "unblocks": "The same contract with nothing empty."}
+   ],
+   "decision_needed": "Whether an empty column is acceptable on the published page."},
+
+  {"id": "S08", "requirement": "R5", "title": "Score signal and staking on separate, non-overlapping measures",
+   "what_it_unblocks": "A leaderboard where a lucky staking run cannot outrank a genuinely better signal.",
+   "evidence_this_session": "No scoring rule in the repository separates the two.",
+   "paths": [
+    {"id": "S08-a", "label": "Signal scored on a stake-free measure of the number-beating rate; staking scored separately on realised return", "cost": "Medium", "risk": "Two ranks invite an argument about which one wins a competition.", "unblocks": "Both, reported side by side with neither hidden."},
+    {"id": "S08-b", "label": "Flat-stake leaderboard only", "cost": "Trivial", "risk": "Cannot detect a strategy that only works with sizing; discards real information.", "unblocks": "A clean signal rank, and nothing else."},
+    {"id": "S08-c", "label": "Combined rank with the two components shown", "cost": "Medium", "risk": "A great staking run can still mask a mediocre signal in the combined number.", "unblocks": "One ranking, with the composition visible."}
+   ],
+   "decision_needed": "Which rank decides the competition prize, if there is one."},
+
+  {"id": "S09", "requirement": "R5", "title": "Compute the sample size a leaderboard needs before ranking anything",
+   "what_it_unblocks": "Prevents a one-season leaderboard from crowning noise.",
+   "evidence_this_session": "121 completed 2026 games are available with prices. Enough to describe the market; nowhere near enough to rank a strategy that bets a subset.",
+   "paths": [
+    {"id": "S09-a", "label": "Power calculation against the real sample size and the expected bet rate, published before the season starts", "cost": "Small", "risk": "The honest answer may be that a season is not enough, which is uncomfortable but true.", "unblocks": "A defensible minimum-bets bar for eligibility."}
+   ],
+   "decision_needed": "Accept the minimum the calculation produces, whatever it is."},
+
+  {"id": "S10", "requirement": "R6", "title": "Adopt the provenance scale as the official substitute for a depth tier",
+   "what_it_unblocks": "Turns an unmeetable requirement into a measurable one, using only documents the league publishes.",
+   "evidence_this_session": "The league publishes no depth chart; the club route returns the league's own 404. Consecutive Game Books do print starters, substitutions, did not play and not active. This session measured 8 replacements from Washington and New York across Weeks 9 and 10: 6 came from the substitution list, 2 from the inactive list.",
+   "paths": [
+    {"id": "S10-a", "label": "Four-tier provenance scale (starter, substitution, inactive, absent from the previous Game Book)", "cost": "Small, given a Game Book archive", "risk": "It measures where a player was listed, not how good he is; it must never be labelled a depth chart.", "unblocks": "An ordinal, officially sourced replacement depth for every starting-slot change."},
+    {"id": "S10-b", "label": "Keep the requirement unmet and flag it", "cost": "Nothing", "risk": "The requirement stays open indefinitely.", "unblocks": "Nothing."}
+   ],
+   "decision_needed": "Whether an officially derived proxy is acceptable in place of the tier that was asked for."},
+
+  {"id": "S11", "requirement": "R6", "title": "Build the Game Book archive the provenance scale depends on",
+   "what_it_unblocks": "Makes S10 computable for more than the three games one person retrieves by hand.",
+   "evidence_this_session": "This session read three Game Books across two weeks for two clubs. The league publishes one per game, and the game-centre page for each game prints its PDF link.",
+   "paths": [
+    {"id": "S11-a", "label": "Scheduled job that follows each game-centre page to its Game Book PDF and stores the PDF with its URL and retrieval date", "cost": "Medium build, ongoing storage", "risk": "Storage grows; the league's copyright notice on each Game Book says any use other than assisting media coverage requires written permission, so a rights decision is needed before anything is published from them.", "unblocks": "A season-long, officially sourced availability archive."},
+    {"id": "S11-b", "label": "Store only the four list extracts, not the PDF", "cost": "Smaller storage", "risk": "Loses the ability to re-check a transcription; this session's own transcription of three books produced 366 matching checks and no mismatches, but the extract cannot be re-audited later without the original.", "unblocks": "The archive at lower cost, with weaker auditability."}
+   ],
+   "decision_needed": "A rights decision on the Game Books, then scope: all 32 clubs or a subset."},
+
+  {"id": "S12", "requirement": "R7", "title": "Set the minimum n before any correlation is computed",
+   "what_it_unblocks": "Removes the temptation to publish a correlation off a handful of games.",
+   "evidence_this_session": "The only correlation this session will publish is n = 7,397 (closing spread against actual margin, r = 0.4252). The two replacement cases that look interesting are n = 2 and are not published as a correlation.",
+   "paths": [
+    {"id": "S12-a", "label": "Predeclare a minimum n and an interval width, and refuse to print a value that fails either", "cost": "Trivial", "risk": "Most published cells stay empty at first, which is the correct outcome.", "unblocks": "Correlations that mean something when they appear."},
+    {"id": "S12-b", "label": "Publish every value with its n and let the reader judge", "cost": "Trivial", "risk": "A small-n number in a table gets treated as a finding.", "unblocks": "Full transparency, weaker protection."}
+   ],
+   "decision_needed": "Threshold value, chosen now rather than after seeing results."},
+
+  {"id": "S13", "requirement": "R8", "title": "Define the demotion gate as two separate mechanisms",
+   "what_it_unblocks": "A gate that can actually be triggered and tested.",
+   "evidence_this_session": "No strategy has passed validation, so nothing is live and the gate has nothing to act on. That makes this the right moment to define it, before anyone is invested in an outcome.",
+   "paths": [
+    {"id": "S13-a", "label": "Split into an integrity trigger (immediate, no statistics needed: look-ahead, missing snapshot, unlogged stake) and a performance trigger (frozen threshold and sample size, evaluated only at predeclared checkpoints)", "cost": "Small", "risk": "A performance threshold chosen now may be wrong; freezing it prevents tuning to a result, which is the point.", "unblocks": "A gate that is fair and auditable."},
+    {"id": "S13-b", "label": "Single combined gate", "cost": "Smallest", "risk": "An integrity breach would wait for a checkpoint.", "unblocks": "Simplicity, at the cost of acting late on real breaches."}
+   ],
+   "decision_needed": "Thresholds, whether demotion is automatic or reviewed, and whether a demoted strategy can be re-promoted."},
+
+  {"id": "S14", "requirement": "R6", "title": "Handle clubs that are absent from the weekly injury report explicitly",
+   "what_it_unblocks": "Stops an availability model from silently treating missing clubs as healthy.",
+   "evidence_this_session": "Denver, Chicago, Philadelphia and Tampa Bay have no table in the Week 10 report, and no reason is published.",
+   "paths": [
+    {"id": "S14-a", "label": "Treat an absent club as unknown, not as zero concerns, and surface the count on the dashboard", "cost": "Trivial", "risk": "None.", "unblocks": "A model that cannot silently invent health."}
+   ],
+   "decision_needed": "None, unless a club's absence should itself be a signal, which this session would not assume."},
+
+  {"id": "S15", "requirement": "R6", "title": "Key players on a stable identifier, not on a surname string",
+   "what_it_unblocks": "Stops the same player being counted twice when the league's own documents spell him differently.",
+   "evidence_this_session": "The Week 9 Game Book prints 'FB 45 P.Richard'; the Week 10 Game Book prints 'FB 45 P.Ricard'. Same club, number and position.",
+   "paths": [
+    {"id": "S15-a", "label": "Key on club plus jersey number within a season, with the printed name carried as a display field", "cost": "Small", "risk": "A number can be reassigned mid-season after a roster move; a collision check would be needed.", "unblocks": "Stable joins across documents that disagree on spelling."},
+    {"id": "S15-b", "label": "Fuzzy name match with a manual review queue for near-misses", "cost": "Medium", "risk": "Needs a human; silently merges different players if the threshold is loose.", "unblocks": "Cross-club and cross-season identity."}
+   ],
+   "decision_needed": "Whether mid-season number reassignment is common enough to need handling."}
+ ]
+}

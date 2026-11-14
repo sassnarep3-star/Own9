@@ -1,0 +1,92 @@
+{
+ "register_name": "Official 2026 NFL division standings as read on 2026-11-14",
+ "source_id": "nfl-standings-2026",
+ "source_url": "https://www.nfl.com/standings/",
+ "document_title_published": "2026 NFL Division Standings",
+ "retrieved_utc": "2026-11-14",
+ "retrieved_by": "session 00cf851d",
+ "as_of_note": "Weeks 1-9 are complete for all 32 clubs. The Week 10 Thursday-night game (Washington at New York Giants, 2026-11-12) is included in the Washington and New York Giants rows only. No other Week 10 game had been played when this page was read.",
+ "column_policy": "Only columns named in the page's own LEGEND block are transcribed: W, L, T, PCT, PF, PA, NET PTS, HOME, ROAD, DIV, CONF, STRK. The page prints additional columns its legend does not name; those are omitted here rather than labelled by guesswork.",
+ "legend_as_published": {
+  "W": "Wins", "L": "Losses", "T": "Ties", "PCT": "Winning Percentage",
+  "HOME": "Home Record", "ROAD": "Road Record", "DIV": "Division Record",
+  "CONF": "Conference Record", "PF": "Total Points For", "PA": "Total Points Against",
+  "NET PTS": "Net Points", "STRK": "Streak",
+  "x": "Clinched Playoff", "y": "Clinched Wild Card", "z": "Clinched Division",
+  "*": "Clinched Division and Homefield Advantage"
+ },
+ "divisions": [
+  {
+   "conference": "AFC", "division": "AFC East",
+   "clubs": [
+    {"team": "Buffalo Bills", "abbr": "BUF", "w": 7, "l": 1, "t": 0, "pct": 0.875, "pf": 256, "pa": 187, "net_pts": 69, "home": "3-1-0", "road": "4-0-0", "div": "0-1-0", "conf": "4-1-0", "strk": "4W"},
+    {"team": "New England Patriots", "abbr": "NE", "w": 5, "l": 4, "t": 0, "pct": 0.556, "pf": 211, "pa": 207, "net_pts": 4, "home": "3-1-0", "road": "2-3-0", "div": "3-0-0", "conf": "5-1-0", "strk": "1L"},
+    {"team": "New York Jets", "abbr": "NYJ", "w": 2, "l": 7, "t": 0, "pct": 0.222, "pf": 182, "pa": 223, "net_pts": -41, "home": "1-3-0", "road": "1-4-0", "div": "0-2-0", "conf": "2-4-0", "strk": "4L"},
+    {"team": "Miami Dolphins", "abbr": "MIA", "w": 1, "l": 7, "t": 0, "pct": 0.125, "pf": 126, "pa": 200, "net_pts": -74, "home": "0-4-0", "road": "1-3-0", "div": "1-1-0", "conf": "1-4-0", "strk": "2L"}
+   ]
+  },
+  {
+   "conference": "AFC", "division": "AFC North",
+   "clubs": [
+    {"team": "Pittsburgh Steelers", "abbr": "PIT", "w": 6, "l": 2, "t": 0, "pct": 0.750, "pf": 180, "pa": 144, "net_pts": 36, "home": "4-0-0", "road": "2-2-0", "div": "2-1-0", "conf": "3-2-0", "strk": "4W"},
+    {"team": "Cincinnati Bengals", "abbr": "CIN", "w": 6, "l": 2, "t": 0, "pct": 0.750, "pf": 240, "pa": 175, "net_pts": 65, "home": "2-1-0", "road": "4-1-0", "div": "1-1-0", "conf": "4-2-0", "strk": "4W"},
+    {"team": "Cleveland Browns", "abbr": "CLE", "w": 5, "l": 4, "t": 0, "pct": 0.556, "pf": 161, "pa": 196, "net_pts": -35, "home": "3-0-0", "road": "2-4-0", "div": "2-1-0", "conf": "3-3-0", "strk": "2L"},
+    {"team": "Baltimore Ravens", "abbr": "BAL", "w": 4, "l": 5, "t": 0, "pct": 0.444, "pf": 189, "pa": 236, "net_pts": -47, "home": "1-3-0", "road": "3-2-0", "div": "0-2-0", "conf": "2-4-0", "strk": "4L"}
+   ]
+  },
+  {
+   "conference": "AFC", "division": "AFC South",
+   "clubs": [
+    {"team": "Jacksonville Jaguars", "abbr": "JAX", "w": 6, "l": 2, "t": 0, "pct": 0.750, "pf": 229, "pa": 121, "net_pts": 108, "home": "4-1-0", "road": "2-1-0", "div": "1-1-0", "conf": "5-2-0", "strk": "2W"},
+    {"team": "Houston Texans", "abbr": "HOU", "w": 3, "l": 5, "t": 0, "pct": 0.375, "pf": 209, "pa": 192, "net_pts": 17, "home": "0-4-0", "road": "3-1-0", "div": "2-1-0", "conf": "3-3-0", "strk": "1W"},
+    {"team": "Indianapolis Colts", "abbr": "IND", "w": 2, "l": 7, "t": 0, "pct": 0.222, "pf": 184, "pa": 249, "net_pts": -65, "home": "1-3-0", "road": "1-4-0", "div": "1-2-0", "conf": "1-5-0", "strk": "5L"},
+    {"team": "Tennessee Titans", "abbr": "TEN", "w": 1, "l": 7, "t": 0, "pct": 0.125, "pf": 144, "pa": 199, "net_pts": -55, "home": "0-4-0", "road": "1-3-0", "div": "1-1-0", "conf": "1-5-0", "strk": "2L"}
+   ]
+  },
+  {
+   "conference": "AFC", "division": "AFC West",
+   "clubs": [
+    {"team": "Denver Broncos", "abbr": "DEN", "w": 7, "l": 2, "t": 0, "pct": 0.778, "pf": 198, "pa": 186, "net_pts": 12, "home": "4-0-0", "road": "3-2-0", "div": "2-1-0", "conf": "3-1-0", "strk": "5W"},
+    {"team": "Kansas City Chiefs", "abbr": "KC", "w": 6, "l": 2, "t": 0, "pct": 0.750, "pf": 202, "pa": 143, "net_pts": 59, "home": "4-0-0", "road": "2-2-0", "div": "3-1-0", "conf": "6-1-0", "strk": "1W"},
+    {"team": "Las Vegas Raiders", "abbr": "LV", "w": 4, "l": 5, "t": 0, "pct": 0.444, "pf": 238, "pa": 268, "net_pts": -30, "home": "1-3-0", "road": "3-2-0", "div": "1-1-0", "conf": "3-3-0", "strk": "1L"},
+    {"team": "Los Angeles Chargers", "abbr": "LAC", "w": 0, "l": 8, "t": 0, "pct": 0.000, "pf": 121, "pa": 219, "net_pts": -98, "home": "0-4-0", "road": "0-4-0", "div": "0-3-0", "conf": "0-5-0", "strk": "8L"}
+   ]
+  },
+  {
+   "conference": "NFC", "division": "NFC East",
+   "clubs": [
+    {"team": "New York Giants", "abbr": "NYG", "w": 5, "l": 3, "t": 1, "pct": 0.611, "pf": 203, "pa": 196, "net_pts": 7, "home": "3-2-0", "road": "2-1-1", "div": "2-1-1", "conf": "3-3-1", "strk": "1L"},
+    {"team": "Dallas Cowboys", "abbr": "DAL", "w": 4, "l": 5, "t": 0, "pct": 0.444, "pf": 246, "pa": 236, "net_pts": 10, "home": "1-3-0", "road": "3-2-0", "div": "2-1-0", "conf": "2-4-0", "strk": "1W"},
+    {"team": "Washington Commanders", "abbr": "WAS", "w": 3, "l": 5, "t": 1, "pct": 0.389, "pf": 196, "pa": 223, "net_pts": -27, "home": "2-2-1", "road": "1-3-0", "div": "2-2-1", "conf": "3-4-1", "strk": "1W"},
+    {"team": "Philadelphia Eagles", "abbr": "PHI", "w": 2, "l": 7, "t": 0, "pct": 0.222, "pf": 148, "pa": 221, "net_pts": -73, "home": "1-4-0", "road": "1-3-0", "div": "1-3-0", "conf": "1-6-0", "strk": "7L"}
+   ]
+  },
+  {
+   "conference": "NFC", "division": "NFC North",
+   "clubs": [
+    {"team": "Chicago Bears", "abbr": "CHI", "w": 7, "l": 2, "t": 0, "pct": 0.778, "pf": 241, "pa": 184, "net_pts": 57, "home": "4-1-0", "road": "3-1-0", "div": "0-2-0", "conf": "5-2-0", "strk": "4W"},
+    {"team": "Detroit Lions", "abbr": "DET", "w": 6, "l": 2, "t": 0, "pct": 0.750, "pf": 222, "pa": 189, "net_pts": 33, "home": "4-0-0", "road": "2-2-0", "div": "2-0-0", "conf": "4-1-0", "strk": "4W"},
+    {"team": "Minnesota Vikings", "abbr": "MIN", "w": 6, "l": 2, "t": 0, "pct": 0.750, "pf": 146, "pa": 116, "net_pts": 30, "home": "3-1-0", "road": "3-1-0", "div": "2-1-0", "conf": "4-1-0", "strk": "2L"},
+    {"team": "Green Bay Packers", "abbr": "GB", "w": 6, "l": 3, "t": 0, "pct": 0.667, "pf": 216, "pa": 191, "net_pts": 25, "home": "3-1-0", "road": "3-2-0", "div": "1-2-0", "conf": "4-3-0", "strk": "2W"}
+   ]
+  },
+  {
+   "conference": "NFC", "division": "NFC South",
+   "clubs": [
+    {"team": "Carolina Panthers", "abbr": "CAR", "w": 3, "l": 5, "t": 0, "pct": 0.375, "pf": 199, "pa": 219, "net_pts": -20, "home": "1-3-0", "road": "2-2-0", "div": "1-1-0", "conf": "3-3-0", "strk": "3L"},
+    {"team": "New Orleans Saints", "abbr": "NO", "w": 3, "l": 5, "t": 0, "pct": 0.375, "pf": 185, "pa": 216, "net_pts": -31, "home": "1-4-0", "road": "2-1-0", "div": "0-1-0", "conf": "1-3-0", "strk": "1W"},
+    {"team": "Tampa Bay Buccaneers", "abbr": "TB", "w": 3, "l": 6, "t": 0, "pct": 0.333, "pf": 202, "pa": 178, "net_pts": 24, "home": "1-4-0", "road": "2-2-0", "div": "2-0-0", "conf": "3-3-0", "strk": "1L"},
+    {"team": "Atlanta Falcons", "abbr": "ATL", "w": 3, "l": 6, "t": 0, "pct": 0.333, "pf": 188, "pa": 223, "net_pts": -35, "home": "1-4-0", "road": "2-2-0", "div": "1-2-0", "conf": "3-3-0", "strk": "2L"}
+   ]
+  },
+  {
+   "conference": "NFC", "division": "NFC West",
+   "clubs": [
+    {"team": "San Francisco 49ers", "abbr": "SF", "w": 7, "l": 1, "t": 0, "pct": 0.875, "pf": 235, "pa": 156, "net_pts": 79, "home": "5-0-0", "road": "2-1-0", "div": "3-0-0", "conf": "4-1-0", "strk": "1W"},
+    {"team": "Seattle Seahawks", "abbr": "SEA", "w": 5, "l": 4, "t": 0, "pct": 0.556, "pf": 202, "pa": 162, "net_pts": 40, "home": "4-2-0", "road": "1-2-0", "div": "2-1-0", "conf": "2-3-0", "strk": "1W"},
+    {"team": "Los Angeles Rams", "abbr": "LAR", "w": 5, "l": 4, "t": 0, "pct": 0.556, "pf": 214, "pa": 181, "net_pts": 33, "home": "2-3-0", "road": "3-1-0", "div": "0-2-0", "conf": "3-2-0", "strk": "3W"},
+    {"team": "Arizona Cardinals", "abbr": "AZ", "w": 3, "l": 6, "t": 0, "pct": 0.333, "pf": 178, "pa": 255, "net_pts": -77, "home": "0-3-0", "road": "3-3-0", "div": "1-3-0", "conf": "2-5-0", "strk": "1L"}
+   ]
+  }
+ ]
+}
