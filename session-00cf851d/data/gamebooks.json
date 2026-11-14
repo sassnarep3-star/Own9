@@ -1,0 +1,276 @@
+{
+ "register_name": "Session 00cf851d official NFL Game Book extractions",
+ "retrieved_on": "2026-11-14",
+ "retrieved_by": "session 00cf851d",
+ "transcription_policy": "Every value below was copied from the official NFL Game Summary PDF read on 2026-11-14. Where the PDF prints a blank cell the value here is null. Where the PDF does not publish a value at all (for example a depth tier), the field is omitted from the schema rather than filled. No value is inferred, computed or imported from another session's file.",
+ "games": [
+  {
+   "game_id": "2026-REG10-WAS-NYG",
+   "season": 2026,
+   "week": 10,
+   "source_id": "gamebook-was-nyg-w10",
+   "gamecenter_id": "gamecenter-was-nyg-w10",
+   "date_printed": "Thursday, 11/12/2026",
+   "start_time_printed": "8:15 PM EST",
+   "venue": "MetLife Stadium, East Rutherford, NJ",
+   "weather": "Light Rain Fog/Mist Open Stadium on Field Turf",
+   "temperature": "48 F (8.9 C)",
+   "humidity": "89%",
+   "wind": "NE 9 mph",
+   "referee": "Rogers, Brad (126)",
+   "paid_attendance": 80450,
+   "game_time": "3:04",
+   "away": "Washington Commanders",
+   "away_abbr": "WAS",
+   "home": "New York Giants",
+   "home_abbr": "NYG",
+   "final": {"WAS": 24, "NYG": 21},
+   "quarters": {"WAS": [0, 10, 7, 7, 0], "NYG": [0, 7, 7, 7, 0]},
+   "field_goals": [
+    {"team": "WAS", "kicker": "D.Stevens", "made": [46], "missed": []},
+    {"team": "NYG", "kicker": "D.Zvada", "made": [], "missed": [33]}
+   ],
+   "scoring_plays": [
+    {"team": "Commanders", "qtr": 2, "time": "14:07", "play": "D.Stevens 46 yd. Field Goal (11-49, 4:57)", "visitor": 3, "home": 0},
+    {"team": "Giants", "qtr": 2, "time": "2:35", "play": "C.Skattebo 1 yd. run (D.Zvada kick) (16-72, 7:48)", "visitor": 3, "home": 7},
+    {"team": "Commanders", "qtr": 2, "time": "0:05", "play": "B.Sinnott 1 yd. pass from J.Daniels (D.Stevens kick) (9-67, 2:30)", "visitor": 10, "home": 7},
+    {"team": "Giants", "qtr": 3, "time": "10:22", "play": "C.Skattebo 13 yd. run (D.Zvada kick) (5-55, 2:02)", "visitor": 10, "home": 14},
+    {"team": "Commanders", "qtr": 3, "time": "6:56", "play": "A.Williams 31 yd. pass from J.Daniels (D.Stevens kick) (6-77, 3:26)", "visitor": 17, "home": 14},
+    {"team": "Giants", "qtr": 4, "time": "8:13", "play": "I.Likely 66 yd. pass from J.McCarthy (D.Zvada kick) (3-69, 0:51)", "visitor": 17, "home": 21},
+    {"team": "Commanders", "qtr": 4, "time": "0:57", "play": "S.Diggs 32 yd. pass from J.Daniels (D.Stevens kick) (3-71, 0:49)", "visitor": 24, "home": 21}
+   ],
+   "teams": {
+    "WAS": {
+     "offense_starters": [
+      ["WR", "14 A.Williams"], ["TE", "87 J.Bates"], ["LT", "74 B.Coleman"], ["LG", "75 C.Paul"],
+      ["C", "67 N.Allegretti"], ["RG", "76 S.Cosmi"], ["RT", "72 J.Conerly"], ["TE", "82 B.Sinnott"],
+      ["WR", "13 T.Burks"], ["QB", "5 J.Daniels"], ["RB", "1 R.White"]
+     ],
+     "defense_starters": [
+      ["OLB", "98 O.Oweh"], ["DT", "97 T.Settle"], ["DT", "96 S.Tuttle"], ["OLB", "45 K.Chaisson"],
+      ["LB", "52 S.Styles"], ["LB", "4 F.Luvu"], ["CB", "23 T.Amos"], ["CB", "2 A.Robertson"],
+      ["S", "39 J.Reaves"], ["S", "25 N.Cross"], ["S", "20 Q.Martin"]
+     ],
+     "substitutions": [
+      "CB 0 M.Sainristil", "WR 3 S.Diggs", "P 10 T.Way", "WR 11 L.McCaffrey", "WR 12 V.Jefferson",
+      "S 18 T.Owens", "K 19 D.Stevens", "CB 24 F.Moreau", "CB 29 R.Douglas", "RB 30 A.Ekeler",
+      "RB 34 R.Henry", "S 35 P.Butler", "OLB 48 J.Josephs", "LB 51 A.Kaho", "LB 56 K.Medrano",
+      "LB 58 J.Magee", "LS 69 T.Ott", "T/G 71 A.Wylie", "TE 85 C.Okonkwo", "DE 90 C.Omenihu",
+      "DE 91 D.Wise", "OLB 92 D.Armstrong", "DT 95 J.Newton"
+     ],
+     "did_not_play": ["QB 8 M.Mariota", "C/G 61 J.Good-Jones", "C 66 M.Gulbin"],
+     "not_active": ["3QB 16 A.Kaliakmanis", "CB 37 I.Yiadom", "DT 50 R.Barber", "G 62 T.Togiai", "G 63 L.Patrick", "TE 80 C.Yankoff"]
+    },
+    "NYG": {
+     "offense_starters": [
+      ["WR", "17 D.Mooney"], ["TE", "84 T.Johnson"], ["LT", "78 A.Thomas"], ["LG", "76 J.Runyan"],
+      ["C", "60 B.Hudson"], ["RG", "65 F.Mauigoa"], ["RT", "72 J.Eluemunor"], ["WR", "1 M.Nabers"],
+      ["TE", "9 I.Likely"], ["QB", "18 J.McCarthy"], ["RB", "44 C.Skattebo"]
+     ],
+     "defense_starters": [
+      ["OLB", "5 K.Thibodeaux"], ["DL", "93 S.Harris"], ["DL", "97 B.Jamison-Travis"], ["DL", "98 D.Reader"],
+      ["OLB", "3 A.Carter"], ["LB", "41 M.McFadden"], ["LB", "52 A.Reese"], ["CB", "20 G.Newsome"],
+      ["CB", "2 D.Banks"], ["S", "8 J.Holland"], ["S", "24 A.Washington"]
+     ],
+     "substitutions": [
+      "CB 12 C.Hood", "P 15 J.Stout", "QB 19 J.Winston", "CB 22 A.Phillips", "S 25 J.Pinnock",
+      "RB 26 D.Singletary", "S 27 T.Nubin", "DB 28 E.Campbell", "RB 30 G.Desrosiers", "CB 31 N.Jones",
+      "K 34 D.Zvada", "FB 45 P.Ricard", "LB 46 Z.Barnes", "OLB 48 T.Ford", "LB 51 J.Kelly",
+      "LB 55 C.Martin", "LS 58 B.Mann", "OL 64 A.Stinnie", "OL 71 M.Mbow", "WR 81 J.Hyatt",
+      "TE 85 C.Manhertz", "WR 88 M.Fields", "WR 89 C.Jones", "DL 91 D.Alexander", "OLB 96 D.Smoot"
+     ],
+     "did_not_play": ["C 61 J.Schmitz"],
+     "not_active": ["CB 21 P.Adebo", "CB 35 N.Reed", "LB 54 M.Harrison", "OL 67 J.Sills", "OL 74 J.Davis", "TE 86 T.Fidone", "DL 99 B.Okoye"]
+    }
+   },
+   "individual": {
+    "WAS": {
+     "rushing": [
+      {"player": "R.White", "att": 11, "yds": 47, "avg": 4.3, "lg": 18, "td": 0},
+      {"player": "J.Daniels", "att": 11, "yds": 28, "avg": 2.5, "lg": 8, "td": 0},
+      {"player": "A.Ekeler", "att": 9, "yds": 26, "avg": 2.9, "lg": 7, "td": 0},
+      {"player": "R.Henry", "att": 2, "yds": 4, "avg": 2.0, "lg": 4, "td": 0}
+     ],
+     "passing": [
+      {"player": "J.Daniels", "att": 33, "cmp": 23, "yds": 249, "sk": "1/14", "td": 3, "lg": 32, "int": 2, "rt": 96.7}
+     ],
+     "receiving": [
+      {"player": "S.Diggs", "tar": 10, "rec": 6, "yds": 83, "avg": 13.8, "lg": 32, "td": 1},
+      {"player": "B.Sinnott", "tar": 4, "rec": 4, "yds": 42, "avg": 10.5, "lg": 24, "td": 1},
+      {"player": "A.Ekeler", "tar": 4, "rec": 4, "yds": 26, "avg": 6.5, "lg": 8, "td": 0},
+      {"player": "C.Okonkwo", "tar": 8, "rec": 4, "yds": 24, "avg": 6.0, "lg": 11, "td": 0},
+      {"player": "A.Williams", "tar": 2, "rec": 2, "yds": 42, "avg": 21.0, "lg": 31, "td": 1},
+      {"player": "T.Burks", "tar": 3, "rec": 2, "yds": 27, "avg": 13.5, "lg": 20, "td": 0},
+      {"player": "R.White", "tar": 2, "rec": 1, "yds": 5, "avg": 5.0, "lg": 5, "td": 0}
+     ],
+     "interceptions": [{"player": "R.Douglas", "no": 1, "yds": 0, "avg": 0.0, "lg": 0, "td": 0}],
+     "punting": [{"player": "T.Way", "no": 4, "yds": 198, "avg": 49.5, "net": 49.0, "tb": 0, "in20": 0, "lg": 55}]
+    },
+    "NYG": {
+     "rushing": [
+      {"player": "C.Skattebo", "att": 18, "yds": 78, "avg": 4.3, "lg": 14, "td": 2},
+      {"player": "J.McCarthy", "att": 6, "yds": 34, "avg": 5.7, "lg": 12, "td": 0},
+      {"player": "D.Singletary", "att": 1, "yds": 3, "avg": 3.0, "lg": 3, "td": 0},
+      {"player": "J.Winston", "att": 2, "yds": 1, "avg": 0.5, "lg": 1, "td": 0}
+     ],
+     "passing": [
+      {"player": "J.McCarthy", "att": 36, "cmp": 23, "yds": 293, "sk": "1/10", "td": 1, "lg": 66, "int": 1, "rt": 86.9}
+     ],
+     "receiving": [
+      {"player": "I.Likely", "tar": 11, "rec": 9, "yds": 127, "avg": 14.1, "lg": 66, "td": 1},
+      {"player": "M.Nabers", "tar": 7, "rec": 5, "yds": 44, "avg": 8.8, "lg": 37, "td": 0},
+      {"player": "M.Fields", "tar": 4, "rec": 3, "yds": 62, "avg": 20.7, "lg": 25, "td": 0},
+      {"player": "C.Skattebo", "tar": 4, "rec": 3, "yds": 44, "avg": 14.7, "lg": 34, "td": 0},
+      {"player": "D.Mooney", "tar": 5, "rec": 2, "yds": 8, "avg": 4.0, "lg": 6, "td": 0},
+      {"player": "T.Johnson", "tar": 3, "rec": 1, "yds": 8, "avg": 8.0, "lg": 8, "td": 0}
+     ],
+     "interceptions": [
+      {"player": "J.Holland", "no": 1, "yds": 0, "avg": 0.0, "lg": 0, "td": 0},
+      {"player": "A.Washington", "no": 1, "yds": 0, "avg": 0.0, "lg": 0, "td": 0}
+     ],
+     "punting": []
+    }
+   }
+  },
+  {
+   "game_id": "2026-REG9-LAR-WAS",
+   "season": 2026,
+   "week": 9,
+   "source_id": "gamebook-lar-was-w9",
+   "date_printed": "Sunday, 11/8/2026",
+   "start_time_printed": "1:03 PM EST",
+   "venue": "Northwest Stadium, Landover, MD",
+   "weather": "Open Stadium on Natural Grass",
+   "temperature": "59 F (15.0 C)",
+   "humidity": "47%",
+   "wind": "NW 8 mph",
+   "referee": "Hussey, John (35)",
+   "paid_attendance": 64016,
+   "game_time": "3:08",
+   "away": "Los Angeles Rams",
+   "away_abbr": "LAR",
+   "home": "Washington Commanders",
+   "home_abbr": "WAS",
+   "final": {"LAR": 20, "WAS": 13},
+   "quarters": {"LAR": [3, 3, 7, 7, 0], "WAS": [3, 7, 3, 0, 0]},
+   "teams": {
+    "WAS": {
+     "offense_starters": [
+      ["TE", "87 J.Bates"], ["LT", "74 B.Coleman"], ["LG", "75 C.Paul"], ["C", "63 L.Patrick"],
+      ["RG", "76 S.Cosmi"], ["RT", "72 J.Conerly"], ["TE", "82 B.Sinnott"], ["TE", "85 C.Okonkwo"],
+      ["WR", "12 V.Jefferson"], ["QB", "5 J.Daniels"], ["RB", "1 R.White"]
+     ],
+     "defense_starters": [
+      ["OLB", "98 O.Oweh"], ["DE", "90 C.Omenihu"], ["DT", "96 S.Tuttle"], ["DT", "97 T.Settle"],
+      ["OLB", "45 K.Chaisson"], ["LB", "52 S.Styles"], ["LB", "4 F.Luvu"], ["CB", "23 T.Amos"],
+      ["CB", "2 A.Robertson"], ["S", "39 J.Reaves"], ["S", "25 N.Cross"]
+     ],
+     "substitutions": [
+      "CB 0 M.Sainristil", "WR 3 S.Diggs", "P 10 T.Way", "WR 11 L.McCaffrey", "WR 14 A.Williams",
+      "S 18 T.Owens", "K 19 D.Stevens", "S 20 Q.Martin", "CB 29 R.Douglas", "RB 30 A.Ekeler",
+      "S 35 P.Butler", "OLB 48 J.Josephs", "DT 50 R.Barber", "LB 56 K.Medrano", "LB 58 J.Magee",
+      "C 66 M.Gulbin", "C/G 67 N.Allegretti", "LS 69 T.Ott", "T/G 71 A.Wylie", "TE 80 C.Yankoff",
+      "WR 86 J.Bradley", "DE 91 D.Wise", "OLB 92 D.Armstrong", "DT 95 J.Newton"
+     ],
+     "did_not_play": ["QB 8 M.Mariota", "RB 34 R.Henry"],
+     "not_active": ["WR 13 T.Burks", "3QB 16 A.Kaliakmanis", "CB 24 F.Moreau", "CB 37 I.Yiadom", "G 62 T.Togiai"]
+    }
+   },
+   "individual": {
+    "WAS": {
+     "rushing": [
+      {"player": "R.White", "att": 7, "yds": 28, "avg": 4.0, "lg": 14, "td": 0},
+      {"player": "A.Ekeler", "att": 8, "yds": 16, "avg": 2.0, "lg": 7, "td": 0},
+      {"player": "J.Daniels", "att": 4, "yds": 16, "avg": 4.0, "lg": 7, "td": 0}
+     ],
+     "passing": [
+      {"player": "J.Daniels", "att": 35, "cmp": 24, "yds": 274, "sk": "4/21", "td": 1, "lg": 45, "int": 0, "rt": 101.4}
+     ],
+     "receiving": [
+      {"player": "C.Okonkwo", "tar": 7, "rec": 6, "yds": 57, "avg": 9.5, "lg": 16, "td": 0},
+      {"player": "V.Jefferson", "tar": 7, "rec": 5, "yds": 58, "avg": 11.6, "lg": 21, "td": 1},
+      {"player": "S.Diggs", "tar": 5, "rec": 3, "yds": 51, "avg": 17.0, "lg": 42, "td": 0},
+      {"player": "A.Williams", "tar": 6, "rec": 3, "yds": 25, "avg": 8.3, "lg": 18, "td": 0},
+      {"player": "R.White", "tar": 3, "rec": 2, "yds": 41, "avg": 20.5, "lg": 45, "td": 0},
+      {"player": "A.Ekeler", "tar": 3, "rec": 2, "yds": 18, "avg": 9.0, "lg": 12, "td": 0},
+      {"player": "J.Bradley", "tar": 1, "rec": 1, "yds": 12, "avg": 12.0, "lg": 12, "td": 0},
+      {"player": "C.Yankoff", "tar": 1, "rec": 1, "yds": 6, "avg": 6.0, "lg": 6, "td": 0},
+      {"player": "L.McCaffrey", "tar": 1, "rec": 1, "yds": 6, "avg": 6.0, "lg": 6, "td": 0}
+     ],
+     "interceptions": [{"player": "N.Cross", "no": 1, "yds": 0, "avg": 0.0, "lg": 0, "td": 0}],
+     "punting": [{"player": "T.Way", "no": 5, "yds": 233, "avg": 46.6, "net": 42.6, "tb": 1, "in20": 3, "lg": 56}]
+    }
+   }
+  },
+  {
+   "game_id": "2026-REG9-NYG-PHI",
+   "season": 2026,
+   "week": 9,
+   "source_id": "gamebook-nyg-phi-w9",
+   "date_printed": "Sunday, 11/8/2026",
+   "start_time_printed": "1:02 PM EST",
+   "venue": "Lincoln Financial Field, Philadelphia, PA",
+   "weather": "Sunny, Open Stadium on Natural Grass",
+   "temperature": "57 F (13.9 C)",
+   "humidity": "47%",
+   "wind": "W 11 mph",
+   "referee": "Vinovich, Bill (52)",
+   "paid_attendance": 69879,
+   "game_time": "3:14",
+   "away": "New York Giants",
+   "away_abbr": "NYG",
+   "home": "Philadelphia Eagles",
+   "home_abbr": "PHI",
+   "final": {"NYG": 19, "PHI": 11},
+   "quarters": {"NYG": [6, 0, 7, 6, 0], "PHI": [8, 0, 0, 3, 0]},
+   "teams": {
+    "NYG": {
+     "offense_starters": [
+      ["WR", "1 M.Nabers"], ["TE", "9 I.Likely"], ["LT", "78 A.Thomas"], ["LG", "76 J.Runyan"],
+      ["C", "60 B.Hudson"], ["RG", "65 F.Mauigoa"], ["RT", "72 J.Eluemunor"], ["TE", "85 C.Manhertz"],
+      ["FB", "45 P.Richard"], ["QB", "18 J.McCarthy"], ["RB", "26 D.Singletary"]
+     ],
+     "defense_starters": [
+      ["OLB", "3 A.Carter"], ["DL", "98 D.Reader"], ["DL", "93 S.Harris"], ["OLB", "5 K.Thibodeaux"],
+      ["LB", "41 M.McFadden"], ["LB", "52 A.Reese"], ["CB", "20 G.Newsome"], ["CB", "22 A.Phillips"],
+      ["CB", "2 D.Banks"], ["S", "8 J.Holland"], ["S", "24 A.Washington"]
+     ],
+     "substitutions": [
+      "P 15 J.Stout", "WR 17 D.Mooney", "QB 19 J.Winston", "CB 21 P.Adebo", "S 25 J.Pinnock",
+      "S 27 T.Nubin", "DB 28 E.Campbell", "RB 30 G.Desrosiers", "CB 31 N.Jones", "K 34 D.Zvada",
+      "RB 36 P.Mafah", "LB 46 Z.Barnes", "OLB 48 T.Ford", "LB 51 J.Kelly", "LB 54 M.Harrison",
+      "LS 58 B.Mann", "OL 64 A.Stinnie", "OL 74 J.Davis", "WR 81 J.Hyatt", "TE 84 T.Johnson",
+      "WR 88 M.Fields", "WR 89 C.Jones", "DL 91 D.Alexander", "OLB 96 D.Smoot", "DL 97 B.Jamison-Travis"
+     ],
+     "did_not_play": ["C 61 J.Schmitz"],
+     "not_active": ["CB 12 C.Hood", "CB 35 N.Reed", "RB 44 C.Skattebo", "OL 67 J.Sills", "OL 71 M.Mbow", "TE 86 T.Fidone", "DL 99 B.Okoye"]
+    }
+   },
+   "individual": {
+    "NYG": {
+     "rushing": [
+      {"player": "D.Singletary", "att": 21, "yds": 31, "avg": 1.5, "lg": 12, "td": 0},
+      {"player": "J.McCarthy", "att": 4, "yds": 22, "avg": 5.5, "lg": 11, "td": 0},
+      {"player": "G.Desrosiers", "att": 3, "yds": 20, "avg": 6.7, "lg": 9, "td": 0},
+      {"player": "J.Winston", "att": 2, "yds": 11, "avg": 5.5, "lg": 10, "td": 0},
+      {"player": "D.Mooney", "att": 1, "yds": -4, "avg": -4.0, "lg": -4, "td": 0}
+     ],
+     "passing": [
+      {"player": "J.McCarthy", "att": 19, "cmp": 12, "yds": 127, "sk": "5/29", "td": 0, "lg": 27, "int": 0, "rt": 82.6},
+      {"player": "J.Winston", "att": 8, "cmp": 6, "yds": 71, "sk": "1/6", "td": 1, "lg": 27, "int": 0, "rt": 141.1}
+     ],
+     "receiving": [
+      {"player": "I.Likely", "tar": 6, "rec": 5, "yds": 53, "avg": 10.6, "lg": 27, "td": 1},
+      {"player": "M.Nabers", "tar": 8, "rec": 5, "yds": 43, "avg": 8.6, "lg": 22, "td": 0},
+      {"player": "D.Mooney", "tar": 4, "rec": 3, "yds": 54, "avg": 18.0, "lg": 27, "td": 0},
+      {"player": "M.Fields", "tar": 5, "rec": 3, "yds": 40, "avg": 13.3, "lg": 16, "td": 0},
+      {"player": "D.Singletary", "tar": 3, "rec": 2, "yds": 8, "avg": 4.0, "lg": 7, "td": 0},
+      {"player": "J.Hyatt", "tar": 1, "rec": 0, "yds": 0, "avg": 0.0, "lg": 0, "td": 0}
+     ],
+     "interceptions": [],
+     "punting": [{"player": "J.Stout", "no": 6, "yds": 314, "avg": 52.3, "net": 48.8, "tb": 0, "in20": 5, "lg": 62}]
+    }
+   }
+  }
+ ]
+}

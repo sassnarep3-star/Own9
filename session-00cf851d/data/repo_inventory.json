@@ -1,0 +1,151 @@
+{
+ "areas": [
+  {
+   "area": "Root dashboard (generated)",
+   "path": "(repository root)",
+   "files": 30,
+   "verified_against_official_source": null
+  },
+  {
+   "area": "Generator, verifier and helpers",
+   "path": "tools",
+   "files": 9,
+   "verified_against_official_source": null
+  },
+  {
+   "area": "Tests",
+   "path": "tests",
+   "files": 9,
+   "verified_against_official_source": null
+  },
+  {
+   "area": "Engine / registers",
+   "path": "engine",
+   "files": 16,
+   "verified_against_official_source": null
+  },
+  {
+   "area": "Research registers",
+   "path": "research",
+   "files": 28,
+   "verified_against_official_source": null
+  },
+  {
+   "area": "Evidence and source manifest",
+   "path": "evidence",
+   "files": 6,
+   "verified_against_official_source": null
+  },
+  {
+   "area": "Additive site",
+   "path": "site",
+   "files": 23,
+   "verified_against_official_source": null
+  },
+  {
+   "area": "Strict-source lab",
+   "path": "strict-lab",
+   "files": 36,
+   "verified_against_official_source": null
+  },
+  {
+   "area": "Independent research copy",
+   "path": "own9-research",
+   "files": 22,
+   "verified_against_official_source": null
+  },
+  {
+   "area": "Release checks",
+   "path": "release-checks",
+   "files": 15,
+   "verified_against_official_source": null
+  },
+  {
+   "area": "Independent audit (unmerged PR #18)",
+   "path": "independent-audit",
+   "files": 14,
+   "verified_against_official_source": null
+  },
+  {
+   "area": "Prior session subtree",
+   "path": "session-8b05dd6d",
+   "files": 22,
+   "verified_against_official_source": null
+  },
+  {
+   "area": "This session",
+   "path": "session-00cf851d",
+   "files": 37,
+   "verified_against_official_source": null
+  },
+  {
+   "area": "Committed raw data",
+   "path": "data/raw",
+   "files": 4,
+   "verified_against_official_source": null
+  },
+  {
+   "area": "Workflows",
+   "path": ".github/workflows",
+   "files": 2,
+   "verified_against_official_source": null
+  }
+ ],
+ "raw_files": [
+  {
+   "path": "data/raw/games.csv",
+   "bytes": 2188836,
+   "columns": 46,
+   "data_rows": 7548,
+   "sha256": "81a2786fd69546abbd4af6756100cfc6c12e5acbdbac884fe6f50054c02d222f",
+   "header_sample": "game_id, season, game_type, week, gameday, weekday, gametime, away_team, away_score, home_team, home_score, location ...",
+   "contents_verified_against_official_source": false,
+   "note": "Measured locally on 2026-11-14. Not re-checked against an official source: the league publishes no retrievable archive of historical closing prices, so no comparison is possible."
+  },
+  {
+   "path": "data/raw/closing_lines.csv",
+   "bytes": 942229,
+   "columns": 7,
+   "data_rows": 20490,
+   "sha256": "3571e1c9fc8d7396f405fb7c17d43c15676d335ffc932fbb03ff18da691d1729",
+   "header_sample": "game_id, alt_game_id, type, side, line, odds, outcome",
+   "contents_verified_against_official_source": false,
+   "note": "Measured locally on 2026-11-14. Not re-checked against an official source: the league publishes no retrievable archive of historical closing prices, so no comparison is possible."
+  }
+ ],
+ "root_pages": 30,
+ "root_page_names": [
+  "audit.html",
+  "availability-evidence.html",
+  "availability.html",
+  "correlations-official.html",
+  "correlations.html",
+  "data.html",
+  "decision.html",
+  "decisions-questions.html",
+  "depth-correlations.html",
+  "flags.html",
+  "index.html",
+  "injuries.html",
+  "leaderboard.html",
+  "lines.html",
+  "missing-information.html",
+  "origination.html",
+  "price-feed.html",
+  "price-snapshots.html",
+  "question-ledger.html",
+  "questions.html",
+  "replacement-depth.html",
+  "requirements.html",
+  "results-feed.html",
+  "signal-and-staking.html",
+  "signal-staking.html",
+  "sources.html",
+  "strategies.html",
+  "suggestion-costs.html",
+  "suggestions.html",
+  "validation.html"
+ ],
+ "external_href_count_across_root_pages": 1788,
+ "tracked_files": 310
+}

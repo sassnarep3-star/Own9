@@ -1,0 +1,581 @@
+{
+ "register_name": "Official NFL Injury Report, Week 10 of the 2026 season, as read on 2026-11-14",
+ "source_id": "nfl-injuries-w10",
+ "source_url": "https://www.nfl.com/injuries/",
+ "document_title_published": "Official Latest NFL Injury Report for Players - Week 10 of the 2026 Season",
+ "retrieved_utc": "2026-11-14",
+ "retrieved_by": "session 00cf851d",
+ "row_schema": ["player", "position", "injuries", "practice_status", "game_status"],
+ "null_policy": "A null game_status or an empty injuries list means the published cell was blank. A blank cell is not a clearance, a diagnosis or an absence of injury; it is only what the league printed.",
+ "rights_note": "Verification register: the league's published field values for the current week, transcribed so a downstream availability model can be audited against the source. Not a republication of the report and not a licensed historical archive.",
+ "clubs_absent_from_report": ["Denver Broncos", "Chicago Bears", "Philadelphia Eagles", "Tampa Bay Buccaneers"],
+ "clubs_absent_note": "These four clubs appear on the 2026 standings with nine games played but have no table in the Week 10 report. The page publishes no reason. This session records the absence and does not infer a cause.",
+ "games": [
+  {
+   "kickoff_date": "2026-11-12",
+   "kickoff_printed": "THURSDAY, NOVEMBER 12TH",
+   "time": "8:15 PM EST",
+   "network": "Prime Video",
+   "matchup": "WAS at NYG",
+   "clubs": [
+    {
+     "club": "Washington Commanders", "abbr": "WAS", "record_on_page": "3-5-1",
+     "rows": [
+      ["John Bates", "TE", "", "Full Participation in Practice", null],
+      ["Treylon Burks", "WR", "", "Did Not Participate In Practice", null],
+      ["Jayden Daniels", "QB", "", "Full Participation in Practice", null],
+      ["Matt Gulbin", "C", "", "Full Participation in Practice", null],
+      ["Chig Okonkwo", "TE", "", "Full Participation in Practice", null],
+      ["Lucas Patrick", "C", "Concussion", "Did Not Participate In Practice", "Out"],
+      ["Amik Robertson", "CB", "", "Limited Participation in Practice", null],
+      ["Shy Tuttle", "DT", "", "Full Participation in Practice", null],
+      ["Colson Yankoff", "TE", "Knee", "Did Not Participate In Practice", "Out"]
+     ]
+    },
+    {
+     "club": "New York Giants", "abbr": "NYG", "record_on_page": "5-3-1",
+     "rows": [
+      ["Abdul Carter", "LB", "", "Full Participation in Practice", null],
+      ["Jermaine Eluemunor", "T", "", "Full Participation in Practice", null],
+      ["Malik Harrison", "LB", "Groin", "Limited Participation in Practice", "Questionable"],
+      ["Colton Hood", "CB", "", "Full Participation in Practice", null],
+      ["Theo Johnson", "TE", "", "Full Participation in Practice", null],
+      ["Charlie Jones", "WR", "", "Full Participation in Practice", null],
+      ["J.J. McCarthy", "QB", "", "Full Participation in Practice", null],
+      ["Darnell Mooney", "WR", "", "Full Participation in Practice", null],
+      ["Malik Nabers", "WR", "", "Full Participation in Practice", null],
+      ["Cam Skattebo", "RB", "", "Full Participation in Practice", null],
+      ["Andrew Thomas", "T", "", "Full Participation in Practice", null]
+     ]
+    }
+   ]
+  },
+  {
+   "kickoff_date": "2026-11-15",
+   "kickoff_printed": "SUNDAY, NOVEMBER 15TH",
+   "time": "9:30 AM EST",
+   "network": "FOX, FOX DEPORTES",
+   "matchup": "NE at DET (International Game, Munich)",
+   "clubs": [
+    {
+     "club": "New England Patriots", "abbr": "NE", "record_on_page": "5-4",
+     "rows": [
+      ["Ben Brown", "C", "Knee", "Did Not Participate In Practice", "Out"],
+      ["A.J. Brown", "WR", "Ankle, Knee", "Limited Participation in Practice", "Questionable"],
+      ["Kevin Byard", "S", "Chest", "Full Participation in Practice", "Questionable"],
+      ["Carlton Davis III", "CB", "Knee", "Did Not Participate In Practice", "Out"],
+      ["Reggie Gilliam", "FB", "Knee", "Limited Participation in Practice", "Questionable"],
+      ["TreVeyon Henderson", "RB", "Illness", "Did Not Participate In Practice", "Out"],
+      ["Hunter Henry", "TE", "", "Limited Participation in Practice", null],
+      ["Cameron Latu", "TE", "Back", "Limited Participation in Practice", "Questionable"],
+      ["Drake Maye", "QB", "", "Full Participation in Practice", null],
+      ["Morgan Moses", "T", "", "Full Participation in Practice", null],
+      ["Walter Rouse", "T", "Concussion", "Limited Participation in Practice", "Questionable"],
+      ["Brenden Schooler", "S", "Hamstring", "Limited Participation in Practice", "Questionable"],
+      ["Rhamondre Stevenson", "RB", "Knee", "Limited Participation in Practice", "Questionable"],
+      ["Greg Van Roten", "G", "Hamstring", "Full Participation in Practice", "Questionable"],
+      ["Charles Woods", "CB", "Hamstring", "Full Participation in Practice", "Questionable"]
+     ]
+    },
+    {
+     "club": "Detroit Lions", "abbr": "DET", "record_on_page": "6-2",
+     "rows": [
+      ["Brian Branch", "S", "", "Full Participation in Practice", null],
+      ["Jared Goff", "QB", "", "Full Participation in Practice", null],
+      ["Kerby Joseph", "S", "Knee", "Did Not Participate In Practice", "Out"],
+      ["Cade Mays", "C", "Ankle", "Did Not Participate In Practice", "Out"],
+      ["D.J. Reed", "CB", "Hip", "Did Not Participate In Practice", "Out"],
+      ["Jacob Saylors", "RB", "", "Full Participation in Practice", null],
+      ["Amon-Ra St. Brown", "WR", "Rib", "Limited Participation in Practice", "Questionable"],
+      ["Sione Vaki", "RB", "Ankle", "Limited Participation in Practice", "Questionable"],
+      ["DJ Wonnum", "DE", "", "Full Participation in Practice", null]
+     ]
+    }
+   ]
+  },
+  {
+   "kickoff_date": "2026-11-15", "time": "1:00 PM EST", "network": "CBS", "matchup": "KC at ATL",
+   "clubs": [
+    {
+     "club": "Kansas City Chiefs", "abbr": "KC", "record_on_page": "6-2",
+     "rows": [
+      ["Jeffrey Bassa", "LB", "", "Full Participation in Practice", null],
+      ["Mansoor Delane", "CB", "Shoulder", "Full Participation in Practice", "Questionable"],
+      ["Justin Fields", "QB", "", "Full Participation in Practice", null],
+      ["Jaden Hicks", "S", "", "Full Participation in Practice", null],
+      ["Travis Kelce", "TE", "", "Full Participation in Practice", null],
+      ["Patrick Mahomes", "QB", "", "Full Participation in Practice", null],
+      ["Jaylon Moore", "T", "Ankle", "Did Not Participate In Practice", "Out"],
+      ["Omarr Norman-Lott", "DT", "Knee", "Limited Participation in Practice", "Out"],
+      ["Jaydn Ott", "RB", "Hamstring", "Limited Participation in Practice", "Questionable"],
+      ["Rashee Rice", "WR", "", "Full Participation in Practice", null],
+      ["Kenneth Walker III", "RB", "Groin", "Did Not Participate In Practice", "Questionable"],
+      ["Peter Woods", "DT", "Neck", "Did Not Participate In Practice", "Out"],
+      ["Xavier Worthy", "WR", "", "Full Participation in Practice", null]
+     ]
+    },
+    {
+     "club": "Atlanta Falcons", "abbr": "ATL", "record_on_page": "3-6",
+     "rows": [
+      ["Zachariah Branch", "WR", "Hamstring", "Did Not Participate In Practice", "Out"],
+      ["Kendal Daniels", "LB", "", "Full Participation in Practice", null],
+      ["Divine Deablo", "LB", "Forearm", "Did Not Participate In Practice", "Doubtful"],
+      ["Gervon Dexter Sr.", "DT", "Illness", "Limited Participation in Practice", "Questionable"],
+      ["Jake Matthews", "T", "", "Limited Participation in Practice", null],
+      ["Liam McCullough", "LS", "", "Did Not Participate In Practice", null],
+      ["James Pearce Jr.", "DE", "Back", "Limited Participation in Practice", "Questionable"],
+      ["Za'Darius Smith", "DE", "", "Full Participation in Practice", null],
+      ["Jawaan Taylor", "T", "", "Limited Participation in Practice", null],
+      ["Cameron Thomas", "DE", "", "Full Participation in Practice", null],
+      ["Josh Woods", "LB", "Ankle", "Full Participation in Practice", "Questionable"]
+     ]
+    }
+   ]
+  },
+  {
+   "kickoff_date": "2026-11-15", "time": "1:00 PM EST", "network": "FOX", "matchup": "MIN at GB",
+   "clubs": [
+    {
+     "club": "Minnesota Vikings", "abbr": "MIN", "record_on_page": "6-2",
+     "rows": [
+      ["Jordan Addison", "WR", "Thumb", "Limited Participation in Practice", "Questionable"],
+      ["Blake Cashman", "LB", "Concussion", "Limited Participation in Practice", "Out"],
+      ["Christian Darrisaw", "T", "", "Did Not Participate In Practice", null],
+      ["T.J. Hockenson", "TE", "Wrist, Chest", "Did Not Participate In Practice", "Out"],
+      ["Tyrion Ingram-Dawkins", "DT", "Ankle", "Did Not Participate In Practice", "Out"],
+      ["Theo Jackson", "S", "", "Full Participation in Practice", null],
+      ["Jauan Jennings", "WR", "Calf", "Did Not Participate In Practice", "Out"],
+      ["Josh Metellus", "S", "Shoulder", "Limited Participation in Practice", "Questionable"],
+      ["Kyler Murray", "QB", "Hamstring", "Did Not Participate In Practice", "Out"],
+      ["Harrison Smith", "S", "", "Limited Participation in Practice", null],
+      ["Kyle Van Noy", "LB", "Calf", "Limited Participation in Practice", "Questionable"],
+      ["Jay Ward", "S", "", "Full Participation in Practice", null],
+      ["Carson Wentz", "QB", "", "Full Participation in Practice", null]
+     ]
+    },
+    {
+     "club": "Green Bay Packers", "abbr": "GB", "record_on_page": "6-3",
+     "rows": [
+      ["Aaron Banks", "G", "", "Limited Participation in Practice", null],
+      ["Chris Brooks", "RB", "Ankle", "Limited Participation in Practice", "Questionable"],
+      ["Javon Bullard", "S", "Ankle, Knee", "Limited Participation in Practice", "Questionable"],
+      ["Zaire Franklin", "LB", "Shin", "Did Not Participate In Practice", "Doubtful"],
+      ["Travis Glover", "G", "Knee", "Limited Participation in Practice", "Questionable"],
+      ["Ty'Ron Hopper", "LB", "", "Full Participation in Practice", null],
+      ["Josh Jacobs", "RB", "Finger", "Did Not Participate In Practice", "Out"],
+      ["Xavier McKinney", "S", "Foot", "Limited Participation in Practice", "Questionable"],
+      ["Bo Melton", "WR", "", "Full Participation in Practice", null],
+      ["Skyy Moore", "WR", "Ankle", "Limited Participation in Practice", "Questionable"],
+      ["Micah Parsons", "LB", "Knee, Illness", "Limited Participation in Practice", "Out"],
+      ["Sean Rhyan", "C", "Ankle", "Did Not Participate In Practice", "Out"],
+      ["Trey Smack", "K", "", "Full Participation in Practice", null],
+      ["Lukas Van Ness", "LB", "Back", "Limited Participation in Practice", "Questionable"],
+      ["Josh Whyle", "TE", "Concussion", "Did Not Participate In Practice", "Out"],
+      ["Savion Williams", "WR", "", "Limited Participation in Practice", null],
+      ["Kevin Zeitler", "G", "Ankle, Triceps", "Did Not Participate In Practice", "Questionable"]
+     ]
+    }
+   ]
+  },
+  {
+   "kickoff_date": "2026-11-15", "time": "1:00 PM EST", "network": "FOX", "matchup": "JAX at TEN",
+   "clubs": [
+    {
+     "club": "Jacksonville Jaguars", "abbr": "JAX", "record_on_page": "6-2",
+     "rows": [
+      ["Jessie Bates", "S", "Not injury related - resting player", "Limited Participation in Practice", "Out"],
+      ["Ezra Cleveland", "G", "", "Full Participation in Practice", null],
+      ["Branson Combs", "LB", "", "Full Participation in Practice", null],
+      ["Jordan Davis", "DT", "Not injury related - resting player", "Limited Participation in Practice", "Out"],
+      ["BJ Green II", "DE", "Forearm", "Full Participation in Practice", "Out"],
+      ["Robert Hainsey", "C", "Concussion", "Limited Participation in Practice", "Questionable"],
+      ["Antonio Johnson", "S", "", "Limited Participation in Practice", null],
+      ["Jakobi Meyers", "WR", "", "Limited Participation in Practice", null],
+      ["Chris Rodriguez Jr.", "RB", "", "Limited Participation in Practice", null],
+      ["Bhayshul Tuten", "RB", "", "Limited Participation in Practice", null],
+      ["Travon Walker", "DE", "", "Limited Participation in Practice", null]
+     ]
+    },
+    {
+     "club": "Tennessee Titans", "abbr": "TEN", "record_on_page": "1-7",
+     "rows": [
+      ["Cody Barton", "LB", "Concussion", "Did Not Participate In Practice", "Out"],
+      ["John Franklin-Myers", "DE", "", "Full Participation in Practice", null],
+      ["Marcus Harris", "CB", "", "Full Participation in Practice", null],
+      ["Anthony Hill Jr.", "LB", "Neck", "Did Not Participate In Practice", "Out"],
+      ["Jaylon Jones", "CB", "", "Full Participation in Practice", null],
+      ["JC Latham", "T", "", "Full Participation in Practice", null],
+      ["Tony Pollard", "RB", "", "Full Participation in Practice", null],
+      ["Peter Skoronski", "G", "Hamstring", "Did Not Participate In Practice", "Out"],
+      ["Tyjae Spears", "RB", "Knee", "Full Participation in Practice", "Questionable"],
+      ["Carnell Tate", "WR", "Shoulder", "Did Not Participate In Practice", "Out"],
+      ["Tommy Townsend", "P", "Knee, Achilles", "Did Not Participate In Practice", "Out"],
+      ["Kevin Winston Jr.", "S", "", "Full Participation in Practice", null]
+     ]
+    }
+   ]
+  },
+  {
+   "kickoff_date": "2026-11-15", "time": "1:00 PM EST", "network": "CBS", "matchup": "BUF at NYJ",
+   "clubs": [
+    {
+     "club": "Buffalo Bills", "abbr": "BUF", "record_on_page": "7-1",
+     "rows": [
+      ["Alec Anderson", "G", "", "Full Participation in Practice", null],
+      ["Christian Benford", "CB", "Wrist", "Full Participation in Practice", "Questionable"],
+      ["Terrel Bernard", "LB", "", "Did Not Participate In Practice", null],
+      ["Spencer Brown", "T", "Ankle", "Did Not Participate In Practice", "Doubtful"],
+      ["Dion Dawkins", "T", "", "Full Participation in Practice", null],
+      ["Sam Franklin Jr.", "S", "Shoulder", "Limited Participation in Practice", "Questionable"],
+      ["Greg Gaines", "DT", "", "Full Participation in Practice", null],
+      ["Jordan Hancock", "CB", "Hamstring", "Full Participation in Practice", "Questionable"],
+      ["Dalton Kincaid", "TE", "", "Full Participation in Practice", null],
+      ["Connor McGovern", "C", "", "Full Participation in Practice", null],
+      ["Ed Oliver", "DE", "", "Did Not Participate In Practice", null],
+      ["Ar'maj Reed-Adams", "G", "", "Full Participation in Practice", null],
+      ["T.J. Sanders", "DE", "", "Full Participation in Practice", null],
+      ["Tyrell Shavers", "WR", "Knee", "Full Participation in Practice", "Questionable"]
+     ]
+    },
+    {
+     "club": "New York Jets", "abbr": "NYJ", "record_on_page": "2-7",
+     "rows": [
+      ["Jarvis Brownlee Jr.", "CB", "Illness", "Limited Participation in Practice", "Questionable"],
+      ["Omar Cooper Jr.", "WR", "Ankle", "Full Participation in Practice", "Questionable"],
+      ["Adonai Mitchell", "WR", "Knee", "Full Participation in Practice", "Questionable"],
+      ["Joseph Ossai", "DE", "Ankle", "Full Participation in Practice", "Questionable"],
+      ["VJ Payne", "S", "Knee", "Full Participation in Practice", "Questionable"],
+      ["Harrison Phillips", "DT", "Ankle", "Full Participation in Practice", "Questionable"],
+      ["Trevin Wallace", "LB", "Groin", "Did Not Participate In Practice", "Out"],
+      ["Garrett Wilson", "WR", "Concussion", "Full Participation in Practice", "Questionable"],
+      ["Nahshon Wright", "CB", "Back", "Full Participation in Practice", "Questionable"]
+     ]
+    }
+   ]
+  },
+  {
+   "kickoff_date": "2026-11-15", "time": "1:00 PM EST", "network": "CBS", "matchup": "MIA at IND",
+   "clubs": [
+    {
+     "club": "Miami Dolphins", "abbr": "MIA", "record_on_page": "1-7",
+     "rows": [
+      ["Tucker Addington", "LS", "", "Limited Participation in Practice", null],
+      ["Kaytron Allen", "RB", "", "Full Participation in Practice", null],
+      ["Darrell Baker Jr.", "CB", "Knee", "Full Participation in Practice", "Questionable"],
+      ["Chris Bell", "WR", "Knee", "Did Not Participate In Practice", "Doubtful"],
+      ["Aaron Brewer", "C", "Concussion", "Did Not Participate In Practice", "Out"],
+      ["Malik Herring", "DE", "", "Full Participation in Practice", null],
+      ["Will Kacmarek", "TE", "", "Full Participation in Practice", null],
+      ["Michael Taaffe", "S", "", "Full Participation in Practice", null],
+      ["Dante Trader Jr.", "S", "", "Full Participation in Practice", null],
+      ["Jared Wayne", "WR", "Quadricep", "Did Not Participate In Practice", "Out"],
+      ["Jaylen Wright", "RB", "", "Full Participation in Practice", null]
+     ]
+    },
+    {
+     "club": "Indianapolis Colts", "abbr": "IND", "record_on_page": "2-7",
+     "rows": [
+      ["Mo Alie-Cox", "TE", "Groin", "Did Not Participate In Practice", "Out"],
+      ["CJ Allen", "LB", "", "Full Participation in Practice", null],
+      ["Jaylon Carlies", "LB", "Neck", "Did Not Participate In Practice", "Out"],
+      ["Akeem Davis-Gaither", "LB", "Knee", "Did Not Participate In Practice", "Out"],
+      ["A.J. Haulcy", "S", "", "Full Participation in Practice", null],
+      ["Arden Key", "DE", "Hamstring", "Full Participation in Practice", "Questionable"],
+      ["Will Mallory", "TE", "Hamstring", "Limited Participation in Practice", "Questionable"],
+      ["Luke Rhodes", "LS", "Hamstring", "Did Not Participate In Practice", "Out"],
+      ["Grover Stewart", "DT", "", "Full Participation in Practice", null],
+      ["Jonathan Taylor", "RB", "", "Full Participation in Practice", null],
+      ["Jerry Tillery", "DT", "Calf", "Did Not Participate In Practice", "Out"],
+      ["Jalen Travis", "T", "Knee", "Did Not Participate In Practice", "Out"],
+      ["Justin Walley", "CB", "", "Full Participation in Practice", null],
+      ["Charvarius Ward", "CB", "", "Full Participation in Practice", null]
+     ]
+    }
+   ]
+  },
+  {
+   "kickoff_date": "2026-11-15", "time": "1:00 PM EST", "network": "FOX", "matchup": "CAR at NO",
+   "clubs": [
+    {
+     "club": "Carolina Panthers", "abbr": "CAR", "record_on_page": "3-5",
+     "rows": [
+      ["Jonathon Brooks", "RB", "Groin", "Limited Participation in Practice", "Doubtful"],
+      ["Brady Christensen", "G", "Hamstring", "Full Participation in Practice", "Questionable"],
+      ["Trevor Etienne", "RB", "", "Full Participation in Practice", null],
+      ["Chuba Hubbard", "RB", "", "Full Participation in Practice", null],
+      ["Lee Hunter", "DT", "", "Full Participation in Practice", null],
+      ["Mike Jackson", "CB", "Groin", "Limited Participation in Practice", "Doubtful"],
+      ["Will Lee III", "CB", "Hamstring", "Limited Participation in Practice", "Questionable"],
+      ["Xavier Legette", "WR", "Knee", "Full Participation in Practice", "Questionable"],
+      ["Damien Lewis", "G", "", "Full Participation in Practice", null],
+      ["Bobby Okereke", "LB", "Foot", "Did Not Participate In Practice", "Out"],
+      ["Jaelan Phillips", "LB", "Hamstring", "Full Participation in Practice", "Questionable"],
+      ["Torricelli Simpkins III", "G", "", "Full Participation in Practice", null]
+     ]
+    },
+    {
+     "club": "New Orleans Saints", "abbr": "NO", "record_on_page": "3-5",
+     "rows": [
+      ["Kelvin Banks Jr.", "T", "", "Full Participation in Practice", null],
+      ["CJ Donaldson", "RB", "Shoulder", "Did Not Participate In Practice", "Out"],
+      ["David Edwards", "G", "", "Full Participation in Practice", null],
+      ["Martin Emerson", "CB", "Shin", "Limited Participation in Practice", "Questionable"],
+      ["Travis Etienne", "RB", "Hamstring", "Full Participation in Practice", "Questionable"],
+      ["Noah Fant", "TE", "", "Full Participation in Practice", null],
+      ["Taliese Fuaga", "T", "Knee", "Did Not Participate In Practice", "Out"],
+      ["Alvin Kamara", "RB", "", "Full Participation in Practice", null],
+      ["Erik McCoy", "C", "Biceps", "Did Not Participate In Practice", "Out"],
+      ["Christen Miller", "DT", "Knee", "Did Not Participate In Practice", "Out"],
+      ["Asim Richards", "T", "", "Full Participation in Practice", null],
+      ["Quincy Riley", "CB", "", "Full Participation in Practice", null]
+     ]
+    }
+   ]
+  },
+  {
+   "kickoff_date": "2026-11-15", "time": "1:00 PM EST", "network": "FOX", "matchup": "HOU at CLE",
+   "clubs": [
+    {
+     "club": "Houston Texans", "abbr": "HOU", "record_on_page": "3-5",
+     "rows": [
+      ["Azeez Al-Shaair", "LB", "Groin, Not injury related - personal matter", "Did Not Participate In Practice", "Out"],
+      ["Will Anderson Jr.", "DE", "Ankle", "Did Not Participate In Practice", "Questionable"],
+      ["Reed Blankenship", "S", "", "Full Participation in Practice", null],
+      ["Trent Brown", "T", "Wrist, Illness", "Did Not Participate In Practice", "Questionable"],
+      ["Tank Dell", "WR", "", "Full Participation in Practice", null],
+      ["Blake Fisher", "T", "", "Full Participation in Practice", null],
+      ["Marvin Harrison Jr.", "WR", "Hamstring", "Did Not Participate In Practice", "Out"],
+      ["Jacob Hummel", "LB", "Groin", "Full Participation in Practice", "Questionable"],
+      ["Danielle Hunter", "DE", "Hamstring", "Did Not Participate In Practice", "Out"],
+      ["Brevin Jordan", "TE", "Finger, Foot", "Did Not Participate In Practice", "Out"],
+      ["Woody Marks", "RB", "", "Full Participation in Practice", null],
+      ["David Montgomery", "RB", "Groin", "Full Participation in Practice", "Questionable"],
+      ["Keylan Rutledge", "G", "Neck, Shoulder", "Did Not Participate In Practice", "Out"],
+      ["Jaylin Smith", "CB", "Hamstring", "Full Participation in Practice", "Questionable"],
+      ["Wyatt Teller", "G", "Illness, Back", "Limited Participation in Practice", "Questionable"],
+      ["Tommy Togiai", "DT", "", "Full Participation in Practice", null]
+     ]
+    },
+    {
+     "club": "Cleveland Browns", "abbr": "CLE", "record_on_page": "5-4",
+     "rows": [
+      ["Austin Barber", "T", "", "Full Participation in Practice", null],
+      ["Denzel Boston", "WR", "Toe", "Limited Participation in Practice", "Questionable"],
+      ["Michael Burton", "FB", "Calf", "Did Not Participate In Practice", "Out"],
+      ["Maliek Collins", "DT", "", "Full Participation in Practice", null],
+      ["Harold Fannin Jr.", "TE", "", "Full Participation in Practice", null],
+      ["Ronnie Hickman Jr.", "S", "Concussion", "Did Not Participate In Practice", "Out"],
+      ["Tytus Howard", "T", "", "Full Participation in Practice", null],
+      ["Elgton Jenkins", "C", "", "Full Participation in Practice", null],
+      ["Donovan McMillon", "S", "", "Limited Participation in Practice", null],
+      ["Carson Schwesinger", "LB", "", "Full Participation in Practice", null],
+      ["Denzel Ward", "CB", "", "Limited Participation in Practice", null],
+      ["Quincy Williams", "LB", "", "Full Participation in Practice", null]
+     ]
+    }
+   ]
+  },
+  {
+   "kickoff_date": "2026-11-15", "time": "4:05 PM EST", "network": "CBS", "matchup": "LAR at AZ",
+   "clubs": [
+    {
+     "club": "Los Angeles Rams", "abbr": "LAR", "record_on_page": "5-4",
+     "rows": [
+      ["Davis Allen", "TE", "Oblique", "Limited Participation in Practice", "Questionable"],
+      ["Steve Avila", "G", "Hamstring", "Did Not Participate In Practice", "Out"],
+      ["Joe Cardona", "LS", "Ankle", "Limited Participation in Practice", "Questionable"],
+      ["Kam Curl", "S", "Toe", "Limited Participation in Practice", "Questionable"],
+      ["Aaron Donald", "DT", "", "Did Not Participate In Practice", null],
+      ["Terrance Ferguson", "TE", "Ankle, Hamstring", "Did Not Participate In Practice", "Out"],
+      ["Braden Fiske", "DT", "", "Did Not Participate In Practice", null],
+      ["Myles Garrett", "LB", "Knee, Not injury related - resting player", "Did Not Participate In Practice", "Questionable"],
+      ["Tyler Higbee", "TE", "", "Limited Participation in Practice", null],
+      ["Trent McDuffie", "CB", "Back", "Limited Participation in Practice", "Questionable"],
+      ["Puka Nacua", "WR", "", "Did Not Participate In Practice", null],
+      ["Colby Parkinson", "TE", "", "Full Participation in Practice", null],
+      ["Matthew Stafford", "QB", "", "Full Participation in Practice", null],
+      ["Byron Young", "LB", "", "Did Not Participate In Practice", null]
+     ]
+    },
+    {
+     "club": "Arizona Cardinals", "abbr": "AZ", "record_on_page": "3-6",
+     "rows": [
+      ["Budda Baker", "S", "", "Full Participation in Practice", null],
+      ["Zachary Carter", "DT", "Knee", "Limited Participation in Practice", "Out"],
+      ["Hjalte Froholdt", "C", "Concussion", "Did Not Participate In Practice", "Out"],
+      ["Jon Gaines II", "G", "Ankle", "Did Not Participate In Practice", "Out"],
+      ["Bam Knight", "RB", "", "Full Participation in Practice", null],
+      ["Hunter Long", "TE", "Knee", "Limited Participation in Practice", "Questionable"],
+      ["Roy Lopez", "DT", "Toe, Ankle", "Limited Participation in Practice", "Questionable"],
+      ["Max Melton", "CB", "Knee, Hand", "Limited Participation in Practice", "Questionable"],
+      ["Darius Robinson", "DT", "Wrist", "Limited Participation in Practice", "Questionable"],
+      ["Isaac Seumalo", "G", "", "Full Participation in Practice", null],
+      ["Dante Stills", "DT", "", "Full Participation in Practice", null],
+      ["Josh Sweat", "LB", "", "Full Participation in Practice", null],
+      ["Jayden Williams", "T", "Knee", "Limited Participation in Practice", "Questionable"],
+      ["Mack Wilson", "LB", "", "Full Participation in Practice", null],
+      ["Andrew Wingard", "S", "Groin", "Did Not Participate In Practice", "Questionable"]
+     ]
+    }
+   ]
+  },
+  {
+   "kickoff_date": "2026-11-15", "time": "4:05 PM EST", "network": "CBS", "matchup": "SEA at LV",
+   "clubs": [
+    {
+     "club": "Seattle Seahawks", "abbr": "SEA", "record_on_page": "5-4",
+     "rows": [
+      ["AJ Barner", "TE", "", "Full Participation in Practice", null],
+      ["Anthony Bradford", "G", "", "Full Participation in Practice", null],
+      ["Charles Cross", "T", "Ankle", "Did Not Participate In Practice", "Out"],
+      ["Sam Darnold", "QB", "Ribs, Quadricep", "Did Not Participate In Practice", "Out"],
+      ["Derick Hall", "LB", "", "Did Not Participate In Practice", null],
+      ["Drew Lock", "QB", "", "Limited Participation in Practice", null],
+      ["Quenton Nelson", "G", "Knee", "Did Not Participate In Practice", "Out"],
+      ["Uchenna Nwosu", "LB", "", "Full Participation in Practice", null],
+      ["Patrick O'Connell", "LB", "", "Full Participation in Practice", null],
+      ["Connor O'Toole", "LB", "", "Full Participation in Practice", null],
+      ["Brandon Pili", "DT", "", "Full Participation in Practice", null],
+      ["Jarran Reed", "DT", "", "Full Participation in Practice", null],
+      ["Rashid Shaheed", "WR", "", "Full Participation in Practice", null],
+      ["Jaxon Smith-Njigba", "WR", "", "Full Participation in Practice", null],
+      ["Leonard Williams", "DT", "Stinger", "Did Not Participate In Practice", "Out"]
+     ]
+    },
+    {
+     "club": "Las Vegas Raiders", "abbr": "LV", "record_on_page": "4-5",
+     "rows": [
+      ["Thomas Booker", "DT", "Ankle", "Full Participation in Practice", "Questionable"],
+      ["Foley Fatukasi", "DT", "", "Full Participation in Practice", null],
+      ["Ian Thomas", "TE", "", "Full Participation in Practice", null],
+      ["Dont'e Thornton Jr.", "WR", "Back", "Did Not Participate In Practice", "Questionable"],
+      ["Trey Zuhn III", "C", "", "Full Participation in Practice", null]
+     ]
+    }
+   ]
+  },
+  {
+   "kickoff_date": "2026-11-15", "time": "4:25 PM EST", "network": "FOX, FOX DEPORTES", "matchup": "SF at DAL",
+   "clubs": [
+    {
+     "club": "San Francisco 49ers", "abbr": "SF", "record_on_page": "7-1",
+     "rows": [
+      ["Mike Evans", "WR", "Achilles", "Did Not Participate In Practice", "Out"],
+      ["Renardo Green", "CB", "Back", "Limited Participation in Practice", "Questionable"],
+      ["Dre Greenlaw", "LB", "Knee", "Limited Participation in Practice", "Questionable"],
+      ["Nate Hobbs", "CB", "Groin", "Full Participation in Practice", "Questionable"],
+      ["Deommodore Lenoir", "CB", "Foot", "Limited Participation in Practice", "Questionable"],
+      ["Christian McCaffrey", "RB", "", "Full Participation in Practice", null],
+      ["Siran Neal", "S", "", "Full Participation in Practice", null],
+      ["Demarcus Robinson", "WR", "", "Full Participation in Practice", null],
+      ["Deebo Samuel Sr.", "WR", "", "Full Participation in Practice", null],
+      ["Upton Stout", "CB", "Shoulder, Neck", "Limited Participation in Practice", "Questionable"],
+      ["C.J. West", "DT", "Knee", "Full Participation in Practice", "Questionable"],
+      ["Trent Williams", "T", "Shoulder", "Did Not Participate In Practice", "Questionable"]
+     ]
+    },
+    {
+     "club": "Dallas Cowboys", "abbr": "DAL", "record_on_page": "4-5",
+     "rows": [
+      ["DaRon Bland", "CB", "Ankle", "Limited Participation in Practice", "Questionable"],
+      ["Jonathan Bullard", "DT", "Calf", "Full Participation in Practice", "Questionable"],
+      ["Alijah Clark", "S", "Illness", "Did Not Participate In Practice", "Questionable"],
+      ["Donovan Ezeiruaku", "LB", "Ankle", "Did Not Participate In Practice", "Out"],
+      ["Jake Ferguson", "TE", "Knee, Ankle", "Did Not Participate In Practice", "Out"],
+      ["Tyler Goodson", "RB", "Ankle, Knee", "Did Not Participate In Practice", "Out"],
+      ["Malik Hooker", "S", "", "Did Not Participate In Practice", null],
+      ["Marist Liufau", "LB", "", "Full Participation in Practice", null],
+      ["P.J. Locke", "S", "Concussion", "Did Not Participate In Practice", "Out"],
+      ["Von Miller", "LB", "", "Did Not Participate In Practice", null],
+      ["Jonathan Mingo", "WR", "Ankle", "Did Not Participate In Practice", "Out"],
+      ["Devin Moore", "CB", "Hip", "Full Participation in Practice", "Questionable"],
+      ["DeMarvion Overshown", "LB", "", "Full Participation in Practice", null],
+      ["George Pickens", "WR", "", "Full Participation in Practice", null],
+      ["Joey Porter Jr.", "CB", "Ankle, Foot", "Limited Participation in Practice", "Questionable"],
+      ["Luke Schoonmaker", "TE", "", "Full Participation in Practice", null],
+      ["Brevyn Spann-Ford", "TE", "", "Full Participation in Practice", null],
+      ["Juanyeh Thomas", "S", "Hamstring", "Did Not Participate In Practice", "Doubtful"],
+      ["KaVontae Turpin", "WR", "", "Full Participation in Practice", null]
+     ]
+    }
+   ]
+  },
+  {
+   "kickoff_date": "2026-11-15", "time": "8:20 PM EST", "network": "NBC, UNIVERSO", "matchup": "PIT at CIN",
+   "clubs": [
+    {
+     "club": "Pittsburgh Steelers", "abbr": "PIT", "record_on_page": "6-2",
+     "rows": [
+      ["Brandin Echols", "CB", "", "Full Participation in Practice", null],
+      ["DeShon Elliott", "S", "", "Full Participation in Practice", null],
+      ["Derrick Harmon", "DT", "Foot", "Full Participation in Practice", "Questionable"],
+      ["Cameron Heyward", "DT", "", "Full Participation in Practice", null],
+      ["Ben Skowronek", "WR", "", "Full Participation in Practice", null],
+      ["Doneiko Slaughter", "CB", "", "Full Participation in Practice", null],
+      ["Darnell Washington", "TE", "", "Full Participation in Practice", null],
+      ["T.J. Watt", "LB", "", "Full Participation in Practice", null]
+     ]
+    },
+    {
+     "club": "Cincinnati Bengals", "abbr": "CIN", "record_on_page": "6-2",
+     "rows": [
+      ["Jonathan Allen", "DT", "", "Limited Participation in Practice", null],
+      ["Jalen Davis", "CB", "Hamstring", "Full Participation in Practice", "Doubtful"],
+      ["Kyle Dugger", "S", "Quadricep", "Did Not Participate In Practice", "Out"],
+      ["Dylan Fairchild", "G", "", "Full Participation in Practice", null],
+      ["B.J. Hill", "DT", "", "Did Not Participate In Practice", null],
+      ["Andrei Iosivas", "WR", "Thumb", "Full Participation in Practice", "Doubtful"],
+      ["Dexter Lawrence", "DT", "", "Did Not Participate In Practice", null],
+      ["Brian Parker II", "G", "Knee", "Full Participation in Practice", "Doubtful"],
+      ["DJ Turner II", "CB", "", "Full Participation in Practice", null]
+     ]
+    }
+   ]
+  },
+  {
+   "kickoff_date": "2026-11-16", "kickoff_printed": "MONDAY, NOVEMBER 16TH", "time": "8:15 PM EST",
+   "network": "ESPN, ABC, ESPN2, ESPN DEPORTES", "matchup": "LAC at BAL",
+   "clubs": [
+    {
+     "club": "Los Angeles Chargers", "abbr": "LAC", "record_on_page": "0-8",
+     "rows": [
+      ["Kayode Awosika", "G", "", "Limited Participation in Practice", null],
+      ["Bud Dupree", "DE", "", "Did Not Participate In Practice", null],
+      ["Justin Eboigbe", "DE", "", "Limited Participation in Practice", null],
+      ["Alex Harkey", "G", "", "Full Participation in Practice", null],
+      ["Tre Harris", "WR", "", "Full Participation in Practice", null],
+      ["Cam Hart", "CB", "", "Full Participation in Practice", null],
+      ["Daiyan Henley", "LB", "", "Full Participation in Practice", null],
+      ["Deane Leonard", "CB", "", "Full Participation in Practice", null],
+      ["Khalil Mack", "LB", "", "Full Participation in Practice", null],
+      ["Ladd McConkey", "WR", "", "Did Not Participate In Practice", null],
+      ["Keaton Mitchell", "RB", "", "Limited Participation in Practice", null],
+      ["David Njoku", "TE", "", "Limited Participation in Practice", null],
+      ["Denzel Perryman", "LB", "", "Full Participation in Practice", null],
+      ["Trey Pipkins", "T", "", "Did Not Participate In Practice", null],
+      ["Rodney Shelley", "CB", "", "Limited Participation in Practice", null],
+      ["Branson Taylor", "G", "", "Did Not Participate In Practice", null],
+      ["Brenen Thompson", "WR", "", "Did Not Participate In Practice", null],
+      ["Isas Waxter", "CB", "", "Did Not Participate In Practice", null],
+      ["Kendall Williamson", "S", "", "Did Not Participate In Practice", null]
+     ]
+    },
+    {
+     "club": "Baltimore Ravens", "abbr": "BAL", "record_on_page": "4-5",
+     "rows": [
+      ["Rasheen Ali", "RB", "", "Full Participation in Practice", null],
+      ["Rashod Bateman", "WR", "", "Full Participation in Practice", null],
+      ["Calais Campbell", "DT", "", "Did Not Participate In Practice", null],
+      ["Kyle Hamilton", "S", "", "Full Participation in Practice", null],
+      ["Jaylinn Hawkins", "S", "Knee", "Limited Participation in Practice", "Out"],
+      ["Matthew Hibner", "TE", "", "Full Participation in Practice", null],
+      ["Olaivavega Ioane", "G", "", "Full Participation in Practice", null],
+      ["Adam Randall", "RB", "Neck, Hamstring", "Full Participation in Practice", "Questionable"],
+      ["Ronnie Stanley", "T", "", "Did Not Participate In Practice", null],
+      ["Nate Wiggins", "CB", "", "Full Participation in Practice", null]
+     ]
+    }
+   ]
+  }
+ ]
+}
