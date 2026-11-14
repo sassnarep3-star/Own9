@@ -3,25 +3,25 @@
   {
    "area": "Root dashboard (generated)",
    "path": "(repository root)",
-   "files": 30,
+   "files": 39,
    "verified_against_official_source": null
   },
   {
    "area": "Generator, verifier and helpers",
    "path": "tools",
-   "files": 9,
+   "files": 12,
    "verified_against_official_source": null
   },
   {
    "area": "Tests",
    "path": "tests",
-   "files": 9,
+   "files": 11,
    "verified_against_official_source": null
   },
   {
    "area": "Engine / registers",
    "path": "engine",
-   "files": 16,
+   "files": 18,
    "verified_against_official_source": null
   },
   {
@@ -33,7 +33,7 @@
   {
    "area": "Evidence and source manifest",
    "path": "evidence",
-   "files": 6,
+   "files": 9,
    "verified_against_official_source": null
   },
   {
@@ -87,7 +87,7 @@
   {
    "area": "Workflows",
    "path": ".github/workflows",
-   "files": 2,
+   "files": 3,
    "verified_against_official_source": null
   }
  ],
@@ -113,7 +113,7 @@
    "note": "Measured locally on 2026-11-14. Not re-checked against an official source: the league publishes no retrievable archive of historical closing prices, so no comparison is possible."
   }
  ],
- "root_pages": 30,
+ "root_pages": 39,
  "root_page_names": [
   "audit.html",
   "availability-evidence.html",
@@ -123,29 +123,38 @@
   "data.html",
   "decision.html",
   "decisions-questions.html",
+  "demotion.html",
+  "dependence.html",
   "depth-correlations.html",
+  "depth-of-replacement.html",
   "flags.html",
   "index.html",
   "injuries.html",
   "leaderboard.html",
   "lines.html",
+  "markets.html",
   "missing-information.html",
+  "origination-engine.html",
   "origination.html",
   "price-feed.html",
   "price-snapshots.html",
   "question-ledger.html",
   "questions.html",
+  "replacement-chains.html",
   "replacement-depth.html",
+  "requirements-coverage.html",
   "requirements.html",
   "results-feed.html",
+  "results.html",
   "signal-and-staking.html",
   "signal-staking.html",
+  "signal-vs-staking.html",
   "sources.html",
   "strategies.html",
   "suggestion-costs.html",
   "suggestions.html",
   "validation.html"
  ],
- "external_href_count_across_root_pages": 1788,
- "tracked_files": 310
+ "external_href_count_across_root_pages": 2445,
+ "tracked_files": 336
 }
