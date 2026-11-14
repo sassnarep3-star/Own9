@@ -313,3 +313,11 @@ The claim above records the initial base-only view, not a takeover of later publ
 
 - 2026-11-04 arena-a54b6387 final metadata audit: Documentation [PR #19](https://github.com/sassnarep3-star/Own9/pull/19) merged at `e974a18ccd6d1903d4121ae24302624fd14ed044`. Exact-commit [Pages run 41907622262](https://github.com/sassnarep3-star/Own9/actions/runs/41907622262) succeeded in all three jobs, and official deployment `7557168775` status is success. Both main quality workflows succeeded. **Irregularity:** legacy Pages site/build API reports errored for the same commit despite successful Actions/deployment and separately retrieved live pages. No root cause inferred. Native rerun rejected by available CLI endpoint; POST build request returned HTTP 403; detailed log-download host blocked by sandbox allowlist. Selected public fields saved in `research/publication/2026-11-04.json`; F12 expanded with a direct deployment-record link. This is a disclosed platform-status discrepancy, not a claim that all metadata is green or that a failed endpoint was fixed.
 - Scope clarification: `research/publication/2026-11-04.json` is this session's additive dated status evidence. No other session's source or report file edited. Dashboard remains live, and empirical evidence requirements remain needs review.
+
+## Current-session claim — arena/1e706e6a-own9 (2026-11-14)
+
+| Task | Status | Owner | Files |
+|---|---|---|---|
+| Add dedicated, decision-ready suggestions register to NFL dashboard | in progress | `arena/1e706e6a-own9` | `scripts/build_site.py`, `scripts/check_site.py`, `tests/test_site.py`, generated `site/suggestions.html`, generated `site/index.html`, `COORDINATION.md` |
+
+Scope is additive and limited to this branch. Existing empirical claims/data will not be promoted or edited. Purpose: list proposal, decision questions, known/unknown evidence, discovery step, risk, and decision status so a reviewer can choose a path before implementation. Test source-link requirements and all local navigation; do not claim external/live evidence not verified in this session.
