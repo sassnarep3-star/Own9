@@ -2,7 +2,7 @@ name: Verify NFL research for Pages
 
 on:
   push:
-    branches: [main, arena/a54b6387-own9]
+    branches: [main, 'arena/**']
   pull_request:
     branches: [main]
   workflow_dispatch:
@@ -42,10 +42,18 @@ jobs:
           git diff --exit-code -- research/catalog.json site
       - name: Test arithmetic and fail-closed research status
         run: python -m unittest discover -s tests -v
+      - name: Validate availability evidence and decision registers
+        run: |
+          python engine/availability.py
+          python engine/registers.py
+      - name: Verify the published root dashboard
+        run: python tools/verify.py
       - name: Check every local link and row source reference
         run: python scripts/check_site.py
-      - name: Test desktop, mobile, accessibility and exports
+      - name: Test desktop, mobile, accessibility and exports (additive site)
         run: node scripts/browser_test.cjs
+      - name: Test the published root dashboard in a real browser
+        run: node scripts/browser_test_root.cjs
 
 # This additive dashboard publishes at /Own9/site/ under existing main/root Pages.
 # GitHub runs its native pages-build-deployment workflow after PR merge.

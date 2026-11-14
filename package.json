@@ -5,9 +5,11 @@
   "description": "Source-linked NFL research dashboard; no live wagering",
   "scripts": {
     "build": "python3 scripts/build_site.py",
-    "test": "python3 -m unittest discover -s tests -v && python3 scripts/check_site.py",
+    "test": "python3 -m unittest discover -s tests -v && python3 tools/verify.py && python3 engine/availability.py && python3 engine/registers.py && python3 scripts/check_site.py",
     "test:browser": "node scripts/browser_test.cjs",
-    "preview": "python3 -m http.server 3000 --bind 0.0.0.0 --directory site"
+    "preview": "python3 -m http.server 3000 --bind 0.0.0.0 --directory site",
+    "test:browser:root": "node scripts/browser_test_root.cjs",
+    "build:root": "python3 tools/build.py"
   },
   "devDependencies": {
     "@sparticuz/chromium": "153.0.0",

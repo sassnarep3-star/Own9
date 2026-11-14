@@ -5,7 +5,7 @@
 nav{gap:0;flex-wrap:wrap;row-gap:10px}
 .nav-group{display:flex;align-items:baseline;gap:16px;padding-right:22px;margin-right:22px;border-right:1px solid #e3eaee}
 .nav-group:last-child{border-right:0;padding-right:0;margin-right:0}
-.nav-label{font-size:.6rem;letter-spacing:.14em;text-transform:uppercase;color:#8b9aa6;font-weight:800}
+.nav-label{font-size:.62rem;letter-spacing:.12em;text-transform:uppercase;color:#4b6072;font-weight:800}
 @media(max-width:850px){.nav-group{border-right:0;padding-right:0;margin-right:0;width:100%;flex-wrap:wrap;gap:12px}}
 
 /* Count strip for register pages. */
