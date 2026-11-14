@@ -901,3 +901,51 @@ Session: `1cfcb957` · Branch: `arena/1cfcb957-own9` · Branched from `main` at 
 - Pages deployment on `main` after the merge, all three green: `pages-build-deployment` success · `Verify NFL research for Pages` success · `Research quality` success.
 - Live verification, not workflow-trust alone: `https://sassnarep3-star.github.io/Own9/requirements.html` was retrieved after deployment and renders this session's measured values (`0 records captured against 348 expected`, `29 games loaded, 29 verified, 116 checks run, 0 failures`, `174 published rows: 116 carry a fair line, 0 carry a market line, 0 carry a difference`, n 11–15 with `insufficient_evidence`, `3 of 26 clubs` for depth). The five new pages and the F32-F41 continuation are live.
 - Scope note for the next session: this branch merged `main` twice (PRs #34-#37, then #40) and moved **its own** files out of every collision — `engine/results_feed.py` and `signal-and-staking.html` are this session's, `engine/results.py` and `signal-staking.html` are main's. Nothing in this session's pages asserts that the other sessions' registers were rewritten, and nothing in their files was edited to fit this one. Consolidating the two implementations is MI-D6, an open owner decision, and F38 remains the published record of the duplication.
+
+# Session `00cf851d` — claim (branch `arena/00cf851d-own9`, base `462a7e9`) — 2026-11-14 UTC
+
+Single-branch session; Arena fixes this branch, so no alternative branch or worktree is created or pushed.
+
+## Scope claimed (all new files, no other session's file is rewritten)
+
+| Task | Status | Owner | Files |
+| --- | --- | --- | --- |
+| Independent line-by-line verification of published repo claims against official sources retrieved **today** | in progress | 00cf851d | `session-00cf851d/evidence/**`, `session-00cf851d/tools/verify_sources.py`, `session-00cf851d/verification.html` |
+| Official-source retrieval register (URL, retrieval timestamp, sha256 of retrieved text, extracted facts) | in progress | 00cf851d | `session-00cf851d/evidence/sources.json`, `session-00cf851d/sources.html` |
+| Executive summary of the repository and the eight-requirement delta | in progress | 00cf851d | `session-00cf851d/index.html`, `session-00cf851d/summary.html` |
+| Repo review: file-level inventory, irregularity register with source links | in progress | 00cf851d | `session-00cf851d/repo-review.html`, `session-00cf851d/flags.html` |
+| Decision-support registers: questions / information needed / answers / suggestions to discover missing input | in progress | 00cf851d | `session-00cf851d/questions.html`, `session-00cf851d/suggestions.html` |
+| Self-contained generator, checker and tests for the above | in progress | 00cf851d | `session-00cf851d/tools/build.py`, `session-00cf851d/tools/check.py`, `session-00cf851d/tests/test_*.py` |
+| Integration: CI hook (additive), PR to `main`, merge, Pages deploy confirmation | pending | 00cf851d | `.github/workflows/quality.yml` (append one step only), `COORDINATION.md` (append only) |
+
+## Files this session will NOT edit (owned or claimed by others, or explicitly out of scope)
+
+Root `*.html` (including `index.html`, `flags.html`, `leaderboard.html`), `tools/build.py`, `tools/verify.py`,
+`tools/pages_*.py`, `tools/lines_audit.py`, `evidence/**`, `engine/**` (including the `engine/*.py` modules
+claimed by `1cfcb957`), `research/**`, `site/**`, `strict-lab/**`, `own9-research/**`, `release-checks/**`,
+`independent-audit/**`, `ledger/**`, `data/ledger/**`, `tools/ledger.py`, root `tests/**`, `data/raw/**`
+(read-only input), `scripts/**`, `docs/**`, `analysis/**`, `README.md`, `package.json`, `package-lock.json`.
+
+## Conflict observed at claim time — logged, not acted on
+
+At 2026-11-14T22:0x UTC three sessions claimed work from the same base `462a7e9`:
+
+- `1cfcb957` — eight-requirement delta into new `engine/*.py` modules **and shared files `tools/build.py`,
+  `tools/verify.py`, `evidence/sources.json`, `flags.html`, `README.md`, `index.html`.**
+- `feaa600b` — demotion gate into **`tools/build.py`, generated `leaderboard.html`, `tests/test_site.py`.**
+
+`tools/build.py` is claimed by both `1cfcb957` and `feaa600b`. Per the board rules this session does not
+edit `tools/build.py` and does not adjudicate; the overlap is recorded here so whichever session merges
+second must rebase onto the first rather than overwrite it. `00cf851d` needs **no** shared-file edit except
+the append-only board itself and one additive CI step, so it can merge in any order without touching either
+session's files.
+
+## Rules this session follows
+
+- Every published row carries the official URL it was read from. Nothing is inferred: if the official page
+  does not state a value, the cell is blank and the gap is logged on `flags.html`.
+- No model is fitted, no backtest is presented as validated, no wager is placed, no reward is funded, and
+  no claim of "luck removed" is made.
+- Empirical NFL numbers published here are read from official NFL.com pages on 2026-11-14 and are stored
+  with a retrieval timestamp; they are point-in-time, not a historical archive.
+>>>>>>> c9554b8 (Claim session 00cf851d scope: independent official-source verification, executive summary and decision registers)
