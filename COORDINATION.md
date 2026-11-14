@@ -746,3 +746,30 @@ No empirical NFL line, correlation, ROI, rank or reward was inferred. Other sess
 
 - **PR #33** (https://github.com/sassnarep3-star/Own9/pull/33) merged as `0fc7f78` at 2026-11-14T01:42:26Z; `Verify NFL research for Pages` `43542193051`, `Research quality` `43542193076` and `pages build and deployment` `43542192022` all success. It removed hardcoded page counts from the overview's section descriptions after a live read-back showed `site` labelled "twelve-page" beside a computed count of 15 — the same class of error as a retyped measurement, fixed the same way: derive it or drop it.
 - Session `4f2e0291` ends with: requirements 1–4 and 6 published on the root site (`suggestion-costs.html`, `question-ledger.html`, `lines.html`, `availability-evidence.html`, overview directory), requirement 5 carried by the overview's executive summary and README, findings F22–F27 on `flags.html`, and three PRs merged (`#28`, `#32`, `#33`) with every deployment confirmed rather than assumed.
+
+---
+
+# Origination-engine session `0167a04c` — claimed 2026-11-14
+
+Session: `arena/0167a04c-own9` · base `462a7e92d66dbd3bfc7398a396abc25d3cc58885` (= `origin/main` tip, PR #33 record) · started 2026-11-14 UTC.
+
+Board read before claiming: every prior claim (`80085c01`, `bc8d7853`, `a54b6387`, `e908995d`, `d66f6c4f`, `75504db2`, `5a3b486a`, `1cc6b33d`, `8de532d1`, `9cb2a884`, `0b355862`, `4f2e0291`, `8b05dd6d`, `489d1d3e`) is recorded `done` or `needs review` with scope relinquished. `git rev-list --left-right --count origin/main...HEAD` = `0 0`, `gh pr list --state open` empty, so **no other session holds a live claim** and this session takes the final-integration role for its own additive delta.
+
+Gap analysis before claiming (searched the whole tree on 2026-11-14): the eight numbered origination requirements are **not implemented anywhere**. `git grep -lE "opening.*closing|price snapshot|demotion|signal.*staking"` returns nothing outside prose proposals; `engine/core.py` has pricing/correlation primitives but no snapshot store, no results feed, no origination order, no fair/market/delta column triple, no depth-of-replacement arithmetic and no demotion gate.
+
+| Task | Status | Owner | Files |
+| --- | --- | --- | --- |
+| Price-snapshot store (opening + closing, every originated market) | in progress | 0167a04c | `engine/origination.py`, `data/snapshots/price-snapshots.csv`, `origination.html` |
+| Verified results feed (official outcomes for backtest/ROI) | in progress | 0167a04c | `data/results/verified-results.csv`, `results.html` |
+| Origination order side → total → moneyline | in progress | 0167a04c | `engine/origination.py`, `origination.html` |
+| Fair line / market line / difference as separate columns | in progress | 0167a04c | `engine/origination.py`, `origination.html` |
+| Signal vs staking separation in the leaderboard | in progress | 0167a04c | `signal-staking.html` |
+| Depth-of-replacement tracking (strings travelled, not just the fact) | in progress | 0167a04c | `replacement-depth.html` |
+| Correlation register with n published per value, official inputs only | in progress | 0167a04c | `dependence.html` |
+| Demotion gate (live → paper) | in progress | 0167a04c | `engine/origination.py`, `signal-staking.html` |
+| Line-by-line repository + requirements review | in progress | 0167a04c | `requirements.html`, this board |
+| Tests, build, verify, PR, merge, Pages | pending | 0167a04c | `tests/test_origination.py`, `COORDINATION.md` |
+
+**File scope claimed by this session (nothing here was claimed by anyone else):** `engine/origination.py`, `tools/pages_0167a04c.py`, `tests/test_origination.py`, `data/snapshots/**`, `data/results/**`, `origination.html`, `results.html`, `replacement-depth.html`, `signal-staking.html`, `dependence.html`, `requirements.html`, plus append-only edits to `COORDINATION.md`, `evidence/sources.json`, `README.md` and one additive navigation group in `tools/build.py`.
+
+**Explicitly NOT edited:** every page another session owns (`index.html`, `decision.html`, `questions.html`, `decisions-questions.html`, `suggestions.html`, `suggestion-costs.html`, `question-ledger.html`, `availability.html`, `availability-evidence.html`, `injuries.html`, `lines.html`, `flags.html` content beyond an appended table, `audit.html`, `data.html`, `sources.html`, `strategies.html`, `validation.html`, `correlations.html`, `leaderboard.html`), and every subtree (`site/**`, `research/**`, `strict-lab/**`, `own9-research/**`, `release-checks/**`, `independent-audit/**`, `session-8b05dd6d/**`, `analysis/**`, `engine/core.py`, `engine/availability.py`, `engine/registers.py`, `tools/build.py` apart from the additive nav group, `tools/verify.py`, `.github/**`).
