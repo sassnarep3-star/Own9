@@ -1,5 +1,6 @@
 """Deterministic static renderer; no network calls, no invented NFL metrics."""
 import json
+import sys
 from html import escape as e
 from pathlib import Path
 
@@ -147,6 +148,19 @@ page('flags.html','Flagged for Review','Uncertainty, in plain sight.',
      ]) + '<p>Independent earlier-baseline technical report: <a href="release-checks/index.html">release quality review</a>. Its stored five-page / 28-row snapshot predates this nine-page integration; it is not a current factual or deployment certification.</p><p>Separate inherited, uncertified analysis: <a href="https://github.com/sassnarep3-star/Own9/pull/6">PR #6 and its stated evidence limitations</a>; <a href="research/flagged.html">its separate review register</a>. Its numerical findings are not adopted by this dashboard.</p>')
 
 
+import content_extra, content_decisions, content_suggestions
+NAV_ORDER = []
+for _module in (content_extra, content_decisions, content_suggestions):
+    _module.register(sys.modules[__name__])
+# Navigation order is the category grouping the overview page describes: decide,
+# research, judge, then provenance. Applied after registration because the pages
+# are contributed by three modules.
+if NAV_ORDER:
+    _ordered = {k: PAGES[k] for k in NAV_ORDER if k in PAGES}
+    _ordered.update({k: v for k, v in PAGES.items() if k not in _ordered})
+    PAGES.clear(); PAGES.update(_ordered)
+
+
 def render():
     files = {}
     for filename,(label,title,intro,content) in PAGES.items():
@@ -154,7 +168,7 @@ def render():
         files[filename] = f'''<!doctype html>
 <html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="description" content="Evidence-first NFL research dashboard. Strategies, validation, correlation requirements and transparent limitations."><title>{e(label)} · Own9 NFL Research</title><link rel="stylesheet" href="style.css"><script src="site.js" defer></script></head>
 <body><a class="skip" href="#main">Skip to content</a><header><div class="shell top"><a class="brand" href="index.html"><span>O9</span> OWN9 <small> / NFL RESEARCH</small></a><span class="status-dot">Research only · no live wagers</span></div><nav class="shell" aria-label="Main navigation">{nav}</nav></header>
-<main class="shell" id="main"><div class="page-meta"><span class="eyebrow">RESEARCH DESK / {e(label.upper())}</span><span>As of 04 Nov 2026 · UTC</span></div><h1>{e(title).replace(chr(10),'<br>')}</h1><p class="lead">{e(intro)}</p><div class="filter" hidden><label for="row-search">Find a table entry</label><input id="row-search" type="search" placeholder="Filter this page…" autocomplete="off"><span id="row-count" role="status" aria-live="polite"></span></div>{content}<p class="disclaimer">Research, not betting advice. No verified edge or guaranteed return. Blank empirical values are unavailable and unverified, never zero.</p></main>
+<main class="shell" id="main"><div class="page-meta"><span class="eyebrow">RESEARCH DESK / {e(label.upper())}</span><span>As of 14 Nov 2026 · UTC</span></div><h1>{e(title).replace(chr(10),'<br>')}</h1><p class="lead">{e(intro)}</p><div class="filter" hidden><label for="row-search">Find a table entry</label><input id="row-search" type="search" placeholder="Filter this page…" autocomplete="off"><span id="row-count" role="status" aria-live="polite"></span></div>{content}<p class="disclaimer">Research, not betting advice. No verified edge or guaranteed return. Blank empirical values are unavailable and unverified, never zero.</p></main>
 <footer class="shell"><b>OWN9 / NFL RESEARCH</b><span>Evidence over assumptions · <a href="sources.html">Evidence register</a> · <a href="flags.html">Flagged for Review</a></span></footer></body></html>\n'''
     return files
 

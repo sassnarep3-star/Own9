@@ -10,16 +10,17 @@ class Page(HTMLParser):
     def __init__(self):
         super().__init__(convert_charrefs=True)
         self.links=[]; self.ids=set(); self.errors=[]; self.row=None; self.rows=[]
-        self.current=0; self.main=False; self.h1=0
+        self.current=0; self.main=False; self.h1=0; self.caption=None; self.in_caption=False
     def handle_starttag(self, tag, attrs):
         a=dict(attrs)
+        if tag=='caption': self.in_caption=True; self.caption=''
+        if tag=='tr': self.row={'data':False,'links':[],'cells':[],'caption':self.caption}
         if 'id' in a:
             if a['id'] in self.ids: self.errors.append('duplicate id: '+a['id'])
             self.ids.add(a['id'])
         if tag=='main': self.main=True
         if tag=='h1': self.h1+=1
         if a.get('aria-current')=='page': self.current+=1
-        if tag=='tr': self.row={'data':False,'links':[],'cells':[]}
         if self.row is not None and tag in ('td','th'):
             if tag=='td': self.row['data']=True
             self.row['cells'].append('')
@@ -28,8 +29,10 @@ class Page(HTMLParser):
                 self.links.append(a[attr])
                 if self.row is not None: self.row['links'].append(a[attr])
     def handle_data(self, data):
+        if self.in_caption and self.caption is not None: self.caption+=data
         if self.row is not None and self.row['cells']: self.row['cells'][-1]+=data
     def handle_endtag(self, tag):
+        if tag=='caption': self.in_caption=False
         if tag=='tr' and self.row is not None:
             if self.row['data']: self.rows.append(self.row)
             self.row=None
@@ -38,7 +41,11 @@ def check():
     errors=[]; parsed={}; expected=render()
     manifest=json.loads((ROOT/'evidence/sources.json').read_text())
     known={s['url'] for s in manifest}
-    allowed={'www.nfl.com','www.itl.nist.gov','docs.scipy.org','scikit-learn.org','docs.github.com','github.com'}
+    # Hosts actually read by a session. www.patriots.com is admitted only as a
+    # club-published substitute for a league depth chart that does not exist, and
+    # only for the page whose own text declares the chart unofficial.
+    allowed={'www.nfl.com','www.itl.nist.gov','docs.scipy.org','scikit-learn.org','docs.github.com','github.com',
+             'www.patriots.com'}
     if len({s['id'] for s in manifest}) != len(manifest): errors.append('duplicate source id')
     for s in manifest:
         if urlsplit(s['url']).scheme!='https' or urlsplit(s['url']).hostname not in allowed:
@@ -62,6 +69,13 @@ def check():
         if filename=='correlations.html':
             for row in parser.rows[:5]:
                 if any(cell.strip() for cell in row['cells'][2:5]): errors.append('invented NFL correlation metric')
+        # Availability candidates must not carry a measured result: the column exists
+        # so a future verified value can land in it, and it stays empty until then.
+        for row in parser.rows:
+            if row['caption']=='Availability signal candidates' and row['cells'][4].strip():
+                errors.append('invented availability measurement: '+row['cells'][0])
+            if row['caption']=='Current own-line standing' and row['cells'][1].strip() not in ('','None'):
+                errors.append('own-line value asserted without a source: '+row['cells'][0])
     for filename,parser in parsed.items():
         for link in parser.links:
             u=urlsplit(link)
@@ -78,5 +92,5 @@ def check():
 if __name__=='__main__':
     errors,rows=check()
     if errors: sys.exit('\n'.join(errors))
-    print(f'PASS: 9 fresh pages; {rows} source-linked rows; local assets/fragments; nav landmarks; empirical blanks.')
+    print(f'PASS: {len(render())} fresh pages; {rows} source-linked rows; local assets/fragments; nav landmarks; empirical blanks.')
     print('Scope: structural checks only. Not external reachability or factual claim certification.')

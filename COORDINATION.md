@@ -336,3 +336,53 @@ Not edited by this session: `strict-lab/**`, `own9-research/**`, `release-checks
 - 2026-11-14: Read the full board and repository (75 commits after `git fetch --unshallow`; the initial checkout was shallow at 1 commit, which is why earlier sessions repeatedly mis-saw the baseline). Confirmed `origin/main` == this base, no commits behind.
 - 2026-11-14: Gap analysis over all 156 tracked files: the strings `suggest`, `depth chart`, `backup`, `2nd string`, `4th string`, `queue` do not appear in any HTML/MD/PY file — the user's suggestion section and injury/depth-deficiency requirements are unimplemented by every prior session. `injuries` appears only as a source row.
 - 2026-11-14: PR #18 (`arena/489d1d3e-own9`, `independent-audit/**`) is open, last updated 2026-11-04T20:31:55Z, GitHub API reports `mergeable:false`. Its owning session has been silent far beyond the 60-minute rule. This session cannot rebase another session's branch (Arena fixes this one), so #18 is published as a nonblocking review item instead of being merged or discarded; its files are not on `main` and the directory will not link unpublished paths.
+
+## 4f2e0291 completion record — 2026-11-14
+
+| Task | Status | Owner | Evidence / scope |
+|---|---|---|---|
+| Root site integration: category landing page + directory of all published sections | done | 4f2e0291 | `index.html`, `tools/build.py` |
+| Suggestion register | done | 4f2e0291 | `suggestions.html`: 18 suggestions, 4 candidate paths, decision log |
+| Decision-readiness question ledger | done | 4f2e0291 | `questions.html`: 19 answered, 6 closable, 6 owner decisions, 7 probes |
+| Availability and roster-deficiency research | done (empirical values withheld) | 4f2e0291 | `injuries.html` + flags F16–F18 |
+| Market-lines audit + own-line page | done | 4f2e0291 | `tools/lines_audit.py`, `lines.html`, flag F13 |
+| Executive summary refresh + flags extension | done | 4f2e0291 | `index.html`, `flags.html` F13–F20 |
+| Tests and verifier extension | done | 4f2e0291 | `tests/test_integration.py` (16 new), `tools/verify.py` |
+
+### Sources read on 2026-11-14 (all retrieved, not inferred)
+
+Official league pages: [injury report, week 10](https://www.nfl.com/injuries/) ·
+[Competition Committee injury-report policy revision](https://www.nfl.com/news/competition-committee-approves-revisions-to-injury-report-0ap3000000688693) ·
+[IR four-game return and 16-man practice squad](https://www.nfl.com/news/players-now-eligible-to-return-from-injured-reserve-after-four-games) ·
+[league transactions](https://www.nfl.com/transactions/) ·
+[November 2026 reserve list](https://www.nfl.com/transactions/league/reserve-list/2026/11) ·
+[Patriots roster with status codes](https://www.nfl.com/teams/new-england-patriots/roster) ·
+[player stats categories](https://www.nfl.com/stats/player-stats/) ·
+[Next Gen Stats index](https://www.nfl.com/next-gen-stats/) ·
+[2018 Broncos at Raiders game centre](https://www.nfl.com/games/broncos-at-raiders-2018-reg-16).
+Checked absences: the [club depth-chart path on NFL.com](https://www.nfl.com/teams/new-england-patriots/depth-chart/) returned the site 404, and no participation or snap category exists among the eleven published statistics categories.
+Substitute source: [Patriots club depth chart](https://www.patriots.com/team/depth-chart), which states its own chart is unofficial.
+Only the page whose text was read is cited; `operations.nfl.com/the-rules/nfl-roster-rules/` was attempted and 404s, confirming an earlier session's finding.
+
+### Verification performed
+
+- Structural: `tools/verify.py` passes — 13 pages, 291 source-linked rows, local assets and fragments, one `h1` and one `aria-current` per page, empirical blanks held blank. The new blank-value rule was proven by injecting a fabricated `+4.1% ROI` into an AV candidate: the build failed with `invented availability measurement: AV1 · Game single`, then passed after restoration.
+- Regression: 55 tests pass (`tests/`: 24 site/catalog/metrics/engine + 16 new integration + 15 existing; `release-checks`: 31 inherited; `strict-lab`: 27 synthetic). Inherited `scripts/check_site.py` and `browser_test.cjs` target `site/` only and were not modified.
+- Deterministic regeneration: `python3 tools/build.py` reproduces committed HTML byte-for-byte, matching the CI assertion `git diff --exit-code -- '*.html'`.
+- Browser (headless Chromium from the repo's own locked devDependencies, run from scratch space, not committed): 13 pages at 1440px and 390px = 26 loads; 0 page errors, 0 failed requests, 0 HTTP 4xx, 0 document overflow, 26 axe WCAG 2.0 A/AA scans with 0 violations; the row filter narrowed 72 rows to 2 for "Stevenson" and restored on clear; all 14 local link targets from the overview page exist.
+- Data line by line: every row of `data/raw/closing_lines.csv` (20,490) was counted, joined and recomputed by `tools/lines_audit.py`; numbers on the own-lines page are computed at build time from the file, never typed. `data/raw/games.csv` sha256 `81a2786f…d222f` matches the nflverse hash recorded on this board; one score (DEN 14 @ OAK 27, 2018 W16) was independently confirmed against the official game centre.
+
+### Irregularities found and published (F13–F20 on Flagged for Review)
+
+1. **F13 (critical).** `data/raw/closing_lines.csv` is a real 20,490-row quote file present since commit `f1a7b76`, while F01 has claimed no executable odds archive exists. It covers 2006–2018 only, joins to scores solely via `old_game_id` (0 of 3,415 match on its own `game_id` column), has no price on 5,820 spread and 5,820 total rows (85.2% of those markets), and 18 rows (0.088%) disagree with outcomes recomputed from the sibling snapshot across 5 games, 2 fully inverted. Push coding checked and found internally correct (200/200 spread pushes match the margin exactly; the 7 moneyline-push games are recorded ties in overtime). Quarantined for use, not deleted, pending a provenance and licence decision.
+2. **F14.** Nothing in the repository documents that file's origin, retrieval date or rights; the adding commit describes only the games snapshot.
+3. **F15.** `games.csv` identity is verifiable by hash, but its upstream licence was never confirmed by any session.
+4. **F16 (critical).** The requested 2nd/3rd/4th-string deficiency awareness cannot be met from official data: no league depth chart was found and the only ordering available is a club page that labels itself unofficial. Implemented as an explicit limitation rather than a silent substitution.
+5. **F17 (critical).** No official participation denominator exists, so per-play replacement quality is blocked.
+6. **F18.** The injury report page carries no per-row timestamp, so historical availability features can never pass gate 2; prospective capture is the only remedy.
+7. **F19.** PR #18 remains open, was last updated 2026-11-04T20:31:55Z and GitHub reports `mergeable:false`; its `independent-audit/**` files are not on `main`, so no live link was added to paths that would 404. Not merged, not closed, not rebased — this session may not touch another session's branch.
+8. **F20.** Six dashboards duplicate the same categories with separate flag registers. A directory with certification status was published instead of silently merging them; choosing a canonical site is left as decision S01/Q26.
+
+### Boundaries kept
+
+No empirical NFL line, correlation, ROI, rank or reward was inferred. Other sessions' subtrees were read but not edited; `site/**`, `strict-lab/**`, `own9-research/**`, `release-checks/**`, `research/**`, `analysis/**`, `engine/**`, `scripts/**` and `.github/**` are untouched by this session. Luck is not removed; the honest formulation (selectivity measured against a frozen design) is published as S11/Q17.
