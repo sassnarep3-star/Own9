@@ -17,6 +17,7 @@ for it: a measurement that cannot be sourced is left blank and flagged, never es
 empirical columns on these pages are therefore empty, and each empty column says which record would
 have to exist to fill it.
 """
+from engine import snapshots as snap
 from engine.correlations import value_rules as _corr_rules
 from engine.signal_staking import rules as _split_rules
 from engine.replacement import limits as _repl_limits
@@ -27,6 +28,9 @@ from requirements_audit import measure
 A = measure(INJ)  # noqa: F821 - supplied by tools/build.py
 FEED, STORE, QUOTES = A['feed'], A['store'], A['quotes']
 ORIG, SPLIT, DEPTH = A['origination'], A['signal_staking'], A['replacement']
+RAW_FILES = A['raw_files']
+RAW_SCHEMA_ROWS = sum(v['data_rows'] for k, v in RAW_FILES.items()
+                      if k in ('price_snapshots.csv', 'verified_results.csv'))
 CORRS, GATE, READY = A['correlations'], A['demotion'], A['readiness']
 GAMES = A['games']
 ROI = STORE['roi']
@@ -63,7 +67,7 @@ page('requirements.html', 'Requirements',
               'capture run before each kickoff. Until then every expected record is a counted hole, not a '
               'silence.'], ('repo',), 'Project record · computed by tools/requirements_audit.py'),
          row(['R2', 'Add a verified results feed so backtests and ROI can be computed at all.',
-              'engine/results.py: a feed whose rows must pass six checks — league host, the page\'s two '
+              'engine/results_feed.py: a feed whose rows must pass six checks — league host, the page\'s two '
               'independent score renderings, winner consistency, one appearance per club per week, record '
               'progression between two retrievals, and published win percentages — plus settle() for '
               'spread, total and moneyline.',
@@ -75,7 +79,9 @@ page('requirements.html', 'Requirements',
               f'{FEED["reconciliations"][1]["clubs_tested"]} into Week 10.',
               'Enforced', 'Nothing: the feed exists and is populated with officially verified results. What '
               f'still blocks a backtest is R1 — {READY["finals_verified"]} verified finals, '
-              f'{READY["finals_with_a_market_line"]} of them with a market line.'],
+              f'{READY["finals_with_a_market_line"]} of them with a market line. PR #37 landed a separate '
+              'schema-only `engine/results.py`; both survive, and F34 records the duplication rather than '
+              'merging the two.'],
              ('nfl-schedule-w9', 'nfl-schedule-w10-byweek', 'nfl-schedule-w8-byweek'),
              'Direct publisher · arithmetic derived in build'),
          row(['R3', 'Originate the side first, then the total, then the moneyline.',
@@ -204,7 +210,7 @@ page('requirements.html', 'Requirements',
        '<a href="depth-correlations.html">Depth &amp; correlation</a> · '
        '<a href="missing-information.html">Missing information</a>. Reproduce every figure with '
        '<code>python3 tools/requirements_audit.py</code>. New findings are on '
-       '<a href="flags.html">Flagged for Review</a> as F28-F33.</p>')
+       '<a href="flags.html">Flagged for Review</a> as F28-F37.</p>')
 
 
 # --------------------------------------------------------------------------- price + results
@@ -340,6 +346,20 @@ page('price-feed.html', 'Price & results',
               'sign convention are unconfirmed, which is why the file is quarantined rather than deleted.'],
              ('repo',), 'Repository inspection'),
      ])
+     + table('Every file in data/raw/ and the new store, counted at build',
+             ['File', 'Header columns', 'Data rows', 'Reading'],
+             [row([name, len(item['header']), item['data_rows'],
+                   ('schema only: ' + str(item['comment_lines']) + ' documented comment lines and no data '
+                    'row, so it supplies neither a price nor a result')
+                   if item['data_rows'] == 0 else
+                   'carries ' + str(item['data_rows']) + ' rows; the register above says what they can and '
+                   'cannot support'],
+                  ('repo',), 'Computed at build')
+              for name, item in sorted(RAW_FILES.items())]
+             + [row(['snapshots/store.jsonl', len(snap.FIELDS), STORE['records_captured'],
+                     'the hash-chained log this session created; empty by fact, and every expected capture '
+                     'is counted as a hole instead of being omitted'],
+                    ('repo',), 'Computed at build')])
      + table('Verified results feed', ['Week · date', 'Matchup', 'Final score', 'Winner', 'Checks',
                                        'Records (away / home)'], _feed_rows())
      + table('What was verified about the feed', ['Check', 'Coverage', 'Agreeing', 'What it establishes'], [
@@ -409,6 +429,37 @@ page('price-feed.html', 'Price & results',
          row(['Rows in the register', ORIG['published_rows'], '29 games x 3 markets x 2 sides. Every row is '
               'emitted whether or not it can be populated, so a missing market cannot hide by omitting rows.'],
              ('repo',), 'Project arithmetic'),
+     ])
+     + '<p>Relationship to the schema tables on <a href="lines.html">Own lines</a>: PR #37 published a field '
+       'contract for the same two ideas, with `decimal_price`, `operator` and `jurisdiction` where this store '
+       'uses an American price, a publisher and a provenance class. The contracts agree on the point that '
+       'matters — a capture timestamp is mandatory and nothing is inferred — and they are kept separate rather '
+       'than merged, because merging them would silently decide which naming a reader should trust. See F34. '
+       'Both are empty for the same measured reason, and this session checked that: the two schema files in '
+       f'data/raw/ hold {RAW_SCHEMA_ROWS} data rows between them.</p>'
+     + table('The two stores that now exist, field by field', ['Question', 'engine/prices.py (PR #37)',
+                                                                'engine/snapshots.py (this session)'], [
+         row(['How is a record identified?', 'game, market, side; timestamps are fields on the row',
+              'game, market, side, stage; the stage is part of the identity'],
+             ('repo',), 'Read from both modules'),
+         row(['How does an opening number get known?', 'earliest captured quote for that market side',
+              'only a record labelled stage=open and carrying a capture time'], ('repo',),
+             'Read from both modules'),
+         row(['What happens with exactly one capture?', 'opening() and closing() both resolve to that one '
+              'row, so a spread across them is 0.0; the store\u2019s own '
+              'markets_with_both_open_and_close count reports 0',
+              'one side of the pair is a counted hole, and completeness() names it'], ('repo',),
+             'Measured in tests/test_requirements_delta.py'),
+         row(['What must be true before a price is stored?', 'decimal price > 1, quote_utc, operator, '
+              'jurisdiction, ISO-8601 validated',
+              'https source, publisher, capture time, admissible provenance class, and |American odds| >= 100'],
+             ('dk-markets', 'repo'), 'Both contracts, read side by side'),
+         row(['Can an absent price be stored as zero?', 'no — required fields may not be blank',
+              'no — an unpriced record must carry a missing_reason and is excluded from every priced count'],
+             ('repo',), 'Both contracts'),
+         row(['Tamper evidence', 'none in the schema; the file is a CSV written once',
+              'sha256 hash chain over the append-only log plus a manifest head and file digest'], ('repo',),
+             'This session only'),
      ])
      + '<p>Sign convention: `settle()` treats a spread line as the handicap the side receives and a total '
        'line as the threshold it is over or under, and records that convention on every snapshot. The '
@@ -702,6 +753,11 @@ page('missing-information.html', 'Missing info',
          row(['MI-D4', 'Should the seven overlapping sections be consolidated into one site?',
               'It would rewrite pages owned by other sessions, whose records are preserved deliberately.',
               'Sections stay separate with the directory on the overview.'], ('repo',), 'Awaiting decision'),
+         row(['MI-D6', 'Should the two parallel implementations of these requirements be consolidated into one '
+              'register set, or kept side by side?',
+              'Both are complete and honest, so the choice is about which document a reader should trust, not '
+              'about correctness. Deciding it silently would delete another session\u2019s published work.',
+              'Both retained, with the duplication published as F34.'], ('repo',), 'Awaiting decision'),
          row(['MI-D5', 'Is any non-cash recognition programme wanted for the leaderboard, or none at all?',
               'It is a governance decision with no data content.',
               'No badge, no funding, no award, as published.'], ('repo',), 'Awaiting decision'),
@@ -735,7 +791,7 @@ page('missing-information.html', 'Missing info',
      ])
      + '<p class="download">Every row above is either answered from a registered official source, countable '
        'from this repository, or explicitly an owner decision. Nothing is marked answered because it is '
-       'plausible. New findings from this release are published as F28-F33 on '
+       'plausible. New findings from this release are published as F28-F37 on '
        '<a href="flags.html">Flagged for Review</a>; the costed improvement sheet is '
        '<a href="suggestion-costs.html">Suggestion costs</a> and the register that governs acceptance is '
        '<a href="suggestions.html">Suggestions</a>.</p>')
@@ -750,8 +806,9 @@ PAGES['leaderboard.html'] = (*PAGES['leaderboard.html'][:3],
                                'board and the staking board are published separately on '
                                '<a href="signal-staking.html">Signal vs staking</a>, with rank computed only '
                                'from the signal lower bound and a staking run that cannot place a candidate. '
-                               'The four tracks above are the same four tracks; the tables above are unchanged '
-                               'and remain empty because nothing is validated.</p>')
+                               'The four tracks above are the same four tracks, and the tables above remain '
+                               'empty because nothing is validated. PR #36 added the separation notice to this '
+                               'board; this page adds the enforcement and the refusal tests behind it.</p>')
 
 # Caption deliberately does NOT start with "Review register extension": the earlier session's test
 # selects its own six rows by that prefix, and a shared prefix would silently fold two registers
@@ -809,11 +866,61 @@ new_flags = table('Register continuation · raised 14 Nov 2026 by session 1cfcb9
          'Keep the pattern: measure with whole identifiers, and publish the inspected list next to the derived '
          'figure so a substring bug like this one is visible without reading code.',
          'Fixed in this release'], ('repo',), 'Method integrity'),
+    row(['F34 · Review', 'Parallel duplicate implementation of the same eight requirements. On 14 Nov 2026 '
+         'four sessions worked the same list: PR #34 and #35 (feaa600b) built a live-to-paper demotion gate on '
+         'validation.html, PR #36 (201adb50) added a combined signal/staking view to leaderboard.html, PR #37 '
+         '(7e426311) added engine/prices.py, engine/results.py, engine/origination.py and two schema-only CSV '
+         'files, and this session built the seven engine modules published here. The scope claim in this file '
+         'was committed before any of those PRs existed, and the branch could not see them while it was being '
+         'written.',
+         'Both implementations are kept: nothing was overwritten to avoid a clash. engine/results_feed.py is '
+         'this session\u2019s populated feed; main\u2019s engine/results.py is a schema contract with no '
+         'verification step. Counted at build, the two data/raw schema files added by PR #37 carry '
+         f'{RAW_SCHEMA_ROWS} data rows between them, which is the same conclusion this session reached '
+         'independently: no price and no result can be manufactured. Consolidating the two into one register '
+         'set is an owner decision, listed as MI-D6.',
+         'Flagged · both retained'], ('repo',), 'Merge-time reconciliation'),
+    row(['F35 · Review', 'tools/build.py defines leaderboard.html twice (two page() calls writing the same '
+         'key), so the first definition is unreachable. It predates this session: main carried both blocks '
+         'after PR #36 and #37 merged. A maintainer editing the earlier block would change nothing, and the '
+         'site would not say so.',
+         'Not edited here, because the file is shared and the duplicate belongs to other sessions\u2019 '
+         'merged work. Whoever owns leaderboard.html should delete the unreachable block or fold the two '
+         'notices into one page call; the generated page is identical either way, which is why no test '
+         'catches it.',
+         'Flagged · not edited'], ('repo',), 'Generator inspection'),
+    row(['F36 · Review', 'The two price stores that now exist in this repository derive the opening and '
+         'closing number differently. PR #37\u2019s engine/prices.py keys a snapshot by (game, market, side) '
+         'and resolves open as the earliest capture and close as the latest; engine/snapshots.py, added here, '
+         'requires stage as part of the key. Measured consequence: with a single quote for a market side, '
+         'opening() and closing() return the same object, and a closing-line value computed from that pair is '
+         'exactly 0.0.',
+         'That store publishes its own guard \u2014 missing_fields_report() counts '
+         'markets_with_both_open_and_close, which reads 0 for exactly this case \u2014 so the exposure is a '
+         'caller reading the two accessors without consulting the count. No change is requested of that '
+         'session. The finding is published because a page that later shows an open-to-close spread should be '
+         'checked against the number of distinct captures, not the presence of a row. Both behaviours are '
+         'asserted in tests/test_requirements_delta.py.',
+         'Recorded · both implementations kept'], ('repo',), 'Merge-time reconciliation'),
+    row(['F37 · Critical', 'The site failed its own accessibility check on merged `main`: `lines.html` '
+         'rendered a scrollable table region that no keyboard could reach (axe '
+         '`scrollable-region-focusable`, serious) at a 390px viewport, because `.table-wrap` sets '
+         '`overflow:auto` and that table\u2019s cells carried no focusable element. Any page that adds a '
+         'linkless wide table inherits the defect.',
+         'Repaired at the generator rather than page by page: `table()` in `tools/build.py` now wraps every '
+         'table in a named, focusable region (`tabindex=\"0\" role=\"region\" aria-label=“<caption> — '
+         'scrollable table”`), which is the axe-recommended remedy and cannot be forgotten by a future '
+         'page. `node scripts/browser_test_root.cjs` fails before the change and passes after, across 24 '
+         'pages × 2 viewports. The shared generator is the right home for this fix, so the edit is '
+         'recorded here as a deliberate change to a shared file rather than a silent one.',
+         'Fixed in this release'], ('pages',), 'axe rule · browser check'),
 ])
 
 PAGES['flags.html'] = (*PAGES['flags.html'][:3],
                        PAGES['flags.html'][3]
-                       + '<p class="download">F28 to F33 below were raised by session 1cfcb957 on 14 Nov 2026. '
+                       + '<p class="download">F28 to F37 below were raised by session 1cfcb957 on 14 Nov 2026. F34, F35 '
+                         'and F36 are merge-time findings: what surfaced while reconciling with PRs #34-#37, '
+                         'which landed the same eight requirements from four sessions on the same day. '
                          'They continue the existing numbering and do not edit any earlier row: F20 and F21 are '
                          'referred to rather than restated, and F31 extends F20 with the second club it did not '
                          'cover.</p>'

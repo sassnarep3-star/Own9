@@ -18,7 +18,7 @@ from engine import correlations as corr          # noqa: E402
 from engine import demotion                      # noqa: E402
 from engine import originate                     # noqa: E402
 from engine import replacement as repl           # noqa: E402
-from engine import results as res                # noqa: E402
+from engine import results_feed as res                # noqa: E402
 from engine import signal_staking as ss          # noqa: E402
 from engine import snapshots as snap             # noqa: E402
 from lines_audit import audit                    # noqa: E402
@@ -53,6 +53,23 @@ def _report_rows(INJ):
     """Week 10 report rows as transcribed by the repository, from tools/build.py."""
     return [{'team': row[0], 'player': row[1], 'position': row[2], 'injuries': row[3],
              'practice_status': row[4], 'game_status': row[5]} for row in INJ]
+
+
+def raw_file_inventory():
+    """Every file in data/raw/, measured rather than described.
+
+    A schema file and a data file look the same until the rows are counted, and the distinction is
+    the whole answer to "does the repository already hold prices?". Comment lines are counted
+    separately so a documented placeholder cannot be mistaken for either.
+    """
+    out = {}
+    for path in sorted((ROOT / 'data' / 'raw').glob('*.csv')):
+        lines = path.read_text().splitlines()
+        header = lines[0].split(',') if lines else []
+        body = [l for l in lines[1:] if l.strip() and not l.lstrip().startswith('#')]
+        out[path.name] = {'lines': len(lines), 'header': header, 'n_columns': len(header),
+                          'data_rows': len(body), 'comment_lines': len(lines) - 1 - len(body)}
+    return out
 
 
 def store_state(games):
@@ -271,6 +288,7 @@ def measure(INJ):
         'games': games,
         'store': store_state(games),
         'quotes': quote_file_state(),
+        'raw_files': raw_file_inventory(),
         'origination': origination_state(games),
         'signal_staking': signal_staking_state(),
         'replacement': replacement_state(INJ),

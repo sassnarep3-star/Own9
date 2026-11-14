@@ -21,7 +21,7 @@ from engine import correlations as corr          # noqa: E402
 from engine import demotion                      # noqa: E402
 from engine import originate                     # noqa: E402
 from engine import replacement as repl           # noqa: E402
-from engine import results as res                # noqa: E402
+from engine import results_feed as res                # noqa: E402
 from engine import signal_staking as ss          # noqa: E402
 from engine import snapshots as snap             # noqa: E402
 import requirements_audit                        # noqa: E402
@@ -624,6 +624,62 @@ class DemotionGate(unittest.TestCase):
             self.assertTrue(demotion.verify_log(path), 'an edited decision must be detectable')
 
 
+class ParallelImplementations(unittest.TestCase):
+    """PR #37 landed a second set of contracts for the same requirements. Both are kept, and the
+    differences between them are measured here so neither can be read as the other."""
+
+    def test_the_two_results_modules_coexist_and_only_one_is_a_feed(self):
+        from engine import results as schema_module
+        self.assertTrue(hasattr(schema_module, 'VerifiedResult'))
+        self.assertFalse(hasattr(schema_module, 'feed'),
+                         'the schema module must not be mistaken for the populated feed')
+        self.assertTrue(hasattr(res, 'feed') and hasattr(res, 'settle'))
+
+    def test_one_quote_is_both_open_and_close_in_the_other_store(self):
+        from engine.prices import MarketType, PriceSnapshot, PriceStore, Side
+        one = PriceSnapshot(game_id='g1', market=MarketType.SPREAD, side=Side.HOME, line=-2.5,
+                            decimal_price=1.91, quote_utc='2026-11-12T18:00:00Z', operator='X',
+                            jurisdiction='WA')
+        store = PriceStore()
+        store.add(one)
+        opening, closing = (store.opening('g1', MarketType.SPREAD, Side.HOME),
+                            store.closing('g1', MarketType.SPREAD, Side.HOME))
+        self.assertIs(opening, closing, 'both accessors resolve to the same single capture')
+        self.assertEqual(store.missing_fields_report()['markets_with_both_open_and_close'], 0,
+                         'the guard exists on the store itself, and a caller must read it')
+        # The same slate in this session's store: the second stage is a counted hole, not a zero move.
+        captured = dict(priced(), game_id='g', prev_hash=None, record_hash='x' * 64)
+        audit = snap.completeness([captured], ['g'])
+        self.assertEqual(audit['open_close_pairs_priced'], 0)
+        self.assertEqual(audit['holes'], 11, 'twelve expected captures minus the one recorded')
+
+    def test_the_two_raw_schema_files_carry_no_rows(self):
+        inventory = requirements_audit.raw_file_inventory()
+        for name in ('price_snapshots.csv', 'verified_results.csv'):
+            self.assertEqual(inventory[name]['data_rows'], 0,
+                             f'{name} is documented as a schema; a data row would change that claim')
+            self.assertGreater(inventory[name]['comment_lines'], 0)
+
+    def test_the_other_session_contracts_still_refuse_holes(self):
+        from engine.prices import MarketType, PriceSnapshot, Side
+        from engine.results import GameStatus, VerifiedResult
+        with self.assertRaises(ValueError):
+            PriceSnapshot(game_id='g', market=MarketType.MONEYLINE, side=Side.HOME, line=-2.5,
+                          decimal_price=1.9, quote_utc='2026-11-12T18:00:00Z', operator='X',
+                          jurisdiction='WA')
+        with self.assertRaises(ValueError):
+            PriceSnapshot(game_id='g', market=MarketType.SPREAD, side=Side.HOME, line=-2.5,
+                          decimal_price=1.9, quote_utc='', operator='X', jurisdiction='WA')
+        with self.assertRaises(ValueError):
+            VerifiedResult(game_id='g', season=2026, week=9, home_team='SEA', away_team='DET',
+                           home_score=None, away_score=3, status=GameStatus.FINAL,
+                           source_url='https://www.nfl.com/x', retrieved_utc='2026-11-14')
+        ok = VerifiedResult(game_id='g', season=2026, week=9, home_team='SEA', away_team='DET',
+                            home_score=38, away_score=19, status=GameStatus.FINAL,
+                            source_url='https://www.nfl.com/x', retrieved_utc='2026-11-14')
+        self.assertEqual((ok.margin, ok.total_points), (19, 57))
+
+
 class PublishedPages(unittest.TestCase):
     """The five new pages exist, and they publish the audit's numbers rather than new ones."""
 
@@ -655,6 +711,13 @@ class PublishedPages(unittest.TestCase):
         self.assertIn(str(store['expected_pairs']), html)
         self.assertIn(str(store['holes']), html)
         self.assertIn(f'{store["coverage_pct"]}%', html)
+
+    def test_the_parallel_stores_are_compared_not_merged(self):
+        rows = tables_cells('price-feed.html', 'The two stores that now exist, field by field')
+        self.assertEqual(len(rows), 6)
+        joined = ' '.join(' '.join(r) for r in rows)
+        self.assertIn('counted hole', joined)
+        self.assertIn('markets_with_both_open_and_close', joined)
 
     def test_the_difference_column_is_publicly_blank(self):
         rows = tables_cells('price-feed.html', 'What the column split yields across the slate')
@@ -688,7 +751,23 @@ class PublishedPages(unittest.TestCase):
         rows = tables_cells('flags.html', 'Register continuation · raised 14 Nov 2026 by session '
                                            '1cfcb957')
         self.assertEqual([r[0].split(' ')[0] for r in rows],
-                         [f'F{n}' for n in range(28, 34)])
+                         [f'F{n}' for n in range(28, 38)],
+                         'the continuation register must stay contiguous with the published one')
+        self.assertEqual(len([r for r in rows if 'Critical' in r[0]]), 2,
+                         'the price gap and the accessibility repair are the two blocking findings')
+
+    def test_every_scrollable_table_region_is_keyboard_reachable(self):
+        # The site's own axe check rejects a scrollable region with nothing focusable in it. Naming
+        # and focusing the wrap at the generator is what keeps a future linkless wide table passing.
+        import re
+        for path in sorted(ROOT.glob('*.html')):
+            html = path.read_text()
+            for match in re.finditer(r'<div class="table-wrap"([^>]*)>', html):
+                attrs = match.group(1)
+                with self.subTest(page=path.name):
+                    self.assertIn('tabindex="0"', attrs)
+                    self.assertIn('role="region"', attrs)
+                    self.assertIn('aria-label=', attrs)
         ids = [r['cells'][0].split(' ')[0] for r in all_rows('flags.html')
                if r['cells'][0].startswith('F') and len(r['cells'][0].split(' ')[0]) == 3]
         self.assertEqual(len(ids), len(set(ids)), 'the review register has duplicate finding ids')
