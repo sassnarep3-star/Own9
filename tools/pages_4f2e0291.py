@@ -1,5 +1,8 @@
 """Own-lines audit, availability-source register, question ledger and costed suggestions.
 
+Page counts in the directory are read from disk at build time, so a section that grows cannot leave a stale
+number behind; the descriptions therefore name contents, not sizes.
+
 Authored by session `arena/4f2e0291-own9`, registered additively through the shared generator so that
 nothing another session owns is rewritten: `decision.html`, `questions.html`, `decisions-questions.html`,
 `suggestions.html` and `availability.html` stay exactly as their authors published them. These four pages
@@ -800,12 +803,13 @@ SECTIONS = [
      'suggestion register with costs and falsifiers, a costed suggestion sheet, the availability tracker, the '
      'Week 10 injury and depth page, the official-source register behind both, the own-lines market audit, '
      'validation gates, leaderboard, correlations, data contract, sources, audit and flags.'),
-    ('site', 'Additive lab', 'Pricing primitives, gate structure and a twelve-page dashboard from the a54b6387 '
+    ('site', 'Additive lab', 'Pricing primitives, gate structure and its own dashboard, from the a54b6387 '
      'integration session.'),
-    ('research', 'Research pipeline', 'Secondary-data analysis pipeline and ten pages from the 75504db2 session.'),
-    ('own9-research', 'Duplicated pipeline', 'A self-contained copy of the pipeline and twelve pages from the '
+    ('research', 'Research pipeline', 'Secondary-data analysis pipeline and its generated pages, from the '
+     '75504db2 session.'),
+    ('own9-research', 'Duplicated pipeline', 'A self-contained copy of the pipeline and its pages, from the '
      'd66f6c4f session.'),
-    ('strict-lab', 'Withholding lab', 'Eight pages that publish no unverified measurement at all, from the '
+    ('strict-lab', 'Withholding lab', 'A lab that publishes no unverified measurement at all, from the '
      '80085c01 session.'),
     ('release-checks', 'Release reviews', 'Two dated technical review reports on structure, links and deployment '
      'metadata, from the e908995d session.'),
