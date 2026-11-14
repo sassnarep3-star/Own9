@@ -1,0 +1,4 @@
+pair,n,pearson_r,ci_low,ci_high,deadband,dependence_claimed
+game margin (home - away) vs game total (home + away),137,-0.1607,-0.3198,0.0073,0.1,declared (outside deadband)
+home points vs away points (same game),137,0.0759,-0.093,0.2405,0.1,no (inside deadband)
+club margin in week t-1 vs club margin in week t,242,0.0863,-0.0402,0.2101,0.1,no (inside deadband)
