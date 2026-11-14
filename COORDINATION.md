@@ -316,6 +316,8 @@ The claim above records the initial base-only view, not a takeover of later publ
 
 ---
 
+---
+
 ## Integration session 1cc6b33d — suggestions, decision brief, availability tracker
 
 Session: `1cc6b33d` · Branch: `arena/1cc6b33d-own9` · Started: 2026-11-14 UTC.
@@ -396,3 +398,85 @@ Test and build state at this commit:
 - PR #18 (`independent-audit/**`) remains untouched and unmerged by this session.
 - This session added no derived NFL number. Every new numeric value on the site is either a
   published statistic, a computed set difference over published names, or a count of rows.
+---
+
+## Concurrent sessions integrated in this merge
+
+The blocks below were merged from `origin/main` and are preserved as written by their
+own sessions. Nothing in them was edited or withdrawn.
+
+## Decision questions and improvement suggestions — arena/8de532d1-own9
+
+| Task | Status | Owner | File scope |
+|---|---|---|---|
+| Add a dedicated, source-scoped decision/questions and ranked suggestions page | done | arena/8de532d1-own9 | `tools/build.py`, `tools/verify.py`, `tests/test_site.py`, `questions.html`, generated root `*.html`, `COORDINATION.md` |
+
+- No active in-progress claim was found in the board at this checkout. Existing dashboard and research scopes are recorded as completed or needs review; this is a disjoint additive page.
+- Scope: distinguish already answered, unknown, and decision-blocking questions; list evidence needed to close each gap; order implementation suggestions without claiming external facts. Every table row will cite the project record or an official method/publisher source, with scope explicitly labeled. No changes to empirical data, predictions, injury values, strategy ranks, or rewards.
+- The fixed Arena branch is `arena/8de532d1-own9`; no alternate branch/worktree will be created.
+
+### Completion and verification — arena/8de532d1-own9 (2026-11-14)
+
+- Added the generated `questions.html` Decision Questions page, linked from every page's navigation and the overview. It contains 8 explicit decision questions (known evidence, missing information/how to discover it, status) plus 6 prioritized improvement suggestions with alternatives, recommended path and implementation gate. No NFL performance values were added.
+- Updated generated output and root structural verification for 10 pages / 90 source-linked table rows; added regression assertions for the 14 rows on the questions page. Expanded the claimed file scope to all generated root HTML because navigation is shared across pages.
+- Official pages read directly for this page: [NFL Injury Report](https://www.nfl.com/injuries/) (retrieved 2026-11-14; observed player, position, injury, practice-status and game-status fields; the current page does not establish historical depth order, pregame capture history or substitute participation); [NFL Player Stats](https://www.nfl.com/stats/player-stats/) (retrieved 2026-11-14; current season/category player statistics; does not supply executable betting prices). Method references already in the checked source manifest remain scope-limited to their recorded claims: scikit-learn holdout/Brier guidance, NIST multiplicity context and SciPy Pearson definition. Project-gap rows link to the primary repository record, not an alleged external authority.
+- Findings/irregularities published for review on the page: no verified NFL model, historical point-in-time injury/depth/participation ledger, executable price archive, measured NFL correlations, funded reward pool, source permissions decision or automated feed. The official NFL injury report's status fields must not be mistaken for depth-chart rankings or player participation. No source URL for official historical depth order was verified in this task, so it is called out as a discovery requirement, not asserted.
+- Checks: `python tools/verify.py` passed (10 generated pages, 90 cited rows, local links/fragments and current navigation); `npm test` passed (38 root Python tests and 12-page/108-row secondary-site check); browser suite passed after `npm ci --ignore-scripts` (12 secondary pages at two viewports, 24 axe scans, filters/exports/blank metrics/no-JS); release-check fixtures passed (31); additional root dashboard browser smoke passed all 10 pages at desktop/mobile with 20 axe scans, 14 source-linked question/suggestion rows and no overflow; repeat generation was deterministic; `git diff --check` clean.
+- External-source links in the tables are pointers for review; structural checks verify links against the reviewed manifest but do not claim current availability or full claim entailment. This task does not certify the entire inherited repository line-by-line, prove an NFL edge, remove luck, authorize wagering or establish rewards.
+## Session 8b05dd6d — claim (arena/8b05dd6d-own9, base 92ae415) — 2026-11-14 UTC
+
+| Task | Status | Owner | File scope |
+| --- | --- | --- | --- |
+| Executive summary, questions/information-gap register, suggestions for review (not implemented), NFL injury report snapshot with official source per row, depth-gap register (unverified starter status flagged), Flagged for Review for this session | done (published; findings on Flagged for Review) | 8b05dd6d | `session-8b05dd6d/**` only (new folder; no root or other-session file edited) |
+
+- Claimed 2026-11-14 before any implementation. Publication: legacy Pages serves `main` `/`, so the folder is published at `https://sassnarep3-star.github.io/Own9/session-8b05dd6d/`.
+- Limits: official NFL betting lines are not published by the NFL; no verified line source is claimed. Strategy validation of others' inherited work is not re-performed here.
+
+### 8b05dd6d — completion record (2026-11-14 UTC)
+
+- **Scope delivered (only `session-8b05dd6d/**`):** 11 static pages (landing, executive summary, injuries, games, starters/backups, strategies & lines, questions, suggestions, repo review, sources, Flagged for Review), 3 data files (`data/*.psv`), generator and checker (`tools/build.py`, `tools/check.py`), CSV exports. Live target: https://sassnarep3-star.github.io/Own9/session-8b05dd6d/
+- **Official sources read (2026-11-14):** https://www.nfl.com/injuries/ (all 8 pages of the Week 10 report; 160 rows listed with status; no update time shown); https://www.nfl.com/schedules/2026/REG10 (Week 10 matchups, kickoff times, networks; Thursday final 24-21); NFL.com headlines linked from the injury page (headline text only); https://www.nfl.com/stats/team-stats/ and https://operations.nfl.com/rules-officiating/2026-nfl-rulebook (reachability only); https://www.gra.gov.sg/harm-minimisation/unlawful-remote-gambling-activities (Singapore legal position); https://www.gra.gov.sg/ (homepage).
+- **Verification performed:** 14/14 matchups match the schedule; kickoff times and networks match for the 13 non-Thursday games; the Thursday game's kickoff and network come from the injury page only. Injury rows were transcribed from the page and counted per game (3,17,11,20,10,14,12,13,14,16,6,19,5,0 = 160). `tools/check.py` passes: 11 pages, 304 table rows with https source links, internal links and fragments resolve, CSV equals transcription.
+- **Not verified / blank (flagged):** betting lines and prices (none on NFL pages checked); starter/backup classification for teams (no depth chart captured); injured-reserve scope; game-day inactives; strategy results (none tested, all empty fields). No strategy is validated and no edge is claimed.
+- **Irregularities (published on Flagged for Review, nonblocking):** F01 Thursday statuses stale after final; F02 Lamar Jackson and Malik Willis absent from the report although NFL.com headlines say they went on IR; F03 conflicting Jackson timelines (6-9 vs 6-10 weeks); F04 Puka Nacua listed without designation; F05 Garrett Wilson ruled out (Nov 6) vs Questionable (Nov 14); F06 no update time on the injury page; F07 Patriots at Lions venue unclear; F08 "Not injury related" entries counted as Out; F09 Singapore legal status; F10 gate counts conflict (7 vs 11 vs G1–G5); F11 no LICENSE file; F12 overlapping dashboards; F13 root index dated 04 Nov; F14 earlier claims not re-verified.
+- **Shared-file requests (not edited):** (1) root navigation owner: link `session-8b05dd6d/index.html` from the root overview and Flagged page; (2) CI owner: add `python3 session-8b05dd6d/tools/check.py` to the quality workflow; (3) owner decision on gate list and on consolidating dashboards (see the Suggestions and Questions pages).
+- **Handling of earlier session notes:** earlier sessions' empirical results were not re-checked here (F14). Their numbers are not adopted.
+
+- 2026-11-14 8b05dd6d: PR https://github.com/sassnarep3-star/Own9/pull/22 (`arena/8b05dd6d-own9` → `main`). Pre-merge checks passed on head `620940e`: [Research integrity and site checks](https://github.com/sassnarep3-star/Own9/actions/runs/43537738165) and [static-and-math](https://github.com/sassnarep3-star/Own9/actions/runs/43537738166). Merge method `--merge`; the merge result and the Pages deployment are reported on the PR and in the session summary. Branch sync note: a rebase onto the remote branch would have replayed PR #21 commits, so the remote was integrated by merge instead; both boards preserved.
+
+### Merge and publication record — arena/8de532d1-own9
+
+- [PR #21](https://github.com/sassnarep3-star/Own9/pull/21) merged with `--merge` on 2026-11-14 at 00:54:02 UTC as `365e5f29295c50e6c3518726834873df19f5754b`.
+- PR-head checks passed: Research quality [43537126437](https://github.com/sassnarep3-star/Own9/actions/runs/43537126437) and Verify NFL research for Pages [43537126458](https://github.com/sassnarep3-star/Own9/actions/runs/43537126458). Exact-merge main checks passed: Research quality [43537207333](https://github.com/sassnarep3-star/Own9/actions/runs/43537207333), Verify NFL research for Pages [43537207332](https://github.com/sassnarep3-star/Own9/actions/runs/43537207332), and Pages build/deployment [43537207141](https://github.com/sassnarep3-star/Own9/actions/runs/43537207141). GitHub Pages API status is `built`.
+- Retrieved the published [Decision Questions page](https://sassnarep3-star.github.io/Own9/questions.html?pr=21) after deployment; confirmed 8 questions, 6 suggestions, source links, published limitations and review links. The site is live at https://sassnarep3-star.github.io/Own9/.
+- Nonblocking platform annotations: GitHub forced pinned/selected actions onto Node.js 24 because Node.js 20 is deprecated; `ubuntu-latest` migration notice. All checks and deployment succeeded. No code change was needed for these warnings.
+- Remaining scientific gaps stay published for review and are not blockers to hosting: no verified NFL model, executable odds archive, historical depth/injury timeline, measured NFL correlations, funded reward pool, or proof that chance has been removed.
+
+### Decision-page freshness correction — 2026-11-14
+
+- The shared renderer previously labeled every page “As of 04 Nov 2026”; the new Decision Questions page also reflects official NFL source pages retrieved on 14 Nov. Set that page's displayed as-of date to **14 Nov 2026** while retaining the original date on other pages whose source register states Nov 4. No underlying empirical values or claims changed.
+- Verification: regenerated all 10 pages; root verifier passed with 90 source-linked rows; all 38 root Python tests passed, including a regression assertion for the Decision Questions date; `git diff --check` clean. Official pages and method scope remain as recorded above.
+
+### Merge and handoff note — session 1cc6b33d (2026-11-14)
+
+- `origin/main` advanced while this session worked. Rebased attempt conflicted in `COORDINATION.md`
+  because both boards appended to the same tail, so the remote was integrated by **merge** instead of
+  rebase, and both boards are kept in full. No branch was renamed, no other session's claim withdrawn.
+- **Conflict: `questions.html`.** Session `arena/8de532d1-own9` had already published a page at that
+  path containing 8 decision questions and 6 improvement suggestions. This session's independent
+  question register also targeted `questions.html`. Resolution, chosen so nothing is discarded:
+  - `questions.html` now serves this session's 22-row question register (three explicit states).
+  - Their page is preserved at **`decisions-questions.html`**, rendered from
+    `tools/pages_8de532d1.py`, which contains their rows, alternatives, recommended paths and scope
+    labels verbatim. Only the filename and navigation label differ. It is linked from the navigation
+    ("Decide" group), the homepage and their own ported regression test.
+  - Their `tests/test_site.py` assertions were kept and retargeted to the new path rather than deleted.
+- **Conflict: `tools/build.py` and generated `*.html`.** Kept this session's generator (grouped
+  navigation, new pages) and regenerated all HTML, so no generated file is a hand-merged artefact.
+  Their page is injected through the same `page()`/`table()` helpers, so it inherits the shared shell.
+- **Conflict: as-of date.** Their fix (per-page date, questions page at 14 Nov) is generalized into a
+  `KEEP_DATE_14` set covering every page whose tables rest on 14 Nov retrievals.
+- Combined verification after resolution: **14 pages, 219 source-linked rows**, 80 Python tests,
+  28 WCAG axe scans across two viewports, release-check fixtures, and both validators pass.
+- Their `session-8b05dd6d/**` subtree and its requests were merged unchanged and are **not** adopted
+  as verified by this dashboard; its own irregularity list stands as that session published it.

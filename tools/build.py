@@ -21,10 +21,13 @@ GAMEBOOK = {
 }
 INJURY = json.loads((ROOT/'evidence/availability/injury-report-2026-week-10.json').read_text())
 PAGES = {}
+# Pages whose tables rest on documents retrieved on 14 Nov 2026.
+KEEP_DATE_14 = {'decision.html','questions.html','availability.html','suggestions.html',
+                'decisions-questions.html','sources.html','flags.html','audit.html'}
 
 # Navigation grouped by what the reader is trying to do, not by file order.
 NAV_GROUPS = [
-    ('Decide', [('decision.html','Decision brief'),('questions.html','Questions & answers')]),
+    ('Decide', [('decision.html','Decision brief'),('questions.html','Question register'),('decisions-questions.html','Decision review')]),
     ('Evidence', [('index.html','Overview'),('availability.html','Availability tracker'),('data.html','Data requirements'),('sources.html','Sources')]),
     ('Research', [('strategies.html','Strategies'),('correlations.html','Correlations'),('validation.html','Validation'),('leaderboard.html','Leaderboard')]),
     ('Review', [('suggestions.html','Suggestions'),('flags.html','Flagged for review'),('audit.html','Repository audit')]),
@@ -69,7 +72,7 @@ page('index.html','Overview','Evidence first.\nAn edge must be earned.',
              ('repo',),'Project record'),
          row(['Suggested improvements','16 suggestions scored on decision impact and evidence cost. 12 accepted and carried by a decision, 2 deferred, 2 blocked on a missing archive or licence.','Reviewable queue'],('repo',),'Project record'),
          row(['Executive recommendation','Continue as a paper-research lab. Missing provenance, prices or validation blocks eligibility—not publication of limitations.','No bets recommended'])
-     ]) + '<p class="download">Read the <a href="docs/RESEARCH_SPEC.md">full research specification</a>, the <a href="decision.html">decision brief</a> and the <a href="audit.html">repository audit</a>. Every empirical gap appears on <a href="flags.html">Flagged for Review</a>, and every proposed change is queued on <a href="suggestions.html">Suggestions</a>.</p>')
+     ]) + '<p class="download">Read the <a href="questions.html">decision questions &amp; improvement suggestions</a> register, the <a href="docs/RESEARCH_SPEC.md">full research specification</a>, the <a href="decision.html">decision brief</a> and the <a href="audit.html">repository audit</a>. Every empirical gap appears on <a href="flags.html">Flagged for Review</a>, every proposed change is queued on <a href="suggestions.html">Suggestions</a>, and the earlier <a href="decisions-questions.html">decision questions register</a> is preserved with its own recommended paths.</p>')
 
 page('strategies.html','Strategies','The signal registry.',
      'Predeclared research candidates. These are designs to test, not discovered edges or recommendations. Contextual references do not endorse a strategy.',
@@ -352,6 +355,13 @@ page('availability.html','Availability tracker','Who actually started,\nnot who 
      '<div class="notice"><strong>The request was second, third and fourth string</strong><p>The NFL publishes a game-day starting lineup and a roster status code. This project could not obtain a depth chart from the league site — the club depth-chart route returns an NFL 404 — and found no starter flag per snap or any first/second/third/fourth-string designation. This page therefore reports the verified part — who started, who left the lineup and who entered — and leaves every depth tier blank rather than guessing.</p></div>'
      + _lineup_tables() + _replacement_table() + _counterexamples() + _injury_table())
 
+_preserved_source = (ROOT/'tools/pages_8de532d1.py').read_text()
+_preserved_body = _preserved_source.split('"""', 2)[2]
+exec(compile(_preserved_body, 'pages_8de532d1.py', 'exec'),
+     {'page': page, 'table': table, 'row': row, 'e': e, 'PAGES': PAGES,
+      '__name__': 'pages_8de532d1'})
+
+
 def render():
     files = {}
     for filename,(label,title,intro,content) in PAGES.items():
@@ -359,10 +369,11 @@ def render():
             f'<span class="nav-group"><span class="nav-label">{e(group)}</span>'
             + ''.join(f'<a href="{f}"'+(' aria-current="page"' if f==filename else '')+f'>{e(label)}</a>' for f,label in items)
             + '</span>' for group,items in NAV_GROUPS)
+        page_date = '14 Nov 2026' if filename in KEEP_DATE_14 else '04 Nov 2026'
         files[filename] = f'''<!doctype html>
 <html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="description" content="Evidence-first NFL research dashboard. Strategies, validation, correlation requirements and transparent limitations."><title>{e(label)} · Own9 NFL Research</title><link rel="stylesheet" href="style.css"><script src="site.js" defer></script></head>
 <body><a class="skip" href="#main">Skip to content</a><header><div class="shell top"><a class="brand" href="index.html"><span>O9</span> OWN9 <small> / NFL RESEARCH</small></a><span class="status-dot">Research only · no live wagers</span></div><nav class="shell" aria-label="Main navigation">{nav}</nav></header>
-<main class="shell" id="main"><div class="page-meta"><span class="eyebrow">RESEARCH DESK / {e(label.upper())}</span><span>Evidence retrieved to 14 Nov 2026 · UTC</span></div><h1>{e(title).replace(chr(10),'<br>')}</h1><p class="lead">{e(intro)}</p><div class="filter" hidden><label for="row-search">Find a table entry</label><input id="row-search" type="search" placeholder="Filter this page…" autocomplete="off"><span id="row-count" role="status" aria-live="polite"></span></div>{content}<p class="disclaimer">Research, not betting advice. No verified edge or guaranteed return. Blank empirical values are unavailable and unverified, never zero.</p></main>
+<main class="shell" id="main"><div class="page-meta"><span class="eyebrow">RESEARCH DESK / {e(label.upper())}</span><span>As of {e(page_date)} · UTC</span></div><h1>{e(title).replace(chr(10),'<br>')}</h1><p class="lead">{e(intro)}</p><div class="filter" hidden><label for="row-search">Find a table entry</label><input id="row-search" type="search" placeholder="Filter this page…" autocomplete="off"><span id="row-count" role="status" aria-live="polite"></span></div>{content}<p class="disclaimer">Research, not betting advice. No verified edge or guaranteed return. Blank empirical values are unavailable and unverified, never zero.</p></main>
 <footer class="shell"><b>OWN9 / NFL RESEARCH</b><span>Evidence over assumptions · <a href="sources.html">Evidence register</a> · <a href="flags.html">Flagged for Review</a></span></footer></body></html>\n'''
     return files
 
