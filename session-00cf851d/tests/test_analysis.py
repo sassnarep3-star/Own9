@@ -157,10 +157,53 @@ class TestResultsAudit(unittest.TestCase):
                                                pit["official_t"], pit["official_pf"],
                                                pit["official_pa"]))
 
+    def test_sign_convention_is_arithmetically_consistent(self):
+        """result = home - away and total = home + away must hold on every scored row."""
+        import csv as _csv
+        rows = [r for r in _csv.DictReader(open(os.path.join(
+            os.path.dirname(SESSION), "data", "raw", "games.csv"), encoding="utf-8"))
+            if r["result"]]
+        for r in rows:
+            tot, res = int(r["total"]), int(r["result"])
+            self.assertEqual(0, (tot + res) % 2, r["game_id"])
+            self.assertGreaterEqual((tot + res) // 2, 0, r["game_id"])
+            self.assertGreaterEqual((tot - res) // 2, 0, r["game_id"])
+
     def test_missing_results_are_the_most_recent_games(self):
         cc = self.a["current_season_completeness"]
         self.assertEqual(16, cc["of_those_missing_a_result"])
         self.assertIn("2026_10_WAS_NYG", cc["missing_game_ids"])
+
+    def test_all_sixteen_missing_outcomes_are_now_covered(self):
+        """The gap was closed in full, not partially."""
+        reg = load("official_results.json")
+        cc = self.a["current_season_completeness"]
+        self.assertEqual([], reg["not_retrieved"])
+        self.assertEqual(cc["of_those_missing_a_result"], len(reg["results"]))
+        have = {r["game_id_in_repo"] for r in reg["results"]}
+        self.assertEqual(set(cc["missing_game_ids"]), have)
+
+    def test_applying_the_official_outcomes_reconciles_every_club(self):
+        """The strongest available check: 32 clubs x five standings fields.
+
+        A single misread score breaks two clubs at once, so this fails loudly on
+        any transcription error and on any error in the sign convention.
+        """
+        ai = self.a["reconciliation_after_official_ingest"]
+        self.assertEqual(32, ai["clubs_checked"])
+        self.assertEqual(32, ai["clubs_matching"])
+        self.assertEqual(16, ai["outcomes_applied"])
+        bad = [c for c in ai["clubs"] if not c["matches"]]
+        self.assertEqual([], bad, [c["abbr"] for c in bad])
+
+    def test_the_bye_week_explains_the_original_two_of_thirty_two(self):
+        """PIT and TEN reconciled first time because they had no Week 9 game."""
+        reg = load("official_results.json")
+        self.assertEqual(["PIT", "TEN"], reg["bye_week_9_official"]["clubs"])
+        blocked = {c["abbr"] for c in self.a["club_reconciliation"]["clubs"]
+                   if c["games_missing_result"]}
+        self.assertNotIn("PIT", blocked)
+        self.assertNotIn("TEN", blocked)
 
     def test_official_outcomes_are_none_of_them_in_the_file(self):
         """The gap this session filled was a real gap, not a join bug."""

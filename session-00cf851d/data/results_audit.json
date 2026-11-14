@@ -672,19 +672,35 @@
   "description": "Outcomes the league publishes for games this session read. Each is compared with what the committed file holds for the same game id.",
   "rows": [
    {
-    "game_id": "2026_09_JAX_BAL",
+    "game_id": "2026_09_ARI_SEA",
     "week": 9,
-    "gameday": "2026-11-05",
-    "away": "JAX",
-    "away_points": 33,
-    "home": "BAL",
-    "home_points": 10,
-    "official_home_margin": -23,
-    "official_total": 43,
+    "gameday": "2026-11-08",
+    "away": "AZ",
+    "away_points": 3,
+    "home": "SEA",
+    "home_points": 17,
+    "official_home_margin": 14,
+    "official_total": 20,
     "result_present_in_committed_file": false,
     "committed_file_result": null,
-    "closing_spread_home": -10.0,
-    "closing_total": 39.5,
+    "closing_spread_home": 8.5,
+    "closing_total": 40.5,
+    "source_url": "https://www.nfl.com/schedules/2026/by-week/week-9"
+   },
+   {
+    "game_id": "2026_09_BUF_MIN",
+    "week": 9,
+    "gameday": "2026-11-09",
+    "away": "BUF",
+    "away_points": 23,
+    "home": "MIN",
+    "home_points": 6,
+    "official_home_margin": -17,
+    "official_total": 29,
+    "result_present_in_committed_file": false,
+    "committed_file_result": null,
+    "closing_spread_home": -3.5,
+    "closing_total": 45.5,
     "source_url": "https://www.nfl.com/schedules/2026/by-week/week-9"
    },
    {
@@ -704,19 +720,19 @@
     "source_url": "https://www.nfl.com/schedules/2026/by-week/week-9"
    },
    {
-    "game_id": "2026_09_DEN_CAR",
+    "game_id": "2026_09_CLE_NO",
     "week": 9,
     "gameday": "2026-11-08",
-    "away": "DEN",
-    "away_points": 26,
-    "home": "CAR",
-    "home_points": 21,
-    "official_home_margin": -5,
-    "official_total": 47,
+    "away": "CLE",
+    "away_points": 22,
+    "home": "NO",
+    "home_points": 23,
+    "official_home_margin": 1,
+    "official_total": 45,
     "result_present_in_committed_file": false,
     "committed_file_result": null,
-    "closing_spread_home": -2.5,
-    "closing_total": 44.5,
+    "closing_spread_home": 3.0,
+    "closing_total": 42.5,
     "source_url": "https://www.nfl.com/schedules/2026/by-week/week-9"
    },
    {
@@ -736,19 +752,19 @@
     "source_url": "https://www.nfl.com/schedules/2026/by-week/week-9"
    },
    {
-    "game_id": "2026_09_NYJ_KC",
+    "game_id": "2026_09_DEN_CAR",
     "week": 9,
     "gameday": "2026-11-08",
-    "away": "NYJ",
-    "away_points": 12,
-    "home": "KC",
-    "home_points": 35,
-    "official_home_margin": 23,
+    "away": "DEN",
+    "away_points": 26,
+    "home": "CAR",
+    "home_points": 21,
+    "official_home_margin": -5,
     "official_total": 47,
     "result_present_in_committed_file": false,
     "committed_file_result": null,
-    "closing_spread_home": 10.0,
-    "closing_total": 47.5,
+    "closing_spread_home": -2.5,
+    "closing_total": 44.5,
     "source_url": "https://www.nfl.com/schedules/2026/by-week/week-9"
    },
    {
@@ -768,51 +784,19 @@
     "source_url": "https://www.nfl.com/schedules/2026/by-week/week-9"
    },
    {
-    "game_id": "2026_09_CLE_NO",
+    "game_id": "2026_09_GB_NE",
     "week": 9,
     "gameday": "2026-11-08",
-    "away": "CLE",
-    "away_points": 22,
-    "home": "NO",
-    "home_points": 23,
-    "official_home_margin": 1,
-    "official_total": 45,
+    "away": "GB",
+    "away_points": 45,
+    "home": "NE",
+    "home_points": 27,
+    "official_home_margin": -18,
+    "official_total": 72,
     "result_present_in_committed_file": false,
     "committed_file_result": null,
     "closing_spread_home": 3.0,
-    "closing_total": 42.5,
-    "source_url": "https://www.nfl.com/schedules/2026/by-week/week-9"
-   },
-   {
-    "game_id": "2026_09_NYG_PHI",
-    "week": 9,
-    "gameday": "2026-11-08",
-    "away": "NYG",
-    "away_points": 19,
-    "home": "PHI",
-    "home_points": 11,
-    "official_home_margin": -8,
-    "official_total": 30,
-    "result_present_in_committed_file": false,
-    "committed_file_result": null,
-    "closing_spread_home": -3.5,
-    "closing_total": 38.5,
-    "source_url": "https://www.nfl.com/schedules/2026/by-week/week-9"
-   },
-   {
-    "game_id": "2026_09_LA_WAS",
-    "week": 9,
-    "gameday": "2026-11-08",
-    "away": "LAR",
-    "away_points": 20,
-    "home": "WAS",
-    "home_points": 13,
-    "official_home_margin": -7,
-    "official_total": 33,
-    "result_present_in_committed_file": false,
-    "committed_file_result": null,
-    "closing_spread_home": -5.5,
-    "closing_total": 47.5,
+    "closing_total": 46.5,
     "source_url": "https://www.nfl.com/schedules/2026/by-week/week-9"
    },
    {
@@ -832,6 +816,38 @@
     "source_url": "https://www.nfl.com/schedules/2026/by-week/week-9"
    },
    {
+    "game_id": "2026_09_JAX_BAL",
+    "week": 9,
+    "gameday": "2026-11-05",
+    "away": "JAX",
+    "away_points": 33,
+    "home": "BAL",
+    "home_points": 10,
+    "official_home_margin": -23,
+    "official_total": 43,
+    "result_present_in_committed_file": false,
+    "committed_file_result": null,
+    "closing_spread_home": -10.0,
+    "closing_total": 39.5,
+    "source_url": "https://www.nfl.com/schedules/2026/by-week/week-9"
+   },
+   {
+    "game_id": "2026_09_LA_WAS",
+    "week": 9,
+    "gameday": "2026-11-08",
+    "away": "LAR",
+    "away_points": 20,
+    "home": "WAS",
+    "home_points": 13,
+    "official_home_margin": -7,
+    "official_total": 33,
+    "result_present_in_committed_file": false,
+    "committed_file_result": null,
+    "closing_spread_home": -5.5,
+    "closing_total": 47.5,
+    "source_url": "https://www.nfl.com/schedules/2026/by-week/week-9"
+   },
+   {
     "game_id": "2026_09_LV_SF",
     "week": 9,
     "gameday": "2026-11-08",
@@ -848,19 +864,51 @@
     "source_url": "https://www.nfl.com/schedules/2026/by-week/week-9"
    },
    {
-    "game_id": "2026_09_GB_NE",
+    "game_id": "2026_09_NYG_PHI",
     "week": 9,
     "gameday": "2026-11-08",
-    "away": "GB",
-    "away_points": 45,
-    "home": "NE",
-    "home_points": 27,
-    "official_home_margin": -18,
-    "official_total": 72,
+    "away": "NYG",
+    "away_points": 19,
+    "home": "PHI",
+    "home_points": 11,
+    "official_home_margin": -8,
+    "official_total": 30,
     "result_present_in_committed_file": false,
     "committed_file_result": null,
-    "closing_spread_home": 3.0,
-    "closing_total": 46.5,
+    "closing_spread_home": -3.5,
+    "closing_total": 38.5,
+    "source_url": "https://www.nfl.com/schedules/2026/by-week/week-9"
+   },
+   {
+    "game_id": "2026_09_NYJ_KC",
+    "week": 9,
+    "gameday": "2026-11-08",
+    "away": "NYJ",
+    "away_points": 12,
+    "home": "KC",
+    "home_points": 35,
+    "official_home_margin": 23,
+    "official_total": 47,
+    "result_present_in_committed_file": false,
+    "committed_file_result": null,
+    "closing_spread_home": 10.0,
+    "closing_total": 47.5,
+    "source_url": "https://www.nfl.com/schedules/2026/by-week/week-9"
+   },
+   {
+    "game_id": "2026_09_TB_CHI",
+    "week": 9,
+    "gameday": "2026-11-08",
+    "away": "TB",
+    "away_points": 24,
+    "home": "CHI",
+    "home_points": 27,
+    "official_home_margin": 3,
+    "official_total": 51,
+    "result_present_in_committed_file": false,
+    "committed_file_result": null,
+    "closing_spread_home": 6.0,
+    "closing_total": 47.5,
     "source_url": "https://www.nfl.com/schedules/2026/by-week/week-9"
    },
    {
@@ -880,7 +928,625 @@
     "source_url": "https://www.nfl.com/schedules/2026/REG10/"
    }
   ],
-  "n": 13
+  "n": 16
+ },
+ "reconciliation_after_official_ingest": {
+  "description": "The per-club reconciliation of section 4 repeated with the sixteen officially read outcomes applied to the games the committed file leaves blank. Every club is now checkable, so this is a direct test of the transcription: a single wrong score would break two clubs at once.",
+  "standings_source_url": "https://www.nfl.com/standings/",
+  "outcomes_applied": 16,
+  "clubs": [
+   {
+    "abbr": "ARI",
+    "team": "Arizona Cardinals",
+    "recomputed": [
+     3,
+     6,
+     0,
+     178,
+     255
+    ],
+    "official": [
+     3,
+     6,
+     0,
+     178,
+     255
+    ],
+    "matches": true
+   },
+   {
+    "abbr": "ATL",
+    "team": "Atlanta Falcons",
+    "recomputed": [
+     3,
+     6,
+     0,
+     188,
+     223
+    ],
+    "official": [
+     3,
+     6,
+     0,
+     188,
+     223
+    ],
+    "matches": true
+   },
+   {
+    "abbr": "BAL",
+    "team": "Baltimore Ravens",
+    "recomputed": [
+     4,
+     5,
+     0,
+     189,
+     236
+    ],
+    "official": [
+     4,
+     5,
+     0,
+     189,
+     236
+    ],
+    "matches": true
+   },
+   {
+    "abbr": "BUF",
+    "team": "Buffalo Bills",
+    "recomputed": [
+     7,
+     1,
+     0,
+     256,
+     187
+    ],
+    "official": [
+     7,
+     1,
+     0,
+     256,
+     187
+    ],
+    "matches": true
+   },
+   {
+    "abbr": "CAR",
+    "team": "Carolina Panthers",
+    "recomputed": [
+     3,
+     5,
+     0,
+     199,
+     219
+    ],
+    "official": [
+     3,
+     5,
+     0,
+     199,
+     219
+    ],
+    "matches": true
+   },
+   {
+    "abbr": "CHI",
+    "team": "Chicago Bears",
+    "recomputed": [
+     7,
+     2,
+     0,
+     241,
+     184
+    ],
+    "official": [
+     7,
+     2,
+     0,
+     241,
+     184
+    ],
+    "matches": true
+   },
+   {
+    "abbr": "CIN",
+    "team": "Cincinnati Bengals",
+    "recomputed": [
+     6,
+     2,
+     0,
+     240,
+     175
+    ],
+    "official": [
+     6,
+     2,
+     0,
+     240,
+     175
+    ],
+    "matches": true
+   },
+   {
+    "abbr": "CLE",
+    "team": "Cleveland Browns",
+    "recomputed": [
+     5,
+     4,
+     0,
+     161,
+     196
+    ],
+    "official": [
+     5,
+     4,
+     0,
+     161,
+     196
+    ],
+    "matches": true
+   },
+   {
+    "abbr": "DAL",
+    "team": "Dallas Cowboys",
+    "recomputed": [
+     4,
+     5,
+     0,
+     246,
+     236
+    ],
+    "official": [
+     4,
+     5,
+     0,
+     246,
+     236
+    ],
+    "matches": true
+   },
+   {
+    "abbr": "DEN",
+    "team": "Denver Broncos",
+    "recomputed": [
+     7,
+     2,
+     0,
+     198,
+     186
+    ],
+    "official": [
+     7,
+     2,
+     0,
+     198,
+     186
+    ],
+    "matches": true
+   },
+   {
+    "abbr": "DET",
+    "team": "Detroit Lions",
+    "recomputed": [
+     6,
+     2,
+     0,
+     222,
+     189
+    ],
+    "official": [
+     6,
+     2,
+     0,
+     222,
+     189
+    ],
+    "matches": true
+   },
+   {
+    "abbr": "GB",
+    "team": "Green Bay Packers",
+    "recomputed": [
+     6,
+     3,
+     0,
+     216,
+     191
+    ],
+    "official": [
+     6,
+     3,
+     0,
+     216,
+     191
+    ],
+    "matches": true
+   },
+   {
+    "abbr": "HOU",
+    "team": "Houston Texans",
+    "recomputed": [
+     3,
+     5,
+     0,
+     209,
+     192
+    ],
+    "official": [
+     3,
+     5,
+     0,
+     209,
+     192
+    ],
+    "matches": true
+   },
+   {
+    "abbr": "IND",
+    "team": "Indianapolis Colts",
+    "recomputed": [
+     2,
+     7,
+     0,
+     184,
+     249
+    ],
+    "official": [
+     2,
+     7,
+     0,
+     184,
+     249
+    ],
+    "matches": true
+   },
+   {
+    "abbr": "JAX",
+    "team": "Jacksonville Jaguars",
+    "recomputed": [
+     6,
+     2,
+     0,
+     229,
+     121
+    ],
+    "official": [
+     6,
+     2,
+     0,
+     229,
+     121
+    ],
+    "matches": true
+   },
+   {
+    "abbr": "KC",
+    "team": "Kansas City Chiefs",
+    "recomputed": [
+     6,
+     2,
+     0,
+     202,
+     143
+    ],
+    "official": [
+     6,
+     2,
+     0,
+     202,
+     143
+    ],
+    "matches": true
+   },
+   {
+    "abbr": "LA",
+    "team": "Los Angeles Rams",
+    "recomputed": [
+     5,
+     4,
+     0,
+     214,
+     181
+    ],
+    "official": [
+     5,
+     4,
+     0,
+     214,
+     181
+    ],
+    "matches": true
+   },
+   {
+    "abbr": "LAC",
+    "team": "Los Angeles Chargers",
+    "recomputed": [
+     0,
+     8,
+     0,
+     121,
+     219
+    ],
+    "official": [
+     0,
+     8,
+     0,
+     121,
+     219
+    ],
+    "matches": true
+   },
+   {
+    "abbr": "LV",
+    "team": "Las Vegas Raiders",
+    "recomputed": [
+     4,
+     5,
+     0,
+     238,
+     268
+    ],
+    "official": [
+     4,
+     5,
+     0,
+     238,
+     268
+    ],
+    "matches": true
+   },
+   {
+    "abbr": "MIA",
+    "team": "Miami Dolphins",
+    "recomputed": [
+     1,
+     7,
+     0,
+     126,
+     200
+    ],
+    "official": [
+     1,
+     7,
+     0,
+     126,
+     200
+    ],
+    "matches": true
+   },
+   {
+    "abbr": "MIN",
+    "team": "Minnesota Vikings",
+    "recomputed": [
+     6,
+     2,
+     0,
+     146,
+     116
+    ],
+    "official": [
+     6,
+     2,
+     0,
+     146,
+     116
+    ],
+    "matches": true
+   },
+   {
+    "abbr": "NE",
+    "team": "New England Patriots",
+    "recomputed": [
+     5,
+     4,
+     0,
+     211,
+     207
+    ],
+    "official": [
+     5,
+     4,
+     0,
+     211,
+     207
+    ],
+    "matches": true
+   },
+   {
+    "abbr": "NO",
+    "team": "New Orleans Saints",
+    "recomputed": [
+     3,
+     5,
+     0,
+     185,
+     216
+    ],
+    "official": [
+     3,
+     5,
+     0,
+     185,
+     216
+    ],
+    "matches": true
+   },
+   {
+    "abbr": "NYG",
+    "team": "New York Giants",
+    "recomputed": [
+     5,
+     3,
+     1,
+     203,
+     196
+    ],
+    "official": [
+     5,
+     3,
+     1,
+     203,
+     196
+    ],
+    "matches": true
+   },
+   {
+    "abbr": "NYJ",
+    "team": "New York Jets",
+    "recomputed": [
+     2,
+     7,
+     0,
+     182,
+     223
+    ],
+    "official": [
+     2,
+     7,
+     0,
+     182,
+     223
+    ],
+    "matches": true
+   },
+   {
+    "abbr": "PHI",
+    "team": "Philadelphia Eagles",
+    "recomputed": [
+     2,
+     7,
+     0,
+     148,
+     221
+    ],
+    "official": [
+     2,
+     7,
+     0,
+     148,
+     221
+    ],
+    "matches": true
+   },
+   {
+    "abbr": "PIT",
+    "team": "Pittsburgh Steelers",
+    "recomputed": [
+     6,
+     2,
+     0,
+     180,
+     144
+    ],
+    "official": [
+     6,
+     2,
+     0,
+     180,
+     144
+    ],
+    "matches": true
+   },
+   {
+    "abbr": "SEA",
+    "team": "Seattle Seahawks",
+    "recomputed": [
+     5,
+     4,
+     0,
+     202,
+     162
+    ],
+    "official": [
+     5,
+     4,
+     0,
+     202,
+     162
+    ],
+    "matches": true
+   },
+   {
+    "abbr": "SF",
+    "team": "San Francisco 49ers",
+    "recomputed": [
+     7,
+     1,
+     0,
+     235,
+     156
+    ],
+    "official": [
+     7,
+     1,
+     0,
+     235,
+     156
+    ],
+    "matches": true
+   },
+   {
+    "abbr": "TB",
+    "team": "Tampa Bay Buccaneers",
+    "recomputed": [
+     3,
+     6,
+     0,
+     202,
+     178
+    ],
+    "official": [
+     3,
+     6,
+     0,
+     202,
+     178
+    ],
+    "matches": true
+   },
+   {
+    "abbr": "TEN",
+    "team": "Tennessee Titans",
+    "recomputed": [
+     1,
+     7,
+     0,
+     144,
+     199
+    ],
+    "official": [
+     1,
+     7,
+     0,
+     144,
+     199
+    ],
+    "matches": true
+   },
+   {
+    "abbr": "WAS",
+    "team": "Washington Commanders",
+    "recomputed": [
+     3,
+     5,
+     1,
+     196,
+     223
+    ],
+    "official": [
+     3,
+     5,
+     1,
+     196,
+     223
+    ],
+    "matches": true
+   }
+  ],
+  "clubs_matching": 32,
+  "clubs_checked": 32,
+  "statement": "32 of 32 clubs reconcile exactly on W-L-T, points for and points against once the official outcomes are applied, against 2 of 32 before."
  },
  "market_vs_outcome_2026": {
   "description": "Closing price against actual outcome for every 2026 game the file has a result for. 'model_fair_line' is deliberately left blank: no model in this repository has been fitted and validated, so printing a fair line would be fabrication, and the difference column that depends on it is left blank with it.",

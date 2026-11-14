@@ -3,25 +3,25 @@
   {
    "area": "Root dashboard (generated)",
    "path": "(repository root)",
-   "files": 19,
+   "files": 25,
    "verified_against_official_source": null
   },
   {
    "area": "Generator, verifier and helpers",
    "path": "tools",
-   "files": 6,
+   "files": 7,
    "verified_against_official_source": null
   },
   {
    "area": "Tests",
    "path": "tests",
-   "files": 7,
+   "files": 8,
    "verified_against_official_source": null
   },
   {
    "area": "Engine / registers",
    "path": "engine",
-   "files": 5,
+   "files": 9,
    "verified_against_official_source": null
   },
   {
@@ -75,13 +75,13 @@
   {
    "area": "This session",
    "path": "session-00cf851d",
-   "files": 0,
+   "files": 35,
    "verified_against_official_source": null
   },
   {
    "area": "Committed raw data",
    "path": "data/raw",
-   "files": 2,
+   "files": 4,
    "verified_against_official_source": null
   },
   {
@@ -113,11 +113,12 @@
    "note": "Measured locally on 2026-11-14. Not re-checked against an official source: the league publishes no retrievable archive of historical closing prices, so no comparison is possible."
   }
  ],
- "root_pages": 19,
+ "root_pages": 25,
  "root_page_names": [
   "audit.html",
   "availability-evidence.html",
   "availability.html",
+  "correlations-official.html",
   "correlations.html",
   "data.html",
   "decision.html",
@@ -127,14 +128,19 @@
   "injuries.html",
   "leaderboard.html",
   "lines.html",
+  "origination.html",
+  "price-snapshots.html",
   "question-ledger.html",
   "questions.html",
+  "replacement-depth.html",
+  "results-feed.html",
+  "signal-staking.html",
   "sources.html",
   "strategies.html",
   "suggestion-costs.html",
   "suggestions.html",
   "validation.html"
  ],
- "external_href_count_across_root_pages": 818,
- "tracked_files": 219
+ "external_href_count_across_root_pages": 1417,
+ "tracked_files": 287
 }

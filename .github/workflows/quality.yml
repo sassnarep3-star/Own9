@@ -37,6 +37,7 @@ jobs:
         run: |
           python session-00cf851d/tools/analysis.py
           python session-00cf851d/tools/results_audit.py
+          python session-00cf851d/tools/make_ingest.py
           python session-00cf851d/tools/build.py
           python session-00cf851d/tools/check.py
           git diff --exit-code -- 'session-00cf851d/*.html'

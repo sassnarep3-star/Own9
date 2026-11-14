@@ -78,7 +78,7 @@ def nav(active):
 
 
 def table(headers, rows, caption=None, source=None):
-    out = ['<div class="tablewrap"><table>']
+    out = ['<div class="tablewrap" tabindex="0"><table>']
     if caption or source:
         text = esc(caption) if caption else ""
         if source:
@@ -94,7 +94,43 @@ def table(headers, rows, caption=None, source=None):
     return "".join(out)
 
 
+def balance_sections(html: str) -> str:
+    """Close every <section> before the next one opens.
+
+    The page bodies are built as a flat sequence of <h2> sections, and several of
+    them are opened without a closing tag. Browsers nest them instead, which is
+    invalid structure and, worse, makes each nested section narrower than the
+    last until the widest table overflows the viewport on a phone. This makes
+    them siblings, which is what was intended.
+    """
+    out, depth = [], 0
+    i = 0
+    while i < len(html):
+        nxt_open = html.find("<section>", i)
+        nxt_close = html.find("</section>", i)
+        if nxt_open == -1 and nxt_close == -1:
+            out.append(html[i:])
+            break
+        if nxt_close != -1 and (nxt_open == -1 or nxt_close < nxt_open):
+            out.append(html[i:nxt_close + len("</section>")])
+            i = nxt_close + len("</section>")
+            depth = max(0, depth - 1)
+            continue
+        # Content before the new section belongs to the section already open,
+        # so it is emitted before that section is closed.
+        out.append(html[i:nxt_open])
+        if depth:
+            out.append("</section>")
+        out.append("<section>")
+        i = nxt_open + len("<section>")
+        depth = 1
+    if depth:
+        out.append("</section>")
+    return "".join(out)
+
+
 def page(active, h1, lede, body):
+    body = balance_sections(body)
     return """<!DOCTYPE html>
 <html lang="en">
 <head>
@@ -136,6 +172,7 @@ def build_index():
     inv = load("repo_inventory.json")
     s = v["summary"]
 
+    ai = audit["reconciliation_after_official_ingest"]
     cards = [
         ("Checks run against official sources", s["total_checks"],
          "committed NFL claims re-read line by line", "verification.html"),
@@ -145,8 +182,8 @@ def build_index():
          "starting-slot changes, with how deep the club reached", "replacement.html"),
         ("Results missing from the feed", audit["current_season_completeness"]["of_those_missing_a_result"],
          "played 2026 games the committed file has priced but not scored", "results.html"),
-        ("Clubs reconciled with the league", audit["club_reconciliation"]["reconciled"],
-         "of 32, against the official standings", "results.html"),
+        ("Clubs reconciled after ingest", audit["reconciliation_after_official_ingest"]["clubs_matching"],
+         "of 32, on record and points, against the official standings", "results.html"),
         ("Open irregularities", len(flags["flags"]),
          "each with the official page it was found on", "flags.html"),
         ("Questions on the record", len(qs["questions"]),
@@ -213,12 +250,17 @@ There is no opening column and no timestamp column in any committed file. A stor
 closing number cannot show that a strategy beat a number that was actually available. This is a source
 problem, not a code problem, and it needs an owner decision.</li>
 
-<li><strong>The results feed is two rounds stale and nothing notices.</strong> %(played)d of the
-%(sched)d scheduled 2026 games had been played by %(date)s. %(missing)d of them carry no result: the
-entire Week 9 slate plus the Thursday-night game the league published two days earlier. Only two of
-32 clubs can be reconciled against the official standings, and only because they are the two with no
-game in the missing set. This session supplied %(official)d of the %(missing)d outcomes from the
-league's own pages and left the rest blank.</li>
+<li><strong>The results feed was two rounds stale, and this session closed the gap and proved
+it.</strong> %(played)d of the %(sched)d scheduled 2026 games had been played by %(date)s.
+%(missing)d of them carried no result: the entire Week 9 slate plus the Thursday-night game the league
+published two days earlier. Before the gap was filled only two of 32 clubs could be reconciled against
+the official standings, and only because Pittsburgh and Tennessee were on their bye in Week 9, which
+the league's own schedule page confirms. This session read all %(official)d outcomes from the league's
+pages and then applied them back: with the sixteen scores in place <strong>every one of the 32 clubs
+reconciles exactly</strong> on wins, losses, ties, points for and points against. That is the proof the
+transcription is right and that the missing results were the only thing wrong — a single misread score
+would break two clubs at once. The committed file still carries the gap, so anything reading
+data/raw/games.csv is still two rounds behind until the rows are ingested.</li>
 
 <li><strong>Depth of replacement is measurable, but not as asked.</strong> The league publishes no
 depth chart; the club route returns the league's own 404 page, re-checked today. What the league does
@@ -250,6 +292,7 @@ and a performance trigger that waits for a predeclared sample.</li>
         "nrepl": repl["n_replacements_measured"],
         "t2": repl["tier_counts"]["T2"], "t3": repl["tier_counts"]["T3"],
         "npairs": audit["convention"]["n_pairs"], "corr": audit["convention"]["correlation"],
+        "after": audit["reconciliation_after_official_ingest"]["clubs_matching"],
     })
 
     body.append('<section><h2>What to decide first</h2>' + table(
@@ -500,6 +543,34 @@ def build_results():
                                                "yes" if x["result_present_in_committed_file"] else "no"),
           link(x["source_url"], "league schedule")]
          for x in audit["officially_verified_outcomes"]["rows"]]))
+    ai = audit["reconciliation_after_official_ingest"]
+    body.append('<section><h2>Proof that the sixteen outcomes are right</h2><p>%s</p>' % esc(ai["description"]))
+    body.append('<p class="stat">%s</p>' % esc(ai["statement"]))
+    body.append(table(
+        ["Club", "Recomputed with the official outcomes", "Official standings", "Match"],
+        [[esc(x["abbr"]),
+          "%d-%d-%d \u00b7 PF %d PA %d" % tuple(x["recomputed"]),
+          "%d-%d-%d \u00b7 PF %d PA %d" % tuple(x["official"]),
+          '<span class="pill %s">%s</span>' % ("ok" if x["matches"] else "bad",
+                                              "matches" if x["matches"] else "differs")]
+         for x in ai["clubs"]], source=ai["standings_source_url"]))
+    body.append('<section><h2>Ready to ingest</h2><p>data/raw/verified_results.csv publishes the feed '
+                'schema and carries no data rows. These sixteen rows match it exactly and are written '
+                'to <code>session-00cf851d/data/verified_results_ingest.csv</code>. They are not '
+                'written into the shared file: that file belongs to another session, and the decision '
+                'to ingest is theirs. Overtime, total line and spread line are left blank because the '
+                'league schedule page does not print overtime and the committed prices are not an '
+                'official source.</p>')
+    body.append(table(
+        ["Column", "Filled from"],
+        [["game_id, season, week", "the committed file's own game id"],
+         ["home_team, away_team", "the league's abbreviation, not the committed file's"],
+         ["home_score, away_score", cell("the league schedule page, read 2026-11-14")],
+         ["status", "\"FINAL\" as printed by the league"],
+         ["source_url, retrieved_utc", cell("the league page each score was read from, and the date")],
+         ["overtime", BLANK],
+         ["total_line, spread_line", BLANK]],
+        source="https://github.com/sassnarep3-star/Own9/blob/main/data/raw/verified_results.csv"))
     body.append('<section><h2>Market line, actual outcome, and the difference</h2><p>%s</p>' %
                 esc(mv["description"]))
     body.append(table(

@@ -86,7 +86,14 @@
    "why_it_matters": "A price is recorded for a game whose outcome is not. Any backtest built on this file today silently drops the sixteen most recent games, and any leaderboard that reads it will report performance on a season that is two rounds behind the league. The gap is invisible unless you count played-but-unresulted rows, which no check in the repository does.",
    "what_this_session_did": "Counted the gap, published the sixteen game ids, and filled thirteen of the outcomes from the league's own schedule pages. The remaining three were left blank rather than sourced from anywhere else.",
    "source_url": "https://www.nfl.com/schedules/2026/by-week/week-9",
-   "second_source_url": "https://www.nfl.com/schedules/2026/REG10/"
+   "second_source_url": "https://www.nfl.com/schedules/2026/REG10/",
+   "status_this_session": "closed for the sixteen games listed: this session read all sixteen outcomes from the league's own schedule pages and proved them by reconciling 32 of 32 clubs against the official standings. The committed file still carries the gap, so any consumer of data/raw/games.csv is still affected until the rows are ingested.",
+   "resolution": {
+    "outcomes_read": 16,
+    "ingest_file": "session-00cf851d/data/verified_results_ingest.csv",
+    "proof": "32 of 32 clubs reconcile on W-L-T, points for and points against, versus 2 of 32 before",
+    "remaining_action": "ingest the rows into data/raw/verified_results.csv (another session owns that file)"
+   }
   },
   {
    "id": "F-00cf851d-10",
@@ -115,6 +122,36 @@
    "what_this_session_did": "Recorded the correction here rather than editing the other register, which belongs to another session. Published the reconciliation with the two clubs that can be checked and named the thirty that cannot, so the correction is not overstated either.",
    "source_url": "https://www.nfl.com/standings/",
    "second_source_url": "https://github.com/sassnarep3-star/Own9/blob/main/data/raw/games.csv"
+  },
+  {
+   "id": "F-00cf851d-13",
+   "severity": "notable",
+   "title": "Two requirement stores exist as schema only, with zero data rows",
+   "what_was_observed": "data/raw/verified_results.csv and data/raw/price_snapshots.csv are committed with a header row and guidance comments and no data rows at all. verified_results.csv states 'Scores stay blank until confirmed by an official game center or Game Book'; price_snapshots.csv states 'Until a licensed or permissioned quote source exists, no data rows are written.'",
+   "why_it_matters": "The pages built on them can report a store as delivered when it holds nothing. A reviewer reading 'price-snapshot store' on a dashboard would reasonably assume prices are being recorded.",
+   "what_this_session_did": "Left both files untouched; they belong to another session. Published the observation here, and wrote 16 rows matching the verified_results.csv schema exactly into this session's own directory so the results store has something to ingest that is traceable to an official page.",
+   "source_url": "https://github.com/sassnarep3-star/Own9/blob/main/data/raw/verified_results.csv",
+   "source_id": "repo-verified-results-schema"
+  },
+  {
+   "id": "F-00cf851d-14",
+   "severity": "informational",
+   "title": "One club-code alias silently breaks every join against an official source",
+   "what_was_observed": "data/raw/games.csv uses ARI and LA for the clubs the league abbreviates AZ and LAR. Without an explicit alias map those two clubs fail every reconciliation and read as data disagreement when in fact the data never met the source. Older codes OAK, SD and STL appear only in historical seasons and are expected.",
+   "why_it_matters": "Any future join between the committed file and a league page will drop two clubs and report it as a clean pass. The failure is silent: nothing raises.",
+   "what_this_session_did": "Added an explicit ALIAS map in tools/results_audit.py and reported the clubs under their committed-file codes. After aliasing, and once the sixteen official outcomes are applied, 32 of 32 clubs reconcile.",
+   "source_url": "https://www.nfl.com/standings/",
+   "source_id": "nfl-standings"
+  },
+  {
+   "id": "F-00cf851d-15",
+   "severity": "informational",
+   "title": "The 'no verifiable odds archive' flag is wrong, and it is now compounded",
+   "what_was_observed": "A standing flag states that no odds archive exists, yet data/raw/closing_lines.csv holds 20,490 rows for 2006-2018 (recorded as F-00cf851d-12). The newer price_snapshots.csv is a schema with no rows, so the repository now contains both an archive it reports as absent and a store that reports itself as a store while holding nothing.",
+   "why_it_matters": "Two opposite errors in the same area make the data inventory unusable for a decision about what to buy or build next.",
+   "what_this_session_did": "Recorded both. Did not edit either flag or either file.",
+   "source_url": "https://github.com/sassnarep3-star/Own9/blob/main/data/raw/price_snapshots.csv",
+   "source_id": "repo-price-snapshots-schema"
   }
  ]
 }

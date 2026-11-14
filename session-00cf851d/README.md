@@ -47,9 +47,11 @@ through the same rules.
 ```sh
 python3 session-00cf851d/tools/analysis.py       # verify committed claims, measure replacement depth
 python3 session-00cf851d/tools/results_audit.py  # audit the committed results and price file
+python3 session-00cf851d/tools/make_ingest.py    # emit official outcomes in the repo's feed schema
 python3 session-00cf851d/tools/build.py          # render the pages
 python3 session-00cf851d/tools/check.py          # structural and citation checks
 python3 -m unittest discover -s session-00cf851d/tests
+node session-00cf851d/tools/browser_test.cjs     # 13 pages x 2 viewports, axe WCAG 2.1 AA
 ```
 
 The build is deterministic: re-running it reproduces the committed pages
@@ -61,4 +63,17 @@ Files owned by this session and nothing else: everything under
 `session-00cf851d/`, plus append-only entries in `COORDINATION.md` and one
 additive step in `.github/workflows/quality.yml`.
 
-`data/raw/games.csv` is opened read-only. It is never edited.
+`data/raw/games.csv`, `data/raw/verified_results.csv` and `data/raw/price_snapshots.csv` are opened
+read-only. None of them is edited.
+
+## The one result worth stating twice
+
+The committed results file carried a price but no outcome for the sixteen most recent games it
+knows about. This session read all sixteen from the league's own schedule pages, then applied them
+back and recomputed every club: **32 of 32 clubs reconcile exactly** with the official standings
+on wins, losses, ties, points for and points against. Before filling the gap, only two could.
+
+That is a check that fails loudly — one misread score would break two clubs at once — and a test
+asserts it. The rows are published in `data/verified_results_ingest.csv` in the repository's
+published feed schema, ready to ingest. They are deliberately not written into
+`data/raw/verified_results.csv`: that file belongs to another session.

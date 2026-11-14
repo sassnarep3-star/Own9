@@ -166,6 +166,64 @@ def main():
     spread_misses = [m["spread_miss_home"] for m in market if m["spread_miss_home"] is not None]
     total_misses = [m["total_miss"] for m in market if m["total_miss"] is not None]
 
+    # ---------- 7. The same reconciliation, with the official outcomes applied --
+    # This is the test that decides whether the sixteen outcomes this session read
+    # are right. If they are, every club's recomputed record, points for and points
+    # against must land exactly on the official standings. If any club is off, a
+    # transcription is wrong or the sign convention is wrong, and the claim that
+    # the missing results were the only cause of the 2-of-32 result would not hold.
+    official = json.load(open(OFFICIAL_RESULTS, encoding="utf-8"))
+    fill = {r["game_id_in_repo"]: (int(r["home_points"]), int(r["away_points"]))
+            for r in official["results"]}
+    after_rows, after_ok = [], 0
+    for abbr, off in sorted(official_by_abbr.items()):
+        if abbr in ALIAS.values():
+            continue
+        w = l = t = pf = pa = 0
+        for r in s2026:
+            if abbr not in (r["home_team"], r["away_team"]):
+                continue
+            if r["game_id"] in fill:
+                hs, as_ = fill[r["game_id"]]
+            elif r["result"].strip():
+                # result = home - away, total = home + away (sign convention
+                # established from the data in section 2).
+                tot, res = int(r["total"]), int(r["result"])
+                hs, as_ = (tot + res) // 2, (tot - res) // 2
+            else:
+                continue
+            if r["home_team"] != abbr:
+                hs, as_ = as_, hs
+            pf += hs
+            pa += as_
+            if hs > as_:
+                w += 1
+            elif hs < as_:
+                l += 1
+            else:
+                t += 1
+        got = (w, l, t, pf, pa)
+        exp = (off["w"], off["l"], off["t"], off["pf"], off["pa"])
+        if got == exp:
+            after_ok += 1
+        after_rows.append({"abbr": abbr, "team": off["team"], "recomputed": got,
+                           "official": exp, "matches": got == exp})
+    after = {
+        "description": ("The per-club reconciliation of section 4 repeated with the sixteen officially "
+                        "read outcomes applied to the games the committed file leaves blank. Every club "
+                        "is now checkable, so this is a direct test of the transcription: a single wrong "
+                        "score would break two clubs at once."),
+        "standings_source_url": STANDINGS_URL,
+        "outcomes_applied": len(fill),
+        "clubs": after_rows,
+        "clubs_matching": after_ok,
+        "clubs_checked": len(after_rows),
+        "statement": ("%d of %d clubs reconcile exactly on W-L-T, points for and points against once the "
+                      "official outcomes are applied, against %d of %d before."
+                      % (after_ok, len(after_rows),
+                         sum(1 for c in club_rows if c["reconciles"]), len(club_rows))),
+    }
+
     doc = {
         "register_name": "Audit of the committed results and price file (data/raw/games.csv)",
         "file_sha256": None,
@@ -223,6 +281,7 @@ def main():
             "rows": verified,
             "n": len(verified),
         },
+        "reconciliation_after_official_ingest": after,
         "market_vs_outcome_2026": {
             "description": ("Closing price against actual outcome for every 2026 game the file has a result for. "
                             "'model_fair_line' is deliberately left blank: no model in this repository has been fitted and "
@@ -254,6 +313,7 @@ def main():
         doc["club_reconciliation"]["reconciled"], doc["club_reconciliation"]["blocked_by_missing_results"]))
     for c in club_rows:
         print("  %-3s %s" % (c["abbr"], c["status"]))
+    print("after applying the official outcomes: %s" % after["statement"])
     print("official outcomes recorded: %d (present in file: %d)" % (
         len(verified), sum(1 for v in verified if v["result_present_in_committed_file"])))
     print("market-vs-outcome 2026 rows: %d  MAE spread=%.3f total=%.3f" % (

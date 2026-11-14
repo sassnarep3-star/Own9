@@ -49,6 +49,35 @@ class TestPages(unittest.TestCase):
             self.assertTrue(os.path.exists(os.path.join(SESSION, asset)), asset)
 
 
+class TestStructure(unittest.TestCase):
+    """Sections that are opened must be closed; nested sections silently shrink
+    each one until a wide table overflows the viewport on a phone."""
+
+    def test_every_opened_section_is_closed(self):
+        import re
+        for name, _, _ in build_mod.PAGES:
+            doc = open(os.path.join(SESSION, name), encoding="utf-8").read()
+            self.assertEqual(doc.count("<section>"), doc.count("</section>"), name)
+
+    def test_sections_are_siblings_not_nested(self):
+        import re
+        for name, _, _ in build_mod.PAGES:
+            doc = open(os.path.join(SESSION, name), encoding="utf-8").read()
+            main = doc[doc.index("<main>"):doc.index("</main>")]
+            depth = 0
+            for tok in re.findall(r"<section>|</section>", main):
+                depth += 1 if tok == "<section>" else -1
+                self.assertLessEqual(depth, 1, "%s: sections nest" % name)
+
+    def test_the_balancer_flattens_a_nested_sequence(self):
+        flat = build_mod.balance_sections("<section>a<section>b<section>c")
+        self.assertEqual("<section>a</section><section>b</section><section>c</section>", flat)
+
+    def test_the_balancer_leaves_closed_sections_alone(self):
+        self.assertEqual("<section>a</section><section>b</section>",
+                         build_mod.balance_sections("<section>a</section><section>b</section>"))
+
+
 class TestFailClosed(unittest.TestCase):
     """The checker must reject a page that publishes a value it cannot source."""
 
