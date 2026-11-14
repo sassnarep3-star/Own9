@@ -1,11 +1,11 @@
 {
-  "revision": "462a7e92d66dbd3bfc7398a396abc25d3cc58885",
+  "revision": "b8cae8e91430375e81a7bb22fa4d18d1bd0daae2",
   "manifest_entries": 40,
   "page_count": 82,
-  "data_row_count": 1700,
+  "data_row_count": 1748,
   "coverage": {
-    "rows_with_root_manifest_publisher": 933,
-    "rows_with_project_record": 526,
+    "rows_with_root_manifest_publisher": 938,
+    "rows_with_project_record": 573,
     "rows_with_https_absent_from_root_manifest": 692,
     "rows_without_https": 11
   },
@@ -52,9 +52,9 @@
     },
     {
       "section": "root",
-      "data_rows": 658,
-      "rows_with_root_manifest_publisher": 486,
-      "rows_with_project_record": 222,
+      "data_rows": 706,
+      "rows_with_root_manifest_publisher": 491,
+      "rows_with_project_record": 269,
       "rows_with_https_absent_from_root_manifest": 0,
       "rows_without_https": 0
     },
@@ -237,20 +237,20 @@
     {
       "path": "leaderboard.html",
       "section": "root",
-      "sha256": "1f65bca20a518e649d19d256ee1aab9d16bc44934de2a79549e0c9d513a459d0",
-      "data_rows": 8,
-      "rows_with_root_manifest_publisher": 2,
-      "rows_with_project_record": 8,
+      "sha256": "e4640c890a1e75ea0c61ddd7ca1f666340becd7bf0de7751ec7733769fa8b74d",
+      "data_rows": 11,
+      "rows_with_root_manifest_publisher": 4,
+      "rows_with_project_record": 11,
       "rows_with_https_absent_from_root_manifest": 0,
       "rows_without_https": 0
     },
     {
       "path": "lines.html",
       "section": "root",
-      "sha256": "8e9a88e3339aa67ba7b190eeff5d39094526e869a487256d04ef935da8c5f28e",
-      "data_rows": 31,
+      "sha256": "8f8455cb2b15aa2227e0a0bfb0535370192e802858a6ad7623ea11ede18638a1",
+      "data_rows": 72,
       "rows_with_root_manifest_publisher": 5,
-      "rows_with_project_record": 26,
+      "rows_with_project_record": 67,
       "rows_with_https_absent_from_root_manifest": 0,
       "rows_without_https": 0
     },
@@ -897,10 +897,10 @@
     {
       "path": "validation.html",
       "section": "root",
-      "sha256": "8a4d6156f5abad0171c2f6bb01ff6e3b98f239fd4226b82e2b7d1bc6e3d0bcdf",
-      "data_rows": 7,
-      "rows_with_root_manifest_publisher": 7,
-      "rows_with_project_record": 5,
+      "sha256": "1911fdaa7ec4c7e381ee37cf3be4ce43b623b914308a5967babe0cbb62b36fdb",
+      "data_rows": 11,
+      "rows_with_root_manifest_publisher": 10,
+      "rows_with_project_record": 8,
       "rows_with_https_absent_from_root_manifest": 0,
       "rows_without_https": 0
     }

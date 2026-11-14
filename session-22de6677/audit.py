@@ -19,7 +19,7 @@ from urllib.parse import quote, urlsplit, urlunsplit
 
 ROOT = Path(__file__).resolve().parents[1]
 OUT = Path(__file__).resolve().parent
-DEFAULT_REVISION = "462a7e92d66dbd3bfc7398a396abc25d3cc58885"
+DEFAULT_REVISION = "b8cae8e91430375e81a7bb22fa4d18d1bd0daae2"
 REPOSITORY = "https://github.com/sassnarep3-star/Own9"
 PROJECT_PUBLISHER = "own9 repository (primary project record)"
 
@@ -268,8 +268,11 @@ def render_html(report: dict) -> str:
     section_rows = []
     for item in report["sections"]:
         name = item["section"]
-        first = next((page for page in report["pages"] if page["section"] == name), None)
-        source_url = html.escape(github_blob(revision, first["path"] if first else "evidence/sources.json"), quote=True)
+        source_pages = [page for page in report["pages"] if page["section"] == name]
+        source_links = "<br>".join(
+            f"<a href=\"{html.escape(github_blob(revision, page['path']), quote=True)}\">{html.escape(Path(page['path']).name)} ↗</a>"
+            for page in source_pages
+        )
         section_rows.append(
             "<tr>"
             f"<th scope=\"row\">{html.escape(name)}</th>"
@@ -278,7 +281,7 @@ def render_html(report: dict) -> str:
             f"<td>{item['rows_with_project_record']}</td>"
             f"<td>{item['rows_with_https_absent_from_root_manifest']}</td>"
             f"<td>{item['rows_without_https']}</td>"
-            f"<td><a href=\"{source_url}\">Source HTML at pinned commit ↗</a></td>"
+            f"<td>{source_links}</td>"
             "</tr>"
         )
 
@@ -312,7 +315,7 @@ def render_html(report: dict) -> str:
 header,main,footer{{max-width:1240px;margin:auto;padding:1.1rem}}header{{padding-top:2rem}}a{{color:var(--blue);text-underline-offset:.16em}}a:focus-visible,button:focus-visible,select:focus-visible{{outline:3px solid #c37d00;outline-offset:3px}}
 .kicker{{font-size:.76rem;font-weight:800;letter-spacing:.1em;color:var(--blue);text-transform:uppercase}}h1{{font-size:clamp(2rem,4vw,3rem);line-height:1.1;margin:.35rem 0 .8rem}}h2{{font-size:1.3rem;margin:1.8rem 0 .4rem}}p{{max-width:86ch}}.meta,.muted{{color:var(--muted)}}.box{{background:var(--paper);border:1px solid var(--line);border-radius:14px;padding:1rem 1.15rem;margin:1rem 0}}
 .cards{{display:grid;grid-template-columns:repeat(auto-fit,minmax(185px,1fr));gap:.75rem;margin:1rem 0}}.card{{background:var(--paper);border:1px solid var(--line);border-radius:12px;padding:1rem}}.card b{{display:block;font-size:1.7rem;line-height:1.2}}.card span{{color:var(--muted);font-size:.9rem}}
-.table-wrap{{overflow:auto;background:var(--paper);border:1px solid var(--line);border-radius:12px}}table{{width:100%;border-collapse:collapse;min-width:880px}}caption{{text-align:left;padding:.8rem;font-weight:700}}th,td{{padding:.62rem .7rem;border-bottom:1px solid var(--line);text-align:left;vertical-align:top}}thead th{{background:#edf2f8;position:sticky;top:0}}tbody tr:nth-child(even){{background:#fafbfd}}code{{font-size:.78rem;overflow-wrap:anywhere}}
+.table-wrap{{overflow:auto;background:var(--paper);border:1px solid var(--line);border-radius:12px}}.table-wrap:focus-visible{{outline:3px solid #c37d00;outline-offset:2px}}table{{width:100%;border-collapse:collapse;min-width:880px}}caption{{text-align:left;padding:.8rem;font-weight:700}}th,td{{padding:.62rem .7rem;border-bottom:1px solid var(--line);text-align:left;vertical-align:top}}thead th{{background:#edf2f8;position:sticky;top:0}}tbody tr:nth-child(even){{background:#fafbfd}}code{{font-size:.78rem;overflow-wrap:anywhere}}
 .callout{{border-left:5px solid var(--amber);background:#fff8e8;padding:.85rem 1rem}}.warning{{color:var(--red);font-weight:700}}.nav{{display:flex;flex-wrap:wrap;gap:.8rem}}footer{{color:var(--muted);font-size:.9rem;padding-bottom:2rem}}
 @media(max-width:680px){{header,main,footer{{padding-left:.8rem;padding-right:.8rem}}.card b{{font-size:1.4rem}}}}
 </style>
@@ -334,9 +337,9 @@ header,main,footer{{max-width:1240px;margin:auto;padding:1.1rem}}header{{padding
 </div>
 <div class="box callout"><strong>Interpretation guardrail.</strong> A source link can be wrong, stale, unavailable, or irrelevant to the adjacent value. This census does not fetch or validate any link, check source entailment, or mark every non-publisher row as defective. The root dashboard's 658-row baseline is separately checked by its own structural verifier. URLs from sibling catalogs count as absent from the root manifest here unless they also appear in it.</div>
 </section>
-<section aria-labelledby="groups"><h2 id="groups">By published section</h2><div class="table-wrap"><table><caption>Overlapping citation indicators, grouped by first-level folder</caption><thead><tr><th scope="col">Section</th><th scope="col">Data rows</th><th scope="col">Root-manifest publisher URL</th><th scope="col">GitHub/project URL</th><th scope="col">HTTPS URL absent from root manifest</th><th scope="col">No HTTPS URL</th><th scope="col">Source</th></tr></thead><tbody>{''.join(section_rows)}</tbody></table></div></section>
-<section aria-labelledby="pages"><h2 id="pages">Page-by-page census</h2><div class="table-wrap"><table><caption>Each row links to the page view and to its exact HTML source at the pinned commit</caption><thead><tr><th scope="col">Page</th><th scope="col">Section</th><th scope="col">Data rows</th><th scope="col">Root-manifest publisher URL</th><th scope="col">GitHub/project URL</th><th scope="col">HTTPS URL absent from root manifest</th><th scope="col">No HTTPS URL</th><th scope="col">Reproducibility</th></tr></thead><tbody>{''.join(page_rows)}</tbody></table></div></section>
-<section aria-labelledby="no-source"><h2 id="no-source">Rows without an HTTPS source link in their cells</h2><p>These {no_https} data rows are review candidates, not automatically confirmed errors: some may be proposals, placeholders, or rows whose evidence is intentionally recorded elsewhere. Each item links to the original row when it has an HTML id, and to the pinned source file.</p><div class="table-wrap"><table><caption>Row-level exceptions for manual review</caption><thead><tr><th scope="col">Page / row</th><th scope="col">HTML id</th><th scope="col">Text excerpt</th><th scope="col">Source</th></tr></thead><tbody>{''.join(exception_rows)}</tbody></table></div></section>
+<section aria-labelledby="groups"><h2 id="groups">By published section</h2><div class="table-wrap" role="region" aria-label="Citation counts by published section" tabindex="0"><table><caption>Overlapping citation indicators; source cell links every HTML page contributing to that section's totals</caption><thead><tr><th scope="col">Section</th><th scope="col">Data rows</th><th scope="col">Root-manifest publisher URL</th><th scope="col">GitHub/project URL</th><th scope="col">HTTPS URL absent from root manifest</th><th scope="col">No HTTPS URL</th><th scope="col">Source</th></tr></thead><tbody>{''.join(section_rows)}</tbody></table></div></section>
+<section aria-labelledby="pages"><h2 id="pages">Page-by-page census</h2><div class="table-wrap" role="region" aria-label="Page-by-page citation census" tabindex="0"><table><caption>Each row links to the page view and to its exact HTML source at the pinned commit</caption><thead><tr><th scope="col">Page</th><th scope="col">Section</th><th scope="col">Data rows</th><th scope="col">Root-manifest publisher URL</th><th scope="col">GitHub/project URL</th><th scope="col">HTTPS URL absent from root manifest</th><th scope="col">No HTTPS URL</th><th scope="col">Reproducibility</th></tr></thead><tbody>{''.join(page_rows)}</tbody></table></div></section>
+<section aria-labelledby="no-source"><h2 id="no-source">Rows without an HTTPS source link in their cells</h2><p>These {no_https} data rows are review candidates, not automatically confirmed errors: some may be proposals, placeholders, or rows whose evidence is intentionally recorded elsewhere. Each item links to the original row when it has an HTML id, and to the pinned source file.</p><div class="table-wrap" role="region" aria-label="Rows without an HTTPS source link" tabindex="0"><table><caption>Row-level exceptions for manual review</caption><thead><tr><th scope="col">Page / row</th><th scope="col">HTML id</th><th scope="col">Text excerpt</th><th scope="col">Source</th></tr></thead><tbody>{''.join(exception_rows)}</tbody></table></div></section>
 <section aria-labelledby="limits"><h2 id="limits">Scope and limitations</h2><div class="box"><ul>{notes}</ul><p>To reproduce the census from a full git clone: <code>python3 session-22de6677/audit.py --revision {html.escape(revision)}</code>. The machine-readable outputs are <a href="citation-coverage.json">page/section counts</a> and <a href="citation-rows.json">all {report['data_row_count']} row records</a>. Hashes are SHA-256 of each source HTML file as read from the pinned tree.</p></div></section>
 </main>
 <footer>Research-only publication QA · No betting recommendations or NFL performance conclusions. All empirical facts remain subject to the linked publisher source and its specific scope.</footer>

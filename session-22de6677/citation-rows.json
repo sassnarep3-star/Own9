@@ -9343,7 +9343,7 @@
     "row_number": 1,
     "source_line": 4,
     "row_id": "strategy-leaderboard-1",
-    "text": "G1 · Game single | Not run | Project recordOwn9 repository (primary project record) ↗",
+    "text": "G1 · Game single | Project recordOwn9 repository (primary project record) ↗",
     "https_links": [
       "https://github.com/sassnarep3-star/Own9"
     ],
@@ -9360,7 +9360,7 @@
     "row_number": 2,
     "source_line": 5,
     "row_id": "strategy-leaderboard-2",
-    "text": "P1 · Player prop | Not run | Project recordOwn9 repository (primary project record) ↗",
+    "text": "P1 · Player prop | Project recordOwn9 repository (primary project record) ↗",
     "https_links": [
       "https://github.com/sassnarep3-star/Own9"
     ],
@@ -9377,7 +9377,7 @@
     "row_number": 3,
     "source_line": 6,
     "row_id": "strategy-leaderboard-3",
-    "text": "X1 · Cross-game parlay | Not run | Project recordOwn9 repository (primary project record) ↗",
+    "text": "X1 · Cross-game parlay | Project recordOwn9 repository (primary project record) ↗",
     "https_links": [
       "https://github.com/sassnarep3-star/Own9"
     ],
@@ -9394,7 +9394,7 @@
     "row_number": 4,
     "source_line": 7,
     "row_id": "strategy-leaderboard-4",
-    "text": "S1 · Same-game combo | Not run | Project recordOwn9 repository (primary project record) ↗",
+    "text": "S1 · Same-game combo | Project recordOwn9 repository (primary project record) ↗",
     "https_links": [
       "https://github.com/sassnarep3-star/Own9"
     ],
@@ -9474,6 +9474,61 @@
       "repo"
     ],
     "has_manifest_publisher": false,
+    "has_project_record": true,
+    "has_https_absent_from_root_manifest": false,
+    "has_no_https": false
+  },
+  {
+    "page": "leaderboard.html",
+    "row_number": 9,
+    "source_line": 12,
+    "row_id": "live-to-paper-demotion-gate-1",
+    "text": "Integrity or operational breach: invalid/missing price or result provenance, corrupted or stale required inputs, settlement mismatch, unauthorized strategy version, or a frozen exposure/data kill-switch trip. | Immediately stop new live issuance; freeze the affected version and evidence; set status to Paper pending incident review. Do not wait for a performance sample. | Paper immediately. Resume only after the incident is resolved, the version and data are re-audited, and all affected entry gates pass again. | Proposed project control; no live deploymentOwn9 repository (primary project record) ↗",
+    "https_links": [
+      "https://github.com/sassnarep3-star/Own9"
+    ],
+    "manifest_source_ids": [
+      "repo"
+    ],
+    "has_manifest_publisher": false,
+    "has_project_record": true,
+    "has_https_absent_from_root_manifest": false,
+    "has_no_https": false
+  },
+  {
+    "page": "leaderboard.html",
+    "row_number": 10,
+    "source_line": 13,
+    "row_id": "live-to-paper-demotion-gate-2",
+    "text": "Scheduled validation: any mandatory entry gate is no longer demonstrated for the locked strategy version. In particular, the predeclared predictive-quality or net-return lower bound is not strictly positive, or drift/stability fails. Missing/invalid evidence counts as not passing. | Automatically demote to Paper at that checkpoint; retain the full monitoring window, exclusions, and trigger record. No discretionary threshold relaxation. | Use the same gate definitions as entry. Monitoring window, minimum n, confidence procedure/alpha, review cadence, stale-data tolerance, and exposure cap are not yet specified; live activation is blocked until frozen. | Proposed project control; numeric operating settings unresolvedOwn9 repository (primary project record) ↗ · scikit-learn project ↗",
+    "https_links": [
+      "https://github.com/sassnarep3-star/Own9",
+      "https://scikit-learn.org/stable/modules/generated/sklearn.metrics.log_loss.html"
+    ],
+    "manifest_source_ids": [
+      "logloss",
+      "repo"
+    ],
+    "has_manifest_publisher": true,
+    "has_project_record": true,
+    "has_https_absent_from_root_manifest": false,
+    "has_no_https": false
+  },
+  {
+    "page": "leaderboard.html",
+    "row_number": 11,
+    "source_line": 14,
+    "row_id": "live-to-paper-demotion-gate-3",
+    "text": "Re-entry after a performance demotion | No immediate flip back to live when a short run improves. Keep the failed strategy version in Paper. | Full requalification against all seven frozen gates on untouched prospective evidence; any changed model, feature, or rule is a new version and requires a new sealed evaluation. | Not authorized / not implemented | Proposed project control; no strategy is liveOwn9 repository (primary project record) ↗ · scikit-learn project ↗",
+    "https_links": [
+      "https://github.com/sassnarep3-star/Own9",
+      "https://scikit-learn.org/stable/modules/cross_validation.html"
+    ],
+    "manifest_source_ids": [
+      "holdout",
+      "repo"
+    ],
+    "has_manifest_publisher": true,
     "has_project_record": true,
     "has_https_absent_from_root_manifest": false,
     "has_no_https": false
@@ -9929,8 +9984,8 @@
     "page": "lines.html",
     "row_number": 27,
     "source_line": 30,
-    "row_id": "current-own-line-standing-1",
-    "text": "Numerical line published for any 2026 game | Not produced: no fitted model exists in this repository | Not implementedOwn9 repository (primary project record) ↗",
+    "row_id": "price-snapshot-store-—-opening-and-closing-per-market-1",
+    "text": "game_id | Stable game identifier shared with scores and availability | Yes | Project recordOwn9 repository (primary project record) ↗",
     "https_links": [
       "https://github.com/sassnarep3-star/Own9"
     ],
@@ -9946,8 +10001,8 @@
     "page": "lines.html",
     "row_number": 28,
     "source_line": 31,
-    "row_id": "current-own-line-standing-2",
-    "text": "Own-line error against market | Blank. An inherited secondary-data subtree reports a mean absolute error figure, but its inputs are unverified and this dashboard does not adopt the value. | Unverified · see Flagged for ReviewOwn9 repository (primary project record) ↗",
+    "row_id": "price-snapshot-store-—-opening-and-closing-per-market-2",
+    "text": "market | MONEYLINE, SPREAD or TOTAL | Yes | Project recordOwn9 repository (primary project record) ↗",
     "https_links": [
       "https://github.com/sassnarep3-star/Own9"
     ],
@@ -9963,16 +10018,16 @@
     "page": "lines.html",
     "row_number": 29,
     "source_line": 32,
-    "row_id": "current-own-line-standing-3",
-    "text": "Measured correlation between legs | Blank. See the correlation register. | UnverifiedSciPy project ↗",
+    "row_id": "price-snapshot-store-—-opening-and-closing-per-market-3",
+    "text": "side | HOME/AWAY for moneyline/spread; OVER/UNDER for total | Yes | Project recordOwn9 repository (primary project record) ↗",
     "https_links": [
-      "https://docs.scipy.org/doc/scipy/reference/generated/scipy.stats.pearsonr.html"
+      "https://github.com/sassnarep3-star/Own9"
     ],
     "manifest_source_ids": [
-      "pearson"
+      "repo"
     ],
-    "has_manifest_publisher": true,
-    "has_project_record": false,
+    "has_manifest_publisher": false,
+    "has_project_record": true,
     "has_https_absent_from_root_manifest": false,
     "has_no_https": false
   },
@@ -9980,8 +10035,8 @@
     "page": "lines.html",
     "row_number": 30,
     "source_line": 33,
-    "row_id": "current-own-line-standing-4",
-    "text": "Strategies passing all seven gates | None | Eligibility fails closed when an input is missing. | Zero eligibleOwn9 repository (primary project record) ↗",
+    "row_id": "price-snapshot-store-—-opening-and-closing-per-market-4",
+    "text": "line | Handicap or total value (absent for moneyline) | Yes, when market is SPREAD or TOTAL | Project recordOwn9 repository (primary project record) ↗",
     "https_links": [
       "https://github.com/sassnarep3-star/Own9"
     ],
@@ -9997,8 +10052,705 @@
     "page": "lines.html",
     "row_number": 31,
     "source_line": 34,
+    "row_id": "price-snapshot-store-—-opening-and-closing-per-market-5",
+    "text": "decimal_price | Decimal odds (must exceed 1) | Yes | Project recordOwn9 repository (primary project record) ↗",
+    "https_links": [
+      "https://github.com/sassnarep3-star/Own9"
+    ],
+    "manifest_source_ids": [
+      "repo"
+    ],
+    "has_manifest_publisher": false,
+    "has_project_record": true,
+    "has_https_absent_from_root_manifest": false,
+    "has_no_https": false
+  },
+  {
+    "page": "lines.html",
+    "row_number": 32,
+    "source_line": 35,
+    "row_id": "price-snapshot-store-—-opening-and-closing-per-market-6",
+    "text": "quote_utc | ISO-8601 UTC capture time | Yes | Project recordOwn9 repository (primary project record) ↗",
+    "https_links": [
+      "https://github.com/sassnarep3-star/Own9"
+    ],
+    "manifest_source_ids": [
+      "repo"
+    ],
+    "has_manifest_publisher": false,
+    "has_project_record": true,
+    "has_https_absent_from_root_manifest": false,
+    "has_no_https": false
+  },
+  {
+    "page": "lines.html",
+    "row_number": 33,
+    "source_line": 36,
+    "row_id": "price-snapshot-store-—-opening-and-closing-per-market-7",
+    "text": "operator | Sportsbook or venue that issued the quote | Yes | Project recordOwn9 repository (primary project record) ↗",
+    "https_links": [
+      "https://github.com/sassnarep3-star/Own9"
+    ],
+    "manifest_source_ids": [
+      "repo"
+    ],
+    "has_manifest_publisher": false,
+    "has_project_record": true,
+    "has_https_absent_from_root_manifest": false,
+    "has_no_https": false
+  },
+  {
+    "page": "lines.html",
+    "row_number": 34,
+    "source_line": 37,
+    "row_id": "price-snapshot-store-—-opening-and-closing-per-market-8",
+    "text": "jurisdiction | Regulatory jurisdiction of the quote | Yes | Project recordOwn9 repository (primary project record) ↗",
+    "https_links": [
+      "https://github.com/sassnarep3-star/Own9"
+    ],
+    "manifest_source_ids": [
+      "repo"
+    ],
+    "has_manifest_publisher": false,
+    "has_project_record": true,
+    "has_https_absent_from_root_manifest": false,
+    "has_no_https": false
+  },
+  {
+    "page": "lines.html",
+    "row_number": 35,
+    "source_line": 38,
+    "row_id": "price-snapshot-store-—-opening-and-closing-per-market-9",
+    "text": "opening_utc | When this market first opened | No — optional | Project recordOwn9 repository (primary project record) ↗",
+    "https_links": [
+      "https://github.com/sassnarep3-star/Own9"
+    ],
+    "manifest_source_ids": [
+      "repo"
+    ],
+    "has_manifest_publisher": false,
+    "has_project_record": true,
+    "has_https_absent_from_root_manifest": false,
+    "has_no_https": false
+  },
+  {
+    "page": "lines.html",
+    "row_number": 36,
+    "source_line": 39,
+    "row_id": "price-snapshot-store-—-opening-and-closing-per-market-10",
+    "text": "closing_utc | When this market closed (if known) | No — optional | Project recordOwn9 repository (primary project record) ↗",
+    "https_links": [
+      "https://github.com/sassnarep3-star/Own9"
+    ],
+    "manifest_source_ids": [
+      "repo"
+    ],
+    "has_manifest_publisher": false,
+    "has_project_record": true,
+    "has_https_absent_from_root_manifest": false,
+    "has_no_https": false
+  },
+  {
+    "page": "lines.html",
+    "row_number": 37,
+    "source_line": 40,
+    "row_id": "price-snapshot-store-—-opening-and-closing-per-market-11",
+    "text": "is_closing | True if this is the closing snapshot | No — defaults to false | Project recordOwn9 repository (primary project record) ↗",
+    "https_links": [
+      "https://github.com/sassnarep3-star/Own9"
+    ],
+    "manifest_source_ids": [
+      "repo"
+    ],
+    "has_manifest_publisher": false,
+    "has_project_record": true,
+    "has_https_absent_from_root_manifest": false,
+    "has_no_https": false
+  },
+  {
+    "page": "lines.html",
+    "row_number": 38,
+    "source_line": 41,
+    "row_id": "price-snapshot-store-—-opening-and-closing-per-market-12",
+    "text": "settlement_rule | Operator citation for push/void handling | No — optional | Project recordOwn9 repository (primary project record) ↗",
+    "https_links": [
+      "https://github.com/sassnarep3-star/Own9"
+    ],
+    "manifest_source_ids": [
+      "repo"
+    ],
+    "has_manifest_publisher": false,
+    "has_project_record": true,
+    "has_https_absent_from_root_manifest": false,
+    "has_no_https": false
+  },
+  {
+    "page": "lines.html",
+    "row_number": 39,
+    "source_line": 42,
+    "row_id": "verified-results-feed-—-official-outcomes-1",
+    "text": "game_id | Stable game identifier shared with prices and availability | Yes | Project recordOwn9 repository (primary project record) ↗",
+    "https_links": [
+      "https://github.com/sassnarep3-star/Own9"
+    ],
+    "manifest_source_ids": [
+      "repo"
+    ],
+    "has_manifest_publisher": false,
+    "has_project_record": true,
+    "has_https_absent_from_root_manifest": false,
+    "has_no_https": false
+  },
+  {
+    "page": "lines.html",
+    "row_number": 40,
+    "source_line": 43,
+    "row_id": "verified-results-feed-—-official-outcomes-2",
+    "text": "season | NFL season year | Yes | Project recordOwn9 repository (primary project record) ↗",
+    "https_links": [
+      "https://github.com/sassnarep3-star/Own9"
+    ],
+    "manifest_source_ids": [
+      "repo"
+    ],
+    "has_manifest_publisher": false,
+    "has_project_record": true,
+    "has_https_absent_from_root_manifest": false,
+    "has_no_https": false
+  },
+  {
+    "page": "lines.html",
+    "row_number": 41,
+    "source_line": 44,
+    "row_id": "verified-results-feed-—-official-outcomes-3",
+    "text": "week | Week number (1-22) | Yes | Project recordOwn9 repository (primary project record) ↗",
+    "https_links": [
+      "https://github.com/sassnarep3-star/Own9"
+    ],
+    "manifest_source_ids": [
+      "repo"
+    ],
+    "has_manifest_publisher": false,
+    "has_project_record": true,
+    "has_https_absent_from_root_manifest": false,
+    "has_no_https": false
+  },
+  {
+    "page": "lines.html",
+    "row_number": 42,
+    "source_line": 45,
+    "row_id": "verified-results-feed-—-official-outcomes-4",
+    "text": "home_team | Home club identifier | Yes | Project recordOwn9 repository (primary project record) ↗",
+    "https_links": [
+      "https://github.com/sassnarep3-star/Own9"
+    ],
+    "manifest_source_ids": [
+      "repo"
+    ],
+    "has_manifest_publisher": false,
+    "has_project_record": true,
+    "has_https_absent_from_root_manifest": false,
+    "has_no_https": false
+  },
+  {
+    "page": "lines.html",
+    "row_number": 43,
+    "source_line": 46,
+    "row_id": "verified-results-feed-—-official-outcomes-5",
+    "text": "away_team | Away club identifier | Yes | Project recordOwn9 repository (primary project record) ↗",
+    "https_links": [
+      "https://github.com/sassnarep3-star/Own9"
+    ],
+    "manifest_source_ids": [
+      "repo"
+    ],
+    "has_manifest_publisher": false,
+    "has_project_record": true,
+    "has_https_absent_from_root_manifest": false,
+    "has_no_https": false
+  },
+  {
+    "page": "lines.html",
+    "row_number": 44,
+    "source_line": 47,
+    "row_id": "verified-results-feed-—-official-outcomes-6",
+    "text": "home_score | Final home score | Required for FINAL status | Project recordOwn9 repository (primary project record) ↗",
+    "https_links": [
+      "https://github.com/sassnarep3-star/Own9"
+    ],
+    "manifest_source_ids": [
+      "repo"
+    ],
+    "has_manifest_publisher": false,
+    "has_project_record": true,
+    "has_https_absent_from_root_manifest": false,
+    "has_no_https": false
+  },
+  {
+    "page": "lines.html",
+    "row_number": 45,
+    "source_line": 48,
+    "row_id": "verified-results-feed-—-official-outcomes-7",
+    "text": "away_score | Final away score | Required for FINAL status | Project recordOwn9 repository (primary project record) ↗",
+    "https_links": [
+      "https://github.com/sassnarep3-star/Own9"
+    ],
+    "manifest_source_ids": [
+      "repo"
+    ],
+    "has_manifest_publisher": false,
+    "has_project_record": true,
+    "has_https_absent_from_root_manifest": false,
+    "has_no_https": false
+  },
+  {
+    "page": "lines.html",
+    "row_number": 46,
+    "source_line": 49,
+    "row_id": "verified-results-feed-—-official-outcomes-8",
+    "text": "status | SCHEDULED, IN_PROGRESS, FINAL, POSTPONED, CANCELLED | Yes | Project recordOwn9 repository (primary project record) ↗",
+    "https_links": [
+      "https://github.com/sassnarep3-star/Own9"
+    ],
+    "manifest_source_ids": [
+      "repo"
+    ],
+    "has_manifest_publisher": false,
+    "has_project_record": true,
+    "has_https_absent_from_root_manifest": false,
+    "has_no_https": false
+  },
+  {
+    "page": "lines.html",
+    "row_number": 47,
+    "source_line": 50,
+    "row_id": "verified-results-feed-—-official-outcomes-9",
+    "text": "source_url | Official NFL page or Game Book URL | Yes | Project recordOwn9 repository (primary project record) ↗",
+    "https_links": [
+      "https://github.com/sassnarep3-star/Own9"
+    ],
+    "manifest_source_ids": [
+      "repo"
+    ],
+    "has_manifest_publisher": false,
+    "has_project_record": true,
+    "has_https_absent_from_root_manifest": false,
+    "has_no_https": false
+  },
+  {
+    "page": "lines.html",
+    "row_number": 48,
+    "source_line": 51,
+    "row_id": "verified-results-feed-—-official-outcomes-10",
+    "text": "retrieved_utc | ISO-8601 UTC capture time | Yes | Project recordOwn9 repository (primary project record) ↗",
+    "https_links": [
+      "https://github.com/sassnarep3-star/Own9"
+    ],
+    "manifest_source_ids": [
+      "repo"
+    ],
+    "has_manifest_publisher": false,
+    "has_project_record": true,
+    "has_https_absent_from_root_manifest": false,
+    "has_no_https": false
+  },
+  {
+    "page": "lines.html",
+    "row_number": 49,
+    "source_line": 52,
+    "row_id": "verified-results-feed-—-official-outcomes-11",
+    "text": "overtime | Whether the game went to overtime | No — optional | Project recordOwn9 repository (primary project record) ↗",
+    "https_links": [
+      "https://github.com/sassnarep3-star/Own9"
+    ],
+    "manifest_source_ids": [
+      "repo"
+    ],
+    "has_manifest_publisher": false,
+    "has_project_record": true,
+    "has_https_absent_from_root_manifest": false,
+    "has_no_https": false
+  },
+  {
+    "page": "lines.html",
+    "row_number": 50,
+    "source_line": 53,
+    "row_id": "verified-results-feed-—-official-outcomes-12",
+    "text": "total_line | The official total line at settlement | No — optional | Project recordOwn9 repository (primary project record) ↗",
+    "https_links": [
+      "https://github.com/sassnarep3-star/Own9"
+    ],
+    "manifest_source_ids": [
+      "repo"
+    ],
+    "has_manifest_publisher": false,
+    "has_project_record": true,
+    "has_https_absent_from_root_manifest": false,
+    "has_no_https": false
+  },
+  {
+    "page": "lines.html",
+    "row_number": 51,
+    "source_line": 54,
+    "row_id": "verified-results-feed-—-official-outcomes-13",
+    "text": "spread_line | The official spread line at settlement | No — optional | Project recordOwn9 repository (primary project record) ↗",
+    "https_links": [
+      "https://github.com/sassnarep3-star/Own9"
+    ],
+    "manifest_source_ids": [
+      "repo"
+    ],
+    "has_manifest_publisher": false,
+    "has_project_record": true,
+    "has_https_absent_from_root_manifest": false,
+    "has_no_https": false
+  },
+  {
+    "page": "lines.html",
+    "row_number": 52,
+    "source_line": 55,
+    "row_id": "line-origination-order-—-mandated-sequence-1",
+    "text": "1 | Side (spread / handicap) | Originated first: every spread market gets its own fair line before totals are touched | Pipeline ruleOwn9 repository (primary project record) ↗",
+    "https_links": [
+      "https://github.com/sassnarep3-star/Own9"
+    ],
+    "manifest_source_ids": [
+      "repo"
+    ],
+    "has_manifest_publisher": false,
+    "has_project_record": true,
+    "has_https_absent_from_root_manifest": false,
+    "has_no_https": false
+  },
+  {
+    "page": "lines.html",
+    "row_number": 53,
+    "source_line": 56,
+    "row_id": "line-origination-order-—-mandated-sequence-2",
+    "text": "2 | Total (over / under) | Originated second, after side; mass above threshold with equality as push | Pipeline ruleOwn9 repository (primary project record) ↗",
+    "https_links": [
+      "https://github.com/sassnarep3-star/Own9"
+    ],
+    "manifest_source_ids": [
+      "repo"
+    ],
+    "has_manifest_publisher": false,
+    "has_project_record": true,
+    "has_https_absent_from_root_manifest": false,
+    "has_no_https": false
+  },
+  {
+    "page": "lines.html",
+    "row_number": 54,
+    "source_line": 57,
+    "row_id": "line-origination-order-—-mandated-sequence-3",
+    "text": "3 | Moneyline | Originated third, after side and total; fair price from modelled win probability | Pipeline ruleOwn9 repository (primary project record) ↗",
+    "https_links": [
+      "https://github.com/sassnarep3-star/Own9"
+    ],
+    "manifest_source_ids": [
+      "repo"
+    ],
+    "has_manifest_publisher": false,
+    "has_project_record": true,
+    "has_https_absent_from_root_manifest": false,
+    "has_no_https": false
+  },
+  {
+    "page": "lines.html",
+    "row_number": 55,
+    "source_line": 58,
+    "row_id": "fair-line-/-market-line-/-difference-columns-1",
+    "text": "Spread (home) | Blank until joint distribution and executable quotes existOwn9 repository (primary project record) ↗",
+    "https_links": [
+      "https://github.com/sassnarep3-star/Own9"
+    ],
+    "manifest_source_ids": [
+      "repo"
+    ],
+    "has_manifest_publisher": false,
+    "has_project_record": true,
+    "has_https_absent_from_root_manifest": false,
+    "has_no_https": false
+  },
+  {
+    "page": "lines.html",
+    "row_number": 56,
+    "source_line": 59,
+    "row_id": "fair-line-/-market-line-/-difference-columns-2",
+    "text": "Total | Blank until joint distribution and executable quotes existOwn9 repository (primary project record) ↗",
+    "https_links": [
+      "https://github.com/sassnarep3-star/Own9"
+    ],
+    "manifest_source_ids": [
+      "repo"
+    ],
+    "has_manifest_publisher": false,
+    "has_project_record": true,
+    "has_https_absent_from_root_manifest": false,
+    "has_no_https": false
+  },
+  {
+    "page": "lines.html",
+    "row_number": 57,
+    "source_line": 60,
+    "row_id": "fair-line-/-market-line-/-difference-columns-3",
+    "text": "Moneyline (home) | Blank until win probability and executable quotes existOwn9 repository (primary project record) ↗",
+    "https_links": [
+      "https://github.com/sassnarep3-star/Own9"
+    ],
+    "manifest_source_ids": [
+      "repo"
+    ],
+    "has_manifest_publisher": false,
+    "has_project_record": true,
+    "has_https_absent_from_root_manifest": false,
+    "has_no_https": false
+  },
+  {
+    "page": "lines.html",
+    "row_number": 58,
+    "source_line": 61,
+    "row_id": "fair-line-/-market-line-/-difference-columns-4",
+    "text": "Moneyline (away) | Blank until win probability and executable quotes existOwn9 repository (primary project record) ↗",
+    "https_links": [
+      "https://github.com/sassnarep3-star/Own9"
+    ],
+    "manifest_source_ids": [
+      "repo"
+    ],
+    "has_manifest_publisher": false,
+    "has_project_record": true,
+    "has_https_absent_from_root_manifest": false,
+    "has_no_https": false
+  },
+  {
+    "page": "lines.html",
+    "row_number": 59,
+    "source_line": 62,
+    "row_id": "current-own-line-standing-1",
+    "text": "Numerical line published for any 2026 game | Not produced: no fitted model exists in this repository | Not implementedOwn9 repository (primary project record) ↗",
+    "https_links": [
+      "https://github.com/sassnarep3-star/Own9"
+    ],
+    "manifest_source_ids": [
+      "repo"
+    ],
+    "has_manifest_publisher": false,
+    "has_project_record": true,
+    "has_https_absent_from_root_manifest": false,
+    "has_no_https": false
+  },
+  {
+    "page": "lines.html",
+    "row_number": 60,
+    "source_line": 63,
+    "row_id": "current-own-line-standing-2",
+    "text": "Own-line error against market | Blank. An inherited secondary-data subtree reports a mean absolute error figure, but its inputs are unverified and this dashboard does not adopt the value. | Unverified · see Flagged for ReviewOwn9 repository (primary project record) ↗",
+    "https_links": [
+      "https://github.com/sassnarep3-star/Own9"
+    ],
+    "manifest_source_ids": [
+      "repo"
+    ],
+    "has_manifest_publisher": false,
+    "has_project_record": true,
+    "has_https_absent_from_root_manifest": false,
+    "has_no_https": false
+  },
+  {
+    "page": "lines.html",
+    "row_number": 61,
+    "source_line": 64,
+    "row_id": "current-own-line-standing-3",
+    "text": "Measured correlation between legs | Blank. See the correlation register. | UnverifiedSciPy project ↗",
+    "https_links": [
+      "https://docs.scipy.org/doc/scipy/reference/generated/scipy.stats.pearsonr.html"
+    ],
+    "manifest_source_ids": [
+      "pearson"
+    ],
+    "has_manifest_publisher": true,
+    "has_project_record": false,
+    "has_https_absent_from_root_manifest": false,
+    "has_no_https": false
+  },
+  {
+    "page": "lines.html",
+    "row_number": 62,
+    "source_line": 65,
+    "row_id": "current-own-line-standing-4",
+    "text": "Strategies passing all seven gates | None | Eligibility fails closed when an input is missing. | Zero eligibleOwn9 repository (primary project record) ↗",
+    "https_links": [
+      "https://github.com/sassnarep3-star/Own9"
+    ],
+    "manifest_source_ids": [
+      "repo"
+    ],
+    "has_manifest_publisher": false,
+    "has_project_record": true,
+    "has_https_absent_from_root_manifest": false,
+    "has_no_https": false
+  },
+  {
+    "page": "lines.html",
+    "row_number": 63,
+    "source_line": 66,
     "row_id": "current-own-line-standing-5",
     "text": "Backtest on the local lines snapshot | Not run: 85.2% of spread and total rows carry no price, coverage ends in 2018, and provenance is unrecorded. | Not runOwn9 repository (primary project record) ↗",
+    "https_links": [
+      "https://github.com/sassnarep3-star/Own9"
+    ],
+    "manifest_source_ids": [
+      "repo"
+    ],
+    "has_manifest_publisher": false,
+    "has_project_record": true,
+    "has_https_absent_from_root_manifest": false,
+    "has_no_https": false
+  },
+  {
+    "page": "lines.html",
+    "row_number": 64,
+    "source_line": 67,
+    "row_id": "price-snapshot-store-—-opening-and-closing-numbers-for-every-market-originated-1",
+    "text": "Side (spread) | Store defined · no verified prices yetOwn9 repository (primary project record) ↗",
+    "https_links": [
+      "https://github.com/sassnarep3-star/Own9"
+    ],
+    "manifest_source_ids": [
+      "repo"
+    ],
+    "has_manifest_publisher": false,
+    "has_project_record": true,
+    "has_https_absent_from_root_manifest": false,
+    "has_no_https": false
+  },
+  {
+    "page": "lines.html",
+    "row_number": 65,
+    "source_line": 68,
+    "row_id": "price-snapshot-store-—-opening-and-closing-numbers-for-every-market-originated-2",
+    "text": "Total | Store defined · no verified prices yetOwn9 repository (primary project record) ↗",
+    "https_links": [
+      "https://github.com/sassnarep3-star/Own9"
+    ],
+    "manifest_source_ids": [
+      "repo"
+    ],
+    "has_manifest_publisher": false,
+    "has_project_record": true,
+    "has_https_absent_from_root_manifest": false,
+    "has_no_https": false
+  },
+  {
+    "page": "lines.html",
+    "row_number": 66,
+    "source_line": 69,
+    "row_id": "price-snapshot-store-—-opening-and-closing-numbers-for-every-market-originated-3",
+    "text": "Moneyline | Store defined · no verified prices yetOwn9 repository (primary project record) ↗",
+    "https_links": [
+      "https://github.com/sassnarep3-star/Own9"
+    ],
+    "manifest_source_ids": [
+      "repo"
+    ],
+    "has_manifest_publisher": false,
+    "has_project_record": true,
+    "has_https_absent_from_root_manifest": false,
+    "has_no_https": false
+  },
+  {
+    "page": "lines.html",
+    "row_number": 67,
+    "source_line": 70,
+    "row_id": "own-line-vs-market-line-—-fair-line,-market-line-and-difference-as-separate-columns-1",
+    "text": "Side (spread) | Blank · no fitted model exists yetOwn9 repository (primary project record) ↗",
+    "https_links": [
+      "https://github.com/sassnarep3-star/Own9"
+    ],
+    "manifest_source_ids": [
+      "repo"
+    ],
+    "has_manifest_publisher": false,
+    "has_project_record": true,
+    "has_https_absent_from_root_manifest": false,
+    "has_no_https": false
+  },
+  {
+    "page": "lines.html",
+    "row_number": 68,
+    "source_line": 71,
+    "row_id": "own-line-vs-market-line-—-fair-line,-market-line-and-difference-as-separate-columns-2",
+    "text": "Total | Blank · no fitted model exists yetOwn9 repository (primary project record) ↗",
+    "https_links": [
+      "https://github.com/sassnarep3-star/Own9"
+    ],
+    "manifest_source_ids": [
+      "repo"
+    ],
+    "has_manifest_publisher": false,
+    "has_project_record": true,
+    "has_https_absent_from_root_manifest": false,
+    "has_no_https": false
+  },
+  {
+    "page": "lines.html",
+    "row_number": 69,
+    "source_line": 72,
+    "row_id": "own-line-vs-market-line-—-fair-line,-market-line-and-difference-as-separate-columns-3",
+    "text": "Moneyline | Blank · no fitted model exists yetOwn9 repository (primary project record) ↗",
+    "https_links": [
+      "https://github.com/sassnarep3-star/Own9"
+    ],
+    "manifest_source_ids": [
+      "repo"
+    ],
+    "has_manifest_publisher": false,
+    "has_project_record": true,
+    "has_https_absent_from_root_manifest": false,
+    "has_no_https": false
+  },
+  {
+    "page": "lines.html",
+    "row_number": 70,
+    "source_line": 73,
+    "row_id": "origination-order-—-side-first,-then-the-total,-then-the-moneyline-1",
+    "text": "1 | Side (spread) | Originate the side before any joint market; the spread is the primary market. | Project rule · stated hereOwn9 repository (primary project record) ↗",
+    "https_links": [
+      "https://github.com/sassnarep3-star/Own9"
+    ],
+    "manifest_source_ids": [
+      "repo"
+    ],
+    "has_manifest_publisher": false,
+    "has_project_record": true,
+    "has_https_absent_from_root_manifest": false,
+    "has_no_https": false
+  },
+  {
+    "page": "lines.html",
+    "row_number": 71,
+    "source_line": 74,
+    "row_id": "origination-order-—-side-first,-then-the-total,-then-the-moneyline-2",
+    "text": "2 | Total | Originate the total only after the side is fixed for the same game. | Project rule · stated hereOwn9 repository (primary project record) ↗",
+    "https_links": [
+      "https://github.com/sassnarep3-star/Own9"
+    ],
+    "manifest_source_ids": [
+      "repo"
+    ],
+    "has_manifest_publisher": false,
+    "has_project_record": true,
+    "has_https_absent_from_root_manifest": false,
+    "has_no_https": false
+  },
+  {
+    "page": "lines.html",
+    "row_number": 72,
+    "source_line": 75,
+    "row_id": "origination-order-—-side-first,-then-the-total,-then-the-moneyline-3",
+    "text": "3 | Moneyline | Originate the moneyline last, derived from the same joint score distribution as the side and total. | Project rule · stated hereOwn9 repository (primary project record) ↗",
     "https_links": [
       "https://github.com/sassnarep3-star/Own9"
     ],
@@ -28971,6 +29723,80 @@
     ],
     "manifest_source_ids": [
       "holdout",
+      "repo"
+    ],
+    "has_manifest_publisher": true,
+    "has_project_record": true,
+    "has_https_absent_from_root_manifest": false,
+    "has_no_https": false
+  },
+  {
+    "page": "validation.html",
+    "row_number": 8,
+    "source_line": 11,
+    "row_id": "demotion-gate-—-live-strategy-back-to-paper-1",
+    "text": "Any gate that passed at admission ceases to hold (price, availability or model support lapses before a live week) | Current gate evidence re-checked before each live week; a lapsed input forces demotion | Defined · not armed | Proposed policyOwn9 repository (primary project record) ↗",
+    "https_links": [
+      "https://github.com/sassnarep3-star/Own9"
+    ],
+    "manifest_source_ids": [
+      "repo"
+    ],
+    "has_manifest_publisher": false,
+    "has_project_record": true,
+    "has_https_absent_from_root_manifest": false,
+    "has_no_https": false
+  },
+  {
+    "page": "validation.html",
+    "row_number": 9,
+    "source_line": 12,
+    "row_id": "demotion-gate-—-live-strategy-back-to-paper-2",
+    "text": "Drift tolerance breached on the held-out window | Week-block interval and predeclared tolerance; breach reviewed before any re-promotion | Defined · not armed | Proposed policyscikit-learn project ↗ · NIST ↗",
+    "https_links": [
+      "https://scikit-learn.org/stable/modules/cross_validation.html",
+      "https://www.itl.nist.gov/div898/handbook/eda/section3/eda35b.htm"
+    ],
+    "manifest_source_ids": [
+      "holdout",
+      "tails"
+    ],
+    "has_manifest_publisher": true,
+    "has_project_record": false,
+    "has_https_absent_from_root_manifest": false,
+    "has_no_https": false
+  },
+  {
+    "page": "validation.html",
+    "row_number": 10,
+    "source_line": 13,
+    "row_id": "demotion-gate-—-live-strategy-back-to-paper-3",
+    "text": "Selection control breached (familywise alpha exceeded) | Registered candidate family and Holm-adjusted p-values | Defined · not armed | Proposed policyNIST ↗ · Own9 repository (primary project record) ↗",
+    "https_links": [
+      "https://www.itl.nist.gov/div898/handbook/prc/section4/prc473.htm",
+      "https://github.com/sassnarep3-star/Own9"
+    ],
+    "manifest_source_ids": [
+      "multiplicity",
+      "repo"
+    ],
+    "has_manifest_publisher": true,
+    "has_project_record": true,
+    "has_https_absent_from_root_manifest": false,
+    "has_no_https": false
+  },
+  {
+    "page": "validation.html",
+    "row_number": 11,
+    "source_line": 14,
+    "row_id": "demotion-gate-—-live-strategy-back-to-paper-4",
+    "text": "Correlation interval straddles the deadband for any priced joint | Fisher-z interval and predeclared deadband; joint price returns to blank | Defined · not armed | Proposed policySciPy project ↗ · Own9 repository (primary project record) ↗",
+    "https_links": [
+      "https://docs.scipy.org/doc/scipy/reference/generated/scipy.stats.pearsonr.html",
+      "https://github.com/sassnarep3-star/Own9"
+    ],
+    "manifest_source_ids": [
+      "pearson",
       "repo"
     ],
     "has_manifest_publisher": true,

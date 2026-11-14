@@ -62,13 +62,13 @@ class PinnedTreeTests(unittest.TestCase):
 
     def test_census_counts_are_reproducible_for_the_pinned_tree(self):
         self.assertEqual(self.report["page_count"], 82)
-        self.assertEqual(self.report["data_row_count"], 1700)
+        self.assertEqual(self.report["data_row_count"], 1748)
         self.assertTrue(self.report["counts_overlap"])
         self.assertEqual(
             self.report["coverage"],
             {
-                "rows_with_root_manifest_publisher": 933,
-                "rows_with_project_record": 526,
+                "rows_with_root_manifest_publisher": 938,
+                "rows_with_project_record": 573,
                 "rows_with_https_absent_from_root_manifest": 692,
                 "rows_without_https": 11,
             },
@@ -76,7 +76,7 @@ class PinnedTreeTests(unittest.TestCase):
 
     def test_root_dashboard_count_matches_its_structural_verifier_baseline(self):
         root = next(item for item in self.report["sections"] if item["section"] == "root")
-        self.assertEqual(root["data_rows"], 658)
+        self.assertEqual(root["data_rows"], 706)
         self.assertEqual(root["rows_without_https"], 0)
 
     def test_every_data_row_is_in_machine_readable_output(self):
@@ -100,6 +100,21 @@ class PinnedTreeTests(unittest.TestCase):
                 any(link.startswith("https://github.com/sassnarep3-star/Own9/blob/") for link in row["links"]),
                 row["id"],
             )
+
+    def test_section_summary_rows_link_every_contributing_page(self):
+        parser = audit.TableRows()
+        parser.feed(audit.render_html(self.report))
+        parser.close()
+        section_rows = parser.rows[: len(self.report["sections"])]
+        self.assertEqual(len(section_rows), len(self.report["sections"]))
+        for section, row in zip(self.report["sections"], section_rows):
+            expected_paths = {
+                page["path"] for page in self.report["pages"] if page["section"] == section["section"]
+            }
+            source_links = [link for link in row["links"] if "/blob/" in link]
+            self.assertEqual(len(source_links), len(expected_paths), section["section"])
+            for path in expected_paths:
+                self.assertTrue(any(link.endswith("/" + path) for link in source_links), path)
 
     def test_rendered_report_has_landmarks_and_no_broken_local_links(self):
         content = audit.render_html(self.report)
