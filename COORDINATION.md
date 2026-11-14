@@ -948,7 +948,6 @@ session's files.
   no claim of "luck removed" is made.
 - Empirical NFL numbers published here are read from official NFL.com pages on 2026-11-14 and are stored
   with a retrieval timestamp; they are point-in-time, not a historical archive.
->>>>>>> c9554b8 (Claim session 00cf851d scope: independent official-source verification, executive summary and decision registers)
 
 # Session 00cf851d — done
 
@@ -1021,4 +1020,3 @@ P.Ricard spelling inconsistency across two official Game Books.
 ## Where it published
 
 https://sassnarep3-star.github.io/Own9/session-00cf851d/
->>>>>>> c7988c9 (Wire session-00cf851d into CI and record its completion on the board)
