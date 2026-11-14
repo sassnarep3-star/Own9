@@ -42,7 +42,7 @@ const server = http.createServer((req, res) => {
         const response=await page.goto(new URL(file,base).href);
         assert.equal(response.status(),200,`${file} returns 200`);
         assert.equal(await page.locator('h1').count(),1);
-        assert.equal(await page.locator('nav[aria-label="Main navigation"] a').count(),9);
+        assert.equal(await page.locator('nav[aria-label="Main navigation"] a').count(),10);
         assert.equal(await page.evaluate(()=>document.documentElement.scrollWidth<=innerWidth),true,`${file} at ${width}: no page overflow`);
         await page.addScriptTag({content:axe});
         const result=await page.evaluate(async()=>await axe.run(document,{runOnly:{type:'tag',values:['wcag2a','wcag2aa','wcag21aa']}}));
@@ -50,6 +50,10 @@ const server = http.createServer((req, res) => {
         accessibilityChecks++;
       }
     }
+    await page.goto(new URL('suggestions.html',base).href);
+    assert.equal(await page.locator('h1').innerText(),'Suggestions & decisions');
+    assert.equal(await page.locator('tbody tr').count(),10);
+    assert.equal(await page.locator('tbody tr a[href^="https://"]').count()>=10,true);
     await page.goto(new URL('strategies.html',base).href);
     await page.locator('#table-search').fill('S06');
     assert.equal(await page.locator('tbody tr:not([hidden])').count(),1);
