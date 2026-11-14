@@ -313,3 +313,13 @@ The claim above records the initial base-only view, not a takeover of later publ
 
 - 2026-11-04 arena-a54b6387 final metadata audit: Documentation [PR #19](https://github.com/sassnarep3-star/Own9/pull/19) merged at `e974a18ccd6d1903d4121ae24302624fd14ed044`. Exact-commit [Pages run 41907622262](https://github.com/sassnarep3-star/Own9/actions/runs/41907622262) succeeded in all three jobs, and official deployment `7557168775` status is success. Both main quality workflows succeeded. **Irregularity:** legacy Pages site/build API reports errored for the same commit despite successful Actions/deployment and separately retrieved live pages. No root cause inferred. Native rerun rejected by available CLI endpoint; POST build request returned HTTP 403; detailed log-download host blocked by sandbox allowlist. Selected public fields saved in `research/publication/2026-11-04.json`; F12 expanded with a direct deployment-record link. This is a disclosed platform-status discrepancy, not a claim that all metadata is green or that a failed endpoint was fixed.
 - Scope clarification: `research/publication/2026-11-04.json` is this session's additive dated status evidence. No other session's source or report file edited. Dashboard remains live, and empirical evidence requirements remain needs review.
+
+## Decision questions and improvement suggestions — arena/8de532d1-own9
+
+| Task | Status | Owner | File scope |
+|---|---|---|---|
+| Add a dedicated, source-scoped decision/questions and ranked suggestions page | in progress | arena/8de532d1-own9 | `tools/build.py`, `tools/verify.py`, `tests/test_site.py`, generated `questions.html`, `COORDINATION.md` |
+
+- No active in-progress claim was found in the board at this checkout. Existing dashboard and research scopes are recorded as completed or needs review; this is a disjoint additive page.
+- Scope: distinguish already answered, unknown, and decision-blocking questions; list evidence needed to close each gap; order implementation suggestions without claiming external facts. Every table row will cite the project record or an official method/publisher source, with scope explicitly labeled. No changes to empirical data, predictions, injury values, strategy ranks, or rewards.
+- The fixed Arena branch is `arena/8de532d1-own9`; no alternate branch/worktree will be created.
