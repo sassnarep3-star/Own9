@@ -480,3 +480,4 @@ own sessions. Nothing in them was edited or withdrawn.
   28 WCAG axe scans across two viewports, release-check fixtures, and both validators pass.
 - Their `session-8b05dd6d/**` subtree and its requests were merged unchanged and are **not** adopted
   as verified by this dashboard; its own irregularity list stands as that session published it.
+
