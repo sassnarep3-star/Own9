@@ -14,6 +14,11 @@ import build as build_mod  # noqa: E402
 import check as check_mod  # noqa: E402
 
 
+def read(name):
+    with open(os.path.join(SESSION, name), encoding="utf-8") as fh:
+        return fh.read()
+
+
 def digest(path):
     with open(path, "rb") as fh:
         return hashlib.sha256(fh.read()).hexdigest()
@@ -38,12 +43,12 @@ class TestPages(unittest.TestCase):
         self.assertEqual(0, rc.returncode, rc.stdout + rc.stderr)
 
     def test_nav_links_every_page(self):
-        doc = open(os.path.join(SESSION, "index.html"), encoding="utf-8").read()
+        doc = read("index.html")
         for name, _, _ in build_mod.PAGES:
             self.assertIn('href="%s"' % name, doc, name)
 
     def test_assets_are_referenced_and_present(self):
-        doc = open(os.path.join(SESSION, "index.html"), encoding="utf-8").read()
+        doc = read("index.html")
         for asset in ("assets/style.css", "assets/app.js"):
             self.assertIn(asset, doc)
             self.assertTrue(os.path.exists(os.path.join(SESSION, asset)), asset)
@@ -56,13 +61,13 @@ class TestStructure(unittest.TestCase):
     def test_every_opened_section_is_closed(self):
         import re
         for name, _, _ in build_mod.PAGES:
-            doc = open(os.path.join(SESSION, name), encoding="utf-8").read()
+            doc = read(name)
             self.assertEqual(doc.count("<section>"), doc.count("</section>"), name)
 
     def test_sections_are_siblings_not_nested(self):
         import re
         for name, _, _ in build_mod.PAGES:
-            doc = open(os.path.join(SESSION, name), encoding="utf-8").read()
+            doc = read(name)
             main = doc[doc.index("<main>"):doc.index("</main>")]
             depth = 0
             for tok in re.findall(r"<section>|</section>", main):
@@ -137,17 +142,17 @@ class TestFailClosed(unittest.TestCase):
 
 class TestNoInvention(unittest.TestCase):
     def test_blank_labels_render_where_values_are_absent(self):
-        doc = open(os.path.join(SESSION, "results.html"), encoding="utf-8").read()
+        doc = read("results.html")
         self.assertIn("blank — not published", doc)
         self.assertIn("needs a fair line", doc)
 
     def test_no_page_prints_a_fair_line_number(self):
         """The fair-line column must stay empty until a model exists."""
-        doc = open(os.path.join(SESSION, "results.html"), encoding="utf-8").read()
+        doc = read("results.html")
         self.assertNotIn(">fair<", doc)
 
     def test_injury_blanks_are_labelled_not_filled(self):
-        doc = open(os.path.join(SESSION, "injuries.html"), encoding="utf-8").read()
+        doc = read("injuries.html")
         self.assertIn("blank \u2014 not published", doc)
 
 

@@ -75,7 +75,7 @@
   {
    "area": "This session",
    "path": "session-00cf851d",
-   "files": 35,
+   "files": 37,
    "verified_against_official_source": null
   },
   {
@@ -142,5 +142,5 @@
   "validation.html"
  ],
  "external_href_count_across_root_pages": 1417,
- "tracked_files": 287
+ "tracked_files": 289
 }
