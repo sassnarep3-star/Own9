@@ -222,6 +222,15 @@ class SiteDirectory(unittest.TestCase):
             self.assertEqual(int(row[1]), len(list((ROOT / folder).glob('*.html'))),
                              f'{folder} page count is stale')
 
+    def test_every_listed_section_is_reachable(self):
+        # The table cells are escaped text, so the links live on their own line; a listed
+        # section that cannot be opened would be a broken promise to the reader.
+        html = (ROOT / 'index.html').read_text()
+        for folder in self.FOLDERS:
+            target = f'{folder}/index.html'
+            self.assertIn(f'href="{target}"', html, f'{folder} is listed but not linked')
+            self.assertTrue((ROOT / target).exists(), f'{target} is linked but does not exist')
+
     def test_certification_is_per_section(self):
         html = (ROOT / 'index.html').read_text()
         self.assertIn('Re-verified by this release', html)

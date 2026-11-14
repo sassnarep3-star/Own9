@@ -813,6 +813,17 @@ SECTIONS = [
      'starter-replacement notes, schedule checks and a Singapore legal note, from the 8b05dd6d session.'),
 ]
 
+def _landing(folder):
+    """Landing page of a section, preferring an index.html that exists on disk."""
+    if folder == '.':
+        return 'index.html'
+    candidate = f'{folder}/index.html'
+    return candidate if (Path(ROOT) / candidate).exists() else f'{folder}/'
+
+
+# Computed from SECTIONS so the links cannot drift from the table above them.
+_section_links = [(_landing(folder), name) for folder, name, _desc in SECTIONS]
+
 # The directory is appended to the overview so a reader can see that these sections overlap and which of them
 # this release actually re-verified; the overview's own content is left untouched.
 _directory = table('Published sections of this repository', ['Section', 'Pages', 'What it holds',
@@ -830,4 +841,9 @@ PAGES['index.html'] = (*PAGES['index.html'][:3],
                          'built their own. Nothing here merges them: the table records what each contains and who '
                          'certified it, so a reader knows which page is current for which question. Consolidating '
                          'them into one canonical site is an open owner decision.</p>'
-                       + _directory)
+                       + _directory
+                       # The table cells are escaped text by design, so the links are given their own line.
+                       + '<p class="download">Open a section: '
+                       + ' · '.join(f'<a href="{e(entry, quote=True)}">{e(name)}</a>'
+                                    for entry, name in _section_links)
+                       + '.</p>')
