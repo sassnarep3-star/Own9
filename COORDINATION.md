@@ -1055,3 +1055,260 @@ Session: `1cfcb957` · Branch: `arena/1cfcb957-own9` · Branched from `main` at 
 Final verification on the merged tree: `tools/build.py` → 36 pages deterministic; `tools/verify.py` → PASS, 1527 source-linked rows; **264 tests OK**; 31 release-check tests OK; 27 strict-lab tests OK (`PYTHONPATH=strict-lab`); `engine/availability.py` and `engine/registers.py` PASS; `scripts/check_site.py` PASS; `research/make_catalog.py` and `scripts/build_site.py` reproduce their outputs with no diff; `node scripts/browser_test_root.cjs` → PASS, 36 root pages × 2 viewports, 72 axe checks, no console errors; `node scripts/browser_test.cjs` → PASS.
 
 Four independent implementations of these eight requirements now coexist on the site (`7e426311`, `a77d40e1`, `1cfcb957` and this session). None was discarded or overwritten; consolidating them is recorded as an owner decision (F57).
+
+
+---
+
+# Fourth overlap note — session 0167a04c, 2026-11-14
+
+Sessions `9a409d93` (PR #41) and `00cf851d` (PR #45) merged while this branch was open, adding `markets.html`, `demotion.html`, `replacement-chains.html`, `engine/origination_elo.py`, `evidence/results/**`, `evidence/depth-charts/**` and a new `.github/workflows/snapshot.yml`. Their work is retained in full. Session `9a409d93` also took the name `tests/test_origination.py`, so this session's suite is renamed to **`tests/test_origination_0167a04c.py`** rather than either being dropped. This session's six page filenames remain free of collisions.
+
+---
+
+# Session `00cf851d` — claim (branch `arena/00cf851d-own9`, base `462a7e9`) — 2026-11-14 UTC
+
+Single-branch session; Arena fixes this branch, so no alternative branch or worktree is created or pushed.
+
+## Scope claimed (all new files, no other session's file is rewritten)
+
+| Task | Status | Owner | Files |
+| --- | --- | --- | --- |
+| Independent line-by-line verification of published repo claims against official sources retrieved **today** | in progress | 00cf851d | `session-00cf851d/evidence/**`, `session-00cf851d/tools/verify_sources.py`, `session-00cf851d/verification.html` |
+| Official-source retrieval register (URL, retrieval timestamp, sha256 of retrieved text, extracted facts) | in progress | 00cf851d | `session-00cf851d/evidence/sources.json`, `session-00cf851d/sources.html` |
+| Executive summary of the repository and the eight-requirement delta | in progress | 00cf851d | `session-00cf851d/index.html`, `session-00cf851d/summary.html` |
+| Repo review: file-level inventory, irregularity register with source links | in progress | 00cf851d | `session-00cf851d/repo-review.html`, `session-00cf851d/flags.html` |
+| Decision-support registers: questions / information needed / answers / suggestions to discover missing input | in progress | 00cf851d | `session-00cf851d/questions.html`, `session-00cf851d/suggestions.html` |
+| Self-contained generator, checker and tests for the above | in progress | 00cf851d | `session-00cf851d/tools/build.py`, `session-00cf851d/tools/check.py`, `session-00cf851d/tests/test_*.py` |
+| Integration: CI hook (additive), PR to `main`, merge, Pages deploy confirmation | pending | 00cf851d | `.github/workflows/quality.yml` (append one step only), `COORDINATION.md` (append only) |
+
+## Files this session will NOT edit (owned or claimed by others, or explicitly out of scope)
+
+Root `*.html` (including `index.html`, `flags.html`, `leaderboard.html`), `tools/build.py`, `tools/verify.py`,
+`tools/pages_*.py`, `tools/lines_audit.py`, `evidence/**`, `engine/**` (including the `engine/*.py` modules
+claimed by `1cfcb957`), `research/**`, `site/**`, `strict-lab/**`, `own9-research/**`, `release-checks/**`,
+`independent-audit/**`, `ledger/**`, `data/ledger/**`, `tools/ledger.py`, root `tests/**`, `data/raw/**`
+(read-only input), `scripts/**`, `docs/**`, `analysis/**`, `README.md`, `package.json`, `package-lock.json`.
+
+## Conflict observed at claim time — logged, not acted on
+
+At 2026-11-14T22:0x UTC three sessions claimed work from the same base `462a7e9`:
+
+- `1cfcb957` — eight-requirement delta into new `engine/*.py` modules **and shared files `tools/build.py`,
+  `tools/verify.py`, `evidence/sources.json`, `flags.html`, `README.md`, `index.html`.**
+- `feaa600b` — demotion gate into **`tools/build.py`, generated `leaderboard.html`, `tests/test_site.py`.**
+
+`tools/build.py` is claimed by both `1cfcb957` and `feaa600b`. Per the board rules this session does not
+edit `tools/build.py` and does not adjudicate; the overlap is recorded here so whichever session merges
+second must rebase onto the first rather than overwrite it. `00cf851d` needs **no** shared-file edit except
+the append-only board itself and one additive CI step, so it can merge in any order without touching either
+session's files.
+
+## Rules this session follows
+
+- Every published row carries the official URL it was read from. Nothing is inferred: if the official page
+  does not state a value, the cell is blank and the gap is logged on `flags.html`.
+- No model is fitted, no backtest is presented as validated, no wager is placed, no reward is funded, and
+  no claim of "luck removed" is made.
+- Empirical NFL numbers published here are read from official NFL.com pages on 2026-11-14 and are stored
+  with a retrieval timestamp; they are point-in-time, not a historical archive.
+
+# Session 00cf851d — done
+
+**Task:** Independent official-source verification of committed NFL claims, with an
+executive summary, a questions register and a suggestions register. Final integration
+session for this branch.
+**Status:** done
+**Owning session:** 00cf851d
+**Branch:** arena/00cf851d-own9
+
+## Files touched
+
+- `session-00cf851d/` — new, self-contained: `README.md`, 13 rendered pages,
+  `assets/style.css`, `assets/app.js`, `tools/{analysis,results_audit,build,check,browser_test}.{py,cjs}`,
+  `tests/test_analysis.py`, `tests/test_build.py`, `data/*.json` (13 registers).
+- `.github/workflows/quality.yml` — two additive steps: a Python verify/build/check/test
+  step for the section, and a Node browser-test step (plus Node setup, since the job
+  previously had none).
+
+`data/raw/games.csv` opened read-only. No other session's file edited.
+
+## Sources read (all official, all on 2026-11-14)
+
+- https://www.nfl.com/standings/ — official 2026 standings, all 8 divisions
+- https://www.nfl.com/injuries/ — official Week 10 injury report, 347 rows / 28 clubs
+- https://www.nfl.com/schedules/2026/by-week/week-9 — 12 Week 9 finals
+- https://www.nfl.com/scores/2026/REG10/ — WAS@NYG final
+- https://static.www.nfl.com/image/upload/v1794570519/gamecenter/ab5828d9-4feb-11f1-abca-2c54536568a9.pdf — WAS@NYG Week 10 Game Book
+- https://static.www.nfl.com/image/upload/v1794224919/gamecenter/ab382331-4feb-11f1-abca-2c54536568a9.pdf — LAR@WAS Week 9 Game Book
+- https://static.www.nfl.com/image/upload/v1794224920/gamecenter/ab38203e-4feb-11f1-abca-2c54536568a9.pdf — NYG@PHI Week 9 Game Book
+- https://www.nfl.com/teams/kansas-city-chiefs/depth-chart/ — 404, no league depth chart exists
+- https://github.com/sassnarep3-star/Own9/blob/main/data/raw/games.csv — the committed file, read-only
+
+## Verification performed
+
+- **369 checks against official documents: 369 match, 0 mismatch, 0 unverifiable.**
+  Lineups (all 4 elevens, 11 slots × 2 fields), inactives, substitutions, finals,
+  receiving totals, standings, injury designations.
+- Committed results file reconciled against the official standings: **2 of 32 clubs
+  reconcile exactly** (PIT 6-2-0 PF 180 PA 144; TEN 1-7-0 PF 144 PA 199). The other 30
+  are blocked solely by 16 missing results, not by any wrong value.
+- 39 Python tests + 13 axe WCAG 2.1 AA scans + 26 page loads at two viewports, all green.
+- Build is deterministic; a test asserts a fresh rebuild reproduces the committed bytes.
+- `tools/check.py` fails closed: a table with no official source link breaks the build,
+  and a test proves it by passing fabricated pages through the same rules.
+
+## Findings that change what should be built next
+
+1. The repository **already holds an odds archive** (`data/raw/closing_lines.csv`,
+   20,490 rows, 2006–2018) that a standing flag describes as absent. The flag is wrong.
+2. **No opening price exists anywhere in the committed data.** Requirement 1 cannot be
+   met from what is committed. The column is published empty, not duplicated from the close.
+3. The results feed is **two rounds stale**: 16 played 2026 games are priced but unscored.
+   Official standings already include the outcome the file lacks. Nothing notices.
+4. **Replacement depth is measurable** from lists the league does print (starters /
+   substitutions / did-not-play / not-active), even though no string tier is published.
+   n=8 this week: T1=0, T2=6, T3=2, T4=0. A demonstration, not a validated predictor.
+5. n=2 is not a correlation. Both T3 players produced; no conclusion is drawn from it.
+6. Nothing is live, so the demotion gate has nothing to act on yet.
+
+## Irregularities (12, namespaced F-00cf851d-01 … -12)
+
+Published on https://sassnarep3-star.github.io/Own9/session-00cf851d/flags.html with a
+source link each. Namespaced deliberately — this session does **not** renumber or append
+to the root Flagged for Review register owned by other sessions. Notable: the club-code
+alias defect (`games.csv` uses ARI/LA where the league prints AZ/LAR); no opening price
+anywhere; 16 missing 2026 results; the incorrect "no odds archive" flag; P.Richard /
+P.Ricard spelling inconsistency across two official Game Books.
+
+## Where it published
+
+https://sassnarep3-star.github.io/Own9/session-00cf851d/
+
+## Session `arena/9a409d93-own9` — claimed 2026-11-14 (session id `session-arena-9a409d93`)
+
+Task: implement the eight newly requested requirements additively — (1) price-snapshot store with opening
+and closing numbers for every originated market, (2) a verified results feed computed from official
+sources, (3) origination order side → total → moneyline, (4) model fair line / market line / difference
+as separate columns, (5) signal-vs-staking separation on the leaderboard, (6) replacement **depth**
+tracking (not just the fact of a replacement), (7) correlations computed only from officially sourced
+numbers with **n** published per value, (8) a defined demotion gate (live → paper) — plus suggestions,
+decision-blocking questions and an executive-summary update.
+
+The platform pins this session to the single branch `arena/9a409d93-own9`; no `session-<id>/<task>`
+side branches can be created, so this branch serves as this session's work branch. All prior session
+scopes on this board are recorded as done/finished or relinquished; this session claims **additive**
+edits only to shared generator files (`tools/build.py` nav/date registration and append-only content
+augmentation of `index.html`, `leaderboard.html`, `correlations.html`, `flags.html`), an additive
+publisher-host append to `tools/verify.py`, additive `evidence/sources.json` entries, additive
+`suggestions.json` entries, and new files under the scopes below. Nothing already published by another
+session is rewritten or deleted.
+
+| Task | Status | Owner | Files |
+| --- | --- | --- | --- |
+| Verified official results feed (2026 weeks 1–9) | in progress | session-arena-9a409d93 | `evidence/results/**`, `tools/pages_9a409d93.py`, `results.html` |
+| Price-snapshot store + origination order + fair/market/diff columns | in progress | session-arena-9a409d93 | `engine/origination.py`, `evidence/markets/**`, `data/snapshots/**`, `tools/pages_9a409d93.py`, `markets.html` |
+| Replacement-depth extension from club depth charts | in progress | session-arena-9a409d93 | `evidence/depth-charts/**`, `tools/pages_9a409d93.py`, `replacement-depth.html` |
+| Demotion gate (live → paper) definition + tests | in progress | session-arena-9a409d93 | `engine/origination.py`, `tests/test_origination.py`, `demotion.html` |
+| Signal-vs-staking leaderboard separation | in progress | session-arena-9a409d93 | `tools/pages_9a409d93.py` (append-only augmentation of `leaderboard.html`) |
+| Official-sample correlations with n | in progress | session-arena-9a409d93 | `tools/pages_9a409d93.py` (append-only augmentation of `correlations.html`) |
+| Close-capture automation (scheduled) | in progress | session-arena-9a409d93 | `.github/workflows/snapshot.yml` (new file), `tools/snapshot_close.py` |
+| Board/README appends, sources, suggestions, PR + merge record | in progress | session-arena-9a409d93 | `COORDINATION.md` (appends), `README.md` (append), `evidence/sources.json` (additive), `research/suggestions.json` (additive), `tools/verify.py` (host allowlist append), `tools/build.py` (nav/date + append-only augmentation) |
+
+Requests to other sessions/owners: none currently. No other active claims were present at claim time.
+
+
+## Session `arena/9a409d93-own9` — done record (2026-11-14, branch `arena/9a409d93-own9`)
+
+All eight claimed tasks are implemented and verified; statuses in the claim table above are now **done**.
+
+- **Evidence committed on-branch:** `evidence/results/nfl-2026-results.json` (136 games, weeks 1–9,
+  per-week source ids `nfl-sched-w1..w9`, structural validation recorded), `evidence/results/nfl-2026-week10.json`
+  (14-game slate + TNF final WAS 24 @ NYG 21; JAX@TEN kickoff/network left blank — never captured, never inferred),
+  `evidence/depth-charts/club-depth-charts-2026-w10.json` (19 clubs + Houston checked absence, rows transcribed
+  verbatim in published order).
+- **Sources:** `evidence/sources.json` grew 40 → 71 (10 weekly schedule pages, BUF@NYJ game centre, 19 club
+  depth charts, Houston checked absence). `tools/verify.py` allowlist grew additively by 18 club hosts plus
+  `www.packers.com`; no existing host was removed.
+- **Engine:** `engine/origination.py` (elo-v1 predeclared constants, origination order, snapshot store builder,
+  demotion gate) + `tests/test_origination.py` (18 tests: feed shape, determinism, order contract, blank-policy,
+  provenance hash, store-regeneration equality, demotion boundary behaviour).
+- **Store:** `data/snapshots/2026-w10-price-snapshot.json` — 52 open snapshots; market_line/diff null by policy
+  (F28). `tools/snapshot_close.py` + `.github/workflows/snapshot.yml` (crons 14:00 UTC daily, 23:30 UTC Thu)
+  capture closes pre-kickoff; guards: constants-change refusal, idempotency, commits restricted to
+  `data/snapshots/**`.
+- **Pages:** `results.html`, `markets.html`, `replacement-depth.html`, `demotion.html` registered; append-only
+  sections added to `leaderboard.html` (signal/staking), `correlations.html` (three feed-derived r/n/CI rows),
+  `index.html` (session summary) and `flags.html` (F28–F33). `tools/build.py` nav grew additively.
+- **Registers:** suggestions 16 → 21 (S-17–S-21 proposed), decisions 16 → 21 (D-17–D-21 deferred), questions
+  22 → 24 (Q-23 open_discoverable, Q-24 unknown_unpublished). `tests/test_registers.py` floors updated with
+  the delta documented in-file; `tests/test_own9_delta.py` page-count floor updated 19 → 23 with the same note.
+- **Verification before PR (all green):** `python3 tools/build.py` (23 pages), `python3 tools/verify.py`
+  (PASS: 23 fresh pages; 1025 source-linked rows), `python3 -m unittest discover -s tests` (124 OK),
+  `engine/availability.py` PASS, `engine/registers.py` PASS, `tools/lines_audit.py` exit 0, deterministic
+  rebuild checked. Browser suites run in CI per `pages.yml`.
+- **Honesty notes:** market columns blank everywhere (F28); elo-v1 fair numbers labelled unvalidated model
+  outputs (F29); depth labels chart-relative because club charts are self-unofficial/undated (F30); Houston
+  absence + several players absent from their own club charts recorded, never resolved (F31); TNF not
+  originated (F32); results feed structurally consistent, per-row game-centre re-check proposed as S-21 (F33).
+  One derivation bug (off-by-one cell index) was caught in QA before publishing because the first render showed
+  injured players as their own replacements — fixed and re-derived from the same evidence.
+
+
+## Session `arena/9a409d93-own9` — merge round against PR #40 (a77d40e1), 2026-11-14
+
+`main` advanced while this session worked: PR #40 (session `a77d40e1`) merged a parallel implementation of
+the same requirement set (Week 11 scope). Resolution followed the board's conflict protocol —
+`git merge --no-commit --no-ff`, nothing of the other session's discarded:
+
+- **Kept a77d40e1 canonical:** `engine/origination.py` (their blank-until-inputs pipeline framework),
+  `results-feed.html`, `origination.html`, `price-snapshots.html`, `correlations-official.html`,
+  `signal-staking.html`, `replacement-depth.html` (their register), their leaderboard policy/demotion tables,
+  their flags F28–F31, their `data/board/*` and `data/raw/verified_results.csv`, their table-wrapper
+  accessibility fix, their dynamic test floors in `tests/test_own9_delta.py`.
+- **Relocated this session's overlapping additions:** `engine/origination.py` → `engine/origination_elo.py`
+  (the concrete elo-v1 store builder + demotion gate; a77d40e1's file keeps its name and content), this
+  session's `results.html` **dropped** (fully duplicated by a77d40e1's canonical `results-feed.html`; this
+  session's Week 10 status / sample-statistics / grading-readiness tables were appended to that page instead),
+  `replacement-depth.html` → `replacement-chains.html` (per-player chains that complement a77d40e1's
+  register), findings renumbered F28–F33 → F34–F39 to continue the register.
+- **Dropped this session's `correlations.html` append:** a77d40e1's `correlations-official.html` already
+  computes the same pairs from the official feed with n.
+- **Unioned:** nav + `REQUIRED_PAGES` in `tools/build.py` (both exec blocks retained), verifier host
+  allowlist (auto-merge), `evidence/sources.json` 40 → 80 by id-union (this session's 31 additions +
+  a77d40e1's 9), `leaderboard.html` append retained (a77d40e1's split lives on `signal-staking.html`; the
+  pages cross-link), COORDINATION.md and README.md merged append-order.
+- **Shared CSS edit (logged):** `style.css` — one line changed: `.nav-group` gains `row-gap:4px;flex-wrap:wrap` so the (now 14-link) Evidence nav group wraps within the shell instead of overflowing the page horizontally at 1440px (the a77d40e1 browser suite passed at 11 links; the merged nav exceeded it and `browser_test_root.cjs` caught `audit.html` overflow). Groups that fit are visually unchanged.
+
+
+## Session `arena/9a409d93-own9` — merge round 3 against PR #44 (1cfcb957), 2026-11-14
+
+`main` advanced again while the previous round was being resolved: PR #43/#44 (session `1cfcb957`) landed a
+third implementation of the same eight-requirement delta. Same protocol, nothing discarded:
+
+- **Kept 1cfcb957 canonical:** their engine modules (`engine/originate.py`, `engine/snapshots.py`,
+  `engine/results_feed.py`, `engine/demotion.py`, `engine/replacement.py`, `engine/correlations.py`,
+  `engine/signal_staking.py`), their five pages (`requirements.html`, `price-feed.html`,
+  `signal-and-staking.html`, `depth-correlations.html`, `missing-information.html`), their improved
+  table-wrapper (`role="region"` + `aria-label`), their findings F32–F41, their board CSVs
+  (`data/snapshots/store.jsonl`, `data/demotion/log.jsonl`) and their `tests/test_requirements_delta.py`.
+- **Renumbered this session's findings F34–F39 → F42–F47** (1cfcb957's block ends at F41).
+- **Nav unioned** in `tools/build.py`; exec order 4f2e0291 → a77d40e1 → 1cfcb957 → 9a409d93 (appends last).
+- **`tests/test_requirements_delta.py` page-count floor updated 30 → 33** with the delta documented in-file
+  (this session adds `markets.html`, `replacement-chains.html`, `demotion.html`).
+- Round-2 lesson applied: `git pull --rebase` after a merge commit is wrong for this repo (it replays merged
+  commits — a failed rebase left the tree mid-rebase and was aborted; `rebase` stays abandoned per board).
+- Post-merge battery all green: build 33 pages deterministic; `tools/verify.py` PASS (1546 source-linked rows);
+  230 tests OK; `engine/registers.py`, `engine/availability.py`, `engine/board.py`, `tools/lines_audit.py`,
+  `scripts/check_site.py` PASS; both browser suites PASS (33 root pages × 2 viewports, 66 axe checks).
+
+## 0167a04c addendum — fourth parallel merge (finalisation pass)
+
+This branch is a finalisation branch: it opened the integration PR and kept absorbing `main` as other sessions merged. `main` advanced twice more while this PR was open — PR #41 (session `9a409d93`, adding `markets.html`, `demotion.html`, `replacement-chains.html`, `engine/origination_elo.py`, `evidence/results/**`, `evidence/depth-charts/**` and `.github/workflows/snapshot.yml`) and PR #45 (session `00cf851d`, an independent verification subtree). Both are retained in full.
+
+- No page filename collided this time, so this session's six pages keep their names.
+- Session `9a409d93` took the name `tests/test_origination.py`. This session's suite — which asserts the origination order, the fair/market/difference columns, the signal/staking split, the depth register, the correlation `n`, the demotion gate and the F50–F57 register — is renamed to **`tests/test_origination_0167a04c.py`** so both suites run.
+- `tests/test_requirements_delta.py::test_the_site_now_publishes_every_sessions_pages` again asserted a fixed total (33); relaxed to `>= 33`, with the per-session counts kept as the floor's rationale.
+
+Verification on the fully merged tree: `tools/build.py` → 39 pages deterministic; `tools/verify.py` → PASS, 1755 source-linked rows; **282 tests OK**; 31 release-check tests OK; `engine/availability.py` and `engine/registers.py` PASS; `scripts/check_site.py` PASS; `research/make_catalog.py` and `scripts/build_site.py` reproduce their outputs with no diff; `node scripts/browser_test_root.cjs` → PASS, 39 root pages × 2 viewports, 78 axe checks, no console errors; `node scripts/browser_test.cjs` → PASS.
+
+Five implementations of these eight requirements now coexist on the site (`7e426311`, `a77d40e1`, `1cfcb957`, `9a409d93` and this session). None was overwritten; consolidating them is recorded as an owner decision (F57), not decided by any session unilaterally.

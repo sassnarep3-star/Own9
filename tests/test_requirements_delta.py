@@ -723,11 +723,11 @@ class PublishedPages(unittest.TestCase):
 
     def test_the_site_now_publishes_every_sessions_pages(self):
         rendered = sorted(f.name for f in ROOT.glob('*.html'))
-        # Relaxed by session 0167a04c: six further pages were added after this delta was merged,
-        # so a fixed total no longer measures anything. The floor keeps the original intent.
-        self.assertGreaterEqual(len(rendered), 30,
+        # Relaxed by session 0167a04c: pages keep being added by later sessions, so a fixed
+        # total no longer measures anything. The floor keeps the original intent.
+        self.assertGreaterEqual(len(rendered), 33,
                                 '15 from the first board, 4 from 4f2e0291, 6 from a77d40e1, '
-                                '5 from this session')
+                                '5 from 1cfcb957, 3 from 9a409d93')
         # Both signal pages exist because both were authored: main's announcement and this session\u2019s
         # enforcement. The path that collided was this session\u2019s, so this session moved.
         for name in ('signal-staking.html', 'signal-and-staking.html'):

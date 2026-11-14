@@ -13,6 +13,12 @@ jobs:
       - uses: actions/setup-python@v5
         with:
           python-version: '3.12'
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+          cache: npm
+      - name: Install locked browser-test tools
+        run: npm ci --ignore-scripts
       - name: Validate the availability and decision registers
         run: |
           python engine/availability.py
@@ -27,3 +33,14 @@ jobs:
         run: |
           python tools/build.py
           git diff --exit-code -- '*.html'
+      - name: Verify official-source section (session-00cf851d)
+        run: |
+          python session-00cf851d/tools/analysis.py
+          python session-00cf851d/tools/results_audit.py
+          python session-00cf851d/tools/make_ingest.py
+          python session-00cf851d/tools/build.py
+          python session-00cf851d/tools/check.py
+          git diff --exit-code -- 'session-00cf851d/*.html'
+          python -m unittest discover -s session-00cf851d/tests
+      - name: Browser-test session-00cf851d
+        run: node session-00cf851d/tools/browser_test.cjs

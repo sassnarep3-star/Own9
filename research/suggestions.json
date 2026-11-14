@@ -300,6 +300,97 @@
    "evidence_cost": 1,
    "reversibility_cost": 1,
    "rank_note": "Predeclared 1-3 scores: impact 3 = changes a live decision; evidence_cost 3 = needs data not held; reversibility_cost 3 = hard to undo."
+  },
+  {
+   "id": "S-17",
+   "title": "Acquire a permissioned, timestamped market-price archive",
+   "category": "Data acquisition",
+   "problem": "Every market_line and diff column in the price-snapshot store is blank because no official market price source exists; without quotes, ROI and closing-line value are uncomputable.",
+   "proposal": "Obtain a licensed archive of executable quotes with capture timestamps, market definitions and settlement rules; store raw captures under data/raw/ with provenance recorded in evidence/sources.json.",
+   "why_it_improves_decisions": "Turns the fair/market/difference design from blank columns into measurable ones, and makes ROI, CLV and the demotion gate's edge and CLV thresholds computable.",
+   "cost": "A paid or permissioned source plus retention terms; ingestion and provenance plumbing.",
+   "falsified_by": "A stored quote cannot be reproduced from the archive with its stated timestamp and rules, or the licence forbids the recorded use.",
+   "needs": [
+    "a permissioned provider/operator archive with timestamps, market rules and documented reuse terms"
+   ],
+   "status": "proposed",
+   "decision_ref": null,
+   "impact": 3,
+   "evidence_cost": 3,
+   "reversibility_cost": 1,
+   "rank_note": "Predeclared 1-3 scores: impact 3 = changes a live decision; evidence_cost 3 = needs data not held; reversibility_cost 3 = hard to undo."
+  },
+  {
+   "id": "S-18",
+   "title": "Operate the scheduled close-capture workflow for every originated market",
+   "category": "Operations",
+   "problem": "Open snapshots exist for the 52 originated Week 10 markets, but a market without a recorded close cannot be graded, and closes captured by hand would violate the no-manual-input constraint.",
+   "proposal": "Run the committed scheduled workflow (pre-kickoff and daily) so tools/snapshot_close.py records model_fair and closed_at for each open snapshot before kickoff, failing closed on any input change.",
+   "why_it_improves_decisions": "Makes every future market gradeable without manual steps and timestamps the decision point the demotion gate and leaderboard need.",
+   "cost": "Scheduled CI minutes; commits restricted to data/snapshots/.",
+   "falsified_by": "A closed snapshot differs from what the recorded inputs produce under the recorded method id, or a close lands after kickoff.",
+   "needs": [],
+   "status": "proposed",
+   "decision_ref": null,
+   "impact": 2,
+   "evidence_cost": 1,
+   "reversibility_cost": 1,
+   "rank_note": "Predeclared 1-3 scores: impact 3 = changes a live decision; evidence_cost 3 = needs data not held; reversibility_cost 3 = hard to undo."
+  },
+  {
+   "id": "S-19",
+   "title": "Backtest signal scores on the verified results feed with a sealed design",
+   "category": "Validation",
+   "problem": "The elo-v1 fair numbers are unvalidated in-sample outputs; the leaderboard signal score stays blank because no strategy has cleared the seven gates.",
+   "proposal": "Freeze a matched design (target markets, grading convention, folds, thresholds, family-wise correction) before evaluation, run it against the verified 2026 feed, and record every tried candidate.",
+   "why_it_improves_decisions": "Would give the signal column its first admissible numbers and decide whether elo-v1 deserves any place in origination; without it the fair column stays a labelled model artefact.",
+   "cost": "Design-freeze discipline and compute; risks discarding the current method.",
+   "falsified_by": "A backtest whose reported performance cannot be reproduced from the committed feed and design, or a design altered after seeing results.",
+   "needs": [
+    "a frozen design document agreed before any evaluation run"
+   ],
+   "status": "proposed",
+   "decision_ref": null,
+   "impact": 3,
+   "evidence_cost": 2,
+   "reversibility_cost": 2,
+   "rank_note": "Predeclared 1-3 scores: impact 3 = changes a live decision; evidence_cost 3 = needs data not held; reversibility_cost 3 = hard to undo."
+  },
+  {
+   "id": "S-20",
+   "title": "Adopt the signal/staking split for any future leaderboard competition",
+   "category": "Governance",
+   "problem": "A single leaderboard column can conflate selection skill with money management; a lucky staking run would rank above a better signal.",
+   "proposal": "Adopt the published two-score design: rank and rewards follow the flat-stake signal score only; the staking score is published beside it and never blended in.",
+   "why_it_improves_decisions": "Keeps the competition measuring what it claims to measure and gives the demotion gate an unambiguous target to police.",
+   "cost": "None beyond keeping the two columns separate; slight loss of a single headline number.",
+   "falsified_by": "A ranking that changes when a staking plan changes while selections stay identical.",
+   "needs": [],
+   "status": "proposed",
+   "decision_ref": null,
+   "impact": 2,
+   "evidence_cost": 1,
+   "reversibility_cost": 1,
+   "rank_note": "Predeclared 1-3 scores: impact 3 = changes a live decision; evidence_cost 3 = needs data not held; reversibility_cost 3 = hard to undo."
+  },
+  {
+   "id": "S-21",
+   "title": "Re-verify every results-feed row against its official game centre",
+   "category": "Verification",
+   "problem": "The feed was transcribed from official weekly pages and passed structural cross-checks (weekly counts, bye arithmetic, 32 teams), but no independent per-game re-check has been performed.",
+   "proposal": "Before any ROI use, re-open each game\u2019s official game centre and confirm the stored scores; record per-row verification state in the evidence file.",
+   "why_it_improves_decisions": "Upgrades the feed from structurally consistent to row-verified, which any graded bet or published correlation ultimately rests on.",
+   "cost": "One fetch per game (136 rows), scripted; a small per-week maintenance loop thereafter.",
+   "falsified_by": "Any game-centre score that disagrees with the stored row, or a row whose linked weekly page no longer shows the recorded result.",
+   "needs": [
+    "per-game game-centre fetches recorded with their retrieval dates"
+   ],
+   "status": "proposed",
+   "decision_ref": null,
+   "impact": 2,
+   "evidence_cost": 2,
+   "reversibility_cost": 1,
+   "rank_note": "Predeclared 1-3 scores: impact 3 = changes a live decision; evidence_cost 3 = needs data not held; reversibility_cost 3 = hard to undo."
   }
  ],
  "scoring": {
