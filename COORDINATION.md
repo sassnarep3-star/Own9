@@ -1020,3 +1020,58 @@ P.Ricard spelling inconsistency across two official Game Books.
 ## Where it published
 
 https://sassnarep3-star.github.io/Own9/session-00cf851d/
+
+
+### Publication record — session `00cf851d`, 2026-11-14 UTC
+
+- **PR #45** (https://github.com/sassnarep3-star/Own9/pull/45) merged into `main` as
+  `50dc8011ea147ea6b4136f5897faa285170852e9` at 2026-11-14T22:58:15Z (`gh pr merge 45 --merge`).
+  Checks on the PR head: `static-and-math` run
+  [43650713486](https://github.com/sassnarep3-star/Own9/actions/runs/43650713486) and
+  `Research integrity and site checks` run
+  [43650713470](https://github.com/sassnarep3-star/Own9/actions/runs/43650713470), both pass.
+  Pages build [1370282419](https://api.github.com/sassnarep3-star/Own9/pages/builds/1370282419)
+  for `50dc801` reports `built`; a public read-back of
+  https://sassnarep3-star.github.io/Own9/session-00cf851d/ confirmed the live page.
+
+- **Result added after the first completion entry above.** The three Week 9 games that were
+  left blank (ARI@SEA, TB@CHI, BUF@MIN) were retrieved from chunk 1 of the official Week 9
+  schedule page, so all sixteen missing outcomes are now covered and nothing is unretrieved.
+  Applying them back to `data/raw/games.csv` reconciles **32 of 32 clubs** against the
+  official standings on W-L-T, points for and points against, against 2 of 32 before. The
+  same page confirms **PIT and TEN were on bye in Week 9**, which is why they were the only
+  two clubs that reconciled first time. A test asserts all of it; one misread score would
+  break two clubs at once, so the check fails loudly.
+
+- The sixteen outcomes are published in the repository's own `data/raw/verified_results.csv`
+  schema at `session-00cf851d/data/verified_results_ingest.csv`, produced by
+  `session-00cf851d/tools/make_ingest.py`. They are deliberately **not** written into the
+  shared `data/raw/verified_results.csv`: session `a77d40e1` owns that file, and the decision
+  to ingest is theirs. Overtime, total line and spread line are left blank — the league
+  schedule page prints no overtime, and the committed prices are not an official source.
+
+- **Three flags added, register now 15** (`F-00cf851d-01` … `-15`): F-13 both requirement
+  stores (`data/raw/verified_results.csv`, `data/raw/price_snapshots.csv`) are schema-only
+  with zero data rows; F-14 the club-code alias defect (`ARI`/`LA` vs `AZ`/`LAR`) silently
+  breaks every join against an official source; F-15 the two opposite inventory errors now
+  sit in the same area — an odds archive reported as absent and a store that reports itself
+  as a store while holding nothing. `F-00cf851d-09` is marked closed for the sixteen games;
+  the committed file still carries the gap until the rows are ingested.
+
+- **Defect found and fixed in this session's own build**: page bodies opened `<section>`
+  without closing it, so browsers nested them. Each nested section was narrower than the
+  last until the widest table overflowed the viewport at 390px. Caught by the section's
+  browser suite, not by any existing check. Fixed with `balance_sections()` in
+  `session-00cf851d/tools/build.py`, plus `tabindex="0"` on `.tablewrap` for the axe
+  `scrollable-region-focusable` rule and `overflow-wrap: anywhere` on `code`, `td`, `th`.
+  Two tests lock it in.
+
+- **Conflicts**: two `COORDINATION.md` conflicts (append-only board, sibling sessions
+  appending). Both resolved by union — other sessions' records kept verbatim, this session's
+  appended after. Two force-pushes were required because the branch was rebased onto a moved
+  `main`; in both cases the remote held only this session's own pre-rebase commits, verified
+  as a strict subset (`0` remote-only lines in `COORDINATION.md`) before `--force-with-lease`.
+
+- **Final state**: 369/369 official-source checks match; 47 session tests, 212 root tests,
+  31 release-check tests, 13 axe WCAG 2.1 AA scans across 13 pages at two viewports.
+  Deterministic regeneration confirmed for both the root site and the section.
