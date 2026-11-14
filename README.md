@@ -6,7 +6,7 @@ An auditable NFL research workspace covering line origination, singles, parlays,
 player-prop combos, seven validation gates, a proposed competition, correlation
 requirements, official source scopes and a published review register.
 
-Thirteen pages, `tools/build.py`, `tools/verify.py`, synthetic data only.
+Fourteen pages, `tools/build.py`, `tools/verify.py`, synthetic data only.
 
 ## Start with the decisions, not the archive
 
@@ -40,11 +40,11 @@ Thirteen pages, `tools/build.py`, `tools/verify.py`, synthetic data only.
 
 ## Executive summary
 
-- **Implemented:** thirteen static dashboard pages; dependency-free pricing, binary scoring,
+- **Implemented:** fourteen static dashboard pages; dependency-free pricing, binary scoring,
   Pearson/phi, a Fisher-z correlation interval with a predeclared-deadband dependence gate,
   a joint price that refuses to default to independence, fail-closed eligibility, verified
   two-week lineup evidence with a fail-closed validator, and three validated registers
-  (16 suggestions, 22 questions, 16 decisions); 79 Python tests, 2 browser suites and CI.
+  (16 suggestions, 22 questions, 16 decisions); 80 Python tests, 2 browser suites and CI.
 - **Not established:** an NFL edge, a numerical NFL line, empirical correlation, completed
   model/backtest, historical executable quote archive, verified skill or funded rewards.
 - **Do not confuse software tests with strategy validation.** All candidates remain unvalidated;
@@ -60,6 +60,7 @@ Thirteen pages, `tools/build.py`, `tools/verify.py`, synthetic data only.
 [Strategies](strategies.html) · [Validation](validation.html) ·
 [Leaderboard](leaderboard.html) · [Correlations](correlations.html) ·
 [Data requirements](data.html) · [Sources](sources.html) ·
+[Decision questions (earlier register)](decisions-questions.html) ·
 [Repository audit](audit.html) · [Flagged for Review](flags.html)
 
 Full [research specification](docs/RESEARCH_SPEC.md) and machine-readable
@@ -71,7 +72,7 @@ paper evaluation remain unimplemented and explicitly flagged.
 ## Reproduce (Python 3.10+, no third-party packages)
 
 ```sh
-python3 tools/build.py                 # regenerate the 13 root pages
+python3 tools/build.py                 # regenerate the 14 root pages
 python3 tools/verify.py                # rows, links, fragments, nav, blanks
 python3 engine/availability.py         # lineup + injury evidence rules
 python3 engine/registers.py            # suggestions, questions, decisions
