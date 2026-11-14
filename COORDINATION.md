@@ -746,3 +746,33 @@ No empirical NFL line, correlation, ROI, rank or reward was inferred. Other sess
 
 - **PR #33** (https://github.com/sassnarep3-star/Own9/pull/33) merged as `0fc7f78` at 2026-11-14T01:42:26Z; `Verify NFL research for Pages` `43542193051`, `Research quality` `43542193076` and `pages build and deployment` `43542192022` all success. It removed hardcoded page counts from the overview's section descriptions after a live read-back showed `site` labelled "twelve-page" beside a computed count of 15 — the same class of error as a retyped measurement, fixed the same way: derive it or drop it.
 - Session `4f2e0291` ends with: requirements 1–4 and 6 published on the root site (`suggestion-costs.html`, `question-ledger.html`, `lines.html`, `availability-evidence.html`, overview directory), requirement 5 carried by the overview's executive summary and README, findings F22–F27 on `flags.html`, and three PRs merged (`#28`, `#32`, `#33`) with every deployment confirmed rather than assumed.
+
+---
+
+## Session `a1b21de8` — final integration session (2026-11-14)
+
+Branch: `arena/a1b21de8-own9` (platform-assigned). Started from `main` @ `462a7e9`.
+No open pull request existed at claim time and every prior board entry is `done` or `needs review`,
+so this session is the final integration owner for shared outputs (table data, site index/navigation).
+
+### Claimed scope
+
+| Task | Status | Owner | Files |
+| --- | --- | --- | --- |
+| Price-snapshot store: open/close per market, origination order, fair/market/difference columns | in progress | a1b21de8 | `engine/price_store.py`, `tools/pages_a1b21de8.py`, `origination.html` |
+| Verified results feed from official NFL Game Books; backtest/ROI computation | in progress | a1b21de8 | `engine/results_feed.py`, `evidence/results/**`, `results.html` |
+| Signal vs staking separation + luck check + demotion gate (live -> paper) | in progress | a1b21de8 | `engine/scorecards.py`, `engine/gates.py`, `leaderboard.html`, `validation.html` |
+| Official-source-only correlation register publishing `n` with every value | in progress | a1b21de8 | `engine/correlation_register.py`, `correlations.html` |
+| Replacement depth tracking (2nd/3rd/4th string) from club depth charts + Game Books | in progress | a1b21de8 | `engine/depth.py`, `depth.html` |
+| Executive summary, Flagged for Review, questions/suggestions registers, README | in progress | a1b21de8 | `index.html`, `flags.html`, `questions.html`, `suggestions.html`, `README.md` |
+| Shared evidence manifest and coordination records | in progress | a1b21de8 | `evidence/sources.json`, `COORDINATION.md` |
+| Integration, verification, Pages deploy, PR and merge | in progress | a1b21de8 | `tools/verify.py`, `tests/**`, `.github/**` |
+
+Boundary: this session does not edit `site/**`, `strict-lab/**`, `own9-research/**`, `release-checks/**`,
+`independent-audit/**`, `research/**`, `analysis/**` or `scripts/**`; those belong to other sessions.
+It does not rewrite any row published by another session — new pages are registered additively through
+the shared `page()` API, and shared pages gain new sections only.
+
+Rules held: no NFL value is published without an official source link; anything that cannot be confirmed
+from an official publisher stays blank and is flagged for review. No strategy is certified, no wager is
+placed, no reward is funded.
