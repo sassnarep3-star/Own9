@@ -1,0 +1,158 @@
+{
+  "as_of": "2026-11-14",
+  "note": "New findings from session fe363338. They continue the root numbering (F01 to F27 on flags.html) and do not edit it. Flags are published for review; they do not block the merge. 'Owner decision' means the item needs the owner's ruling.",
+  "items": [
+    {
+      "id": "F28",
+      "severity": "Critical",
+      "title": "Jurisdiction: the user's location is unconfirmed; the project's market sources are US-scoped",
+      "detail": "The Penal Code makes gambling an offence (Article 185, with a narrow proviso for stakes that are only temporary entertainment) and penalises running a gambling place or organising gamblers for profit (Article 186(2)). Text verified on the official e-Gov site. The project's market and regulator sources (the DraftKings page in this repository, DK-NFL-LEAGUE) does not establish any jurisdiction. This is a statutory text check, not a legal opinion.",
+      "impact": "Blocks any staking track, cash reward or real-money step until a written legal determination exists.",
+      "disposition": "Keep to paper research. Confirm the user's jurisdiction, then obtain qualified legal advice for that jurisdiction before any staking or reward step (Q10, SX08).",
+      "state": "Flagged · owner and legal decision",
+      "sources": [
+        "EGOV-PENAL-CODE",
+        "DK-NFL-LEAGUE"
+      ]
+    },
+    {
+      "id": "F29",
+      "severity": "High",
+      "title": "A market page is an observation, not an archive",
+      "detail": "The DraftKings league page was read once (1 of 5 chunks). Eight Week 10 games are fully readable. The page says 'Tomorrow' rather than a date, so the capture time is unknown. The page is not an official source. It has no opening or closing values. The matchup pages for Bills at Jets and Jaguars at Titans were not found on the NFL pages read, so those two matchups are unconfirmed.",
+      "impact": "The 48 price rows are single observations. Any use as an opening or closing line would be an inference.",
+      "disposition": "Kept as observations with the open and close columns blank. Capture protocol under SX02.",
+      "state": "Flagged",
+      "sources": [
+        "DK-NFL-LEAGUE",
+        "NFL-SCHED-W10"
+      ]
+    },
+    {
+      "id": "F30",
+      "severity": "High",
+      "title": "An assumed price is presented as a result in own9-research",
+      "detail": "own9-research/data/results/summary.json sets pricing to '-110 both sides (assumed)' and tools/analyze.py (line 341) passes the same label. The 'Never infer or fill in values' rule forbids this. Any ROI from that folder rests on an assumed price.",
+      "impact": "Any ROI or strategy result from that folder is not market evidence.",
+      "disposition": "Label every such figure 'assumed price, not a market price'. Not edited here: the folder belongs to another session's scope. Owner decision on whether to retire it.",
+      "state": "Flagged · owner decision",
+      "sources": [
+        "REPO-OWN9-SUMMARY"
+      ]
+    },
+    {
+      "id": "F31",
+      "severity": "Medium",
+      "title": "Week 9 results rely on schedule-page link text",
+      "detail": "Fifteen Week 9 scores were read from the official schedule page (score text in the game-centre link). The game-centre pages were not opened one by one. Three of the sixteen results (LAR-WAS, NYG-PHI and WAS-NYG) were cross-checked against official Game Book PDFs in the carried evidence.",
+      "impact": "Thirteen rows are read once and not cross-checked.",
+      "disposition": "Manual game-centre check pending (SX10). Rows marked 'manual check pending' in results_verified.csv.",
+      "state": "Flagged · manual check pending",
+      "sources": [
+        "NFL-SCHED-W9",
+        "NFL-GB-W9-LARWAS",
+        "NFL-GB-W9-NYGPHI",
+        "NFL-GB-W10-WASNYG"
+      ]
+    },
+    {
+      "id": "F32",
+      "severity": "Low",
+      "title": "Incomplete reads leave blanks, not inferred values",
+      "detail": "The Week 10 schedule page shows only the Thursday game as final when read. Remaining Week 10 games are not final and are not in the results feed. The DraftKings page was read for its first chunk only.",
+      "impact": "Coverage is partial by design.",
+      "disposition": "Pending games are left out of the results feed rather than filled in.",
+      "state": "Recorded",
+      "sources": [
+        "NFL-SCHED-W10",
+        "DK-NFL-LEAGUE"
+      ]
+    },
+    {
+      "id": "F33",
+      "severity": "High",
+      "title": "Replacement depth tiers are not published by the NFL",
+      "detail": "The NFL publishes a starting lineup and an injury report, but no first, second, third or fourth-string tier. The club charts that do show tiers are labelled unofficial by the clubs (see F19 to F21 on flags.html). Depth-tier columns in replacements.csv are blank by rule.",
+      "impact": "Deficiency analysis by depth tier cannot be verified.",
+      "disposition": "Blank columns; SX07 for options.",
+      "state": "Flagged · owner decision",
+      "sources": [
+        "NFL-INJURY-W10",
+        "NFL-GB-W10-WASNYG"
+      ]
+    },
+    {
+      "id": "F34",
+      "severity": "High",
+      "title": "No official paired observations exist for any correlation pair",
+      "detail": "All eight predeclared pairs have n = 0 official paired observations. No coefficient is published. An entry with a value would be invented.",
+      "impact": "Parlay and combination strategies cannot be judged on dependence.",
+      "disposition": "n = 0 published for each pair; r blank. See Q05.",
+      "state": "Flagged",
+      "sources": [
+        "SP-R"
+      ]
+    },
+    {
+      "id": "F35",
+      "severity": "Medium",
+      "title": "The coordination protocol conflicts with the platform's branch rule",
+      "detail": "COORDINATION.md asks each session to use session-named branches. The platform fixes one branch per session, so this session worked only on arena/fe363338-own9 and created no other branch. The board is about 132 KB, which makes it hard to scan.",
+      "impact": "Parallel-session safety depends on claims written to the board, not on branches.",
+      "disposition": "Followed the platform rule and logged here. Owner to decide the board's format (SX11).",
+      "state": "Flagged · owner decision",
+      "sources": [
+        "REPO-COORD"
+      ]
+    },
+    {
+      "id": "F36",
+      "severity": "Medium",
+      "title": "Overlapping dashboards publish overlapping pages",
+      "detail": "Top-level HTML page counts: root 19, site/ 15, research/ 10, own9-research/ 12, strict-lab/ 8, session-8b05dd6d/ 11, release-checks/ 2, independent-audit/ 5 (82 HTML files in the repository). This extends F15 and F27.",
+      "impact": "Readers can find conflicting counts for the same topic.",
+      "disposition": "Choice of front door under SX01. This ledger site is the consolidated directory.",
+      "state": "Flagged · owner decision",
+      "sources": [
+        "REPO-ROOT-FLAGS"
+      ]
+    },
+    {
+      "id": "F37",
+      "severity": "High",
+      "title": "Third-party historical file carries betting-line columns with no confirmed licence",
+      "detail": "own9-research/data/source/games.csv and data/raw/games.csv (identical content, see F24) include spread, total and moneyline columns. Their licence and provenance are not confirmed (F23, F24). This ledger does not use the file.",
+      "impact": "Any use of its prices would rest on an unconfirmed source.",
+      "disposition": "Not used. Q14 and the licence check.",
+      "state": "Flagged · owner decision",
+      "sources": [
+        "REPO-ROOT-FLAGS"
+      ]
+    },
+    {
+      "id": "F38",
+      "severity": "Medium",
+      "title": "Finding IDs are reused across registers",
+      "detail": "The root flags page uses F01 to F27. site/review.html uses F01 to F13, strict-lab/flags.html uses F01 to F12, and research/flagged.html uses F1 to F8. The same ID therefore points to different findings. The F-numbers in this ledger are read against the root numbering only.",
+      "impact": "A reader can cite the wrong finding.",
+      "disposition": "Use register-qualified IDs when citing (for example 'root F01', 'strict-lab F01').",
+      "state": "Flagged",
+      "sources": [
+        "REPO-ROOT-FLAGS"
+      ]
+    },
+    {
+      "id": "F39",
+      "severity": "Medium",
+      "title": "Scope of this session's repository review",
+      "detail": "This session did not audit all 82 HTML pages or every inherited data file line by line. It checked the ledger stores it created, the Week 9 and Week 10 schedule pages, the Game Book evidence it cites, the DraftKings page's first chunk, the Penal Code text, and the registers that the new pages cite. Inherited pages were checked only for numbering and overlap.",
+      "impact": "Errors may remain in inherited pages that this session did not read.",
+      "disposition": "Full line-by-line audit of inherited pages to be scheduled by the owner. Not claimed as done.",
+      "state": "Flagged · owner decision",
+      "sources": [
+        "REPO-COORD",
+        "REPO-ROOT-FLAGS"
+      ]
+    }
+  ]
+}

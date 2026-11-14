@@ -1,0 +1,12 @@
+Section,What it contains,Status,Sources (id and URL)
+Price store,"48 market rows, open and close blank",Generated from data/ledger,REPO-LEDGER https://github.com/sassnarep3-star/Own9/tree/main/data/ledger
+Lines,"Fair, market and difference columns in order: side, total, moneyline",Generated from data/ledger,REPO-LEDGER https://github.com/sassnarep3-star/Own9/tree/main/data/ledger
+Results,16 verified official final scores,Generated from data/ledger,REPO-LEDGER https://github.com/sassnarep3-star/Own9/tree/main/data/ledger
+Injuries & depth,"Starter replacements, prior status, depth-tier policy, scenarios",Generated from data/ledger,REPO-LEDGER https://github.com/sassnarep3-star/Own9/tree/main/data/ledger
+Leaderboard,"Signal and staking tracks, kept separate",Generated from data/ledger,REPO-LEDGER https://github.com/sassnarep3-star/Own9/tree/main/data/ledger
+Correlations,Eight pairs with n published,Generated from data/ledger,REPO-LEDGER https://github.com/sassnarep3-star/Own9/tree/main/data/ledger
+Gates & demotion,Eleven validation gates and six demotion triggers,Generated from data/ledger,REPO-LEDGER https://github.com/sassnarep3-star/Own9/tree/main/data/ledger
+Questions,"What is known, what is missing, how to find it",Generated from data/ledger,REPO-LEDGER https://github.com/sassnarep3-star/Own9/tree/main/data/ledger
+Suggestions,Options to review; nothing implemented,Generated from data/ledger,REPO-LEDGER https://github.com/sassnarep3-star/Own9/tree/main/data/ledger
+Flagged for Review,Irregularities with source links; does not block,Generated from data/ledger,REPO-LEDGER https://github.com/sassnarep3-star/Own9/tree/main/data/ledger
+Sources,"Every source, its status and scope",Generated from data/ledger,REPO-LEDGER https://github.com/sassnarep3-star/Own9/tree/main/data/ledger

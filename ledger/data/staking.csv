@@ -1,0 +1,9 @@
+ID,Strategy,Bets (n),ROI,Max drawdown,Role,Sources (id and URL)
+S01,Opponent-adjusted team strength,0,,,Informational only: cannot change signal rank,SP-BOOT https://docs.scipy.org/doc/scipy/reference/generated/scipy.stats.bootstrap.html; NFL-STATS https://www.nfl.com/stats/team-stats/
+S02,Possession and scoring-rate total,0,,,Informational only: cannot change signal rank,SP-BOOT https://docs.scipy.org/doc/scipy/reference/generated/scipy.stats.bootstrap.html; NFL-STATS https://www.nfl.com/stats/team-stats/
+S03,Availability scenario mixture,0,,,Informational only: cannot change signal rank,SP-BOOT https://docs.scipy.org/doc/scipy/reference/generated/scipy.stats.bootstrap.html; NFL-INJURY https://www.nfl.com/injuries/
+S04,Opportunity × efficiency,0,,,Informational only: cannot change signal rank,SP-BOOT https://docs.scipy.org/doc/scipy/reference/generated/scipy.stats.bootstrap.html; NFL-STATS https://www.nfl.com/stats/team-stats/
+S05,Cross-game selective basket,0,,,Informational only: cannot change signal rank,SP-BOOT https://docs.scipy.org/doc/scipy/reference/generated/scipy.stats.bootstrap.html; SP-R https://docs.scipy.org/doc/scipy/reference/generated/scipy.stats.pearsonr.html
+S06,QB + receiver joint opportunity,0,,,Informational only: cannot change signal rank,SP-BOOT https://docs.scipy.org/doc/scipy/reference/generated/scipy.stats.bootstrap.html; SP-R https://docs.scipy.org/doc/scipy/reference/generated/scipy.stats.pearsonr.html
+S07,Game-script team + player,0,,,Informational only: cannot change signal rank,SP-BOOT https://docs.scipy.org/doc/scipy/reference/generated/scipy.stats.bootstrap.html; NFL-RULES https://operations.nfl.com/rules-officiating/2026-nfl-rulebook
+S08,Competing teammates / alternate thresholds,0,,,Informational only: cannot change signal rank,SP-BOOT https://docs.scipy.org/doc/scipy/reference/generated/scipy.stats.bootstrap.html; SP-R https://docs.scipy.org/doc/scipy/reference/generated/scipy.stats.pearsonr.html

@@ -1,0 +1,194 @@
+{
+  "as_of": "2026-11-14",
+  "note": "Questions that must be answered before a decision can reasonably be made. 'Answer now' states only what the verified files support. Status values: Answered (policy or verified fact), Partly answered, Unanswered.",
+  "items": [
+    {
+      "id": "Q01",
+      "question": "Which games have verified official final scores in this project?",
+      "answer_now": "16 games: all 15 Week 9 games and the Week 10 Thursday game (Commanders 24, Giants 21). Three of them are also printed in official Game Books.",
+      "status": "Partly answered",
+      "missing": "Weeks 1 to 8 and the rest of the 2026 season; manual opening of each game-centre page; prior seasons.",
+      "how_to_find": "Read each official weekly schedule page (2 to 3 chunks each), open each game centre, and store the page hash and read time in results_verified.csv.",
+      "blocks": "Any backtest, ROI or correlation.",
+      "source_ids": [
+        "NFL-SCHED-W9",
+        "NFL-SCHED-W10",
+        "NFL-GB-W10-WASNYG"
+      ]
+    },
+    {
+      "id": "Q02",
+      "question": "Do we have opening and closing prices for any market we originate?",
+      "answer_now": "No. There is one point-in-time DraftKings observation for eight Week 10 games (48 market rows). Opening and closing columns are empty. The capture time is unknown.",
+      "status": "Unanswered",
+      "missing": "Timestamped opening and closing prices from an archive or from our own capture before each kickoff.",
+      "how_to_find": "Start a capture protocol (for example T-72h, T-24h, T-1h and kickoff, UTC-stamped) for each game, or license an archive with timestamps and settlement rules. Check the operator's jurisdiction first (Q10).",
+      "blocks": "Market line, difference, closing-line value and ROI.",
+      "source_ids": [
+        "DK-NFL-LEAGUE"
+      ]
+    },
+    {
+      "id": "Q03",
+      "question": "Can we publish our own fair line for a Week 10 game?",
+      "answer_now": "No, not from verified inputs. Sixteen official results are too few to rate teams, and no model has been fitted or calibrated.",
+      "status": "Unanswered",
+      "missing": "A verified multi-season results history with as-of cutoffs, and a documented model with calibration on held-out weeks.",
+      "how_to_find": "Collect official seasonal results for prior seasons, record provenance for each, fit a frozen model on earlier weeks only, and test it on later weeks.",
+      "blocks": "Fair line, difference and every forecast-quality gate.",
+      "source_ids": [
+        "NFL-SCHED-W9",
+        "SK-TIME"
+      ]
+    },
+    {
+      "id": "Q04",
+      "question": "In what order are the markets originated?",
+      "answer_now": "Side first, then total, then moneyline. The rule is written in policy.json and is shown in the lines table.",
+      "status": "Answered (policy)",
+      "missing": "Execution. No line has been originated under this order yet.",
+      "how_to_find": "Not needed for the policy. Execution depends on Q03.",
+      "blocks": "Nothing in the policy; execution is blocked by Q03.",
+      "source_ids": [
+        "REPO-LEDGER"
+      ]
+    },
+    {
+      "id": "Q05",
+      "question": "What are the measured correlations between legs?",
+      "answer_now": "Zero official paired observations exist for any of the eight predeclared pairs. n = 0 is published for each pair. No coefficient is published.",
+      "status": "Unanswered",
+      "missing": "Paired as-of observations (for example each QB's yards and each receiver's yards in the same game).",
+      "how_to_find": "Extract paired player statistics from official NFL stats pages for each game; publish n with each coefficient.",
+      "blocks": "Parlay and prop-combination strategies.",
+      "source_ids": [
+        "SP-R"
+      ]
+    },
+    {
+      "id": "Q06",
+      "question": "Which strategies are eligible to rank on the leaderboard?",
+      "answer_now": "None. All eleven gates are not evaluated, so no strategy is eligible.",
+      "status": "Answered (fail-closed)",
+      "missing": "Evaluated gate results for each strategy.",
+      "how_to_find": "Run the gate checks once Q01 to Q03 are answered.",
+      "blocks": "Any ranking or reward.",
+      "source_ids": [
+        "REPO-CATALOG"
+      ]
+    },
+    {
+      "id": "Q07",
+      "question": "Has any strategy been backtested with executable prices?",
+      "answer_now": "No. A file in own9-research reports results at an assumed price of -110 on both sides. That is an assumption, not a market price (see F30), so it is not evidence.",
+      "status": "Answered (no valid backtest)",
+      "missing": "Executable historical prices with timestamps.",
+      "how_to_find": "Depends on Q02.",
+      "blocks": "Every ROI claim.",
+      "source_ids": [
+        "REPO-OWN9-SUMMARY"
+      ]
+    },
+    {
+      "id": "Q08",
+      "question": "Can we track starters being replaced and by whom?",
+      "answer_now": "Partly. For Week 9 to Week 10 we track starter changes for Washington and the Giants from Game Books: 12 records, including one replacement chain (L.Patrick to N.Allegretti at centre).",
+      "status": "Partly answered",
+      "missing": "Full-season starter history, every week, and each team's inactives.",
+      "how_to_find": "Read each official Game Book (or lineup section) for every game, and diff the starter sets week by week.",
+      "blocks": "Deficiency and replacement-depth analysis across the league.",
+      "source_ids": [
+        "NFL-GB-W10-WASNYG",
+        "NFL-GB-W9-LARWAS",
+        "NFL-GB-W9-NYGPHI",
+        "NFL-INJURY-W10"
+      ]
+    },
+    {
+      "id": "Q09",
+      "question": "What depth tier (1st, 2nd, 3rd or 4th string) did each replacement hold?",
+      "answer_now": "Not published by the NFL in the sources read. Depth-tier columns are blank by rule.",
+      "status": "Unanswered (no official source)",
+      "missing": "An official depth-tier source. Club depth charts exist but are labelled unofficial by the clubs.",
+      "how_to_find": "Ask for or locate an official depth-chart feed with a published date. Until then, keep tiers blank and show only the chain and the injury evidence.",
+      "blocks": "Depth-tier deficiency tracking (IT01 to IT10).",
+      "source_ids": [
+        "NFL-INJURY-W10"
+      ]
+    },
+    {
+      "id": "Q10",
+      "question": "In which jurisdiction would any wager or cash reward operate, and is it lawful for the user?",
+      "answer_now": "The user's location is unconfirmed: neither the user nor a source in this repository establishes it. The Penal Code (Articles 185 and 186) makes gambling an offence, with a narrow exception for stakes that are only temporary entertainment. The project's market and regulator sources are US-scoped. Whether any activity is lawful is a legal question this project cannot answer.",
+      "status": "Partly answered (statute text only)",
+      "missing": "A written legal determination for the user, covering the activity, the operator and any reward.",
+      "how_to_find": "Obtain qualified Japanese legal advice before any wager, stake or cash reward step. Until then, keep the project to paper research.",
+      "blocks": "Any staking track, reward or real-money step.",
+      "source_ids": [
+        "EGOV-PENAL-CODE"
+      ]
+    },
+    {
+      "id": "Q11",
+      "question": "Is any reward funded, and is its schedule frozen before the competition starts?",
+      "answer_now": "No reward is funded. No schedule exists.",
+      "status": "Unanswered",
+      "missing": "A funding decision, a legal review (Q10) and a frozen reward schedule.",
+      "how_to_find": "Owner decision after Q10.",
+      "blocks": "Reward eligibility (G10).",
+      "source_ids": [
+        "REPO-CATALOG"
+      ]
+    },
+    {
+      "id": "Q12",
+      "question": "What numeric demotion thresholds apply?",
+      "answer_now": "The gate is defined (D1 to D6). The numbers marked PROPOSED have not been set by the owner.",
+      "status": "Partly answered",
+      "missing": "Owner choice of N_min, bin size, tolerances and the staking cap.",
+      "how_to_find": "Owner selects one of the options in the suggestions page (SX05).",
+      "blocks": "Automatic demotion; the gate cannot yet be applied to a number.",
+      "source_ids": [
+        "SK-CAL",
+        "SP-BOOT"
+      ]
+    },
+    {
+      "id": "Q13",
+      "question": "How are pushes, voids and ties settled?",
+      "answer_now": "DraftKings rules say a two-way point-spread tie, or a total equal to the line, settles as a Push, and a two-way moneyline tie settles as a Push (DK-GENERAL, DK-MARKETS). These are operator rules from a Virginia snapshot, so they do not establish settlement for the user's jurisdiction or for any other operator.",
+      "status": "Partly answered",
+      "missing": "Settlement rules for the actual operator and jurisdiction used.",
+      "how_to_find": "Depends on Q10 and the operator choice.",
+      "blocks": "Settlement in any historical or forward ledger.",
+      "source_ids": [
+        "DK-GENERAL",
+        "DK-MARKETS"
+      ]
+    },
+    {
+      "id": "Q14",
+      "question": "Is the third-party historical games file licensed for our use?",
+      "answer_now": "Not confirmed. The file is in own9-research/data and data/raw; its licence and provenance are not verified (F23 and F24 in flags.html).",
+      "status": "Unanswered",
+      "missing": "The upstream licence and a checksum-linked provenance record.",
+      "how_to_find": "Read the upstream licence and record the file hash. If it is not permitted, replace it with official NFL pages.",
+      "blocks": "Any use of the file as a training or backtest source.",
+      "source_ids": [
+        "REPO-ROOT-FLAGS"
+      ]
+    },
+    {
+      "id": "Q15",
+      "question": "Who owns the decisions in this project?",
+      "answer_now": "The project owner (the user). The board in COORDINATION.md records no decisions yet.",
+      "status": "Answered (governance)",
+      "missing": "The owner's choice on each suggestion in the suggestions page.",
+      "how_to_find": "The owner records a choice (option ID and date) in the decision log on that page.",
+      "blocks": "Every suggestion.",
+      "source_ids": [
+        "REPO-COORD"
+      ]
+    }
+  ]
+}

@@ -1,0 +1,4 @@
+ID,Path,Steps (options to choose),Outcome,Decision,Sources (id and URL)
+P1,"Research-only, forward capture",SX08 Option A; SX02 Option A; SX10 Option A; Keep SX03 at Option A,Begins real opening and closing evidence for the 2026 season. No model claim before a model is fitted.,Awaiting decision,EGOV-PENAL-CODE https://laws.e-gov.go.jp/law/140AC0000000045
+P2,"Historical build, then forward",SX08 Option B; SX03 Option B; SX04 Option A; SX05 Option B; SX02 Option A,Builds a model on prior seasons and tests it forward. Slowest; largest data load; legal opinion first.,Awaiting decision,SK-CAL https://scikit-learn.org/stable/modules/calibration.html
+P3,Stop and archive,SX08 Option A; SX02 Option C; SX04 Option C,Keeps the verified evidence and publishes the limits. No new numbers.,Awaiting decision,SK-CAL https://scikit-learn.org/stable/modules/calibration.html
