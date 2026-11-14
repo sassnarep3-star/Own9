@@ -242,7 +242,7 @@ def burden_rows():
 
 
 def table(title, headers, rows):
-    output = f'<h2>{e(title)}</h2><div class="table-wrap"><table><caption class="sr-only">{e(title)}</caption><thead><tr>'
+    output = f'<h2>{e(title)}</h2><div class="table-wrap" tabindex="0"><table><caption class="sr-only">{e(title)}</caption><thead><tr>'
     output += ''.join(f'<th scope="col">{e(h)}</th>' for h in [*headers, 'Evidence / scope'])
     output += '</tr></thead><tbody>'
     for i, (cells, refs, kind) in enumerate(rows,1):
@@ -383,7 +383,7 @@ page('questions.html','Decision questions','Before a decision: what do we know?'
 
 
 def table(title, headers, rows):
-    output = f'<h2>{e(title)}</h2><div class="table-wrap"><table><caption class="sr-only">{e(title)}</caption><thead><tr>'
+    output = f'<h2>{e(title)}</h2><div class="table-wrap" tabindex="0"><table><caption class="sr-only">{e(title)}</caption><thead><tr>'
     output += ''.join(f'<th scope="col">{e(h)}</th>' for h in [*headers, 'Evidence / scope'])
     output += '</tr></thead><tbody>'
     for i, (cells, refs, kind) in enumerate(rows,1):
