@@ -1,0 +1,161 @@
+# game_id|team|player|position|injury_as_listed|practice_status|game_status
+G01|WAS|Lucas Patrick|C|Concussion|Did Not Participate In Practice|Out
+G01|WAS|Colson Yankoff|TE|Knee|Did Not Participate In Practice|Out
+G01|NYG|Malik Harrison|LB|Groin|Limited Participation in Practice|Questionable
+G02|NE|Ben Brown|C|Knee|Did Not Participate In Practice|Out
+G02|NE|A.J. Brown|WR|Ankle, Knee|Limited Participation in Practice|Questionable
+G02|NE|Kevin Byard|S|Chest|Full Participation in Practice|Questionable
+G02|NE|Carlton Davis III|CB|Knee|Did Not Participate In Practice|Out
+G02|NE|Reggie Gilliam|FB|Knee|Limited Participation in Practice|Questionable
+G02|NE|TreVeyon Henderson|RB|Illness|Did Not Participate In Practice|Out
+G02|NE|Cameron Latu|TE|Back|Limited Participation in Practice|Questionable
+G02|NE|Walter Rouse|T|Concussion|Limited Participation in Practice|Questionable
+G02|NE|Brenden Schooler|S|Hamstring|Limited Participation in Practice|Questionable
+G02|NE|Rhamondre Stevenson|RB|Knee|Limited Participation in Practice|Questionable
+G02|NE|Greg Van Roten|G|Hamstring|Full Participation in Practice|Questionable
+G02|NE|Charles Woods|CB|Hamstring|Full Participation in Practice|Questionable
+G02|DET|Kerby Joseph|S|Knee|Did Not Participate In Practice|Out
+G02|DET|Cade Mays|C|Ankle|Did Not Participate In Practice|Out
+G02|DET|D.J. Reed|CB|Hip|Did Not Participate In Practice|Out
+G02|DET|Amon-Ra St. Brown|WR|Rib|Limited Participation in Practice|Questionable
+G02|DET|Sione Vaki|RB|Ankle|Limited Participation in Practice|Questionable
+G03|KC|Mansoor Delane|CB|Shoulder|Full Participation in Practice|Questionable
+G03|KC|Jaylon Moore|T|Ankle|Did Not Participate In Practice|Out
+G03|KC|Omarr Norman-Lott|DT|Knee|Limited Participation in Practice|Out
+G03|KC|Jaydn Ott|RB|Hamstring|Limited Participation in Practice|Questionable
+G03|KC|Kenneth Walker III|RB|Groin|Did Not Participate In Practice|Questionable
+G03|KC|Peter Woods|DT|Neck|Did Not Participate In Practice|Out
+G03|ATL|Zachariah Branch|WR|Hamstring|Did Not Participate In Practice|Out
+G03|ATL|Divine Deablo|LB|Forearm|Did Not Participate In Practice|Doubtful
+G03|ATL|Gervon Dexter Sr.|DT|Illness|Limited Participation in Practice|Questionable
+G03|ATL|James Pearce Jr.|DE|Back|Limited Participation in Practice|Questionable
+G03|ATL|Josh Woods|LB|Ankle|Full Participation in Practice|Questionable
+G04|MIN|Jordan Addison|WR|Thumb|Limited Participation in Practice|Questionable
+G04|MIN|Blake Cashman|LB|Concussion|Limited Participation in Practice|Out
+G04|MIN|T.J. Hockenson|TE|Wrist, Chest|Did Not Participate In Practice|Out
+G04|MIN|Tyrion Ingram-Dawkins|DT|Ankle|Did Not Participate In Practice|Out
+G04|MIN|Jauan Jennings|WR|Calf|Did Not Participate In Practice|Out
+G04|MIN|Josh Metellus|S|Shoulder|Limited Participation in Practice|Questionable
+G04|MIN|Kyler Murray|QB|Hamstring|Did Not Participate In Practice|Out
+G04|MIN|Kyle Van Noy|LB|Calf|Limited Participation in Practice|Questionable
+G04|GB|Chris Brooks|RB|Ankle|Limited Participation in Practice|Questionable
+G04|GB|Javon Bullard|S|Ankle, Knee|Limited Participation in Practice|Questionable
+G04|GB|Zaire Franklin|LB|Shin|Did Not Participate In Practice|Doubtful
+G04|GB|Travis Glover|G|Knee|Limited Participation in Practice|Questionable
+G04|GB|Josh Jacobs|RB|Finger|Did Not Participate In Practice|Out
+G04|GB|Xavier McKinney|S|Foot|Limited Participation in Practice|Questionable
+G04|GB|Skyy Moore|WR|Ankle|Limited Participation in Practice|Questionable
+G04|GB|Micah Parsons|LB|Knee, Illness|Limited Participation in Practice|Out
+G04|GB|Sean Rhyan|C|Ankle|Did Not Participate In Practice|Out
+G04|GB|Lukas Van Ness|LB|Back|Limited Participation in Practice|Questionable
+G04|GB|Josh Whyle|TE|Concussion|Did Not Participate In Practice|Out
+G04|GB|Kevin Zeitler|G|Ankle, Triceps|Did Not Participate In Practice|Questionable
+G05|JAX|Jessie Bates|S|Not injury related - resting player|Limited Participation in Practice|Out
+G05|JAX|Jordan Davis|DT|Not injury related - resting player|Limited Participation in Practice|Out
+G05|JAX|BJ Green II|DE|Forearm|Full Participation in Practice|Out
+G05|JAX|Robert Hainsey|C|Concussion|Limited Participation in Practice|Questionable
+G05|TEN|Cody Barton|LB|Concussion|Did Not Participate In Practice|Out
+G05|TEN|Anthony Hill Jr.|LB|Neck|Did Not Participate In Practice|Out
+G05|TEN|Peter Skoronski|G|Hamstring|Did Not Participate In Practice|Out
+G05|TEN|Tyjae Spears|RB|Knee|Full Participation in Practice|Questionable
+G05|TEN|Carnell Tate|WR|Shoulder|Did Not Participate In Practice|Out
+G05|TEN|Tommy Townsend|P|Knee, Achilles|Did Not Participate In Practice|Out
+G06|BUF|Christian Benford|CB|Wrist|Full Participation in Practice|Questionable
+G06|BUF|Spencer Brown|T|Ankle|Did Not Participate In Practice|Doubtful
+G06|BUF|Sam Franklin Jr.|S|Shoulder|Limited Participation in Practice|Questionable
+G06|BUF|Jordan Hancock|CB|Hamstring|Full Participation in Practice|Questionable
+G06|BUF|Tyrell Shavers|WR|Knee|Full Participation in Practice|Questionable
+G06|NYJ|Jarvis Brownlee Jr.|CB|Illness|Limited Participation in Practice|Questionable
+G06|NYJ|Omar Cooper Jr.|WR|Ankle|Full Participation in Practice|Questionable
+G06|NYJ|Adonai Mitchell|WR|Knee|Full Participation in Practice|Questionable
+G06|NYJ|Joseph Ossai|DE|Ankle|Full Participation in Practice|Questionable
+G06|NYJ|VJ Payne|S|Knee|Full Participation in Practice|Questionable
+G06|NYJ|Harrison Phillips|DT|Ankle|Full Participation in Practice|Questionable
+G06|NYJ|Trevin Wallace|LB|Groin|Did Not Participate In Practice|Out
+G06|NYJ|Garrett Wilson|WR|Concussion|Full Participation in Practice|Questionable
+G06|NYJ|Nahshon Wright|CB|Back|Full Participation in Practice|Questionable
+G07|MIA|Darrell Baker Jr.|CB|Knee|Full Participation in Practice|Questionable
+G07|MIA|Chris Bell|WR|Knee|Did Not Participate In Practice|Doubtful
+G07|MIA|Aaron Brewer|C|Concussion|Did Not Participate In Practice|Out
+G07|MIA|Jared Wayne|WR|Quadricep|Did Not Participate In Practice|Out
+G07|IND|Mo Alie-Cox|TE|Groin|Did Not Participate In Practice|Out
+G07|IND|Jaylon Carlies|LB|Neck|Did Not Participate In Practice|Out
+G07|IND|Akeem Davis-Gaither|LB|Knee|Did Not Participate In Practice|Out
+G07|IND|Arden Key|DE|Hamstring|Full Participation in Practice|Questionable
+G07|IND|Will Mallory|TE|Hamstring|Limited Participation in Practice|Questionable
+G07|IND|Luke Rhodes|LS|Hamstring|Did Not Participate In Practice|Out
+G07|IND|Jerry Tillery|DT|Calf|Did Not Participate In Practice|Out
+G07|IND|Jalen Travis|T|Knee|Did Not Participate In Practice|Out
+G08|CAR|Jonathon Brooks|RB|Groin|Limited Participation in Practice|Doubtful
+G08|CAR|Brady Christensen|G|Hamstring|Full Participation in Practice|Questionable
+G08|CAR|Mike Jackson|CB|Groin|Limited Participation in Practice|Doubtful
+G08|CAR|Will Lee III|CB|Hamstring|Limited Participation in Practice|Questionable
+G08|CAR|Xavier Legette|WR|Knee|Full Participation in Practice|Questionable
+G08|CAR|Bobby Okereke|LB|Foot|Did Not Participate In Practice|Out
+G08|CAR|Jaelan Phillips|LB|Hamstring|Full Participation in Practice|Questionable
+G08|NO|CJ Donaldson|RB|Shoulder|Did Not Participate In Practice|Out
+G08|NO|Martin Emerson|CB|Shin|Limited Participation in Practice|Questionable
+G08|NO|Travis Etienne|RB|Hamstring|Full Participation in Practice|Questionable
+G08|NO|Taliese Fuaga|T|Knee|Did Not Participate In Practice|Out
+G08|NO|Erik McCoy|C|Biceps|Did Not Participate In Practice|Out
+G08|NO|Christen Miller|DT|Knee|Did Not Participate In Practice|Out
+G09|HOU|Azeez Al-Shaair|LB|Groin, Not injury related - personal matter|Did Not Participate In Practice|Out
+G09|HOU|Will Anderson Jr.|DE|Ankle|Did Not Participate In Practice|Questionable
+G09|HOU|Trent Brown|T|Wrist, Illness|Did Not Participate In Practice|Questionable
+G09|HOU|Marvin Harrison Jr.|WR|Hamstring|Did Not Participate In Practice|Out
+G09|HOU|Jacob Hummel|LB|Groin|Full Participation in Practice|Questionable
+G09|HOU|Danielle Hunter|DE|Hamstring|Did Not Participate In Practice|Out
+G09|HOU|Brevin Jordan|TE|Finger, Foot|Did Not Participate In Practice|Out
+G09|HOU|David Montgomery|RB|Groin|Full Participation in Practice|Questionable
+G09|HOU|Keylan Rutledge|G|Neck, Shoulder|Did Not Participate In Practice|Out
+G09|HOU|Jaylin Smith|CB|Hamstring|Full Participation in Practice|Questionable
+G09|HOU|Wyatt Teller|G|Illness, Back|Limited Participation in Practice|Questionable
+G09|CLE|Michael Burton|FB|Calf|Did Not Participate In Practice|Out
+G09|CLE|Denzel Boston|WR|Toe|Limited Participation in Practice|Questionable
+G09|CLE|Ronnie Hickman Jr.|S|Concussion|Did Not Participate In Practice|Out
+G10|LAR|Davis Allen|TE|Oblique|Limited Participation in Practice|Questionable
+G10|LAR|Steve Avila|G|Hamstring|Did Not Participate In Practice|Out
+G10|LAR|Joe Cardona|LS|Ankle|Limited Participation in Practice|Questionable
+G10|LAR|Kam Curl|S|Toe|Limited Participation in Practice|Questionable
+G10|LAR|Terrance Ferguson|TE|Ankle, Hamstring|Did Not Participate In Practice|Out
+G10|LAR|Myles Garrett|LB|Knee, Not injury related - resting player|Did Not Participate In Practice|Questionable
+G10|LAR|Trent McDuffie|CB|Back|Limited Participation in Practice|Questionable
+G10|AZ|Zachary Carter|DT|Knee|Limited Participation in Practice|Out
+G10|AZ|Hjalte Froholdt|C|Concussion|Did Not Participate In Practice|Out
+G10|AZ|Jon Gaines II|G|Ankle|Did Not Participate In Practice|Out
+G10|AZ|Hunter Long|TE|Knee|Limited Participation in Practice|Questionable
+G10|AZ|Roy Lopez|DT|Toe, Ankle|Limited Participation in Practice|Questionable
+G10|AZ|Max Melton|CB|Knee, Hand|Limited Participation in Practice|Questionable
+G10|AZ|Darius Robinson|DT|Wrist|Limited Participation in Practice|Questionable
+G10|AZ|Jayden Williams|T|Knee|Limited Participation in Practice|Questionable
+G10|AZ|Andrew Wingard|S|Groin|Did Not Participate In Practice|Questionable
+G11|SEA|Charles Cross|T|Ankle|Did Not Participate In Practice|Out
+G11|SEA|Sam Darnold|QB|Ribs, Quadricep|Did Not Participate In Practice|Out
+G11|SEA|Quenton Nelson|G|Knee|Did Not Participate In Practice|Out
+G11|SEA|Leonard Williams|DT|Stinger|Did Not Participate In Practice|Out
+G11|LV|Thomas Booker|DT|Ankle|Full Participation in Practice|Questionable
+G11|LV|Dont'e Thornton Jr.|WR|Back|Did Not Participate In Practice|Questionable
+G12|SF|Mike Evans|WR|Achilles|Did Not Participate In Practice|Out
+G12|SF|Renardo Green|CB|Back|Limited Participation in Practice|Questionable
+G12|SF|Dre Greenlaw|LB|Knee|Limited Participation in Practice|Questionable
+G12|SF|Nate Hobbs|CB|Groin|Full Participation in Practice|Questionable
+G12|SF|Deommodore Lenoir|CB|Foot|Limited Participation in Practice|Questionable
+G12|SF|Upton Stout|CB|Shoulder, Neck|Limited Participation in Practice|Questionable
+G12|SF|C.J. West|DT|Knee|Full Participation in Practice|Questionable
+G12|SF|Trent Williams|T|Shoulder|Did Not Participate In Practice|Questionable
+G12|DAL|DaRon Bland|CB|Ankle|Limited Participation in Practice|Questionable
+G12|DAL|Jonathan Bullard|DT|Calf|Full Participation in Practice|Questionable
+G12|DAL|Alijah Clark|S|Illness|Did Not Participate In Practice|Questionable
+G12|DAL|Donovan Ezeiruaku|LB|Ankle|Did Not Participate In Practice|Out
+G12|DAL|Jake Ferguson|TE|Knee, Ankle|Did Not Participate In Practice|Out
+G12|DAL|Tyler Goodson|RB|Ankle, Knee|Did Not Participate In Practice|Out
+G12|DAL|P.J. Locke|S|Concussion|Did Not Participate In Practice|Out
+G12|DAL|Jonathan Mingo|WR|Ankle|Did Not Participate In Practice|Out
+G12|DAL|Devin Moore|CB|Hip|Full Participation in Practice|Questionable
+G12|DAL|Joey Porter Jr.|CB|Ankle, Foot|Limited Participation in Practice|Questionable
+G12|DAL|Juanyeh Thomas|S|Hamstring|Did Not Participate In Practice|Doubtful
+G13|PIT|Derrick Harmon|DT|Foot|Full Participation in Practice|Questionable
+G13|CIN|Jalen Davis|CB|Hamstring|Full Participation in Practice|Doubtful
+G13|CIN|Kyle Dugger|S|Quadricep|Did Not Participate In Practice|Out
+G13|CIN|Andrei Iosivas|WR|Thumb|Full Participation in Practice|Doubtful
+G13|CIN|Brian Parker II|G|Knee|Full Participation in Practice|Doubtful
