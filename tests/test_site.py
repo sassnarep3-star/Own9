@@ -41,7 +41,7 @@ class SiteVerification(unittest.TestCase):
         p=Page();p.feed(html);p.close()
         self.assertEqual(len(p.rows),226)
         self.assertIn('self-labeled',html)
-        self.assertIn('F14',html)
+        self.assertIn('F19',html)
 
     def test_subsite_navigation_links(self):
         root=Path(__file__).resolve().parents[1]
