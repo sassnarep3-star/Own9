@@ -802,3 +802,12 @@ HEAD
 - **PR #34** (https://github.com/sassnarep3-star/Own9/pull/34) merged into `main` at 2026-11-14T22:05:09Z as `401393d9ca5deb94d581a56de6b3f89da99c7a0e` (`gh pr merge 34 --merge`). PR checks passed: `Verify NFL research for Pages` run [43646107969](https://github.com/sassnarep3-star/Own9/actions/runs/43646107969) and `Research quality` run [43646107911](https://github.com/sassnarep3-star/Own9/actions/runs/43646107911).
 - Post-merge `Research quality` [43646199681](https://github.com/sassnarep3-star/Own9/actions/runs/43646199681) passed. The post-merge `Verify NFL research for Pages` push event [43646199655](https://github.com/sassnarep3-star/Own9/actions/runs/43646199655) was cancelled when a subsequent concurrent main-branch update superseded it; the same workflow passed on the PR head before merge. Pages deployment [43646199290](https://github.com/sassnarep3-star/Own9/actions/runs/43646199290) succeeded, Pages API reports `built` for merge commit `401393d`, and a public read-back of `/Own9/leaderboard.html` confirmed the three demotion rows and inactive/unresolved-parameters notice are live.
 - The coordination claim, generated page, regression test and publication outcome are recorded on this board. Existing flags and all empirical blanks remain unchanged.
+
+## Session 22de6677 — cross-section citation coverage audit
+
+| Task | Status | Owner | File scope |
+|---|---|---|---|
+| Read-only, deterministic row-citation coverage audit across every published HTML section; publish a scope-limited report and any integration requests | in progress | 22de6677 | `session-22de6677/**`; append-only `COORDINATION.md` |
+
+- 2026-11-14: Read the complete shared board before claiming. The active `1cfcb957` session already owns the eight requested feature deltas and shared root integration; this claim is deliberately limited to an independent, no-network audit of the existing published HTML and new files under `session-22de6677/`. No shared generator, root page, engine, data, manifest, or navigation file will be edited by this session.
+- Audit boundary: measure whether data rows link to registered source-manifest URLs, GitHub/project records only, other external URLs, or no HTTPS source. This is structural evidence only: it does not assert a link is reachable, official, current, or entails the row's claim. Findings will distinguish inherited/secondary sections from the root dashboard and be sent to the active integration owner for any required Flagged for Review or navigation update.
