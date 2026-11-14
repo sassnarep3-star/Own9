@@ -10,6 +10,8 @@ implemented in this release.
 
 def register(build):
     table, row, page = build.table, build.row, build.page
+    # The six prioritised suggestions from session 8de532d1 stay exactly as written.
+    preserved = getattr(build, 'DECISION_SUGGESTIONS', '')
 
     page('suggestions.html', 'Suggestions',
          'Options, trade-offs,\nyour call.',
@@ -28,6 +30,7 @@ def register(build):
                   'as a side effect of an agent session.'], ('repo',), 'Project record'),
          ])
 
+         + preserved
          + table('Suggestion register', ['ID · area', 'Observed problem', 'Proposed change', 'Decision value',
                                          'Cost / risk', 'Status'], [
              row(['S01 · Site structure', 'Six dashboards cover the same categories with no link between them, and '

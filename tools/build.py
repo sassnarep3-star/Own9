@@ -148,9 +148,11 @@ page('flags.html','Flagged for Review','Uncertainty, in plain sight.',
      ]) + '<p>Independent earlier-baseline technical report: <a href="release-checks/index.html">release quality review</a>. Its stored five-page / 28-row snapshot predates this nine-page integration; it is not a current factual or deployment certification.</p><p>Separate inherited, uncertified analysis: <a href="https://github.com/sassnarep3-star/Own9/pull/6">PR #6 and its stated evidence limitations</a>; <a href="research/flagged.html">its separate review register</a>. Its numerical findings are not adopted by this dashboard.</p>')
 
 
-import content_extra, content_decisions, content_suggestions
+import content_inherited, content_extra, content_decisions, content_suggestions
 NAV_ORDER = []
-for _module in (content_extra, content_decisions, content_suggestions):
+# content_inherited goes first: it exposes another session's preserved decision
+# register, which the question and suggestion pages below assemble around.
+for _module in (content_inherited, content_extra, content_decisions, content_suggestions):
     _module.register(sys.modules[__name__])
 # Navigation order is the category grouping the overview page describes: decide,
 # research, judge, then provenance. Applied after registration because the pages

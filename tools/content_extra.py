@@ -367,14 +367,19 @@ def register(build):
          'measurement, from the 80085c01 session.'),
         ('release-checks', 'Independent release review', 'Two dated technical review reports on structure, links '
          'and deployment metadata, from the e908995d session.'),
+        ('session-8b05dd6d', 'Week 10 availability dashboard', 'A merged-during-this-release isolated subtree: '
+         'transcribed week 10 injury rows, starter-replacement notes, schedule checks and a Singapore legal note, '
+         'from the 8b05dd6d session.'),
     ]
     entries = {'.': 'index.html', 'site': 'site/index.html', 'research': 'research/index.html',
                'own9-research': 'own9-research/index.html', 'strict-lab': 'strict-lab/index.html',
-               'release-checks': 'release-checks/index.html'}
+               'release-checks': 'release-checks/index.html',
+               'session-8b05dd6d': 'session-8b05dd6d/index.html'}
     certified = {'.': 'Regenerated and structurally verified by this release',
                  'site': 'Not re-verified by this release', 'research': 'Not re-verified by this release',
                  'own9-research': 'Not re-verified by this release', 'strict-lab': 'Not re-verified by this release',
-                 'release-checks': 'Not re-verified by this release'}
+                 'release-checks': 'Not re-verified by this release',
+                 'session-8b05dd6d': 'Not re-verified by this release'}
 
     page('index.html', 'Overview', 'Evidence first.\nAn edge must be earned.',
          'An NFL line-origination lab for game singles, player props and joint bets, with the availability and '
@@ -457,6 +462,9 @@ def register(build):
              for folder, name, desc in dashboards
          ])
 
+         + '<p class="download">Open a section directly: '
+           + ' · '.join(f'<a href="{entries[f]}">{("Root" if f == "." else f)}</a>' for f, _n, _d in dashboards)
+           + '.</p>'
          + '<p class="download">Full specification: <a href="docs/RESEARCH_SPEC.md">docs/RESEARCH_SPEC.md</a>. '
            'Reproduce any number on the own-lines page with <code>python3 tools/lines_audit.py</code>. Every '
            'empirical gap is on <a href="flags.html">Flagged for Review</a>.</p>')

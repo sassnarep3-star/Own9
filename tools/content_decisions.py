@@ -10,6 +10,10 @@ from lines_audit import audit
 def register(build):
     table, row, page = build.table, build.row, build.page
     rc = audit()['settlement_recompute']
+    # Session 8de532d1's decision register is published unchanged, ahead of the
+    # answered / open split this release adds.
+    preserved_head = getattr(build, 'DECISION_NOTICE', '') + getattr(build, 'DECISION_QUESTIONS', '')
+    preserved_tail = getattr(build, 'DECISION_OUTCOME', '')
 
     # ------------------------------------------------------ question ledger
     page('questions.html', 'Questions',
@@ -17,7 +21,8 @@ def register(build):
          'Every question splits into four states: answered from an official source, answered from this repository, '
          'open and fixable with data work, or open and needing an owner decision. A question is never closed by '
          'inference, and nothing here was answered by asking you.',
-         table('Answered from official sources', ['ID', 'Question', 'Answer now established', 'Residual uncertainty'], [
+         preserved_head
+         + table('Answered from official sources', ['ID', 'Question', 'Answer now established', 'Residual uncertainty'], [
              row(['Q01', 'Does the league publish an injury report at all, and in what form?',
                   'Yes: a club-by-club report grouped by upcoming game with Player, Position, Injuries, Practice '
                   'Status and Game Status, selectable by season and week.', 'The report carries no publication '
@@ -160,6 +165,12 @@ def register(build):
              row(['Q30', 'How much uncertainty is acceptable in a published signal?',
                   'A risk appetite, not an empirical finding.', 'Publish only all-gate-pass output, or publish '
                   'exploratory output under an explicit warning label.'], ('tails', 'holdout'), 'Risk decision'),
+             row(['Q32', 'Which jurisdiction governs a reward competition attached to a leaderboard?',
+                  'Unresolved, and research cannot settle it. Inherited subtrees disagree: one records Washington '
+                  'State limits on sports wagering outside tribal casinos, another records Singapore licensing. '
+                  'This session verified neither with a regulator.',
+                  'Have the applicable regulator text reviewed before any reward is offered; the site currently '
+                  'offers none, so nothing is blocked today.'], ('repo',), 'Compliance decision'),
              row(['Q31', 'What happens to open pull request #18?', 'It belongs to another session and GitHub '
                   'reports it unmergeable; only the owner can decide to rebase or close it.', 'Rebase, close with '
                   'a summary, or leave open as a dated review record.'], ('repo',), 'Housekeeping decision'),
@@ -191,4 +202,5 @@ def register(build):
 
          + '<p>Answers above are current as of 14 Nov 2026 and will drift: a status definition or reporting rule can '
            'change without notice, which is why each row links to the page it was read from rather than restating '
-           'it. Unverified values are left blank throughout, never estimated.</p>')
+           'it. Unverified values are left blank throughout, never estimated.</p>'
+         + preserved_tail)

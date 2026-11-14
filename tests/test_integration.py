@@ -31,7 +31,7 @@ class GeneratedSite(unittest.TestCase):
     def test_structural_pass_and_row_count(self):
         errors, rows = check()
         self.assertEqual(errors, [])
-        self.assertEqual(rows, 291)
+        self.assertEqual(rows, 307)
 
     def test_thirteen_category_pages(self):
         parser, _ = parse('index.html')
@@ -148,9 +148,9 @@ class DecisionRegisters(unittest.TestCase):
     def test_question_ledger_separates_answerable_from_open(self):
         parser, _ = parse('questions.html')
         captions = {r['caption'] for r in parser.rows}
-        for expected in ('Answered from official sources', 'Answered from this repository',
-                        'Open — closable with data work', 'Open — needs an owner decision',
-                        'Probes to discover missing information'):
+        for expected in ('Decision questions and evidence gaps', 'Answered from official sources',
+                         'Answered from this repository', 'Open — closable with data work',
+                         'Open — needs an owner decision', 'Probes to discover missing information'):
             self.assertIn(expected, captions)
         official = [r for r in parser.rows if r['caption'] == 'Answered from official sources']
         self.assertGreaterEqual(len(official), 10)
@@ -175,7 +175,9 @@ class HubAndFlags(unittest.TestCase):
     def test_directory_points_only_at_sections_that_exist(self):
         parser, _ = parse('index.html')
         rows = [r for r in parser.rows if r['caption'] == 'Site directory']
-        self.assertEqual(len(rows), 6)
+        self.assertEqual(len(rows), 7, 'every published section must appear in the directory')
+        self.assertIn('session-8b05dd6d/index.html', ' '.join(r['cells'][0] for r in rows),
+                      'a subtree merged after this session started must still be listed')
         for row in rows:
             entry = row['cells'][0].split(' · ')[1]
             self.assertTrue((ROOT / entry).is_file(), f'directory links to a missing page: {entry}')
