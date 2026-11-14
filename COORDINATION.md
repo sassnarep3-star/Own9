@@ -746,3 +746,35 @@ No empirical NFL line, correlation, ROI, rank or reward was inferred. Other sess
 
 - **PR #33** (https://github.com/sassnarep3-star/Own9/pull/33) merged as `0fc7f78` at 2026-11-14T01:42:26Z; `Verify NFL research for Pages` `43542193051`, `Research quality` `43542193076` and `pages build and deployment` `43542192022` all success. It removed hardcoded page counts from the overview's section descriptions after a live read-back showed `site` labelled "twelve-page" beside a computed count of 15 — the same class of error as a retyped measurement, fixed the same way: derive it or drop it.
 - Session `4f2e0291` ends with: requirements 1–4 and 6 published on the root site (`suggestion-costs.html`, `question-ledger.html`, `lines.html`, `availability-evidence.html`, overview directory), requirement 5 carried by the overview's executive summary and README, findings F22–F27 on `flags.html`, and three PRs merged (`#28`, `#32`, `#33`) with every deployment confirmed rather than assumed.
+
+## Session `arena/9a409d93-own9` — claimed 2026-11-14 (session id `session-arena-9a409d93`)
+
+Task: implement the eight newly requested requirements additively — (1) price-snapshot store with opening
+and closing numbers for every originated market, (2) a verified results feed computed from official
+sources, (3) origination order side → total → moneyline, (4) model fair line / market line / difference
+as separate columns, (5) signal-vs-staking separation on the leaderboard, (6) replacement **depth**
+tracking (not just the fact of a replacement), (7) correlations computed only from officially sourced
+numbers with **n** published per value, (8) a defined demotion gate (live → paper) — plus suggestions,
+decision-blocking questions and an executive-summary update.
+
+The platform pins this session to the single branch `arena/9a409d93-own9`; no `session-<id>/<task>`
+side branches can be created, so this branch serves as this session's work branch. All prior session
+scopes on this board are recorded as done/finished or relinquished; this session claims **additive**
+edits only to shared generator files (`tools/build.py` nav/date registration and append-only content
+augmentation of `index.html`, `leaderboard.html`, `correlations.html`, `flags.html`), an additive
+publisher-host append to `tools/verify.py`, additive `evidence/sources.json` entries, additive
+`suggestions.json` entries, and new files under the scopes below. Nothing already published by another
+session is rewritten or deleted.
+
+| Task | Status | Owner | Files |
+| --- | --- | --- | --- |
+| Verified official results feed (2026 weeks 1–9) | in progress | session-arena-9a409d93 | `evidence/results/**`, `tools/pages_9a409d93.py`, `results.html` |
+| Price-snapshot store + origination order + fair/market/diff columns | in progress | session-arena-9a409d93 | `engine/origination.py`, `evidence/markets/**`, `data/snapshots/**`, `tools/pages_9a409d93.py`, `markets.html` |
+| Replacement-depth extension from club depth charts | in progress | session-arena-9a409d93 | `evidence/depth-charts/**`, `tools/pages_9a409d93.py`, `replacement-depth.html` |
+| Demotion gate (live → paper) definition + tests | in progress | session-arena-9a409d93 | `engine/origination.py`, `tests/test_origination.py`, `demotion.html` |
+| Signal-vs-staking leaderboard separation | in progress | session-arena-9a409d93 | `tools/pages_9a409d93.py` (append-only augmentation of `leaderboard.html`) |
+| Official-sample correlations with n | in progress | session-arena-9a409d93 | `tools/pages_9a409d93.py` (append-only augmentation of `correlations.html`) |
+| Close-capture automation (scheduled) | in progress | session-arena-9a409d93 | `.github/workflows/snapshot.yml` (new file), `tools/snapshot_close.py` |
+| Board/README appends, sources, suggestions, PR + merge record | in progress | session-arena-9a409d93 | `COORDINATION.md` (appends), `README.md` (append), `evidence/sources.json` (additive), `research/suggestions.json` (additive), `tools/verify.py` (host allowlist append), `tools/build.py` (nav/date + append-only augmentation) |
+
+Requests to other sessions/owners: none currently. No other active claims were present at claim time.
