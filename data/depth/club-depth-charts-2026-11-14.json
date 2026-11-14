@@ -1,0 +1,139 @@
+{
+ "document": "Club depth charts transcribed column-by-column from official club websites",
+ "retrieved_utc": "2026-11-14",
+ "retrieved_by": "session 0167a04c",
+ "column_meaning": "Within one row, the published column order is the club's string order: column 1 is the first string, column 2 the second string, and so on. A blank column means the chart published no player there.",
+ "status": "Every club titles its chart 'unofficial'. Published string order is club context, never a league-certified game-day depth record, and never a settlement input.",
+ "clubs": {
+  "KC": {
+   "club": "Kansas City Chiefs",
+   "source_id": "chiefs-depth",
+   "url": "https://www.chiefs.com/team/depth-chart",
+   "page_title": "Kansas City Chiefs Unofficial Depth Chart",
+   "retrieved_utc": "2026-11-14",
+   "units": {
+    "offense": {
+     "WR1": ["Rashee Rice", "Jalen Royals", "Andrew Armstrong"],
+     "LT": ["Kahlil Benson", "Diego Pounds"],
+     "LG": ["Kingsley Suamataia", "Joshua Ezeudu"],
+     "C": ["Creed Humphrey", "Hunter Nourzad"],
+     "RG": ["Trey Smith", "Mike Caliendo"],
+     "RT": ["Jaylon Moore", "Joshua Ezeudu"],
+     "TE": ["Travis Kelce", "Noah Gray", "Jared Wiley", "Jake Briningstool"],
+     "QB": ["Patrick Mahomes", "Justin Fields", "Garrett Nussmeier"],
+     "RB": ["Kenneth Walker", "Emmett Johnson", "Jaydn Ott"],
+     "FB": ["Ben VanSumeren"],
+     "WR2": ["Xavier Worthy", "Cyrus Allen", "Josh Downs"]
+    },
+    "defense": {
+     "DE1": ["Felix Anudike-Uzomah", "Ashton Gillotte"],
+     "DT1": ["Chris Jones", "Peter Woods", "Marcus Harris"],
+     "DT2": ["Khyiris Tonga", "Bryson Eason"],
+     "DE2": ["George Karlaftis", "R Mason Thomas"],
+     "LB1": ["Jack Cochrane", "Cooper McDonald"],
+     "LB2": ["Nick Bolton", "Jack Cochrane"],
+     "LB3": ["Drue Tranquill", "Jeffrey Bassa"],
+     "CB1": ["Nohl Williams", "Jadon Canady"],
+     "CB2": ["Mansoor Delane", "Kristian Fulton", "Melvin Smith"],
+     "S1": ["Alohi Gilman", "Chris Roland-Wallace"],
+     "S2": ["Chamarri Conner", "Jaden Hicks", "Xavier Nwankpa"]
+    },
+    "special_teams": {
+     "K": ["Harrison Butker"],
+     "H": ["Matt Araiza"],
+     "P": ["Matt Araiza"],
+     "LS": ["James Winchester"],
+     "KR": ["Emmett Johnson", "Cyrus Allen"],
+     "PR": ["Emmett Johnson", "Cyrus Allen"]
+    }
+   }
+  },
+  "SEA": {
+   "club": "Seattle Seahawks",
+   "source_id": "seahawks-depth",
+   "url": "https://www.seahawks.com/team/depth-chart/",
+   "page_title": "Seattle Seahawks depth chart (club-published; same unofficial caveat as other club charts)",
+   "retrieved_utc": "2026-11-14",
+   "units": {
+    "offense": {
+     "WR1": ["Cooper Kupp", "Rashid Shaheed", "Irvin Charles"],
+     "LT": ["Charles Cross", "Josh Jones"],
+     "LG": ["Quenton Nelson", "Anthony Bradford"],
+     "C": ["Jalen Sundell", "Olu Oluwatimi"],
+     "RG": ["Grey Zabel", "Anthony Bradford", "Beau Stephens"],
+     "RT": ["Abraham Lucas", "Josh Jones"],
+     "TE": ["AJ Barner", "Eric Saubert", "Nick Kallerup"],
+     "WR2": ["Jaxon Smith-Njigba", "Tory Horton"],
+     "QB": ["Sam Darnold", "Drew Lock", "Jalen Milroe"],
+     "FB": ["Brady Russell"],
+     "RB": ["Zach Charbonnet", "Jadarian Price", "Emanuel Wilson", "George Holani"]
+    },
+    "defense": {
+     "DT1": ["Leonard Williams", "Rylie Mills"],
+     "NT": ["Byron Murphy II", "Brandon Pili", "Deven Eastern"],
+     "DE": ["Jarran Reed", "Mike Morris"],
+     "RUSH": ["DeMarcus Lawrence", "Derick Hall"],
+     "MLB": ["Ernest Jones IV", "Patrick O'Connell"],
+     "WLB": ["Drake Thomas", "Tyrice Knight", "Chazz Surratt"],
+     "SLB": ["Uchenna Nwosu", "Dante Fowler Jr.", "Connor O'Toole"],
+     "CB1": ["Devon Witherspoon", "Nehemiah Pritchett"],
+     "CB2": ["Josh Jobe", "Avery Smith"],
+     "S1": ["Ty Okada", "Rodney Thomas II"],
+     "S2": ["Julian Love"],
+     "S3": ["Nick Emmanwori"]
+    },
+    "special_teams": {
+     "K": ["Jason Myers"],
+     "P": ["Michael Dickson"],
+     "H": ["Michael Dickson"],
+     "PR": ["Rashid Shaheed", "Tory Horton"],
+     "KR": ["Rashid Shaheed", "Velus Jones Jr.", "Tory Horton", "George Holani", "Emanuel Wilson"],
+     "LS": ["Chris Stoll"]
+    }
+   }
+  },
+  "DET": {
+   "club": "Detroit Lions",
+   "source_id": "lions-depth",
+   "url": "https://www.detroitlions.com/team/depth-chart/",
+   "page_title": "2026 Lions Depth Chart - 2026 Unofficial Depth Chart Compiled by Lions Football Communications",
+   "retrieved_utc": "2026-11-14",
+   "units": {
+    "offense": {
+     "WR1": ["Jameson Williams"],
+     "WR2": ["Amon-Ra St. Brown", "DeAndre Carter"],
+     "LT": ["Penei Sewell"],
+     "LG": ["Christian Mahogany", "Miles Frazier"],
+     "C": ["Cade Mays", "Juice Scruggs"],
+     "RG": ["Tate Ratledge", "Seth McLaughlin"],
+     "RT": ["Blake Miller", "Larry Borom"],
+     "TE": ["Sam LaPorta", "Brock Wright", "Tyler Conklin", "Jackson Meeks"],
+     "WR3": ["Isaac TeSlaa", "Tay Martin"],
+     "QB": ["Jared Goff", "Joshua Dobbs"],
+     "RB": ["Jahmyr Gibbs", "Sione Vaki", "Jacob Saylors"]
+    },
+    "defense": {
+     "EDGE1": ["Aidan Hutchinson", "Derrick Moore", "Eric O'Neill"],
+     "DL1": ["Alim McNeill", "Skyler Gill-Howard", "Mekhi Wingo"],
+     "DL2": ["Tyleik Williams", "Levi Onwuzurike"],
+     "EDGE2": ["DJ Wonnum", "Tyler Lacy", "Ahmed Hassanein"],
+     "LB1": ["Derrick Barnes", "Joe Bachie"],
+     "LB2": ["Malcolm Rodriguez", "K.J. Britt"],
+     "LB3": ["Trevor Nowaske", "Amen Ogbongbemiga"],
+     "CB1": ["D.J. Reed", "Rock Ya-Sin", "Khalil Dorsey", "Nick Whiteside"],
+     "CB2": ["Roger McCreary", "Ennis Rakestraw Jr.", "Keith Abney II"],
+     "S1": ["Chuck Clark"],
+     "S2": ["Brian Branch", "Christian Izien"]
+    },
+    "special_teams": {
+     "K": ["Jake Bates"],
+     "H": ["Jack Fox"],
+     "P": ["Jack Fox"],
+     "LS": ["Hogan Hatten"],
+     "PR": ["DeAndre Carter"],
+     "KR": ["Jacob Saylors", "DeAndre Carter"]
+    }
+   }
+  }
+ }
+}

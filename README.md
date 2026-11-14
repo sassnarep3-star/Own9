@@ -70,6 +70,9 @@ plus one market-data audit computed at build time from the files committed in `d
 
 ## Explore
 
+[Origination engine](origination-engine.html) · [Verified results](results.html) ·
+[Depth of replacement](depth-of-replacement.html) · [Dependence](dependence.html) ·
+[Signal / staking split](signal-vs-staking.html) · [Requirements coverage](requirements.html) ·
 [Decision brief](decision.html) · [Questions & answers](questions.html) ·
 [Question ledger](question-ledger.html) · [Suggestion costs](suggestion-costs.html) ·
 [Own lines](lines.html) · [Availability sources](availability-evidence.html) ·
@@ -79,6 +82,32 @@ plus one market-data audit computed at build time from the files committed in `d
 [Data requirements](data.html) · [Sources](sources.html) ·
 [Decision questions (earlier register)](decisions-questions.html) ·
 [Repository audit](audit.html) · [Flagged for Review](flags.html)
+
+## Origination engine (`0167a04c`, 14 Nov 2026)
+
+The eight numbered origination requirements, implemented against committed data rather than
+described. Everything below is computed at build time by `engine/origination.py` from files in
+`data/`, so no figure can be retyped into prose and drift.
+
+| Page | What it holds |
+| --- | --- |
+| [Origination engine](origination-engine.html) | The price-snapshot store (committed header-only, 0 records, measured at 0% of games priced), the capture rules, and the side → total → moneyline order with its reconciliation. |
+| [Verified results](results.html) | Sixteen official NFL results with a source link per row; three cross-checked against official Game Books; settlement coverage per market family and the ROI readiness gate. |
+| [Depth of replacement](depth-of-replacement.html) | Ten ruled-out players matched to the column of an official club depth chart, so depth is a measured number of strings travelled, split by offence and defence. |
+| [Dependence](dependence.html) | Four correlations computed from the official results, each published with its n, the interval the gate grants and the verdict. All four fail the predeclared floor. |
+| [Signal / staking split](signal-vs-staking.html) | Two record types, two independent rankings, a masking report, and the demotion gate that sends a live strategy back to paper. |
+| [Requirements coverage](requirements.html) | The eight requirements line by line, the files inspected, the irregularities found and an executive summary. |
+
+Reproduce: `python3 tools/build.py` · `python3 tools/verify.py` ·
+`python3 -m unittest discover -s tests -v`. Findings are published as **F50–F57** on
+[Flagged for Review](flags.html), continuing the existing numbering.
+
+Data added: `data/results/verified-results.csv` (16 rows),
+`data/snapshots/price-snapshots.csv` (header-only by design) and
+`data/depth/club-depth-charts-2026-11-14.json` (KC, SEA, DET charts transcribed column by
+column). Two checked absences are recorded, not worked around: the NFL game-centre and scores
+routes do not publish the final score as retrievable text, and the schedule route publishes no
+kickoff time or overtime flag for completed games.
 
 **Decision support** (canonical dashboard at [`site/`](site/index.html)):
 [Suggestions](site/suggestions.html) to review and choose a path before changes ·

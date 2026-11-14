@@ -1,0 +1,77 @@
+{
+ "document": "Week 10 2026 explicit game-status entries for the clubs whose depth chart is transcribed in club-depth-charts-2026-11-14.json",
+ "source_id": "nfl-injury-w10",
+ "url": "https://www.nfl.com/injuries/",
+ "publisher": "NFL",
+ "retrieved_utc": "2026-11-14",
+ "transcribed_by": "session 9cb2a884 (published on injuries.html); reused here, not re-transcribed",
+ "filter": "game_status in (Out, Doubtful) only; a blank game status on the report is not a clearance and is excluded",
+ "clubs": {
+  "KC": [
+   {
+    "player": "Jaylon Moore",
+    "position": "T",
+    "injuries": "Ankle",
+    "game_status": "Out"
+   },
+   {
+    "player": "Omarr Norman-Lott",
+    "position": "DT",
+    "injuries": "Knee",
+    "game_status": "Out"
+   },
+   {
+    "player": "Peter Woods",
+    "position": "DT",
+    "injuries": "Neck",
+    "game_status": "Out"
+   }
+  ],
+  "SEA": [
+   {
+    "player": "Charles Cross",
+    "position": "T",
+    "injuries": "Ankle",
+    "game_status": "Out"
+   },
+   {
+    "player": "Sam Darnold",
+    "position": "QB",
+    "injuries": "Ribs, Quadricep",
+    "game_status": "Out"
+   },
+   {
+    "player": "Quenton Nelson",
+    "position": "G",
+    "injuries": "Knee",
+    "game_status": "Out"
+   },
+   {
+    "player": "Leonard Williams",
+    "position": "DT",
+    "injuries": "Stinger",
+    "game_status": "Out"
+   }
+  ],
+  "DET": [
+   {
+    "player": "Kerby Joseph",
+    "position": "S",
+    "injuries": "Knee",
+    "game_status": "Out"
+   },
+   {
+    "player": "Cade Mays",
+    "position": "C",
+    "injuries": "Ankle",
+    "game_status": "Out"
+   },
+   {
+    "player": "D.J. Reed",
+    "position": "CB",
+    "injuries": "Hip",
+    "game_status": "Out"
+   }
+  ]
+ }
+}
