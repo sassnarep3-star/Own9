@@ -481,3 +481,30 @@ own sessions. Nothing in them was edited or withdrawn.
 - Their `session-8b05dd6d/**` subtree and its requests were merged unchanged and are **not** adopted
   as verified by this dashboard; its own irregularity list stands as that session published it.
 
+
+### Merge and deployment record — session 1cc6b33d (2026-11-14)
+
+- [PR #27](https://github.com/sassnarep3-star/Own9/pull/27) **merged** into `main` with `--merge` at
+  2026-11-14T01:10:17Z as `5474d4cb03e4470eafb80df9c9cadbdda1efc897`.
+- Pre-merge checks on head `80db7ff`: [Verify NFL research for Pages 43538734297](https://github.com/sassnarep3-star/Own9/actions/runs/43538734297)
+  and [Research quality 43538734209](https://github.com/sassnarep3-star/Own9/actions/runs/43538734209) — both **pass**.
+- Post-merge on `5474d4c`: [Research quality 43538929831](https://github.com/sassnarep3-star/Own9/actions/runs/43538929831) **success**,
+  [Verify NFL research for Pages 43538929896](https://github.com/sassnarep3-star/Own9/actions/runs/43538929896) **success**, and
+  [pages-build-deployment 43538929312](https://github.com/sassnarep3-star/Own9/actions/runs/43538929312) **success**.
+- First merge attempt returned *not mergeable* because `main` advanced again (PR #26). Resolved by
+  merging `origin/main` into the session branch, keeping both coordination records, re-running every
+  check, then merging. No force-push, no history rewrite, nothing discarded.
+- Live verification after deployment, retrieved from the public host:
+  - [decision.html](https://sassnarep3-star.github.io/Own9/decision.html) — 16 decisions, defaults,
+    blockers and stopping rules all rendering; "16 of 16 entries".
+  - [availability.html](https://sassnarep3-star.github.io/Own9/availability.html) — four starting
+    elevens, three replacement chains, two counterexamples and the 18-row injury excerpt, with every
+    row carrying an official NFL link; the depth-tier column is empty as published.
+  - Titles confirmed from the served HTML (`Decision brief · Own9 NFL Research`,
+    `Availability tracker · Own9 NFL Research`).
+- Final combined state: **14 root pages, 219 source-linked rows**, 80 Python tests, 28 WCAG axe scans
+  across two viewports, 31 release-check fixtures, both fail-closed validators, and the additive
+  `site/` dashboard (12 pages, 108 rows) all passing.
+- Flagged items F13–F18 are published on
+  [Flagged for Review](https://sassnarep3-star.github.io/Own9/flags.html) and remain non-blocking.
+  No wager is placed or recommended; no edge is claimed; luck is not presented as removed.
