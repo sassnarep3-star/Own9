@@ -723,7 +723,10 @@ class PublishedPages(unittest.TestCase):
 
     def test_the_site_now_publishes_every_sessions_pages(self):
         rendered = sorted(f.name for f in ROOT.glob('*.html'))
-        self.assertEqual(len(rendered), 30,
+        # Dynamic floor: 15 from the first board, 4 from 4f2e0291, 6 from a77d40e1,
+        # 5 from 1cfcb957, and 3 more from 9a409d93 (W10 store, replacement chains,
+        # demotion gate) = 33.
+        self.assertEqual(len(rendered), 33,
                          '15 from the first board, 4 from 4f2e0291, 6 from a77d40e1, 5 from this session')
         # Both signal pages exist because both were authored: main's announcement and this session\u2019s
         # enforcement. The path that collided was this session\u2019s, so this session moved.

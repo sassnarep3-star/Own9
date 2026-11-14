@@ -1,173 +1,223 @@
 {
-  "document_title": "Decision brief",
-  "purpose": "The queue of live decisions this project supports. Each entry names the decision, its default if nothing changes, the evidence required, the current blocker, and a stopping rule fixed in advance.",
-  "as_of": "2026-11-14",
-  "standing_constraints": [
-    "No wager is placed and no price is published as advice.",
-    "No numerical NFL claim exists unless an official or reference source is linked on the same row.",
-    "A blank cell is an unanswered question, never a zero and never an estimate.",
-    "Nothing becomes eligible by being written down; eligibility requires all declared gates."
-  ],
-  "decisions": [
-    {
-      "id": "D-01",
-      "decision": "Adopt an explicit decision brief as the project's front door",
-      "default_if_nothing_changes": "The site keeps publishing research state without stating what decision it supports.",
-      "evidence_required": "A named decision per row, a default, and a stopping rule.",
-      "current_blocker": null,
-      "stopping_rule": "Reopen if any row lacks a default or a stopping rule after review.",
-      "state": "decided",
-      "suggestion": "S-01"
-    },
-    {
-      "id": "D-02",
-      "decision": "Order improvement work by decision impact and evidence readiness",
-      "default_if_nothing_changes": "Work proceeds in the order ideas arrive.",
-      "evidence_required": "Four predeclared scores per suggestion.",
-      "current_blocker": null,
-      "stopping_rule": "Reopen if a chosen item scores below a rejected one without a recorded reason.",
-      "state": "decided",
-      "suggestion": "S-02"
-    },
-    {
-      "id": "D-03",
-      "decision": "Price a joint bet only when a correlation interval clears a predeclared deadband",
-      "default_if_nothing_changes": "Parlay tools would multiply marginals and silently assume independence.",
-      "evidence_required": "Paired leg outcomes, a correlation interval, and a deadband fixed before the test.",
-      "current_blocker": "No aligned leg-level dataset, so every joint price is blank.",
-      "stopping_rule": "Abandon the rule if a priced joint ever falls outside the Frechet bounds of its marginals.",
-      "state": "decided_pending_data",
-      "suggestion": "S-03"
-    },
-    {
-      "id": "D-04",
-      "decision": "Report changed starters from official Game Books and leave depth tiers blank",
-      "default_if_nothing_changes": "Availability analysis would rest on injury designations that were shown to contradict participation.",
-      "evidence_required": "Two official Game Books sharing a club, plus the matching injury report.",
-      "current_blocker": "Only one club-game pair has been verified; no season archive.",
-      "stopping_rule": "Reopen if the NFL begins publishing depth charts or string designations.",
-      "state": "decided_pending_data",
-      "suggestion": "S-04"
-    },
-    {
-      "id": "D-05",
-      "decision": "Keep both official availability counterexamples on the site permanently",
-      "default_if_nothing_changes": "Readers re-learn the same two errors every season.",
-      "evidence_required": "The named players, their published status and their published participation.",
-      "current_blocker": null,
-      "stopping_rule": "Retire a case only if the NFL corrects the underlying record.",
-      "state": "decided",
-      "suggestion": "S-05"
-    },
-    {
-      "id": "D-06",
-      "decision": "Maintain a single question, information and answer register with three states",
-      "default_if_nothing_changes": "Unknowns stay scattered and unowned.",
-      "evidence_required": "Each answered question carries a linked source; each open question names the blocking artefact.",
-      "current_blocker": null,
-      "stopping_rule": "Reopen if a row is marked answered without a link.",
-      "state": "decided",
-      "suggestion": "S-06"
-    },
-    {
-      "id": "D-07",
-      "decision": "Prefer Game Books over live designation feeds when the two conflict",
-      "default_if_nothing_changes": "A designation feed is treated as a participation record, which it is not.",
-      "evidence_required": "A Game Book showing who actually started and who was inactive.",
-      "current_blocker": "Archive coverage is one pair of games.",
-      "stopping_rule": "Reopen if a Game Book is shown to disagree with the official participation record.",
-      "state": "decided_pending_data",
-      "suggestion": "S-07"
-    },
-    {
-      "id": "D-08",
-      "decision": "Keep the no-live-wager policy and require an operator source before any settlement claim",
-      "default_if_nothing_changes": "Research algebra can be mistaken for a recommendation, and jurisdiction goes unasked.",
-      "evidence_required": "A regulator page and an operator market-rules page in the source register.",
-      "current_blocker": "The regulator page establishes a framework, not any individual's eligibility.",
-      "stopping_rule": "Reopen if any row asserts a settlement rule without an operator citation.",
-      "state": "decided",
-      "suggestion": "S-08"
-    },
-    {
-      "id": "D-09",
-      "decision": "Rank the competition on a simultaneous lower bound within matched tracks only",
-      "default_if_nothing_changes": "Raw return would reward variance and multiplicity.",
-      "evidence_required": "Forecasts, quotes, intervals, and all gates passed.",
-      "current_blocker": "No forecasts, quotes or evaluated gates exist, so the leaderboard is empty.",
-      "stopping_rule": "Abandon the ranking if a ranked entry later fails a gate.",
-      "state": "decided_pending_data",
-      "suggestion": "S-09"
-    },
-    {
-      "id": "D-10",
-      "decision": "Do not seal a final test season until a power study declares the required sample",
-      "default_if_nothing_changes": "The one untouched season gets spent on a test that cannot answer the question.",
-      "evidence_required": "Minimum detectable effect and required sample per candidate family.",
-      "current_blocker": "No power study has been run.",
-      "stopping_rule": "Irreversible by design: once a season is opened it cannot be resealed.",
-      "state": "blocked",
-      "suggestion": "S-10"
-    },
-    {
-      "id": "D-11",
-      "decision": "Acquire a season-long official Game Book archive before fitting any efficiency model",
-      "default_if_nothing_changes": "Every modelling claim stays unfalsifiable.",
-      "evidence_required": "Complete Game Books for the training and sealed windows, keyed by stable game ID, with redistribution terms.",
-      "current_blocker": "No archive, and redistribution rights are unresolved.",
-      "stopping_rule": "Reopen if a smaller verified dataset is demonstrated to be sufficient for the declared effect.",
-      "state": "blocked",
-      "suggestion": "S-11"
-    },
-    {
-      "id": "D-12",
-      "decision": "Never back-fill a missing closing line",
-      "default_if_nothing_changes": "Price columns would be filled with reconstructions that look authoritative.",
-      "evidence_required": "A licensed historical quote source, or a forward capture with timestamps.",
-      "current_blocker": "No licensed quote history exists in this project.",
-      "stopping_rule": "Reopen only when quotes can be cited per market and per timestamp.",
-      "state": "blocked",
-      "suggestion": "S-12"
-    },
-    {
-      "id": "D-13",
-      "decision": "Group the site navigation by intent: Decision, Evidence, Research, Review",
-      "default_if_nothing_changes": "Decision content sits level with background material and gets lost.",
-      "evidence_required": "Every page reachable, current page marked, mobile layout intact.",
-      "current_blocker": null,
-      "stopping_rule": "Reopen if any page becomes unreachable or the current-page marker breaks.",
-      "state": "decided",
-      "suggestion": "S-13"
-    },
-    {
-      "id": "D-14",
-      "decision": "Model same-game dependence through one shared scenario vector rather than a correlation matrix",
-      "default_if_nothing_changes": "Three-leg joints would be priced with an unidentified pairwise approximation.",
-      "evidence_required": "A simulated joint calibrated on held-out joint events.",
-      "current_blocker": "Depends on the archive and on a validated scenario model.",
-      "stopping_rule": "Abandon if held-out joint calibration is worse than direct joint estimation.",
-      "state": "deferred",
-      "suggestion": "S-14"
-    },
-    {
-      "id": "D-15",
-      "decision": "Treat offensive-line combination continuity as a feature to ablation-test, not a finding",
-      "default_if_nothing_changes": "A plausible but untested mechanism is either ignored or over-claimed.",
-      "evidence_required": "Consecutive-start counts per five-man combination and an ablation on later weeks.",
-      "current_blocker": "Depends on the archive.",
-      "stopping_rule": "Abandon if ablation shows no change in predictive quality.",
-      "state": "deferred",
-      "suggestion": "S-15"
-    },
-    {
-      "id": "D-16",
-      "decision": "Refuse any suggestion that cannot name what would falsify it",
-      "default_if_nothing_changes": "Unfalsifiable ideas persist and crowd out testable work.",
-      "evidence_required": "A falsification field on every suggestion, enforced by the validator.",
-      "current_blocker": null,
-      "stopping_rule": "Reopen if an accepted item is shown to have no possible disconfirming observation.",
-      "state": "decided",
-      "suggestion": "S-16"
-    }
-  ]
+ "document_title": "Decision brief",
+ "purpose": "The queue of live decisions this project supports. Each entry names the decision, its default if nothing changes, the evidence required, the current blocker, and a stopping rule fixed in advance.",
+ "as_of": "2026-11-14",
+ "standing_constraints": [
+  "No wager is placed and no price is published as advice.",
+  "No numerical NFL claim exists unless an official or reference source is linked on the same row.",
+  "A blank cell is an unanswered question, never a zero and never an estimate.",
+  "Nothing becomes eligible by being written down; eligibility requires all declared gates."
+ ],
+ "decisions": [
+  {
+   "id": "D-01",
+   "decision": "Adopt an explicit decision brief as the project's front door",
+   "default_if_nothing_changes": "The site keeps publishing research state without stating what decision it supports.",
+   "evidence_required": "A named decision per row, a default, and a stopping rule.",
+   "current_blocker": null,
+   "stopping_rule": "Reopen if any row lacks a default or a stopping rule after review.",
+   "state": "decided",
+   "suggestion": "S-01"
+  },
+  {
+   "id": "D-02",
+   "decision": "Order improvement work by decision impact and evidence readiness",
+   "default_if_nothing_changes": "Work proceeds in the order ideas arrive.",
+   "evidence_required": "Four predeclared scores per suggestion.",
+   "current_blocker": null,
+   "stopping_rule": "Reopen if a chosen item scores below a rejected one without a recorded reason.",
+   "state": "decided",
+   "suggestion": "S-02"
+  },
+  {
+   "id": "D-03",
+   "decision": "Price a joint bet only when a correlation interval clears a predeclared deadband",
+   "default_if_nothing_changes": "Parlay tools would multiply marginals and silently assume independence.",
+   "evidence_required": "Paired leg outcomes, a correlation interval, and a deadband fixed before the test.",
+   "current_blocker": "No aligned leg-level dataset, so every joint price is blank.",
+   "stopping_rule": "Abandon the rule if a priced joint ever falls outside the Frechet bounds of its marginals.",
+   "state": "decided_pending_data",
+   "suggestion": "S-03"
+  },
+  {
+   "id": "D-04",
+   "decision": "Report changed starters from official Game Books and leave depth tiers blank",
+   "default_if_nothing_changes": "Availability analysis would rest on injury designations that were shown to contradict participation.",
+   "evidence_required": "Two official Game Books sharing a club, plus the matching injury report.",
+   "current_blocker": "Only one club-game pair has been verified; no season archive.",
+   "stopping_rule": "Reopen if the NFL begins publishing depth charts or string designations.",
+   "state": "decided_pending_data",
+   "suggestion": "S-04"
+  },
+  {
+   "id": "D-05",
+   "decision": "Keep both official availability counterexamples on the site permanently",
+   "default_if_nothing_changes": "Readers re-learn the same two errors every season.",
+   "evidence_required": "The named players, their published status and their published participation.",
+   "current_blocker": null,
+   "stopping_rule": "Retire a case only if the NFL corrects the underlying record.",
+   "state": "decided",
+   "suggestion": "S-05"
+  },
+  {
+   "id": "D-06",
+   "decision": "Maintain a single question, information and answer register with three states",
+   "default_if_nothing_changes": "Unknowns stay scattered and unowned.",
+   "evidence_required": "Each answered question carries a linked source; each open question names the blocking artefact.",
+   "current_blocker": null,
+   "stopping_rule": "Reopen if a row is marked answered without a link.",
+   "state": "decided",
+   "suggestion": "S-06"
+  },
+  {
+   "id": "D-07",
+   "decision": "Prefer Game Books over live designation feeds when the two conflict",
+   "default_if_nothing_changes": "A designation feed is treated as a participation record, which it is not.",
+   "evidence_required": "A Game Book showing who actually started and who was inactive.",
+   "current_blocker": "Archive coverage is one pair of games.",
+   "stopping_rule": "Reopen if a Game Book is shown to disagree with the official participation record.",
+   "state": "decided_pending_data",
+   "suggestion": "S-07"
+  },
+  {
+   "id": "D-08",
+   "decision": "Keep the no-live-wager policy and require an operator source before any settlement claim",
+   "default_if_nothing_changes": "Research algebra can be mistaken for a recommendation, and jurisdiction goes unasked.",
+   "evidence_required": "A regulator page and an operator market-rules page in the source register.",
+   "current_blocker": "The regulator page establishes a framework, not any individual's eligibility.",
+   "stopping_rule": "Reopen if any row asserts a settlement rule without an operator citation.",
+   "state": "decided",
+   "suggestion": "S-08"
+  },
+  {
+   "id": "D-09",
+   "decision": "Rank the competition on a simultaneous lower bound within matched tracks only",
+   "default_if_nothing_changes": "Raw return would reward variance and multiplicity.",
+   "evidence_required": "Forecasts, quotes, intervals, and all gates passed.",
+   "current_blocker": "No forecasts, quotes or evaluated gates exist, so the leaderboard is empty.",
+   "stopping_rule": "Abandon the ranking if a ranked entry later fails a gate.",
+   "state": "decided_pending_data",
+   "suggestion": "S-09"
+  },
+  {
+   "id": "D-10",
+   "decision": "Do not seal a final test season until a power study declares the required sample",
+   "default_if_nothing_changes": "The one untouched season gets spent on a test that cannot answer the question.",
+   "evidence_required": "Minimum detectable effect and required sample per candidate family.",
+   "current_blocker": "No power study has been run.",
+   "stopping_rule": "Irreversible by design: once a season is opened it cannot be resealed.",
+   "state": "blocked",
+   "suggestion": "S-10"
+  },
+  {
+   "id": "D-11",
+   "decision": "Acquire a season-long official Game Book archive before fitting any efficiency model",
+   "default_if_nothing_changes": "Every modelling claim stays unfalsifiable.",
+   "evidence_required": "Complete Game Books for the training and sealed windows, keyed by stable game ID, with redistribution terms.",
+   "current_blocker": "No archive, and redistribution rights are unresolved.",
+   "stopping_rule": "Reopen if a smaller verified dataset is demonstrated to be sufficient for the declared effect.",
+   "state": "blocked",
+   "suggestion": "S-11"
+  },
+  {
+   "id": "D-12",
+   "decision": "Never back-fill a missing closing line",
+   "default_if_nothing_changes": "Price columns would be filled with reconstructions that look authoritative.",
+   "evidence_required": "A licensed historical quote source, or a forward capture with timestamps.",
+   "current_blocker": "No licensed quote history exists in this project.",
+   "stopping_rule": "Reopen only when quotes can be cited per market and per timestamp.",
+   "state": "blocked",
+   "suggestion": "S-12"
+  },
+  {
+   "id": "D-13",
+   "decision": "Group the site navigation by intent: Decision, Evidence, Research, Review",
+   "default_if_nothing_changes": "Decision content sits level with background material and gets lost.",
+   "evidence_required": "Every page reachable, current page marked, mobile layout intact.",
+   "current_blocker": null,
+   "stopping_rule": "Reopen if any page becomes unreachable or the current-page marker breaks.",
+   "state": "decided",
+   "suggestion": "S-13"
+  },
+  {
+   "id": "D-14",
+   "decision": "Model same-game dependence through one shared scenario vector rather than a correlation matrix",
+   "default_if_nothing_changes": "Three-leg joints would be priced with an unidentified pairwise approximation.",
+   "evidence_required": "A simulated joint calibrated on held-out joint events.",
+   "current_blocker": "Depends on the archive and on a validated scenario model.",
+   "stopping_rule": "Abandon if held-out joint calibration is worse than direct joint estimation.",
+   "state": "deferred",
+   "suggestion": "S-14"
+  },
+  {
+   "id": "D-15",
+   "decision": "Treat offensive-line combination continuity as a feature to ablation-test, not a finding",
+   "default_if_nothing_changes": "A plausible but untested mechanism is either ignored or over-claimed.",
+   "evidence_required": "Consecutive-start counts per five-man combination and an ablation on later weeks.",
+   "current_blocker": "Depends on the archive.",
+   "stopping_rule": "Abandon if ablation shows no change in predictive quality.",
+   "state": "deferred",
+   "suggestion": "S-15"
+  },
+  {
+   "id": "D-16",
+   "decision": "Refuse any suggestion that cannot name what would falsify it",
+   "default_if_nothing_changes": "Unfalsifiable ideas persist and crowd out testable work.",
+   "evidence_required": "A falsification field on every suggestion, enforced by the validator.",
+   "current_blocker": null,
+   "stopping_rule": "Reopen if an accepted item is shown to have no possible disconfirming observation.",
+   "state": "decided",
+   "suggestion": "S-16"
+  },
+  {
+   "id": "D-17",
+   "decision": "Whether to acquire a licensed market-price archive (S-17).",
+   "default_if_nothing_changes": "Market-line and difference columns stay blank and ROI/CLV remain uncomputable.",
+   "evidence_required": "A named archive with timestamps, market definitions, settlement rules and documented reuse terms.",
+   "current_blocker": null,
+   "stopping_rule": "Decide when a candidate archive with terms is in hand; abandon if no permissioned source exists after the documented search.",
+   "state": "deferred",
+   "suggestion": "S-17"
+  },
+  {
+   "id": "D-18",
+   "decision": "Whether to operate the scheduled close-capture workflow every week (S-18).",
+   "default_if_nothing_changes": "Week 10 closes are never captured; the open snapshots age ungraded.",
+   "evidence_required": "At least one full week of pre-kickoff closes recorded solely by the workflow.",
+   "current_blocker": null,
+   "stopping_rule": "Disable the workflow if any close is recorded after kickoff or fails its input-hash guard twice.",
+   "state": "deferred",
+   "suggestion": "S-18"
+  },
+  {
+   "id": "D-19",
+   "decision": "Whether to freeze a backtest design for the signal score (S-19).",
+   "default_if_nothing_changes": "The leaderboard signal column stays blank; elo-v1 stays a labelled unvalidated artefact.",
+   "evidence_required": "A frozen design document (markets, grading, folds, thresholds, correction) dated before evaluation.",
+   "current_blocker": null,
+   "stopping_rule": "Evaluate once under the frozen design; no re-runs after seeing results without a new frozen design.",
+   "state": "deferred",
+   "suggestion": "S-19"
+  },
+  {
+   "id": "D-20",
+   "decision": "Whether to adopt the signal/staking split as competition law (S-20).",
+   "default_if_nothing_changes": "Any future leaderboard defaults to the split design already published on its page.",
+   "evidence_required": "A competition-rules row in the decision brief marking the split as adopted or rejected.",
+   "current_blocker": null,
+   "stopping_rule": "Decide before any strategy becomes eligible; reopening later is allowed only between seasons.",
+   "state": "deferred",
+   "suggestion": "S-20"
+  },
+  {
+   "id": "D-21",
+   "decision": "Whether to require game-centre row verification before ROI use (S-21).",
+   "default_if_nothing_changes": "The feed stays at structurally consistent, and no ROI claim is made from it.",
+   "evidence_required": "Per-row verification states recorded in the results evidence file with retrieval dates.",
+   "current_blocker": null,
+   "stopping_rule": "If a game-centre disagrees with a stored row, halt ROI use until the row is corrected and re-verified.",
+   "state": "deferred",
+   "suggestion": "S-21"
+  }
+ ]
 }

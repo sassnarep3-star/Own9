@@ -1,0 +1,56 @@
+name: snapshot-close
+
+# Pre-kickoff close capture for the price-snapshot store. Schedules are chosen
+# against the earliest kickoff windows observed on the official weekly pages:
+# 14:00 UTC daily is before the 14:30 UTC (9:30 ET) Sunday international
+# windows and before Sunday afternoon slates; the Thursday 23:30 UTC run is
+# before the ~00:15 UTC Friday Thursday-night kickoffs. If a future slate
+# starts earlier, move the cron earlier — the capture must always precede
+# kickoff to be a pre-kickoff record.
+
+on:
+  schedule:
+    - cron: '0 14 * * *'
+    - cron: '30 23 * * 4'
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+concurrency:
+  group: snapshot-close
+  cancel-in-progress: false
+
+jobs:
+  close:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - name: Close open snapshots (fail closed on any guard)
+        run: python tools/snapshot_close.py
+      - name: Guard — only data/snapshots/** may change
+        id: guard
+        run: |
+          CHANGED=$(git status --porcelain || true)
+          echo "changed: $CHANGED"
+          if [ -z "$CHANGED" ]; then
+            echo "nothing to commit"; exit 0
+          fi
+          BAD=$(printf '%s\n' "$CHANGED" | awk '{print $2}' | grep -v '^data/snapshots/' || true)
+          if [ -n "$BAD" ]; then
+            echo "REFUSING to commit: changes outside data/snapshots/:" >&2
+            echo "$BAD" >&2
+            exit 1
+          fi
+          echo "changed=true" >> "$GITHUB_OUTPUT"
+      - name: Commit and push the close capture
+        if: steps.guard.outputs.changed == 'true'
+        run: |
+          git config user.name "snapshot-close bot"
+          git config user.email "actions@users.noreply.github.com"
+          git add data/snapshots/
+          git commit -m "Snapshot close capture $(date -u +%Y-%m-%dT%H:%M:%SZ)"
+          git push
