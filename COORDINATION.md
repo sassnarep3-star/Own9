@@ -313,3 +313,40 @@ The claim above records the initial base-only view, not a takeover of later publ
 
 - 2026-11-04 arena-a54b6387 final metadata audit: Documentation [PR #19](https://github.com/sassnarep3-star/Own9/pull/19) merged at `e974a18ccd6d1903d4121ae24302624fd14ed044`. Exact-commit [Pages run 41907622262](https://github.com/sassnarep3-star/Own9/actions/runs/41907622262) succeeded in all three jobs, and official deployment `7557168775` status is success. Both main quality workflows succeeded. **Irregularity:** legacy Pages site/build API reports errored for the same commit despite successful Actions/deployment and separately retrieved live pages. No root cause inferred. Native rerun rejected by available CLI endpoint; POST build request returned HTTP 403; detailed log-download host blocked by sandbox allowlist. Selected public fields saved in `research/publication/2026-11-04.json`; F12 expanded with a direct deployment-record link. This is a disclosed platform-status discrepancy, not a claim that all metadata is green or that a failed endpoint was fixed.
 - Scope clarification: `research/publication/2026-11-04.json` is this session's additive dated status evidence. No other session's source or report file edited. Dashboard remains live, and empirical evidence requirements remain needs review.
+
+---
+
+## Integration session 1cc6b33d — suggestions, decision brief, availability tracker
+
+Session: `1cc6b33d` · Branch: `arena/1cc6b33d-own9` · Started: 2026-11-14 UTC.
+Role: **final integration session** (per the user's instruction that shared outputs — table data,
+site index and navigation — change only here, after every other task is done).
+
+| Task | Status | Owner | File scope |
+|---|---|---|---|
+| Repo line-by-line review, official-source re-verification, irregularities | in progress | 1cc6b33d | `evidence/**`, `docs/**` |
+| Dedicated Suggestions section + Decision brief (questions / known / unknown / how to find out) | in progress | 1cc6b33d | `tools/build.py`, `docs/**` |
+| Availability & roster-depth tracker (injuries, 2nd/3rd/4th-string replacement tiers) | in progress | 1cc6b33d | `engine/availability.py`, `evidence/availability/**` |
+| Correlation decision math (required-correlation thresholds derived, measured values stay blank) | in progress | 1cc6b33d | `engine/correlation.py`, `tests/**` |
+| Root site landing page, categorized navigation, main-menu button | in progress | 1cc6b33d | root `*.html`, `style.css`, `site.js`, `tools/**` |
+| Final integration: combined data re-verification, Pages build, PR, merge, deploy record | unclaimed → 1cc6b33d | 1cc6b33d | `README.md`, `.github/**`, `COORDINATION.md` |
+
+Scope notes for other sessions:
+
+- This session edits **only** the files listed above. It does **not** edit `site/**`, `strict-lab/**`,
+  `own9-research/**`, `release-checks/**`, `research/**` or `independent-audit/**` (PR #18 is open from
+  session `arena/489d1d3e` and owns `independent-audit/**`). Requests to those owners are recorded
+  below instead of being applied.
+- Shared-file rule followed: `COORDINATION.md` is append-only for this session; on rebase conflicts both
+  histories are preserved.
+- No other live claim exists on the current `main` (all prior sessions are `done` / `needs review`).
+
+### Open requests to other owners (non-blocking)
+
+- **Root integration owner (superseded by this session):** the root dashboard now carries the canonical
+  index and navigation. `site/index.html` and `site/review.html` remain an additive, separately
+  generated lab; please link it from the root landing page rather than replacing it.
+- **`independent-audit/**` owner (PR #18):** the root site and this session's new sections were created
+  after PR #18 was opened. PR #18's dashboard-row audit was written against the earlier five-page
+  dashboard, so its row counts and page inventory predate the current root site. Root pages were
+  re-rendered and re-verified by this session; no file of that PR was edited here.
