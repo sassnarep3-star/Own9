@@ -1,0 +1,185 @@
+{
+  "note": "Source register for the line-origination desk. Every URL here was read by session 2c3cef39 on 2026-11-14, or is a primary project record. A row may only cite an id from this file.",
+  "sources": [
+    {
+      "id": "nfl-standings-2010",
+      "publisher": "NFL.com",
+      "title": "2010 NFL League Standings",
+      "url": "https://www.nfl.com/standings/league/2010/reg",
+      "status": "retrieved",
+      "checked": "2026-11-14",
+      "scope": "Per-club wins, losses, ties, points for and points against for the 2010 regular season.",
+      "supports": "Season-level verification of the 2010 scores in the committed results feed."
+    },
+    {
+      "id": "nfl-standings-2018",
+      "publisher": "NFL.com",
+      "title": "2018 NFL League Standings",
+      "url": "https://www.nfl.com/standings/league/2018/reg",
+      "status": "retrieved",
+      "checked": "2026-11-14",
+      "scope": "Per-club wins, losses, ties, points for and points against for the 2018 regular season.",
+      "supports": "Season-level verification of the 2018 scores in the committed results feed."
+    },
+    {
+      "id": "nfl-standings-2025",
+      "publisher": "NFL.com",
+      "title": "2025 NFL League Standings",
+      "url": "https://www.nfl.com/standings/league/2025/reg",
+      "status": "retrieved",
+      "checked": "2026-11-14",
+      "scope": "Per-club wins, losses, ties, points for and points against for the 2025 regular season.",
+      "supports": "Season-level verification of the 2025 scores in the committed results feed, and the official team-level numbers used in the correlation register."
+    },
+    {
+      "id": "nfl-schedule-2026-week3",
+      "publisher": "NFL.com",
+      "title": "NFL Week 3 Schedule 2026",
+      "url": "https://www.nfl.com/schedules/2026/by-week/week-3",
+      "status": "retrieved",
+      "checked": "2026-11-14",
+      "scope": "Final scores for every game in Week 3 of the 2026 season.",
+      "supports": "An independent re-read of one week of the committed weekly captures, so the rest of those captures can be relied on."
+    },
+    {
+      "id": "repo-weekly-captures",
+      "publisher": "Own9 repository",
+      "title": "data/board/raw/week-*.txt - verbatim official weekly captures",
+      "url": "https://github.com/sassnarep3-star/Own9/tree/main/data/board/raw",
+      "status": "inspected",
+      "checked": "2026-11-14",
+      "scope": "Verbatim game links and final scores for 2026 weeks 1-11, captured from the official by-week schedule pages by session a77d40e1 on 2026-11-14. This session re-read weeks 3 and 8 itself and found both transcriptions exact, then used the set to check every 2026 game in the results feed.",
+      "supports": "The game-by-game verification of the 121 completed 2026 games."
+    },
+    {
+      "id": "nfl-standings-2026",
+      "publisher": "NFL.com",
+      "title": "2026 NFL League Standings",
+      "url": "https://www.nfl.com/standings/league/2026/reg",
+      "status": "retrieved",
+      "checked": "2026-11-14",
+      "scope": "Per-club wins, losses, ties, points for and points against for the 2026 season to date, and the Week 10 Thursday-night result.",
+      "supports": "Confirms the official season is further advanced than the committed snapshot, which is the basis of flag OD-04."
+    },
+    {
+      "id": "nfl-schedule-2026-week8",
+      "publisher": "NFL.com",
+      "title": "NFL Week 8 Schedule 2026",
+      "url": "https://www.nfl.com/schedules/2026/by-week/week-8",
+      "status": "retrieved",
+      "checked": "2026-11-14",
+      "scope": "Final scores for every game played in Week 8 of the 2026 season, plus the published bye teams.",
+      "supports": "Game-by-game verification of the most recent complete week in the committed results feed."
+    },
+    {
+      "id": "nfl-injuries-w10",
+      "publisher": "NFL.com",
+      "title": "Official Latest NFL Injury Report for Players - Week 10 of the 2026 Season",
+      "url": "https://www.nfl.com/injuries/",
+      "status": "retrieved",
+      "checked": "2026-11-14",
+      "scope": "Club-by-club player, position, injury, practice status and game status for Week 10 2026. The first page section was re-read by this session on 2026-11-14 and matched the transcription already committed by an earlier session.",
+      "supports": "Which starters carry an Out or Doubtful game status; the input to the replacement-depth board."
+    },
+    {
+      "id": "patriots-depth",
+      "publisher": "New England Patriots (patriots.com)",
+      "title": "New England Patriots Unofficial Depth Chart",
+      "url": "https://www.patriots.com/team/depth-chart",
+      "status": "retrieved",
+      "checked": "2026-11-14",
+      "scope": "Offence, defence and special-teams depth chart with first-, second-, third- and fourth-string columns. The page states it is unofficial and reflects the opinions of Patriots.com writers, not the organisation.",
+      "supports": "Replacement depth for New England."
+    },
+    {
+      "id": "lions-depth",
+      "publisher": "Detroit Lions (detroitlions.com)",
+      "title": "2026 Lions Depth Chart",
+      "url": "https://www.detroitlions.com/team/depth-chart/",
+      "status": "retrieved",
+      "checked": "2026-11-14",
+      "scope": "Offence, defence and special-teams depth chart with ranked columns. The page states it is an unofficial depth chart compiled by Lions Football Communications.",
+      "supports": "Replacement depth for Detroit."
+    },
+    {
+      "id": "nfl-gamecenter-w10",
+      "publisher": "NFL.com",
+      "title": "Commanders at Giants - Week 10 2026 game centre",
+      "url": "https://www.nfl.com/games/commanders-at-giants-2026-reg-10",
+      "status": "inspected",
+      "checked": "2026-11-14",
+      "scope": "Official game centre for the Week 10 Thursday-night game, confirming the 24-21 final score published on the schedule page.",
+      "supports": "Confirms the Week 10 game already played at the time the committed snapshot was captured."
+    },
+    {
+      "id": "nfl-no-depth-chart",
+      "publisher": "NFL.com",
+      "title": "Checked absence - NFL.com club depth-chart route",
+      "url": "https://www.nfl.com/teams/new-england-patriots/depth-chart/",
+      "status": "inspected",
+      "checked": "2026-11-14",
+      "scope": "A checked absence carried forward from the repository evidence register: the league does not publish an official game-day depth chart, so no league-certified tier exists.",
+      "supports": "Why every depth tier on the replacement board is attributed to a club publication and flagged."
+    },
+    {
+      "id": "repo",
+      "publisher": "Own9 repository",
+      "title": "Primary project record",
+      "url": "https://github.com/sassnarep3-star/Own9",
+      "status": "retrieved",
+      "checked": "2026-11-14",
+      "scope": "The repository itself: committed input files, the origination engine source, this desk's own data outputs and the coordination board.",
+      "supports": "Every computed value produced by this desk, and the provenance of the committed raw files."
+    },
+    {
+      "id": "repo-games",
+      "publisher": "Own9 repository",
+      "title": "data/raw/games.csv - committed score and market snapshot",
+      "url": "https://github.com/sassnarep3-star/Own9/blob/main/data/raw/games.csv",
+      "status": "retrieved",
+      "checked": "2026-11-14",
+      "scope": "7,548 rows covering 1999-2026: final scores, closing spread, closing total, moneylines and side prices for the regular season and playoffs.",
+      "supports": "The market-line column, the results feed and every backtest number. Upstream provenance and licence are unconfirmed (flag OD-01)."
+    },
+    {
+      "id": "repo-lines",
+      "publisher": "Own9 repository",
+      "title": "data/raw/closing_lines.csv - committed per-side market snapshot",
+      "url": "https://github.com/sassnarep3-star/Own9/blob/main/data/raw/closing_lines.csv",
+      "status": "retrieved",
+      "checked": "2026-11-14",
+      "scope": "20,490 per-side rows covering 2006-2018. Not used by this desk as an input; retained for cross-reference with the earlier lines audit.",
+      "supports": "Context for why the desk reads games.csv rather than this file."
+    },
+    {
+      "id": "scipy-pearson",
+      "publisher": "SciPy project",
+      "title": "scipy.stats.pearsonr",
+      "url": "https://docs.scipy.org/doc/scipy/reference/generated/scipy.stats.pearsonr.html",
+      "status": "inspected",
+      "checked": "2026-11-14",
+      "scope": "Definition and properties of the Pearson correlation coefficient and its p-value.",
+      "supports": "The correlation statistic used throughout the correlation register."
+    },
+    {
+      "id": "sklearn-logloss",
+      "publisher": "scikit-learn project",
+      "title": "sklearn.metrics.log_loss",
+      "url": "https://scikit-learn.org/stable/modules/generated/sklearn.metrics.log_loss.html",
+      "status": "inspected",
+      "checked": "2026-11-14",
+      "scope": "Definition of cross-entropy / log-loss for probabilistic predictions.",
+      "supports": "The signal metric the leaderboard ranks on."
+    },
+    {
+      "id": "sklearn-brier",
+      "publisher": "scikit-learn project",
+      "title": "sklearn.metrics.brier_score_loss",
+      "url": "https://scikit-learn.org/stable/modules/generated/sklearn.metrics.brier_score_loss.html",
+      "status": "inspected",
+      "checked": "2026-11-14",
+      "scope": "Definition of the Brier score for probabilistic predictions.",
+      "supports": "The calibration term in the demotion gate."
+    }
+  ]
+}

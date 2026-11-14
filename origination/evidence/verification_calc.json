@@ -1,0 +1,36 @@
+{
+ "2010": {
+  "detail": [],
+  "file_points": 11283,
+  "games": 256,
+  "max_abs_pa_delta": 0,
+  "max_abs_pf_delta": 0,
+  "mismatches": 0,
+  "official_points": 11283,
+  "teams_checked": 32
+ },
+ "2018": {
+  "detail": [],
+  "file_points": 11952,
+  "games": 256,
+  "max_abs_pa_delta": 0,
+  "max_abs_pf_delta": 0,
+  "mismatches": 0,
+  "official_points": 11952,
+  "teams_checked": 32
+ },
+ "2025": {
+  "detail": [],
+  "file_points": 12519,
+  "games": 272,
+  "max_abs_pa_delta": 0,
+  "max_abs_pf_delta": 0,
+  "mismatches": 0,
+  "official_points": 12519,
+  "teams_checked": 32
+ },
+ "2026_week_8": {
+  "games_checked": 14,
+  "mismatches": 0
+ }
+}

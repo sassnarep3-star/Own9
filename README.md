@@ -13,7 +13,7 @@ plus one market-data audit computed at build time from the files committed in `d
 
 | If you want to | Read |
 | --- | --- |
-| Know what is actually open and what would close it | [Decision brief](decision.html) |
+| Know what is actually open and what would close it | [Line origination desk](origination/index.html) · [Decision brief](decision.html) |
 | Know what must be known before deciding | [Questions & answers](questions.html) |
 | Review and choose an improvement before it is built | [Suggestions](suggestions.html) |
 | See who actually started and who replaced them | [Availability tracker](availability.html) |
@@ -67,6 +67,26 @@ plus one market-data audit computed at build time from the files committed in `d
 - Every table row links to an official publisher or the primary project repository record.
   Scope labels distinguish facts, context, mathematical definitions and project proposals.
   An official contextual source does **not** substantiate an untested strategy.
+
+## Line origination desk
+
+A separate desk that originates its own NFL side, total and moneyline numbers and
+scores them against the recorded market: [Line origination](origination/index.html).
+
+- Price-snapshot store with separate opening and closing field groups. The opening
+  columns are empty on every row because no source obtained records an opening price.
+- A results feed verified against the official publisher: the 2010, 2018 and 2025
+  seasons match the NFL standings exactly for all 32 clubs on points for and against,
+  and all 121 completed 2026 games match the official by-week schedule pages.
+- Fair line, market number and difference published as three separate columns.
+- Signal and staking in two tables that are never combined.
+- Replacement depth read from club-published charts, tier by tier.
+- Correlations published with n, behind a dependence gate that refuses a price when
+  the interval straddles the declared deadband.
+- A demotion gate, defined and replayed: it would have demoted every live candidate
+  at the first evaluable window.
+
+No strategy on that desk has earned a stake, and every signal lower bound is negative.
 
 ## Explore
 
@@ -123,7 +143,9 @@ paper evaluation remain unimplemented and explicitly flagged.
 ## Reproduce (Python 3.10+, no third-party packages)
 
 ```sh
-python3 tools/build.py                 # regenerate the 19 root pages
+python3 tools/build.py
+python3 origination/tools/run.py       # regenerate the origination desk's data
+python3 origination/tools/build.py     # regenerate the origination desk's pages                 # regenerate the 19 root pages
 python3 tools/verify.py                # rows, links, fragments, nav, blanks
 python3 engine/availability.py         # lineup + injury evidence rules
 python3 engine/registers.py            # suggestions, questions, decisions

@@ -231,7 +231,7 @@ for m in _store_markets:
         ('repo', 'nfl-sched-w10'), 'Store row / official slate'))
 _order_row = row([' → '.join(f'{t} ({_type_counts[t]})' for t in MARKET_ORDER),
                   'Side first, then the total, then the moneyline — emitted in that fixed order',
-                  'engine/origination.py enforces the order; a test fails if any total precedes a side or any moneyline precedes a total'],
+                  'engine/origination_elo.py enforces the order; a test fails if any total precedes a side or any moneyline precedes a total'],
                  ('repo',), 'Origination contract / tested')
 _tnf_row = row(['WAS 24 @ NYG 21 (Thu 12 Nov) — FINAL',
                 'Not originated: kickoff preceded store deployment (2026-11-14)',
