@@ -1,0 +1,4 @@
+strategy,status,n_walk_games,dir_acc,n_dir,mae,brier_home_win,staking_plan,roi,clv,exposure_cap,gate
+OWN-SIDE · walk-forward side model,Paper,104,0.6346153846153846,104,9.570353084794204,0.23555852087251103,"flat 1 unit, singles only (parlay exposure not implemented)",,,,Live-to-paper gate operating parameters unset -> live issuance blocked
+OWN-TOTAL · walk-forward total model,Paper,104,,0,11.807410106899903,0.23555852087251103,"flat 1 unit, singles only (parlay exposure not implemented)",,,,Live-to-paper gate operating parameters unset -> live issuance blocked
+OWN-ML · walk-forward moneyline model,Paper,104,0.6346153846153846,104,,0.23555852087251103,"flat 1 unit, singles only (parlay exposure not implemented)",,,,Live-to-paper gate operating parameters unset -> live issuance blocked
