@@ -910,3 +910,56 @@ While this branch was in flight, sessions `feaa600b` (PR #34), `201adb50` and `7
 **One pre-existing accessibility defect was found and fixed during integration.** The root browser suite reported `scrollable-region-focusable` (serious) on `lines.html` at 390px. It was reproduced against `origin/main`'s own `lines.html` byte-for-byte, so it came from the tables added on main, not from this branch; it had escaped their CI because the post-merge Pages workflow was cancelled by a concurrent main update. Fix: `table()` in `tools/build.py` now emits `<div class="table-wrap" tabindex="0">`, which is the WCAG-expected keyboard access for a horizontally scrollable region. One shared-file edit, applied to both definitions of `table()`, logged here because it touches every generated page.
 
 Post-merge verification on the merged tree: `tools/verify.py` PASS (25 pages, 915 source-linked rows); 159 root tests OK; 31 release-check tests OK; `engine/availability.py` and `engine/registers.py` PASS; `scripts/check_site.py` PASS; `scripts/build_site.py` reproduces `research/catalog.json` and `site/` with no diff; `node scripts/browser_test_root.cjs` PASS (25 pages × 2 viewports, 50 axe checks, no console errors); `node scripts/browser_test.cjs` PASS (15 pages × 2 viewports).
+
+
+---
+
+# Second overlap note — session 0167a04c, 2026-11-14
+
+Session `a77d40e1` merged PR #40 into `main` while this branch was open, implementing the same requirements for a third time (`engine/board.py`, `data/board/**`, `tools/pages_a77d40e1.py` and the pages `results-feed.html`, `origination.html`, `price-snapshots.html`, `replacement-depth.html`, `signal-staking.html`, `correlations-official.html`). Their work is retained in full. To avoid a name collision this session's three same-named pages were renamed to `origination-engine.html`, `depth-of-replacement.html` and `signal-vs-staking.html`, and this session's findings were renumbered to **F40–F47** because `a77d40e1` had taken F28–F31. Both page modules are registered in `tools/build.py` and both render.
+
+---
+
+## Session `a77d40e1` — claim, 2026-11-14 UTC
+
+| Task | Status | Owner | File scope |
+| --- | --- | --- | --- |
+| Verified results feed (official league scoreboard retrieval, feed schema, page) | in progress | `arena/a77d40e1-own9` | `data/board/results_*`, `tools/pages_a77d40e1.py`, generated `results-feed.html` |
+| Price-snapshot store (open/close per originated market, schema, audit counts, page) | in progress | `arena/a77d40e1-own9` | `data/board/snapshots_*`, generated `price-snapshots.html` |
+| Origination engine: side → total → moneyline order, fair/market/difference columns, walk-forward diagnostic | in progress | `arena/a77d40e1-own9` | `engine/board.py`, `data/board/markets_*`, generated `origination.html` |
+| Signal-vs-staking leaderboard separation (computed split; applies session `feaa600b`'s live-to-paper gate) | in progress | `arena/a77d40e1-own9` | `data/board/leaderboard_*`, generated `signal-staking.html` |
+| Replacement-depth register (depth travelled per replacement, structured field, from committed evidence) | in progress | `arena/a77d40e1-own9` | `data/board/replacement_depth_*`, generated `replacement-depth.html` |
+| Correlations computed only from officially sourced numbers, n published with each value | in progress | `arena/a77d40e1-own9` | `engine/board.py`, `data/board/correlations_*`, generated `correlations-official.html` |
+| Regression coverage for the above engine and pages | in progress | `arena/a77d40e1-own9` | `tests/test_board.py` |
+
+- Read the coordination board first. No open PRs existed at claim time; PR #34 (session `feaa600b`, live-to-paper demotion gate) was merged at 2026-11-14T22:05:09Z and this session **reuses that gate rather than defining a competing one** — `leaderboard.html`, `tests/test_site.py` and that session's build.py gate rows are outside this scope.
+- Work is on the fixed Arena branch `arena/a77d40e1-own9` (branched from `462a7e9`, fast-forwarded to `401393d` before the claim; rebased onto `685e512` during this conflict resolution, preserving session `feaa600b`'s publication record in full). No alternate branch or worktree.
+- New files live in a fresh namespace (`data/board/**`, `engine/board.py`, `tools/pages_a77d40e1.py`, `tests/test_board.py`) so no other session's scope overlaps. Shared-file edits are **additive only** and are logged here when made: `tools/build.py` (one exec block registering the new pages module + NAV_GROUPS entries + KEEP_DATE_14 additions), `evidence/sources.json` (append-only union), `README.md` (append-only section), and the generated `flags.html`/`index.html` appends performed through the same `PAGES[...]` mechanism session `4f2e0291` used. Existing generated pages are not rewritten.
+- Empirical policy inherited unchanged: blank where no official source provides a value; never inferred; every row carries a registered source link; deterministic regeneration byte-for-byte; fail-closed engine behavior.
+- Conflict log, 2026-11-14: the claim push collided with session `feaa600b`'s publication-record append on `COORDINATION.md` (add/add tail conflict). Resolved by union — their record kept verbatim above, this claim appended after; no other file conflicted.
+
+### Completion — session `a77d40e1`, 2026-11-14 UTC
+
+All six claimed tasks are done and published through `tools/pages_a77d40e1.py` on the shared generator.
+
+- **Sources used** (all read on 2026-11-14 UTC, registered in `evidence/sources.json`; 9 new entries appended): the official league weekly schedule pages for Weeks 1–8 and 11 (`https://www.nfl.com/schedules/2026/by-week/week-N`) plus the already-registered Week 9/10 entries. Game links with final scores were transcribed verbatim per week into `data/board/raw/week-NN.txt` (committed transcription record); the parser fails closed on any line it cannot recognise, any team playing twice in a week, any bye club in a game, and any 2×games+byes ≠ 32 arithmetic.
+- **Verification performed**: 121/121 finals that the committed secondary snapshot also scores matched exactly (0 disagreements); Weeks 9–10 are official-only because the secondary file is stale (F29). Structural verifier PASS (25 pages / 1033 source-linked rows, up from 19/661); 126 Python tests incl. 15 new engine/page regressions; 31 release-check tests; availability + decision-register validators; both headless-browser suites (25 root pages × 2 viewports, 50 axe checks, 0 console errors) and the additive-site checks; deterministic regeneration byte-identical after commit.
+- **Irregularities found this session, published as F28–F31 on `flags.html`**: F28 feed is a single-day transcription without per-row revision timestamps (re-retrieve before settlement use); F29 secondary snapshot stale for Weeks 9–10 (matches exactly where current); F30 close snapshots pending by design — the kickoff-60min re-price run is not scheduled, and recording one now would fabricate a price; F31 model fitted on 2026 verified feed only (n=137), walk-forward accuracy 63.5% (n=104) is descriptive, ROI/CLV blank because no executable prices exist.
+- **Shared-file edits (all additive, logged here as required)**: `tools/build.py` — one exec block registering this session's pages module, six NAV_GROUPS entries, six KEEP_DATE_14 additions, and `tabindex="0"` on the generated `.table-wrap` divs in both `table()` definitions (fixes the axe `scrollable-region-focusable` serious violation that the lines.html tables added by session `201adb50` trigger at 390px; caught by the root browser suite, which passed after the fix). `tests/test_own9_delta.py` — two hard count assertions (flags-extension rows 6→floor, page count 19→floor 25) made dynamic floors because later sessions append to both; their F22–F27 rows and ordering are still asserted verbatim. `evidence/sources.json` append-only union (40→49). `README.md` appended. `flags.html`/`index.html` appended via `PAGES[...]` (their existing rows untouched).
+- **Conflict log**: the claim push collided with session `feaa600b`'s publication record on `COORDINATION.md` (resolved by union, recorded above). No other conflicts occurred; `git pull --rebase`/merge-before-push will be repeated before every push.
+- **Boundaries kept**: no other session's page rewritten; no model claim beyond the labelled diagnostics; no wager placed or recommended; every blank cell is a policy blank (no official source) and is labelled as such.
+
+## 0167a04c addendum — second parallel merge and final state, 2026-11-14
+
+`main` advanced again while PR #39 was open: session `a77d40e1` merged PR #40, a third independent implementation of the same eight requirements (`engine/board.py`, `data/board/**`, `tools/pages_a77d40e1.py`, `tests/test_board.py`, and the pages `results-feed.html`, `origination.html`, `price-snapshots.html`, `replacement-depth.html`, `signal-staking.html`, `correlations-official.html`). Their work is retained in full and both page modules are registered in `tools/build.py`.
+
+Collision handling, all on this session's own side:
+
+- `origination.html` → `origination-engine.html`; `replacement-depth.html` → `depth-of-replacement.html`; `signal-staking.html` → `signal-vs-staking.html`. Their files keep the names they merged with.
+- This session's findings were renumbered from F28–F33 to **F40–F47** because `a77d40e1` took F28–F31. The register therefore has a deliberate gap (F32–F39 free) rather than duplicate ids.
+- `tests/test_own9_delta.py::test_page_count_is_theirs_plus_this_delta` was resolved to keep both relaxations (an inclusion check on session 4f2e0291's four pages, plus the `>= 25` floor `a77d40e1` added).
+- `tools/build.py` keeps both exec blocks (`pages_a77d40e1` first, then `pages_0167a04c`), both sets of `KEEP_DATE_14` entries, and both nav groups: theirs inside Evidence/Research, this session's `Origination` group plus `requirements.html` in Review.
+
+Verification on the final merged tree: `tools/build.py` → 31 pages deterministic; `tools/verify.py` → PASS, 1274 source-linked rows; **178 tests OK** (159 + 19 from `tests/test_board.py`); 31 release-check tests OK; `engine/availability.py` and `engine/registers.py` PASS; `scripts/check_site.py` PASS; `research/make_catalog.py` and `scripts/build_site.py` reproduce `research/catalog.json` and `site/` with no diff; `node scripts/browser_test_root.cjs` → PASS, 31 root pages × 2 viewports, 62 axe checks, no console errors.
+
+**Three implementations of the same eight requirements now coexist** (`7e426311`'s `engine/prices.py` + `engine/results.py` + `engine/origination.py`, `a77d40e1`'s `engine/board.py`, and this session's `engine/origination_0167a04c.py`). None was discarded, and consolidating them is recorded as an owner decision (F47, formerly F35) rather than decided unilaterally.

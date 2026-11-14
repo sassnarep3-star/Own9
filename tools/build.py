@@ -24,7 +24,8 @@ PAGES = {}
 # Pages whose tables rest on documents retrieved on 14 Nov 2026.
 KEEP_DATE_14 = {'decision.html','questions.html','availability.html','suggestions.html',
                 'decisions-questions.html','sources.html','flags.html','audit.html','injuries.html',
-               'lines.html','availability-evidence.html','question-ledger.html','suggestion-costs.html'}
+               'lines.html','availability-evidence.html','question-ledger.html','suggestion-costs.html',
+               'results-feed.html','origination.html','price-snapshots.html','signal-staking.html','correlations-official.html','replacement-depth.html'}
 # Added by session 0167a04c: pages whose tables rest on documents retrieved on 14 Nov 2026.
 KEEP_DATE_14 |= {'origination-engine.html','results.html','depth-of-replacement.html',
                  'dependence.html','signal-vs-staking.html','requirements.html'}
@@ -32,8 +33,8 @@ KEEP_DATE_14 |= {'origination-engine.html','results.html','depth-of-replacement.
 # Navigation grouped by what the reader is trying to do, not by file order.
 NAV_GROUPS = [
     ('Decide', [('decision.html','Decision brief'),('questions.html','Question register'),('decisions-questions.html','Decision review'),('question-ledger.html','Question ledger')]),
-    ('Evidence', [('index.html','Overview'),('availability.html','Availability tracker'),('injuries.html','Injuries & depth'),('availability-evidence.html','Availability sources'),('lines.html','Own lines'),('data.html','Data requirements'),('sources.html','Sources')]),
-    ('Research', [('strategies.html','Strategies'),('correlations.html','Correlations'),('validation.html','Validation'),('leaderboard.html','Leaderboard')]),
+    ('Evidence', [('index.html','Overview'),('availability.html','Availability tracker'),('injuries.html','Injuries & depth'),('availability-evidence.html','Availability sources'),('lines.html','Own lines'),('results-feed.html','Results feed'),('origination.html','Market board'),('price-snapshots.html','Price snapshots'),('replacement-depth.html','Replacement depth'),('data.html','Data requirements'),('sources.html','Sources')]),
+    ('Research', [('strategies.html','Strategies'),('correlations.html','Correlations'),('correlations-official.html','Correlations (official)'),('validation.html','Validation'),('leaderboard.html','Leaderboard'),('signal-staking.html','Signal vs staking')]),
     ('Origination', [('origination-engine.html','Origination engine'),('results.html','Verified results'),('depth-of-replacement.html','Depth of replacement'),('dependence.html','Dependence'),('signal-vs-staking.html','Signal / staking split')]),
     ('Review', [('suggestions.html','Suggestions'),('suggestion-costs.html','Suggestion costs'),('flags.html','Flagged for review'),('audit.html','Repository audit'),('requirements.html','Requirements coverage')]),
 ]
@@ -785,6 +786,15 @@ _own9_body = _own9_source.split('"""', 2)[2]
 exec(compile(_own9_body, 'pages_4f2e0291.py', 'exec'),
      {'page': page, 'table': table, 'row': row, 'e': e, 'PAGES': PAGES, 'ROOT': ROOT,
       '__name__': 'pages_4f2e0291'})
+
+
+# Session a77d40e1 (2026-11-14): market-board delta, registered through the same page()
+# API; its engine lives in engine/board.py and its data in data/board/.
+_a77d40e1_source = (ROOT/'tools/pages_a77d40e1.py').read_text()
+_a77d40e1_body = _a77d40e1_source.split('"""', 2)[2]
+exec(compile(_a77d40e1_body, 'pages_a77d40e1.py', 'exec'),
+     {'page': page, 'table': table, 'row': row, 'e': e, 'PAGES': PAGES, 'ROOT': ROOT,
+      '__name__': 'pages_a77d40e1'})
 
 
 # Session 0167a04c's origination-engine pages, registered the same additive way: the module

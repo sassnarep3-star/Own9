@@ -188,9 +188,11 @@ class ReviewRegister(unittest.TestCase):
         # session's original findings (depth chart, per-row timestamps) are covered there.
         rows = [r['cells'] for r in tables('flags.html')
                 if r['caption'].startswith('Review register extension')]
-        self.assertEqual(len(rows), 6)
-        self.assertEqual([r[0].split(' ')[0] for r in rows], [f'F{n}' for n in range(22, 28)])
-        self.assertEqual(len([r for r in rows if 'Critical' in r[0]]), 2)
+        # Dynamic floor: later sessions append further extension tables (a77d40e1 added
+        # F28-F31 on 2026-11-14), so this session's own six rows are a floor, not a total.
+        self.assertGreaterEqual(len(rows), 6)
+        self.assertEqual([r[0].split(' ')[0] for r in rows[:6]], [f'F{n}' for n in range(22, 28)])
+        self.assertEqual(len([r for r in rows[:6] if 'Critical' in r[0]]), 2)
         self.assertIn('F18', rows[0][1] + rows[0][2],
                       'the market-archive finding must name the register rows it contradicts')
 
@@ -243,13 +245,14 @@ class Structural(unittest.TestCase):
         self.assertEqual(errors, [])
 
     def test_page_count_is_theirs_plus_this_delta(self):
-        # Relaxed by session 0167a04c: six further pages were added after this delta was
-        # merged, so a fixed total no longer measures anything. What the assertion must
-        # still guarantee is that this session's four pages remain published.
+        # Relaxed by session 0167a04c, then by a77d40e1: the page total keeps growing as
+        # sessions add pages, so a fixed count no longer measures anything. What this
+        # assertion must still guarantee is that session 4f2e0291's four pages are published.
         rendered = {f.name for f in ROOT.glob('*.html')}
         self.assertTrue({'lines.html', 'availability-evidence.html', 'question-ledger.html',
                          'suggestion-costs.html'} <= rendered,
                         "this session's four pages are missing from the rendered set")
+        self.assertGreaterEqual(len(rendered), 25, '15 from main + 4 from 4f2e0291 + 6 from a77d40e1')
 
     def test_new_pages_are_linked_from_nav_exactly_once(self):
         for name in ('lines.html', 'availability-evidence.html', 'question-ledger.html',
