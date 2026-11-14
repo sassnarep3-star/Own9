@@ -1,0 +1,293 @@
+{
+ "document_title": "Question, information and answer register",
+ "purpose": "Every question that must be answered before a decision is reasonable, split into what is already known from a verified source, what is not known but could still be discovered, and what is not published and may never be knowable.",
+ "as_of": "2026-11-14",
+ "states": {
+  "answered": "Answered from a linked official or reference source. The answer text is deliberately narrow and does not exceed what the source says.",
+  "open_discoverable": "Not answered, but a specific verifiable artefact would answer it.",
+  "unknown_unpublished": "The publisher does not release this field. It is left blank and is not estimated."
+ },
+ "counts_note": "Counts are computed by tools/build.py from the rows below; they are not typed by hand.",
+ "questions": [
+  {
+   "id": "Q-01",
+   "group": "Outcomes and participation",
+   "question": "Can we establish, from an official source, which eleven players started a given NFL game?",
+   "information_needed": "An official league publication that prints the game-day starting lineup.",
+   "answer": "Yes. Each NFL Game Book prints an Offense and Defense lineup block for both clubs, with jersey number, abbreviated name and position.",
+   "state": "answered",
+   "sources": [
+    "nfl-gamebook-w10",
+    "nfl-gamebook-w9-lar-was",
+    "nfl-gamebook-w9-nyg-phi"
+   ]
+  },
+  {
+   "id": "Q-02",
+   "group": "Outcomes and participation",
+   "question": "Does the NFL publish first, second, third or fourth string depth designations?",
+   "information_needed": "A league-published depth chart or string label per player.",
+   "answer": "No. The official roster page publishes number, position, roster status code, height, weight, age and college. No depth tier or starter flag is published, so every depth tier in this project stays blank.",
+   "state": "answered",
+   "sources": [
+    "nfl-roster",
+    "nfl-gamebook-w10"
+   ],
+   "basis": "publisher"
+  },
+  {
+   "id": "Q-03",
+   "group": "Availability",
+   "question": "Is a blank game status equivalent to a player being available?",
+   "information_needed": "A case where a blank status and the actual game participation can be compared.",
+   "answer": "No. Treylon Burks was listed as Did Not Participate In Practice with a blank game status in the Week 10 report, then started and recorded 2 receptions for 27 yards.",
+   "state": "answered",
+   "sources": [
+    "nfl-injury",
+    "nfl-gamebook-w10"
+   ]
+  },
+  {
+   "id": "Q-04",
+   "group": "Availability",
+   "question": "Does absence from the weekly injury report mean a player will be active?",
+   "information_needed": "An official inactive list that can be compared with the same week's injury report.",
+   "answer": "No. Six of the seven Giants printed under Not Active in the Week 10 Game Book carried no injury designation of any kind in that week's report.",
+   "state": "answered",
+   "sources": [
+    "nfl-injury",
+    "nfl-gamebook-w10"
+   ]
+  },
+  {
+   "id": "Q-05",
+   "group": "Availability",
+   "question": "Can a replacement starter be identified when a listed starter leaves the lineup?",
+   "information_needed": "Two official Game Books with a shared club, plus the injury report for the later week.",
+   "answer": "Yes, for the verified case. Lucas Patrick started at center in Week 9, was ruled Out with a concussion in Week 10, and was printed under Not Active while Nick Allegretti started at center. The replacement's depth tier is not published and stays blank.",
+   "state": "answered",
+   "sources": [
+    "nfl-gamebook-w9-lar-was",
+    "nfl-gamebook-w10",
+    "nfl-injury"
+   ]
+  },
+  {
+   "id": "Q-06",
+   "group": "Availability",
+   "question": "Why did the other three Week 10 starting-lineup changes happen?",
+   "information_needed": "A league statement of cause, or an injury designation that matches an inactive list entry.",
+   "answer": null,
+   "state": "open_discoverable",
+   "blocked_by": "The Game Book prints who, not why, and three of the four changes involve players with no Out/Questionable designation in the same week's report.",
+   "sources": [
+    "nfl-gamebook-w10",
+    "nfl-injury"
+   ]
+  },
+  {
+   "id": "Q-07",
+   "group": "Outcomes and participation",
+   "question": "Do we have snap counts or participation percentages for these games?",
+   "information_needed": "A participation report per game.",
+   "answer": null,
+   "state": "open_discoverable",
+   "blocked_by": "The Game Book summary fields read here contain lineups, substitutions, inactive lists and statistics but no snap counts.",
+   "sources": [
+    "nfl-gamebook-w10"
+   ]
+  },
+  {
+   "id": "Q-08",
+   "group": "Market data",
+   "question": "Do we have executable historical prices for any NFL market?",
+   "information_needed": "A licensed archive of operator quotes with timestamps, market, line and decimal price.",
+   "answer": null,
+   "state": "open_discoverable",
+   "blocked_by": "No qualifying source has been obtained. The NFL publishes results and statistics, not odds, so no price may be inferred from an NFL page.",
+   "sources": [
+    "nfl-schedule-w10",
+    "dk-markets"
+   ]
+  },
+  {
+   "id": "Q-09",
+   "group": "Market data",
+   "question": "What happens to a bet when the outcome lands exactly on the line?",
+   "information_needed": "The operator's own market rules for the market in question.",
+   "answer": "For the cited operator, two-way spread, moneyline and total bets settle as a Push when the outcome equals the line after the handicap; grouped markets are void when a listed selection does not participate, and dead-heat reductions apply.",
+   "state": "answered",
+   "sources": [
+    "dk-markets"
+   ]
+  },
+  {
+   "id": "Q-10",
+   "group": "Correlation and joints",
+   "question": "Do we know any measured correlation between NFL legs?",
+   "information_needed": "Aligned paired leg outcomes with a valid interval and a dependence-aware design.",
+   "answer": null,
+   "state": "open_discoverable",
+   "blocked_by": "No aligned leg-level dataset exists. One Week 10 box score is not a correlation sample, and reporting a coefficient from it would be a fabricated result.",
+   "sources": [
+    "nfl-gamebook-w10",
+    "pearson"
+   ]
+  },
+  {
+   "id": "Q-11",
+   "group": "Correlation and joints",
+   "question": "May a joint bet be priced by multiplying marginal probabilities?",
+   "information_needed": "A decision rule for when dependence may be ignored.",
+   "answer": "No. Multiplication asserts independence. This project only prices a joint when a correlation interval clears a predeclared deadband; otherwise the joint price is left blank.",
+   "state": "answered",
+   "sources": [
+    "repo",
+    "pearson"
+   ]
+  },
+  {
+   "id": "Q-12",
+   "group": "Correlation and joints",
+   "question": "Is a pairwise correlation matrix enough to price a three-leg same-game parlay?",
+   "information_needed": "A joint identification argument for more than two legs.",
+   "answer": "No. Pairwise correlations do not determine a joint distribution over three or more binary legs, so a full joint must be simulated or estimated directly.",
+   "state": "answered",
+   "sources": [
+    "repo"
+   ],
+   "basis": "project_mathematics",
+   "basis_note": "Stated as project mathematics, not as an empirical NFL finding: pairwise marginals and pairwise correlations under-determine a joint distribution over three or more binary events."
+  },
+  {
+   "id": "Q-13",
+   "group": "Validation",
+   "question": "How many games are needed before a sealed test can detect a realistic edge?",
+   "information_needed": "A written power study with a minimum detectable effect for each candidate family.",
+   "answer": null,
+   "state": "open_discoverable",
+   "blocked_by": "No power study has been run. Gate 3 is blocked until the required sample size is declared before the test.",
+   "sources": [
+    "repo",
+    "holdout"
+   ]
+  },
+  {
+   "id": "Q-14",
+   "group": "Validation",
+   "question": "How should multiple candidate strategies be corrected for?",
+   "information_needed": "A predeclared family and an error-control method.",
+   "answer": "A step-down Holm correction over a family registered in advance controls the family-wise error rate in the independent case and is robust under positive dependence.",
+   "state": "answered",
+   "sources": [
+    "holm",
+    "multiplicity"
+   ]
+  },
+  {
+   "id": "Q-15",
+   "group": "Validation",
+   "question": "Can luck be removed from a performance record?",
+   "information_needed": "A method that separates repeatable skill from chance in a finite sample.",
+   "answer": "No. Proper scoring, held-out periods and uncertainty bounds can supply evidence of skill. They cannot remove chance, and a positive return is never proof of it.",
+   "state": "answered",
+   "sources": [
+    "holdout",
+    "brier"
+   ]
+  },
+  {
+   "id": "Q-16",
+   "group": "Competition",
+   "question": "Is there a funded competition with cash rewards today?",
+   "information_needed": "A sponsor, a pool and a published payout schedule.",
+   "answer": "No. The leaderboard is hypothetical, non-cash recognition only, and no entry is eligible because no gate has been evaluated.",
+   "state": "answered",
+   "sources": [
+    "repo"
+   ],
+   "basis": "project_record",
+   "basis_note": "A negative claim about this repository, so the repository is the only correct source."
+  },
+  {
+   "id": "Q-17",
+   "group": "Governance",
+   "question": "Is wagering on this research lawful and available to the reader?",
+   "information_needed": "The regulator for the reader's jurisdiction and the operator's licence position.",
+   "answer": null,
+   "state": "open_discoverable",
+   "blocked_by": "The cited regulator page establishes only that a state framework exists. It makes no determination about a specific reader, operator or wager, and no wager is placed by this project.",
+   "sources": [
+    "wa-gaming"
+   ]
+  },
+  {
+   "id": "Q-18",
+   "group": "Governance",
+   "question": "Do we have the right to redistribute the official PDFs and pages used as evidence?",
+   "information_needed": "A licence or permission statement from the publisher.",
+   "answer": null,
+   "state": "open_discoverable",
+   "blocked_by": "The Game Books carry an NFL copyright notice restricting use. This project quotes short excerpts for verification and links the originals rather than republishing them; formal permission has not been obtained.",
+   "sources": [
+    "nfl-gamebook-w10",
+    "nfl-capsules-pdf"
+   ]
+  },
+  {
+   "id": "Q-19",
+   "group": "Outcomes and participation",
+   "question": "Does the 2026 rulebook settled any of the modelling questions?",
+   "information_needed": "Rules that determine a scoring or clock state used by a model.",
+   "answer": "No. The rulebook defines game rules and the 2026 changes. It says nothing about settlement, calibration or the probability of any event.",
+   "state": "answered",
+   "sources": [
+    "nfl-rulebook"
+   ]
+  },
+  {
+   "id": "Q-20",
+   "group": "Outcomes and participation",
+   "question": "Can team-level efficiency ranks be cited as a point-in-time feature?",
+   "information_needed": "A dated snapshot showing what was published before kickoff.",
+   "answer": null,
+   "state": "open_discoverable",
+   "blocked_by": "The Week 10 capsules publish dated team metrics and ranks, but a retrieved copy does not establish what a model could have used before that week's games. No historical as-of capture exists.",
+   "sources": [
+    "nfl-capsules-pdf",
+    "nfl-capsules"
+   ]
+  },
+  {
+   "id": "Q-21",
+   "group": "Availability",
+   "question": "Does the NFL publish a return date or prognosis for an injured player?",
+   "information_needed": "A league-published expected return window per player.",
+   "answer": null,
+   "state": "unknown_unpublished",
+   "blocked_by": "The official report publishes practice participation and a game designation only. No prognosis or return date is released, so any projected return date would be invented.",
+   "basis": "publisher",
+   "sources": [
+    "nfl-injury"
+   ]
+  },
+  {
+   "id": "Q-22",
+   "group": "Outcomes and participation",
+   "question": "Is team or player height, weight, age or college relevant enough to acquire as a feature?",
+   "information_needed": "A decision on whether roster biometrics and college fields are needed at all.",
+   "answer": null,
+   "state": "unknown_unpublished",
+   "blocked_by": "Not a prediction of a missing publication; this field is deliberately out of scope. The roster page does publish these values, but the project has declared no use for them, so they are not acquired. Recorded here so the omission is visible rather than accidental.",
+   "basis": "publisher",
+   "sources": [
+    "nfl-roster"
+   ]
+  }
+ ],
+ "basis_values": {
+  "publisher": "The answer rests on a publisher or reference source, which must be listed.",
+  "project_mathematics": "The answer is a mathematical statement about the project's own algebra and claims nothing about NFL data. Requires basis_note.",
+  "project_record": "The answer is a statement about this repository's contents or status. Requires basis_note."
+ }
+}
