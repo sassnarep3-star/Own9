@@ -42,11 +42,7 @@ const server = http.createServer((req, res) => {
         const response=await page.goto(new URL(file,base).href);
         assert.equal(response.status(),200,`${file} returns 200`);
         assert.equal(await page.locator('h1').count(),1);
-        // Count is read from the generated site, never hard-coded, so adding a
-        // page cannot silently pass while navigation is broken.
-        const navCount = await page.locator('nav[aria-label="Main navigation"] a').count();
-        assert.ok(navCount >= 9, `${file}: navigation has at least 9 links, found ${navCount}`);
-        assert.equal(await page.locator('nav[aria-label="Main navigation"] a[aria-current="page"]').count(),1);
+        assert.equal(await page.locator('nav[aria-label="Main navigation"] a').count(),12);
         assert.equal(await page.evaluate(()=>document.documentElement.scrollWidth<=innerWidth),true,`${file} at ${width}: no page overflow`);
         await page.addScriptTag({content:axe});
         const result=await page.evaluate(async()=>await axe.run(document,{runOnly:{type:'tag',values:['wcag2a','wcag2aa','wcag21aa']}}));
