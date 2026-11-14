@@ -26,15 +26,15 @@ KEEP_DATE_14 = {'decision.html','questions.html','availability.html','suggestion
                 'decisions-questions.html','sources.html','flags.html','audit.html','injuries.html',
                'lines.html','availability-evidence.html','question-ledger.html','suggestion-costs.html'}
 # Added by session 0167a04c: pages whose tables rest on documents retrieved on 14 Nov 2026.
-KEEP_DATE_14 |= {'origination.html','results.html','replacement-depth.html','dependence.html',
-                 'signal-staking.html','requirements.html'}
+KEEP_DATE_14 |= {'origination-engine.html','results.html','depth-of-replacement.html',
+                 'dependence.html','signal-vs-staking.html','requirements.html'}
 
 # Navigation grouped by what the reader is trying to do, not by file order.
 NAV_GROUPS = [
     ('Decide', [('decision.html','Decision brief'),('questions.html','Question register'),('decisions-questions.html','Decision review'),('question-ledger.html','Question ledger')]),
     ('Evidence', [('index.html','Overview'),('availability.html','Availability tracker'),('injuries.html','Injuries & depth'),('availability-evidence.html','Availability sources'),('lines.html','Own lines'),('data.html','Data requirements'),('sources.html','Sources')]),
     ('Research', [('strategies.html','Strategies'),('correlations.html','Correlations'),('validation.html','Validation'),('leaderboard.html','Leaderboard')]),
-    ('Origination', [('origination.html','Origination engine'),('results.html','Verified results'),('replacement-depth.html','Replacement depth'),('dependence.html','Dependence'),('signal-staking.html','Signal vs staking')]),
+    ('Origination', [('origination-engine.html','Origination engine'),('results.html','Verified results'),('depth-of-replacement.html','Depth of replacement'),('dependence.html','Dependence'),('signal-vs-staking.html','Signal / staking split')]),
     ('Review', [('suggestions.html','Suggestions'),('suggestion-costs.html','Suggestion costs'),('flags.html','Flagged for review'),('audit.html','Repository audit'),('requirements.html','Requirements coverage')]),
 ]
 

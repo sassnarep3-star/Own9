@@ -30,8 +30,8 @@ from engine.origination_0167a04c import (DEMOTION_POLICY, ORIGINATION_ORDER, PRI
                                 unit_depth_index, validate_snapshot)
 from verify import Page  # noqa: E402
 
-NEW_PAGES = ('origination.html', 'results.html', 'replacement-depth.html',
-             'dependence.html', 'signal-staking.html', 'requirements.html')
+NEW_PAGES = ('origination-engine.html', 'results.html', 'depth-of-replacement.html',
+             'dependence.html', 'signal-vs-staking.html', 'requirements.html')
 SYNTHETIC = 'SYNTHETIC'
 
 
@@ -289,14 +289,14 @@ class ReplacementDepth(unittest.TestCase):
     def test_no_row_invents_a_depth_tier_label(self):
         banned = {'1st string', '2nd string', '3rd string', '4th string',
                   'first string', 'second string', 'third string', 'fourth string'}
-        offenders = [c for row in rows_of('replacement-depth.html')
+        offenders = [c for row in rows_of('depth-of-replacement.html')
                      for c in row['cells'] if c.strip().lower() in banned]
         self.assertEqual(offenders, [], f'depth tier labels were rendered: {offenders}')
 
     def test_every_depth_row_cites_the_report_and_a_chart(self):
         tables = {r['club'] for r in self.register}
         self.assertEqual(tables, {'KC', 'SEA', 'DET'})
-        for row in rows_of('replacement-depth.html'):
+        for row in rows_of('depth-of-replacement.html'):
             if row['cells'][0].startswith(('KC ·', 'SEA ·', 'DET ·')):
                 self.assertTrue(row['links'], 'a depth row lost its source links')
 
@@ -434,7 +434,7 @@ class PublishedPages(unittest.TestCase):
                                 f'{name}: row {index} has no registered source link')
 
     def test_demonstrated_numbers_are_labelled_synthetic(self):
-        for name in ('origination.html', 'signal-staking.html'):
+        for name in ('origination-engine.html', 'signal-vs-staking.html'):
             self.assertIn(SYNTHETIC, (ROOT / name).read_text())
         # Caption -> (rows in the table, rows that must carry the SYNTHETIC marker).
         worked = {
@@ -450,7 +450,7 @@ class PublishedPages(unittest.TestCase):
             'Gate outcomes on synthetic live periods': (4, 3),
         }
         seen = 0
-        for page_name in ('origination.html', 'signal-staking.html'):
+        for page_name in ('origination-engine.html', 'signal-vs-staking.html'):
             for caption, rows in tables_of(page_name).items():
                 if caption not in worked:
                     continue
@@ -471,14 +471,14 @@ class PublishedPages(unittest.TestCase):
 
     def test_the_new_findings_are_on_the_flags_page(self):
         html = (ROOT / 'flags.html').read_text()
-        for number in range(28, 36):
+        for number in range(40, 48):
             self.assertIn(f'F{number}', html)
         ids = [c[0].split(' ')[0] for c in cells_of('flags.html')
                if c[0].startswith('F') and len(c[0].split(' ')[0]) == 3]
         self.assertEqual(len(ids), len(set(ids)), 'a finding id was published twice')
 
     def test_the_price_store_page_links_the_committed_csv(self):
-        html = (ROOT / 'origination.html').read_text()
+        html = (ROOT / 'origination-engine.html').read_text()
         self.assertIn('data/snapshots/price-snapshots.csv', html)
         self.assertIn('data/results/verified-results.csv', (ROOT / 'results.html').read_text())
 

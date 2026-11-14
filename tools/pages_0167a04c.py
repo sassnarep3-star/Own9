@@ -99,7 +99,7 @@ _STAKING_WHY = {
 }
 
 NEW_FLAGS = [
-    ('F28 · High',
+    ('F40 · High',
      'The NFL game-centre and scores routes do not publish the final score as retrievable '
      'text. Both were read on 2026-11-14 and both render the score as "Hidden Score"; only the '
      'schedule by-week route and the Game Book PDFs published the number itself. Any automated '
@@ -110,7 +110,7 @@ NEW_FLAGS = [
      'A dated re-check, plus a written ingestion contract that names the schedule route and the '
      'Game Book PDF as the only permitted result sources.',
      ('nfl-gamecenter-w10', 'nfl-schedule-w9', 'nfl-gamebook-w10')),
-    ('F29 · High',
+    ('F41 · High',
      'Two players ruled Out on the official Week 10 report appear in no column of their own '
      'club\'s depth chart: Omarr Norman-Lott is on neither Kansas City defensive-tackle row, '
      'and Kerby Joseph is absent from the Lions\' safety rows while carrying a game status on '
@@ -122,7 +122,7 @@ NEW_FLAGS = [
      'A chart or league record that lists the player, or a documented rule for handling '
      'report-chart conflicts that is applied identically to every club.',
      ('nfl-injury-w10', 'chiefs-depth', 'lions-depth')),
-    ('F30 · Medium',
+    ('F42 · Medium',
      'Injury-report position labels do not resolve to depth-chart slots. The report lists '
      '"T" for Jaylon Moore and Charles Cross and "G" for Quenton Nelson, while the club charts '
      'split those into LT/RT and LG/RG. Matching had to be done by player name, which is '
@@ -133,7 +133,7 @@ NEW_FLAGS = [
      'Shared stable player identifiers across league and club pages, or a written name-matching '
      'rule with a published conflict log.',
      ('nfl-injury-w10', 'chiefs-depth', 'seahawks-depth')),
-    ('F31 · Medium',
+    ('F43 · Medium',
      'The results feed carries no kickoff time and no overtime flag, because the schedule route '
      'publishes kickoff times only for games that have not kicked off and does not publish '
      'overtime at all. Totals cannot be settled uniformly without the overtime rule, and no '
@@ -143,7 +143,7 @@ NEW_FLAGS = [
      'Verify both fields from the official Game Book of each game and re-issue the feed; until '
      'then totals settlement stays blocked.',
      ('nfl-schedule-w9', 'nfl-gamebook-w10')),
-    ('F32 · Medium',
+    ('F44 · Medium',
      'Week 10 2026 was still in progress when the feed was captured: one of its fifteen games '
      'was final at retrieval on 2026-11-14. Any figure computed across the feed mixes one full '
      'week with one partial week, and the partial week will change without warning.',
@@ -151,7 +151,7 @@ NEW_FLAGS = [
      'Re-capture after the week completes and record the capture state on every derived figure, '
      'or restrict published measurements to completed weeks.',
      ('nfl-schedule-w9',)),
-    ('F33 · Critical',
+    ('F45 · Critical',
      'The price-snapshot store is empty, so closing-line value, the demotion gate\'s live '
      'triggers and any return figure are implemented but unevaluable. This is the operating '
      'consequence of F22 rather than a new discovery: the gates built this session cannot be '
@@ -162,7 +162,7 @@ NEW_FLAGS = [
      'settlement rules. Until one exists, no ROI, closing-line value or demotion decision may '
      'be computed, and none is published.',
      ('repo',)),
-    ('F34 · Medium',
+    ('F46 · Medium',
      'Two sessions reached different conclusions about replacement depth. Earlier sessions '
      'withheld every depth tier as unverifiable because the league publishes no depth chart; '
      'this session measures strings travelled from the clubs\' own charts and carries the '
@@ -175,7 +175,7 @@ NEW_FLAGS = [
      'column blank until a league record exists. Both are defensible; silently mixing them '
      'is not.',
      ('chiefs-depth', 'seahawks-depth', 'lions-depth', 'nfl-no-depth-chart')),
-    ('F35 · Medium',
+    ('F47 · Medium',
      'The same six requirements now have two independent implementations on the merged tree. '
      'Sessions feaa600b, 201adb50 and 7e426311 merged engine/prices.py, engine/results.py and '
      'engine/origination.py with demotion and signal/staking tables on leaderboard.html and '
@@ -235,7 +235,7 @@ def _three_column_row(market, columns):
 
 
 # ---------------------------------------------------------------------------
-# origination.html
+# origination-engine.html
 
 _ORDER_ENFORCEMENT = {
     'side': 'Runs first. Refuses to run at all without a frozen joint score distribution.',
@@ -244,7 +244,7 @@ _ORDER_ENFORCEMENT = {
                  'the side priced at a handicap of zero.',
 }
 
-page('origination.html', 'Origination engine', 'Side, then total,\\nthen moneyline.',
+page('origination-engine.html', 'Origination engine', 'Side, then total,\\nthen moneyline.',
      'The store, the order and the three columns every originated market must publish. '
      'Measured contents are read from the committed files at build time; the store is empty '
      'because no executable price has been captured, and the page says so rather than filling it.',
@@ -428,7 +428,7 @@ page('results.html', 'Verified results', 'Official scores,\\nnothing inferred.',
      'backtest would need, and the page measures how far short of usable it still is.',
      '<div class="notice"><strong>What a results feed is for</strong><p>A backtest needs two '
      'things joined on the same market: the outcome and the price that was available. This page '
-     'is the outcome half. The price half lives in the <a href="origination.html">price-snapshot '
+     'is the outcome half. The price half lives in the <a href="origination-engine.html">price-snapshot '
      'store</a>, which is empty, so the two halves do not yet meet and no return figure can be '
      'computed.</p></div>'
      + table('Measured coverage of the feed', ['Measurement', 'Value', 'Note'],
@@ -502,12 +502,12 @@ page('results.html', 'Verified results', 'Official scores,\\nnothing inferred.',
                     ('repo',), 'Measured from the committed file')])
      + '<p class="download">Download the feed: '
        '<a href="data/results/verified-results.csv">verified-results.csv</a>. '
-       'Read the <a href="origination.html">price-snapshot store</a> for the half that is '
+       'Read the <a href="origination-engine.html">price-snapshot store</a> for the half that is '
        'missing, and <a href="flags.html">Flagged for Review</a> for the two checked absences '
        'that block kickoff times and overtime flags.</p>')
 
 # ---------------------------------------------------------------------------
-# replacement-depth.html
+# depth-of-replacement.html
 
 _UNIT_INDEX = unit_depth_index([r for r in DEPTH_ROWS if r['slot']])
 _CLUB_INDEX = {}
@@ -527,7 +527,7 @@ _SLOT_NOTE = {
     3: 'Three strings travelled: the chart had to go to its fourth string.',
 }
 
-page('replacement-depth.html', 'Replacement depth', 'How far down the chart,\\nnot just that '
+page('depth-of-replacement.html', 'Replacement depth', 'How far down the chart,\\nnot just that '
      'someone is out.',
      'Every ruled-out starter and backup matched to the column of an official club depth chart, '
      'so the depth of the replacement is a measured number rather than a fact of absence. Depth '
@@ -703,7 +703,7 @@ page('dependence.html', 'Dependence register', 'Every correlation\\npublished wi
        'they are gated because sixteen pairs cannot carry a price.</p>')
 
 # ---------------------------------------------------------------------------
-# signal-staking.html
+# signal-vs-staking.html
 
 _SYNTH_ENTRIES = [
     leaderboard_entry('worked-example-A',
@@ -752,7 +752,7 @@ _BAD = demotion_gate('live', _LIVE_WINDOWS_BAD)
 _UNMEASURED = demotion_gate('live', _LIVE_WINDOWS_UNMEASURED)
 _PAPER = demotion_gate('paper', _LIVE_WINDOWS_GOOD)
 
-page('signal-staking.html', 'Signal vs staking', 'Two columns.\\nTwo ranks. Never mixed.',
+page('signal-vs-staking.html', 'Signal vs staking', 'Two columns.\\nTwo ranks. Never mixed.',
      'A leaderboard that ranks what a strategy knew separately from how it was staked, so a '
      'lucky staking run cannot carry a weak signal and a strong signal is not buried by a '
      'conservative stake. Includes the demotion gate that sends a live strategy back to paper.',
@@ -763,7 +763,7 @@ page('signal-staking.html', 'Signal vs staking', 'Two columns.\\nTwo ranks. Neve
      '<p>Read this page together with the <a href="leaderboard.html">Leaderboard</a> and '
      '<a href="validation.html">Validation</a> pages, which publish the same two ideas as '
      'policy tables written by earlier sessions. Both are live on this site; which one '
-     'becomes canonical is an owner decision, recorded as F35 rather than decided here.</p></div>'
+     'becomes canonical is an owner decision, recorded as F47 rather than decided here.</p></div>'
      + table('Signal columns', ['Column', 'Question it answers', 'Luck exposure'],
              [row([field, _SIGNAL_WHY[field][0], _SIGNAL_WHY[field][1]], ('repo',),
                   'Project scoring contract') for field in SIGNAL_FIELDS])
@@ -1037,7 +1037,7 @@ page('requirements.html', 'Requirements coverage', 'What was asked,\\nwhat now e
                    '<a href="validation.html">Validation</a>',
                    'Their tables define the policy; this session\'s pages implement it as '
                    'code with worked examples. Both are published; consolidating them is an '
-                   'owner decision (F35).'], ('repo',), 'Project record / overlap recorded'),
+                   'owner decision (F47).'], ('repo',), 'Project record / overlap recorded'),
               row(['Price store, results feed and origination order (earlier sessions)',
                    'engine/prices.py, engine/results.py, engine/origination.py',
                    'Their modules specify the schema and the eight pipeline stages; this '
