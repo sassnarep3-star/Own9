@@ -36,6 +36,7 @@ source, no retrieval timestamp and no confirmed licence, so it can supply arithm
 inputs and nothing else. That asymmetry is the point of the gate.
 """
 import json
+import re
 from pathlib import Path
 
 from engine.snapshots import LEAGUE_HOSTS, SnapshotError
@@ -238,6 +239,115 @@ def _week8_card_checks():
     return out
 
 
+# Team names may contain digits ('49ers'), so the name class is alphanumeric. A narrower class
+# silently dropped two games on first run and looked like the other session's capture was short.
+FINAL_LINE = re.compile(r'^- \[([A-Za-z0-9 .\'&]+?) (\d+), ([A-Za-z0-9 .\'&]+?) (\d+), FINAL, ([^\]]+)\]'
+                        r'\((\S+)\)\s*$')
+SCHEDULED_LINE = re.compile(r'^- \[([A-Za-z0-9 .\'&]+?) at ([A-Za-z0-9 .\'&]+?), ([^\]]+)\]'
+                           r'\((\S+)\)\s*$')
+SLUG = re.compile(r'/games/([a-z0-9-]+)$')
+BYE_COMMENT = re.compile(r'^#\s*Teams on bye:\s*([A-Z, ]+)')
+
+
+def read_raw_capture(week):
+    """Read another session's verbatim page capture for one week, if the file exists.
+
+    `data/board/raw/week-NN.txt` was committed by session a77d40e1 through PR #40: the game-link
+    lines copied out of the retrieved page, with the URL. Reading it is not re-verifying a number
+    against itself — the file was transcribed by a different process on the same official page, so
+    agreement is a second witness and disagreement is a real signal. A missing file is reported as
+    absent, never as agreement.
+    """
+    path = ROOT / 'data' / 'board' / 'raw' / f'week-{week:02d}.txt'
+    if not path.exists():
+        return {'path': str(path.relative_to(ROOT)), 'present': False, 'games': {}, 'bye': []}
+    games, bye = {}, []
+    for line in path.read_text().splitlines():
+        if line.startswith('#'):
+            found = BYE_COMMENT.match(line)
+            if found:
+                bye = [x.strip() for x in found.group(1).split(',') if x.strip()]
+            continue
+        final = FINAL_LINE.match(line)
+        if final:
+            slug = SLUG.search(final.group(6))
+            games[slug.group(1) if slug else line] = {
+                'status': 'final', 'away_name': final.group(1), 'home_name': final.group(3),
+                'away_points': int(final.group(2)), 'home_points': int(final.group(4)),
+                'date_label': final.group(5)}
+            continue
+        scheduled = SCHEDULED_LINE.match(line)
+        if scheduled:
+            slug = SLUG.search(scheduled.group(4))
+            games[slug.group(1) if slug else line] = {
+                'status': 'scheduled', 'away_name': scheduled.group(1),
+                'home_name': scheduled.group(2), 'away_points': None, 'home_points': None,
+                'date_label': scheduled.group(3)}
+    return {'path': str(path.relative_to(ROOT)), 'present': True, 'games': games, 'bye': bye}
+
+
+def cross_check(rows, bye_by_week=None):
+    """Compare this session's transcription against the independent verbatim capture, game by game.
+
+    Only the fields both sources actually carry are compared: the two club names, the two scores and
+    the status. A game present on one side only is reported as a coverage difference, because a feed
+    that quietly drops a game and one that quietly adds one look identical in a summary count.
+    """
+    per_week, problems = [], []
+    bye_for_week = {int(k): {a for a in v} for k, v in (bye_by_week or {}).items()}
+    for week in sorted({r['week'] for r in rows}):
+        capture = read_raw_capture(week)
+        entry = {'week': week, 'capture_path': capture['path'], 'capture_present': capture['present'],
+                 'games_in_capture': len(capture['games']), 'games_in_feed': 0, 'compared': 0,
+                 'agreeing': 0, 'feed_only': [], 'capture_only': sorted(capture['games'])}
+        if not capture['present']:
+            entry['note'] = 'no verbatim capture committed for this week; nothing to compare'
+            per_week.append(entry)
+            continue
+        for row in [r for r in rows if r['week'] == week]:
+            entry['games_in_feed'] += 1
+            other = capture['games'].get(row['game_id'])
+            if other is None:
+                entry['feed_only'].append(row['game_id'])
+                problems.append(f"week {week}: {row['game_id']} is in this feed but not in the capture")
+                continue
+            entry['compared'] += 1
+            checks = [('away_name', row['away_name'], other['away_name']),
+                      ('home_name', row['home_name'], other['home_name']),
+                      ('status', row['status'], other['status']),
+                      ('away_points', row['away_points'], other['away_points']),
+                      ('home_points', row['home_points'], other['home_points'])]
+            bad = [f'{field}: feed {mine!r} vs capture {theirs!r}'
+                   for field, mine, theirs in checks if mine != theirs]
+            if bad:
+                problems.append(f"week {week}: {row['game_id']} \\u2014 " + '; '.join(bad))
+            else:
+                entry['agreeing'] += 1
+        entry['capture_only'] = sorted(set(capture['games']) - {r['game_id'] for r in rows
+                                                               if r['week'] == week})
+        entry['bye_in_capture'] = capture['bye']
+        entry['bye_in_feed'] = sorted(bye_for_week.get(week, set()))
+        entry['bye_compared'] = week in bye_for_week
+        if entry['bye_compared'] and set(entry['bye_in_capture']) != set(entry['bye_in_feed']):
+            problems.append(f"week {week}: bye clubs differ "
+                            f"(feed {entry['bye_in_feed']} vs "
+                            f"capture {entry['bye_in_capture']})")
+        problems.extend(f"week {week}: {g} is in the capture but not in this feed"
+                        for g in entry['capture_only'])
+        per_week.append(entry)
+    total = {'weeks': len(per_week),
+             'bye_weeks_compared': sum(1 for e in per_week if e.get('bye_compared')),
+             'bye_agreeing': sum(1 for e in per_week if e.get('bye_compared')
+                                 and set(e['bye_in_capture']) == set(e['bye_in_feed'])),
+             'captures_present': sum(1 for e in per_week if e['capture_present']),
+             'games_compared': sum(e['compared'] for e in per_week),
+             'games_agreeing': sum(e['agreeing'] for e in per_week),
+             'feed_only': sum(len(e['feed_only']) for e in per_week),
+             'capture_only': sum(len(e['capture_only']) for e in per_week),
+             'problems': problems}
+    return total, per_week
+
+
 def feed():
     """The published feed: Week 9 2026 finals plus the Week 10 slate, each verified.
 
@@ -302,8 +412,19 @@ def feed():
         'bye_teams_week9': sorted(week9.get('bye_teams', {})),
         'bye_teams_week10': sorted(week10.get('bye_teams', {})),
     }
+    cross, cross_weeks = cross_check(rows, {9: set(week9.get('bye_teams', {})),
+                                            10: set(week10.get('bye_teams', {}))})
+    summary['independent_transcription'] = {k: v for k, v in cross.items() if k != 'problems'}
+    summary['independent_transcription']['problems'] = cross['problems']
+    summary['independent_transcription_weeks'] = [
+        {'week': e['week'], 'games_in_feed': e['games_in_feed'], 'games_in_capture': e['games_in_capture'],
+         'compared': e['compared'], 'agreeing': e['agreeing'], 'feed_only': e['feed_only'],
+         'capture_only': e['capture_only'], 'bye_in_feed': e['bye_in_feed'],
+         'bye_in_capture': e['bye_in_capture'], 'capture_path': e['capture_path'],
+         'capture_present': e['capture_present']} for e in cross_weeks]
     return rows, summary, {'progression_into_9': progression_into_9,
                           'progression_into_10': progression_into_10,
+                          'cross_check': cross, 'cross_check_weeks': cross_weeks,
                           'percentages': percentages, 'week8_cards': cards,
                           'week8_excluded': excluded}
 

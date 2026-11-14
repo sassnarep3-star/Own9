@@ -27,6 +27,7 @@ from requirements_audit import measure
 # the generator's exec namespace. Nothing on these pages re-types it: it is read, counted and derived.
 A = measure(INJ)  # noqa: F821 - supplied by tools/build.py
 FEED, STORE, QUOTES = A['feed'], A['store'], A['quotes']
+XCHECK = FEED['independent_transcription']
 ORIG, SPLIT, DEPTH = A['origination'], A['signal_staking'], A['replacement']
 RAW_FILES = A['raw_files']
 RAW_SCHEMA_ROWS = sum(v['data_rows'] for k, v in RAW_FILES.items()
@@ -80,7 +81,7 @@ page('requirements.html', 'Requirements',
               'Enforced', 'Nothing: the feed exists and is populated with officially verified results. What '
               f'still blocks a backtest is R1 — {READY["finals_verified"]} verified finals, '
               f'{READY["finals_with_a_market_line"]} of them with a market line. PR #37 landed a separate '
-              'schema-only `engine/results.py`; both survive, and F34 records the duplication rather than '
+              'schema-only `engine/results.py`; both survive, and F38 records the duplication rather than '
               'merging the two.'],
              ('nfl-schedule-w9', 'nfl-schedule-w10-byweek', 'nfl-schedule-w8-byweek'),
              'Direct publisher · arithmetic derived in build'),
@@ -206,11 +207,11 @@ page('requirements.html', 'Requirements',
              ('repo',), 'Project proposal'),
      ])
      + '<p class="download">Detail: <a href="price-feed.html">Price &amp; results</a> · '
-       '<a href="signal-staking.html">Signal vs staking</a> · '
+       '<a href="signal-and-staking.html">Signal vs staking</a> · '
        '<a href="depth-correlations.html">Depth &amp; correlation</a> · '
        '<a href="missing-information.html">Missing information</a>. Reproduce every figure with '
        '<code>python3 tools/requirements_audit.py</code>. New findings are on '
-       '<a href="flags.html">Flagged for Review</a> as F28-F37.</p>')
+       '<a href="flags.html">Flagged for Review</a> as F32-F41.</p>')
 
 
 # --------------------------------------------------------------------------- price + results
@@ -362,6 +363,25 @@ page('price-feed.html', 'Price & results',
                     ('repo',), 'Computed at build')])
      + table('Verified results feed', ['Week · date', 'Matchup', 'Final score', 'Winner', 'Checks',
                                        'Records (away / home)'], _feed_rows())
+     + table('Second witness: this feed against another session\u2019s verbatim page capture',
+             ['Week', 'Games in this feed', 'Games in the capture', 'Field-for-field comparisons',
+              'Agreeing', 'Bye clubs (feed / capture)', 'Compared against', 'Difference'],
+             [row([f"Week {item['week']}", item['games_in_feed'], item['games_in_capture'], item['compared'],
+                   item['agreeing'],
+                   f"{', '.join(item['bye_in_feed'])} / {', '.join(item['bye_in_capture'])}",
+                   item['capture_path'],
+                   'none' if item['capture_present'] and not item['feed_only'] and not item['capture_only']
+                   else f"feed only: {item['feed_only']}; capture only: {item['capture_only']}"],
+                  ('nfl-schedule-w9',), 'Two independent transcriptions of one official page')
+              for item in FEED['independent_transcription_weeks']])
+     + '<p>The capture is <code>data/board/raw/week-NN.txt</code>, committed through PR #40 by session '
+       'a77d40e1: game-link lines copied verbatim out of the retrieved page, URL included. This session '
+       'transcribed the same pages separately, so agreement is a second witness rather than the same '
+       f'transcription read twice: {XCHECK["games_agreeing"]} of {XCHECK["games_compared"]} games match on '
+       f'both club names, both scores and status, and {XCHECK["bye_agreeing"]} of '
+       f'{XCHECK["bye_weeks_compared"]} bye sets match. Disagreement is reported as a problem list, not '
+       'absorbed. The captures are also the reason this session\u2019s flag numbering starts where it does: '
+       'main had already reached F31 when this branch merged it, and this register continues at F32.</p>'
      + table('What was verified about the feed', ['Check', 'Coverage', 'Agreeing', 'What it establishes'], [
          row(['League-host publisher', f'{FEED["games"]} games', f'{FEED["verified"]} pass',
               'Every row resolves to an nfl.com page in the evidence manifest.'], ('nfl-schedule-w9',),
@@ -380,7 +400,7 @@ page('price-feed.html', 'Price & results',
               f'{FEED["reconciliations"][0]["clubs_agreeing"]} agree',
               'Week 8 records plus Week 9 results reproduce the Week 9 page. Four clubs are excluded because '
               'that page prints their record only in the bye block, which shows records as of retrieval — '
-              'see F28.'], ('nfl-schedule-w8-byweek', 'nfl-schedule-w9'), 'Two official pages, one arithmetic'),
+              'see F32.'], ('nfl-schedule-w8-byweek', 'nfl-schedule-w9'), 'Two official pages, one arithmetic'),
          row(['Record progression, Week 9 to Week 10', f'{FEED["reconciliations"][1]["clubs_tested"]} clubs',
               f'{FEED["reconciliations"][1]["clubs_agreeing"]} agree',
               'The same test across the next retrieval, with all 32 clubs including the four on bye.'],
@@ -434,7 +454,7 @@ page('price-feed.html', 'Price & results',
        'contract for the same two ideas, with `decimal_price`, `operator` and `jurisdiction` where this store '
        'uses an American price, a publisher and a provenance class. The contracts agree on the point that '
        'matters — a capture timestamp is mandatory and nothing is inferred — and they are kept separate rather '
-       'than merged, because merging them would silently decide which naming a reader should trust. See F34. '
+       'than merged, because merging them would silently decide which naming a reader should trust. See F38. '
        'Both are empty for the same measured reason, and this session checked that: the two schema files in '
        f'data/raw/ hold {RAW_SCHEMA_ROWS} data rows between them.</p>'
      + table('The two stores that now exist, field by field', ['Question', 'engine/prices.py (PR #37)',
@@ -469,7 +489,7 @@ page('price-feed.html', 'Price & results',
 
 
 # --------------------------------------------------------------------------- origination order + columns
-page('signal-staking.html', 'Signal vs staking',
+page('signal-and-staking.html', 'Signal vs staking',
      'Two boards.\nOne rank key.\nMoney cannot vote.',
      'The leaderboard is split so that prediction quality and bankroll outcome are reported separately, with '
      'the rank computed only from the signal lower bound. The demotion gate sits on the same signal axis, so '
@@ -588,7 +608,7 @@ page('depth-correlations.html', 'Depth & correlation',
              'Derived arithmetic'),
          row(['Out players on no retrieved chart row', ', '.join(f'{t} · {p}' for t, p in DEPTH['unlisted_vacancies']),
               'A cross-source disagreement, not a zero: the slot they vacate cannot be located. Published as '
-              'F31 and extending F20.'], ('nfl-injury-w10', 'lions-depth', 'chiefs-depth'), 'Flagged'),
+              'F35 and extending F20.'], ('nfl-injury-w10', 'lions-depth', 'chiefs-depth'), 'Flagged'),
          row(['Players who are the published cover for two slots',
               ', '.join(f'{t} · {p} ({", ".join(s)})' for t, p, s in DEPTH['multi_slot_backups']),
               'One player, two vacancies waiting behind him. Depth of one is depth of one.'],
@@ -696,7 +716,7 @@ page('missing-information.html', 'Missing info',
               'the request to club sites. Club sites do publish charts, and two of the three retrieved here '
               'label themselves unofficial.',
               'Verified this session on the Chiefs, Seahawks and Lions charts; recorded per club rather than as '
-              'a blanket statement (F29).'],
+              'a blanket statement (F33).'],
              ('nfl-depth-chart-404', 'chiefs-depth', 'seahawks-depth-1cf', 'lions-depth'), 'Checked absence + club pages'),
          row(['MI-A7', 'Can a correlation be computed at all from official numbers?',
               f'Yes, and it was: {len(CORRS)} pairs at n of {min(c["n"] for c in CORRS)} to '
@@ -757,7 +777,7 @@ page('missing-information.html', 'Missing info',
               'register set, or kept side by side?',
               'Both are complete and honest, so the choice is about which document a reader should trust, not '
               'about correctness. Deciding it silently would delete another session\u2019s published work.',
-              'Both retained, with the duplication published as F34.'], ('repo',), 'Awaiting decision'),
+              'Both retained, with the duplication published as F38.'], ('repo',), 'Awaiting decision'),
          row(['MI-D5', 'Is any non-cash recognition programme wanted for the leaderboard, or none at all?',
               'It is a governance decision with no data content.',
               'No badge, no funding, no award, as published.'], ('repo',), 'Awaiting decision'),
@@ -791,7 +811,7 @@ page('missing-information.html', 'Missing info',
      ])
      + '<p class="download">Every row above is either answered from a registered official source, countable '
        'from this repository, or explicitly an owner decision. Nothing is marked answered because it is '
-       'plausible. New findings from this release are published as F28-F37 on '
+       'plausible. New findings from this release are published as F32-F41 on '
        '<a href="flags.html">Flagged for Review</a>; the costed improvement sheet is '
        '<a href="suggestion-costs.html">Suggestion costs</a> and the register that governs acceptance is '
        '<a href="suggestions.html">Suggestions</a>.</p>')
@@ -804,7 +824,7 @@ PAGES['leaderboard.html'] = (*PAGES['leaderboard.html'][:3],
                              PAGES['leaderboard.html'][3]
                              + '<p class="download">Split view (14 Nov 2026, session 1cfcb957): the signal '
                                'board and the staking board are published separately on '
-                               '<a href="signal-staking.html">Signal vs staking</a>, with rank computed only '
+                               '<a href="signal-and-staking.html">Signal vs staking</a>, with rank computed only '
                                'from the signal lower bound and a staking run that cannot place a candidate. '
                                'The four tracks above are the same four tracks, and the tables above remain '
                                'empty because nothing is validated. PR #36 added the separation notice to this '
@@ -815,7 +835,7 @@ PAGES['leaderboard.html'] = (*PAGES['leaderboard.html'][:3],
 # into one and break their row count.
 new_flags = table('Register continuation · raised 14 Nov 2026 by session 1cfcb957',
                   ['ID / severity', 'Finding', 'Required evidence / disposition', 'State'], [
-    row(['F28 · Review', 'The "Teams on Bye" block on the official weekly schedule page prints each listed '
+    row(['F32 · Review', 'The "Teams on Bye" block on the official weekly schedule page prints each listed '
          f'club\'s record as of retrieval, not as of that week. On the Week 8 page it showed HOU 3-5, NO 3-5, '
          'NYG 5-3-1 and SF 7-1, while their Week 9 game cards imply 2-5, 2-5, 4-2-1 and 6-1 as their Week 8 '
          'records. A record-feature built from the bye block would import later results into an earlier week.',
@@ -824,7 +844,7 @@ new_flags = table('Register continuation · raised 14 Nov 2026 by session 1cfcb9
          'as-of-week record must come from a game card or a dated standings archive.',
          'Handled · coverage stated'], ('nfl-schedule-w8-byweek', 'nfl-schedule-w9'),
          'Two official pages · arithmetic'),
-    row(['F29 · Review', 'The self-labelled "unofficial" caveat on club depth charts is not uniform. Read on '
+    row(['F33 · Review', 'The self-labelled "unofficial" caveat on club depth charts is not uniform. Read on '
          '2026-11-14: the Chiefs page is titled "Kansas City Chiefs Unofficial Depth Chart" and the Lions page '
          '"2026 Unofficial Depth Chart Compiled by Lions Football Communications", while the Seahawks page as '
          'retrieved here (both chunks, document title "Seattle Seahawks") displays no such label. An earlier '
@@ -835,7 +855,7 @@ new_flags = table('Register continuation · raised 14 Nov 2026 by session 1cfcb9
          'narrow the wording or add the page element that carries the label.',
          'Flagged · owner of that record to confirm'], ('seahawks-depth-1cf', 'chiefs-depth', 'lions-depth'),
          'Verified per club'),
-    row(['F30 · Critical', 'The price-snapshot store exists and is empty: 0 of '
+    row(['F34 · Critical', 'The price-snapshot store exists and is empty: 0 of '
          f'{STORE["expected_pairs"]} expected captures for the 29-game slate, 0 priced records, and '
          'no ROI, closing-line value or expected-value figure is computable. The 2026 line values that do '
          f'exist in the repository ({ORIG["games_with_a_line_value"]} of {ORIG["games_in_feed"]} feed games) '
@@ -844,7 +864,7 @@ new_flags = table('Register continuation · raised 14 Nov 2026 by session 1cfcb9
          'capture at market publication and at kickoff. This is the single dependency that unblocks R1, R4, '
          'the staking board and the economics gate simultaneously.',
          'Open · blocking'], ('repo', 'dk-markets'), 'Computed at build'),
-    row(['F31 · Review', 'Two players carrying an Out game status in the Week 10 2026 report appear on no row '
+    row(['F35 · Review', 'Two players carrying an Out game status in the Week 10 2026 report appear on no row '
          'of the club chart retrieved for them: DET S Kerby Joseph and KC DT Omarr Norman-Lott. Their vacated '
          'slots cannot be located, so replacement depth is unknown for them rather than zero. F20 recorded the '
          'Joseph case alone; this is a second instance in the same three clubs, which suggests a pattern '
@@ -852,21 +872,24 @@ new_flags = table('Register continuation · raised 14 Nov 2026 by session 1cfcb9
          'Reported as unknown in the depth register with the player named. No replacement is inferred. If more '
          'clubs are charted (P-05), publish the rate rather than reconciling silently.',
          'Flagged · not reconciled'], ('nfl-injury-w10', 'lions-depth', 'chiefs-depth'), 'Cross-source disagreement'),
-    row(['F32 · Review', 'This working checkout is a shallow clone: git reports 2 commits and .git/shallow '
+    row(['F36 · Review', 'This working checkout is a shallow clone: git reports 2 commits and .git/shallow '
          'exists, so both data/raw files appear only in the branch base commit. Commit history therefore '
          'cannot date when the quote or score snapshot was introduced, and no capture bound can be inferred '
          'from it.',
          'Any vintage claim about those files must come from the files themselves or from their upstream, not '
          'from git. The store schema requires a captured_at per record precisely for this reason.',
          'Recorded limitation'], ('repo',), 'Repository inspection'),
-    row(['F33 · Review', 'Method note, published because the error class matters more than the error: an early '
+    row(['F37 · Review', 'Method note, published because the error class matters more than the error: an early '
          'revision of the audit detected a "timestamp column" in the quote file by substring search, and '
          '"utc" is inside "outcome". Whole-name matching is now used and the column list is printed on the '
          'page so a reader can check it.',
          'Keep the pattern: measure with whole identifiers, and publish the inspected list next to the derived '
-         'figure so a substring bug like this one is visible without reading code.',
+         'figure so a substring bug like this one is visible without reading code. A second instance from '
+         'the same release: a pattern written as <code>[A-Za-z .]</code> failed to match "49ers", which '
+         'looked for a moment like another session had dropped two games from its capture. Character classes '
+         'in a reader that parses someone else\u2019s evidence must admit digits.',
          'Fixed in this release'], ('repo',), 'Method integrity'),
-    row(['F34 · Review', 'Parallel duplicate implementation of the same eight requirements. On 14 Nov 2026 '
+    row(['F38 · Review', 'Parallel duplicate implementation of the same eight requirements. On 14 Nov 2026 '
          'four sessions worked the same list: PR #34 and #35 (feaa600b) built a live-to-paper demotion gate on '
          'validation.html, PR #36 (201adb50) added a combined signal/staking view to leaderboard.html, PR #37 '
          '(7e426311) added engine/prices.py, engine/results.py, engine/origination.py and two schema-only CSV '
@@ -880,7 +903,7 @@ new_flags = table('Register continuation · raised 14 Nov 2026 by session 1cfcb9
          'independently: no price and no result can be manufactured. Consolidating the two into one register '
          'set is an owner decision, listed as MI-D6.',
          'Flagged · both retained'], ('repo',), 'Merge-time reconciliation'),
-    row(['F35 · Review', 'tools/build.py defines leaderboard.html twice (two page() calls writing the same '
+    row(['F39 · Review', 'tools/build.py defines leaderboard.html twice (two page() calls writing the same '
          'key), so the first definition is unreachable. It predates this session: main carried both blocks '
          'after PR #36 and #37 merged. A maintainer editing the earlier block would change nothing, and the '
          'site would not say so.',
@@ -889,7 +912,7 @@ new_flags = table('Register continuation · raised 14 Nov 2026 by session 1cfcb9
          'notices into one page call; the generated page is identical either way, which is why no test '
          'catches it.',
          'Flagged · not edited'], ('repo',), 'Generator inspection'),
-    row(['F36 · Review', 'The two price stores that now exist in this repository derive the opening and '
+    row(['F40 · Review', 'The two price stores that now exist in this repository derive the opening and '
          'closing number differently. PR #37\u2019s engine/prices.py keys a snapshot by (game, market, side) '
          'and resolves open as the earliest capture and close as the latest; engine/snapshots.py, added here, '
          'requires stage as part of the key. Measured consequence: with a single quote for a market side, '
@@ -902,7 +925,7 @@ new_flags = table('Register continuation · raised 14 Nov 2026 by session 1cfcb9
          'checked against the number of distinct captures, not the presence of a row. Both behaviours are '
          'asserted in tests/test_requirements_delta.py.',
          'Recorded · both implementations kept'], ('repo',), 'Merge-time reconciliation'),
-    row(['F37 · Critical', 'The site failed its own accessibility check on merged `main`: `lines.html` '
+    row(['F41 · Critical', 'The site failed its own accessibility check on merged `main`: `lines.html` '
          'rendered a scrollable table region that no keyboard could reach (axe '
          '`scrollable-region-focusable`, serious) at a 390px viewport, because `.table-wrap` sets '
          '`overflow:auto` and that table\u2019s cells carried no focusable element. Any page that adds a '
@@ -918,11 +941,11 @@ new_flags = table('Register continuation · raised 14 Nov 2026 by session 1cfcb9
 
 PAGES['flags.html'] = (*PAGES['flags.html'][:3],
                        PAGES['flags.html'][3]
-                       + '<p class="download">F28 to F37 below were raised by session 1cfcb957 on 14 Nov 2026. F34, F35 '
+                       + '<p class="download">F32 to F41 below were raised by session 1cfcb957 on 14 Nov 2026. F34, F35 '
                          'and F36 are merge-time findings: what surfaced while reconciling with PRs #34-#37, '
                          'which landed the same eight requirements from four sessions on the same day. '
                          'They continue the existing numbering and do not edit any earlier row: F20 and F21 are '
-                         'referred to rather than restated, and F31 extends F20 with the second club it did not '
+                         'referred to rather than restated, and F35 extends F20 with the second club it did not '
                          'cover.</p>'
                        + new_flags)
 
@@ -935,7 +958,7 @@ _index_rows = table('Requirements added on 14 Nov 2026 (session 1cfcb957)',
     row(['price-feed.html', 'Snapshot store schema and state, the quote file measured against it, the verified '
          f'results feed and its checks, ROI readiness', f'{STORE["records_priced"]} priced snapshots · '
          f'{FEED["verified"]} verified games'], ('repo', 'nfl-schedule-w9'), 'This release'),
-    row(['signal-staking.html', 'Signal and staking boards, the refusals that keep them apart, and the demotion '
+    row(['signal-and-staking.html', 'Signal and staking boards, the refusals that keep them apart, and the demotion '
          'gate', f'{SPLIT["candidates_registered"]} candidates · {GATE["live_candidates"]} live'], ('repo',),
          'This release'),
     row(['depth-correlations.html', 'Replacement depth per vacancy, chart disagreements, and the correlation '

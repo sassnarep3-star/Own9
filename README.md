@@ -192,3 +192,53 @@ single point-in-time retrieval (F21).
 [own9-research/](own9-research/index.html) · [release-checks/](release-checks/index.html) ·
 [independent-audit/](independent-audit/index.html) (integrated from PR #18, 2026-11-14).
 Subsite findings remain governed by their owning sessions' scopes and review registers.
+
+---
+
+## Added by session `a77d40e1` on 14 Nov 2026 — market-board delta
+
+Six pages registered through the shared `page()` API (`tools/pages_a77d40e1.py`), computed at
+build time by `engine/board.py` from the verified feed in `data/board/`. Nothing owned by another
+session was rewritten; `flags.html` and `index.html` gained appended sections via the same
+`PAGES[...]` mechanism session `4f2e0291` used.
+
+- **`results-feed.html`** — every 2026 final (137 games: Weeks 1–9 complete slates plus the settled
+  Week 10 Thursday game) transcribed verbatim from the official league schedule pages
+  (`data/board/raw/week-NN.txt` is the transcription record, one file per week). 121 of the finals
+  also matched the committed secondary snapshot row-for-row (zero disagreements); the secondary file
+  is stale for Weeks 9–10, so those rest on the official transcription alone (F29). This is the feed
+  that makes walk-forward scoring, backtests and ROI computable at all; it carries results only.
+- **`origination.html`** — Week 11 board: 39 markets originated side first, then the total, then the
+  moneyline, enforced mechanically by `engine/board.py` (a total cannot exist without its game's side;
+  a moneyline cannot exist without the total; regression-tested). The model's fair line, the market
+  line and the difference are separate columns; market and difference are blank by policy because no
+  official source publishes wagering prices and no book of record is approved (Q28 lineage).
+- **`price-snapshots.html`** — the open/close store: 39 open snapshots captured at origination
+  (frozen timestamp `2026-11-14T22:30:00Z`), 39 close snapshots pending by design (blank, never
+  fabricated — F30), market-price cells blank throughout.
+- **`signal-staking.html`** — two disjoint sheets. The signal sheet scores walk-forward calls on
+  official results (weeks 3–9 complete slates: n=104, directional accuracy 63.5%, Brier 0.2356,
+  per-week rows published including the partial Week 10). The staking sheet describes the plan only;
+  ROI, CLV and exposure caps are blank because no executable prices exist. The live-to-paper gate
+  (session `feaa600b`, PR #34) is applied fail-closed: every entry stays Paper. Also carries the new
+  BQ1–BQ6 question register and BS1–BS6 suggestion register for review before any decision.
+- **`correlations-official.html`** — Pearson correlations computed exclusively from the verified
+  official results, with n published beside every value, Fisher-z 95% intervals, and a predeclared
+  0.10 deadband that refuses dependence claims inside it: margin↔total r=-0.161 (n=137, declared
+  outside deadband), home↔away points r=0.076 (n=137, no claim), club margin week-over-week r=0.086
+  (n=242, no claim). Dependency-free implementation, unit-tested against textbook values.
+- **`replacement-depth.html`** — the depth of each Week 10 starter replacement as a first-class
+  field (`depth_travelled`: 8 chart-derived second-string drops, 5 withheld where no club chart was
+  retrieved or sources conflict), with both sources cited per row and the WAS centre chain evidenced
+  by two official Game Books.
+
+Verification: `tools/verify.py` PASS (25 pages, 1033 source-linked rows); 126 Python tests,
+31 release-checks, availability/decision registers, both browser suites (25 root pages × 2
+viewports, 50 axe checks) and `scripts/check_site.py` all pass; regeneration byte-identical.
+Sources used this session (registered in `evidence/sources.json`, all retrieved 2026-11-14):
+the nine official weekly schedule pages not already on the register. Findings F28–F31 published on
+`flags.html`. Shared-file edits, all logged on the board: `tools/build.py` (exec block, NAV_GROUPS,
+KEEP_DATE_14, and `tabindex="0"` on generated table wrappers — the axe
+`scrollable-region-focusable` violation session `201adb50`'s lines.html tables trigger at mobile
+width), `tests/test_own9_delta.py` (two count assertions made dynamic floors), `evidence/sources.json`
+(append-only), `README.md` (this section), `flags.html`/`index.html` (appended via `PAGES[...]`).

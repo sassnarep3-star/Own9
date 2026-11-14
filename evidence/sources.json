@@ -359,6 +359,87 @@
   "scope": "Used as one official cross-check of the repository score snapshot. One verified game does not certify the remaining 7,548 rows or any lines value.",
   "checked": "2026-11-14",
   "status": "retrieved"
+ },
+ {
+  "id": "nfl-schedule-w1",
+  "publisher": "NFL",
+  "url": "https://www.nfl.com/schedules/2026/by-week/week-1",
+  "checked": "2026-11-14",
+  "status": "retrieved",
+  "supports": "Official 2026 Week 1 schedule page: slate, kickoff dates/times and, for completed games, final scores with club records.",
+  "scope": "Week 1 results and schedule only. No odds, totals or closing lines are published on this page. Scores transcribed verbatim into data/board/raw/week-01.txt."
+ },
+ {
+  "id": "nfl-schedule-w2",
+  "publisher": "NFL",
+  "url": "https://www.nfl.com/schedules/2026/by-week/week-2",
+  "checked": "2026-11-14",
+  "status": "retrieved",
+  "supports": "Official 2026 Week 2 schedule page: slate, kickoff dates/times and, for completed games, final scores with club records.",
+  "scope": "Week 2 results and schedule only. No odds, totals or closing lines are published on this page. Scores transcribed verbatim into data/board/raw/week-02.txt."
+ },
+ {
+  "id": "nfl-schedule-w3",
+  "publisher": "NFL",
+  "url": "https://www.nfl.com/schedules/2026/by-week/week-3",
+  "checked": "2026-11-14",
+  "status": "retrieved",
+  "supports": "Official 2026 Week 3 schedule page: slate, kickoff dates/times and, for completed games, final scores with club records.",
+  "scope": "Week 3 results and schedule only. No odds, totals or closing lines are published on this page. Scores transcribed verbatim into data/board/raw/week-03.txt."
+ },
+ {
+  "id": "nfl-schedule-w4",
+  "publisher": "NFL",
+  "url": "https://www.nfl.com/schedules/2026/by-week/week-4",
+  "checked": "2026-11-14",
+  "status": "retrieved",
+  "supports": "Official 2026 Week 4 schedule page: slate, kickoff dates/times and, for completed games, final scores with club records.",
+  "scope": "Week 4 results and schedule only. No odds, totals or closing lines are published on this page. Scores transcribed verbatim into data/board/raw/week-04.txt."
+ },
+ {
+  "id": "nfl-schedule-w5",
+  "publisher": "NFL",
+  "url": "https://www.nfl.com/schedules/2026/by-week/week-5",
+  "checked": "2026-11-14",
+  "status": "retrieved",
+  "supports": "Official 2026 Week 5 schedule page: slate, kickoff dates/times and, for completed games, final scores with club records.",
+  "scope": "Week 5 results and schedule only. No odds, totals or closing lines are published on this page. Scores transcribed verbatim into data/board/raw/week-05.txt."
+ },
+ {
+  "id": "nfl-schedule-w6",
+  "publisher": "NFL",
+  "url": "https://www.nfl.com/schedules/2026/by-week/week-6",
+  "checked": "2026-11-14",
+  "status": "retrieved",
+  "supports": "Official 2026 Week 6 schedule page: slate, kickoff dates/times and, for completed games, final scores with club records.",
+  "scope": "Week 6 results and schedule only. No odds, totals or closing lines are published on this page. Scores transcribed verbatim into data/board/raw/week-06.txt."
+ },
+ {
+  "id": "nfl-schedule-w7",
+  "publisher": "NFL",
+  "url": "https://www.nfl.com/schedules/2026/by-week/week-7",
+  "checked": "2026-11-14",
+  "status": "retrieved",
+  "supports": "Official 2026 Week 7 schedule page: slate, kickoff dates/times and, for completed games, final scores with club records.",
+  "scope": "Week 7 results and schedule only. No odds, totals or closing lines are published on this page. Scores transcribed verbatim into data/board/raw/week-07.txt."
+ },
+ {
+  "id": "nfl-schedule-w8",
+  "publisher": "NFL",
+  "url": "https://www.nfl.com/schedules/2026/by-week/week-8",
+  "checked": "2026-11-14",
+  "status": "retrieved",
+  "supports": "Official 2026 Week 8 schedule page: slate, kickoff dates/times and, for completed games, final scores with club records.",
+  "scope": "Week 8 results and schedule only. No odds, totals or closing lines are published on this page. Scores transcribed verbatim into data/board/raw/week-08.txt."
+ },
+ {
+  "id": "nfl-schedule-w11",
+  "publisher": "NFL",
+  "url": "https://www.nfl.com/schedules/2026/by-week/week-11",
+  "checked": "2026-11-14",
+  "status": "retrieved",
+  "supports": "Official 2026 Week 11 schedule page: slate, kickoff dates/times and, for completed games, final scores with club records.",
+  "scope": "Week 11 results and schedule only. No odds, totals or closing lines are published on this page. Scores transcribed verbatim into data/board/raw/week-11.txt."
  }
  ,
  {

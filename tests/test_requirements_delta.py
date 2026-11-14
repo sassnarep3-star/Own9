@@ -27,7 +27,7 @@ from engine import snapshots as snap             # noqa: E402
 import requirements_audit                        # noqa: E402
 from verify import Page                          # noqa: E402
 
-NEW_PAGES = ('requirements.html', 'price-feed.html', 'signal-staking.html', 'depth-correlations.html',
+NEW_PAGES = ('requirements.html', 'price-feed.html', 'signal-and-staking.html', 'depth-correlations.html',
              'missing-information.html')
 CAPTURED = {'captured_at': '2026-11-05T13:00:00Z', 'source_url': 'https://www.nfl.com/x',
             'publisher': 'NFL'}
@@ -217,6 +217,40 @@ class VerifiedResultsFeed(unittest.TestCase):
                 self.assertIn('link_label', game)
                 self.assertTrue({'winner', 'winner_indicator'} & set(game),
                                 'a rendered page gives the winner twice: the label and the indicator')
+
+    def test_two_independent_transcriptions_of_the_same_pages_agree(self):
+        # data/board/raw/week-NN.txt was committed by session a77d40e1 through PR #40. Agreement
+        # between it and this feed is a second witness; it is not the same transcription read twice.
+        cross, weeks = res.cross_check(self.rows, {9: {'PIT', 'TEN'},
+                                                   10: {'CHI', 'DEN', 'PHI', 'TB'}})
+        self.assertEqual(cross['captures_present'], 2, 'the second witness must actually be present')
+        self.assertEqual(cross['games_compared'], cross['games_agreeing'])
+        self.assertEqual(cross['games_compared'], self.summary['games'])
+        self.assertEqual(cross['problems'], [])
+        self.assertEqual((cross['bye_agreeing'], cross['bye_weeks_compared']), (2, 2))
+        self.assertEqual({w['week'] for w in weeks}, {9, 10})
+
+    def test_a_captains_name_with_digits_does_not_vanish(self):
+        # A narrower character class once dropped both San Francisco games and looked like the other
+        # session had lost two rows. Team names carry digits, so the parser must too.
+        capture = res.read_raw_capture(9)
+        self.assertIn('raiders-at-49ers-2026-reg-9', capture['games'])
+        self.assertEqual(capture['games']['raiders-at-49ers-2026-reg-9']['home_points'], 38)
+
+    def test_an_absent_capture_is_reported_as_absent_not_as_agreement(self):
+        empty = res.read_raw_capture(53)
+        self.assertFalse(empty['present'])
+        self.assertEqual(empty['games'], {})
+
+    def test_a_changed_field_would_be_caught_by_the_cross_check(self):
+        tampered = [dict(r) for r in self.rows]
+        for row in tampered:
+            if row['week'] == 9:
+                row['home_points'] = (row['home_points'] or 0) + 1
+                break
+        cross, _weeks = res.cross_check(tampered)
+        self.assertTrue(cross['problems'], 'the second witness must fail when a score is wrong')
+        self.assertLess(cross['games_agreeing'], cross['games_compared'])
 
     def test_join_reports_the_undated_lines_as_the_gap_they_are(self):
         join = res.join_line_snapshot(self.rows)
@@ -687,6 +721,15 @@ class PublishedPages(unittest.TestCase):
     def setUpClass(cls):
         cls.audit = requirements_audit.measure(__import__('build').INJ)
 
+    def test_the_site_now_publishes_every_sessions_pages(self):
+        rendered = sorted(f.name for f in ROOT.glob('*.html'))
+        self.assertEqual(len(rendered), 30,
+                         '15 from the first board, 4 from 4f2e0291, 6 from a77d40e1, 5 from this session')
+        # Both signal pages exist because both were authored: main's announcement and this session\u2019s
+        # enforcement. The path that collided was this session\u2019s, so this session moved.
+        for name in ('signal-staking.html', 'signal-and-staking.html'):
+            self.assertIn(name, rendered)
+
     def test_all_five_pages_exist_and_are_structurally_clean(self):
         for name in NEW_PAGES:
             with self.subTest(page=name):
@@ -727,11 +770,11 @@ class PublishedPages(unittest.TestCase):
         self.assertGreater(int(values['fair_line']), 0)
 
     def test_the_staking_page_publishes_the_refusals_it_claims(self):
-        html = (ROOT / 'signal-staking.html').read_text()
+        html = (ROOT / 'signal-and-staking.html').read_text()
         self.assertIn('no measured signal block', html)
         self.assertIn('no price record', html)
-        self.assertEqual(len(tables_cells('signal-staking.html', 'Signal board — the only board that ranks')), 4)
-        self.assertEqual(len(tables_cells('signal-staking.html', 'Staking board — disclosure only')), 4)
+        self.assertEqual(len(tables_cells('signal-and-staking.html', 'Signal board — the only board that ranks')), 4)
+        self.assertEqual(len(tables_cells('signal-and-staking.html', 'Staking board — disclosure only')), 4)
 
     def test_every_correlation_row_prints_an_n(self):
         rows = tables_cells('depth-correlations.html', 'Correlation register — officially sourced numbers '
@@ -751,8 +794,8 @@ class PublishedPages(unittest.TestCase):
         rows = tables_cells('flags.html', 'Register continuation · raised 14 Nov 2026 by session '
                                            '1cfcb957')
         self.assertEqual([r[0].split(' ')[0] for r in rows],
-                         [f'F{n}' for n in range(28, 38)],
-                         'the continuation register must stay contiguous with the published one')
+                         [f'F{n}' for n in range(32, 42)],
+                         'this register must continue main\u2019s numbering without a gap or a reuse')
         self.assertEqual(len([r for r in rows if 'Critical' in r[0]]), 2,
                          'the price gap and the accessibility repair are the two blocking findings')
 
@@ -775,7 +818,7 @@ class PublishedPages(unittest.TestCase):
     def test_the_leaderboard_page_was_not_rewritten(self):
         # This session may only append a pointer; the other session's empty metric cells are evidence.
         html = (ROOT / 'leaderboard.html').read_text()
-        self.assertIn('signal-staking.html', html, 'the split is useless if the board does not point to it')
+        self.assertIn('signal-and-staking.html', html, 'the split is useless if the board does not point to it')
         self.assertIn('empty by fact', (ROOT / 'requirements.html').read_text())
         rows = all_rows('leaderboard.html')
         self.assertTrue(rows, 'the leaderboard must still publish its tables')
