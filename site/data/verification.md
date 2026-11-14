@@ -87,3 +87,35 @@ and settings writes returned HTTP 403. This discrepancy is published as F12
 with a direct official deployment-record link; successful deployment and live
 content do not erase conflicting metadata. Detailed run-log download was blocked
 by the sandbox network allowlist; no log content is invented.
+
+## Final-integration verification — 2026-11-14 UTC (session 0b355862)
+
+Additive decision-support pages (Suggestions, Decision questions, Injury & depth) were
+added to the canonical `site/` dashboard; the root landing was reorganized by category.
+No empirical NFL value was added. Every generated table row still carries a direct
+official-source link (`scripts/check_site.py`: 15 pages, 147 rows; root `tools/verify.py`:
+10 pages, 91 rows, including the concurrent root Decision Questions page).
+
+Sources re-verified by direct retrieval this session:
+- NFL 2026 rulebook — `https://operations.nfl.com/rules-officiating/2026-nfl-rulebook`
+  (2026 rulebook label and 2026 rule-change table observed).
+- NFL team statistics — `https://www.nfl.com/stats/team-stats/` (2026 REG offense
+  passing categories observed).
+- NFL injury report — `https://www.nfl.com/injuries/` (Player / Position / Injuries /
+  Practice Status / Game Status schema observed).
+- NFL team roster — `https://www.nfl.com/teams/den/roster` (player number, position and
+  roster Status fields ACT / RES / DEV / RSR / UFA / TRC observed).
+
+Irregularities found this session:
+- NFL depth-chart candidate URLs (`/teams/{team}/depth-chart` and
+  `/teams/printdepthchart?printable=true&team=...`) returned HTTP 404 content on direct
+  fetch. The roster page is used instead; depth-tier ordering is left blank and published
+  as flag **F14**. No depth-chart URL is cited as a confirmed source.
+- Five parallel dashboards (root, `site/`, `research/`, `own9-research/`, `strict-lab/`)
+  publish overlapping content with no single canonical workspace; published as **F15** and
+  addressed by suggestion **SG01**.
+
+Checks run: root verifier, site checker, 37 Python tests, 31 release-check fixtures,
+desktop/mobile Chromium browser test (15 pages, 30 WCAG axe scans, no console errors), and
+deterministic regeneration of both the root pages and the `site/` dashboard. These are
+structural and behavior checks, not external-reachability or factual-claim certification.

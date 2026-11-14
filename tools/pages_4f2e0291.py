@@ -30,8 +30,17 @@ page('availability-evidence.html', 'Availability sources',
          'Who is out, who replaces them,\nand whether that is a signal.',
          'The official reporting rules, the feeds that carry them, a Week 10 2026 snapshot transcribed from the '
          'league report, and the specification for turning a missing starter into a measurable unit deficiency. '
+         'The official reporting rules, the feeds that carry them, a Week 10 2026 snapshot transcribed from the '
+         'league report, and the specification for turning a missing starter into a measurable unit deficiency. '
          'Measured-result cells stay blank: no availability edge has been demonstrated.',
-         table('Official availability sources', ['Source', 'What the page publishes', 'Retrieved',
+         '<div class="notice"><strong>Read together with Injuries &amp; depth</strong><p>Two availability pages are '
+         'published and they are not alternatives. <a href="injuries.html">Injuries &amp; depth</a> carries the '
+         'broad Week 10 slate and the club depth charts, and <a href="availability.html">Availability tracker</a> '
+         'carries the verified Game Book lineup changes. This page records the sources themselves: which official '
+         'page publishes which field, what it does not publish, and what was checked and found absent on 14 Nov '
+         '2026. The 26 report rows below are the subset transcribed while reading those rules, not the full '
+         'week-10 slate, so the row counts on the two pages differ by design rather than by error.</p></div>'
+         + table('Official availability sources', ['Source', 'What the page publishes', 'Retrieved',
                                                  'Limits / use here'], [
              row(['Club injury report', 'Club-by-club report grouped by upcoming game, with Player, Position, '
                   'Injuries, Practice Status and Game Status columns, plus a season and week selector.',
@@ -349,7 +358,7 @@ page('lines.html', 'Own lines',
 
          + '<p>The file in <code>data/raw/</code> is a real dataset, and this release is the first to measure it '
            'instead of describing it as absent. It is also too incomplete and too undocumented to support a claim '
-           'of any kind, so it is quarantined and published on <a href="flags.html">Flagged for Review</a> as F13. '
+           'of any kind, so it is quarantined and published on <a href="flags.html">Flagged for Review</a> as F22. '
            'The decision the owner has to make is whether to licence a current source or build a prospective '
            'capture archive from now on; <a href="suggestions.html">S04</a> and <a href="suggestions.html">S05</a> '
            'set out both paths.</p>')
@@ -388,7 +397,7 @@ page('question-ledger.html', 'Question ledger',
              row(['Q06', 'Does the league publish depth charts?',
                   'No league depth chart was found: the club depth-chart path on the league site returns a 404 and '
                   'team pages route the request to club websites.', 'A dated negative observation of one path, not a '
-                  'proof of non-existence; recorded as F16.'], ('nfl-no-depth-chart',), 'Answered · checked absence'),
+                  'proof of non-existence; the register carries it as F13, F17 and F19.'], ('nfl-no-depth-chart',), 'Answered · checked absence'),
              row(['Q07', 'Can a depth ordering be obtained anyway?',
                   'Only from club sites, and the one read states its chart is unofficial, written by that site\u2019s '
                   'writers and not necessarily reflecting the organization. It does provide first through fourth '
@@ -684,21 +693,28 @@ page('suggestion-costs.html', 'Suggestion cost sheet',
                   'Right now the confusing part is the repository, not the science.'], ('repo',), 'Lowest cost'),
          ])
 
-         + table('Implemented by this release', ['Item', 'What landed', 'Where'], [
-             row(['Availability and depth section', 'Official reporting rules, transcribed Week 10 report entries, '
-                  'reserve-list moves, a deficiency specification and six AV candidates.', 'Injuries & depth'],
-                 ('nfl-injury', 'nfl-reserve-list'), 'New page'),
-             row(['Suggestion register', 'Eighteen suggestions with cost, risk and status, plus four candidate '
-                  'paths and a decision log.', 'Suggestions'], ('repo',), 'New page'),
-             row(['Question ledger', 'Nineteen answered questions, six closable ones and six owner decisions, with '
-                  'seven probes for missing information.', 'Questions'], ('repo',), 'New page'),
+         + table('Implemented by this release', ['Item', 'What landed', 'Where', 'What it did not touch'], [
+             row(['Availability source register', 'Ten official and club source records with their limits, 26 '
+                  'transcribed Week 10 report entries, 13 reserve-list moves, a deficiency specification and six '
+                  'AV candidates whose measured columns are blank.', 'Availability sources'],
+                 ('nfl-injury', 'nfl-reserve-list'),
+                 'Injuries & depth and Availability tracker keep their own rows and claims.'),
+             row(['Suggestion cost sheet', 'Eighteen suggestions with cost, risk and status, four candidate paths '
+                  'and a decision log.', 'Suggestion costs'], ('repo',),
+                 'The scored Suggestions register, its 16 items and their statuses are unchanged.'),
+             row(['Question ledger', 'Nineteen answered questions, six closable ones, seven owner decisions and '
+                  'seven probes for missing information.', 'Question ledger'], ('repo',),
+                 'Question register and Decision review were not edited.'),
              row(['Market data audit', 'A build-time tool that measures the inherited lines file instead of '
-                  'describing it, published on the own-lines page.', 'Own lines'], ('repo',), 'New tool'),
-             row(['Verifier extension', 'Retrieval scope per source, enforced blank measured columns on the new '
-                  'availability candidates, and publication of four new flags.', 'Flagged for review'],
-                 ('repo',), 'Checker'),
-             row(['Category landing', 'Reordered navigation by decision category and a directory of every published '
-                  'section with its certification status.', 'Overview'], ('repo',), 'Site'),
+                  'describing it, published on the own-lines page.', 'Own lines'], ('repo',),
+                 'No line, price, ROI or backtest was produced or claimed.'),
+             row(['Review register extension', 'Six findings appended after the existing register, continuing its '
+                  'numbering at F22; three overlapping findings were dropped as already recorded.',
+                  'Flagged for review'], ('repo',),
+                 'F01 to F21 and every row above the extension are untouched.'),
+             row(['Section directory', 'A count-and-certification table of all seven published sections, with '
+                  'per-section status.', 'Overview'], ('repo',),
+                 'The overview\u2019s own summary and registers are unchanged; a table was appended.'),
          ])
 
          + table('Decision log', ['ID', 'Suggestion set', 'Decision', 'Date', 'Decided by', 'Rationale'], [
@@ -717,47 +733,45 @@ page('suggestion-costs.html', 'Suggestion cost sheet',
            'them.</p>')
 
 
-new_flags = table('Review register extension · 14 Nov 2026', ['ID / severity', 'Finding',
-                                                                   'Required evidence / disposition', 'State'], [
-        row(['F13 · Critical', f"data/raw/closing_lines.csv holds {lines['files']['closing_lines']['rows']:,} "
-             'historical quote rows while F01 states that no executable odds archive was obtained. It covers '
-             f"{lines['coverage']['season_min']}\u2013{lines['coverage']['season_max']} only, joins to scores only "
-             f"through an alternate identifier, has no price on {lines['missing_fields']['odds']['SPREAD']:,} "
-             f"spread and {lines['missing_fields']['odds']['TOTAL']:,} total rows, and "
-             f"{lines['settlement_recompute']['disagree_rows']} rows ({lines['settlement_recompute']['disagree_pct']}%)"
-             ' disagree with outcomes recomputed from the sibling snapshot.',
-             'Quarantined for use, not deleted. Provenance, licence, sign convention and coverage must be settled '
-             'by the owner (Q28, S08, S09) before it supports any claim.', 'Flagged · owner decision'],
-            ('repo',), 'Computed by tools/lines_audit.py at build time'),
-        row(['F14 · Review', 'No README, dataset note or manifest entry documents that file; the commit that added '
-             'it describes only the games snapshot.', 'Record origin, retrieval date and permitted use, or remove '
-             'the file.', 'Flagged'], ('repo',), 'Repository inspection'),
-        row(['F15 · Review', 'The sibling score snapshot is byte-identical to the nflverse file whose hash is '
-             'recorded on the coordination board, so its identity is checkable, but its upstream licence was never '
-             'confirmed by any session.', 'Confirm redistribution rights before republication.', 'Flagged'],
-            ('repo',), 'Hash compared locally'),
-        row(['F16 · Critical', 'The user requirement to know second-, third- and fourth-string replacements cannot '
-             'be met from official data: the league depth-chart path returns 404 and club charts call themselves '
-             'unofficial.', 'Either accept club ordering as an explicitly unofficial overlay or define the '
-             'deficiency index on official fields alone (S06).', 'Implemented as a limitation'],
-            ('nfl-no-depth-chart', 'club-depth-chart'), 'Checked absence · substitute documented'),
-        row(['F17 · Critical', 'No official participation or snap-count category exists among the eleven published '
-             'statistics categories, so replacement quality has no per-play denominator.',
-             'Licence a tracking feed, or accept a counting-statistics proxy and disclose the loss of precision '
-             '(S07, Q21).', 'Blocked on source'], ('nfl-stats-cats', 'nfl-ngs'), 'Checked absence'),
-        row(['F18 · Review', 'The injury report page publishes no per-row timestamp, so historical availability '
-             'features cannot be reconstructed point-in-time and gate 2 cannot pass for past seasons.',
-             'Begin prospective hashed capture; do not treat today\u2019s page as evidence of what was known in '
-             'the past (S05, Q20).', 'Flagged'], ('nfl-injury',), 'Official page scope · gap'),
-        row(['F19 · Review', 'Pull request #18 (independent-audit scope) is open, was last updated 10 days ago, and '
-             'GitHub reports it unmergeable; its pages are therefore not on the published site. This session cannot '
-             'rebase another session\u2019s branch.', 'Owner should rebase or close it (Q31). No entry was invented '
-             'for a path that would 404.', 'Flagged · handoff'], ('repo',), 'Repository inspection'),
-        row(['F20 · Review', 'Six dashboards duplicate the same categories with separate flag registers, and the '
-             'board records repeated coordination conflicts between them.',
-             'This release publishes a directory instead of silently merging them; the canonical choice is S01, a '
-             'decision the register leaves open.', 'Awaiting owner decision'], ('repo',), 'Repository inspection'),
-    ])
+new_flags = table('Review register extension · 14 Nov 2026 (session 4f2e0291)', ['ID / severity', 'Finding',
+                         'Required evidence / disposition', 'State'], [
+    row(['F22 · Critical', f"data/raw/closing_lines.csv holds {lines['files']['closing_lines']['rows']:,} "
+         'historical quote rows, which contradicts F01 ("no official historical executable odds archive obtained") '
+         'and F18 ("no executable historical price or point-in-time quote ledger exists"). It covers '
+         f"{lines['coverage']['season_min']}\u2013{lines['coverage']['season_max']} only, joins to scores only "
+         f"through an alternate identifier, has no price on {lines['missing_fields']['odds']['SPREAD']:,} "
+         f"spread and {lines['missing_fields']['odds']['TOTAL']:,} total rows, and "
+         f"{lines['settlement_recompute']['disagree_rows']} rows ({lines['settlement_recompute']['disagree_pct']}%)"
+         ' disagree with outcomes recomputed from the sibling score snapshot. The archive is unusable for a claim, '
+         'but it is not absent, and the register should say so.',
+         'Quarantined for use, not deleted. F01 and F18 should be restated as "an undocumented, unlicensed, '
+         '2006\u20132018 and mostly unpriced local file exists; nothing verified does". Provenance, licence, sign '
+         'convention and coverage must be settled by the owner (Q28, S08, S09) before it supports any claim.',
+         'Flagged · owner decision'],
+        ('repo',), 'Computed by tools/lines_audit.py at build time'),
+    row(['F23 · Review', 'No README, dataset note or manifest entry documents that file; the commit that added '
+         'it describes only the games snapshot.', 'Record origin, retrieval date and permitted use, or remove '
+         'the file.', 'Flagged'], ('repo',), 'Repository inspection'),
+    row(['F24 · Review', 'The sibling score snapshot is byte-identical to the nflverse file whose hash is '
+         'recorded on the coordination board, so its identity is checkable, but its upstream licence was never '
+         'confirmed by any session.', 'Confirm redistribution rights before republication.', 'Flagged'],
+        ('repo',), 'Hash compared locally'),
+    row(['F25 · Critical', 'No official participation or snap-count category exists among the eleven published '
+         'statistics categories, so replacement quality has no per-play denominator. The depth-chart findings '
+         'above (F13, F17\u2013F19) do not close this: a lineup names starters, not snaps.',
+         'Licence a tracking feed, or accept a counting-statistics proxy and disclose the loss of precision '
+         '(S07, Q21).', 'Blocked on source'], ('nfl-stats-cats', 'nfl-ngs'), 'Checked absence'),
+    row(['F26 · Review', 'Pull request #18 (independent-audit scope) is open, was last updated 10 days ago, and '
+         'GitHub reports it unmergeable; its pages are therefore not on the published site. This session cannot '
+         'rebase another session\u2019s branch.', 'Owner should rebase or close it (Q31). No link was added to a '
+         'path that would 404.', 'Flagged · handoff'], ('repo',), 'Repository inspection'),
+    row(['F27 · Review', 'Seven sections now duplicate overlapping categories with separate registers, and the '
+         'board records repeated coordination conflicts between them; this session\u2019s own findings were '
+         'renumbered to F22\u2013F27 in this merge for exactly that reason.',
+         'This release publishes a directory with per-section certification status instead of silently merging '
+         'them; the canonical choice is S01, a decision the register leaves open.', 'Awaiting owner decision'],
+        ('repo',), 'Repository inspection'),
+])
 
 
 # This session's eight findings are appended to the review register page itself, because the
@@ -765,25 +779,27 @@ new_flags = table('Review register extension · 14 Nov 2026', ['ID / severity', 
 # untouched and no wording is rewritten: the table is added after the last existing block.
 PAGES['flags.html'] = (*PAGES['flags.html'][:3],
                        PAGES['flags.html'][3]
-                       + '<p class="download">F13 to F20 below were raised by session 4f2e0291 on 14 Nov 2026. '
-                         'They extend the register above rather than editing it.</p>'
+                       + '<p class="download">F22 to F27 below were raised by session 4f2e0291 on 14 Nov 2026. They '
+                         'continue the numbering above rather than editing it; three findings this '
+                         'session had also raised are not repeated here because F13, F17\u2013F19 '
+                         'and F21 already record them.</p>'
                        + new_flags)
 
 # The ledger page points at that register instead of restating it, so a finding has one home.
 PAGES['question-ledger.html'] = (*PAGES['question-ledger.html'][:3],
                                  PAGES['question-ledger.html'][3]
-                                 + '<p class="download">The eight irregularities this session found (F13 to F20) '
+                                 + '<p class="download">The six irregularities this session adds (F22 to F27) '
                                    'are published on <a href="flags.html">Flagged for Review</a> with the evidence '
-                                   'each one still needs; the market figures behind F13 are on '
+                                   'each one still needs; the market figures behind F22 are on '
                                    '<a href="lines.html">Own lines</a> and reproduce with '
                                    '<code>python3 tools/lines_audit.py</code>.</p>')
 
 
 SECTIONS = [
-    ('.', 'Root dashboard', 'The published decision layer: a decision brief, two question registers, a '
-     'suggestion register with costs and falsifiers, the availability tracker and its official-source register, '
-     'the own-lines market audit, validation gates, leaderboard, correlations, data contract, sources, audit '
-     'and flags.'),
+    ('.', 'Root dashboard', 'The published decision layer: a decision brief, three question registers, a '
+     'suggestion register with costs and falsifiers, a costed suggestion sheet, the availability tracker, the '
+     'Week 10 injury and depth page, the official-source register behind both, the own-lines market audit, '
+     'validation gates, leaderboard, correlations, data contract, sources, audit and flags.'),
     ('site', 'Additive lab', 'Pricing primitives, gate structure and a twelve-page dashboard from the a54b6387 '
      'integration session.'),
     ('research', 'Research pipeline', 'Secondary-data analysis pipeline and ten pages from the 75504db2 session.'),
@@ -815,4 +831,3 @@ PAGES['index.html'] = (*PAGES['index.html'][:3],
                          'certified it, so a reader knows which page is current for which question. Consolidating '
                          'them into one canonical site is an open owner decision.</p>'
                        + _directory)
-

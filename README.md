@@ -6,8 +6,8 @@ An auditable NFL research workspace covering line origination, singles, parlays,
 player-prop combos, seven validation gates, a proposed competition, correlation
 requirements, official source scopes and a published review register.
 
-Eighteen pages, `tools/build.py`, `tools/verify.py`, synthetic data only, plus one measured
-market-data audit computed at build time from the committed files in `data/raw/`.
+Nineteen pages, `tools/build.py`, `tools/verify.py`, verified snapshots and synthetic data only,
+plus one market-data audit computed at build time from the files committed in `data/raw/`.
 
 ## Start with the decisions, not the archive
 
@@ -17,6 +17,7 @@ market-data audit computed at build time from the committed files in `data/raw/`
 | Know what must be known before deciding | [Questions & answers](questions.html) |
 | Review and choose an improvement before it is built | [Suggestions](suggestions.html) |
 | See who actually started and who replaced them | [Availability tracker](availability.html) |
+| See the full Week 10 2026 injury report snapshot and club depth charts | [Injuries & depth](injuries.html) |
 | Check a claim against a publisher | [Sources](sources.html) |
 | See what is still wrong or unverified | [Flagged for Review](flags.html) |
 | Know what the committed price file actually contains | [Own lines](lines.html) |
@@ -34,26 +35,33 @@ market-data audit computed at build time from the committed files in `data/raw/`
 - Two official counterexamples on WHY a designation feed is not a participation
   record: Treylon Burks did not practise yet started and caught 2 passes for 27
   yards, and six of seven Giants inactives carried no injury designation at all.
-- **Depth tiers are deliberately blank.** The club depth-chart route on nfl.com
-  returns an NFL 404; no first/second/third/fourth-string field was found. The
-  site reports changed starters, which is published, and refuses to rank backups,
-  which is not.
+- **Depth tiers stay caveated, not invented.** The club depth-chart route on
+  nfl.com returns an NFL 404, so the availability tracker keeps tier labels blank
+  for Game Book substitution chains. Separately, official club depth charts with
+  first/second/third/fourth-string columns were retrieved from the Chiefs,
+  Seahawks and Lions team sites on 2026-11-14 (self-labeled "unofficial" by the
+  clubs) and are published, with both sources cited, on
+  [Injuries & depth](injuries.html). No chart is treated as a certified game-day
+  depth record; cross-source conflicts are flagged, not reconciled (F19-F21).
 - Correlation handling is implemented, not asserted. A joint price is produced
   only when a Fisher-z interval clears a predeclared deadband; otherwise the joint
   price is left blank instead of assuming independence.
 
 ## Executive summary
 
-- **Implemented:** eighteen static dashboard pages; dependency-free pricing, binary scoring,
+- **Implemented:** nineteen static dashboard pages; dependency-free pricing, binary scoring,
   Pearson/phi, a Fisher-z correlation interval with a predeclared-deadband dependence gate,
   a joint price that refuses to default to independence, fail-closed eligibility, verified
   two-week lineup evidence with a fail-closed validator, and three validated registers
-  (16 suggestions, 22 questions, 16 decisions), extended on 14 Nov 2026 by a costed suggestion
-  sheet (18 items, 4 candidate paths), a question ledger (32 questions, 7 discovery probes), an
-  official availability-source register with two checked absences, and a measured audit of the
-  committed market-lines file; 102 Python tests, 2 browser suites and CI.
+  (16 suggestions, 22 questions, 16 decisions); and, from the 14 Nov 2026 integration, a costed
+  suggestion sheet (18 items, 4 candidate paths), a question ledger (32 questions, 7 discovery
+  probes), an official availability-source register with two checked absences, and a measured
+  audit of the committed market-lines file: 105 Python tests, 2 browser suites and CI.
 - **Not established:** an NFL edge, a numerical NFL line, empirical correlation, completed
   model/backtest, historical executable quote archive, verified skill or funded rewards.
+  Note the nuance on the second clause: an undocumented local file with 20,490 historical quote
+  rows *does* exist in `data/raw/` — it is measured on [Own lines](lines.html), is mostly unpriced,
+  stops in 2018 and is quarantined, so it establishes no archive that can be cited or backtested.
 - **Do not confuse software tests with strategy validation.** All candidates remain unvalidated;
   empirical values are blank. No bets are placed or recommended. Luck cannot be removed.
 - Every table row links to an official publisher or the primary project repository record.
@@ -72,6 +80,11 @@ market-data audit computed at build time from the committed files in `data/raw/`
 [Decision questions (earlier register)](decisions-questions.html) ·
 [Repository audit](audit.html) · [Flagged for Review](flags.html)
 
+**Decision support** (canonical dashboard at [`site/`](site/index.html)):
+[Suggestions](site/suggestions.html) to review and choose a path before changes ·
+[Decision questions](site/questions.html) to answer before deciding ·
+[Injury & depth](site/injuries.html) starter/backup deficiency tracking.
+
 Full [research specification](docs/RESEARCH_SPEC.md) and machine-readable
 [source review manifest](evidence/sources.json). The audit describes every starting tracked
 file scope. Official pages were read only within the manifest's stated scope; unsupported
@@ -81,7 +94,7 @@ paper evaluation remain unimplemented and explicitly flagged.
 ## Reproduce (Python 3.10+, no third-party packages)
 
 ```sh
-python3 tools/build.py                 # regenerate the 18 root pages
+python3 tools/build.py                 # regenerate the 19 root pages
 python3 tools/verify.py                # rows, links, fragments, nav, blanks
 python3 engine/availability.py         # lineup + injury evidence rules
 python3 engine/registers.py            # suggestions, questions, decisions
@@ -108,31 +121,33 @@ verification performed, irregularities, PRs and deployment results.
 
 ## Added by session `4f2e0291` on 14 Nov 2026
 
-Nothing in the pages above was rewritten to make room for this. The four additions register
-through the same `page()` API in `tools/build.py` and live in `tools/pages_4f2e0291.py`:
+Nothing above was rewritten to make room for this: `tools/pages_4f2e0291.py` registers four pages
+through the same `page()` API, and their own rows, statuses and scoring are untouched.
 
 - **`lines.html`** — the committed `data/raw/closing_lines.csv` is measured, not described: 20,490
-  rows, seasons 2006–2018, joins to scores only through an alternate identifier, 85.2% of spread
-  and total rows unpriced, and 18 rows disagreeing with outcomes recomputed from the sibling score
-  snapshot. No edge, ROI or backtest claim is drawn from it and the file stays quarantined.
-- **`availability-evidence.html`** — the ten official and club sources read on 14 Nov 2026, each
-  with what the page publishes and its limits, plus two *checked absences* (no league depth chart at
-  the path tried; no snap or participation category among the eleven statistics categories) and the
-  six candidate availability signals with their measured columns left blank.
-- **`question-ledger.html`** — 32 questions split into answered-from-official, answered-from-repo,
-  closable with data work and needing an owner decision, plus 7 probes for discovering missing input.
-- **`suggestion-costs.html`** — 18 suggestions with cost, decision value and status, four unranked
-  candidate paths, and a decision log that records "none yet" instead of implying approval.
+  rows, seasons 2006–2018, joins to scores only through an alternate identifier, 85.2% of spread and
+  total rows unpriced, and 18 rows (0.088%) disagreeing with outcomes recomputed from the sibling
+  score snapshot across 5 games (2 fully inverted). Push coding was checked and is consistent. No
+  edge, ROI or backtest claim is drawn from it, and the file stays quarantined.
+- **`availability-evidence.html`** — the ten official and club sources read on 14 Nov 2026, each with
+  what the page publishes and its limits; 26 transcribed Week 10 report rows and 13 Nov-2026
+  reserve-list moves; two checked absences (the league depth-chart path tried 404s, and there is no
+  snap or participation category among the eleven statistics categories); the deficiency-model
+  specification and six candidate availability signals with every measured column left blank.
+  `injuries.html` and `availability.html` carry the wider slate and the lineup evidence; this page
+  records the sources behind all of it.
+- **`question-ledger.html`** — 32 questions (19 answered from official sources or this repository,
+  6 closable with data work, 7 needing an owner decision) plus 7 probes for discovering missing input.
+- **`suggestion-costs.html`** — 18 costed suggestions with status, four unranked candidate paths and a
+  decision log that records "none yet" rather than implying approval. Nothing marked *Awaiting
+  decision* was implemented.
 
-Findings F13–F20 from this work are appended to `flags.html`, and the overview gained a directory of
-all seven published sections with per-section certification status.
+Findings are appended to `flags.html` as **F22–F27** (continuing the existing numbering; three
+findings this session had raised are not repeated because F13, F17–F19 and F21 already record them),
+and `index.html` gained a directory of all seven published sections with per-section certification
+status. `tools/verify.py` gained `www.patriots.com`, the club depth-chart source read here.
 
 ## Separate inherited research (not certified by this dashboard)
-
-Other sessions published their own artefacts under the same Pages root: `site/`, `research/`,
-`own9-research/`, `strict-lab/`, `release-checks/` and `session-8b05dd6d/` (a Week 10 availability
-subtree merged on 14 Nov 2026). They are listed, counted and labelled in the directory on the
-[overview](index.html); none of them was re-verified by this integration.
 
 PR #6 later added a secondary-source analysis subtree. Its empirical numbers have not passed this integration’s official row-level verification requirement and are not adopted as verified results. Its original description is retained below as an attributed session record.
 
@@ -155,3 +170,25 @@ python analysis/analyze.py && python analysis/build_site.py
 
 Betting lines are not published by the NFL, so all lines are labelled **Unverified** (`research/flagged.html`).
 Research only, not betting advice. Sports wagering in Washington is limited to tribal casinos (Washington State Gambling Commission).
+
+## Injury & depth tracking (2026-11-14)
+
+The [injuries & depth page](injuries.html) transcribes the official NFL Week 10 2026
+injury report (retrieved 2026-11-14 from [NFL.com](https://www.nfl.com/injuries/)):
+160 players carry an explicit Out/Doubtful/Questionable game status across the 14 listed
+games, with derived team availability-burden counts. Official club depth charts
+([Chiefs](https://www.chiefs.com/team/depth-chart),
+[Seahawks](https://www.seahawks.com/team/depth-chart/),
+[Lions](https://www.detroitlions.com/team/depth-chart/)) were verified the same day and
+cross-referenced against the report to demonstrate starter→next-string derivations with
+both sources cited. Where no chart was retrieved, replacement columns stay blank (GB, BAL,
+MIA depth slots) — never inferred. No injury-adjusted edge is asserted; the snapshot is a
+single point-in-time retrieval (F21).
+
+## Linked subsites (separate owning sessions; not merged into this dashboard)
+
+[site/](site/index.html) (additive dashboard) · [strict-lab/](strict-lab/index.html) ·
+[research/](research/index.html) (secondary-source pipeline) ·
+[own9-research/](own9-research/index.html) · [release-checks/](release-checks/index.html) ·
+[independent-audit/](independent-audit/index.html) (integrated from PR #18, 2026-11-14).
+Subsite findings remain governed by their owning sessions' scopes and review registers.

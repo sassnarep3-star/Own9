@@ -32,6 +32,16 @@
       "scope": "Practice and game-status fields are distinct; dynamic page is not a historical as-of archive."
     },
     {
+      "id": "NFL-ROSTER",
+      "title": "NFL team roster",
+      "url": "https://www.nfl.com/teams/den/roster",
+      "kind": "NFL primary source",
+      "status": "checked",
+      "checked_on": "2026-11-04",
+      "evidence": "Official team roster table with player number, position and roster Status (ACT, RES, DEV, RSR, UFA, TRC).",
+      "scope": "Roster status separates active from reserve/developmental players; it is not a point-in-time archive or a depth-chart ordering."
+    },
+    {
       "id": "SK-CV",
       "title": "scikit-learn cross-validation",
       "url": "https://scikit-learn.org/stable/modules/cross_validation.html",
@@ -640,6 +650,26 @@
       "source_ids": [
         "NFL-STATS"
       ]
+    },
+    {
+      "id": "F14",
+      "title": "Depth-chart source unavailable",
+      "detail": "NFL depth-chart candidate URLs (/teams/{team}/depth-chart and /teams/printdepthchart) returned HTTP 404 content on direct retrieval; the roster page is used instead.",
+      "impact": "Depth-tier ordering cannot be cited from a confirmed official URL; leave tier values blank.",
+      "status": "Unverified — flagged",
+      "source_ids": [
+        "NFL-ROSTER"
+      ]
+    },
+    {
+      "id": "F15",
+      "title": "Overlapping dashboards",
+      "detail": "Five parallel dashboards (root, site/, research/, own9-research/, strict-lab/) publish overlapping content; no single canonical workspace has been chosen.",
+      "impact": "Decision-making is fragmented; a consolidation decision is required (suggestion SG01).",
+      "status": "Needs review",
+      "source_ids": [
+        "GH-PAGES"
+      ]
     }
   ],
   "observations": [
@@ -840,6 +870,414 @@
       "source_ids": [
         "SK-CV",
         "DK-GENERAL"
+      ]
+    }
+  ],
+  "suggestions": [
+    {
+      "id": "SG01",
+      "area": "Structure",
+      "suggestion": "Adopt this dashboard as the single canonical workspace and de-duplicate the parallel sub-sites (root, site/, research/, own9-research/, strict-lab/).",
+      "rationale": "Five overlapping dashboards publish overlapping and sometimes conflicting numbers, which obscures decision-making.",
+      "benefit": "One authoritative table per category; reviewers compare one set of rows instead of five.",
+      "effort": "Medium — requires an integration decision, not code rewrites.",
+      "status": "Proposed — awaiting review",
+      "source_ids": [
+        "GH-PAGES",
+        "NFL-STATS"
+      ]
+    },
+    {
+      "id": "SG02",
+      "area": "Decision gate",
+      "suggestion": "Codify the existing eleven gates as a hard promotion rule: no strategy ranks or receives reward unless every gate passes.",
+      "rationale": "The user requires each strategy to pass validation gates before any decision.",
+      "benefit": "Prevents lucky or unproven strategies from reaching the leaderboard or rewards.",
+      "effort": "Low — policy already specified; needs an enforcement checkpoint.",
+      "status": "Proposed — awaiting review",
+      "source_ids": [
+        "SK-CV",
+        "SM-MULTI"
+      ]
+    },
+    {
+      "id": "SG03",
+      "area": "Data",
+      "suggestion": "Build a provenance-first ingestion pipeline that captures official as-of snapshots with retrieval UTC, publication UTC and SHA-256 hashes.",
+      "rationale": "All empirical gates currently fail because no provenance-complete historical dataset exists (F01).",
+      "benefit": "Unlocks point-in-time training, backtests and honest correlation estimation.",
+      "effort": "High — needs rights-cleared source access and parser tests.",
+      "status": "Proposed — awaiting review",
+      "source_ids": [
+        "NFL-STATS",
+        "NFL-INJURY"
+      ]
+    },
+    {
+      "id": "SG04",
+      "area": "Data",
+      "suggestion": "Acquire a rights-cleared archive of historical executable sportsbook quotes with timestamps and settlement rules.",
+      "rationale": "Economics and ROI cannot be evaluated without actual prices (F02); NFL stats are not odds.",
+      "benefit": "Enables cost-aware evaluation and removes the -110 assumption.",
+      "effort": "High — depends on operator/jurisdiction data access.",
+      "status": "Proposed — awaiting review",
+      "source_ids": [
+        "DK-GENERAL",
+        "DK-MARKETS"
+      ]
+    },
+    {
+      "id": "SG05",
+      "area": "Method",
+      "suggestion": "Pre-register the full trial family, numeric thresholds, confidence level and risk caps before any backtest runs.",
+      "rationale": "Luck cannot be removed; multiplicity and post-hoc tuning inflate apparent skill (F04).",
+      "benefit": "Reduces false discoveries and makes results reproducible and auditable.",
+      "effort": "Low-medium — a frozen protocol document, no data needed.",
+      "status": "Proposed — awaiting review",
+      "source_ids": [
+        "SK-CV",
+        "SM-MULTI"
+      ]
+    },
+    {
+      "id": "SG06",
+      "area": "Injury / depth",
+      "suggestion": "Stand up point-in-time injury and roster ingestion, and track starter-to-backup (2nd/3rd/4th string) substitutions for offense and defense.",
+      "rationale": "The user requires the system to track injuries and depth deficiencies when starters are replaced by backups.",
+      "benefit": "Quantifies availability risk that feeds availability-scenario and prop strategies.",
+      "effort": "Medium-high — needs historical as-of injury and roster capture.",
+      "status": "Proposed — awaiting review",
+      "source_ids": [
+        "NFL-INJURY",
+        "NFL-ROSTER"
+      ]
+    },
+    {
+      "id": "SG07",
+      "area": "Method",
+      "suggestion": "Estimate correlations from paired as-of observations and report coefficients with intervals; never assume independence or sign.",
+      "rationale": "Correlation values are currently blank (F03); pairwise values do not price three-plus legs.",
+      "benefit": "Makes parlay and prop-combo pricing dependence-aware and auditable.",
+      "effort": "Medium — depends on SG03 paired data.",
+      "status": "Proposed — awaiting review",
+      "source_ids": [
+        "SP-R",
+        "SP-BOOT"
+      ]
+    },
+    {
+      "id": "SG08",
+      "area": "Process",
+      "suggestion": "Use this Suggestions page as a formal review queue: each suggestion has a status (Proposed / Under review / Accepted / Rejected) chosen before implementation.",
+      "rationale": "The user wants a dedicated section so a reviewer chooses the best path before changes.",
+      "benefit": "Creates an explicit decision record; nothing is implemented without a chosen path.",
+      "effort": "Low — process, already partly built by this page.",
+      "status": "Proposed — awaiting review",
+      "source_ids": [
+        "GH-PAGES"
+      ]
+    },
+    {
+      "id": "SG09",
+      "area": "Competition",
+      "suggestion": "Separate the paper research leaderboard from any real-money reward, and freeze the reward schedule only after a strategy is eligible.",
+      "rationale": "Rewards must reward skill, not luck; no sponsor or pool exists (F10).",
+      "benefit": "Prevents rewarding leverage or lucky runs; keeps incentives aligned with validation.",
+      "effort": "Low — policy; needs a funding decision before any reward.",
+      "status": "Proposed — awaiting review",
+      "source_ids": [
+        "SM-MULTI",
+        "SK-CAL"
+      ]
+    },
+    {
+      "id": "SG10",
+      "area": "Stability",
+      "suggestion": "Run a forward paper-trading shadow ledger with a drift and missing-data kill-switch on frozen strategies.",
+      "rationale": "Stability and forward operation are unimplemented gates (F04/G11).",
+      "benefit": "Detects regime drift before it corrupts ranks; supports prospective replication.",
+      "effort": "Medium — needs a forward capture loop after SG03.",
+      "status": "Proposed — awaiting review",
+      "source_ids": [
+        "SK-TIME",
+        "SP-BOOT"
+      ]
+    }
+  ],
+  "questions": [
+    {
+      "id": "Q01",
+      "decision": "Data admission",
+      "question": "Is there a rights-cleared, provenance-complete historical NFL dataset with stable IDs, official outcomes and point-in-time features?",
+      "known": "We know NFL publishes current statistics and injury reports by category; no game/play/player archive has been ingested.",
+      "missing": "A qualifying as-of dataset with publication timestamps, hashes and permission to use.",
+      "evidence": "Acquire and verify a primary/licensed historical dataset; record hashes and permissions.",
+      "source_ids": [
+        "NFL-STATS",
+        "NFL-INJURY"
+      ]
+    },
+    {
+      "id": "Q02",
+      "decision": "Odds / pricing",
+      "question": "Do we have historical executable sportsbook quotes (singles, props, parlays) with timestamps, limits and settlement rules?",
+      "known": "No qualifying odds archive was obtained; NFL statistics are not odds (F02).",
+      "missing": "Timestamped, jurisdiction-matched executable quotes and exact ticket rules.",
+      "evidence": "Source an operator/jurisdiction quote archive; verify settlement per market.",
+      "source_ids": [
+        "DK-GENERAL",
+        "DK-MARKETS"
+      ]
+    },
+    {
+      "id": "Q03",
+      "decision": "Point-in-time",
+      "question": "Can every feature and quote be frozen at a cutoff strictly before kickoff, with revisions kept separately?",
+      "known": "The own-line model uses only earlier games in code, but market lines lack timestamps (partial G2).",
+      "missing": "As-of cutoff timestamps and immutable revision history for all inputs.",
+      "evidence": "Build point-in-time capture and freeze cutoffs before each forecast.",
+      "source_ids": [
+        "SK-TIME",
+        "NFL-STATS"
+      ]
+    },
+    {
+      "id": "Q04",
+      "decision": "Correlation",
+      "question": "What are the measured correlation values and intervals for each predeclared pair, from paired as-of data?",
+      "known": "Eight pair definitions exist; all coefficients and intervals are blank (F03).",
+      "missing": "Paired observations, frozen leg definitions, valid dependence-aware inference.",
+      "evidence": "Acquire paired data; estimate r/phi with week-block intervals; publish with n.",
+      "source_ids": [
+        "SP-R",
+        "SP-BOOT"
+      ]
+    },
+    {
+      "id": "Q05",
+      "decision": "Injury / depth",
+      "question": "Which starters are unavailable, and which 2nd/3rd/4th-string backups are promoted on offense and defense, point-in-time?",
+      "known": "Official injury and roster pages exist and expose status fields; no historical as-of availability ledger (F06).",
+      "missing": "Point-in-time injury reports and roster/depth-chart snapshots with capture timestamps.",
+      "evidence": "Ingest as-of injury and roster data; map starter-to-backup substitutions.",
+      "source_ids": [
+        "NFL-INJURY",
+        "NFL-ROSTER"
+      ]
+    },
+    {
+      "id": "Q06",
+      "decision": "Model fit",
+      "question": "Has any original probability/line model been fitted on verified data and calibrated on held-out folds?",
+      "known": "Pricing and scoring primitives are implemented and tested on synthetic data only; no fitted NFL model.",
+      "missing": "A fitted, calibrated model with out-of-sample Brier/log loss and reliability bins.",
+      "evidence": "Fit candidate models after Q01; calibrate on prior-only folds.",
+      "source_ids": [
+        "SK-CAL",
+        "SK-CV"
+      ]
+    },
+    {
+      "id": "Q07",
+      "decision": "Backtest",
+      "question": "Has any strategy been backtested out-of-sample with executable prices and every settlement state?",
+      "known": "No verified backtest exists; inherited secondary results are not certified (F13).",
+      "missing": "A sealed, walk-forward backtest with actual quotes, costs and full settlement.",
+      "evidence": "Run backtests after Q02/Q06; freeze splits before exposure.",
+      "source_ids": [
+        "SK-TIME",
+        "DK-GENERAL"
+      ]
+    },
+    {
+      "id": "Q08",
+      "decision": "Multiplicity",
+      "question": "What is the pre-registered trial family and corrected significance threshold across all candidates?",
+      "known": "No frozen family or inference exists; Holm correction is implemented but unused (G08).",
+      "missing": "A registered family, alpha, and valid corrected p-values for every trial.",
+      "evidence": "Freeze the trial family; compute Holm-adjusted evidence on real trials.",
+      "source_ids": [
+        "SM-MULTI",
+        "SK-CV"
+      ]
+    },
+    {
+      "id": "Q09",
+      "decision": "Economics",
+      "question": "Is there a strictly positive, cost-adjusted lower confidence bound on return for any strategy?",
+      "known": "No executable quotes or tolerance; economics gate not run (F02/G07).",
+      "missing": "Captured prices, costs, all settlement states, and a positive lower return bound.",
+      "evidence": "Evaluate economics on real quotes with predeclared drawdown tolerance.",
+      "source_ids": [
+        "DK-MARKETS",
+        "SP-BOOT"
+      ]
+    },
+    {
+      "id": "Q10",
+      "decision": "Jurisdiction",
+      "question": "In which jurisdiction, and under which operator and ticket rules, would any wager or reward operate?",
+      "known": "Retrieved DraftKings rules are Virginia-scoped; Washington limits sports wagering to tribal casinos (F05).",
+      "missing": "A confirmed jurisdiction, licensed operator and applicable ticket/settlement rules.",
+      "evidence": "Confirm jurisdiction and operator rules before any real-money or reward step.",
+      "source_ids": [
+        "WA-GAMING",
+        "DK-GENERAL"
+      ]
+    },
+    {
+      "id": "Q11",
+      "decision": "Rewards",
+      "question": "Is any reward funded, and is the schedule frozen before competition begins?",
+      "known": "No sponsor, pool or payout exists; rewards are a proposed policy (F10).",
+      "missing": "A funded, pre-registered reward schedule tied to eligibility.",
+      "evidence": "Decide funding and freeze the schedule only after eligibility rules are met.",
+      "source_ids": [
+        "SM-MULTI",
+        "SK-CAL"
+      ]
+    },
+    {
+      "id": "Q12",
+      "decision": "Luck / skill",
+      "question": "Can skill be demonstrated (not luck removed) via sealed tests, proper scores and replication?",
+      "known": "Luck cannot be removed; the method reduces false discovery but cannot certify risk-free skill (F04).",
+      "missing": "Independent sealed holdout, valid corrected evidence, prospective replication.",
+      "evidence": "Run the full gate pipeline and independent review before any skill claim.",
+      "source_ids": [
+        "SK-CV",
+        "SP-BOOT"
+      ]
+    }
+  ],
+  "injury_tracking": [
+    {
+      "id": "IT01",
+      "area": "Defense",
+      "unit": "Pass rush / edge",
+      "scenario": "Starter out; 2nd-string edge rusher promoted",
+      "required": "Practice/game status, roster status, position group, promotion date",
+      "current": "Unverified — no as-of ledger",
+      "status": "Needs point-in-time injury + roster capture",
+      "source_ids": [
+        "NFL-INJURY",
+        "NFL-ROSTER"
+      ]
+    },
+    {
+      "id": "IT02",
+      "area": "Defense",
+      "unit": "Secondary / cornerback",
+      "scenario": "Starter out; 3rd-string corner promoted",
+      "required": "Practice/game status, roster status, depth tier",
+      "current": "Unverified — no as-of ledger",
+      "status": "Needs point-in-time injury + roster capture",
+      "source_ids": [
+        "NFL-INJURY",
+        "NFL-ROSTER"
+      ]
+    },
+    {
+      "id": "IT03",
+      "area": "Defense",
+      "unit": "Linebacker",
+      "scenario": "Starter out; backup linebacker promoted",
+      "required": "Practice/game status, roster status, depth tier",
+      "current": "Unverified — no as-of ledger",
+      "status": "Needs point-in-time injury + roster capture",
+      "source_ids": [
+        "NFL-INJURY",
+        "NFL-ROSTER"
+      ]
+    },
+    {
+      "id": "IT04",
+      "area": "Defense",
+      "unit": "Interior defensive line",
+      "scenario": "Starter out; 2nd/3rd-string tackle promoted",
+      "required": "Practice/game status, roster status, depth tier",
+      "current": "Unverified — no as-of ledger",
+      "status": "Needs point-in-time injury + roster capture",
+      "source_ids": [
+        "NFL-INJURY",
+        "NFL-ROSTER"
+      ]
+    },
+    {
+      "id": "IT05",
+      "area": "Offense",
+      "unit": "Quarterback",
+      "scenario": "Starter out; 2nd-string QB promoted",
+      "required": "Practice/game status, roster status, depth tier",
+      "current": "Unverified — no as-of ledger",
+      "status": "Needs point-in-time injury + roster capture",
+      "source_ids": [
+        "NFL-INJURY",
+        "NFL-ROSTER"
+      ]
+    },
+    {
+      "id": "IT06",
+      "area": "Offense",
+      "unit": "Offensive line",
+      "scenario": "Starter out; backup tackle/guard/center promoted",
+      "required": "Practice/game status, roster status, depth tier",
+      "current": "Unverified — no as-of ledger",
+      "status": "Needs point-in-time injury + roster capture",
+      "source_ids": [
+        "NFL-INJURY",
+        "NFL-ROSTER"
+      ]
+    },
+    {
+      "id": "IT07",
+      "area": "Offense",
+      "unit": "Running back",
+      "scenario": "Starter out; 2nd/3rd-string back promoted",
+      "required": "Practice/game status, roster status, depth tier",
+      "current": "Unverified — no as-of ledger",
+      "status": "Needs point-in-time injury + roster capture",
+      "source_ids": [
+        "NFL-INJURY",
+        "NFL-ROSTER"
+      ]
+    },
+    {
+      "id": "IT08",
+      "area": "Offense",
+      "unit": "Wide receiver / tight end",
+      "scenario": "Starter out; backup receiver/TE promoted",
+      "required": "Practice/game status, roster status, depth tier",
+      "current": "Unverified — no as-of ledger",
+      "status": "Needs point-in-time injury + roster capture",
+      "source_ids": [
+        "NFL-INJURY",
+        "NFL-ROSTER"
+      ]
+    },
+    {
+      "id": "IT09",
+      "area": "Cross-cutting",
+      "unit": "Any position",
+      "scenario": "Depth-tier gap (no reliable 3rd/4th string)",
+      "required": "Roster composition, depth-chart ordering",
+      "current": "Unverified — depth-chart source URL soft-404",
+      "status": "Needs a confirmed depth-chart source",
+      "source_ids": [
+        "NFL-ROSTER"
+      ]
+    },
+    {
+      "id": "IT10",
+      "area": "Cross-cutting",
+      "unit": "All",
+      "scenario": "Availability scenario weight for pricing",
+      "required": "As-of availability history",
+      "current": "Unverified — no historical weights",
+      "status": "Needs as-of capture; do not invent weights",
+      "source_ids": [
+        "NFL-INJURY",
+        "NFL-STATS"
       ]
     }
   ]

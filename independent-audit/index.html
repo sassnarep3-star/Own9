@@ -1,0 +1,36 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="description" content="Independent source verification and research limitations for NFL line origination.">
+<title>Independent NFL source audit · Own9 audit</title>
+<link rel="stylesheet" href="audit.css">
+</head>
+<body>
+<a class="skip" href="#content">Skip to content</a>
+<header><div class="shell header-inner"><a class="brand" href="../index.html"><span>O9</span> OWN9 <small> / RESEARCH</small></a><nav aria-label="Audit navigation"><a href="index.html" aria-current="page">Overview</a><a href="methodology.html">Methodology</a><a href="audit.html">Row audit</a><a href="sources.html">Sources</a><a href="flags.html">Flagged for review</a></nav></div></header>
+<main id="content" class="shell"><p class="eyebrow">INDEPENDENT VERIFICATION / 04 NOV 2026</p><h1>Independent NFL source audit</h1><p>Reviewed on 2026-11-04 UTC by session <code>arena/489d1d3e-own9</code>. This directory is an independent, narrowly scoped handoff; it does not change the dashboard or files claimed by other sessions. The audit of the existing dashboard is anchored to main at commit <code>9f6eb6f</code>.</p>
+<h2>Executive summary</h2>
+<ul>
+<li>The <a href="https://github.com/sassnarep3-star/Own9/tree/4828ac07f28eb71d0e497836ec363926b5b2be3f">initial repository tree</a> contained only a README. It did not contain a model, backtest, strategy leaderboard, or historic dataset.</li>
+<li>We found <strong>a limited official-publisher historical snapshot</strong>, not a validated betting feed. The <a href="https://www.nfl.com/news/nfl-picks-week-8-2026-nfl-season">NFL Week 8 picks article</a> says its FanDuel-provided lines were locked at 1:30 p.m. ET on Thursday, October 29, 2026. The article displays moneylines, one stated spread side and game totals. Matchups and final scores can be reviewed against the <a href="https://www.nfl.com/schedules/2026/by-week/week-8">NFL Week 8 schedule</a>. These are NFL.com-reported values, not proof that a user could actually have placed a wager at those odds.</li>
+<li>The article is a mutable editorial page with later updates. A stated lock time is not proof of a contemporaneous, executable sportsbook quote, and the current page cannot establish exactly when all of its other content became available. Do not use later text as point-in-time features.</li>
+<li>The <a href="https://www.nfl.com/legal/terms/">NFL.com terms</a> restrict systematic retrieval to compile a database without express written consent; rights to collect, republish or commercialize these data have not been established. A preliminary local transcription was withdrawn rather than published as a dataset. This is a rights concern, not a legal determination about any particular use.</li>
+<li>Spread and total prices and evidence of execution are <strong>unverified and blank</strong>. There are no player-prop or parlay quotes in this snapshot. It is only one week, not a sample sufficient to validate an edge, strategy, or correlation. No simulated profit, picks, probabilities, or correlation values are claimed.</li>
+<li>Luck cannot be eliminated from future outcomes. Proper out-of-sample tests, uncertainty estimates, multiple-comparison controls, and a matched benchmark can help distinguish evidence of forecasting skill from noise; they cannot guarantee profit. The <a href="https://www.amstat.org/asa/files/pdfs/p-valuestatement.pdf">American Statistical Association</a> cautions against treating a p-value alone as the probability that a hypothesis is true or as a substitute for transparent reporting.</li>
+<li>Actual reward eligibility and legal compliance are <strong>unverified</strong>. This is research, not a sponsored competition or wagering service. As one jurisdictional example, the <a href="https://wsgc.wa.gov/rules-enforcement/illegal-gambling-activities">Washington State Gambling Commission</a> describes restrictions on sports wagering and defines gambling using prize, chance, and consideration. This example does not assert the user&#x27;s location or determine the law for any particular contest.</li>
+</ul>
+<h2>Artifacts</h2>
+<ul>
+<li><a href="sources.html">Source ledger</a>: links, the specific claim each source supports, access status, and what it cannot verify.</li>
+<li><a href="audit.html">Dashboard row audit</a>: a row-by-row review of the earlier dashboard, tied to a fixed commit. A later spot check, not a full subsequent row audit, is documented on the review page.</li>
+<li><a href="methodology.html">Strategy and validation handoff</a>: suggested methods, clearly marked as proposed rather than externally endorsed.</li>
+<li><a href="flags.html">Flagged for Review</a>: unresolved data, legal, methodology and deployment issues.</li>
+</ul>
+<p>These pages are generated from Markdown with <code>python3 independent-audit/build.py</code>; run <code>python3 independent-audit/test_report.py</code> to check regeneration and local links. The tests check structure, not external availability or claim truth.</p>
+<h2>Integration request</h2>
+<p>The final integrator should link the official article and schedule for review, present the article only as an <strong>NFL-reported historical example</strong>, and flag collection/republishing rights, executable prices, missing spread/total prices, historic player-prop and parlay quotes, and all model results as unverified. Do not publish the withdrawn transcription or automate systematic collection without appropriate rights review and authorization. A later targeted spot check found unsupported numbers exposed in the inherited research subtree, incomplete row-level official links and inaccurate categorical or stale statements; details are on <a href="flags.html">Flagged for Review</a>. Coordinate fixes with the owners of those files. The earlier row audit is not a substitute for re-verifying the eventual combined site. If the final site includes this directory, link its pages from the shared navigation without changing or deleting other sessions&#x27; work.</p></main>
+<footer class="shell">Own9 · Independent review <span>Evidence is not an endorsement or a promise of profit.</span></footer>
+</body>
+</html>

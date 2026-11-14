@@ -183,13 +183,21 @@ class Registers(unittest.TestCase):
 
 
 class ReviewRegister(unittest.TestCase):
-    def test_findings_f13_to_f20_are_on_the_flags_page(self):
+    def test_findings_f22_to_f27_are_on_the_flags_page(self):
+        # Renumbered in the 14 Nov merge: main had already reached F21, and three of this
+        # session's original findings (depth chart, per-row timestamps) are covered there.
         rows = [r['cells'] for r in tables('flags.html')
                 if r['caption'].startswith('Review register extension')]
-        self.assertEqual(len(rows), 8)
-        self.assertEqual([r[0].split(' ')[0] for r in rows], [f'F{n}' for n in range(13, 21)])
-        critical = [r[0] for r in rows if 'Critical' in r[0]]
-        self.assertEqual(len(critical), 3, 'three findings block a requirement outright')
+        self.assertEqual(len(rows), 6)
+        self.assertEqual([r[0].split(' ')[0] for r in rows], [f'F{n}' for n in range(22, 28)])
+        self.assertEqual(len([r for r in rows if 'Critical' in r[0]]), 2)
+        self.assertIn('F18', rows[0][1] + rows[0][2],
+                      'the market-archive finding must name the register rows it contradicts')
+
+    def test_no_finding_id_is_published_twice(self):
+        ids = [r['cells'][0].split(' ')[0] for r in tables('flags.html')
+               if r['cells'][0].startswith('F') and len(r['cells'][0].split(' ')[0]) == 3]
+        self.assertEqual(len(ids), len(set(ids)), 'the review register has duplicate finding ids')
 
     def test_earlier_flags_remain(self):
         html = (ROOT / 'flags.html').read_text()
@@ -227,7 +235,7 @@ class Structural(unittest.TestCase):
 
     def test_page_count_is_theirs_plus_this_delta(self):
         rendered = len([f for f in ROOT.glob('*.html')])
-        self.assertEqual(rendered, 18)
+        self.assertEqual(rendered, 19, 'fifteen pages from main plus this session\'s four')
 
     def test_new_pages_are_linked_from_nav_exactly_once(self):
         for name in ('lines.html', 'availability-evidence.html', 'question-ledger.html',
