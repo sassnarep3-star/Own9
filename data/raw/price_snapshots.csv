@@ -1,0 +1,7 @@
+game_id,market,side,line,decimal_price,quote_utc,operator,jurisdiction,opening_utc,closing_utc,is_closing,settlement_rule
+# Price-snapshot store schema — populated only from captured quotes.
+# Required columns: game_id, market, side, decimal_price, quote_utc, operator, jurisdiction.
+# Optional columns: line (required for SPREAD/TOTAL, absent for MONEYLINE),
+#   opening_utc, closing_utc, is_closing, settlement_rule.
+# Until a licensed or permissioned quote source exists, no data rows are written.
+# All numeric fields remain blank — no price is inferred or reconstructed.

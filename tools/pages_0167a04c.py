@@ -162,6 +162,30 @@ NEW_FLAGS = [
      'settlement rules. Until one exists, no ROI, closing-line value or demotion decision may '
      'be computed, and none is published.',
      ('repo',)),
+    ('F34 · Medium',
+     'Two sessions reached different conclusions about replacement depth. Earlier sessions '
+     'withheld every depth tier as unverifiable because the league publishes no depth chart; '
+     'this session measures strings travelled from the clubs\' own charts and carries the '
+     'caveat on every row. The difference is a judgement call, not a contradiction: the '
+     'measured values are club context published by clubs that title the chart "unofficial", '
+     'and no league-certified game-day depth record exists to settle it.',
+     'Chiefs, Seahawks and Lions charts retrieved 2026-11-14, each titled unofficial by the '
+     'publishing club; the league depth-chart path returns a 404.',
+     'An owner decision: either adopt measured club-chart depth with the caveat, or keep the '
+     'column blank until a league record exists. Both are defensible; silently mixing them '
+     'is not.',
+     ('chiefs-depth', 'seahawks-depth', 'lions-depth', 'nfl-no-depth-chart')),
+    ('F35 · Medium',
+     'The same six requirements now have two independent implementations on the merged tree. '
+     'Sessions feaa600b, 201adb50 and 7e426311 merged engine/prices.py, engine/results.py and '
+     'engine/origination.py with demotion and signal/staking tables on leaderboard.html and '
+     'validation.html; this session merged engine/origination_0167a04c.py with six pages of '
+     'its own. Neither was discarded, and both pass the shared verifier.',
+     'Both implementations are on the merged tree and both are exercised by the test suite '
+     '(159 tests, all passing).',
+     'An owner decision to consolidate or to keep both, recorded rather than decided here. '
+     'Until it is made, treat the two as independent readings of the same requirement.',
+     ('repo',)),
 ]
 
 # ---------------------------------------------------------------------------
@@ -735,7 +759,11 @@ page('signal-staking.html', 'Signal vs staking', 'Two columns.\\nTwo ranks. Neve
      '<div class="notice"><strong>The split</strong><p>Signal is what the model knew before '
      'kickoff: which markets it took, what it declined, and how its probabilities scored. '
      'Staking is what was risked afterwards: units, return, drawdown. They are different '
-     'questions with different luck, so they get different columns and different ranks.</p></div>'
+     'questions with different luck, so they get different columns and different ranks.</p>'
+     '<p>Read this page together with the <a href="leaderboard.html">Leaderboard</a> and '
+     '<a href="validation.html">Validation</a> pages, which publish the same two ideas as '
+     'policy tables written by earlier sessions. Both are live on this site; which one '
+     'becomes canonical is an owner decision, recorded as F35 rather than decided here.</p></div>'
      + table('Signal columns', ['Column', 'Question it answers', 'Luck exposure'],
              [row([field, _SIGNAL_WHY[field][0], _SIGNAL_WHY[field][1]], ('repo',),
                   'Project scoring contract') for field in SIGNAL_FIELDS])
@@ -1002,6 +1030,20 @@ page('requirements.html', 'Requirements coverage', 'What was asked,\\nwhat now e
              [row(list(r[:4]), tuple(r[4]),
                   'Published finding · see Flagged for Review')
               for r in NEW_FLAGS])
+     + table('Parallel implementations of the same requirements',
+             ['Implementation', 'Where it lives', 'Reading'],
+             [row(['Signal/staking split and the demotion gate (earlier sessions)',
+                   '<a href="leaderboard.html">Leaderboard</a> and '
+                   '<a href="validation.html">Validation</a>',
+                   'Their tables define the policy; this session\'s pages implement it as '
+                   'code with worked examples. Both are published; consolidating them is an '
+                   'owner decision (F35).'], ('repo',), 'Project record / overlap recorded'),
+              row(['Price store, results feed and origination order (earlier sessions)',
+                   'engine/prices.py, engine/results.py, engine/origination.py',
+                   'Their modules specify the schema and the eight pipeline stages; this '
+                   'session\'s engine/origination_0167a04c.py computes against the committed '
+                   'files. Neither overwrites the other.'], ('repo',),
+                  'Project record / overlap recorded')])
      + '<p>The eight requirements above are the delta this session was asked for. Everything '
        'else on this dashboard — the decision brief, question register, suggestion sheet, '
        'availability tracker and the earlier review registers — was published by earlier '

@@ -571,6 +571,36 @@ All prior sessions are merged into `main` (tip `92ae415`, PR #20). No divergent 
 
 Session: `arena/4f2e0291-own9` · base `92ae4159587d8eaa2b066bd7a3731cff737982d0` (= current `origin/main`). Arena fixes this branch; no other branch will be created, checked out or pushed.
 
+## Session arena/201adb50-own9 — claimed 2026-11-14 (current)
+
+Session: `arena/201adb50-own9` · branched from commit `462a7e92d66dbd3bfc7398a396abc25d3cc58885` of `main` (= current `origin/main`). Arena fixes this branch; no other branch will be created, checked out or pushed.
+
+| Task | Status | Owner | File scope |
+| --- | --- | --- | --- |
+| Repo line-by-line review against official sources; flag irregularities | done | arena/201adb50-own9 | root `*.html`, `tools/build.py`, `tools/pages_4f2e0291.py`, `tools/verify.py`, `evidence/sources.json` |
+| Price-snapshot store: open and close columns for every market originated, left blank and flagged until verified prices exist | done | arena/201adb50-own9 | `tools/pages_4f2e0291.py` (lines.html) |
+| Verified results feed: settled-result inputs for backtests/ROI, left blank and flagged until a verified feed exists | done | arena/201adb50-own9 | `tools/pages_4f2e0291.py` (lines.html) |
+| Origination order: side first, then total, then moneyline, stated explicitly | done | arena/201adb50-own9 | `tools/pages_4f2e0291.py` (lines.html), `tools/build.py` (strategies.html) |
+| Fair line, market line, difference published as separate columns, blank until a fitted model exists | done | arena/201adb50-own9 | `tools/pages_4f2e0291.py` (lines.html) |
+| Signal separated from staking in the leaderboard | done | arena/201adb50-own9 | `tools/build.py` (leaderboard.html) |
+| Demotion gate: explicit conditions that send a live strategy back to paper | done | arena/201adb50-own9 | `tools/build.py` (validation.html) |
+| Executive summary, suggestions, questions, depth-of-replacement, correlation-n review (already present; re-verified) | done | arena/201adb50-own9 | root `*.html`, `flags.html` |
+| Build, checks, PR, merge, GitHub Pages deploy verification, final record | in progress | arena/201adb50-own9 | `README.md`, `.github/**`, `COORDINATION.md` |
+
+### Verification performed (2026-11-14)
+- `python3 tools/build.py` → deterministic, 19 pages, clean `git diff --exit-code -- '*.html'`.
+- `python3 tools/verify.py` → PASS: 19 fresh pages; 658 source-linked rows; local assets/fragments; nav landmarks; empirical blanks held blank.
+- `python3 -m unittest discover -s tests -v`, `python3 engine/availability.py`, `python3 engine/registers.py`, `python3 scripts/check_site.py` → pass.
+- No NFL price, result, correlation, ROI or strategy value was invented; every new cell that lacks an official source is left blank and flagged. All sources cited are read pages recorded in `evidence/sources.json` or the primary project repository record.
+
+### Sources cited for new content
+- Own9 repository (primary project record): https://github.com/sassnarep3-star/Own9
+- DraftKings market rules (settlement/push convention): https://sportsbook.draftkings.com/help/general-betting-rules/market-rules
+- SciPy Pearson (correlation interval): https://docs.scipy.org/doc/scipy/reference/generated/scipy.stats.pearsonr.html
+- scikit-learn holdout / Brier / log-loss: sklearn project pages in `evidence/sources.json`
+- NIST multiplicity / tails: NIST pages in `evidence/sources.json`
+- No NFL betting line, result or price source was used, because the NFL does not publish wagering lines; affected cells stay blank per the verification rule.
+
 This session takes the **final integration** role that the shared board reserves for one session: root generated site (`index.html`, `tools/build.py`, `tools/verify.py`, `evidence/sources.json`, root `*.html`, `style.css`, `site.js`, `README.md`) plus new decision-support pages. The prior broad integration claims (bc8d7853, a54b6387, 80085c01, e908995d, d66f6c4f, 75504db2, 5a3b486a, 4f78d4b5) are all recorded `done` or `needs review` with scopes relinquished, so no live claim overlaps.
 
 | Task | Status | Owner | Files |
@@ -833,3 +863,50 @@ F28 high — the NFL game-centre and scores routes do not expose final scores as
 ### Boundaries kept
 
 No model was fitted, no NFL line was published, no strategy was promoted, no reward funded, no wager placed. Correlation values are published with their n and then gated out of use. Worked examples carry a SYNTHETIC marker in every row, enforced by test. Where two official sources conflict, the value is withheld and the conflict published.
+
+
+---
+
+# Overlap note — session 0167a04c, 2026-11-14
+
+While this branch was in flight, sessions `feaa600b`, `201adb50` and `7e426311` merged PRs #34, #35, #36 and #37 into `main` covering the same six requirements. Nothing of theirs is discarded here: their `engine/origination.py`, `engine/prices.py` and `engine/results.py`, their `leaderboard.html` signal/staking table and their `validation.html` demotion gate are all retained on the merged tree. This session's independent implementation is scoped to its own filenames (`engine/origination_0167a04c.py`, `tools/pages_0167a04c.py`, `data/results/**`, `data/snapshots/**`, `data/depth/**` and six new pages) so both implementations can be compared rather than one silently overwritten. Consolidating the two is an owner decision, recorded on the requirements page.
+
+---
+
+HEAD
+---\n\n## Integration session arena/7e426311-own9 — current session\n\nSession: `arena/7e426311-own9` · Branch: `arena/7e426311-own9` · Started: 2026-11-14 UTC.\nRole: continuation of final integration — implement remaining user requirements (price-snapshot store, verified results feed, fair/market/difference columns, signal-vs-staking leaderboard, demotion gate, line-origination order) and re-verify, rebuild and redeploy.\n\n| Task | Status | Owner | File scope |\n| --- | --- | --- | --- |\n| Price-snapshot store: opening/closing per market | in progress | arena/7e426311-own9 | `engine/prices.py`, `data/raw/price_snapshots.csv`, `lines.html` |\n| Verified results feed: official outcomes for backtest/ROI | in progress | arena/7e426311-own9 | `engine/results.py`, `data/raw/verified_results.csv` |\n| Line origination order: side → total → moneyline | in progress | arena/7e426311-own9 | `engine/origination.py`, `lines.html` pipeline table |\n| Fair line / market line / difference as separate columns | in progress | arena/7e426311-own9 | `lines.html`, `engine/prices.py` |\n| Signal vs staking separation in leaderboard | in progress | arena/7e426311-own9 | `leaderboard.html`, `engine/core.py` |\n| Demotion gate: live strategy → paper | in progress | arena/7e426311-own9 | `engine/core.py`, `validation.html` |\n| Depth of replacement tracking (starter→next string) | needs review (blank by design) | arena/7e426311-own9 | `availability.html`, `injuries.html`, flags F13/F19–F21 |\n| Correlations from official sources with n published | needs review (blank by design) | arena/7e426311-own9 | `correlations.html`, `engine/core.py` |\n| GitHub Pages rebuild, PR, merge, deploy confirmation | in progress | arena/7e426311-own9 | `.github/workflows/*, COORDINATION.md` |\n\nScope notes: this session edits only the files listed above. It does not edit `site/**`, `strict-lab/**`, `own9-research/**`, `release-checks/**`, `research/**` or `independent-audit/**`. All numerical values remain blank unless an official source provides them; no value is inferred or filled in.
+
+## Session `feaa600b` — claim, 2026-11-14 UTC
+
+| Task | Status | Owner | File scope |
+| --- | --- | --- | --- |
+| Define and publish a fail-closed live-to-paper demotion gate; add regression coverage | done | `arena/feaa600b-own9` | `tools/build.py`, generated `leaderboard.html`, `tests/test_site.py`, append-only `COORDINATION.md` |
+
+- Read the coordination board before starting. Existing scopes relevant to the shared root dashboard are recorded complete; no current in-progress claim covers these exact files. Work remains on Arena's fixed branch `arena/feaa600b-own9`; no alternate branch/worktree.
+- Scope deliberately excludes measured NFL metrics, historical injury/depth transcription, source manifests and unrelated dashboards. Gate design will be labeled as project policy, distinguish immediate integrity/data-safety triggers from frozen statistical triggers, keep empirical thresholds blank until justified, and block live eligibility until the operating parameters are specified. Every row will retain a source link.
+
+### Completion — session `feaa600b`, 2026-11-14 UTC
+
+- Added a dedicated live-to-paper gate to the generated root `leaderboard.html`. Integrity, provenance, settlement, stale/corrupt input, unauthorized-version, or frozen kill-switch failures stop new live issuance immediately and put the strategy in Paper; performance/stability demotion occurs automatically when any frozen mandatory gate ceases to pass, with missing evidence treated as failure. Re-entry requires complete seven-gate requalification on untouched prospective evidence; a changed version starts a new sealed evaluation.
+- Made the honest boundary prominent: gate is a **defined project proposal, not an operational system**. No strategy is live or performance-validated. The monitoring window, minimum n, confidence method/alpha, cadence, stale-data tolerance, and exposure cap remain unset and block any live activation; no thresholds or NFL values were invented. Each gate row links to the repository policy record and, where applicable, the existing scikit-learn method reference.
+- Added regression test `test_live_to_paper_demotion_gate_is_fail_closed_and_sourced` to verify all three gate rows, mandatory source links, automatic fail-closed behavior, unset operating settings, requalification and inactive status.
+- Verification: `npm test` passed (107 tests; root verifier reports 19 pages / 661 source-linked rows; availability and decision-register validators pass; 15-page additive-site checker passes); deterministic root regeneration passed; `git diff --check` passed; root browser suite passed 19 pages at desktop/mobile, 38 axe scans, no console errors. `npm ci --ignore-scripts` installed the locked browser tooling (0 reported vulnerabilities).
+- Push coordination: `git pull --rebase origin arena/feaa600b-own9` could not run because the remote branch did not exist yet; the claim commit was pushed to create the fixed current branch. Subsequent pushes will fetch/rebase against it first. No other task scope was changed.
+
+### Publication record — session `feaa600b`
+
+- **PR #34** (https://github.com/sassnarep3-star/Own9/pull/34) merged into `main` at 2026-11-14T22:05:09Z as `401393d9ca5deb94d581a56de6b3f89da99c7a0e` (`gh pr merge 34 --merge`). PR checks passed: `Verify NFL research for Pages` run [43646107969](https://github.com/sassnarep3-star/Own9/actions/runs/43646107969) and `Research quality` run [43646107911](https://github.com/sassnarep3-star/Own9/actions/runs/43646107911).
+- Post-merge `Research quality` [43646199681](https://github.com/sassnarep3-star/Own9/actions/runs/43646199681) passed. The post-merge `Verify NFL research for Pages` push event [43646199655](https://github.com/sassnarep3-star/Own9/actions/runs/43646199655) was cancelled when a subsequent concurrent main-branch update superseded it; the same workflow passed on the PR head before merge. Pages deployment [43646199290](https://github.com/sassnarep3-star/Own9/actions/runs/43646199290) succeeded, Pages API reports `built` for merge commit `401393d`, and a public read-back of `/Own9/leaderboard.html` confirmed the three demotion rows and inactive/unresolved-parameters notice are live.
+- The coordination claim, generated page, regression test and publication outcome are recorded on this board. Existing flags and all empirical blanks remain unchanged.
+
+## 0167a04c merge with the parallel implementations — 2026-11-14
+
+While this branch was in flight, sessions `feaa600b` (PR #34), `201adb50` and `7e426311` (PRs #35, #36, #37) merged the same six requirements into `main`. Integration was done by merge, not rebase, and **nothing from those sessions was discarded**:
+
+- Their `engine/origination.py`, `engine/prices.py` and `engine/results.py`, their `data/raw/price_snapshots.csv` and `data/raw/verified_results.csv`, their leaderboard signal/staking table and their validation-page demotion gate are all kept as merged.
+- This session's implementation was moved to non-colliding filenames before the merge: `engine/origination_0167a04c.py` (was `engine/origination.py`), with `data/results/**`, `data/snapshots/**`, `data/depth/**`, `tools/pages_0167a04c.py`, `tests/test_origination.py` and the six new pages, which never existed on their side.
+- `COORDINATION.md` was unioned (both boards preserved) and the only other conflicts were generated HTML, which was resolved by regenerating from the merged generator.
+
+**One pre-existing accessibility defect was found and fixed during integration.** The root browser suite reported `scrollable-region-focusable` (serious) on `lines.html` at 390px. It was reproduced against `origin/main`'s own `lines.html` byte-for-byte, so it came from the tables added on main, not from this branch; it had escaped their CI because the post-merge Pages workflow was cancelled by a concurrent main update. Fix: `table()` in `tools/build.py` now emits `<div class="table-wrap" tabindex="0">`, which is the WCAG-expected keyboard access for a horizontally scrollable region. One shared-file edit, applied to both definitions of `table()`, logged here because it touches every generated page.
+
+Post-merge verification on the merged tree: `tools/verify.py` PASS (25 pages, 915 source-linked rows); 159 root tests OK; 31 release-check tests OK; `engine/availability.py` and `engine/registers.py` PASS; `scripts/check_site.py` PASS; `scripts/build_site.py` reproduces `research/catalog.json` and `site/` with no diff; `node scripts/browser_test_root.cjs` PASS (25 pages × 2 viewports, 50 axe checks, no console errors); `node scripts/browser_test.cjs` PASS (15 pages × 2 viewports).

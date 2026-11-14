@@ -471,7 +471,7 @@ class PublishedPages(unittest.TestCase):
 
     def test_the_new_findings_are_on_the_flags_page(self):
         html = (ROOT / 'flags.html').read_text()
-        for number in range(28, 34):
+        for number in range(28, 36):
             self.assertIn(f'F{number}', html)
         ids = [c[0].split(' ')[0] for c in cells_of('flags.html')
                if c[0].startswith('F') and len(c[0].split(' ')[0]) == 3]
