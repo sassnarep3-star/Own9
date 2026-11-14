@@ -1,0 +1,87 @@
+{
+  "G-ML": {
+    "bets": 3527,
+    "status": "demoted",
+    "trailing_windows": 3328,
+    "trigger": {
+      "action": "demote to paper, staking stops",
+      "bet_number": 200,
+      "gameday": "2011-01-02",
+      "rule": "D1",
+      "season": 2010,
+      "value": -0.0710194095,
+      "week": 17
+    },
+    "trigger_counts": {
+      "D1": 1,
+      "D2": 1
+    }
+  },
+  "G-SIDE": {
+    "bets": 3363,
+    "status": "demoted",
+    "trailing_windows": 3164,
+    "trigger": {
+      "action": "demote to paper, staking stops",
+      "bet_number": 200,
+      "gameday": "2011-01-02",
+      "rule": "D1",
+      "season": 2010,
+      "value": -0.0468493265,
+      "week": 17
+    },
+    "trigger_counts": {
+      "D1": 1
+    }
+  },
+  "G-TOTAL": {
+    "bets": 3114,
+    "status": "demoted",
+    "trailing_windows": 2915,
+    "trigger": {
+      "action": "demote to paper, staking stops",
+      "bet_number": 200,
+      "gameday": "2011-09-19",
+      "rule": "D1",
+      "season": 2011,
+      "value": -0.0639003631,
+      "week": 2
+    },
+    "trigger_counts": {
+      "D1": 1,
+      "D2": 1
+    }
+  },
+  "P-PROP": {
+    "bets": 0,
+    "required": 200,
+    "status": "insufficient history",
+    "trailing_windows": 0,
+    "trigger": null
+  },
+  "S-SGP": {
+    "bets": 0,
+    "required": 200,
+    "status": "insufficient history",
+    "trailing_windows": 0,
+    "trigger": null
+  },
+  "X-PARLAY": {
+    "bets": 285,
+    "status": "demoted",
+    "trailing_windows": 86,
+    "trigger": {
+      "action": "demote to paper, staking stops",
+      "bet_number": 200,
+      "gameday": "2021-12-05",
+      "rule": "D1",
+      "season": 2021,
+      "value": -0.308351461,
+      "week": 13
+    },
+    "trigger_counts": {
+      "D1": 1,
+      "D2": 1
+    }
+  }
+}

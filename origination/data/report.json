@@ -1,0 +1,933 @@
+{
+  "constants": {
+    "brier_tolerance": 0.005,
+    "deadband": 0.05,
+    "drawdown_tolerance": 20.0,
+    "edge_threshold": 0.02,
+    "first_eval_season": 2010,
+    "kelly_cap": 0.25,
+    "last_eval_season": 2026,
+    "min_train_seasons": 4,
+    "trailing_window": 200
+  },
+  "correlations": {
+    "cover_over_phi": {
+      "interval": {
+        "hi": 0.04544756,
+        "lo": -0.0154424111,
+        "n": 4143,
+        "r": 0.0150164963
+      },
+      "n": 4143,
+      "point": 0.0150164963
+    },
+    "margin_total_error": {
+      "gate": {
+        "point": 0.0324828933,
+        "reason": "interval straddles the deadband",
+        "verdict": "refuse"
+      },
+      "interval": {
+        "hi": 0.0623269591,
+        "lo": 0.00258079079,
+        "n": 4296,
+        "r": 0.0324828933
+      },
+      "n": 4296,
+      "point": 0.0324828933
+    },
+    "weekly_intraclass": {
+      "groups": 285,
+      "hi": 0.00586022201,
+      "interval_method": "cluster bootstrap over groups, 2000 resamples",
+      "lo": -0.0143106314,
+      "mean_group_size": 15.0736842,
+      "n": 4296,
+      "r": -0.00421782086
+    },
+    "weekly_intraclass_gate": {
+      "point": 0.0,
+      "reason": "interval inside the deadband, rho taken as 0",
+      "verdict": "use"
+    }
+  },
+  "coverage": {
+    "2010": {
+      "coverage": 1.0,
+      "priced": 768,
+      "scheduled": 768,
+      "settled": 768
+    },
+    "2011": {
+      "coverage": 1.0,
+      "priced": 768,
+      "scheduled": 768,
+      "settled": 768
+    },
+    "2012": {
+      "coverage": 1.0,
+      "priced": 768,
+      "scheduled": 768,
+      "settled": 768
+    },
+    "2013": {
+      "coverage": 1.0,
+      "priced": 768,
+      "scheduled": 768,
+      "settled": 768
+    },
+    "2014": {
+      "coverage": 1.0,
+      "priced": 768,
+      "scheduled": 768,
+      "settled": 768
+    },
+    "2015": {
+      "coverage": 1.0,
+      "priced": 768,
+      "scheduled": 768,
+      "settled": 768
+    },
+    "2016": {
+      "coverage": 1.0,
+      "priced": 768,
+      "scheduled": 768,
+      "settled": 768
+    },
+    "2017": {
+      "coverage": 0.998697917,
+      "priced": 767,
+      "scheduled": 768,
+      "settled": 767
+    },
+    "2018": {
+      "coverage": 1.0,
+      "priced": 768,
+      "scheduled": 768,
+      "settled": 768
+    },
+    "2019": {
+      "coverage": 1.0,
+      "priced": 768,
+      "scheduled": 768,
+      "settled": 768
+    },
+    "2020": {
+      "coverage": 1.0,
+      "priced": 768,
+      "scheduled": 768,
+      "settled": 768
+    },
+    "2021": {
+      "coverage": 1.0,
+      "priced": 816,
+      "scheduled": 816,
+      "settled": 816
+    },
+    "2022": {
+      "coverage": 1.0,
+      "priced": 813,
+      "scheduled": 813,
+      "settled": 813
+    },
+    "2023": {
+      "coverage": 1.0,
+      "priced": 816,
+      "scheduled": 816,
+      "settled": 816
+    },
+    "2024": {
+      "coverage": 1.0,
+      "priced": 816,
+      "scheduled": 816,
+      "settled": 816
+    },
+    "2025": {
+      "coverage": 1.0,
+      "priced": 816,
+      "scheduled": 816,
+      "settled": 816
+    },
+    "2026": {
+      "coverage": 0.444852941,
+      "priced": 444,
+      "scheduled": 816,
+      "settled": 363
+    }
+  },
+  "demotions": {
+    "G-ML": {
+      "bets": 3527,
+      "status": "demoted",
+      "trailing_windows": 3328,
+      "trigger": {
+        "action": "demote to paper, staking stops",
+        "bet_number": 200,
+        "gameday": "2011-01-02",
+        "rule": "D1",
+        "season": 2010,
+        "value": -0.0710194095,
+        "week": 17
+      },
+      "trigger_counts": {
+        "D1": 1,
+        "D2": 1
+      }
+    },
+    "G-SIDE": {
+      "bets": 3363,
+      "status": "demoted",
+      "trailing_windows": 3164,
+      "trigger": {
+        "action": "demote to paper, staking stops",
+        "bet_number": 200,
+        "gameday": "2011-01-02",
+        "rule": "D1",
+        "season": 2010,
+        "value": -0.0468493265,
+        "week": 17
+      },
+      "trigger_counts": {
+        "D1": 1
+      }
+    },
+    "G-TOTAL": {
+      "bets": 3114,
+      "status": "demoted",
+      "trailing_windows": 2915,
+      "trigger": {
+        "action": "demote to paper, staking stops",
+        "bet_number": 200,
+        "gameday": "2011-09-19",
+        "rule": "D1",
+        "season": 2011,
+        "value": -0.0639003631,
+        "week": 2
+      },
+      "trigger_counts": {
+        "D1": 1,
+        "D2": 1
+      }
+    },
+    "P-PROP": {
+      "bets": 0,
+      "required": 200,
+      "status": "insufficient history",
+      "trailing_windows": 0,
+      "trigger": null
+    },
+    "S-SGP": {
+      "bets": 0,
+      "required": 200,
+      "status": "insufficient history",
+      "trailing_windows": 0,
+      "trigger": null
+    },
+    "X-PARLAY": {
+      "bets": 285,
+      "status": "demoted",
+      "trailing_windows": 86,
+      "trigger": {
+        "action": "demote to paper, staking stops",
+        "bet_number": 200,
+        "gameday": "2021-12-05",
+        "rule": "D1",
+        "season": 2021,
+        "value": -0.308351461,
+        "week": 13
+      },
+      "trigger_counts": {
+        "D1": 1,
+        "D2": 1
+      }
+    }
+  },
+  "fits": [
+    {
+      "mean_total": 42.2154855,
+      "rho_margin_total": -0.00121479986,
+      "sigma_margin": 14.0484518,
+      "sigma_total": 13.8030789,
+      "target_season": 2010,
+      "train_games": 2792,
+      "train_seasons": [
+        1999,
+        2000,
+        2001,
+        2002,
+        2003,
+        2004,
+        2005,
+        2006,
+        2007,
+        2008,
+        2009
+      ]
+    },
+    {
+      "mean_total": 42.3839957,
+      "rho_margin_total": -0.00386398833,
+      "sigma_margin": 14.0678954,
+      "sigma_total": 13.8276683,
+      "target_season": 2011,
+      "train_games": 3048,
+      "train_seasons": [
+        1999,
+        2000,
+        2001,
+        2002,
+        2003,
+        2004,
+        2005,
+        2006,
+        2007,
+        2008,
+        2009,
+        2010
+      ]
+    },
+    {
+      "mean_total": 42.5344822,
+      "rho_margin_total": 0.00695784114,
+      "sigma_margin": 14.1679043,
+      "sigma_total": 13.7764724,
+      "target_season": 2012,
+      "train_games": 3304,
+      "train_seasons": [
+        1999,
+        2000,
+        2001,
+        2002,
+        2003,
+        2004,
+        2005,
+        2006,
+        2007,
+        2008,
+        2009,
+        2010,
+        2011
+      ]
+    },
+    {
+      "mean_total": 42.7500664,
+      "rho_margin_total": 0.00777349049,
+      "sigma_margin": 14.2769486,
+      "sigma_total": 13.794026,
+      "target_season": 2013,
+      "train_games": 3560,
+      "train_seasons": [
+        1999,
+        2000,
+        2001,
+        2002,
+        2003,
+        2004,
+        2005,
+        2006,
+        2007,
+        2008,
+        2009,
+        2010,
+        2011,
+        2012
+      ]
+    },
+    {
+      "mean_total": 43.0199439,
+      "rho_margin_total": 0.0161568905,
+      "sigma_margin": 14.2703403,
+      "sigma_total": 13.8672326,
+      "target_season": 2014,
+      "train_games": 3816,
+      "train_seasons": [
+        1999,
+        2000,
+        2001,
+        2002,
+        2003,
+        2004,
+        2005,
+        2006,
+        2007,
+        2008,
+        2009,
+        2010,
+        2011,
+        2012,
+        2013
+      ]
+    },
+    {
+      "mean_total": 43.1533363,
+      "rho_margin_total": 0.0221698405,
+      "sigma_margin": 14.3174016,
+      "sigma_total": 13.8607754,
+      "target_season": 2015,
+      "train_games": 4072,
+      "train_seasons": [
+        1999,
+        2000,
+        2001,
+        2002,
+        2003,
+        2004,
+        2005,
+        2006,
+        2007,
+        2008,
+        2009,
+        2010,
+        2011,
+        2012,
+        2013,
+        2014
+      ]
+    },
+    {
+      "mean_total": 43.295309,
+      "rho_margin_total": 0.023945531,
+      "sigma_margin": 14.309732,
+      "sigma_total": 13.8740369,
+      "target_season": 2016,
+      "train_games": 4328,
+      "train_seasons": [
+        1999,
+        2000,
+        2001,
+        2002,
+        2003,
+        2004,
+        2005,
+        2006,
+        2007,
+        2008,
+        2009,
+        2010,
+        2011,
+        2012,
+        2013,
+        2014,
+        2015
+      ]
+    },
+    {
+      "mean_total": 43.1582649,
+      "rho_margin_total": 0.0214095346,
+      "sigma_margin": 14.1892278,
+      "sigma_total": 13.8428884,
+      "target_season": 2017,
+      "train_games": 4584,
+      "train_seasons": [
+        1999,
+        2000,
+        2001,
+        2002,
+        2003,
+        2004,
+        2005,
+        2006,
+        2007,
+        2008,
+        2009,
+        2010,
+        2011,
+        2012,
+        2013,
+        2014,
+        2015,
+        2016
+      ]
+    },
+    {
+      "mean_total": 43.4844275,
+      "rho_margin_total": 0.0261119155,
+      "sigma_margin": 14.1997963,
+      "sigma_total": 13.8641681,
+      "target_season": 2018,
+      "train_games": 4840,
+      "train_seasons": [
+        1999,
+        2000,
+        2001,
+        2002,
+        2003,
+        2004,
+        2005,
+        2006,
+        2007,
+        2008,
+        2009,
+        2010,
+        2011,
+        2012,
+        2013,
+        2014,
+        2015,
+        2016,
+        2017
+      ]
+    },
+    {
+      "mean_total": 43.8447024,
+      "rho_margin_total": 0.0288206734,
+      "sigma_margin": 14.1698058,
+      "sigma_total": 13.9126247,
+      "target_season": 2019,
+      "train_games": 5096,
+      "train_seasons": [
+        1999,
+        2000,
+        2001,
+        2002,
+        2003,
+        2004,
+        2005,
+        2006,
+        2007,
+        2008,
+        2009,
+        2010,
+        2011,
+        2012,
+        2013,
+        2014,
+        2015,
+        2016,
+        2017,
+        2018
+      ]
+    },
+    {
+      "mean_total": 43.9200063,
+      "rho_margin_total": 0.0244858338,
+      "sigma_margin": 14.1750419,
+      "sigma_total": 13.9274398,
+      "target_season": 2020,
+      "train_games": 5352,
+      "train_seasons": [
+        1999,
+        2000,
+        2001,
+        2002,
+        2003,
+        2004,
+        2005,
+        2006,
+        2007,
+        2008,
+        2009,
+        2010,
+        2011,
+        2012,
+        2013,
+        2014,
+        2015,
+        2016,
+        2017,
+        2018,
+        2019
+      ]
+    },
+    {
+      "mean_total": 44.1117718,
+      "rho_margin_total": 0.0181837451,
+      "sigma_margin": 14.172816,
+      "sigma_total": 13.9697434,
+      "target_season": 2021,
+      "train_games": 5608,
+      "train_seasons": [
+        1999,
+        2000,
+        2001,
+        2002,
+        2003,
+        2004,
+        2005,
+        2006,
+        2007,
+        2008,
+        2009,
+        2010,
+        2011,
+        2012,
+        2013,
+        2014,
+        2015,
+        2016,
+        2017,
+        2018,
+        2019,
+        2020
+      ]
+    },
+    {
+      "mean_total": 44.2086345,
+      "rho_margin_total": 0.0191807067,
+      "sigma_margin": 14.2081247,
+      "sigma_total": 13.9617728,
+      "target_season": 2022,
+      "train_games": 5880,
+      "train_seasons": [
+        1999,
+        2000,
+        2001,
+        2002,
+        2003,
+        2004,
+        2005,
+        2006,
+        2007,
+        2008,
+        2009,
+        2010,
+        2011,
+        2012,
+        2013,
+        2014,
+        2015,
+        2016,
+        2017,
+        2018,
+        2019,
+        2020,
+        2021
+      ]
+    },
+    {
+      "mean_total": 44.1428818,
+      "rho_margin_total": 0.0183715238,
+      "sigma_margin": 14.1454507,
+      "sigma_total": 13.9573579,
+      "target_season": 2023,
+      "train_games": 6151,
+      "train_seasons": [
+        1999,
+        2000,
+        2001,
+        2002,
+        2003,
+        2004,
+        2005,
+        2006,
+        2007,
+        2008,
+        2009,
+        2010,
+        2011,
+        2012,
+        2013,
+        2014,
+        2015,
+        2016,
+        2017,
+        2018,
+        2019,
+        2020,
+        2021,
+        2022
+      ]
+    },
+    {
+      "mean_total": 44.1154859,
+      "rho_margin_total": 0.020738456,
+      "sigma_margin": 14.1645873,
+      "sigma_total": 13.9514419,
+      "target_season": 2024,
+      "train_games": 6423,
+      "train_seasons": [
+        1999,
+        2000,
+        2001,
+        2002,
+        2003,
+        2004,
+        2005,
+        2006,
+        2007,
+        2008,
+        2009,
+        2010,
+        2011,
+        2012,
+        2013,
+        2014,
+        2015,
+        2016,
+        2017,
+        2018,
+        2019,
+        2020,
+        2021,
+        2022,
+        2023
+      ]
+    },
+    {
+      "mean_total": 44.1710158,
+      "rho_margin_total": 0.0231496122,
+      "sigma_margin": 14.1712768,
+      "sigma_total": 13.9297055,
+      "target_season": 2025,
+      "train_games": 6695,
+      "train_seasons": [
+        1999,
+        2000,
+        2001,
+        2002,
+        2003,
+        2004,
+        2005,
+        2006,
+        2007,
+        2008,
+        2009,
+        2010,
+        2011,
+        2012,
+        2013,
+        2014,
+        2015,
+        2016,
+        2017,
+        2018,
+        2019,
+        2020,
+        2021,
+        2022,
+        2023,
+        2024
+      ]
+    },
+    {
+      "mean_total": 44.2562326,
+      "rho_margin_total": 0.0221115727,
+      "sigma_margin": 14.1435777,
+      "sigma_total": 13.9358873,
+      "target_season": 2026,
+      "train_games": 6967,
+      "train_seasons": [
+        1999,
+        2000,
+        2001,
+        2002,
+        2003,
+        2004,
+        2005,
+        2006,
+        2007,
+        2008,
+        2009,
+        2010,
+        2011,
+        2012,
+        2013,
+        2014,
+        2015,
+        2016,
+        2017,
+        2018,
+        2019,
+        2020,
+        2021,
+        2022,
+        2023,
+        2024,
+        2025
+      ]
+    }
+  ],
+  "inputs": {
+    "closing_lines.csv": {
+      "rows": 20491,
+      "sha256": "3571e1c9fc8d7396f405fb7c17d43c15676d335ffc932fbb03ff18da691d1729"
+    },
+    "games.csv": {
+      "rows": 7549,
+      "sha256": "81a2786fd69546abbd4af6756100cfc6c12e5acbdbac884fe6f50054c02d222f"
+    }
+  },
+  "joint": {
+    "parlay_offered": 285,
+    "parlay_priced": 285,
+    "sgp_offered": 292,
+    "sgp_priced": 0
+  },
+  "originations": {
+    "by_market": {
+      "SIDE": 4447
+    },
+    "games": 4447,
+    "markets": 13341,
+    "seasons": [
+      2010,
+      2011,
+      2012,
+      2013,
+      2014,
+      2015,
+      2016,
+      2017,
+      2018,
+      2019,
+      2020,
+      2021,
+      2022,
+      2023,
+      2024,
+      2025,
+      2026
+    ]
+  },
+  "results_feed": {
+    "games": 7088,
+    "latest_scored_week": {
+      "gameday": "2026-11-02",
+      "season": 2026,
+      "week": 8
+    },
+    "result_matches_recompute": 7088,
+    "seasons": [
+      1999,
+      2026
+    ],
+    "total_matches_recompute": 7088
+  },
+  "strategies": {
+    "G-ML": {
+      "signal": {
+        "brier_market": 0.207161064,
+        "brier_model": 0.244039812,
+        "clusters": 285,
+        "hit_rate": 0.337318531,
+        "log_loss_gain": -0.0804929564,
+        "log_loss_gain_lcb": -0.0932210067,
+        "log_loss_gain_se": 0.00649402256,
+        "log_loss_market": 0.601002573,
+        "log_loss_model": 0.681495529,
+        "n": 3513,
+        "pushes": 14,
+        "wins": 1185
+      },
+      "staking": {
+        "bets": 3527,
+        "flat_max_drawdown": -196.675079,
+        "flat_net": -141.118541,
+        "flat_roi": -0.0400109273,
+        "flat_staked": 3527.0,
+        "kelly_max_drawdown": -34.1991127,
+        "kelly_net": -23.3480351,
+        "kelly_roi": -0.0349640593,
+        "kelly_staked": 667.772436
+      },
+      "taken": 3527
+    },
+    "G-SIDE": {
+      "signal": {
+        "brier_market": 0.250200962,
+        "brier_model": 0.272577698,
+        "clusters": 285,
+        "hit_rate": 0.525304878,
+        "log_loss_gain": -0.0543261864,
+        "log_loss_gain_lcb": -0.0670735487,
+        "log_loss_gain_se": 0.00650387579,
+        "log_loss_market": 0.693551381,
+        "log_loss_model": 0.747877567,
+        "n": 3280,
+        "pushes": 83,
+        "wins": 1723
+      },
+      "staking": {
+        "bets": 3363,
+        "flat_max_drawdown": -48.1770919,
+        "flat_net": 71.3107059,
+        "flat_roi": 0.0212044918,
+        "flat_staked": 3363.0,
+        "kelly_max_drawdown": -9.49186975,
+        "kelly_net": 14.14604,
+        "kelly_roi": 0.0214838419,
+        "kelly_staked": 658.450198
+      },
+      "taken": 3363
+    },
+    "G-TOTAL": {
+      "signal": {
+        "brier_market": 0.250047418,
+        "brier_model": 0.270330745,
+        "clusters": 285,
+        "hit_rate": 0.500486539,
+        "log_loss_gain": -0.0452007688,
+        "log_loss_gain_lcb": -0.0555355807,
+        "log_loss_gain_se": 0.00527296013,
+        "log_loss_market": 0.693242156,
+        "log_loss_model": 0.738442925,
+        "n": 3083,
+        "pushes": 31,
+        "wins": 1543
+      },
+      "staking": {
+        "bets": 3114,
+        "flat_max_drawdown": -95.336777,
+        "flat_net": -78.9000768,
+        "flat_roi": -0.0253372116,
+        "flat_staked": 3114.0,
+        "kelly_max_drawdown": -18.2650152,
+        "kelly_net": -14.877716,
+        "kelly_roi": -0.0264123042,
+        "kelly_staked": 563.287317
+      },
+      "taken": 3114
+    },
+    "P-PROP": {
+      "blocked": "no official player-prop market data in this repository",
+      "signal": {
+        "n": 0
+      },
+      "staking": {
+        "bets": 0
+      },
+      "taken": 0
+    },
+    "S-SGP": {
+      "offered": 292,
+      "priced": 0,
+      "signal": {
+        "n": 0
+      },
+      "staking": {
+        "bets": 0
+      },
+      "taken": 0
+    },
+    "X-PARLAY": {
+      "offered": 285,
+      "priced": 285,
+      "signal": {
+        "brier_market": 0.205998358,
+        "brier_model": 0.315873504,
+        "clusters": 285,
+        "hit_rate": 0.287719298,
+        "log_loss_gain": -0.229527431,
+        "log_loss_gain_lcb": -0.312734612,
+        "log_loss_gain_se": 0.0424534233,
+        "log_loss_market": 0.602845624,
+        "log_loss_model": 0.832373056,
+        "n": 285,
+        "pushes": 0,
+        "wins": 82
+      },
+      "staking": {
+        "bets": 285,
+        "flat_max_drawdown": -14.7945493,
+        "flat_net": 36.8278343,
+        "flat_roi": 0.129220471,
+        "flat_staked": 285.0,
+        "kelly_max_drawdown": -4.44863733,
+        "kelly_net": 6.00837553,
+        "kelly_roi": 0.0843889762,
+        "kelly_staked": 71.198583
+      },
+      "taken": 285
+    }
+  }
+}
