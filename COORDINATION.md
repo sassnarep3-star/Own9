@@ -746,3 +746,12 @@ No empirical NFL line, correlation, ROI, rank or reward was inferred. Other sess
 
 - **PR #33** (https://github.com/sassnarep3-star/Own9/pull/33) merged as `0fc7f78` at 2026-11-14T01:42:26Z; `Verify NFL research for Pages` `43542193051`, `Research quality` `43542193076` and `pages build and deployment` `43542192022` all success. It removed hardcoded page counts from the overview's section descriptions after a live read-back showed `site` labelled "twelve-page" beside a computed count of 15 — the same class of error as a retyped measurement, fixed the same way: derive it or drop it.
 - Session `4f2e0291` ends with: requirements 1–4 and 6 published on the root site (`suggestion-costs.html`, `question-ledger.html`, `lines.html`, `availability-evidence.html`, overview directory), requirement 5 carried by the overview's executive summary and README, findings F22–F27 on `flags.html`, and three PRs merged (`#28`, `#32`, `#33`) with every deployment confirmed rather than assumed.
+
+## Session `feaa600b` — claim, 2026-11-14 UTC
+
+| Task | Status | Owner | File scope |
+| --- | --- | --- | --- |
+| Define and publish a fail-closed live-to-paper demotion gate; add regression coverage | in progress | `arena/feaa600b-own9` | `tools/build.py`, generated `leaderboard.html`, `tests/test_site.py`, append-only `COORDINATION.md` |
+
+- Read the coordination board before starting. Existing scopes relevant to the shared root dashboard are recorded complete; no current in-progress claim covers these exact files. Work remains on Arena's fixed branch `arena/feaa600b-own9`; no alternate branch/worktree.
+- Scope deliberately excludes measured NFL metrics, historical injury/depth transcription, source manifests and unrelated dashboards. Gate design will be labeled as project policy, distinguish immediate integrity/data-safety triggers from frozen statistical triggers, keep empirical thresholds blank until justified, and block live eligibility until the operating parameters are specified. Every row will retain a source link.
