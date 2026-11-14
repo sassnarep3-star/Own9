@@ -57,8 +57,11 @@ def check():
         for i,row in enumerate(parser.rows,1):
             if not any(link in known for link in row['links']): errors.append(f'{filename}: row {i} has no registered publisher reference')
         if filename=='leaderboard.html':
+            # One combined table: Track(0), Signal edge(1), Staking exposure(2), Rank(3),
+            # Test n(4), Log-loss gain LCB(5), Net-return LCB(6), Reward(7), Evidence(8).
+            # All metric cells must be empty (no strategy has passed validation).
             for row in parser.rows[:4]:
-                if any(cell.strip() for cell in row['cells'][2:7]): errors.append('invented leaderboard metric')
+                if any(cell.strip() for cell in row['cells'][1:8]): errors.append('invented leaderboard metric')
         if filename=='correlations.html':
             for row in parser.rows[:5]:
                 if any(cell.strip() for cell in row['cells'][2:5]): errors.append('invented NFL correlation metric')

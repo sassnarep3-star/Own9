@@ -193,36 +193,84 @@ single point-in-time retrieval (F21).
 [independent-audit/](independent-audit/index.html) (integrated from PR #18, 2026-11-14).
 Subsite findings remain governed by their owning sessions' scopes and review registers.
 
-## Verified results, price snapshots, replacement depth and the demotion gate (2026-11-14, session arena/9a409d93-own9)
+---
 
-The verified-outcome gap is closed for the 2026 season and the origination machinery now exists:
+## Added by session `a77d40e1` on 14 Nov 2026 — market-board delta
 
-- **[Results feed](results.html)** — all 136 completed 2026 games (weeks 1–9), transcribed verbatim
-  from the official weekly schedule pages ([by-week/week-1 … week-9](https://www.nfl.com/schedules/2026/by-week/week-1)),
-  validated structurally (weekly counts, 32 teams, per-team game counts match each page's byes).
-  This is the outcome input for grading; it carries no betting lines.
-- **[Price snapshot store](markets.html)** (`data/snapshots/2026-w10-price-snapshot.json`) — 52 originated
-  Week 10 markets (13 games × spread, total, two moneylines; the Thursday game kicked off before the store
-  existed and is explicitly not originated). Every row records `model_fair`, `market_line`, `diff`,
-  `opened_at`/`closed_at` as separate fields. `market_line` is null everywhere: the NFL publishes no betting
-  lines and no licensed price archive exists (F28), so the difference column stays blank rather than inferred.
-  Model fair numbers come from the predeclared `elo-v1` method (`engine/origination.py`) computed only from
-  official scores; they are unvalidated outputs, not prices.
-- **Origination order** — side → total → moneyline, fixed in `engine/origination.py` and enforced by tests.
-- **[Replacement depth](replacement-depth.html)** — for the Week 10 report's 76 Out/Doubtful players, the
+Six pages registered through the shared `page()` API (`tools/pages_a77d40e1.py`), computed at
+build time by `engine/board.py` from the verified feed in `data/board/`. Nothing owned by another
+session was rewritten; `flags.html` and `index.html` gained appended sections via the same
+`PAGES[...]` mechanism session `4f2e0291` used.
+
+- **`results-feed.html`** — every 2026 final (137 games: Weeks 1–9 complete slates plus the settled
+  Week 10 Thursday game) transcribed verbatim from the official league schedule pages
+  (`data/board/raw/week-NN.txt` is the transcription record, one file per week). 121 of the finals
+  also matched the committed secondary snapshot row-for-row (zero disagreements); the secondary file
+  is stale for Weeks 9–10, so those rest on the official transcription alone (F29). This is the feed
+  that makes walk-forward scoring, backtests and ROI computable at all; it carries results only.
+- **`origination.html`** — Week 11 board: 39 markets originated side first, then the total, then the
+  moneyline, enforced mechanically by `engine/board.py` (a total cannot exist without its game's side;
+  a moneyline cannot exist without the total; regression-tested). The model's fair line, the market
+  line and the difference are separate columns; market and difference are blank by policy because no
+  official source publishes wagering prices and no book of record is approved (Q28 lineage).
+- **`price-snapshots.html`** — the open/close store: 39 open snapshots captured at origination
+  (frozen timestamp `2026-11-14T22:30:00Z`), 39 close snapshots pending by design (blank, never
+  fabricated — F30), market-price cells blank throughout.
+- **`signal-staking.html`** — two disjoint sheets. The signal sheet scores walk-forward calls on
+  official results (weeks 3–9 complete slates: n=104, directional accuracy 63.5%, Brier 0.2356,
+  per-week rows published including the partial Week 10). The staking sheet describes the plan only;
+  ROI, CLV and exposure caps are blank because no executable prices exist. The live-to-paper gate
+  (session `feaa600b`, PR #34) is applied fail-closed: every entry stays Paper. Also carries the new
+  BQ1–BQ6 question register and BS1–BS6 suggestion register for review before any decision.
+- **`correlations-official.html`** — Pearson correlations computed exclusively from the verified
+  official results, with n published beside every value, Fisher-z 95% intervals, and a predeclared
+  0.10 deadband that refuses dependence claims inside it: margin↔total r=-0.161 (n=137, declared
+  outside deadband), home↔away points r=0.076 (n=137, no claim), club margin week-over-week r=0.086
+  (n=242, no claim). Dependency-free implementation, unit-tested against textbook values.
+- **`replacement-depth.html`** — the depth of each Week 10 starter replacement as a first-class
+  field (`depth_travelled`: 8 chart-derived second-string drops, 5 withheld where no club chart was
+  retrieved or sources conflict), with both sources cited per row and the WAS centre chain evidenced
+  by two official Game Books.
+
+Verification: `tools/verify.py` PASS (25 pages, 1033 source-linked rows); 126 Python tests,
+31 release-checks, availability/decision registers, both browser suites (25 root pages × 2
+viewports, 50 axe checks) and `scripts/check_site.py` all pass; regeneration byte-identical.
+Sources used this session (registered in `evidence/sources.json`, all retrieved 2026-11-14):
+the nine official weekly schedule pages not already on the register. Findings F28–F31 published on
+`flags.html`. Shared-file edits, all logged on the board: `tools/build.py` (exec block, NAV_GROUPS,
+KEEP_DATE_14, and `tabindex="0"` on generated table wrappers — the axe
+`scrollable-region-focusable` violation session `201adb50`'s lines.html tables trigger at mobile
+width), `tests/test_own9_delta.py` (two count assertions made dynamic floors), `evidence/sources.json`
+(append-only), `README.md` (this section), `flags.html`/`index.html` (appended via `PAGES[...]`).
+## Week 10 snapshot store, replacement chains and the demotion gate (2026-11-14, session arena/9a409d93-own9)
+
+Complements to the a77d40e1 market-board delta (results feed, market board, Week 11 store, official
+correlations, signal/staking sheets) — this session adds only what that delta did not publish:
+
+- **[Week 10 snapshot store](markets.html)** (`data/snapshots/2026-w10-price-snapshot.json`) — 52 originated
+  Week 10 markets (13 pre-kickoff games × spread, total, two moneylines; the Thursday game kicked off before
+  the store existed and is explicitly not originated). Every row records `model_fair`, `market_line`, `diff`,
+  `opened_at`/`closed_at` as separate fields; `market_line` is null everywhere because no official or licensed
+  price source exists (F34) — blanks are policy, never inference. Fair numbers come from the predeclared
+  `elo-v1` method (`engine/origination_elo.py`) computed only from official scores; unvalidated outputs (F35).
+- **Origination order** — side → total → moneyline, fixed in `engine/origination_elo.py` and enforced by tests.
+- **[Replacement chains](replacement-chains.html)** — for the Week 10 report's 76 Out/Doubtful players, the
   replacement **and its depth** (published chart order), derived only where a club depth chart places both
   players: 33 chains across 17 clubs from 19 newly retrieved club charts; 43 withheld chains published with
   reasons (co-listed ties, last-listed, absent from chart, [Houston's checked absence](https://www.houstontexans.com/team/depth-chart/)).
-- **[Demotion gate](demotion.html)** — predeclared live → paper triggers (trailing ROI, mean edge, CLV rate,
-  Brier drift, feed staleness, fail-closed below 20 graded bets) in `engine/origination.py::demotion_gate`,
-  boundary-tested in `tests/test_origination.py`. Nothing is live, so the gate is armed but never triggered.
-- **Leaderboard signal/staking split and official-sample correlations with n** — appended to
-  [leaderboard.html](leaderboard.html) and [correlations.html](correlations.html); correlations are computed
-  only from the verified feed with r, n and a Fisher-z interval per value.
+  Chart-relative tiers are weaker than certified game-day depth (F36). a77d40e1's depth-travelled register
+  ([replacement-depth.html](replacement-depth.html)) covers the three-chart evidence it retrieved.
+- **[Demotion gate](demotion.html)** — quantitative live → paper triggers (trailing ROI, mean edge, CLV rate,
+  Brier drift, feed staleness, fail-closed below 20 graded bets) in `engine/origination_elo.py::demotion_gate`,
+  boundary-tested in `tests/test_origination.py`; complements the leaderboard's policy gate (feaa600b/a77d40e1).
+  Nothing is live, so the gate is armed but never triggered.
+- **Leaderboard signal/staking table** — appended to [leaderboard.html](leaderboard.html), cross-linked to
+  a77d40e1's [signal-staking.html](signal-staking.html) sheets.
 - **Close capture** — `tools/snapshot_close.py` + scheduled [snapshot.yml](.github/workflows/snapshot.yml)
   record `closed_at` (and, if the feed grew, `model_fair_close`) before kickoff, refusing to run if the
-  declared method constants changed, and committing only under `data/snapshots/`.
+  declared method constants changed, and committing only under `data/snapshots/` — the scheduled close run
+  a77d40e1's F30 asked for, adopted here for the Week 10 store.
 
 New suggestions S-17–S-21 (price archive, close-capture adoption, sealed backtest, signal/staking adoption,
 game-centre row verification) and open questions Q-23/Q-24 (grading operator; re-promotion thresholds) are in
-the registers awaiting review. Findings F28–F33 are on [flags.html](flags.html).
+the registers awaiting review. Findings F34–F39 are on [flags.html](flags.html).

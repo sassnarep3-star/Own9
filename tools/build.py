@@ -25,13 +25,14 @@ PAGES = {}
 KEEP_DATE_14 = {'decision.html','questions.html','availability.html','suggestions.html',
                 'decisions-questions.html','sources.html','flags.html','audit.html','injuries.html',
                'lines.html','availability-evidence.html','question-ledger.html','suggestion-costs.html',
-               'results.html','markets.html','replacement-depth.html','demotion.html'}
+               'results-feed.html','origination.html','price-snapshots.html','signal-staking.html','correlations-official.html','replacement-depth.html',
+               'markets.html','replacement-chains.html','demotion.html'}
 
 # Navigation grouped by what the reader is trying to do, not by file order.
 NAV_GROUPS = [
     ('Decide', [('decision.html','Decision brief'),('questions.html','Question register'),('decisions-questions.html','Decision review'),('question-ledger.html','Question ledger')]),
-    ('Evidence', [('index.html','Overview'),('availability.html','Availability tracker'),('injuries.html','Injuries & depth'),('availability-evidence.html','Availability sources'),('lines.html','Own lines'),('data.html','Data requirements'),('results.html','Results feed'),('markets.html','Price snapshots'),('replacement-depth.html','Replacement depth'),('sources.html','Sources')]),
-    ('Research', [('strategies.html','Strategies'),('correlations.html','Correlations'),('validation.html','Validation'),('leaderboard.html','Leaderboard'),('demotion.html','Demotion gate')]),
+    ('Evidence', [('index.html','Overview'),('availability.html','Availability tracker'),('injuries.html','Injuries & depth'),('availability-evidence.html','Availability sources'),('lines.html','Own lines'),('results-feed.html','Results feed'),('origination.html','Market board'),('price-snapshots.html','Price snapshots'),('markets.html','W10 snapshots'),('replacement-depth.html','Replacement depth'),('replacement-chains.html','Replacement chains'),('data.html','Data requirements'),('sources.html','Sources')]),
+    ('Research', [('strategies.html','Strategies'),('correlations.html','Correlations'),('correlations-official.html','Correlations (official)'),('validation.html','Validation'),('leaderboard.html','Leaderboard'),('signal-staking.html','Signal vs staking'),('demotion.html','Demotion gate')]),
     ('Review', [('suggestions.html','Suggestions'),('suggestion-costs.html','Suggestion costs'),('flags.html','Flagged for review'),('audit.html','Repository audit')]),
 ]
 
@@ -242,7 +243,7 @@ def burden_rows():
 
 
 def table(title, headers, rows):
-    output = f'<h2>{e(title)}</h2><div class="table-wrap"><table><caption class="sr-only">{e(title)}</caption><thead><tr>'
+    output = f'<h2>{e(title)}</h2><div class="table-wrap" tabindex="0"><table><caption class="sr-only">{e(title)}</caption><thead><tr>'
     output += ''.join(f'<th scope="col">{e(h)}</th>' for h in [*headers, 'Evidence / scope'])
     output += '</tr></thead><tbody>'
     for i, (cells, refs, kind) in enumerate(rows,1):
@@ -312,19 +313,29 @@ page('validation.html','Validation','Seven gates. No shortcuts.',
          row(['5 · Economics','Captured executable prices, costs and all settlement states; strictly positive simultaneous lower mean-return bound and predeclared drawdown tolerance.','No executable quotes or tolerance · Not run'],('repo','tails'),'Project policy / tail-risk context'),
          row(['6 · Selection control','Register every candidate. Proposed familywise alpha 0.05 across all primary claims; justify week-block resampling and power before the test.','No frozen family or inference · Not run'],('multiplicity',),'Error-control background / design proposed'),
          row(['7 · Stability','Frozen subgroup and degradation tolerances, prospective paper replication, missing-data/drift kill switch. No data-driven relaxation.','No tolerances or replication · Not run'],('holdout','repo'),'Generalization context / policy proposed')
-     ]) + '<h2>Measuring skill without pretending to remove luck</h2><p>Report prediction quality and financial outcomes separately. A winning bet is not proof of skill; neither is a short positive-return run. Freeze the candidate family, compare matched targets, account for shared games/weeks and retain the untouched final test. The precise power study, resampling method and drift tolerances remain unimplemented and block eligibility.</p>')
+]) + table('Demotion gate — live strategy back to paper',['Condition that sends a live strategy back to paper','Required evidence','State'],[
+         row(['Any gate that passed at admission ceases to hold (price, availability or model support lapses before a live week)','Current gate evidence re-checked before each live week; a lapsed input forces demotion','Defined · not armed'],('repo',), 'Proposed policy'),
+         row(['Drift tolerance breached on the held-out window','Week-block interval and predeclared tolerance; breach reviewed before any re-promotion','Defined · not armed'],('holdout','tails'), 'Proposed policy'),
+         row(['Selection control breached (familywise alpha exceeded)','Registered candidate family and Holm-adjusted p-values','Defined · not armed'],('multiplicity','repo'), 'Proposed policy'),
+         row(['Correlation interval straddles the deadband for any priced joint','Fisher-z interval and predeclared deadband; joint price returns to blank','Defined · not armed'],('pearson','repo'), 'Proposed policy')
+     ]) + '<div class="notice"><strong>Demotion is mandatory, not discretionary.</strong><p>When any condition above holds, the strategy is removed from the live leaderboard and returned to paper until the failed gate is re-satisfied on fresh data. No data-driven relaxation is allowed.</p></div>' + '<h2>Measuring skill without pretending to remove luck</h2><p>Report prediction quality and financial outcomes separately. A winning bet is not proof of skill; neither is a short positive-return run. Freeze the candidate family, compare matched targets, account for shared games/weeks and retain the untouched final test. The precise power study, resampling method and drift tolerances remain unimplemented and block eligibility.</p>')
 
 page('leaderboard.html','Leaderboard','Performance must earn its rank.',
      'Four proposed tracks, matched targets, full disclosure. No strategy has passed validation. Empty metric cells mean unavailable—not zero.',
-     table('Strategy leaderboard',['Track','Eligibility','Rank','Test n','Log-loss gain LCB','Net-return LCB','Reward'],[
-         row([track,'Not run',None,None,None,None,None]) for track in ['G1 · Game single','P1 · Player prop','X1 · Cross-game parlay','S1 · Same-game combo']
-     ]) + table('Competition policy',['Rule','Proposed treatment','State'],[
+     table('Strategy leaderboard',['Track','Signal edge','Staking exposure','Rank','Test n','Log-loss gain LCB','Net-return LCB','Reward'],[
+         row([track, None, None, None, None, None, None, None]) for track in ['G1 · Game single','P1 · Player prop','X1 · Cross-game parlay','S1 · Same-game combo']
+     ]) + '<div class="notice"><strong>Signal is separate from staking.</strong><p>Signal is the prediction edge (the lower bound on paired log-loss improvement against the matched market). Staking is how much is risked on that signal. Rank is set on the signal side only, so a lucky staking run cannot mask a bad signal, and a large stake never buys a higher rank. Empty cells are unavailable, not zero.</p></div>' + table('Competition policy',['Rule','Proposed treatment','State'],[
          row(['Ranking','Only all-gate-pass candidates within each matched-target track; rank by simultaneous lower confidence bound on log-loss improvement.','Not active'],('logloss','repo'),'Metric support / project rule'),
+
          row(['Ties','Lower Brier, then lower frozen model complexity; unresolved ties share rank. No cross-track global winner.','Proposed'],('brier','repo'),'Metric support / project rule'),
          row(['Reward','Hypothetical non-cash “research leader” badge per eligible track. None if no candidate qualifies.','No actual award']),
-         row(['Funding and integrity','No sponsor, monetary pool or cash schedule. Publish pre-outcome submission hashes, all variants, exclusions and immutable test results.','Unfunded / not implemented'])
-     ]))
-
+         row(['Funding and integrity','No sponsor, monetary pool or cash schedule. Publish pre-outcome submission hashes, all variants, exclusions and immutable test results.','Unfunded / not implemented']),
+         row(['Signal vs staking separation','Signal metrics are predictive quality (log-loss, Brier, calibration, coverage). Staking metrics are financial outcomes (return, drawdown, win rate, ROI, turnover). A lucky staking run cannot mask a bad signal because they are published as separate tables.','Proposed'],('holdout','brier','tails'),'Policy specified, not active'),
+     ]) + table('Live-to-paper demotion gate',['Trigger','Automatic action','Re-entry condition / state'],[
+         row(['Integrity or operational breach: invalid/missing price or result provenance, corrupted or stale required inputs, settlement mismatch, unauthorized strategy version, or a frozen exposure/data kill-switch trip.','Immediately stop new live issuance; freeze the affected version and evidence; set status to Paper pending incident review. Do not wait for a performance sample.','Paper immediately. Resume only after the incident is resolved, the version and data are re-audited, and all affected entry gates pass again.'],('repo',),'Proposed project control; no live deployment'),
+         row(['Scheduled validation: any mandatory entry gate is no longer demonstrated for the locked strategy version. In particular, the predeclared predictive-quality or net-return lower bound is not strictly positive, or drift/stability fails. Missing/invalid evidence counts as not passing.','Automatically demote to Paper at that checkpoint; retain the full monitoring window, exclusions, and trigger record. No discretionary threshold relaxation.','Use the same gate definitions as entry. Monitoring window, minimum n, confidence procedure/alpha, review cadence, stale-data tolerance, and exposure cap are not yet specified; live activation is blocked until frozen.'],('repo','logloss'),'Proposed project control; numeric operating settings unresolved'),
+         row(['Re-entry after a performance demotion','No immediate flip back to live when a short run improves. Keep the failed strategy version in Paper.','Full requalification against all seven frozen gates on untouched prospective evidence; any changed model, feature, or rule is a new version and requires a new sealed evaluation.','Not authorized / not implemented'],('repo','holdout'),'Proposed project control; no strategy is live')
+     ]) + '<p class=\"disclaimer\"><strong>Gate status: defined as a fail-closed policy, not operationally active.</strong> There is no live strategy in this repository. The site contains no validated NFL performance evidence, and the operating settings listed above must be frozen before any live eligibility could be considered.</p>')
 page('correlations.html','Correlations','Dependence is not optional.',
      'No empirical NFL correlation values are available. The tested functions are descriptive math; no default zero, inferred sign or assumed independence is used.',
      table('Correlation register',['Predeclared pair / level','Required alignment','n','Pearson / phi','Interval','Status'],[
@@ -373,7 +384,7 @@ page('questions.html','Decision questions','Before a decision: what do we know?'
 
 
 def table(title, headers, rows):
-    output = f'<h2>{e(title)}</h2><div class="table-wrap"><table><caption class="sr-only">{e(title)}</caption><thead><tr>'
+    output = f'<h2>{e(title)}</h2><div class="table-wrap" tabindex="0"><table><caption class="sr-only">{e(title)}</caption><thead><tr>'
     output += ''.join(f'<th scope="col">{e(h)}</th>' for h in [*headers, 'Evidence / scope'])
     output += '</tr></thead><tbody>'
     for i, (cells, refs, kind) in enumerate(rows,1):
@@ -445,18 +456,28 @@ page('validation.html','Validation','Seven gates. No shortcuts.',
          row(['5 · Economics','Captured executable prices, costs and all settlement states; strictly positive simultaneous lower mean-return bound and predeclared drawdown tolerance.','No executable quotes or tolerance · Not run'],('repo','tails'),'Project policy / tail-risk context'),
          row(['6 · Selection control','Register every candidate. Proposed familywise alpha 0.05 across all primary claims; justify week-block resampling and power before the test.','No frozen family or inference · Not run'],('multiplicity',),'Error-control background / design proposed'),
          row(['7 · Stability','Frozen subgroup and degradation tolerances, prospective paper replication, missing-data/drift kill switch. No data-driven relaxation.','No tolerances or replication · Not run'],('holdout','repo'),'Generalization context / policy proposed')
-     ]) + '<h2>Measuring skill without pretending to remove luck</h2><p>Report prediction quality and financial outcomes separately. A winning bet is not proof of skill; neither is a short positive-return run. Freeze the candidate family, compare matched targets, account for shared games/weeks and retain the untouched final test. The precise power study, resampling method and drift tolerances remain unimplemented and block eligibility.</p>')
+]) + table('Demotion gate — live strategy back to paper',['Condition that sends a live strategy back to paper','Required evidence','State'],[
+         row(['Any gate that passed at admission ceases to hold (price, availability or model support lapses before a live week)','Current gate evidence re-checked before each live week; a lapsed input forces demotion','Defined · not armed'],('repo',), 'Proposed policy'),
+         row(['Drift tolerance breached on the held-out window','Week-block interval and predeclared tolerance; breach reviewed before any re-promotion','Defined · not armed'],('holdout','tails'), 'Proposed policy'),
+         row(['Selection control breached (familywise alpha exceeded)','Registered candidate family and Holm-adjusted p-values','Defined · not armed'],('multiplicity','repo'), 'Proposed policy'),
+         row(['Correlation interval straddles the deadband for any priced joint','Fisher-z interval and predeclared deadband; joint price returns to blank','Defined · not armed'],('pearson','repo'), 'Proposed policy')
+     ]) + '<div class="notice"><strong>Demotion is mandatory, not discretionary.</strong><p>When any condition above holds, the strategy is removed from the live leaderboard and returned to paper until the failed gate is re-satisfied on fresh data. No data-driven relaxation is allowed.</p></div>' + '<h2>Measuring skill without pretending to remove luck</h2><p>Report prediction quality and financial outcomes separately. A winning bet is not proof of skill; neither is a short positive-return run. Freeze the candidate family, compare matched targets, account for shared games/weeks and retain the untouched final test. The precise power study, resampling method and drift tolerances remain unimplemented and block eligibility.</p>')
 
 page('leaderboard.html','Leaderboard','Performance must earn its rank.',
      'Four proposed tracks, matched targets, full disclosure. No strategy has passed validation. Empty metric cells mean unavailable—not zero.',
-     table('Strategy leaderboard',['Track','Eligibility','Rank','Test n','Log-loss gain LCB','Net-return LCB','Reward'],[
-         row([track,'Not run',None,None,None,None,None]) for track in ['G1 · Game single','P1 · Player prop','X1 · Cross-game parlay','S1 · Same-game combo']
-     ]) + table('Competition policy',['Rule','Proposed treatment','State'],[
+     table('Strategy leaderboard',['Track','Signal edge','Staking exposure','Rank','Test n','Log-loss gain LCB','Net-return LCB','Reward'],[
+         row([track, None, None, None, None, None, None, None]) for track in ['G1 · Game single','P1 · Player prop','X1 · Cross-game parlay','S1 · Same-game combo']
+     ]) + '<div class="notice"><strong>Signal is separate from staking.</strong><p>Signal is the prediction edge (the lower bound on paired log-loss improvement against the matched market). Staking is how much is risked on that signal. Rank is set on the signal side only, so a lucky staking run cannot mask a bad signal, and a large stake never buys a higher rank. Empty cells are unavailable, not zero.</p></div>' + table('Competition policy',['Rule','Proposed treatment','State'],[
          row(['Ranking','Only all-gate-pass candidates within each matched-target track; rank by simultaneous lower confidence bound on log-loss improvement.','Not active'],('logloss','repo'),'Metric support / project rule'),
          row(['Ties','Lower Brier, then lower frozen model complexity; unresolved ties share rank. No cross-track global winner.','Proposed'],('brier','repo'),'Metric support / project rule'),
          row(['Reward','Hypothetical non-cash “research leader” badge per eligible track. None if no candidate qualifies.','No actual award']),
          row(['Funding and integrity','No sponsor, monetary pool or cash schedule. Publish pre-outcome submission hashes, all variants, exclusions and immutable test results.','Unfunded / not implemented'])
-     ]))
+     ]) + table('Live-to-paper demotion gate',['Trigger','Automatic action','Re-entry condition / state'],[
+         row(['Integrity or operational breach: invalid/missing price or result provenance, corrupted or stale required inputs, settlement mismatch, unauthorized strategy version, or a frozen exposure/data kill-switch trip.','Immediately stop new live issuance; freeze the affected version and evidence; set status to Paper pending incident review. Do not wait for a performance sample.','Paper immediately. Resume only after the incident is resolved, the version and data are re-audited, and all affected entry gates pass again.'],('repo',),'Proposed project control; no live deployment'),
+         row(['Scheduled validation: any mandatory entry gate is no longer demonstrated for the locked strategy version. In particular, the predeclared predictive-quality or net-return lower bound is not strictly positive, or drift/stability fails. Missing/invalid evidence counts as not passing.','Automatically demote to Paper at that checkpoint; retain the full monitoring window, exclusions, and trigger record. No discretionary threshold relaxation.','Use the same gate definitions as entry. Monitoring window, minimum n, confidence procedure/alpha, review cadence, stale-data tolerance, and exposure cap are not yet specified; live activation is blocked until frozen.'],('repo','logloss'),'Proposed project control; numeric operating settings unresolved'),
+         row(['Re-entry after a performance demotion','No immediate flip back to live when a short run improves. Keep the failed strategy version in Paper.','Full requalification against all seven frozen gates on untouched prospective evidence; any changed model, feature, or rule is a new version and requires a new sealed evaluation.','Not authorized / not implemented'],('repo','holdout'),'Proposed project control; no strategy is live')
+     ]) + '<p class="disclaimer"><strong>Gate status: defined as a fail-closed policy, not operationally active.</strong> There is no live strategy in this repository. The site contains no validated NFL performance evidence, and the operating settings listed above must be frozen before any live eligibility could be considered.</p>')
+
 
 page('correlations.html','Correlations','Dependence is not optional.',
      'No empirical NFL correlation values are available. The tested functions are descriptive math; no default zero, inferred sign or assumed independence is used.',
@@ -761,6 +782,13 @@ exec(compile(_own9_body, 'pages_4f2e0291.py', 'exec'),
      {'page': page, 'table': table, 'row': row, 'e': e, 'PAGES': PAGES, 'ROOT': ROOT,
       '__name__': 'pages_4f2e0291'})
 
+_a77d40e1_source = (ROOT/'tools/pages_a77d40e1.py').read_text()
+_a77d40e1_body = _a77d40e1_source.split('"""', 2)[2]
+exec(compile(_a77d40e1_body, 'pages_a77d40e1.py', 'exec'),
+     {'page': page, 'table': table, 'row': row, 'e': e, 'PAGES': PAGES, 'ROOT': ROOT,
+      '__name__': 'pages_a77d40e1'})
+
+
 # Session arena/9a409d93-own9 — additive pages module (results feed, snapshot
 # store, replacement depth, demotion gate, leaderboard/correlations/index/flags
 # appends). INJ is injected so the replacement-depth derivation reads the same
@@ -770,6 +798,10 @@ _9a409d93_body = _9a409d93_source.split('"""', 2)[2]
 exec(compile(_9a409d93_body, 'pages_9a409d93.py', 'exec'),
      {'page': page, 'table': table, 'row': row, 'e': e, 'PAGES': PAGES, 'ROOT': ROOT,
       'INJ': INJ, '__name__': 'pages_9a409d93'})
+
+
+# Session a77d40e1 (2026-11-14): market-board delta, registered through the same page()
+# API; its engine lives in engine/board.py and its data in data/board/.
 
 
 def render():

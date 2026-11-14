@@ -1,26 +1,31 @@
-"""Session `arena/9a409d93-own9` — verified results feed, price-snapshot store,
-replacement depth, demotion gate, signal/staking split, official-sample correlations.
+"""Session `arena/9a409d93-own9` — Week 10 price-snapshot store, replacement
+chains, demotion gate, leaderboard signal/staking table, results-feed append.
 
 Registered additively through the shared generator (same pattern as
-`tools/pages_4f2e0291.py`): nothing another session published is rewritten. The
-four new pages are `results.html`, `markets.html`, `replacement-depth.html` and
-`demotion.html`; `leaderboard.html`, `correlations.html`, `index.html` and
-`flags.html` receive append-only sections.
+`tools/pages_4f2e0291.py` and `tools/pages_a77d40e1.py`): nothing another
+session published is rewritten. Session a77d40e1 (merged via PR #40) already
+publishes the canonical results feed (`results-feed.html`), the market board,
+the Week 11 snapshot store (`price-snapshots.html`), the official correlation
+register (`correlations-official.html`) and the replacement-depth register, so
+this module adds only what that session did not publish: the Week 10 store
+opens captured before kickoff (`markets.html`), per-player replacement chains
+from 19 club charts (`replacement-chains.html`), the quantitative demotion gate
+(`demotion.html`), and append-only sections on `leaderboard.html` and
+`results-feed.html`.
 
 Every computed number on these pages is derived at build time from committed
 evidence (the verified results feed, the snapshot store, the injury report, the
 club depth charts) so the regeneration check in CI reproduces them exactly.
 Market-line and difference columns stay blank on every row: the NFL publishes
-no betting lines and no official market price source was obtained (F28).
+no betting lines and no official market price source was obtained (F34).
 """
 import json
 import math
 import statistics
 from pathlib import Path
 
-from engine.core import pearson, correlation_interval, dependence_gate
-from engine.origination import (load_results, run_elo, sample_stats, rolling_pf_pa,
-                                DEMOTION_THRESHOLDS, MARKET_ORDER)
+from engine.origination_elo import (load_results, run_elo, sample_stats, rolling_pf_pa,
+                                    DEMOTION_THRESHOLDS, MARKET_ORDER)
 
 RESULTS_PATH = ROOT / 'evidence/results/nfl-2026-results.json'
 WEEK10_PATH = ROOT / 'evidence/results/nfl-2026-week10.json'
@@ -60,47 +65,6 @@ def _fmt(x, nd=1):
     if x is None:
         return None
     return f'{x:.{nd}f}'
-
-
-# ---------------------------------------------------------------------------
-# correlations computed ONLY from the verified official-results feed
-# ---------------------------------------------------------------------------
-_r_margin_total = pearson([float(m) for m in MARGINS], [float(t) for t in TOTALS])
-_ci_margin_total = correlation_interval(_r_margin_total, N_GAMES)
-_gate_margin_total = dependence_gate(_r_margin_total, N_GAMES, min_n=30, deadband=0.10)
-
-_hp = [float(a) for _w, _d, _a, _h, a, h in GAMES]
-_ap = [float(h) for _w, _d, _a, _h, a, h in GAMES]
-_r_home_away = pearson(_hp, _ap)
-_ci_home_away = correlation_interval(_r_home_away, N_GAMES)
-_gate_home_away = dependence_gate(_r_home_away, N_GAMES, min_n=30, deadband=0.10)
-
-_seq = {}
-for w, d, a, h, as_, hs in GAMES:
-    _seq.setdefault(a, []).append((w, as_))
-    _seq.setdefault(h, []).append((w, hs))
-_prev, _nxt = [], []
-for _t, _rows in _seq.items():
-    _rows.sort()
-    for i in range(len(_rows) - 1):
-        _prev.append(float(_rows[i][1]))
-        _nxt.append(float(_rows[i + 1][1]))
-_r_consec = pearson(_prev, _nxt)
-_n_consec = len(_prev)
-_ci_consec = correlation_interval(_r_consec, _n_consec)
-_gate_consec = dependence_gate(_r_consec, _n_consec, min_n=30, deadband=0.10)
-
-
-def _verdict(gate):
-    if not gate:
-        return 'no gate'
-    v = gate.get('verdict')
-    return {
-        'significantly_positive': 'interval entirely above deadband (+)',
-        'significantly_negative': 'interval entirely below deadband (−)',
-        'indistinguishable_from_zero': 'interval straddles deadband — treat as unresolved',
-        'insufficient_evidence': 'insufficient n (fail-closed)',
-    }.get(v, v)
 
 
 # ---------------------------------------------------------------------------
@@ -206,67 +170,53 @@ for d in _derived:
     _depth_counts[d['depth']] = _depth_counts.get(d['depth'], 0) + 1
 
 # ===========================================================================
-# results.html — verified results feed
+# append-only augmentation of results-feed.html (canonical page from a77d40e1)
+# — this session's Week 10 status, sample statistics and grading-readiness
+# tables. The 136-game verbatim table is NOT duplicated here: the canonical
+# page already renders the settled feed row by row with weekly-page links.
 # ===========================================================================
-_results_rows = []
-for w, d, a, h, as_, hs in GAMES:
-    _results_rows.append(row(
-        [str(w), d, a, str(as_), h, str(hs), str(as_ + hs), f'{hs - as_:+d}'],
-        ('repo', f'nfl-sched-w{w}'), 'Official schedule page / verbatim headline'))
 _feed_stats = row([str(_method_stats['n_games']), _fmt(_method_stats['mean_total'], 2),
                    _fmt(_method_stats['mean_margin'], 2), _fmt(SIGMA, 2),
                    f'{TIE_COUNT} (rate {TIE_COUNT / N_GAMES:.4f})'],
                   ('repo',), 'Derived arithmetic from the feed above')
-
-page('results.html', 'Results feed', 'Final scores, verified row by row.',
-     'Every completed 2026 game, transcribed verbatim from the official NFL weekly '
-     'schedule pages. This feed is the verified-outcome input for grading, backtests '
-     'and the correlation lab below; it deliberately carries no betting lines.',
-     '<div class="notice"><strong>What is verified · what is not</strong><p>Scores are '
-     'verbatim headline transcriptions from the linked official weekly pages, retrieved '
-     '14 Nov 2026. Structural cross-checks pass: ' + str(N_GAMES) + ' games, weekly counts '
-     '(16/16/16/16/15/14/14/14/15), 32 teams, and every team\u2019s game count matches the '
-     'byes each page publishes. Not verified: per-game independent re-checks against '
-     'game centres (proposed as S-21), and no market prices exist on any row (F01/F28).</p></div>'
-     + table('Verified 2026 results feed (weeks 1–9, completed games)',
-             ['Wk', 'Date', 'Away', 'Pts', 'Home', 'Pts', 'Total', 'Home margin'], _results_rows)
-     + table('Feed summary (derived from the table above, not an external claim)',
-             ['Games n', 'Mean total', 'Mean home margin', 'σ of margins', 'Ties'], [_feed_stats])
-     + table('Week 10 status (from the official Week 10 page)',
-             ['Item', 'Count', 'Note'], [
-         row(['Completed', str(len(_w10_final)), 'WAS 24 @ NYG 21 (Thu 12 Nov) — final on the page'],
-             ('repo', 'nfl-sched-w10'), 'Official schedule page'),
-         row(['Scheduled, not yet played', str(len(_w10_sched)),
-              'Kickoffs 15–16 Nov; the snapshot store covers these 13 games'],
-             ('repo', 'nfl-sched-w10'), 'Official schedule page'),
-     ])
-     + table('Grading readiness — what ROI/backtests still need',
-             ['Requirement', 'State', 'Blocker if missing'], [
-         row(['Verified outcomes', f'{N_GAMES}/{N_GAMES} feed rows carry an official source',
-              'None — this feed closes the outcomes gap'],
-             ('repo',), 'Project record'),
-         row(['Executable market prices', '0 rows — no official or licensed price source exists',
-              'Every market_line and diff column stays blank; ROI/CLV remain uncomputable (F01/F28)'],
-             ('repo',), 'Project gap / no source'),
-         row(['Settlement rules', 'Operator push conventions registered as context only',
-              'A chosen grading operator and jurisdiction must be decided before any grade'],
-             ('dk-markets', 'repo'), 'Operator context / decision pending'),
-         row(['Point-in-time capture', 'Snapshot store deployed 2026-11-14 with open snapshots only',
-              'Close capture is scheduled (see markets.html); earlier weeks were never captured'],
-             ('repo',), 'Project record'),
-     ])
-     + '<p class="download">Open snapshots for the Week 10 markets this feed will eventually grade: '
-       '<a href="markets.html">Price snapshot store</a>. Correlations computed from this feed: '
-       '<a href="correlations.html">Correlation lab</a>. Live-discipline rules: '
-       '<a href="demotion.html">Demotion gate</a>.</p>')
+_results_feed_append = (
+    table('Week 10 status — session arena/9a409d93-own9 (14 Nov 2026)',
+          ['Item', 'Count', 'Note'], [
+        row(['Completed', str(len(_w10_final)), 'WAS 24 @ NYG 21 (Thu 12 Nov) — final on the official Week 10 page'],
+            ('repo', 'nfl-sched-w10'), 'Official schedule page'),
+        row(['Scheduled, not yet played', str(len(_w10_sched)),
+             'Kickoffs 15–16 Nov; the Week 10 snapshot store (markets.html) covers these 13 games'],
+            ('repo', 'nfl-sched-w10'), 'Official schedule page'),
+    ])
+    + table('Sample statistics of the official feed (elo-v1 inputs, derived)',
+            ['Games n', 'Mean total', 'Mean home margin', 'σ of margins', 'Ties'], [_feed_stats])
+    + table('Grading readiness — what ROI/backtests still need',
+            ['Requirement', 'State', 'Blocker if missing'], [
+        row(['Executable market prices', '0 rows — no official or licensed price source exists',
+             'Every market_line and diff column stays blank; ROI/CLV remain uncomputable (F01/F34)'],
+            ('repo',), 'Project gap / no source'),
+        row(['Settlement rules', 'Operator push conventions registered as context only',
+             'A chosen grading operator and jurisdiction must be decided before any grade'],
+            ('dk-markets', 'repo'), 'Operator context / decision pending'),
+        row(['Point-in-time capture', 'Week 10 store opened 2026-11-14 pre-kickoff (open snapshots only so far)',
+             'Close capture is scheduled via .github/workflows/snapshot.yml; earlier weeks were never captured'],
+            ('repo',), 'Project record'),
+        row(['Per-row re-check', 'Structural cross-checks pass (weekly counts, bye arithmetic, 32 teams)',
+             'Independent game-centre re-check proposed as S-21 before any settlement use'],
+            ('repo',), 'Verification scope'),
+    ])
+    + '<p class="download">Week 10 opens: <a href="markets.html">W10 snapshots</a> · '
+      'live-discipline rules: <a href="demotion.html">Demotion gate</a>.</p>')
+PAGES['results-feed.html'] = (*PAGES['results-feed.html'][:3],
+                              PAGES['results-feed.html'][3] + _results_feed_append)
 
 # ===========================================================================
 # markets.html — price snapshot store
 # ===========================================================================
 _schema_rows = [
     row(['market_id', 'Stable per-market key (season-week-away-home-TYPE[-side]).', 'Deterministic join key across open and close snapshots.'], ('repo',), 'Store schema'),
-    row(['model_fair', 'The model\u2019s fair number at the snapshot: fair home spread (points), fair total (points) or fair two-way American price.', 'Computed output of the elo-v1 method from official scores; unvalidated, no edge claim (F29).'], ('repo',), 'Store schema'),
-    row(['market_line', 'The market\u2019s quoted number at the snapshot.', 'Always blank: no official market price source exists; never inferred (F01/F28).'], ('repo',), 'Store schema'),
+    row(['model_fair', 'The model\u2019s fair number at the snapshot: fair home spread (points), fair total (points) or fair two-way American price.', 'Computed output of the elo-v1 method from official scores; unvalidated, no edge claim (F35).'], ('repo',), 'Store schema'),
+    row(['market_line', 'The market\u2019s quoted number at the snapshot.', 'Always blank: no official market price source exists; never inferred (F01/F34).'], ('repo',), 'Store schema'),
     row(['diff', 'model_fair − market_line.', 'Blank whenever market_line is blank — the difference of an unavailable value is unavailable.'], ('repo',), 'Store schema'),
     row(['opened_at / closed_at', 'UTC timestamps of the open and close snapshots.', 'Open = store deployment (2026-11-14). Close = scheduled pre-kickoff capture; null until captured.'], ('repo',), 'Store schema'),
     row(['status', 'Snapshot lifecycle state.', 'open · close capture pending — for all 52 Week 10 markets at deployment.'], ('repo',), 'Store schema'),
@@ -285,10 +235,10 @@ _order_row = row([' → '.join(f'{t} ({_type_counts[t]})' for t in MARKET_ORDER)
                  ('repo',), 'Origination contract / tested')
 _tnf_row = row(['WAS 24 @ NYG 21 (Thu 12 Nov) — FINAL',
                 'Not originated: kickoff preceded store deployment (2026-11-14)',
-                'No open or close can exist for a market the store never held (F32)'],
+                'No open or close can exist for a market the store never held (F38)'],
                ('repo', 'nfl-sched-w10'), 'Official schedule / store policy')
 
-page('markets.html', 'Price snapshots', 'Every market we originate, opened and closed.',
+page('markets.html', 'W10 snapshots', 'Every market we originate, opened and closed.',
      'The price-snapshot store records opening and closing numbers for every market '
      'Own9 originates: the model\u2019s fair line, the market line, and their difference '
      'as separate columns. Market columns are blank by policy — no official market '
@@ -298,7 +248,7 @@ page('markets.html', 'Price snapshots', 'Every market we originate, opened and c
      'computed from the verified official results feed. It is unvalidated and claims '
      'no edge; the market_line and diff columns are blank on every row because the NFL '
      'publishes no betting lines and no officially verifiable price archive was '
-     'obtained (F01, F28). Acquiring that archive is suggestion S-17.</p></div>'
+     'obtained (F01, F34). Acquiring that archive is suggestion S-17.</p></div>'
      + table('Store schema (data/snapshots/2026-w10-price-snapshot.json)',
              ['Field', 'Meaning', 'Policy'], _schema_rows)
      + table('Origination order (fixed)',
@@ -331,7 +281,7 @@ page('markets.html', 'Price snapshots', 'Every market we originate, opened and c
               'Published with every derived value; unvalidated in-sample statistics'],
              ('repo',), 'Sample statistics'),
      ])
-     + table('Close-capture automation (no manual input)',
+     + table('Close-capture automation (no manual input; schedules the a77d40e1 F30 close-run gap for this store)',
              ['Piece', 'Behaviour', 'Guardrail'], [
          row(['tools/snapshot_close.py', 'Recomputes fair numbers at close from the same inputs and records closed_at before kickoff',
               'Refuses to overwrite an open row with a changed model id or input hash'],
@@ -360,7 +310,7 @@ _absence_rows = [
          'Club sites are the only retrievable official-publisher charts'], ('nfl-no-depth-chart',), 'Checked absence'),
 ]
 _cov_teams = sorted({r[0] for r in INJ if r[0] in CHARTS['charts']})
-page('replacement-depth.html', 'Replacement depth', 'Not just who replaced — how deep.',
+page('replacement-chains.html', 'Replacement chains', 'Not just who replaced — how deep.',
      'For every Week 10 Out/Doubtful player, the depth of the player who replaces them, '
      'derived only where a club-published depth chart places both players. Chains are '
      'chart-relative: club charts are self-labelled unofficial and mostly undated, so '
@@ -371,7 +321,7 @@ page('replacement-depth.html', 'Replacement depth', 'Not just who replaced — h
      '(e.g. second player at RB = \u201c2nd string (chart order)\u201d). Where the injured player is '
      'absent from the chart, tied in a co-listed cell, or last in the slot, no chain is derived '
      'and the row is published under conflicts with the reason — never resolved by inference. '
-     'Chart-relative labels are weaker than certified game-day depth (F13, F30).</p></div>'
+     'Chart-relative labels are weaker than certified game-day depth (F13, F36).</p></div>'
      + table(f'Derived replacement chains ({len(_depth_rows)} chains across {len(_covered_teams)} clubs)',
              ['Team', 'Unavailable player (report)', 'Chart slot', 'Replacement (chart order)',
               'Depth of replacement', 'Chart date'], _depth_rows)
@@ -413,7 +363,7 @@ _th_rows = [row([k, str(v), _meaning], ('repo',), 'Predeclared threshold') for k
     ('feed_staleness_days', DEMOTION_THRESHOLDS['feed_staleness_days'],
      'A results feed older than 7 days demotes to paper (fail-closed on data).'),
 ]]
-from engine.origination import demotion_gate as _gate_fn
+from engine.origination_elo import demotion_gate as _gate_fn
 _ex1 = _gate_fn({'n_bets': 20, 'roi_flat': 0.02, 'mean_edge': 0.8, 'clv_rate': 0.55,
                  'brier': 0.24, 'feed_age_days': 1})
 _ex2 = _gate_fn({'n_bets': 20, 'roi_flat': -0.14, 'mean_edge': -0.3, 'clv_rate': 0.35,
@@ -432,8 +382,10 @@ page('demotion.html', 'Demotion gate', 'A live strategy earns its place every we
      'The demotion gate sends a live strategy back to paper on predeclared, testable '
      'triggers — trailing return, edge decay, closing-line value, calibration drift or '
      'a stale feed. No strategy is live, so the gate is defined and armed but has never '
-     'triggered.',
-     table('Demotion thresholds (engine/origination.py, predeclared)',
+     'triggered. The leaderboard\u2019s policy gate (a77d40e1) covers integrity and '
+     'operational breaches; the quantitative thresholds here cover performance decay \u2014 '
+     'both end in the same paper state.',
+     table('Demotion thresholds (engine/origination_elo.py, predeclared)',
            ['Threshold', 'Value', 'Meaning'], _th_rows)
      + table('Behaviour of the gate (synthetic inputs — arithmetic examples, not NFL observations)',
              ['Scenario', 'Decision', 'Reasons recorded'], _ex_rows)
@@ -469,65 +421,38 @@ _signal_table = table('Signal vs staking — two scores, never blended',
 ])
 PAGES['leaderboard.html'] = (*PAGES['leaderboard.html'][:3],
                              PAGES['leaderboard.html'][3] + _signal_table
-                             + '<p class="download">Status, gates and threshold objects: '
-                               '<a href="validation.html">Validation</a> · '
+                             + '<p class="download">Companion pages: <a href="signal-staking.html">Signal vs staking '
+                               '(a77d40e1)</a> · <a href="validation.html">Validation</a> · '
                                '<a href="demotion.html">Demotion gate</a>.</p>')
-
-_corr_rows = [
-    row(['Home margin vs game total (same game)', _fmt(_r_margin_total, 3), str(N_GAMES),
-         f"[{_fmt(_ci_margin_total[0], 3)}, {_fmt(_ci_margin_total[1], 3)}]",
-         _verdict(_gate_margin_total)],
-        ('repo', 'nfl-sched-w1'), 'Pearson r on the verified feed above'),
-    row(['Home points vs away points (same game)', _fmt(_r_home_away, 3), str(N_GAMES),
-         f"[{_fmt(_ci_home_away[0], 3)}, {_fmt(_ci_home_away[1], 3)}]",
-         _verdict(_gate_home_away)],
-        ('repo', 'nfl-sched-w1'), 'Pearson r on the verified feed above'),
-    row(['Team points, consecutive played games (pooled over teams)', _fmt(_r_consec, 3), str(_n_consec),
-         f"[{_fmt(_ci_consec[0], 3)}, {_fmt(_ci_consec[1], 3)}]" if _ci_consec else '—',
-         _verdict(_gate_consec)],
-        ('repo', 'nfl-sched-w1'), 'Pearson r on the verified feed above'),
-]
-PAGES['correlations.html'] = (*PAGES['correlations.html'][:3],
-                              PAGES['correlations.html'][3]
-                              + table('Measured on the official verified results feed (r and n published per value)',
-                                      ['Pair', 'r', 'n', 'Fisher-z 95% CI', 'Dependence-gate verdict'], _corr_rows)
-                              + '<div class="notice"><strong>Read these as descriptive, not actionable</strong>'
-                                '<p>All inputs are official final scores from the linked weekly pages '
-                                '(n = ' + str(N_GAMES) + ' games; n = ' + str(_n_consec) + ' team-week pairs). Games '
-                                'inside a week share conditions, and pooled team pairs repeat teams, so the '
-                                'Fisher-z intervals are approximate, not exact inference; no joint price may be '
-                                'built from any of these until a dependence-aware design is frozen '
-                                '(the engine\u2019s dependence gate returns may_price_joint only on directional '
-                                'verdicts, and none of these inputs clears a pricing decision today).</p></div>')
 
 PAGES['index.html'] = (*PAGES['index.html'][:3],
                        PAGES['index.html'][3]
                        + '<div class="notice"><strong>Added 14 Nov 2026 (session arena/9a409d93-own9)</strong>'
-                         '<p>The verified-outcome gap is now closed for the 2026 season: a '
-                         '<a href="results.html">results feed</a> of all 136 completed games, row-linked to the '
-                         'official weekly pages; a <a href="markets.html">price-snapshot store</a> holding '
-                         'opening (and, when captured, closing) numbers for all 52 originated Week 10 markets, '
-                         'with fair line, market line and difference as separate columns and side → total → '
-                         'moneyline origination order; <a href="replacement-depth.html">replacement-depth chains</a> '
-                         'for the Week 10 injury report from 19 newly retrieved club charts; a defined '
-                         '<a href="demotion.html">demotion gate</a>; and correlations with n computed '
-                         'only from the official feed. Market-line columns are blank everywhere: no official '
-                         'price source exists (F28).</p></div>')
+                         '<p>Complements to the a77d40e1 market-board delta: a Week 10-specific '
+                         '<a href="markets.html">price-snapshot store</a> whose opens were captured before the '
+                         'Week 10 kickoffs (52 markets, fair line / market line / difference as separate columns, '
+                         'side → total → moneyline origination order) with scheduled pre-kickoff close capture; '
+                         '<a href="replacement-chains.html">replacement chains</a> deriving the replacement '
+                         '<em>and its chart depth</em> for the Week 10 injury report from 19 newly retrieved club '
+                         'charts; a quantitative <a href="demotion.html">demotion gate</a> with unit-tested '
+                         'thresholds behind the leaderboard\u2019s policy gate; and a signal/staking table on '
+                         '<a href="leaderboard.html">the leaderboard</a>. Market-line columns are blank '
+                         'everywhere: no official price source exists (F34).</p></div>')
 
-_flags_append = table('Session findings F28–F33 (arena/9a409d93-own9, 14 Nov 2026)',
+_flags_append = table('Session findings F34–F39 (arena/9a409d93-own9, 14 Nov 2026)',
                       ['ID / severity', 'Finding', 'Required evidence / disposition', 'State'], [
-    row(['F28 · Critical', 'No official or licensed market-price source exists, so every market_line and diff column in the snapshot store is blank and ROI/CLV remain uncomputable.',
+    row(['F34 · Critical', 'No official or licensed market-price source exists, so every market_line and diff column in the snapshot store is blank and ROI/CLV remain uncomputable.',
          'Acquire a timestamped, permissioned price archive with settlement rules (S-17); never infer prices.', 'Unverified'], ('repo',), 'Project gap / no source'),
-    row(['F29 · Review', 'The elo-v1 fair numbers are unvalidated model outputs from a 136-game in-sample official feed; they are not market prices and carry no edge claim.',
+    row(['F35 · Review', 'The elo-v1 fair numbers are unvalidated model outputs from a 136-game in-sample official feed; they are not market prices and carry no edge claim.',
          'Sealed multi-season validation before any leaderboard eligibility; constants were predeclared, not tuned.', 'Unvalidated model output'], ('repo',), 'Model artefact / no claim'),
-    row(['F30 · Review', 'Club depth charts are self-labelled unofficial and mostly undated on the page; derived replacement depths are chart-relative, not certified game-day depth.',
+    row(['F36 · Review', 'Club depth charts are self-labelled unofficial and mostly undated on the page; derived replacement depths are chart-relative, not certified game-day depth.',
          'Point-in-time chart archives per week would be needed before any availability-weighted signal.', 'Chart-relative only'], (f'{_covered_teams[0].lower()}-depth', 'repo'), 'Publisher limitation'),
-    row(['F31 · Review', 'Houston publishes no retrievable depth-chart table in the fetched content; several injured players are absent from their own club charts.',
+    row(['F37 · Review', 'Houston publishes no retrievable depth-chart table in the fetched content; several injured players are absent from their own club charts.',
          'Checked absences are recorded; no replacement was inferred for any of them.', 'Checked absence'], ('hou-depth-absence', 'repo'), 'Checked absence'),
-    row(['F32 · Review', 'The Week 10 Thursday game kicked off before the store existed, so no open/close snapshot can exist for it.',
-         'Future weeks get opens at deployment and closes from the scheduled capture.', 'Never originated'], ('repo',), 'Store policy'),
-    row(['F33 · Review', 'The results feed was transcribed from official weekly pages with structural cross-checks (weekly counts, bye arithmetic, 32 teams); per-game independent re-checks against game centres were not performed this session.',
-         'S-21 proposes a per-row game-centre re-check before any ROI use.', 'Structurally consistent'], ('repo',), 'Verification scope'),
+    row(['F38 · Review', 'The Week 10 Thursday game kicked off before the store existed, so no open/close snapshot can exist for it.',
+         'Future weeks get opens at deployment and closes from the scheduled capture (.github/workflows/snapshot.yml — also the scheduled close run a77d40e1\u2019s F30 asks for, adopted here for the Week 10 store).', 'Never originated'], ('repo',), 'Store policy'),
+    row(['F39 · Review', 'The results feed was transcribed from official weekly pages with structural cross-checks (weekly counts, bye arithmetic, 32 teams); per-game independent re-checks against game centres were not performed.',
+         'S-21 proposes a per-row game-centre re-check before any ROI use; see also a77d40e1\u2019s F28 (per-row revision timestamps).', 'Structurally consistent'], ('repo',), 'Verification scope'),
 ])
 PAGES['flags.html'] = (*PAGES['flags.html'][:3],
                        PAGES['flags.html'][3] + _flags_append)

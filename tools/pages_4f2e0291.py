@@ -344,6 +344,47 @@ page('lines.html', 'Own lines',
                   'under the seven gates.', 'Blocked on data'], ('logloss', 'brier'), 'Blocked'),
          ])
 
+         + table('Price-snapshot store — opening and closing per market', ['Field', 'Definition', 'Required for a write'], [
+             row(['game_id', 'Stable game identifier shared with scores and availability', 'Yes'], ('repo',), 'Project record'),
+             row(['market', 'MONEYLINE, SPREAD or TOTAL', 'Yes'], ('repo',), 'Project record'),
+             row(['side', 'HOME/AWAY for moneyline/spread; OVER/UNDER for total', 'Yes'], ('repo',), 'Project record'),
+             row(['line', 'Handicap or total value (absent for moneyline)', 'Yes, when market is SPREAD or TOTAL'], ('repo',), 'Project record'),
+             row(['decimal_price', 'Decimal odds (must exceed 1)', 'Yes'], ('repo',), 'Project record'),
+             row(['quote_utc', 'ISO-8601 UTC capture time', 'Yes'], ('repo',), 'Project record'),
+             row(['operator', 'Sportsbook or venue that issued the quote', 'Yes'], ('repo',), 'Project record'),
+             row(['jurisdiction', 'Regulatory jurisdiction of the quote', 'Yes'], ('repo',), 'Project record'),
+             row(['opening_utc', 'When this market first opened', 'No — optional'], ('repo',), 'Project record'),
+             row(['closing_utc', 'When this market closed (if known)', 'No — optional'], ('repo',), 'Project record'),
+             row(['is_closing', 'True if this is the closing snapshot', 'No — defaults to false'], ('repo',), 'Project record'),
+             row(['settlement_rule', 'Operator citation for push/void handling', 'No — optional'], ('repo',), 'Project record'),
+         ])
+         + table('Verified results feed — official outcomes', ['Field', 'Definition', 'Required for a write'], [
+             row(['game_id', 'Stable game identifier shared with prices and availability', 'Yes'], ('repo',), 'Project record'),
+             row(['season', 'NFL season year', 'Yes'], ('repo',), 'Project record'),
+             row(['week', 'Week number (1-22)', 'Yes'], ('repo',), 'Project record'),
+             row(['home_team', 'Home club identifier', 'Yes'], ('repo',), 'Project record'),
+             row(['away_team', 'Away club identifier', 'Yes'], ('repo',), 'Project record'),
+             row(['home_score', 'Final home score', 'Required for FINAL status'], ('repo',), 'Project record'),
+             row(['away_score', 'Final away score', 'Required for FINAL status'], ('repo',), 'Project record'),
+             row(['status', 'SCHEDULED, IN_PROGRESS, FINAL, POSTPONED, CANCELLED', 'Yes'], ('repo',), 'Project record'),
+             row(['source_url', 'Official NFL page or Game Book URL', 'Yes'], ('repo',), 'Project record'),
+             row(['retrieved_utc', 'ISO-8601 UTC capture time', 'Yes'], ('repo',), 'Project record'),
+             row(['overtime', 'Whether the game went to overtime', 'No — optional'], ('repo',), 'Project record'),
+             row(['total_line', 'The official total line at settlement', 'No — optional'], ('repo',), 'Project record'),
+             row(['spread_line', 'The official spread line at settlement', 'No — optional'], ('repo',), 'Project record'),
+         ])
+         + table('Line origination order — mandated sequence', ['Step', 'Market', 'Notes'], [
+             row(['1', 'Side (spread / handicap)', 'Originated first: every spread market gets its own fair line before totals are touched'], ('repo',), 'Pipeline rule'),
+             row(['2', 'Total (over / under)', 'Originated second, after side; mass above threshold with equality as push'], ('repo',), 'Pipeline rule'),
+             row(['3', 'Moneyline', 'Originated third, after side and total; fair price from modelled win probability'], ('repo',), 'Pipeline rule'),
+         ])
+         + table('Fair line / market line / difference columns', ['Market', 'Fair line', 'Market line', 'Difference'], [
+             row(['Spread (home)', None, None, None], ('repo',), 'Blank until joint distribution and executable quotes exist'),
+             row(['Total', None, None, None], ('repo',), 'Blank until joint distribution and executable quotes exist'),
+             row(['Moneyline (home)', None, None, None], ('repo',), 'Blank until win probability and executable quotes exist'),
+             row(['Moneyline (away)', None, None, None], ('repo',), 'Blank until win probability and executable quotes exist'),
+         ])
+         + '<p class="notice"><strong>All three columns stay blank until inputs are verified.</strong> Fair line comes from the joint score distribution (not yet fitted). Market line comes from proportional de-vig of executable quotes (no source yet). Difference is fair minus market, computed only when both exist. None is not zero; it means the value cannot be produced yet.</p>'
          + table('Current own-line standing', ['Item', 'Value', 'Disposition'], [
              row(['Numerical line published for any 2026 game', None, 'Not produced: no fitted model exists in this '
                   'repository'], ('repo',), 'Not implemented'),
@@ -358,6 +399,43 @@ page('lines.html', 'Own lines',
                   f"rows carry no price, coverage ends in {lines['coverage']['season_max']}, and provenance is "
                   'unrecorded.'], ('repo',), 'Not run'),
          ])
+
+         + table('Price-snapshot store — opening and closing numbers for every market originated',
+                 ['Market originated', 'Open price', 'Close price',
+                  'Open captured at', 'Close captured at', 'Source URL'],
+                 [
+                     row(['Side (spread)', None, None, None, None, None],
+                         ('repo',), 'Store defined · no verified prices yet'),
+                     row(['Total', None, None, None, None, None],
+                         ('repo',), 'Store defined · no verified prices yet'),
+                     row(['Moneyline', None, None, None, None, None],
+                         ('repo',), 'Store defined · no verified prices yet'),
+                 ])
+
+         + table('Verified results feed — settled-result inputs for backtests',
+                 ['Event ID', 'Season', 'Week', 'Home club', 'Away club',
+                  'Official result URL', 'Settled at'],
+                 [])
+
+         + table('Own line vs market line — fair line, market line and difference as separate columns',
+                 ['Market', 'Fair line (model)', 'Market line (de-vigged)',
+                  'Difference (fair − market)', 'n'],
+                 [
+                     row(['Side (spread)', None, None, None, None],
+                         ('repo',), 'Blank · no fitted model exists yet'),
+                     row(['Total', None, None, None, None],
+                         ('repo',), 'Blank · no fitted model exists yet'),
+                     row(['Moneyline', None, None, None, None],
+                         ('repo',), 'Blank · no fitted model exists yet'),
+                 ])
+
+         + table('Origination order — side first, then the total, then the moneyline',
+                 ['Step', 'Market', 'Rule'],
+                 [
+                     row(['1', 'Side (spread)', 'Originate the side before any joint market; the spread is the primary market.'], ('repo',), 'Project rule · stated here'),
+                     row(['2', 'Total', 'Originate the total only after the side is fixed for the same game.'], ('repo',), 'Project rule · stated here'),
+                     row(['3', 'Moneyline', 'Originate the moneyline last, derived from the same joint score distribution as the side and total.'], ('repo',), 'Project rule · stated here'),
+                 ])
 
          + '<p>The file in <code>data/raw/</code> is a real dataset, and this release is the first to measure it '
            'instead of describing it as absent. It is also too incomplete and too undocumented to support a claim '

@@ -6,7 +6,7 @@ Run by the scheduled workflow before kickoff (see
 "open · close capture pending" this script:
 
   1. re-checks the store's declared method constants against the live
-     engine/origination.py — if the constants or the origination order
+     engine/origination_elo.py — if the constants or the origination order
      changed, it refuses to close anything (fail closed);
   2. recomputes the model fair number for that market from the committed
      results feed, using the declared method;
@@ -29,7 +29,7 @@ from pathlib import Path
 ROOT = Path(__file__).resolve().parents[1]
 sys.path.insert(0, str(ROOT))
 
-from engine.origination import (ELO_START, K, HFA_ELO, ELO_PER_POINT, TOTAL_SHRINK,
+from engine.origination_elo import (ELO_START, K, HFA_ELO, ELO_PER_POINT, TOTAL_SHRINK,
                                 TOTAL_WINDOW, MOV_SCALER, MOV_RATING_SCALE,
                                 MARKET_ORDER, load_results, run_elo, sample_stats,
                                 rolling_pf_pa, fair_spread, fair_total, fair_moneylines)

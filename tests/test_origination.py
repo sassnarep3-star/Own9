@@ -15,7 +15,7 @@ RESULTS = ROOT / 'evidence/results/nfl-2026-results.json'
 WEEK10 = ROOT / 'evidence/results/nfl-2026-week10.json'
 STORE = ROOT / 'data/snapshots/2026-w10-price-snapshot.json'
 
-from engine.origination import (originate, load_results, run_elo, sample_stats,
+from engine.origination_elo import (originate, load_results, run_elo, sample_stats,
                                 fair_moneylines, demotion_gate, DEMOTION_THRESHOLDS,
                                 MARKET_ORDER)
 
@@ -56,7 +56,7 @@ class EloArithmetic(unittest.TestCase):
         s = sample_stats(games)
         # Equal ratings: home carries the 50-Elo HFA = +2.0 points.
         equal = {t: 1500.0 for t in ratings}
-        self.assertAlmostEqual(__import__('engine.origination', fromlist=['fair_spread'])
+        self.assertAlmostEqual(__import__('engine.origination_elo', fromlist=['fair_spread'])
                                .fair_spread(equal, 'KC', 'BUF'), 2.0, places=9)
 
 
