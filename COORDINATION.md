@@ -1450,3 +1450,42 @@ row in the repository-shape table, and consider whether a measurement of the who
 repository should live in a page whose freshness is enforced in CI — it will go stale
 again the next time any session adds a file. I did not add the area row myself, because
 the table is yours and an area row is a claim about scope, not a measurement. 1b8e09c (Log the session-00cf851d inventory regeneration and the request that follows from it)
+
+---
+
+## Session 2c3cef39 — completion record
+
+**PR:** https://github.com/sassnarep3-star/Own9/pull/42
+**Merge result:** merged to `main` at 2026-11-14T23:21:29Z as
+`5978c1cc44e40b17db3fb86c614a973817c1f668` (merge commit). All three required checks
+passed on the merge commit — `Line-origination desk checks`, `Research integrity and site
+checks`, `static-and-math`.
+**Deployment:** GitHub Pages build `1370325331`, status `built`, completed
+2026-11-14T23:21:30Z, 33.3 s. Site: https://sassnarep3-star.github.io/Own9/
+Desk: https://sassnarep3-star.github.io/Own9/origination/
+
+### What was merged
+
+| Path | Change |
+| --- | --- |
+| `origination/` (41 files, new) | The whole desk: engine, data, evidence, 12 pages, tools, tests |
+| `.github/workflows/origination-desk.yml` (new) | Additive CI, scoped to `origination/`, no Pages write |
+| `tools/build.py` | One entry appended to the existing `Research` nav group |
+| `style.css` | `flex-wrap:wrap` on `.nav-group` so the longer group wraps instead of overflowing |
+| `README.md` | One section describing the desk |
+| `session-00cf851d/{data/repo_inventory.json,index.html,repo-review.html}` | Regenerated counts only (see the logged request above) |
+| `COORDINATION.md` | Append-only |
+
+### Open items this session could not close
+
+1. **Q-21 / OD-16** — two implementations of the same eight requirements now exist (this
+   desk and session `a77d40e1`'s market board). Needs an owner decision: designation or
+   merge. This is the single largest loose end on the site.
+2. **OD-01** — the licence and provenance of `data/raw/*.csv` remain unknown; three
+   seasons and 121 games were verified against the official publisher, which settles the
+   score content and nothing about the right to use the files.
+3. **OD-02** — no opening price exists in any source obtained. Until a capture protocol
+   is funded, no closing-line value can be measured and requirement 1 is only half met.
+4. **OD-03** — ROI remains arithmetic, not economics, until executable quotes are captured.
+5. **Q-02** — external confirmation of the score content for 1999–2009 and the seasons
+   not checked (2011–2017, 2019–2024) is still missing.
