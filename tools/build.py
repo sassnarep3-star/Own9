@@ -23,14 +23,15 @@ INJURY = json.loads((ROOT/'evidence/availability/injury-report-2026-week-10.json
 PAGES = {}
 # Pages whose tables rest on documents retrieved on 14 Nov 2026.
 KEEP_DATE_14 = {'decision.html','questions.html','availability.html','suggestions.html',
-                'decisions-questions.html','sources.html','flags.html','audit.html','injuries.html'}
+                'decisions-questions.html','sources.html','flags.html','audit.html','injuries.html',
+               'lines.html','availability-evidence.html','question-ledger.html','suggestion-costs.html'}
 
 # Navigation grouped by what the reader is trying to do, not by file order.
 NAV_GROUPS = [
-    ('Decide', [('decision.html','Decision brief'),('questions.html','Question register'),('decisions-questions.html','Decision review')]),
-    ('Evidence', [('index.html','Overview'),('availability.html','Availability tracker'),('injuries.html','Injuries & depth'),('data.html','Data requirements'),('sources.html','Sources')]),
+    ('Decide', [('decision.html','Decision brief'),('questions.html','Question register'),('decisions-questions.html','Decision review'),('question-ledger.html','Question ledger')]),
+    ('Evidence', [('index.html','Overview'),('availability.html','Availability tracker'),('injuries.html','Injuries & depth'),('availability-evidence.html','Availability sources'),('lines.html','Own lines'),('data.html','Data requirements'),('sources.html','Sources')]),
     ('Research', [('strategies.html','Strategies'),('correlations.html','Correlations'),('validation.html','Validation'),('leaderboard.html','Leaderboard')]),
-    ('Review', [('suggestions.html','Suggestions'),('flags.html','Flagged for review'),('audit.html','Repository audit')]),
+    ('Review', [('suggestions.html','Suggestions'),('suggestion-costs.html','Suggestion costs'),('flags.html','Flagged for review'),('audit.html','Repository audit')]),
 ]
 
 
@@ -751,6 +752,13 @@ page('injuries.html','Injuries & depth','Track who is actually out.','Injury and
          row(['Offense deficiency score','Same construction for offensive units, separate weights and gates.','Same as above; offense and defense never share a weight set.','Not implemented.'],('nfl-injury-w10','repo'),'Proposal / not implemented')
      ])
      + '<p>Snapshot integrity: the tables above are a single point-in-time transcription (retrieved 2026-11-14) of the official report; statuses can change before kickoff and the report page does not publish a revision timestamp. Cross-source conflicts are published on <a href="flags.html">Flagged for Review</a>, never silently reconciled. Strategy use of these inputs remains subject to the <a href="validation.html">validation gates</a>; no injury-adjusted edge is asserted. See <a href="questions.html">Decision questions</a> for what must be solved before any depth-weighted signal is trusted.</p>')
+
+
+_own9_source = (ROOT/'tools/pages_4f2e0291.py').read_text()
+_own9_body = _own9_source.split('"""', 2)[2]
+exec(compile(_own9_body, 'pages_4f2e0291.py', 'exec'),
+     {'page': page, 'table': table, 'row': row, 'e': e, 'PAGES': PAGES, 'ROOT': ROOT,
+      '__name__': 'pages_4f2e0291'})
 
 
 def render():

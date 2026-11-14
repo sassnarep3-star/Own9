@@ -6,7 +6,8 @@ An auditable NFL research workspace covering line origination, singles, parlays,
 player-prop combos, seven validation gates, a proposed competition, correlation
 requirements, official source scopes and a published review register.
 
-Fifteen pages, `tools/build.py`, `tools/verify.py`, verified snapshots and synthetic data only.
+Nineteen pages, `tools/build.py`, `tools/verify.py`, verified snapshots and synthetic data only,
+plus one market-data audit computed at build time from the files committed in `data/raw/`.
 
 ## Start with the decisions, not the archive
 
@@ -19,6 +20,9 @@ Fifteen pages, `tools/build.py`, `tools/verify.py`, verified snapshots and synth
 | See the full Week 10 2026 injury report snapshot and club depth charts | [Injuries & depth](injuries.html) |
 | Check a claim against a publisher | [Sources](sources.html) |
 | See what is still wrong or unverified | [Flagged for Review](flags.html) |
+| Know what the committed price file actually contains | [Own lines](lines.html) |
+| Know which official source answers an availability question | [Availability sources](availability-evidence.html) |
+| See which questions are answered, open, or blocked on a decision | [Question ledger](question-ledger.html) |
 
 ## What was verified this session
 
@@ -45,13 +49,19 @@ Fifteen pages, `tools/build.py`, `tools/verify.py`, verified snapshots and synth
 
 ## Executive summary
 
-- **Implemented:** fourteen static dashboard pages; dependency-free pricing, binary scoring,
+- **Implemented:** nineteen static dashboard pages; dependency-free pricing, binary scoring,
   Pearson/phi, a Fisher-z correlation interval with a predeclared-deadband dependence gate,
   a joint price that refuses to default to independence, fail-closed eligibility, verified
   two-week lineup evidence with a fail-closed validator, and three validated registers
-  (16 suggestions, 22 questions, 16 decisions); 80 Python tests, 2 browser suites and CI.
+  (16 suggestions, 22 questions, 16 decisions); and, from the 14 Nov 2026 integration, a costed
+  suggestion sheet (18 items, 4 candidate paths), a question ledger (32 questions, 7 discovery
+  probes), an official availability-source register with two checked absences, and a measured
+  audit of the committed market-lines file: 105 Python tests, 2 browser suites and CI.
 - **Not established:** an NFL edge, a numerical NFL line, empirical correlation, completed
   model/backtest, historical executable quote archive, verified skill or funded rewards.
+  Note the nuance on the second clause: an undocumented local file with 20,490 historical quote
+  rows *does* exist in `data/raw/` — it is measured on [Own lines](lines.html), is mostly unpriced,
+  stops in 2018 and is quarantined, so it establishes no archive that can be cited or backtested.
 - **Do not confuse software tests with strategy validation.** All candidates remain unvalidated;
   empirical values are blank. No bets are placed or recommended. Luck cannot be removed.
 - Every table row links to an official publisher or the primary project repository record.
@@ -61,6 +71,8 @@ Fifteen pages, `tools/build.py`, `tools/verify.py`, verified snapshots and synth
 ## Explore
 
 [Decision brief](decision.html) · [Questions & answers](questions.html) ·
+[Question ledger](question-ledger.html) · [Suggestion costs](suggestion-costs.html) ·
+[Own lines](lines.html) · [Availability sources](availability-evidence.html) ·
 [Availability](availability.html) · [Suggestions](suggestions.html) ·
 [Strategies](strategies.html) · [Validation](validation.html) ·
 [Leaderboard](leaderboard.html) · [Correlations](correlations.html) ·
@@ -82,10 +94,11 @@ paper evaluation remain unimplemented and explicitly flagged.
 ## Reproduce (Python 3.10+, no third-party packages)
 
 ```sh
-python3 tools/build.py                 # regenerate the 14 root pages
+python3 tools/build.py                 # regenerate the 19 root pages
 python3 tools/verify.py                # rows, links, fragments, nav, blanks
 python3 engine/availability.py         # lineup + injury evidence rules
 python3 engine/registers.py            # suggestions, questions, decisions
+python3 tools/lines_audit.py           # measure the committed market-lines file
 python3 -m unittest discover -s tests -v
 npm ci && node scripts/browser_test_root.cjs   # published pages, real browser
 npm test                               # additive site/ dashboard too
@@ -105,6 +118,34 @@ See [COORDINATION.md](COORDINATION.md) for claims, preserved concurrent-session 
 verification performed, irregularities, PRs and deployment results.
 
 ---
+
+## Added by session `4f2e0291` on 14 Nov 2026
+
+Nothing above was rewritten to make room for this: `tools/pages_4f2e0291.py` registers four pages
+through the same `page()` API, and their own rows, statuses and scoring are untouched.
+
+- **`lines.html`** — the committed `data/raw/closing_lines.csv` is measured, not described: 20,490
+  rows, seasons 2006–2018, joins to scores only through an alternate identifier, 85.2% of spread and
+  total rows unpriced, and 18 rows (0.088%) disagreeing with outcomes recomputed from the sibling
+  score snapshot across 5 games (2 fully inverted). Push coding was checked and is consistent. No
+  edge, ROI or backtest claim is drawn from it, and the file stays quarantined.
+- **`availability-evidence.html`** — the ten official and club sources read on 14 Nov 2026, each with
+  what the page publishes and its limits; 26 transcribed Week 10 report rows and 13 Nov-2026
+  reserve-list moves; two checked absences (the league depth-chart path tried 404s, and there is no
+  snap or participation category among the eleven statistics categories); the deficiency-model
+  specification and six candidate availability signals with every measured column left blank.
+  `injuries.html` and `availability.html` carry the wider slate and the lineup evidence; this page
+  records the sources behind all of it.
+- **`question-ledger.html`** — 32 questions (19 answered from official sources or this repository,
+  6 closable with data work, 7 needing an owner decision) plus 7 probes for discovering missing input.
+- **`suggestion-costs.html`** — 18 costed suggestions with status, four unranked candidate paths and a
+  decision log that records "none yet" rather than implying approval. Nothing marked *Awaiting
+  decision* was implemented.
+
+Findings are appended to `flags.html` as **F22–F27** (continuing the existing numbering; three
+findings this session had raised are not repeated because F13, F17–F19 and F21 already record them),
+and `index.html` gained a directory of all seven published sections with per-section certification
+status. `tools/verify.py` gained `www.patriots.com`, the club depth-chart source read here.
 
 ## Separate inherited research (not certified by this dashboard)
 
