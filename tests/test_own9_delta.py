@@ -243,8 +243,13 @@ class Structural(unittest.TestCase):
         self.assertEqual(errors, [])
 
     def test_page_count_is_theirs_plus_this_delta(self):
-        rendered = len([f for f in ROOT.glob('*.html')])
-        self.assertEqual(rendered, 19, 'fifteen pages from main plus this session\'s four')
+        # Relaxed by session 0167a04c: six further pages were added after this delta was
+        # merged, so a fixed total no longer measures anything. What the assertion must
+        # still guarantee is that this session's four pages remain published.
+        rendered = {f.name for f in ROOT.glob('*.html')}
+        self.assertTrue({'lines.html', 'availability-evidence.html', 'question-ledger.html',
+                         'suggestion-costs.html'} <= rendered,
+                        "this session's four pages are missing from the rendered set")
 
     def test_new_pages_are_linked_from_nav_exactly_once(self):
         for name in ('lines.html', 'availability-evidence.html', 'question-ledger.html',

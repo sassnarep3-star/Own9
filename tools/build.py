@@ -25,13 +25,17 @@ PAGES = {}
 KEEP_DATE_14 = {'decision.html','questions.html','availability.html','suggestions.html',
                 'decisions-questions.html','sources.html','flags.html','audit.html','injuries.html',
                'lines.html','availability-evidence.html','question-ledger.html','suggestion-costs.html'}
+# Added by session 0167a04c: pages whose tables rest on documents retrieved on 14 Nov 2026.
+KEEP_DATE_14 |= {'origination.html','results.html','replacement-depth.html','dependence.html',
+                 'signal-staking.html','requirements.html'}
 
 # Navigation grouped by what the reader is trying to do, not by file order.
 NAV_GROUPS = [
     ('Decide', [('decision.html','Decision brief'),('questions.html','Question register'),('decisions-questions.html','Decision review'),('question-ledger.html','Question ledger')]),
     ('Evidence', [('index.html','Overview'),('availability.html','Availability tracker'),('injuries.html','Injuries & depth'),('availability-evidence.html','Availability sources'),('lines.html','Own lines'),('data.html','Data requirements'),('sources.html','Sources')]),
     ('Research', [('strategies.html','Strategies'),('correlations.html','Correlations'),('validation.html','Validation'),('leaderboard.html','Leaderboard')]),
-    ('Review', [('suggestions.html','Suggestions'),('suggestion-costs.html','Suggestion costs'),('flags.html','Flagged for review'),('audit.html','Repository audit')]),
+    ('Origination', [('origination.html','Origination engine'),('results.html','Verified results'),('replacement-depth.html','Replacement depth'),('dependence.html','Dependence'),('signal-staking.html','Signal vs staking')]),
+    ('Review', [('suggestions.html','Suggestions'),('suggestion-costs.html','Suggestion costs'),('flags.html','Flagged for review'),('audit.html','Repository audit'),('requirements.html','Requirements coverage')]),
 ]
 
 
@@ -759,6 +763,15 @@ _own9_body = _own9_source.split('"""', 2)[2]
 exec(compile(_own9_body, 'pages_4f2e0291.py', 'exec'),
      {'page': page, 'table': table, 'row': row, 'e': e, 'PAGES': PAGES, 'ROOT': ROOT,
       '__name__': 'pages_4f2e0291'})
+
+
+# Session 0167a04c's origination-engine pages, registered the same additive way: the module
+# mutates PAGES (including an appended table on flags.html) and edits no other page's rows.
+_pages_0167a04c = (ROOT/'tools/pages_0167a04c.py').read_text()
+_0167a04c_body = _pages_0167a04c.split('"""', 2)[2]
+exec(compile(_0167a04c_body, 'pages_0167a04c.py', 'exec'),
+     {'page': page, 'table': table, 'row': row, 'e': e, 'PAGES': PAGES, 'ROOT': ROOT,
+      '__name__': 'pages_0167a04c'})
 
 
 def render():

@@ -1,0 +1,17 @@
+result_id,season,week,game_date,kickoff_time_utc,away_team,home_team,away_score,home_score,home_margin,total_points,home_result,overtime,source_id,game_url,retrieved_utc
+2026-REG9-JAX-BAL,2026,9,2026-11-05,,JAX,BAL,33,10,-23,43,loss,,nfl-schedule-w9,https://www.nfl.com/games/jaguars-at-ravens-2026-reg-9,2026-11-14
+2026-REG9-CIN-ATL,2026,9,2026-11-08,,CIN,ATL,34,17,-17,51,loss,,nfl-schedule-w9,https://www.nfl.com/games/bengals-at-falcons-2026-reg-9,2026-11-14
+2026-REG9-DEN-CAR,2026,9,2026-11-08,,DEN,CAR,26,21,-5,47,loss,,nfl-schedule-w9,https://www.nfl.com/games/broncos-at-panthers-2026-reg-9,2026-11-14
+2026-REG9-DAL-IND,2026,9,2026-11-08,,DAL,IND,27,23,-4,50,loss,,nfl-schedule-w9,https://www.nfl.com/games/cowboys-at-colts-2026-reg-9,2026-11-14
+2026-REG9-NYJ-KC,2026,9,2026-11-08,,NYJ,KC,12,35,23,47,win,,nfl-schedule-w9,https://www.nfl.com/games/jets-at-chiefs-2026-reg-9,2026-11-14
+2026-REG9-DET-MIA,2026,9,2026-11-08,,DET,MIA,19,9,-10,28,loss,,nfl-schedule-w9,https://www.nfl.com/games/lions-at-dolphins-2026-reg-9,2026-11-14
+2026-REG9-CLE-NO,2026,9,2026-11-08,,CLE,NO,22,23,1,45,win,,nfl-schedule-w9,https://www.nfl.com/games/browns-at-saints-2026-reg-9,2026-11-14
+2026-REG9-NYG-PHI,2026,9,2026-11-08,,NYG,PHI,19,11,-8,30,loss,,nfl-schedule-w9,https://www.nfl.com/games/giants-at-eagles-2026-reg-9,2026-11-14
+2026-REG9-LAR-WAS,2026,9,2026-11-08,,LAR,WAS,20,13,-7,33,loss,,nfl-schedule-w9,https://www.nfl.com/games/rams-at-commanders-2026-reg-9,2026-11-14
+2026-REG9-HOU-LAC,2026,9,2026-11-08,,HOU,LAC,44,22,-22,66,loss,,nfl-schedule-w9,https://www.nfl.com/games/texans-at-chargers-2026-reg-9,2026-11-14
+2026-REG9-LV-SF,2026,9,2026-11-08,,LV,SF,17,38,21,55,win,,nfl-schedule-w9,https://www.nfl.com/games/raiders-at-49ers-2026-reg-9,2026-11-14
+2026-REG9-GB-NE,2026,9,2026-11-08,,GB,NE,45,27,-18,72,loss,,nfl-schedule-w9,https://www.nfl.com/games/packers-at-patriots-2026-reg-9,2026-11-14
+2026-REG9-AZ-SEA,2026,9,2026-11-08,,AZ,SEA,3,17,14,20,win,,nfl-schedule-w9,https://www.nfl.com/games/cardinals-at-seahawks-2026-reg-9,2026-11-14
+2026-REG9-TB-CHI,2026,9,2026-11-08,,TB,CHI,24,27,3,51,win,,nfl-schedule-w9,https://www.nfl.com/games/buccaneers-at-bears-2026-reg-9,2026-11-14
+2026-REG9-BUF-MIN,2026,9,2026-11-09,,BUF,MIN,23,6,-17,29,loss,,nfl-schedule-w9,https://www.nfl.com/games/bills-at-vikings-2026-reg-9,2026-11-14
+2026-REG10-WAS-NYG,2026,10,2026-11-12,,WAS,NYG,24,21,-3,45,loss,,nfl-schedule-w10,https://www.nfl.com/games/commanders-at-giants-2026-reg-10,2026-11-14
