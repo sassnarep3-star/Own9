@@ -1,0 +1,38 @@
+{
+  "created_utc": "2026-11-14T22:18:44Z",
+  "fields": [
+    "schema_version",
+    "game_id",
+    "market",
+    "side",
+    "stage",
+    "line",
+    "price",
+    "captured_at",
+    "source_url",
+    "publisher",
+    "provenance",
+    "missing_reason",
+    "notes",
+    "prev_hash",
+    "record_hash"
+  ],
+  "head_hash": null,
+  "log_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+  "markets": [
+    "SPREAD",
+    "TOTAL",
+    "MONEYLINE"
+  ],
+  "records": 0,
+  "rules": [
+    "append-only: a captured price is never edited in place",
+    "an absent price is recorded as an absence with a reason, never as zero",
+    "provenance=\"league\" is inadmissible for a price field"
+  ],
+  "schema_version": 1,
+  "stages": [
+    "open",
+    "close"
+  ]
+}
