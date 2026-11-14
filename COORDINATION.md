@@ -746,3 +746,34 @@ No empirical NFL line, correlation, ROI, rank or reward was inferred. Other sess
 
 - **PR #33** (https://github.com/sassnarep3-star/Own9/pull/33) merged as `0fc7f78` at 2026-11-14T01:42:26Z; `Verify NFL research for Pages` `43542193051`, `Research quality` `43542193076` and `pages build and deployment` `43542192022` all success. It removed hardcoded page counts from the overview's section descriptions after a live read-back showed `site` labelled "twelve-page" beside a computed count of 15 — the same class of error as a retyped measurement, fixed the same way: derive it or drop it.
 - Session `4f2e0291` ends with: requirements 1–4 and 6 published on the root site (`suggestion-costs.html`, `question-ledger.html`, `lines.html`, `availability-evidence.html`, overview directory), requirement 5 carried by the overview's executive summary and README, findings F22–F27 on `flags.html`, and three PRs merged (`#28`, `#32`, `#33`) with every deployment confirmed rather than assumed.
+
+---
+
+# Session 1cfcb957 — requirements delta (price snapshots, results feed, origination order, signal/staking split, replacement depth, correlation n, demotion gate)
+
+Session: `1cfcb957` · Branch: `arena/1cfcb957-own9` · Branched from `main` at `462a7e92d66dbd3bfc7398a396abc25d3cc58885` · Started 2026-11-14 UTC.
+
+## Claims
+
+| Task | Status | Owner | Files |
+| --- | --- | --- | --- |
+| Eight-requirement traceability register + release executive summary page | in progress | 1cfcb957 | `tools/pages_1cfcb957.py` (new), `requirements.html` (generated) |
+| Price-snapshot store (open + close per originated market) + snapshot completeness audit | in progress | 1cfcb957 | `engine/snapshots.py`, `tools/snapshot_audit.py` (new), `price-results.html` (generated) |
+| Verified results feed contract + fail-closed verification | in progress | 1cfcb957 | `engine/results.py` (new) |
+| Origination order side → total → moneyline, and fair/market/difference column contract | in progress | 1cfcb957 | `engine/originate.py` (new) |
+| Signal-versus-staking leaderboard split | in progress | 1cfcb957 | `engine/signal_staking.py` (new), `signal-staking.html` (generated) |
+| Depth-of-replacement measurement (tier distance, not a flag) | in progress | 1cfcb957 | `engine/replacement.py` (new), `replacement-correlations.html` (generated) |
+| Correlation gate: official-source inputs only, `n` published with every value | in progress | 1cfcb957 | `engine/correlations.py` (new) |
+| Demotion gate: live → paper state machine | in progress | 1cfcb957 | `engine/demotion.py` (new), `signal-staking.html` (generated) |
+| Gap register: questions, information needed, answers, and suggestions to discover missing input | in progress | 1cfcb957 | `gap-register.html` (generated) |
+| Shared-file edits needed to publish the above (additive only) | requested · self-administered as sole active session | 1cfcb957 | `tools/build.py` (new exec hook + nav entries + KEEP_DATE_14), `tools/verify.py` (approved-host set only), `evidence/sources.json` (union/append), `flags.html` register (append), `README.md` (append), `index.html` directory (append) |
+
+## Rules this session follows
+
+- No prior session's page, register row, engine module, workflow or test is rewritten. Shared files are edited additively: appended registers, appended nav entries, unioned source records, appended flags continuing existing numbering (next free id: F28).
+- Nothing is asserted from an unofficial source as verified; empirical cells stay blank where no official publisher provides a value, and the gap is published on `flags.html`.
+- No model is fitted to produce a claimed NFL edge, no backtest result is presented as validated, no wager is placed, no reward is funded.
+
+## Log
+
+- 2026-11-14: Read `main` at `462a7e9`; branch is level with `main` (0 ahead, 0 behind). No open PRs (`gh pr list --state open` → `[]`). Reviewed prior session records for sessions 80085c01, 4f2e0291, 8de532d1, 0b355862/9cb2a884 and the root generator conventions (`page()`, `table()`, `row()`, row-must-carry-a-registered-source, fail-closed blanks). Claimed the scopes above and committed this claim before any implementation file was written.
