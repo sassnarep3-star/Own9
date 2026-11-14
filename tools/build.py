@@ -25,18 +25,20 @@ PAGES = {}
 KEEP_DATE_14 = {'decision.html','questions.html','availability.html','suggestions.html',
                 'decisions-questions.html','sources.html','flags.html','audit.html','injuries.html',
                'lines.html','availability-evidence.html','question-ledger.html','suggestion-costs.html',
-               'results-feed.html','origination.html','price-snapshots.html','signal-staking.html','correlations-official.html','replacement-depth.html'}
+               'results-feed.html','origination.html','price-snapshots.html','signal-staking.html','correlations-official.html','replacement-depth.html',
+               'requirements.html','price-feed.html','signal-and-staking.html','depth-correlations.html',
+               'missing-information.html'}
 # Added by session 0167a04c: pages whose tables rest on documents retrieved on 14 Nov 2026.
 KEEP_DATE_14 |= {'origination-engine.html','results.html','depth-of-replacement.html',
-                 'dependence.html','signal-vs-staking.html','requirements.html'}
+                 'dependence.html','signal-vs-staking.html','requirements-coverage.html'}
 
 # Navigation grouped by what the reader is trying to do, not by file order.
 NAV_GROUPS = [
-    ('Decide', [('decision.html','Decision brief'),('questions.html','Question register'),('decisions-questions.html','Decision review'),('question-ledger.html','Question ledger')]),
+    ('Decide', [('decision.html','Decision brief'),('questions.html','Question register'),('decisions-questions.html','Decision review'),('question-ledger.html','Question ledger'),('missing-information.html','Missing info')]),
     ('Evidence', [('index.html','Overview'),('availability.html','Availability tracker'),('injuries.html','Injuries & depth'),('availability-evidence.html','Availability sources'),('lines.html','Own lines'),('results-feed.html','Results feed'),('origination.html','Market board'),('price-snapshots.html','Price snapshots'),('replacement-depth.html','Replacement depth'),('data.html','Data requirements'),('sources.html','Sources')]),
-    ('Research', [('strategies.html','Strategies'),('correlations.html','Correlations'),('correlations-official.html','Correlations (official)'),('validation.html','Validation'),('leaderboard.html','Leaderboard'),('signal-staking.html','Signal vs staking')]),
+    ('Research', [('strategies.html','Strategies'),('correlations.html','Correlations'),('correlations-official.html','Correlations (official)'),('validation.html','Validation'),('leaderboard.html','Leaderboard'),('signal-staking.html','Signal vs staking'),('signal-and-staking.html','Signal vs staking (enforced)'),('requirements.html','Requirements'),('price-feed.html','Price & results'),('depth-correlations.html','Depth & correlation')]),
     ('Origination', [('origination-engine.html','Origination engine'),('results.html','Verified results'),('depth-of-replacement.html','Depth of replacement'),('dependence.html','Dependence'),('signal-vs-staking.html','Signal / staking split')]),
-    ('Review', [('suggestions.html','Suggestions'),('suggestion-costs.html','Suggestion costs'),('flags.html','Flagged for review'),('audit.html','Repository audit'),('requirements.html','Requirements coverage')]),
+    ('Review', [('suggestions.html','Suggestions'),('suggestion-costs.html','Suggestion costs'),('flags.html','Flagged for review'),('audit.html','Repository audit'),('requirements-coverage.html','Requirements coverage')]),
 ]
 
 
@@ -246,8 +248,13 @@ def burden_rows():
 
 
 def table(title, headers, rows):
-    # tabindex="0" keeps a horizontally scrollable table reachable from the keyboard, which is
-    output = f'<h2>{e(title)}</h2><div class="table-wrap" tabindex="0"><table><caption class="sr-only">{e(title)}</caption><thead><tr>'
+    # The wrap scrolls horizontally below roughly 700px, and a scrollable region that holds no
+    # focusable element cannot be reached by keyboard at all. Naming it and making it focusable is
+    # what the site's own axe check requires; the fix lives in the shared generator so no page can
+    # regress it by adding a table of its own.
+    output = (f'<h2>{e(title)}</h2>'
+              f'<div class="table-wrap" tabindex="0" role="region" aria-label="{e(title)} — scrollable table">'
+              f'<table><caption class="sr-only">{e(title)}</caption><thead><tr>')
     output += ''.join(f'<th scope="col">{e(h)}</th>' for h in [*headers, 'Evidence / scope'])
     output += '</tr></thead><tbody>'
     for i, (cells, refs, kind) in enumerate(rows,1):
@@ -388,8 +395,13 @@ page('questions.html','Decision questions','Before a decision: what do we know?'
 
 
 def table(title, headers, rows):
-    # tabindex="0" keeps a horizontally scrollable table reachable from the keyboard, which is
-    output = f'<h2>{e(title)}</h2><div class="table-wrap" tabindex="0"><table><caption class="sr-only">{e(title)}</caption><thead><tr>'
+    # The wrap scrolls horizontally below roughly 700px, and a scrollable region that holds no
+    # focusable element cannot be reached by keyboard at all. Naming it and making it focusable is
+    # what the site's own axe check requires; the fix lives in the shared generator so no page can
+    # regress it by adding a table of its own.
+    output = (f'<h2>{e(title)}</h2>'
+              f'<div class="table-wrap" tabindex="0" role="region" aria-label="{e(title)} — scrollable table">'
+              f'<table><caption class="sr-only">{e(title)}</caption><thead><tr>')
     output += ''.join(f'<th scope="col">{e(h)}</th>' for h in [*headers, 'Evidence / scope'])
     output += '</tr></thead><tbody>'
     for i, (cells, refs, kind) in enumerate(rows,1):
@@ -779,6 +791,13 @@ page('injuries.html','Injuries & depth','Track who is actually out.','Injury and
          row(['Offense deficiency score','Same construction for offensive units, separate weights and gates.','Same as above; offense and defense never share a weight set.','Not implemented.'],('nfl-injury-w10','repo'),'Proposal / not implemented')
      ])
      + '<p>Snapshot integrity: the tables above are a single point-in-time transcription (retrieved 2026-11-14) of the official report; statuses can change before kickoff and the report page does not publish a revision timestamp. Cross-source conflicts are published on <a href="flags.html">Flagged for Review</a>, never silently reconciled. Strategy use of these inputs remains subject to the <a href="validation.html">validation gates</a>; no injury-adjusted edge is asserted. See <a href="questions.html">Decision questions</a> for what must be solved before any depth-weighted signal is trusted.</p>')
+
+
+_delta_source = (ROOT/'tools/pages_1cfcb957.py').read_text()
+_delta_body = _delta_source.split('"""', 2)[2]
+exec(compile(_delta_body, 'pages_1cfcb957.py', 'exec'),
+     {'page': page, 'table': table, 'row': row, 'e': e, 'PAGES': PAGES, 'ROOT': ROOT, 'INJ': INJ,
+      '__name__': 'pages_1cfcb957'})
 
 
 _own9_source = (ROOT/'tools/pages_4f2e0291.py').read_text()

@@ -1,0 +1,186 @@
+{
+  "document_title": "2026 Week 10 slate as published on 14 November 2026: one completed game, thirteen scheduled, four byes",
+  "publisher": "NFL",
+  "source_url": "https://www.nfl.com/schedules/2026/by-week/week-10",
+  "corroborating_source_url": "https://www.nfl.com/games/commanders-at-giants-2026-reg-10",
+  "season": 2026,
+  "week": 10,
+  "retrieved_utc": "2026-11-14",
+  "retrieved_by": "session 1cfcb957",
+  "rights_note": "Score, status, time and record fields only, transcribed from a public schedule page for verification use.",
+  "record_semantics": "The record printed beside a club on this page is that club's record as of the retrieval date, which for the completed Thursday game already includes that game. Scheduled games therefore show pre-game records. This asymmetry is the reason the feed treats a page's records as an 'after' snapshot for reconciliation, never as a feature.",
+  "standings_pct": {
+    "NYG": {"record": "5-3-1", "printed_pct": 0.611},
+    "DAL": {"record": "4-5", "printed_pct": 0.444},
+    "WAS": {"record": "3-5-1", "printed_pct": 0.389},
+    "PHI": {"record": "2-7", "printed_pct": 0.222}
+  },
+  "standings_pct_source": "https://www.nfl.com/games/commanders-at-giants-2026-reg-10 (NFC East table, read 2026-11-14)",
+  "records_after": {
+    "WAS": "3-5-1", "NYG": "5-3-1", "NE": "5-4", "DET": "6-2", "KC": "6-2", "ATL": "3-6",
+    "HOU": "3-5", "CLE": "5-4", "MIN": "6-2", "GB": "6-3", "MIA": "1-7", "IND": "2-7",
+    "CAR": "3-5", "NO": "3-5", "BUF": "7-1", "NYJ": "2-7", "JAX": "6-2", "TEN": "1-7",
+    "LA": "5-4", "AZ": "3-6", "SEA": "5-4", "LV": "4-5", "SF": "7-1", "DAL": "4-5",
+    "PIT": "6-2", "CIN": "6-2", "LAC": "0-8", "BAL": "4-5", "CHI": "7-2", "DEN": "7-2",
+    "PHI": "2-7", "TB": "3-6"
+  },
+  "bye_teams": {"CHI": "7-2", "DEN": "7-2", "PHI": "2-7", "TB": "3-6"},
+  "games": [
+    {
+      "game_id": "commanders-at-giants-2026-reg-10",
+      "source_url": "https://www.nfl.com/games/commanders-at-giants-2026-reg-10",
+      "section_label": "Thursday Night Football, November 12th",
+      "date_label": "Nov 12",
+      "status": "final",
+      "away_abbr": "WAS", "away_name": "Commanders", "home_abbr": "NYG", "home_name": "Giants",
+      "link_label": "Commanders 24, Giants 21, FINAL, Thursday, November 12th",
+      "away_points": 24, "home_points": 21, "winner_indicator": "WAS",
+      "listed_records": {"WAS": "3-5-1", "NYG": "5-3-1"},
+      "game_center_facts": {"location": "EAST RUTHERFORD, NJ", "stadium": "METLIFE STADIUM",
+                            "game_book_pdf": "https://static.www.nfl.com/image/upload/v1794570519/gamecenter/ab5828d9-4feb-11f1-abca-2c54536568a9.pdf"}
+    },
+    {
+      "game_id": "patriots-at-lions-2026-reg-10",
+      "source_url": "https://www.nfl.com/games/patriots-at-lions-2026-reg-10",
+      "section_label": "International Game, November 15th (Munich)",
+      "date_label": "Nov 15 9:30 AM FOX",
+      "status": "scheduled",
+      "away_abbr": "NE", "away_name": "Patriots", "home_abbr": "DET", "home_name": "Lions",
+      "link_label": "Patriots at Lions, Sunday, November 15th, 9:30 AM, FOX",
+      "away_points": null, "home_points": null, "winner_indicator": null,
+      "listed_records": {"NE": "5-4", "DET": "6-2"}
+    },
+    {
+      "game_id": "chiefs-at-falcons-2026-reg-10",
+      "source_url": "https://www.nfl.com/games/chiefs-at-falcons-2026-reg-10",
+      "section_label": "Sunday, November 15th",
+      "date_label": "Nov 15 1:00 PM CBS",
+      "status": "scheduled",
+      "away_abbr": "KC", "away_name": "Chiefs", "home_abbr": "ATL", "home_name": "Falcons",
+      "link_label": "Chiefs at Falcons, Sunday, November 15th, 1:00 PM, CBS",
+      "away_points": null, "home_points": null, "winner_indicator": null,
+      "listed_records": {"KC": "6-2", "ATL": "3-6"}
+    },
+    {
+      "game_id": "texans-at-browns-2026-reg-10",
+      "source_url": "https://www.nfl.com/games/texans-at-browns-2026-reg-10",
+      "section_label": "Sunday, November 15th",
+      "date_label": "Nov 15 1:00 PM FOX",
+      "status": "scheduled",
+      "away_abbr": "HOU", "away_name": "Texans", "home_abbr": "CLE", "home_name": "Browns",
+      "link_label": "Texans at Browns, Sunday, November 15th, 1:00 PM, FOX",
+      "away_points": null, "home_points": null, "winner_indicator": null,
+      "listed_records": {"HOU": "3-5", "CLE": "5-4"}
+    },
+    {
+      "game_id": "vikings-at-packers-2026-reg-10",
+      "source_url": "https://www.nfl.com/games/vikings-at-packers-2026-reg-10",
+      "section_label": "Sunday, November 15th",
+      "date_label": "Nov 15 1:00 PM FOX",
+      "status": "scheduled",
+      "away_abbr": "MIN", "away_name": "Vikings", "home_abbr": "GB", "home_name": "Packers",
+      "link_label": "Vikings at Packers, Sunday, November 15th, 1:00 PM, FOX",
+      "away_points": null, "home_points": null, "winner_indicator": null,
+      "listed_records": {"MIN": "6-2", "GB": "6-3"}
+    },
+    {
+      "game_id": "dolphins-at-colts-2026-reg-10",
+      "source_url": "https://www.nfl.com/games/dolphins-at-colts-2026-reg-10",
+      "section_label": "Sunday, November 15th",
+      "date_label": "Nov 15 1:00 PM CBS",
+      "status": "scheduled",
+      "away_abbr": "MIA", "away_name": "Dolphins", "home_abbr": "IND", "home_name": "Colts",
+      "link_label": "Dolphins at Colts, Sunday, November 15th, 1:00 PM, CBS",
+      "away_points": null, "home_points": null, "winner_indicator": null,
+      "listed_records": {"MIA": "1-7", "IND": "2-7"}
+    },
+    {
+      "game_id": "panthers-at-saints-2026-reg-10",
+      "source_url": "https://www.nfl.com/games/panthers-at-saints-2026-reg-10",
+      "section_label": "Sunday, November 15th",
+      "date_label": "Nov 15 1:00 PM FOX",
+      "status": "scheduled",
+      "away_abbr": "CAR", "away_name": "Panthers", "home_abbr": "NO", "home_name": "Saints",
+      "link_label": "Panthers at Saints, Sunday, November 15th, 1:00 PM, FOX",
+      "away_points": null, "home_points": null, "winner_indicator": null,
+      "listed_records": {"CAR": "3-5", "NO": "3-5"}
+    },
+    {
+      "game_id": "bills-at-jets-2026-reg-10",
+      "source_url": "https://www.nfl.com/games/bills-at-jets-2026-reg-10",
+      "section_label": "Sunday, November 15th",
+      "date_label": "Nov 15 1:00 PM CBS",
+      "status": "scheduled",
+      "away_abbr": "BUF", "away_name": "Bills", "home_abbr": "NYJ", "home_name": "Jets",
+      "link_label": "Bills at Jets, Sunday, November 15th, 1:00 PM, CBS",
+      "away_points": null, "home_points": null, "winner_indicator": null,
+      "listed_records": {"BUF": "7-1", "NYJ": "2-7"}
+    },
+    {
+      "game_id": "jaguars-at-titans-2026-reg-10",
+      "source_url": "https://www.nfl.com/games/jaguars-at-titans-2026-reg-10",
+      "section_label": "Sunday, November 15th",
+      "date_label": "Nov 15 1:00 PM FOX",
+      "status": "scheduled",
+      "away_abbr": "JAX", "away_name": "Jaguars", "home_abbr": "TEN", "home_name": "Titans",
+      "link_label": "Jaguars at Titans, Sunday, November 15th, 1:00 PM, FOX",
+      "away_points": null, "home_points": null, "winner_indicator": null,
+      "listed_records": {"JAX": "6-2", "TEN": "1-7"}
+    },
+    {
+      "game_id": "rams-at-cardinals-2026-reg-10",
+      "source_url": "https://www.nfl.com/games/rams-at-cardinals-2026-reg-10",
+      "section_label": "Sunday, November 15th",
+      "date_label": "Nov 15 4:05 PM CBS",
+      "status": "scheduled",
+      "away_abbr": "LA", "away_name": "Rams", "home_abbr": "AZ", "home_name": "Cardinals",
+      "link_label": "Rams at Cardinals, Sunday, November 15th, 4:05 PM, CBS",
+      "away_points": null, "home_points": null, "winner_indicator": null,
+      "listed_records": {"LA": "5-4", "AZ": "3-6"}
+    },
+    {
+      "game_id": "seahawks-at-raiders-2026-reg-10",
+      "source_url": "https://www.nfl.com/games/seahawks-at-raiders-2026-reg-10",
+      "section_label": "Sunday, November 15th",
+      "date_label": "Nov 15 4:05 PM CBS",
+      "status": "scheduled",
+      "away_abbr": "SEA", "away_name": "Seahawks", "home_abbr": "LV", "home_name": "Raiders",
+      "link_label": "Seahawks at Raiders, Sunday, November 15th, 4:05 PM, CBS",
+      "away_points": null, "home_points": null, "winner_indicator": null,
+      "listed_records": {"SEA": "5-4", "LV": "4-5"}
+    },
+    {
+      "game_id": "49ers-at-cowboys-2026-reg-10",
+      "source_url": "https://www.nfl.com/games/49ers-at-cowboys-2026-reg-10",
+      "section_label": "Sunday, November 15th",
+      "date_label": "Nov 15 4:25 PM FOX",
+      "status": "scheduled",
+      "away_abbr": "SF", "away_name": "49ers", "home_abbr": "DAL", "home_name": "Cowboys",
+      "link_label": "49ers at Cowboys, Sunday, November 15th, 4:25 PM, FOX",
+      "away_points": null, "home_points": null, "winner_indicator": null,
+      "listed_records": {"SF": "7-1", "DAL": "4-5"}
+    },
+    {
+      "game_id": "steelers-at-bengals-2026-reg-10",
+      "source_url": "https://www.nfl.com/games/steelers-at-bengals-2026-reg-10",
+      "section_label": "Sunday Night Football, November 15th",
+      "date_label": "Nov 15 8:20 PM NBC",
+      "status": "scheduled",
+      "away_abbr": "PIT", "away_name": "Steelers", "home_abbr": "CIN", "home_name": "Bengals",
+      "link_label": "Steelers at Bengals, Sunday, November 15th, 8:20 PM, NBC",
+      "away_points": null, "home_points": null, "winner_indicator": null,
+      "listed_records": {"PIT": "6-2", "CIN": "6-2"}
+    },
+    {
+      "game_id": "chargers-at-ravens-2026-reg-10",
+      "source_url": "https://www.nfl.com/games/chargers-at-ravens-2026-reg-10",
+      "section_label": "Monday Night Football, November 16th",
+      "date_label": "Nov 16 8:15 PM ESPN",
+      "status": "scheduled",
+      "away_abbr": "LAC", "away_name": "Chargers", "home_abbr": "BAL", "home_name": "Ravens",
+      "link_label": "Chargers at Ravens, Monday, November 16th, 8:15 PM, ESPN",
+      "away_points": null, "home_points": null, "winner_indicator": null,
+      "listed_records": {"LAC": "0-8", "BAL": "4-5"}
+    }
+  ]
+}

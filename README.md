@@ -99,7 +99,7 @@ described. Everything below is computed at build time by `engine/origination.py`
 | [Requirements coverage](requirements.html) | The eight requirements line by line, the files inspected, the irregularities found and an executive summary. |
 
 Reproduce: `python3 tools/build.py` · `python3 tools/verify.py` ·
-`python3 -m unittest discover -s tests -v`. Findings are published as **F40–F47** on
+`python3 -m unittest discover -s tests -v`. Findings are published as **F50–F57** on
 [Flagged for Review](flags.html), continuing the existing numbering.
 
 Data added: `data/results/verified-results.csv` (16 rows),

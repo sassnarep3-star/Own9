@@ -99,7 +99,7 @@ _STAKING_WHY = {
 }
 
 NEW_FLAGS = [
-    ('F40 · High',
+    ('F50 · High',
      'The NFL game-centre and scores routes do not publish the final score as retrievable '
      'text. Both were read on 2026-11-14 and both render the score as "Hidden Score"; only the '
      'schedule by-week route and the Game Book PDFs published the number itself. Any automated '
@@ -110,7 +110,7 @@ NEW_FLAGS = [
      'A dated re-check, plus a written ingestion contract that names the schedule route and the '
      'Game Book PDF as the only permitted result sources.',
      ('nfl-gamecenter-w10', 'nfl-schedule-w9', 'nfl-gamebook-w10')),
-    ('F41 · High',
+    ('F51 · High',
      'Two players ruled Out on the official Week 10 report appear in no column of their own '
      'club\'s depth chart: Omarr Norman-Lott is on neither Kansas City defensive-tackle row, '
      'and Kerby Joseph is absent from the Lions\' safety rows while carrying a game status on '
@@ -122,7 +122,7 @@ NEW_FLAGS = [
      'A chart or league record that lists the player, or a documented rule for handling '
      'report-chart conflicts that is applied identically to every club.',
      ('nfl-injury-w10', 'chiefs-depth', 'lions-depth')),
-    ('F42 · Medium',
+    ('F52 · Medium',
      'Injury-report position labels do not resolve to depth-chart slots. The report lists '
      '"T" for Jaylon Moore and Charles Cross and "G" for Quenton Nelson, while the club charts '
      'split those into LT/RT and LG/RG. Matching had to be done by player name, which is '
@@ -133,7 +133,7 @@ NEW_FLAGS = [
      'Shared stable player identifiers across league and club pages, or a written name-matching '
      'rule with a published conflict log.',
      ('nfl-injury-w10', 'chiefs-depth', 'seahawks-depth')),
-    ('F43 · Medium',
+    ('F53 · Medium',
      'The results feed carries no kickoff time and no overtime flag, because the schedule route '
      'publishes kickoff times only for games that have not kicked off and does not publish '
      'overtime at all. Totals cannot be settled uniformly without the overtime rule, and no '
@@ -143,7 +143,7 @@ NEW_FLAGS = [
      'Verify both fields from the official Game Book of each game and re-issue the feed; until '
      'then totals settlement stays blocked.',
      ('nfl-schedule-w9', 'nfl-gamebook-w10')),
-    ('F44 · Medium',
+    ('F54 · Medium',
      'Week 10 2026 was still in progress when the feed was captured: one of its fifteen games '
      'was final at retrieval on 2026-11-14. Any figure computed across the feed mixes one full '
      'week with one partial week, and the partial week will change without warning.',
@@ -151,7 +151,7 @@ NEW_FLAGS = [
      'Re-capture after the week completes and record the capture state on every derived figure, '
      'or restrict published measurements to completed weeks.',
      ('nfl-schedule-w9',)),
-    ('F45 · Critical',
+    ('F55 · Critical',
      'The price-snapshot store is empty, so closing-line value, the demotion gate\'s live '
      'triggers and any return figure are implemented but unevaluable. This is the operating '
      'consequence of F22 rather than a new discovery: the gates built this session cannot be '
@@ -162,7 +162,7 @@ NEW_FLAGS = [
      'settlement rules. Until one exists, no ROI, closing-line value or demotion decision may '
      'be computed, and none is published.',
      ('repo',)),
-    ('F46 · Medium',
+    ('F56 · Medium',
      'Two sessions reached different conclusions about replacement depth. Earlier sessions '
      'withheld every depth tier as unverifiable because the league publishes no depth chart; '
      'this session measures strings travelled from the clubs\' own charts and carries the '
@@ -175,7 +175,7 @@ NEW_FLAGS = [
      'column blank until a league record exists. Both are defensible; silently mixing them '
      'is not.',
      ('chiefs-depth', 'seahawks-depth', 'lions-depth', 'nfl-no-depth-chart')),
-    ('F47 · Medium',
+    ('F57 · Medium',
      'The same six requirements now have two independent implementations on the merged tree. '
      'Sessions feaa600b, 201adb50 and 7e426311 merged engine/prices.py, engine/results.py and '
      'engine/origination.py with demotion and signal/staking tables on leaderboard.html and '
@@ -400,7 +400,7 @@ page('origination-engine.html', 'Origination engine', 'Side, then total,\\nthen 
      + '<p>The difference column has its own status word on every row '
        '(<em>published</em> or <em>withheld</em>), so a reader can tell an honest blank from a '
        'genuine zero. See <a href="results.html">Verified results</a> for what the feed can '
-       'settle today and <a href="requirements.html">Requirements coverage</a> for the state of '
+       'settle today and <a href="requirements-coverage.html">Requirements coverage</a> for the state of '
        'each requirement.</p>')
 
 # ---------------------------------------------------------------------------
@@ -763,7 +763,7 @@ page('signal-vs-staking.html', 'Signal vs staking', 'Two columns.\\nTwo ranks. N
      '<p>Read this page together with the <a href="leaderboard.html">Leaderboard</a> and '
      '<a href="validation.html">Validation</a> pages, which publish the same two ideas as '
      'policy tables written by earlier sessions. Both are live on this site; which one '
-     'becomes canonical is an owner decision, recorded as F47 rather than decided here.</p></div>'
+     'becomes canonical is an owner decision, recorded as F57 rather than decided here.</p></div>'
      + table('Signal columns', ['Column', 'Question it answers', 'Luck exposure'],
              [row([field, _SIGNAL_WHY[field][0], _SIGNAL_WHY[field][1]], ('repo',),
                   'Project scoring contract') for field in SIGNAL_FIELDS])
@@ -983,7 +983,7 @@ _REVIEW_ROWS = [
      'None found.'),
 ]
 
-page('requirements.html', 'Requirements coverage', 'What was asked,\\nwhat now exists.',
+page('requirements-coverage.html', 'Requirements coverage', 'What was asked,\\nwhat now exists.',
      'A line-by-line review of the eight origination requirements against the repository, the '
      'files inspected, and the irregularities found. Every row links to the official source or '
      'the project record it was checked against.',
@@ -1037,7 +1037,7 @@ page('requirements.html', 'Requirements coverage', 'What was asked,\\nwhat now e
                    '<a href="validation.html">Validation</a>',
                    'Their tables define the policy; this session\'s pages implement it as '
                    'code with worked examples. Both are published; consolidating them is an '
-                   'owner decision (F47).'], ('repo',), 'Project record / overlap recorded'),
+                   'owner decision (F57).'], ('repo',), 'Project record / overlap recorded'),
               row(['Price store, results feed and origination order (earlier sessions)',
                    'engine/prices.py, engine/results.py, engine/origination.py',
                    'Their modules specify the schema and the eight pipeline stages; this '
