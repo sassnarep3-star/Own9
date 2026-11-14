@@ -1,0 +1,104 @@
+{
+  "note": "Club-published depth charts read by session 2c3cef39 on 2026-11-14. Each club page states on its face that the chart is unofficial. The NFL publishes no official game-day depth chart, so no tier here is league-certified. Tiers are recorded exactly as printed: 1 = first string, 2 = second string, 3 = third string, 4 = fourth string.",
+  "charts": [
+    {
+      "club": "NE",
+      "club_name": "New England Patriots",
+      "source_id": "patriots-depth",
+      "retrieved": "2026-11-14",
+      "official_status": "Unofficial. The page states the 2026 depth chart is unofficial, published by the writers of Patriots.com, and does not necessarily reflect the views of the organisation.",
+      "units": {
+        "Offense": [
+          ["WR", ["A.J. Brown", "Efton Chism III", "", ""]],
+          ["LT", ["Will Campbell", "Dametrious Crownover", "Marcus Bryant", ""]],
+          ["LG", ["Ben Brown", "Walter Rouse", "", ""]],
+          ["C", ["Jared Wilson", "Ben Brown", "", ""]],
+          ["RG", ["Matt Pryor", "Walter Rouse", "", ""]],
+          ["RT", ["Morgan Moses", "Caleb Lomu", "", ""]],
+          ["TE", ["Hunter Henry", "Eli Raridon", "Cameron Latu", ""]],
+          ["WR", ["DeMario Douglas", "Kyle Williams", "", ""]],
+          ["WR", ["Efton Chism III", "Kyle Williams", "", ""]],
+          ["RB", ["Rhamondre Stevenson", "TreVeyon Henderson", "Corey Kiner", "Lan Larison"]],
+          ["QB", ["Drake Maye", "Tommy DeVito", "Behren Morton", ""]]
+        ],
+        "Defense": [
+          ["OLB", ["Dre'Mont Jones", "Gabe Jacas", "", ""]],
+          ["DT", ["Christian Barmore", "Leonard Taylor III", "", ""]],
+          ["DT", ["Cory Durden", "DaQuan Jones", "", ""]],
+          ["DT", ["Milton Williams", "Joshua Farmer", "", ""]],
+          ["OLB", ["Elijah Ponder", "Gabe Jacas", "", ""]],
+          ["LB", ["Robert Spillane", "Darius Muasau", "Erick Hunter", ""]],
+          ["LB", ["Christian Elliss", "Namdi Obiazor", "", ""]],
+          ["CB", ["Carlton Davis III", "Channing Canada", "", ""]],
+          ["S", ["Craig Woodson", "Mike Brown", "", ""]],
+          ["S", ["Kevin Byard III", "Jaylen Reed", "Brenden Schooler", ""]],
+          ["CB", ["Marcus Jones", "Charles Woods", "", ""]],
+          ["CB", ["Christian Gonzalez", "Karon Prunty", "", ""]]
+        ],
+        "Special Teams": [
+          ["K", ["Andy Borregales", "", "", ""]],
+          ["P", ["Mitch Wishnowsky", "", "", ""]],
+          ["H", ["Mitch Wishnowsky", "", "", ""]],
+          ["LS", ["Julian Ashby", "", "", ""]],
+          ["PR", ["Marcus Jones", "DeMario Douglas", "", ""]],
+          ["KR", ["Kyle Williams", "Corey Kiner", "Lan Larison", ""]]
+        ]
+      }
+    },
+    {
+      "club": "DET",
+      "club_name": "Detroit Lions",
+      "source_id": "lions-depth",
+      "retrieved": "2026-11-14",
+      "official_status": "Unofficial. The page states it is the 2026 unofficial depth chart compiled by Lions Football Communications.",
+      "units": {
+        "Offense": [
+          ["WR", ["Jameson Williams", "", "", ""]],
+          ["WR", ["Amon-Ra St. Brown", "DeAndre Carter", "", ""]],
+          ["LT", ["Penei Sewell", "", "", ""]],
+          ["LG", ["Christian Mahogany", "Miles Frazier", "", ""]],
+          ["C", ["Cade Mays", "Juice Scruggs", "", ""]],
+          ["RG", ["Tate Ratledge", "Seth McLaughlin", "", ""]],
+          ["RT", ["Blake Miller", "Larry Borom", "", ""]],
+          ["TE", ["Sam LaPorta", "Brock Wright", "Tyler Conklin", "Jackson Meeks"]],
+          ["WR", ["Isaac TeSlaa", "Tay Martin", "", ""]],
+          ["QB", ["Jared Goff", "Joshua Dobbs", "", ""]],
+          ["RB", ["Jahmyr Gibbs", "Sione Vaki", "Jacob Saylors", ""]]
+        ],
+        "Defense": [
+          ["EDGE", ["Aidan Hutchinson", "Derrick Moore", "Eric O'Neill", ""]],
+          ["DL", ["Alim McNeill", "Skyler Gill-Howard", "Mekhi Wingo", ""]],
+          ["DL", ["Tyleik Williams", "Levi Onwuzurike", "", ""]],
+          ["EDGE", ["DJ Wonnum", "Tyler Lacy", "Ahmed Hassanein", ""]],
+          ["LB", ["Derrick Barnes", "Joe Bachie", "", ""]],
+          ["LB", ["Malcolm Rodriguez", "K.J. Britt", "", ""]],
+          ["LB", ["Trevor Nowaske", "Amen Ogbongbemiga", "", ""]],
+          ["CB", ["D.J. Reed", "Rock Ya-Sin", "Khalil Dorsey", "Nick Whiteside"]],
+          ["CB", ["Roger McCreary", "Ennis Rakestraw Jr.", "Keith Abney II", ""]],
+          ["S", ["Chuck Clark", "", "", ""]],
+          ["S", ["Brian Branch", "Christian Izien", "", ""]]
+        ],
+        "Special Teams": [
+          ["K", ["Jake Bates", "", "", ""]],
+          ["H", ["Jack Fox", "", "", ""]],
+          ["P", ["Jack Fox", "", "", ""]],
+          ["LS", ["Hogan Hatten", "", "", ""]],
+          ["PR", ["DeAndre Carter", "", "", ""]],
+          ["KR", ["Jacob Saylors", "DeAndre Carter", "", ""]]
+        ]
+      }
+    }
+  ],
+  "week10_status": {
+    "source_id": "nfl-injuries-w10",
+    "note": "Game status as published on the official NFL Week 10 2026 injury report. Only Out and Doubtful are listed here; Questionable players are tracked separately on the injuries page of the main dashboard.",
+    "players": [
+      {"club": "NE", "player": "Ben Brown", "position": "C", "game_status": "Out"},
+      {"club": "NE", "player": "Carlton Davis III", "position": "CB", "game_status": "Out"},
+      {"club": "NE", "player": "TreVeyon Henderson", "position": "RB", "game_status": "Out"},
+      {"club": "DET", "player": "Kerby Joseph", "position": "S", "game_status": "Out"},
+      {"club": "DET", "player": "Cade Mays", "position": "C", "game_status": "Out"},
+      {"club": "DET", "player": "D.J. Reed", "position": "CB", "game_status": "Out"}
+    ]
+  }
+}

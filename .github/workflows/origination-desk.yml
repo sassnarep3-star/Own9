@@ -1,0 +1,51 @@
+name: Origination desk
+
+on:
+  push:
+    branches: [main, 'arena/**']
+  pull_request:
+    branches: [main]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  origination:
+    name: Line-origination desk checks
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - name: Check out source
+        uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262 # v4
+      - name: Set up Python
+        uses: actions/setup-python@a26af69be951a213d495a4c3e4e4022e16d87065 # v5
+        with:
+          python-version: '3.12'
+      - name: Regenerate the derived data and pages
+        run: |
+          python3 origination/tools/run.py
+          python3 origination/tools/build.py
+      - name: Confirm nothing changed after regeneration
+        run: |
+          if ! git diff --exit-code -- origination; then
+            echo "::error::regeneration changed the tree; diff follows"
+            git --no-pager diff --numstat -- origination
+            git --no-pager diff -- origination | head -60
+            exit 1
+          fi
+      - name: Verify rows, sources, links and data integrity
+        run: python3 origination/tools/verify.py
+      - name: Test the engine
+        run: python3 -m unittest discover -s origination/tests -v
+      - name: Set up Node
+        uses: actions/setup-node@49933ea5288caeca8642d1e84afbd3f7d6820020 # v4
+        with:
+          node-version: '22'
+      - name: Install the browser test dependencies
+        run: npm ci --ignore-scripts
+      - name: Test the published pages in a browser
+        run: node origination/tools/browser_test.cjs
+
+# This workflow is additive and touches only the origination/ tree. It does not
+# write to Pages, change publishing settings or require a deploy token.

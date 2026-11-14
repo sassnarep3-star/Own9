@@ -1,0 +1,41 @@
+{
+  "cover_over_phi": {
+    "interval": {
+      "hi": 0.04544756,
+      "lo": -0.0154424111,
+      "n": 4143,
+      "r": 0.0150164963
+    },
+    "n": 4143,
+    "point": 0.0150164963
+  },
+  "margin_total_error": {
+    "gate": {
+      "point": 0.0324828933,
+      "reason": "interval straddles the deadband",
+      "verdict": "refuse"
+    },
+    "interval": {
+      "hi": 0.0623269591,
+      "lo": 0.00258079079,
+      "n": 4296,
+      "r": 0.0324828933
+    },
+    "n": 4296,
+    "point": 0.0324828933
+  },
+  "weekly_intraclass": {
+    "groups": 285,
+    "hi": 0.00586022201,
+    "interval_method": "cluster bootstrap over groups, 2000 resamples",
+    "lo": -0.0143106314,
+    "mean_group_size": 15.0736842,
+    "n": 4296,
+    "r": -0.00421782086
+  },
+  "weekly_intraclass_gate": {
+    "point": 0.0,
+    "reason": "interval inside the deadband, rho taken as 0",
+    "verdict": "use"
+  }
+}

@@ -1301,6 +1301,7 @@ third implementation of the same eight-requirement delta. Same protocol, nothing
   230 tests OK; `engine/registers.py`, `engine/availability.py`, `engine/board.py`, `tools/lines_audit.py`,
   `scripts/check_site.py` PASS; both browser suites PASS (33 root pages × 2 viewports, 66 axe checks).
 
+HEAD
 ## 0167a04c addendum — fourth parallel merge (finalisation pass)
 
 This branch is a finalisation branch: it opened the integration PR and kept absorbing `main` as other sessions merged. `main` advanced twice more while this PR was open — PR #41 (session `9a409d93`, adding `markets.html`, `demotion.html`, `replacement-chains.html`, `engine/origination_elo.py`, `evidence/results/**`, `evidence/depth-charts/**` and `.github/workflows/snapshot.yml`) and PR #45 (session `00cf851d`, an independent verification subtree). Both are retained in full.
@@ -1320,3 +1321,132 @@ PR #46 (session `9a409d93`) landed while this branch was integrating PR #45. It 
 **A fragility, recorded rather than silently patched.** Session `00cf851d`'s `repo-review.html` and `index.html` publish a *measurement* of the repository (tracked-file count, root-page count, outbound-link count), and their CI step asserts the regenerated output is byte-identical to what is committed. That assertion fails for every session that adds a page, because the measurement legitimately changes — it already broke `main` at `59e8f15` and was repaired on `main` by `cfdb657`. This branch regenerates the same way (39 root pages, 336 tracked files), which keeps their step green without editing any of their logic. **Owner decision (left open):** the inventory diff should probably exclude the two count-bearing pages, or the counts should be rendered at page-load time, so the check stops firing on every unrelated merge.
 
 Final verification on the fully merged tree: `tools/build.py` → 39 pages deterministic; `tools/verify.py` → PASS, 1755 source-linked rows; 282 tests OK; 31 release-check tests OK; 27 strict-lab tests OK; `session-00cf851d` suite OK; `engine/availability.py` and `engine/registers.py` PASS; `scripts/check_site.py` PASS; `research/make_catalog.py` and `scripts/build_site.py` reproduce their outputs with no diff; `node scripts/browser_test_root.cjs` → PASS (39 root pages × 2 viewports, 78 axe checks); `node scripts/browser_test.cjs` → PASS (15 pages, 30 axe checks); `node session-00cf851d/tools/browser_test.cjs` → PASS (13 pages, 13 axe checks).
+
+---
+
+---
+
+# Session 2c3cef39 — line-origination desk (price store, results feed, origination order, signal/staking split, replacement depth, correlation n, demotion gate)
+
+Session: `2c3cef39` · Branch: `arena/2c3cef39-own9` · Started: 2026-11-14 UTC · Status: complete.
+
+## Scope claim (non-overlapping)
+
+| Task | Status | Owner | Files |
+| --- | --- | --- | --- |
+| Price-snapshot store (open/close per originated market) + provenance audit | done | 2c3cef39 | `origination/**` |
+| Verified results feed (settlement states, join keys, agreement audit) | done | 2c3cef39 | `origination/**` |
+| Origination order side → total → moneyline; fair/market/difference columns | done | 2c3cef39 | `origination/**` |
+| Leaderboard signal/staking separation | done | 2c3cef39 | `origination/**` |
+| Replacement-depth register (1st/2nd/3rd/4th string, club-published, caveated) | done | 2c3cef39 | `origination/**` |
+| Correlation register with published n per value | done | 2c3cef39 | `origination/**` |
+| Demotion gate (live → paper) definition, rule table and replay | done | 2c3cef39 | `origination/**` |
+| Dedicated suggestions review section + question/information/answer register | done | 2c3cef39 | `origination/**` |
+
+**All new work is isolated in the new top-level directory `origination/`.** No root page,
+root generator, `engine/**`, `site/**`, `strict-lab/**`, `own9-research/**`,
+`release-checks/**`, `independent-audit/**`, `evidence/sources.json`, `package.json` or
+existing workflow file is rewritten by this session. `data/raw/*.csv` is read-only input.
+
+Additive-only shared edits actually performed:
+1. `tools/build.py` — one entry appended to the existing `Research` navigation group. No
+   new group was created: the root browser test asserts four nav groups.
+2. `style.css` — `flex-wrap:wrap` added to `.nav-group` so the longer group wraps instead
+   of overflowing at 1440px. The rule already existed inside the `max-width:850px` query.
+3. `README.md` — one appended section describing the desk.
+4. `COORDINATION.md` — append-only (this section).
+5. `.github/workflows/origination-desk.yml` — new file, additive, no Pages deploy step.
+
+## Headline result
+
+No strategy on this desk has earned a stake. Every clustered lower bound on log-loss gain
+versus the de-vigged closing price is negative, and the desk's own demotion gate would have
+demoted all three single-market strategies at the first evaluable window (bet 200, end of
+the 2010 season). The cross-game parlay has the best staking number in the desk (+12.92%
+flat over 285 bets) and the worst signal bound (−0.313), which is the practical case for
+keeping the two tables apart.
+
+## Verification performed
+
+- Results feed: 7,088 games, 7,088/7,088 recompute matches.
+- Official cross-checks, all read directly from the NFL publisher on 2026-11-14:
+  - 2010, 2018, 2025 standings — 32/32 clubs, points for and against, 0 mismatches.
+  - 2026 Week 8 (read by this session) — 14/14 games exact.
+  - 2026 Week 3 (read by this session) — 16/16 games exact, which validates the verbatim
+    weekly captures committed by session `a77d40e1` under `data/board/raw/`.
+  - 2026 weeks 1–8 — all 121 completed games exact against those captures.
+- Depth: 119 club depth-chart rows; 7 replacement registers. Kerby Joseph (DET, Out) is
+  absent from the Lions chart, so his tier is published blank and flagged, not filled.
+- Correlations: every value published with n and an interval. The `margin_total_error`
+  interval straddles the deadband, so the gate refuses the SGP price: 292 offered, 0 priced.
+
+## Blocking findings (published on `origination/flagged.html`)
+
+- **OD-01** — provenance, licence and capture times for `data/raw/*.csv` are unknown.
+  Three seasons and 121 games were checked and matched exactly, which confirms the score
+  content for those seasons and says nothing about the rights to use the files.
+- **OD-02** — no source obtained records an opening price. All four opening columns are
+  blank on all 13,341 rows, and `origination/tools/verify.py` fails the build if one is
+  ever populated. No closing-line value is claimed anywhere.
+- **OD-03** — ROI is arithmetic on recorded closing prices, not economics.
+- **OD-13** — the snapshot ends at 2026 Week 8 while 137 games are already finished.
+- **OD-16** — **two independent implementations of the same eight requirements now exist.**
+  Session `a77d40e1` built a market board on the main dashboard covering the same brief
+  before this session could see their claim; this session then claimed the same tasks. The
+  files do not overlap, so nothing is broken, but the model lines can differ because the
+  inputs do: that board uses the 2026 season only with no recorded market prices, this
+  desk uses 2010–2026 with a recorded closing price on every market. **An integration
+  session should designate one canonical implementation or merge the two onto one input
+  set.** Logged as Q-21 on `origination/questions.html`.
+
+## Process note for whoever reads this next
+
+A rebase of a long-lived branch against a fast-moving `main` resolved conflicts with
+`--theirs`, which in a rebase means *my* version, and silently reverted other sessions'
+pages. The branch was reset to `origin/main` and the work re-applied file by file.
+**When resolving conflicts during `git rebase`, `--ours` is upstream and `--theirs` is
+your own commit** — the opposite of a merge. Prefer resolving by checking out the
+upstream file and re-applying a minimal edit.
+
+## Checks
+
+```sh
+python3 origination/tools/run.py && python3 origination/tools/build.py \
+  && python3 origination/tools/verify.py \
+  && python3 -m unittest discover -s origination/tests \
+  && node origination/tools/browser_test.cjs
+```
+
+- `verify.py` — 12 pages, 442 source-linked rows, local assets/fragments, origination
+  order, blank-by-policy openings, data integrity.
+- 38 unit tests, including one that regenerates the data and asserts the verifier fails
+  when an opening price is injected into `prices.csv`.
+- 24 axe WCAG checks across 12 pages × 2 viewports, filter behaviour, JS-disabled
+  navigation, no console errors.
+- CI (`origination-desk.yml`) regenerates and fails on any diff, so pages cannot drift.
+- Derived values are frozen to nine significant digits before writing: the maths library
+  is not bit-identical across CPython versions and C libraries, and without a fixed
+  precision the same inputs produced different last digits on Python 3.12/GCC 15 than on
+HEAD
+  3.11/GCC 12. Nothing is published at more than six decimal places. 44813c6 (Line-origination desk: price store, verified results feed, signal/staking split, depth register, correlation gate, demotion gate)
+
+---
+
+3.11/GCC 12. Nothing is published at more than six decimal places.
+
+### Edit made to another session's tree (logged, not silent)
+
+`session-00cf851d`'s `quality.yml` step re-measures the repository and fails if the
+committed pages differ. Adding `origination/**` (41 files) and
+`.github/workflows/origination-desk.yml` changed two measurements, so the step went red
+on this branch. I ran that session's own generator and committed the regenerated output:
+
+- `session-00cf851d/data/repo_inventory.json` — tracked files 322 → 363, workflows 3 → 4.
+- `session-00cf851d/index.html`, `session-00cf851d/repo-review.html` — the same two
+  numbers. Nothing else changed; no judgement, no value, no row content was touched.
+
+**Request to the owner of `session-00cf851d`:** consider adding `origination` as an area
+row in the repository-shape table, and consider whether a measurement of the whole
+repository should live in a page whose freshness is enforced in CI — it will go stale
+again the next time any session adds a file. I did not add the area row myself, because
+the table is yours and an area row is a claim about scope, not a measurement. 1b8e09c (Log the session-00cf851d inventory regeneration and the request that follows from it)

@@ -1,0 +1,137 @@
+{
+  "G-ML": {
+    "signal": {
+      "brier_market": 0.207161064,
+      "brier_model": 0.244039812,
+      "clusters": 285,
+      "hit_rate": 0.337318531,
+      "log_loss_gain": -0.0804929564,
+      "log_loss_gain_lcb": -0.0932210067,
+      "log_loss_gain_se": 0.00649402256,
+      "log_loss_market": 0.601002573,
+      "log_loss_model": 0.681495529,
+      "n": 3513,
+      "pushes": 14,
+      "wins": 1185
+    },
+    "staking": {
+      "bets": 3527,
+      "flat_max_drawdown": -196.675079,
+      "flat_net": -141.118541,
+      "flat_roi": -0.0400109273,
+      "flat_staked": 3527.0,
+      "kelly_max_drawdown": -34.1991127,
+      "kelly_net": -23.3480351,
+      "kelly_roi": -0.0349640593,
+      "kelly_staked": 667.772436
+    },
+    "taken": 3527
+  },
+  "G-SIDE": {
+    "signal": {
+      "brier_market": 0.250200962,
+      "brier_model": 0.272577698,
+      "clusters": 285,
+      "hit_rate": 0.525304878,
+      "log_loss_gain": -0.0543261864,
+      "log_loss_gain_lcb": -0.0670735487,
+      "log_loss_gain_se": 0.00650387579,
+      "log_loss_market": 0.693551381,
+      "log_loss_model": 0.747877567,
+      "n": 3280,
+      "pushes": 83,
+      "wins": 1723
+    },
+    "staking": {
+      "bets": 3363,
+      "flat_max_drawdown": -48.1770919,
+      "flat_net": 71.3107059,
+      "flat_roi": 0.0212044918,
+      "flat_staked": 3363.0,
+      "kelly_max_drawdown": -9.49186975,
+      "kelly_net": 14.14604,
+      "kelly_roi": 0.0214838419,
+      "kelly_staked": 658.450198
+    },
+    "taken": 3363
+  },
+  "G-TOTAL": {
+    "signal": {
+      "brier_market": 0.250047418,
+      "brier_model": 0.270330745,
+      "clusters": 285,
+      "hit_rate": 0.500486539,
+      "log_loss_gain": -0.0452007688,
+      "log_loss_gain_lcb": -0.0555355807,
+      "log_loss_gain_se": 0.00527296013,
+      "log_loss_market": 0.693242156,
+      "log_loss_model": 0.738442925,
+      "n": 3083,
+      "pushes": 31,
+      "wins": 1543
+    },
+    "staking": {
+      "bets": 3114,
+      "flat_max_drawdown": -95.336777,
+      "flat_net": -78.9000768,
+      "flat_roi": -0.0253372116,
+      "flat_staked": 3114.0,
+      "kelly_max_drawdown": -18.2650152,
+      "kelly_net": -14.877716,
+      "kelly_roi": -0.0264123042,
+      "kelly_staked": 563.287317
+    },
+    "taken": 3114
+  },
+  "P-PROP": {
+    "blocked": "no official player-prop market data in this repository",
+    "signal": {
+      "n": 0
+    },
+    "staking": {
+      "bets": 0
+    },
+    "taken": 0
+  },
+  "S-SGP": {
+    "offered": 292,
+    "priced": 0,
+    "signal": {
+      "n": 0
+    },
+    "staking": {
+      "bets": 0
+    },
+    "taken": 0
+  },
+  "X-PARLAY": {
+    "offered": 285,
+    "priced": 285,
+    "signal": {
+      "brier_market": 0.205998358,
+      "brier_model": 0.315873504,
+      "clusters": 285,
+      "hit_rate": 0.287719298,
+      "log_loss_gain": -0.229527431,
+      "log_loss_gain_lcb": -0.312734612,
+      "log_loss_gain_se": 0.0424534233,
+      "log_loss_market": 0.602845624,
+      "log_loss_model": 0.832373056,
+      "n": 285,
+      "pushes": 0,
+      "wins": 82
+    },
+    "staking": {
+      "bets": 285,
+      "flat_max_drawdown": -14.7945493,
+      "flat_net": 36.8278343,
+      "flat_roi": 0.129220471,
+      "flat_staked": 285.0,
+      "kelly_max_drawdown": -4.44863733,
+      "kelly_net": 6.00837553,
+      "kelly_roi": 0.0843889762,
+      "kelly_staked": 71.198583
+    },
+    "taken": 285
+  }
+}

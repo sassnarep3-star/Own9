@@ -1,0 +1,77 @@
+{
+  "note": "Values transcribed from official NFL pages by session 2c3cef39 on 2026-11-14. Each block records the exact page, the retrieval date and the numbers read. Nothing here is inferred.",
+  "standings": {
+    "2010": {
+      "source": "https://www.nfl.com/standings/league/2010/reg",
+      "retrieved": "2026-11-14",
+      "columns_read": "W, L, T, PF (total points for), PA (total points against) per club",
+      "teams": {
+        "NE": [518, 313], "ATL": [414, 288], "BAL": [357, 270], "PIT": [375, 232],
+        "CHI": [334, 286], "NO": [384, 307], "NYJ": [367, 304], "GB": [388, 240],
+        "IND": [435, 388], "KC": [366, 326], "NYG": [394, 347], "PHI": [439, 377],
+        "TB": [341, 318], "LAC": [441, 322], "JAX": [353, 419], "LV": [410, 371],
+        "LAR": [289, 328], "MIA": [273, 333], "SEA": [310, 407], "DAL": [394, 436],
+        "DET": [362, 369], "HOU": [390, 427], "MIN": [281, 348], "SF": [305, 346],
+        "TEN": [356, 339], "WAS": [302, 377], "ARI": [289, 434], "CLE": [271, 332],
+        "BUF": [283, 425], "CIN": [322, 395], "DEN": [344, 471], "CAR": [196, 408]
+      },
+      "alias_note": "The official page uses current club branding. LAC is the 2010 San Diego Chargers, LV the 2010 Oakland Raiders, LAR the 2010 St. Louis Rams, ARI the 2010 Arizona Cardinals."
+    },
+    "2018": {
+      "source": "https://www.nfl.com/standings/league/2018/reg",
+      "retrieved": "2026-11-14",
+      "columns_read": "W, L, T, PF, PA per club",
+      "teams": {
+        "LAR": [527, 384], "NO": [504, 353], "CHI": [421, 283], "KC": [565, 421],
+        "LAC": [428, 329], "HOU": [402, 316], "NE": [436, 325], "BAL": [389, 287],
+        "DAL": [339, 324], "IND": [433, 344], "SEA": [428, 347], "PIT": [428, 360],
+        "PHI": [367, 348], "TEN": [310, 303], "MIN": [360, 341], "CLE": [359, 392],
+        "ATL": [414, 423], "CAR": [376, 382], "MIA": [319, 433], "WAS": [281, 359],
+        "GB": [376, 400], "BUF": [269, 374], "CIN": [368, 455], "DEN": [329, 349],
+        "DET": [324, 360], "JAX": [245, 316], "NYG": [369, 412], "TB": [396, 464],
+        "LV": [290, 467], "NYJ": [333, 441], "SF": [342, 435], "ARI": [225, 425]
+      },
+      "alias_note": "The official page uses current club branding. LV is the 2018 Oakland Raiders, LAR the 2018 Los Angeles Rams, ARI the 2018 Arizona Cardinals."
+    },
+    "2025": {
+      "source": "https://www.nfl.com/standings/league/2025/reg",
+      "retrieved": "2026-11-14",
+      "columns_read": "W, L, T, PF, PA per club",
+      "teams": {
+        "DEN": [401, 311], "NE": [490, 320], "SEA": [483, 292], "JAX": [474, 336],
+        "BUF": [481, 365], "HOU": [404, 295], "LAR": [518, 346], "SF": [437, 371],
+        "CHI": [441, 415], "LAC": [368, 340], "PHI": [379, 325], "PIT": [397, 387],
+        "GB": [391, 360], "DET": [481, 413], "MIN": [344, 333], "ATL": [353, 401],
+        "BAL": [424, 398], "CAR": [311, 380], "IND": [466, 412], "TB": [380, 411],
+        "DAL": [471, 511], "MIA": [347, 424], "CIN": [414, 492], "KC": [362, 328],
+        "NO": [306, 383], "CLE": [279, 379], "WAS": [356, 451], "NYG": [381, 439],
+        "ARI": [355, 488], "LV": [241, 432], "NYJ": [300, 503], "TEN": [284, 478]
+      },
+      "alias_note": "Club codes as published."
+    }
+  },
+  "week_games": {
+    "2026_week_8": {
+      "source": "https://www.nfl.com/schedules/2026/by-week/week-8",
+      "retrieved": "2026-11-14",
+      "columns_read": "final score for every game in the week, as published on the official schedule page",
+      "games": [
+        {"away": "CAR", "home": "GB", "away_score": 19, "home_score": 27, "date": "2026-10-29"},
+        {"away": "BAL", "home": "BUF", "away_score": 10, "home_score": 36, "date": "2026-11-01"},
+        {"away": "TEN", "home": "CIN", "away_score": 36, "home_score": 43, "date": "2026-11-01"},
+        {"away": "ARI", "home": "DAL", "away_score": 33, "home_score": 30, "date": "2026-11-01"},
+        {"away": "MIN", "home": "DET", "away_score": 15, "home_score": 19, "date": "2026-11-01"},
+        {"away": "IND", "home": "JAX", "away_score": 7, "home_score": 42, "date": "2026-11-01"},
+        {"away": "LV", "home": "NYJ", "away_score": 38, "home_score": 33, "date": "2026-11-01"},
+        {"away": "CLE", "home": "PIT", "away_score": 6, "home_score": 27, "date": "2026-11-01"},
+        {"away": "ATL", "home": "TB", "away_score": 0, "home_score": 16, "date": "2026-11-01"},
+        {"away": "LAC", "home": "LAR", "away_score": 9, "home_score": 24, "date": "2026-11-01"},
+        {"away": "KC", "home": "DEN", "away_score": 24, "home_score": 28, "date": "2026-11-01"},
+        {"away": "NE", "home": "MIA", "away_score": 24, "home_score": 19, "date": "2026-11-01"},
+        {"away": "PHI", "home": "WAS", "away_score": 10, "home_score": 27, "date": "2026-11-01"},
+        {"away": "CHI", "home": "SEA", "away_score": 34, "home_score": 17, "date": "2026-11-02"}
+      ],
+      "bye_teams_published": ["HOU", "NO", "NYG", "SF"]
+    }
+  }
+}
