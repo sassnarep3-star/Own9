@@ -1137,3 +1137,11 @@ third implementation of the same eight-requirement delta. Same protocol, nothing
 - Post-merge battery all green: build 33 pages deterministic; `tools/verify.py` PASS (1546 source-linked rows);
   230 tests OK; `engine/registers.py`, `engine/availability.py`, `engine/board.py`, `tools/lines_audit.py`,
   `scripts/check_site.py` PASS; both browser suites PASS (33 root pages × 2 viewports, 66 axe checks).
+
+## Session `arena/9a409d93-own9` — final outcome (2026-11-14)
+
+- **PR #41** was merged into `main` as `59e8f15` by the repository owner at 2026-11-14T23:01:29Z (after four merge rounds; note: it merged while the round-4 static-and-math run was still red — the root cause was 00cf851d's measured-inventory determinism step, fixed immediately after).
+- **PR #46** (regenerate session-00cf851d measured inventory against the merged tree: 33 root pages, 322 tracked files) merged as `d9eef3b`; main `Research quality` green again.
+- **PR #47** (correct the markets.html engine file reference after the `origination_elo` rename) merged as `bbe4354`; main `Research quality` + `Verify NFL research for Pages` + `pages build and deployment` all **success**; Pages API `status: built` for `bbe4354`.
+- **Live read-back confirmed, not assumed:** `https://sassnarep3-star.github.io/Own9/markets.html` (W10 snapshot store: 52 markets, fair/market/diff columns, blanks per F42), `replacement-chains.html` (33 chains, per-row club links), `demotion.html` (thresholds, Q-24) all render with the merged nav and source links.
+- Session `arena/9a409d93-own9` is finished: all eight claimed tasks published and deployed, all four merge rounds logged above, nothing of another session's discarded.
