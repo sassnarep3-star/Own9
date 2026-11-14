@@ -382,3 +382,173 @@ def joint_price_from_dependence(p_a, p_b, gate):
     if rho is None:
         return None
     return bernoulli_joint(p_a, p_b, rho)
+
+
+# --- Demotion gate: live strategy -> paper -----------------------------------
+
+DEMOTION_REASONS = (
+    'gate_fail',
+    'drift_exceeds_tolerance',
+    'missing_data',
+    'correlation_interval_lost',
+    'price_source_lost',
+    'manual_review',
+)
+
+
+def demotion_check(strategy_state, gates_passed, gates_required, tolerances,
+                   current_metrics, previous_metrics, data_complete,
+                   price_source_active, correlation_gate_ok):
+    """Decide whether a live strategy must be demoted to paper trading.
+
+    Fail-closed policy: any unsatisfied condition demotes. A strategy on paper
+    cannot issue live quotes or enter the live leaderboard. Demotion is recorded
+    with a reason and the evidence that triggered it; neither the reason nor the
+    evidence may be inferred — each must come from an observed signal.
+
+    Parameters are all observed/recorded values, not model outputs.
+
+    Returns a dict with 'demote' (bool), 'reason' (one of DEMOTION_REASONS or
+    None), 'evidence' (list of observed facts) and 'conditions' (each gate
+    checked with pass/fail).
+    """
+    conditions = {}
+    evidence = []
+    reasons = []
+
+    # 1. All required gates must pass.
+    all_pass = all(gates_passed.get(g, False) for g in gates_required)
+    conditions['all_gates_pass'] = all_pass
+    if not all_pass:
+        missing = [g for g in gates_required if not gates_passed.get(g, False)]
+        reasons.append('gate_fail')
+        evidence.append(f'gates not passed: {", ".join(missing)}')
+
+    # 2. Data must be complete (no missing scores, prices or features).
+    conditions['data_complete'] = bool(data_complete)
+    if not data_complete:
+        reasons.append('missing_data')
+        evidence.append('required scores, prices or features are missing')
+
+    # 3. Price source must remain active.
+    conditions['price_source_active'] = bool(price_source_active)
+    if not price_source_active:
+        reasons.append('price_source_lost')
+        evidence.append('executable quote source is no longer available')
+
+    # 4. Correlation gate must still clear its deadband (if joints are priced).
+    conditions['correlation_gate_ok'] = bool(correlation_gate_ok)
+    if not correlation_gate_ok:
+        reasons.append('correlation_interval_lost')
+        evidence.append('joint pricing gate no longer clears its deadband')
+
+    # 5. Drift: current metrics vs previous, checked against tolerances.
+    drift_reasons = _check_drift(current_metrics, previous_metrics, tolerances)
+    conditions['drift_within_tolerance'] = not drift_reasons
+    for d in drift_reasons:
+        reasons.append('drift_exceeds_tolerance')
+        evidence.append(d)
+
+    demote = len(reasons) > 0
+    primary = reasons[0] if reasons else None
+
+    return {
+        'demote': demote,
+        'reason': primary,
+        'reasons': reasons,
+        'evidence': evidence,
+        'conditions': conditions,
+        'strategy_id': strategy_state.get('id'),
+        'previous_status': strategy_state.get('status'),
+        'new_status': 'paper' if demote else strategy_state.get('status', 'paper'),
+    }
+
+
+def _check_drift(current, previous, tolerances):
+    """Compare current metrics against previous within declared tolerances.
+
+    Returns a list of human-readable drift violations. Empty means within
+    tolerance. Missing tolerances mean the metric is not drift-checked.
+    """
+    violations = []
+    if not current or not previous:
+        return violations
+    for metric, tol in tolerances.items():
+        cur = current.get(metric)
+        prev = previous.get(metric)
+        if cur is None or prev is None or tol is None:
+            continue
+        try:
+            cur = float(cur)
+            prev = float(prev)
+            tol = float(tol)
+        except (TypeError, ValueError):
+            continue
+        if abs(cur - prev) > tol:
+            violations.append(
+                f'{metric}: {cur} vs {prev}, drift {abs(cur - prev):.4f} > tolerance {tol}'
+            )
+    return violations
+
+
+# --- Signal vs staking separation -------------------------------------------
+
+SIGNAL_METRICS = (
+    'log_loss_gain_lcb',      # simultaneous lower confidence bound on log-loss
+    'brier_score',            # lower is better
+    'calibration_error',      # reliability gap
+    'coverage',               # fraction of predictions with valid intervals
+)
+
+STAKING_METRICS = (
+    'net_return_lcb',         # simultaneous lower bound on mean return
+    'max_drawdown',           # predeclared tolerance
+    'win_rate',               # raw outcomes (variance-dominated)
+    'roi',                    # return on investment (variance-dominated)
+    'turnover',               # bets per unit time
+)
+
+
+def separate_signal_and_staking(strategy_record):
+    """Split a strategy's published metrics into signal and staking groups.
+
+    A lucky staking run (high ROI over few bets) cannot mask a bad signal
+    (poor calibration, no log-loss improvement). The two groups are reported
+    independently; neither is aggregated into the other.
+
+    Returns a dict with 'signal' and 'staking' sub-dicts, each mapping metric
+    names to values (or None when unmeasured). Also returns 'eligible_for_live'
+    which requires every signal metric that IS measured to show non-negative
+    evidence of skill, and every staking metric to be within tolerance.
+    """
+    signal = {}
+    staking = {}
+    for m in SIGNAL_METRICS:
+        signal[m] = strategy_record.get(m)
+    for m in STAKING_METRICS:
+        staking[m] = strategy_record.get(m)
+
+    # Eligibility for live: every measured signal metric must show skill
+    # (log-loss gain LCB > 0, Brier below market baseline, calibration within
+    # tolerance, coverage at or above target). Missing metrics are not treated
+    # as passes — they block eligibility.
+    signal_ok = True
+    if strategy_record.get('log_loss_gain_lcb') is not None:
+        signal_ok = signal_ok and strategy_record['log_loss_gain_lcb'] > 0
+    if strategy_record.get('brier_score') is not None:
+        market_brier = strategy_record.get('market_brier_baseline')
+        if market_brier is not None:
+            signal_ok = signal_ok and strategy_record['brier_score'] < market_brier
+    staking_ok = True
+    if strategy_record.get('max_drawdown') is not None:
+        dd_tol = strategy_record.get('drawdown_tolerance')
+        if dd_tol is not None:
+            staking_ok = staking_ok and strategy_record['max_drawdown'] <= dd_tol
+
+    return {
+        'signal': signal,
+        'staking': staking,
+        'eligible_for_live': bool(signal_ok and staking_ok),
+        'signal_complete': all(v is not None for v in signal.values()),
+        'staking_complete': all(v is not None for v in staking.values()),
+    }

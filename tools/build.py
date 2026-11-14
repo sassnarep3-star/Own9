@@ -311,17 +311,28 @@ page('validation.html','Validation','Seven gates. No shortcuts.',
          row(['5 · Economics','Captured executable prices, costs and all settlement states; strictly positive simultaneous lower mean-return bound and predeclared drawdown tolerance.','No executable quotes or tolerance · Not run'],('repo','tails'),'Project policy / tail-risk context'),
          row(['6 · Selection control','Register every candidate. Proposed familywise alpha 0.05 across all primary claims; justify week-block resampling and power before the test.','No frozen family or inference · Not run'],('multiplicity',),'Error-control background / design proposed'),
          row(['7 · Stability','Frozen subgroup and degradation tolerances, prospective paper replication, missing-data/drift kill switch. No data-driven relaxation.','No tolerances or replication · Not run'],('holdout','repo'),'Generalization context / policy proposed')
-     ]) + '<h2>Measuring skill without pretending to remove luck</h2><p>Report prediction quality and financial outcomes separately. A winning bet is not proof of skill; neither is a short positive-return run. Freeze the candidate family, compare matched targets, account for shared games/weeks and retain the untouched final test. The precise power study, resampling method and drift tolerances remain unimplemented and block eligibility.</p>')
+     ]) + '<h2>Measuring skill without pretending to remove luck</h2><p>Report prediction quality and financial outcomes separately. A winning bet is not proof of skill; neither is a short positive-return run. Freeze the candidate family, compare matched targets, account for shared games/weeks and retain the untouched final test. The precise power study, resampling method and drift tolerances remain unimplemented and block eligibility.</p>'
+     + '<h2>Demotion gate: live strategy to paper</h2><p>A live strategy that stops satisfying its conditions is demoted to paper trading: it may not issue quotes or enter the live leaderboard. Conditions checked are all gates passing, data complete, price source active, correlation gate still clearing its deadband, and all metrics within predeclared drift tolerances. Any failure demotes, with the reason and the observed evidence recorded. Demotion is not a penalty—it is the fail-closed behaviour that keeps luck from masquerading as skill.</p>'
+     + table('Demotion conditions',['Condition','Observed evidence','Pass means'],[
+         row(['All gates pass','Every gate in the validation register has a recorded pass artifact','Eligible for live']),
+         row(['Data complete','No missing score, price or feature on any evaluated game','Eligible for live']),
+         row(['Price source active','The executable quote feed used for settlement is reachable','Eligible for live']),
+         row(['Correlation gate OK','The two-leg dependence interval still clears its predeclared deadband','Joint pricing still permitted']),
+         row(['Drift within tolerance','Every measured metric is inside its predeclared tolerance band','Signal and staking both stable']),
+     ]) + '<p>Demotion reasons: gate_fail, drift_exceeds_tolerance, missing_data, correlation_interval_lost, price_source_lost, manual_review. Each reason must cite the observation that triggered it—never a model output alone.</p>')
 
 page('leaderboard.html','Leaderboard','Performance must earn its rank.',
-     'Four proposed tracks, matched targets, full disclosure. No strategy has passed validation. Empty metric cells mean unavailable—not zero.',
-     table('Strategy leaderboard',['Track','Eligibility','Rank','Test n','Log-loss gain LCB','Net-return LCB','Reward'],[
-         row([track,'Not run',None,None,None,None,None]) for track in ['G1 · Game single','P1 · Player prop','X1 · Cross-game parlay','S1 · Same-game combo']
+     'Four proposed tracks, matched targets, full disclosure. Signal metrics measure predictive quality; staking metrics measure financial outcomes. A lucky staking run cannot mask a bad signal—each group is judged on its own evidence. Empty metric cells mean unavailable—not zero. No strategy has passed validation.',
+     table('Strategy leaderboard — signal metrics (predictive quality)',['Track','Eligibility','Log-loss gain LCB','Brier score vs market','Calibration error','Coverage'],[
+         row([track,'Not run',None,None,None,None]) for track in ['G1 · Game single','P1 · Player prop','X1 · Cross-game parlay','S1 · Same-game combo']
+     ]) + table('Strategy leaderboard — staking metrics (financial outcomes)',['Track','Net-return LCB','Max drawdown','Win rate','ROI','Turnover'],[
+         row([track,None,None,None,None,None]) for track in ['G1 · Game single','P1 · Player prop','X1 · Cross-game parlay','S1 · Same-game combo']
      ]) + table('Competition policy',['Rule','Proposed treatment','State'],[
-         row(['Ranking','Only all-gate-pass candidates within each matched-target track; rank by simultaneous lower confidence bound on log-loss improvement.','Not active'],('logloss','repo'),'Metric support / project rule'),
+         row(['Ranking','Only all-gate-pass candidates within each matched-target track; rank by simultaneous lower confidence bound on log-loss improvement (signal only). Staking metrics are reported beside but never aggregated into the ranking.','Not active'],('logloss','repo'),'Metric support / project rule'),
          row(['Ties','Lower Brier, then lower frozen model complexity; unresolved ties share rank. No cross-track global winner.','Proposed'],('brier','repo'),'Metric support / project rule'),
          row(['Reward','Hypothetical non-cash “research leader” badge per eligible track. None if no candidate qualifies.','No actual award']),
-         row(['Funding and integrity','No sponsor, monetary pool or cash schedule. Publish pre-outcome submission hashes, all variants, exclusions and immutable test results.','Unfunded / not implemented'])
+         row(['Funding and integrity','No sponsor, monetary pool or cash schedule. Publish pre-outcome submission hashes, all variants, exclusions and immutable test results.','Unfunded / not implemented']),
+         row(['Signal vs staking separation','Signal metrics are predictive quality (log-loss, Brier, calibration, coverage). Staking metrics are financial outcomes (return, drawdown, win rate, ROI, turnover). A lucky staking run cannot mask a bad signal because they are published as separate tables.','Proposed'],('holdout','brier','tails'),'Policy specified, not active'),
      ]))
 
 page('correlations.html','Correlations','Dependence is not optional.',
@@ -444,17 +455,28 @@ page('validation.html','Validation','Seven gates. No shortcuts.',
          row(['5 · Economics','Captured executable prices, costs and all settlement states; strictly positive simultaneous lower mean-return bound and predeclared drawdown tolerance.','No executable quotes or tolerance · Not run'],('repo','tails'),'Project policy / tail-risk context'),
          row(['6 · Selection control','Register every candidate. Proposed familywise alpha 0.05 across all primary claims; justify week-block resampling and power before the test.','No frozen family or inference · Not run'],('multiplicity',),'Error-control background / design proposed'),
          row(['7 · Stability','Frozen subgroup and degradation tolerances, prospective paper replication, missing-data/drift kill switch. No data-driven relaxation.','No tolerances or replication · Not run'],('holdout','repo'),'Generalization context / policy proposed')
-     ]) + '<h2>Measuring skill without pretending to remove luck</h2><p>Report prediction quality and financial outcomes separately. A winning bet is not proof of skill; neither is a short positive-return run. Freeze the candidate family, compare matched targets, account for shared games/weeks and retain the untouched final test. The precise power study, resampling method and drift tolerances remain unimplemented and block eligibility.</p>')
+     ]) + '<h2>Measuring skill without pretending to remove luck</h2><p>Report prediction quality and financial outcomes separately. A winning bet is not proof of skill; neither is a short positive-return run. Freeze the candidate family, compare matched targets, account for shared games/weeks and retain the untouched final test. The precise power study, resampling method and drift tolerances remain unimplemented and block eligibility.</p>'
+     + '<h2>Demotion gate: live strategy to paper</h2><p>A live strategy that stops satisfying its conditions is demoted to paper trading: it may not issue quotes or enter the live leaderboard. Conditions checked are all gates passing, data complete, price source active, correlation gate still clearing its deadband, and all metrics within predeclared drift tolerances. Any failure demotes, with the reason and the observed evidence recorded. Demotion is not a penalty—it is the fail-closed behaviour that keeps luck from masquerading as skill.</p>'
+     + table('Demotion conditions',['Condition','Observed evidence','Pass means'],[
+         row(['All gates pass','Every gate in the validation register has a recorded pass artifact','Eligible for live']),
+         row(['Data complete','No missing score, price or feature on any evaluated game','Eligible for live']),
+         row(['Price source active','The executable quote feed used for settlement is reachable','Eligible for live']),
+         row(['Correlation gate OK','The two-leg dependence interval still clears its predeclared deadband','Joint pricing still permitted']),
+         row(['Drift within tolerance','Every measured metric is inside its predeclared tolerance band','Signal and staking both stable']),
+     ]) + '<p>Demotion reasons: gate_fail, drift_exceeds_tolerance, missing_data, correlation_interval_lost, price_source_lost, manual_review. Each reason must cite the observation that triggered it—never a model output alone.</p>')
 
 page('leaderboard.html','Leaderboard','Performance must earn its rank.',
-     'Four proposed tracks, matched targets, full disclosure. No strategy has passed validation. Empty metric cells mean unavailable—not zero.',
-     table('Strategy leaderboard',['Track','Eligibility','Rank','Test n','Log-loss gain LCB','Net-return LCB','Reward'],[
-         row([track,'Not run',None,None,None,None,None]) for track in ['G1 · Game single','P1 · Player prop','X1 · Cross-game parlay','S1 · Same-game combo']
+     'Four proposed tracks, matched targets, full disclosure. Signal metrics measure predictive quality; staking metrics measure financial outcomes. A lucky staking run cannot mask a bad signal—each group is judged on its own evidence. Empty metric cells mean unavailable—not zero. No strategy has passed validation.',
+     table('Strategy leaderboard — signal metrics (predictive quality)',['Track','Eligibility','Log-loss gain LCB','Brier score vs market','Calibration error','Coverage'],[
+         row([track,'Not run',None,None,None,None]) for track in ['G1 · Game single','P1 · Player prop','X1 · Cross-game parlay','S1 · Same-game combo']
+     ]) + table('Strategy leaderboard — staking metrics (financial outcomes)',['Track','Net-return LCB','Max drawdown','Win rate','ROI','Turnover'],[
+         row([track,None,None,None,None,None]) for track in ['G1 · Game single','P1 · Player prop','X1 · Cross-game parlay','S1 · Same-game combo']
      ]) + table('Competition policy',['Rule','Proposed treatment','State'],[
-         row(['Ranking','Only all-gate-pass candidates within each matched-target track; rank by simultaneous lower confidence bound on log-loss improvement.','Not active'],('logloss','repo'),'Metric support / project rule'),
+         row(['Ranking','Only all-gate-pass candidates within each matched-target track; rank by simultaneous lower confidence bound on log-loss improvement (signal only). Staking metrics are reported beside but never aggregated into the ranking.','Not active'],('logloss','repo'),'Metric support / project rule'),
          row(['Ties','Lower Brier, then lower frozen model complexity; unresolved ties share rank. No cross-track global winner.','Proposed'],('brier','repo'),'Metric support / project rule'),
          row(['Reward','Hypothetical non-cash “research leader” badge per eligible track. None if no candidate qualifies.','No actual award']),
-         row(['Funding and integrity','No sponsor, monetary pool or cash schedule. Publish pre-outcome submission hashes, all variants, exclusions and immutable test results.','Unfunded / not implemented'])
+         row(['Funding and integrity','No sponsor, monetary pool or cash schedule. Publish pre-outcome submission hashes, all variants, exclusions and immutable test results.','Unfunded / not implemented']),
+         row(['Signal vs staking separation','Signal metrics are predictive quality (log-loss, Brier, calibration, coverage). Staking metrics are financial outcomes (return, drawdown, win rate, ROI, turnover). A lucky staking run cannot mask a bad signal because they are published as separate tables.','Proposed'],('holdout','brier','tails'),'Policy specified, not active'),
      ]))
 
 page('correlations.html','Correlations','Dependence is not optional.',
