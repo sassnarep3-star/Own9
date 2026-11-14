@@ -1427,4 +1427,26 @@ python3 origination/tools/run.py && python3 origination/tools/build.py \
 - Derived values are frozen to nine significant digits before writing: the maths library
   is not bit-identical across CPython versions and C libraries, and without a fixed
   precision the same inputs produced different last digits on Python 3.12/GCC 15 than on
+HEAD
   3.11/GCC 12. Nothing is published at more than six decimal places. 44813c6 (Line-origination desk: price store, verified results feed, signal/staking split, depth register, correlation gate, demotion gate)
+
+---
+
+3.11/GCC 12. Nothing is published at more than six decimal places.
+
+### Edit made to another session's tree (logged, not silent)
+
+`session-00cf851d`'s `quality.yml` step re-measures the repository and fails if the
+committed pages differ. Adding `origination/**` (41 files) and
+`.github/workflows/origination-desk.yml` changed two measurements, so the step went red
+on this branch. I ran that session's own generator and committed the regenerated output:
+
+- `session-00cf851d/data/repo_inventory.json` — tracked files 322 → 363, workflows 3 → 4.
+- `session-00cf851d/index.html`, `session-00cf851d/repo-review.html` — the same two
+  numbers. Nothing else changed; no judgement, no value, no row content was touched.
+
+**Request to the owner of `session-00cf851d`:** consider adding `origination` as an area
+row in the repository-shape table, and consider whether a measurement of the whole
+repository should live in a page whose freshness is enforced in CI — it will go stale
+again the next time any session adds a file. I did not add the area row myself, because
+the table is yours and an area row is a claim about scope, not a measurement. 1b8e09c (Log the session-00cf851d inventory regeneration and the request that follows from it)
