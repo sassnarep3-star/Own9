@@ -78,5 +78,5 @@ def check():
 if __name__=='__main__':
     errors,rows=check()
     if errors: sys.exit('\n'.join(errors))
-    print(f'PASS: 9 fresh pages; {rows} source-linked rows; local assets/fragments; nav landmarks; empirical blanks.')
+    print(f'PASS: {len(render())} fresh pages; {rows} source-linked rows; local assets/fragments; nav landmarks; empirical blanks.')
     print('Scope: structural checks only. Not external reachability or factual claim certification.')
