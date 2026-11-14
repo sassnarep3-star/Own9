@@ -324,12 +324,12 @@ site index and navigation — change only here, after every other task is done).
 
 | Task | Status | Owner | File scope |
 |---|---|---|---|
-| Repo line-by-line review, official-source re-verification, irregularities | in progress | 1cc6b33d | `evidence/**`, `docs/**` |
-| Dedicated Suggestions section + Decision brief (questions / known / unknown / how to find out) | in progress | 1cc6b33d | `tools/build.py`, `docs/**` |
-| Availability & roster-depth tracker (injuries, 2nd/3rd/4th-string replacement tiers) | in progress | 1cc6b33d | `engine/availability.py`, `evidence/availability/**` |
-| Correlation decision math (required-correlation thresholds derived, measured values stay blank) | in progress | 1cc6b33d | `engine/correlation.py`, `tests/**` |
-| Root site landing page, categorized navigation, main-menu button | in progress | 1cc6b33d | root `*.html`, `style.css`, `site.js`, `tools/**` |
-| Final integration: combined data re-verification, Pages build, PR, merge, deploy record | unclaimed → 1cc6b33d | 1cc6b33d | `README.md`, `.github/**`, `COORDINATION.md` |
+| Repo line-by-line review, official-source re-verification, irregularities | done | 1cc6b33d | `evidence/**`, `docs/**` |
+| Dedicated Suggestions section + Decision brief (questions / known / unknown / how to find out) | done | 1cc6b33d | `tools/build.py`, `research/*.json`, `engine/registers.py` |
+| Availability & roster-depth tracker (injuries, replacement tiers) | done (tier field published as unavailable) | 1cc6b33d | `engine/availability.py`, `evidence/availability/**`, `evidence/lineups/**` |
+| Correlation decision math (interval + predeclared deadband gate; measured values stay blank) | done | 1cc6b33d | `engine/core.py`, `tests/**` |
+| Root site landing page, categorized navigation | done | 1cc6b33d | root `*.html`, `style.css`, `site.js`, `tools/**` |
+| Final integration: combined data re-verification, Pages build, PR, merge, deploy record | in progress | 1cc6b33d | `README.md`, `.github/**`, `COORDINATION.md` |
 
 Scope notes for other sessions:
 
@@ -350,3 +350,49 @@ Scope notes for other sessions:
   after PR #18 was opened. PR #18's dashboard-row audit was written against the earlier five-page
   dashboard, so its row counts and page inventory predate the current root site. Root pages were
   re-rendered and re-verified by this session; no file of that PR was edited here.
+
+### Verification performed (1cc6b33d)
+
+Official documents retrieved and read for this session (all in `evidence/sources.json`, now 26 records):
+
+- Three official NFL Game Books, full lineup/inactive/final-statistics blocks:
+  [Week 10 WAS at NYG](https://static.www.nfl.com/image/upload/v1794570519/gamecenter/ab5828d9-4feb-11f1-abca-2c54536568a9.pdf),
+  [Week 9 LAR at WAS](https://static.www.nfl.com/image/upload/v1794224919/gamecenter/ab382331-4feb-11f1-abca-2c54536568a9.pdf),
+  [Week 9 NYG at PHI](https://static.www.nfl.com/image/upload/v1794224920/gamecenter/ab38203e-4feb-11f1-abca-2c54536568a9.pdf).
+- [Official Week 10 injury report](https://www.nfl.com/injuries/), re-read to confirm the stored 18 rows and the blank-cell semantics.
+- [Week 9](https://www.nfl.com/schedules/2026/by-week/week-9) and [Week 10](https://www.nfl.com/schedules/2026/REG10/) schedules; [Week 9](https://www.nfl.com/games/rams-at-commanders-2026-reg-9) and [Week 10 game centers](https://www.nfl.com/games/commanders-at-giants-2026-reg-10) for scores and Game Book links.
+- [DraftKings market rules](https://sportsbook.draftkings.com/help/general-betting-rules/market-rules), [statsmodels multipletests](https://www.statsmodels.org/stable/generated/statsmodels.stats.multitest.multipletests.html), [WSGC sports wagering](https://wsgc.wa.gov/tribal-partnerships/sports-wagering), [2026 NFL rulebook](https://operations.nfl.com/rules-officiating/2026-nfl-rulebook).
+
+Verified findings, each traceable to a linked document:
+
+1. All four published starting elevens (WAS offense/defense, NYG offense/defense) changed between Week 9 and Week 10. Diffs are set differences, not the NFL's own opinion.
+2. One documented replacement chain: L.Patrick (C, WAS) started Week 9, ruled **Out** (concussion) in Week 10, printed under **Not Active**, with N.Allegretti starting at C.
+3. Two official counterexamples that punish naive designation use: T.Burks did not practise and then started (2 rec, 27 yd); 6 of 7 NYG inactives had no injury designation.
+4. The club depth-chart route on nfl.com returns an NFL **404**. Recorded as a narrow negative result (F17), not as proof the league has no depth chart anywhere.
+
+Test and build state at this commit:
+
+- **79 Python tests** pass (`tests/`), including 10 new dependence-gate tests and 17 availability/register tests.
+- `engine/availability.py` and `engine/registers.py` both pass their fail-closed validators.
+- `tools/verify.py`: **13 pages, 204 source-linked rows**, no duplicate IDs, one `<h1>`, one `aria-current` per page, every row carries a registered publisher reference, empirical blanks preserved.
+- `scripts/browser_test_root.cjs` (new): **13 root pages × 2 viewports, 26 WCAG A/AA axe scans**, grouped nav, single current item, filter reaches zero rows, no depth tier rendered, navigation usable with JS disabled, no console errors.
+- `scripts/browser_test.cjs`: the additive `site/` dashboard still passes (12 pages × 2 viewports, 24 axe scans).
+- `release-checks` fixtures: 31 tests pass.
+- The new browser test caught a real defect and it was fixed: navigation group labels at `#8b9aa6` failed WCAG contrast; now `#4b6072`.
+
+### Irregularities flagged for review (published, non-blocking)
+
+- **F13** Replacement depth tier is unobtainable. Substituted with verified changed starters; every tier cell blank.
+- **F14** Three of four verified Week 10 lineup changes have no published cause; 6 of 7 inactives had no designation.
+- **F15** Official Game Books carry an NFL copyright restriction; short excerpts only, originals linked, no permission obtained.
+- **F16** Availability coverage is two clubs across two consecutive weeks and each diff is against a different opponent, so a lineup effect cannot be separated from an opponent effect.
+- **F17** Depth-chart route returns 404 — a single-route negative result, stated no more strongly than that.
+- **F18** (carried) No executable historical prices; every line, correlation and return stays blank. Nothing here is a recommendation.
+
+### Notes for the integration owner
+
+- `research/**` is edited by this session as the final integration session: three new advisory
+  registers. No other session holds a live claim on `research/**`, so no request is needed.
+- PR #18 (`independent-audit/**`) remains untouched and unmerged by this session.
+- This session added no derived NFL number. Every new numeric value on the site is either a
+  published statistic, a computed set difference over published names, or a count of rows.
