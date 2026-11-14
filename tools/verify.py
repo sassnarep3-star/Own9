@@ -38,7 +38,7 @@ def check():
     errors=[]; parsed={}; expected=render()
     manifest=json.loads((ROOT/'evidence/sources.json').read_text())
     known={s['url'] for s in manifest}
-    allowed={'www.nfl.com','www.itl.nist.gov','docs.scipy.org','scikit-learn.org','docs.github.com','github.com','www.chiefs.com','www.seahawks.com','www.detroitlions.com'}
+    allowed={'docs.github.com','docs.scipy.org','github.com','media.nfl.com','operations.nfl.com','scikit-learn.org','sportsbook.draftkings.com','static.www.nfl.com','wsgc.wa.gov','www.chiefs.com','www.detroitlions.com','www.itl.nist.gov','www.nfl.com','www.seahawks.com','www.statsmodels.org'}
     if len({s['id'] for s in manifest}) != len(manifest): errors.append('duplicate source id')
     for s in manifest:
         if urlsplit(s['url']).scheme!='https' or urlsplit(s['url']).hostname not in allowed:
@@ -62,6 +62,35 @@ def check():
         if filename=='correlations.html':
             for row in parser.rows[:5]:
                 if any(cell.strip() for cell in row['cells'][2:5]): errors.append('invented NFL correlation metric')
+        if filename=='availability.html':
+            # The NFL publishes no depth tier, so no row may render one.
+            banned = ('1st string','2nd string','3rd string','4th string',
+                      'second string','third string','fourth string')
+            tiers = [c.strip() for r in parser.rows for c in r['cells']
+                     if c.strip().lower() in banned]
+            if tiers:
+                errors.append('availability: an invented depth tier was rendered: '+', '.join(tiers))
+        if filename=='suggestions.html':
+            for r in parser.rows:
+                cells = [c.strip() for c in r['cells']]
+                if len(cells) >= 7 and ('S-' in cells[0]):
+                    if not cells[5]:
+                        errors.append('suggestions: a row has no falsification statement')
+        if filename=='questions.html':
+            for r in parser.rows:
+                cells = [c.strip() for c in r['cells']]
+                if len(cells) >= 6 and cells[0].startswith('Q-'):
+                    answered = cells[5] == 'Answered'
+                    if not answered and cells[3]:
+                        errors.append('questions: an unanswered row rendered an answer')
+                    if answered and not cells[3]:
+                        errors.append('questions: an answered row rendered no answer')
+        if filename=='decision.html':
+            for r in parser.rows:
+                cells = [c.strip() for c in r['cells']]
+                if len(cells) >= 7 and cells[0].startswith('D-'):
+                    if not cells[4]:
+                        errors.append('decision: a row has no stopping rule')
     for filename,parser in parsed.items():
         for link in parser.links:
             u=urlsplit(link)

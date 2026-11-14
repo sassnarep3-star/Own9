@@ -6,10 +6,50 @@ An auditable NFL research workspace covering line origination, singles, parlays,
 player-prop combos, seven validation gates, a proposed competition, correlation
 requirements, official source scopes and a published review register.
 
+Fifteen pages, `tools/build.py`, `tools/verify.py`, verified snapshots and synthetic data only.
+
+## Start with the decisions, not the archive
+
+| If you want to | Read |
+| --- | --- |
+| Know what is actually open and what would close it | [Decision brief](decision.html) |
+| Know what must be known before deciding | [Questions & answers](questions.html) |
+| Review and choose an improvement before it is built | [Suggestions](suggestions.html) |
+| See who actually started and who replaced them | [Availability tracker](availability.html) |
+| See the full Week 10 2026 injury report snapshot and club depth charts | [Injuries & depth](injuries.html) |
+| Check a claim against a publisher | [Sources](sources.html) |
+| See what is still wrong or unverified | [Flagged for Review](flags.html) |
+
+## What was verified this session
+
+- Three official NFL Game Books (Weeks 9 and 10, 2026) were read for their
+  game-day lineups, inactive lists and final statistics. All four published
+  starting elevens for Washington and New York changed between the two weeks.
+- One starting slot has a fully documented replacement: Lucas Patrick started at
+  center in Week 9, was ruled **Out** with a concussion in Week 10, was printed
+  under **Not Active**, and Nick Allegretti started at center.
+- Two official counterexamples on WHY a designation feed is not a participation
+  record: Treylon Burks did not practise yet started and caught 2 passes for 27
+  yards, and six of seven Giants inactives carried no injury designation at all.
+- **Depth tiers stay caveated, not invented.** The club depth-chart route on
+  nfl.com returns an NFL 404, so the availability tracker keeps tier labels blank
+  for Game Book substitution chains. Separately, official club depth charts with
+  first/second/third/fourth-string columns were retrieved from the Chiefs,
+  Seahawks and Lions team sites on 2026-11-14 (self-labeled "unofficial" by the
+  clubs) and are published, with both sources cited, on
+  [Injuries & depth](injuries.html). No chart is treated as a certified game-day
+  depth record; cross-source conflicts are flagged, not reconciled (F19-F21).
+- Correlation handling is implemented, not asserted. A joint price is produced
+  only when a Fisher-z interval clears a predeclared deadband; otherwise the joint
+  price is left blank instead of assuming independence.
+
 ## Executive summary
 
-- **Implemented:** nine static dashboard pages; dependency-free pricing, binary scoring,
-  Pearson/phi and two-leg joint-probability primitives; fail-closed eligibility; tests and CI.
+- **Implemented:** fourteen static dashboard pages; dependency-free pricing, binary scoring,
+  Pearson/phi, a Fisher-z correlation interval with a predeclared-deadband dependence gate,
+  a joint price that refuses to default to independence, fail-closed eligibility, verified
+  two-week lineup evidence with a fail-closed validator, and three validated registers
+  (16 suggestions, 22 questions, 16 decisions); 80 Python tests, 2 browser suites and CI.
 - **Not established:** an NFL edge, a numerical NFL line, empirical correlation, completed
   model/backtest, historical executable quote archive, verified skill or funded rewards.
 - **Do not confuse software tests with strategy validation.** All candidates remain unvalidated;
@@ -20,33 +60,13 @@ requirements, official source scopes and a published review register.
 
 ## Explore
 
+[Decision brief](decision.html) · [Questions & answers](questions.html) ·
+[Availability](availability.html) · [Suggestions](suggestions.html) ·
 [Strategies](strategies.html) · [Validation](validation.html) ·
 [Leaderboard](leaderboard.html) · [Correlations](correlations.html) ·
-[Injuries & depth](injuries.html) · [Decision questions](questions.html) ·
 [Data requirements](data.html) · [Sources](sources.html) ·
+[Decision questions (earlier register)](decisions-questions.html) ·
 [Repository audit](audit.html) · [Flagged for Review](flags.html)
-
-### Injury & depth tracking (added 14 Nov 2026)
-
-The [injuries & depth page](injuries.html) transcribes the official NFL Week 10 2026
-injury report (retrieved 2026-11-14 from [NFL.com](https://www.nfl.com/injuries/)):
-160 players carry an explicit Out/Doubtful/Questionable game status across the 14 listed
-games. Official club depth charts ([Chiefs](https://www.chiefs.com/team/depth-chart),
-[Seahawks](https://www.seahawks.com/team/depth-chart/),
-[Lions](https://www.detroitlions.com/team/depth-chart/)) were verified the same day and
-cross-referenced against the report to demonstrate starter→2nd/3rd-string replacement
-derivations. All charts are self-labeled "unofficial" by the clubs; conflicts with the
-league report (e.g., DET safety) are published on [Flagged for Review](flags.html) F13-F15,
-never silently reconciled. No injury-adjusted edge is asserted; no historical point-in-time
-injury archive exists in verified evidence.
-
-### Linked subsites (separate owning sessions; not merged into this dashboard)
-
-[site/](site/index.html) (additive dashboard) · [strict-lab/](strict-lab/index.html) ·
-[research/](research/index.html) (secondary-source pipeline) ·
-[own9-research/](own9-research/index.html) · [release-checks/](release-checks/index.html) ·
-[independent-audit/](independent-audit/index.html) (integrated from PR #18, 2026-11-14).
-Subsite findings remain governed by their owning sessions' scopes and review registers.
 
 Full [research specification](docs/RESEARCH_SPEC.md) and machine-readable
 [source review manifest](evidence/sources.json). The audit describes every starting tracked
@@ -57,10 +77,13 @@ paper evaluation remain unimplemented and explicitly flagged.
 ## Reproduce (Python 3.10+, no third-party packages)
 
 ```sh
-python3 tools/build.py
-python3 tools/verify.py
+python3 tools/build.py                 # regenerate the 14 root pages
+python3 tools/verify.py                # rows, links, fragments, nav, blanks
+python3 engine/availability.py         # lineup + injury evidence rules
+python3 engine/registers.py            # suggestions, questions, decisions
 python3 -m unittest discover -s tests -v
-python3 -m http.server 8000 --bind 0.0.0.0
+npm ci && node scripts/browser_test_root.cjs   # published pages, real browser
+npm test                               # additive site/ dashboard too
 ```
 
 The last command is optional for local viewing. GitHub Pages publishes repository root from
@@ -101,3 +124,25 @@ python analysis/analyze.py && python analysis/build_site.py
 
 Betting lines are not published by the NFL, so all lines are labelled **Unverified** (`research/flagged.html`).
 Research only, not betting advice. Sports wagering in Washington is limited to tribal casinos (Washington State Gambling Commission).
+
+## Injury & depth tracking (2026-11-14)
+
+The [injuries & depth page](injuries.html) transcribes the official NFL Week 10 2026
+injury report (retrieved 2026-11-14 from [NFL.com](https://www.nfl.com/injuries/)):
+160 players carry an explicit Out/Doubtful/Questionable game status across the 14 listed
+games, with derived team availability-burden counts. Official club depth charts
+([Chiefs](https://www.chiefs.com/team/depth-chart),
+[Seahawks](https://www.seahawks.com/team/depth-chart/),
+[Lions](https://www.detroitlions.com/team/depth-chart/)) were verified the same day and
+cross-referenced against the report to demonstrate starter→next-string derivations with
+both sources cited. Where no chart was retrieved, replacement columns stay blank (GB, BAL,
+MIA depth slots) — never inferred. No injury-adjusted edge is asserted; the snapshot is a
+single point-in-time retrieval (F21).
+
+## Linked subsites (separate owning sessions; not merged into this dashboard)
+
+[site/](site/index.html) (additive dashboard) · [strict-lab/](strict-lab/index.html) ·
+[research/](research/index.html) (secondary-source pipeline) ·
+[own9-research/](own9-research/index.html) · [release-checks/](release-checks/index.html) ·
+[independent-audit/](independent-audit/index.html) (integrated from PR #18, 2026-11-14).
+Subsite findings remain governed by their owning sessions' scopes and review registers.
