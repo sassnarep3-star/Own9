@@ -1511,12 +1511,27 @@ Arena fixes this session to branch `arena/f5961230-own9`. Per the session rules,
 
 | Task | Status | Owner | File scope |
 | --- | --- | --- | --- |
-| Repair failing checks on main: stale generated `markets.html` and a price store closed without any market price | in progress | f5961230 | `tools/snapshot_close.py`, `data/snapshots/2026-w10-price-snapshot.json`, `markets.html`, `COORDINATION.md` |
-| Re-verify the Week 10 official NFL injury report line by line (counts, no-injury sections, Lions designations) and publish derived counts only | in progress | f5961230 | `evidence/availability/week-10-official-recheck.json`, new `verification/` note, `COORDINATION.md` |
-| Decision-readiness register: one row per requirement, blocking gate, number that clears it, status | in progress | f5961230 | `readiness.html` (new), `tools/readiness.py` (new), `tools/build.py` nav entry, `index.html` link |
-| Flagged for Review additions (irregularities found this session) | in progress | f5961230 | `flags.html` (append entries only) |
+| Repair failing checks on main: stale generated `markets.html` and a price store closed without any market price | done (bcfdd66) | f5961230 | `tools/snapshot_close.py`, `data/snapshots/2026-w10-price-snapshot.json`, `markets.html`, `COORDINATION.md` |
+| Re-verify the Week 10 official NFL injury report line by line (counts, no-injury sections, Lions designations) and publish derived counts only | needs review (row-level pass open, F69) | f5961230 | `evidence/availability/week-10-official-recheck.json`, new `verification/` note, `COORDINATION.md` |
+| Decision-readiness register: one row per requirement, blocking gate, number that clears it, status | needs review (statuses are repo-based; see readiness.html) | f5961230 | `readiness.html` (new), `tools/readiness.py` (new), `tools/build.py` nav entry, `index.html` link |
+| Flagged for Review additions (irregularities found this session) | needs review (F58–F70) | f5961230 | `flags.html` (append entries only) |
 
 Stated limits up front: most requested items need data that this sandbox can only reach through the official NFL pages, and some need sources that are not in the repository at all (for example the `VR-xx`/`VQ-xx` references, the Texans depth image, historical injury archives and snap counts). Those rows will be listed as blocked, not completed.
+
+### Session f5961230 — work log, sources and irregularities (15 Nov 2026)
+
+- **Baseline:** 282 Python tests, 4 failing (`markets.html` stale; committed price store did not match its regeneration). Cause: the scheduled close job wrote `closed` status and timestamps to all 52 markets without any market price (`market_line` null everywhere) and at 19:31 UTC, after the 9:30 and 1:00 PM ET kickoffs printed on the official page.
+- **Repair, commit bcfdd66:** `tools/snapshot_close.py` refuses to close any market until `CLOSING_PRICE_SOURCE` is set (exit 0 with a visible warning); the store was restored by regeneration from committed inputs (`engine/origination_elo.originate`); `markets.html` regenerated. After repair: 282/282 tests, `tools/verify.py`, `scripts/check_site.py`, `engine/availability.py`, `engine/registers.py`, origination and session-00cf851d checks, and strict-lab check all pass.
+- **Official source read:** https://www.nfl.com/injuries/ (Week 10, 2026), fetched 15 Nov 2026 in 8 chunks. Counts were tallied by hand per club: 14 games, 28 club tables, 347 rows, 171 designations; DEN, CHI, PHI and TB have no table. The repo capture (session 00cf851d, 14 Nov) has the same 347 rows and 28 club counts, but 162 designations: Chargers (19 rows, all injury and designation cells blank, 6 practice wordings differ) and Colts (Arden Key shown Hamstring/Questionable; official page shows neither).
+- **Brief claims checked:** 254/279 rows, "4 vs 2" no-injury sections, Seattle and Cincinnati injury-free, Lions Joseph/Mays/Reed blank: not reproduced. "Only 6 of 254 carry a designation": contradicted (171 of 347). Texans depth chart: reproduced (labelled "Unofficial Depth Chart", image). Willis IR and Lock/McCord starts: supported by official NFL headlines only. Jackson/Huntley depth, Colts trades, Packers jersey prefix, Brissett: not checked. VR/VQ IDs and the 136-game log: not found in the repo.
+- **Sources added** to `evidence/sources.json` (7 entries, status `retrieved`, with scope notes).
+- **Pages:** `week10-recheck.html`, `readiness.html`; landing summary on `index.html`; F58–F70 appended to `flags.html`; nav entries in `tools/build.py`; generator in `tools/f5961230_pages.py`.
+- **Not done in this session, by design:** no data was fabricated for archives, snap counts, Game Books beyond the three in the repo, venues, NWS grids, depth charts for 32 clubs, or any market price. The readiness register states which numbers are missing.
+- **Repo irregularities logged (not changed, shared files or other sessions' scope):** F67 duplicate `index.html`/`page()` definitions in `tools/build.py`; F68 conflicting close-capture schedules; F65 no drift alarm (CI passed the wrong Chargers rows).
+- **Request logged for session 00cf851d's owner:** correct the Chargers and Colts rows in `session-00cf851d/data/injury_report_week10.json` to the official values listed on `week10-recheck.html`. This session did not edit that file.
+- **Merge:** the brief makes the merge conditional on all tasks being done. They are not, so this branch is opened as a pull request to `main` and not merged. Reason recorded here; the owner may decide.
+
+---
 
 ---
 
