@@ -753,5 +753,68 @@
   "status": "retrieved",
   "supports": "Seahawks depth chart read again on 2026-11-14 in this session: QB Sam Darnold / Drew Lock / Jalen Milroe; LT Charles Cross / Josh Jones; LG Quenton Nelson / Anthony Bradford; DT Leonard Williams / Rylie Mills; plus the full offense, defense and special-teams tables.",
   "scope": "Column order is the published string order. The page text retrieved in this session (both chunks, title 'Seattle Seahawks') displays no 'unofficial depth chart' heading, unlike the Chiefs and Lions pages, so the self-labelled-unofficial caveat is recorded per club and not applied blanket-wide; see F29. Not a league-certified game-day depth record."
- }
+ },
+  {
+    "id": "nfl-injury-2026-11-15",
+    "publisher": "NFL",
+    "url": "https://www.nfl.com/injuries/",
+    "checked": "2026-11-15",
+    "status": "retrieved",
+    "supports": "Week 10 2026 injury report as read on 2026-11-15: 14 games, 28 club tables, 347 player rows, 171 rows with an Out/Doubtful/Questionable game status. Four clubs (DEN, CHI, PHI, TB) have no table.",
+    "scope": "Read via page retrieval in 8 chunks on 2026-11-15. Counts were tallied by hand from the retrieved text; row-level comparison covered SEA, CIN, DET, IND and LAC only. Not a licensed archive."
+  },
+  {
+    "id": "nfl-news-darnold-ruled-out-lock-start",
+    "publisher": "NFL",
+    "url": "https://www.nfl.com/news/sam-darnold-ruled-out-for-seahawks-week-10-game-vs-raiders-drew-lock-expected-to-start-again",
+    "checked": "2026-11-15",
+    "status": "retrieved",
+    "supports": "Headline as published: 'Sam Darnold ruled out for Seahawks' Week 10 game vs. Raiders; Drew Lock expected to start again'.",
+    "scope": "Headline text linked from the official injury page. An expectation reported in a headline, not a roster transaction or depth-chart record."
+  },
+  {
+    "id": "nfl-news-lock-no-designation",
+    "publisher": "NFL",
+    "url": "https://www.nfl.com/news/drew-lock-no-injury-designation-seahawks-raiders",
+    "checked": "2026-11-15",
+    "status": "retrieved",
+    "supports": "Headline as published: 'Drew Lock (elbow/oblique) has no injury designation, will start for Seahawks vs. Raiders'.",
+    "scope": "Headline text linked from the official injury page only; article body not read."
+  },
+  {
+    "id": "nfl-news-willis-injured-reserve",
+    "publisher": "NFL",
+    "url": "https://www.nfl.com/news/dolphins-place-qb-malik-willis-groin-on-injured-reserve-kyle-mccord-in-line-for-first-start",
+    "checked": "2026-11-15",
+    "status": "retrieved",
+    "supports": "Headline as published: 'Dolphins place QB Malik Willis (groin) on injured reserve; Kyle McCord in line for first start'.",
+    "scope": "Headline text linked from the official injury page; the transaction itself was not checked on the transactions log."
+  },
+  {
+    "id": "nfl-news-jackson-injured-reserve",
+    "publisher": "NFL",
+    "url": "https://www.nfl.com/news/nfl-news-roundup-latest-league-updates-from-thursday-nov-5",
+    "checked": "2026-11-15",
+    "status": "retrieved",
+    "supports": "Headline as published: 'NFL news roundup: Ravens officially place Lamar Jackson on injured reserve'.",
+    "scope": "Roundup headline linked from the official injury page. Depth-chart rows for Baltimore were not checked."
+  },
+  {
+    "id": "nfl-news-henderson-injured-reserve",
+    "publisher": "NFL",
+    "url": "https://www.nfl.com/news/nfl-news-roundup-latest-league-updates-from-saturday-nov-14",
+    "checked": "2026-11-15",
+    "status": "retrieved",
+    "supports": "Headline as published: 'NFL news roundup: Patriots place RB TreVeyon Henderson (illness) on injured reserve'.",
+    "scope": "Roundup headline linked from the official injury page; article body not read."
+  },
+  {
+    "id": "houston-depth-image",
+    "publisher": "Houston Texans (official club site)",
+    "url": "https://www.houstontexans.com/team/depth-chart/",
+    "checked": "2026-11-15",
+    "status": "retrieved",
+    "supports": "The depth-chart page is headed 'Unofficial Depth Chart' and the chart itself is an image; no text table is present in the retrieved page text.",
+    "scope": "Page text read on 2026-11-15. No structured source was found; the chart was not transcribed."
+  }
 ]
