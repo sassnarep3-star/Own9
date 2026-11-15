@@ -32,6 +32,25 @@
         "mean_margin": 0
       },
       "market_line_policy": "always null: the NFL publishes no betting lines; no officially verifiable market price is available, so the difference column stays blank (flagged)"
+    },
+    "close_audit": {
+      "bot_stamp_utc": "2026-11-15 19:31 UTC",
+      "markets_withdrawn": 52,
+      "reason": "No market price was recorded for any Week 10 market, so the stamp is not a close. The stamp was written at 19:31 UTC, after the 1:00 PM ET (18:00 UTC) kickoff of KC @ ATL and the 9:30 AM ET (14:30 UTC) kickoff of NE @ DET, so it cannot be called pre-kickoff.",
+      "evidence": [
+        {
+          "url": "https://www.nfl.com/injuries/",
+          "shows": "Sunday 15 Nov 2026 slate: NE @ DET at 9:30 AM EST; KC @ ATL at 1:00 PM EST (read 2026-11-15)"
+        },
+        {
+          "url": "https://www.nfl.com/schedules/2026/by-week/week-10",
+          "shows": "Week 10 Sunday games final or live when read on 2026-11-15 (about 23:27 UTC)"
+        },
+        {
+          "url": "https://github.com/sassnarep3-star/Own9/actions/runs/43752883100",
+          "shows": "snapshot-close run created 2026-11-15T19:31:20Z, event schedule; the only run of that workflow on record"
+        }
+      ]
     }
   },
   "markets": [
@@ -48,8 +67,9 @@
       "market_line_source": null,
       "diff": null,
       "opened_at": "2026-11-14 (UTC, store deployment)",
-      "closed_at": "2026-11-15 19:31 UTC",
-      "status": "closed \u00b7 pre-kickoff capture"
+      "closed_at": null,
+      "status": "open \u00b7 no pre-kickoff close captured (bot stamp withdrawn)",
+      "withdrawn_close_stamp": "2026-11-15 19:31 UTC"
     },
     {
       "market_id": "2026-w10-NE-DET-SPREAD",
@@ -64,8 +84,9 @@
       "market_line_source": null,
       "diff": null,
       "opened_at": "2026-11-14 (UTC, store deployment)",
-      "closed_at": "2026-11-15 19:31 UTC",
-      "status": "closed \u00b7 pre-kickoff capture"
+      "closed_at": null,
+      "status": "open \u00b7 no pre-kickoff close captured (bot stamp withdrawn)",
+      "withdrawn_close_stamp": "2026-11-15 19:31 UTC"
     },
     {
       "market_id": "2026-w10-KC-ATL-SPREAD",
@@ -80,8 +101,9 @@
       "market_line_source": null,
       "diff": null,
       "opened_at": "2026-11-14 (UTC, store deployment)",
-      "closed_at": "2026-11-15 19:31 UTC",
-      "status": "closed \u00b7 pre-kickoff capture"
+      "closed_at": null,
+      "status": "open \u00b7 no pre-kickoff close captured (bot stamp withdrawn)",
+      "withdrawn_close_stamp": "2026-11-15 19:31 UTC"
     },
     {
       "market_id": "2026-w10-HOU-CLE-SPREAD",
@@ -96,8 +118,9 @@
       "market_line_source": null,
       "diff": null,
       "opened_at": "2026-11-14 (UTC, store deployment)",
-      "closed_at": "2026-11-15 19:31 UTC",
-      "status": "closed \u00b7 pre-kickoff capture"
+      "closed_at": null,
+      "status": "open \u00b7 no pre-kickoff close captured (bot stamp withdrawn)",
+      "withdrawn_close_stamp": "2026-11-15 19:31 UTC"
     },
     {
       "market_id": "2026-w10-MIN-GB-SPREAD",
@@ -112,8 +135,9 @@
       "market_line_source": null,
       "diff": null,
       "opened_at": "2026-11-14 (UTC, store deployment)",
-      "closed_at": "2026-11-15 19:31 UTC",
-      "status": "closed \u00b7 pre-kickoff capture"
+      "closed_at": null,
+      "status": "open \u00b7 no pre-kickoff close captured (bot stamp withdrawn)",
+      "withdrawn_close_stamp": "2026-11-15 19:31 UTC"
     },
     {
       "market_id": "2026-w10-MIA-IND-SPREAD",
@@ -128,8 +152,9 @@
       "market_line_source": null,
       "diff": null,
       "opened_at": "2026-11-14 (UTC, store deployment)",
-      "closed_at": "2026-11-15 19:31 UTC",
-      "status": "closed \u00b7 pre-kickoff capture"
+      "closed_at": null,
+      "status": "open \u00b7 no pre-kickoff close captured (bot stamp withdrawn)",
+      "withdrawn_close_stamp": "2026-11-15 19:31 UTC"
     },
     {
       "market_id": "2026-w10-CAR-NO-SPREAD",
@@ -144,8 +169,9 @@
       "market_line_source": null,
       "diff": null,
       "opened_at": "2026-11-14 (UTC, store deployment)",
-      "closed_at": "2026-11-15 19:31 UTC",
-      "status": "closed \u00b7 pre-kickoff capture"
+      "closed_at": null,
+      "status": "open \u00b7 no pre-kickoff close captured (bot stamp withdrawn)",
+      "withdrawn_close_stamp": "2026-11-15 19:31 UTC"
     },
     {
       "market_id": "2026-w10-JAX-TEN-SPREAD",
@@ -160,8 +186,9 @@
       "market_line_source": null,
       "diff": null,
       "opened_at": "2026-11-14 (UTC, store deployment)",
-      "closed_at": "2026-11-15 19:31 UTC",
-      "status": "closed \u00b7 pre-kickoff capture"
+      "closed_at": null,
+      "status": "open \u00b7 no pre-kickoff close captured (bot stamp withdrawn)",
+      "withdrawn_close_stamp": "2026-11-15 19:31 UTC"
     },
     {
       "market_id": "2026-w10-LA-AZ-SPREAD",
@@ -176,8 +203,9 @@
       "market_line_source": null,
       "diff": null,
       "opened_at": "2026-11-14 (UTC, store deployment)",
-      "closed_at": "2026-11-15 19:31 UTC",
-      "status": "closed \u00b7 pre-kickoff capture"
+      "closed_at": null,
+      "status": "open \u00b7 no pre-kickoff close captured (bot stamp withdrawn)",
+      "withdrawn_close_stamp": "2026-11-15 19:31 UTC"
     },
     {
       "market_id": "2026-w10-SEA-LV-SPREAD",
@@ -192,8 +220,9 @@
       "market_line_source": null,
       "diff": null,
       "opened_at": "2026-11-14 (UTC, store deployment)",
-      "closed_at": "2026-11-15 19:31 UTC",
-      "status": "closed \u00b7 pre-kickoff capture"
+      "closed_at": null,
+      "status": "open \u00b7 no pre-kickoff close captured (bot stamp withdrawn)",
+      "withdrawn_close_stamp": "2026-11-15 19:31 UTC"
     },
     {
       "market_id": "2026-w10-SF-DAL-SPREAD",
@@ -208,8 +237,9 @@
       "market_line_source": null,
       "diff": null,
       "opened_at": "2026-11-14 (UTC, store deployment)",
-      "closed_at": "2026-11-15 19:31 UTC",
-      "status": "closed \u00b7 pre-kickoff capture"
+      "closed_at": null,
+      "status": "open \u00b7 no pre-kickoff close captured (bot stamp withdrawn)",
+      "withdrawn_close_stamp": "2026-11-15 19:31 UTC"
     },
     {
       "market_id": "2026-w10-PIT-CIN-SPREAD",
@@ -224,8 +254,9 @@
       "market_line_source": null,
       "diff": null,
       "opened_at": "2026-11-14 (UTC, store deployment)",
-      "closed_at": "2026-11-15 19:31 UTC",
-      "status": "closed \u00b7 pre-kickoff capture"
+      "closed_at": null,
+      "status": "open \u00b7 no pre-kickoff close captured (bot stamp withdrawn)",
+      "withdrawn_close_stamp": "2026-11-15 19:31 UTC"
     },
     {
       "market_id": "2026-w10-LAC-BAL-SPREAD",
@@ -240,8 +271,9 @@
       "market_line_source": null,
       "diff": null,
       "opened_at": "2026-11-14 (UTC, store deployment)",
-      "closed_at": "2026-11-15 19:31 UTC",
-      "status": "closed \u00b7 pre-kickoff capture"
+      "closed_at": null,
+      "status": "open \u00b7 no pre-kickoff close captured (bot stamp withdrawn)",
+      "withdrawn_close_stamp": "2026-11-15 19:31 UTC"
     },
     {
       "market_id": "2026-w10-BUF-NYJ-TOTAL",
@@ -256,8 +288,9 @@
       "market_line_source": null,
       "diff": null,
       "opened_at": "2026-11-14 (UTC, store deployment)",
-      "closed_at": "2026-11-15 19:31 UTC",
-      "status": "closed \u00b7 pre-kickoff capture"
+      "closed_at": null,
+      "status": "open \u00b7 no pre-kickoff close captured (bot stamp withdrawn)",
+      "withdrawn_close_stamp": "2026-11-15 19:31 UTC"
     },
     {
       "market_id": "2026-w10-NE-DET-TOTAL",
@@ -272,8 +305,9 @@
       "market_line_source": null,
       "diff": null,
       "opened_at": "2026-11-14 (UTC, store deployment)",
-      "closed_at": "2026-11-15 19:31 UTC",
-      "status": "closed \u00b7 pre-kickoff capture"
+      "closed_at": null,
+      "status": "open \u00b7 no pre-kickoff close captured (bot stamp withdrawn)",
+      "withdrawn_close_stamp": "2026-11-15 19:31 UTC"
     },
     {
       "market_id": "2026-w10-KC-ATL-TOTAL",
@@ -288,8 +322,9 @@
       "market_line_source": null,
       "diff": null,
       "opened_at": "2026-11-14 (UTC, store deployment)",
-      "closed_at": "2026-11-15 19:31 UTC",
-      "status": "closed \u00b7 pre-kickoff capture"
+      "closed_at": null,
+      "status": "open \u00b7 no pre-kickoff close captured (bot stamp withdrawn)",
+      "withdrawn_close_stamp": "2026-11-15 19:31 UTC"
     },
     {
       "market_id": "2026-w10-HOU-CLE-TOTAL",
@@ -304,8 +339,9 @@
       "market_line_source": null,
       "diff": null,
       "opened_at": "2026-11-14 (UTC, store deployment)",
-      "closed_at": "2026-11-15 19:31 UTC",
-      "status": "closed \u00b7 pre-kickoff capture"
+      "closed_at": null,
+      "status": "open \u00b7 no pre-kickoff close captured (bot stamp withdrawn)",
+      "withdrawn_close_stamp": "2026-11-15 19:31 UTC"
     },
     {
       "market_id": "2026-w10-MIN-GB-TOTAL",
@@ -320,8 +356,9 @@
       "market_line_source": null,
       "diff": null,
       "opened_at": "2026-11-14 (UTC, store deployment)",
-      "closed_at": "2026-11-15 19:31 UTC",
-      "status": "closed \u00b7 pre-kickoff capture"
+      "closed_at": null,
+      "status": "open \u00b7 no pre-kickoff close captured (bot stamp withdrawn)",
+      "withdrawn_close_stamp": "2026-11-15 19:31 UTC"
     },
     {
       "market_id": "2026-w10-MIA-IND-TOTAL",
@@ -336,8 +373,9 @@
       "market_line_source": null,
       "diff": null,
       "opened_at": "2026-11-14 (UTC, store deployment)",
-      "closed_at": "2026-11-15 19:31 UTC",
-      "status": "closed \u00b7 pre-kickoff capture"
+      "closed_at": null,
+      "status": "open \u00b7 no pre-kickoff close captured (bot stamp withdrawn)",
+      "withdrawn_close_stamp": "2026-11-15 19:31 UTC"
     },
     {
       "market_id": "2026-w10-CAR-NO-TOTAL",
@@ -352,8 +390,9 @@
       "market_line_source": null,
       "diff": null,
       "opened_at": "2026-11-14 (UTC, store deployment)",
-      "closed_at": "2026-11-15 19:31 UTC",
-      "status": "closed \u00b7 pre-kickoff capture"
+      "closed_at": null,
+      "status": "open \u00b7 no pre-kickoff close captured (bot stamp withdrawn)",
+      "withdrawn_close_stamp": "2026-11-15 19:31 UTC"
     },
     {
       "market_id": "2026-w10-JAX-TEN-TOTAL",
@@ -368,8 +407,9 @@
       "market_line_source": null,
       "diff": null,
       "opened_at": "2026-11-14 (UTC, store deployment)",
-      "closed_at": "2026-11-15 19:31 UTC",
-      "status": "closed \u00b7 pre-kickoff capture"
+      "closed_at": null,
+      "status": "open \u00b7 no pre-kickoff close captured (bot stamp withdrawn)",
+      "withdrawn_close_stamp": "2026-11-15 19:31 UTC"
     },
     {
       "market_id": "2026-w10-LA-AZ-TOTAL",
@@ -384,8 +424,9 @@
       "market_line_source": null,
       "diff": null,
       "opened_at": "2026-11-14 (UTC, store deployment)",
-      "closed_at": "2026-11-15 19:31 UTC",
-      "status": "closed \u00b7 pre-kickoff capture"
+      "closed_at": null,
+      "status": "open \u00b7 no pre-kickoff close captured (bot stamp withdrawn)",
+      "withdrawn_close_stamp": "2026-11-15 19:31 UTC"
     },
     {
       "market_id": "2026-w10-SEA-LV-TOTAL",
@@ -400,8 +441,9 @@
       "market_line_source": null,
       "diff": null,
       "opened_at": "2026-11-14 (UTC, store deployment)",
-      "closed_at": "2026-11-15 19:31 UTC",
-      "status": "closed \u00b7 pre-kickoff capture"
+      "closed_at": null,
+      "status": "open \u00b7 no pre-kickoff close captured (bot stamp withdrawn)",
+      "withdrawn_close_stamp": "2026-11-15 19:31 UTC"
     },
     {
       "market_id": "2026-w10-SF-DAL-TOTAL",
@@ -416,8 +458,9 @@
       "market_line_source": null,
       "diff": null,
       "opened_at": "2026-11-14 (UTC, store deployment)",
-      "closed_at": "2026-11-15 19:31 UTC",
-      "status": "closed \u00b7 pre-kickoff capture"
+      "closed_at": null,
+      "status": "open \u00b7 no pre-kickoff close captured (bot stamp withdrawn)",
+      "withdrawn_close_stamp": "2026-11-15 19:31 UTC"
     },
     {
       "market_id": "2026-w10-PIT-CIN-TOTAL",
@@ -432,8 +475,9 @@
       "market_line_source": null,
       "diff": null,
       "opened_at": "2026-11-14 (UTC, store deployment)",
-      "closed_at": "2026-11-15 19:31 UTC",
-      "status": "closed \u00b7 pre-kickoff capture"
+      "closed_at": null,
+      "status": "open \u00b7 no pre-kickoff close captured (bot stamp withdrawn)",
+      "withdrawn_close_stamp": "2026-11-15 19:31 UTC"
     },
     {
       "market_id": "2026-w10-LAC-BAL-TOTAL",
@@ -448,8 +492,9 @@
       "market_line_source": null,
       "diff": null,
       "opened_at": "2026-11-14 (UTC, store deployment)",
-      "closed_at": "2026-11-15 19:31 UTC",
-      "status": "closed \u00b7 pre-kickoff capture"
+      "closed_at": null,
+      "status": "open \u00b7 no pre-kickoff close captured (bot stamp withdrawn)",
+      "withdrawn_close_stamp": "2026-11-15 19:31 UTC"
     },
     {
       "market_id": "2026-w10-BUF-NYJ-ML-HOME",
@@ -464,8 +509,9 @@
       "market_line_source": null,
       "diff": null,
       "opened_at": "2026-11-14 (UTC, store deployment)",
-      "closed_at": "2026-11-15 19:31 UTC",
-      "status": "closed \u00b7 pre-kickoff capture"
+      "closed_at": null,
+      "status": "open \u00b7 no pre-kickoff close captured (bot stamp withdrawn)",
+      "withdrawn_close_stamp": "2026-11-15 19:31 UTC"
     },
     {
       "market_id": "2026-w10-BUF-NYJ-ML-AWAY",
@@ -480,8 +526,9 @@
       "market_line_source": null,
       "diff": null,
       "opened_at": "2026-11-14 (UTC, store deployment)",
-      "closed_at": "2026-11-15 19:31 UTC",
-      "status": "closed \u00b7 pre-kickoff capture"
+      "closed_at": null,
+      "status": "open \u00b7 no pre-kickoff close captured (bot stamp withdrawn)",
+      "withdrawn_close_stamp": "2026-11-15 19:31 UTC"
     },
     {
       "market_id": "2026-w10-NE-DET-ML-HOME",
@@ -496,8 +543,9 @@
       "market_line_source": null,
       "diff": null,
       "opened_at": "2026-11-14 (UTC, store deployment)",
-      "closed_at": "2026-11-15 19:31 UTC",
-      "status": "closed \u00b7 pre-kickoff capture"
+      "closed_at": null,
+      "status": "open \u00b7 no pre-kickoff close captured (bot stamp withdrawn)",
+      "withdrawn_close_stamp": "2026-11-15 19:31 UTC"
     },
     {
       "market_id": "2026-w10-NE-DET-ML-AWAY",
@@ -512,8 +560,9 @@
       "market_line_source": null,
       "diff": null,
       "opened_at": "2026-11-14 (UTC, store deployment)",
-      "closed_at": "2026-11-15 19:31 UTC",
-      "status": "closed \u00b7 pre-kickoff capture"
+      "closed_at": null,
+      "status": "open \u00b7 no pre-kickoff close captured (bot stamp withdrawn)",
+      "withdrawn_close_stamp": "2026-11-15 19:31 UTC"
     },
     {
       "market_id": "2026-w10-KC-ATL-ML-HOME",
@@ -528,8 +577,9 @@
       "market_line_source": null,
       "diff": null,
       "opened_at": "2026-11-14 (UTC, store deployment)",
-      "closed_at": "2026-11-15 19:31 UTC",
-      "status": "closed \u00b7 pre-kickoff capture"
+      "closed_at": null,
+      "status": "open \u00b7 no pre-kickoff close captured (bot stamp withdrawn)",
+      "withdrawn_close_stamp": "2026-11-15 19:31 UTC"
     },
     {
       "market_id": "2026-w10-KC-ATL-ML-AWAY",
@@ -544,8 +594,9 @@
       "market_line_source": null,
       "diff": null,
       "opened_at": "2026-11-14 (UTC, store deployment)",
-      "closed_at": "2026-11-15 19:31 UTC",
-      "status": "closed \u00b7 pre-kickoff capture"
+      "closed_at": null,
+      "status": "open \u00b7 no pre-kickoff close captured (bot stamp withdrawn)",
+      "withdrawn_close_stamp": "2026-11-15 19:31 UTC"
     },
     {
       "market_id": "2026-w10-HOU-CLE-ML-HOME",
@@ -560,8 +611,9 @@
       "market_line_source": null,
       "diff": null,
       "opened_at": "2026-11-14 (UTC, store deployment)",
-      "closed_at": "2026-11-15 19:31 UTC",
-      "status": "closed \u00b7 pre-kickoff capture"
+      "closed_at": null,
+      "status": "open \u00b7 no pre-kickoff close captured (bot stamp withdrawn)",
+      "withdrawn_close_stamp": "2026-11-15 19:31 UTC"
     },
     {
       "market_id": "2026-w10-HOU-CLE-ML-AWAY",
@@ -576,8 +628,9 @@
       "market_line_source": null,
       "diff": null,
       "opened_at": "2026-11-14 (UTC, store deployment)",
-      "closed_at": "2026-11-15 19:31 UTC",
-      "status": "closed \u00b7 pre-kickoff capture"
+      "closed_at": null,
+      "status": "open \u00b7 no pre-kickoff close captured (bot stamp withdrawn)",
+      "withdrawn_close_stamp": "2026-11-15 19:31 UTC"
     },
     {
       "market_id": "2026-w10-MIN-GB-ML-HOME",
@@ -592,8 +645,9 @@
       "market_line_source": null,
       "diff": null,
       "opened_at": "2026-11-14 (UTC, store deployment)",
-      "closed_at": "2026-11-15 19:31 UTC",
-      "status": "closed \u00b7 pre-kickoff capture"
+      "closed_at": null,
+      "status": "open \u00b7 no pre-kickoff close captured (bot stamp withdrawn)",
+      "withdrawn_close_stamp": "2026-11-15 19:31 UTC"
     },
     {
       "market_id": "2026-w10-MIN-GB-ML-AWAY",
@@ -608,8 +662,9 @@
       "market_line_source": null,
       "diff": null,
       "opened_at": "2026-11-14 (UTC, store deployment)",
-      "closed_at": "2026-11-15 19:31 UTC",
-      "status": "closed \u00b7 pre-kickoff capture"
+      "closed_at": null,
+      "status": "open \u00b7 no pre-kickoff close captured (bot stamp withdrawn)",
+      "withdrawn_close_stamp": "2026-11-15 19:31 UTC"
     },
     {
       "market_id": "2026-w10-MIA-IND-ML-HOME",
@@ -624,8 +679,9 @@
       "market_line_source": null,
       "diff": null,
       "opened_at": "2026-11-14 (UTC, store deployment)",
-      "closed_at": "2026-11-15 19:31 UTC",
-      "status": "closed \u00b7 pre-kickoff capture"
+      "closed_at": null,
+      "status": "open \u00b7 no pre-kickoff close captured (bot stamp withdrawn)",
+      "withdrawn_close_stamp": "2026-11-15 19:31 UTC"
     },
     {
       "market_id": "2026-w10-MIA-IND-ML-AWAY",
@@ -640,8 +696,9 @@
       "market_line_source": null,
       "diff": null,
       "opened_at": "2026-11-14 (UTC, store deployment)",
-      "closed_at": "2026-11-15 19:31 UTC",
-      "status": "closed \u00b7 pre-kickoff capture"
+      "closed_at": null,
+      "status": "open \u00b7 no pre-kickoff close captured (bot stamp withdrawn)",
+      "withdrawn_close_stamp": "2026-11-15 19:31 UTC"
     },
     {
       "market_id": "2026-w10-CAR-NO-ML-HOME",
@@ -656,8 +713,9 @@
       "market_line_source": null,
       "diff": null,
       "opened_at": "2026-11-14 (UTC, store deployment)",
-      "closed_at": "2026-11-15 19:31 UTC",
-      "status": "closed \u00b7 pre-kickoff capture"
+      "closed_at": null,
+      "status": "open \u00b7 no pre-kickoff close captured (bot stamp withdrawn)",
+      "withdrawn_close_stamp": "2026-11-15 19:31 UTC"
     },
     {
       "market_id": "2026-w10-CAR-NO-ML-AWAY",
@@ -672,8 +730,9 @@
       "market_line_source": null,
       "diff": null,
       "opened_at": "2026-11-14 (UTC, store deployment)",
-      "closed_at": "2026-11-15 19:31 UTC",
-      "status": "closed \u00b7 pre-kickoff capture"
+      "closed_at": null,
+      "status": "open \u00b7 no pre-kickoff close captured (bot stamp withdrawn)",
+      "withdrawn_close_stamp": "2026-11-15 19:31 UTC"
     },
     {
       "market_id": "2026-w10-JAX-TEN-ML-HOME",
@@ -688,8 +747,9 @@
       "market_line_source": null,
       "diff": null,
       "opened_at": "2026-11-14 (UTC, store deployment)",
-      "closed_at": "2026-11-15 19:31 UTC",
-      "status": "closed \u00b7 pre-kickoff capture"
+      "closed_at": null,
+      "status": "open \u00b7 no pre-kickoff close captured (bot stamp withdrawn)",
+      "withdrawn_close_stamp": "2026-11-15 19:31 UTC"
     },
     {
       "market_id": "2026-w10-JAX-TEN-ML-AWAY",
@@ -704,8 +764,9 @@
       "market_line_source": null,
       "diff": null,
       "opened_at": "2026-11-14 (UTC, store deployment)",
-      "closed_at": "2026-11-15 19:31 UTC",
-      "status": "closed \u00b7 pre-kickoff capture"
+      "closed_at": null,
+      "status": "open \u00b7 no pre-kickoff close captured (bot stamp withdrawn)",
+      "withdrawn_close_stamp": "2026-11-15 19:31 UTC"
     },
     {
       "market_id": "2026-w10-LA-AZ-ML-HOME",
@@ -720,8 +781,9 @@
       "market_line_source": null,
       "diff": null,
       "opened_at": "2026-11-14 (UTC, store deployment)",
-      "closed_at": "2026-11-15 19:31 UTC",
-      "status": "closed \u00b7 pre-kickoff capture"
+      "closed_at": null,
+      "status": "open \u00b7 no pre-kickoff close captured (bot stamp withdrawn)",
+      "withdrawn_close_stamp": "2026-11-15 19:31 UTC"
     },
     {
       "market_id": "2026-w10-LA-AZ-ML-AWAY",
@@ -736,8 +798,9 @@
       "market_line_source": null,
       "diff": null,
       "opened_at": "2026-11-14 (UTC, store deployment)",
-      "closed_at": "2026-11-15 19:31 UTC",
-      "status": "closed \u00b7 pre-kickoff capture"
+      "closed_at": null,
+      "status": "open \u00b7 no pre-kickoff close captured (bot stamp withdrawn)",
+      "withdrawn_close_stamp": "2026-11-15 19:31 UTC"
     },
     {
       "market_id": "2026-w10-SEA-LV-ML-HOME",
@@ -752,8 +815,9 @@
       "market_line_source": null,
       "diff": null,
       "opened_at": "2026-11-14 (UTC, store deployment)",
-      "closed_at": "2026-11-15 19:31 UTC",
-      "status": "closed \u00b7 pre-kickoff capture"
+      "closed_at": null,
+      "status": "open \u00b7 no pre-kickoff close captured (bot stamp withdrawn)",
+      "withdrawn_close_stamp": "2026-11-15 19:31 UTC"
     },
     {
       "market_id": "2026-w10-SEA-LV-ML-AWAY",
@@ -768,8 +832,9 @@
       "market_line_source": null,
       "diff": null,
       "opened_at": "2026-11-14 (UTC, store deployment)",
-      "closed_at": "2026-11-15 19:31 UTC",
-      "status": "closed \u00b7 pre-kickoff capture"
+      "closed_at": null,
+      "status": "open \u00b7 no pre-kickoff close captured (bot stamp withdrawn)",
+      "withdrawn_close_stamp": "2026-11-15 19:31 UTC"
     },
     {
       "market_id": "2026-w10-SF-DAL-ML-HOME",
@@ -784,8 +849,9 @@
       "market_line_source": null,
       "diff": null,
       "opened_at": "2026-11-14 (UTC, store deployment)",
-      "closed_at": "2026-11-15 19:31 UTC",
-      "status": "closed \u00b7 pre-kickoff capture"
+      "closed_at": null,
+      "status": "open \u00b7 no pre-kickoff close captured (bot stamp withdrawn)",
+      "withdrawn_close_stamp": "2026-11-15 19:31 UTC"
     },
     {
       "market_id": "2026-w10-SF-DAL-ML-AWAY",
@@ -800,8 +866,9 @@
       "market_line_source": null,
       "diff": null,
       "opened_at": "2026-11-14 (UTC, store deployment)",
-      "closed_at": "2026-11-15 19:31 UTC",
-      "status": "closed \u00b7 pre-kickoff capture"
+      "closed_at": null,
+      "status": "open \u00b7 no pre-kickoff close captured (bot stamp withdrawn)",
+      "withdrawn_close_stamp": "2026-11-15 19:31 UTC"
     },
     {
       "market_id": "2026-w10-PIT-CIN-ML-HOME",
@@ -816,8 +883,9 @@
       "market_line_source": null,
       "diff": null,
       "opened_at": "2026-11-14 (UTC, store deployment)",
-      "closed_at": "2026-11-15 19:31 UTC",
-      "status": "closed \u00b7 pre-kickoff capture"
+      "closed_at": null,
+      "status": "open \u00b7 no pre-kickoff close captured (bot stamp withdrawn)",
+      "withdrawn_close_stamp": "2026-11-15 19:31 UTC"
     },
     {
       "market_id": "2026-w10-PIT-CIN-ML-AWAY",
@@ -832,8 +900,9 @@
       "market_line_source": null,
       "diff": null,
       "opened_at": "2026-11-14 (UTC, store deployment)",
-      "closed_at": "2026-11-15 19:31 UTC",
-      "status": "closed \u00b7 pre-kickoff capture"
+      "closed_at": null,
+      "status": "open \u00b7 no pre-kickoff close captured (bot stamp withdrawn)",
+      "withdrawn_close_stamp": "2026-11-15 19:31 UTC"
     },
     {
       "market_id": "2026-w10-LAC-BAL-ML-HOME",
@@ -848,8 +917,9 @@
       "market_line_source": null,
       "diff": null,
       "opened_at": "2026-11-14 (UTC, store deployment)",
-      "closed_at": "2026-11-15 19:31 UTC",
-      "status": "closed \u00b7 pre-kickoff capture"
+      "closed_at": null,
+      "status": "open \u00b7 no pre-kickoff close captured (bot stamp withdrawn)",
+      "withdrawn_close_stamp": "2026-11-15 19:31 UTC"
     },
     {
       "market_id": "2026-w10-LAC-BAL-ML-AWAY",
@@ -864,8 +934,9 @@
       "market_line_source": null,
       "diff": null,
       "opened_at": "2026-11-14 (UTC, store deployment)",
-      "closed_at": "2026-11-15 19:31 UTC",
-      "status": "closed \u00b7 pre-kickoff capture"
+      "closed_at": null,
+      "status": "open \u00b7 no pre-kickoff close captured (bot stamp withdrawn)",
+      "withdrawn_close_stamp": "2026-11-15 19:31 UTC"
     }
   ]
 }

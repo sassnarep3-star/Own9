@@ -10,7 +10,7 @@ Run by the scheduled workflow before kickoff (see
      changed, it refuses to close anything (fail closed);
   2. recomputes the model fair number for that market from the committed
      results feed, using the declared method;
-  3. records `closed_at`, sets the status to "closed · pre-kickoff capture",
+  3. records `closed_at` and sets the status to "closed · pre-kickoff capture" — only for a market that has a recorded market price (session 446067c4: an unpriced market is skipped and nothing is written),
      and — only when the recomputed fair differs from the open fair, which
      can happen if the feed has grown since deployment — adds
      `model_fair_close` and `close_inputs_sha256` so both decision points
@@ -78,8 +78,14 @@ def close_store(store_path=DEFAULT_STORE, results_path=DEFAULT_RESULTS, at=None)
 
     at = at or datetime.now(timezone.utc).strftime('%Y-%m-%d %H:%M UTC')
     changed = 0
+    unpriced = 0
     for m in store['markets']:
         if m['status'] != OPEN_STATUS:
+            continue
+        if m.get('market_line') is None:
+            # A close is a recorded market price taken before kickoff. A timestamp
+            # with no price is not a close, so nothing is stamped (session 446067c4).
+            unpriced += 1
             continue
         mid = m['market_id']  # 2026-w10-<AWAY>-<HOME>-<TYPE[-SIDE]>
         parts = mid.split('-')
@@ -116,6 +122,9 @@ def close_store(store_path=DEFAULT_STORE, results_path=DEFAULT_RESULTS, at=None)
     if changed:
         Path(store_path).write_text(json.dumps(store, indent=2) + '\n')
     print(f'closed {changed} markets at {at} (feed sha {"changed" if sha_changed else "unchanged"})')
+    if unpriced:
+        print(f'NOT CLOSED: {unpriced} open markets have no recorded market price; '
+              'no close stamp written (a stamp without a price is not a close)')
     return 0
 
 

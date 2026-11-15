@@ -199,7 +199,7 @@ _results_feed_append = (
              'A chosen grading operator and jurisdiction must be decided before any grade'],
             ('dk-markets', 'repo'), 'Operator context / decision pending'),
         row(['Point-in-time capture', 'Week 10 store opened 2026-11-14 pre-kickoff (open snapshots only so far)',
-             'Close capture is scheduled via .github/workflows/snapshot.yml; earlier weeks were never captured'],
+             'No Week 10 close exists: the 19:31 UTC bot stamp was withdrawn (no market price; after the 1:00 PM ET kickoff). Close capture is scheduled via .github/workflows/snapshot.yml; earlier weeks were never captured'],
             ('repo',), 'Project record'),
         row(['Per-row re-check', 'Structural cross-checks pass (weekly counts, bye arithmetic, 32 teams)',
              'Independent game-centre re-check proposed as S-21 before any settlement use'],
@@ -218,7 +218,7 @@ _schema_rows = [
     row(['model_fair', 'The model\u2019s fair number at the snapshot: fair home spread (points), fair total (points) or fair two-way American price.', 'Computed output of the elo-v1 method from official scores; unvalidated, no edge claim (F43).'], ('repo',), 'Store schema'),
     row(['market_line', 'The market\u2019s quoted number at the snapshot.', 'Always blank: no official market price source exists; never inferred (F01/F42).'], ('repo',), 'Store schema'),
     row(['diff', 'model_fair − market_line.', 'Blank whenever market_line is blank — the difference of an unavailable value is unavailable.'], ('repo',), 'Store schema'),
-    row(['opened_at / closed_at', 'UTC timestamps of the open and close snapshots.', 'Open = store deployment (2026-11-14). Close = scheduled pre-kickoff capture; null until captured.'], ('repo',), 'Store schema'),
+    row(['opened_at / closed_at', 'UTC timestamps of the open and close snapshots.', 'Open = store deployment (2026-11-14). Close = a pre-kickoff capture that carries a recorded market price. None exists for Week 10; the bot stamp is kept as withdrawn_close_stamp.'], ('repo',), 'Store schema'),
     row(['status', 'Snapshot lifecycle state.', 'open · close capture pending — for all 52 Week 10 markets at deployment.'], ('repo',), 'Store schema'),
 ]
 _market_rows = []
@@ -251,6 +251,24 @@ page('markets.html', 'W10 snapshots', 'Every market we originate, opened and clo
      'obtained (F01, F42). Acquiring that archive is suggestion S-17.</p></div>'
      + table('Store schema (data/snapshots/2026-w10-price-snapshot.json)',
              ['Field', 'Meaning', 'Policy'], _schema_rows)
+     + table('Close-stamp withdrawal (session 446067c4)',
+             ['Fact', 'Value', 'Consequence', 'Evidence'], [
+         row(['Bot stamp on all 52 Week 10 markets', '2026-11-15 19:31 UTC (closed_at); status "closed · pre-kickoff capture"',
+              'Withdrawn: a stamp with no market price is not a close. closed_at is now null; the stamp is kept as withdrawn_close_stamp.'],
+             ('repo',), 'Store audit'),
+         row(['Official kickoff, KC @ ATL', '1:00 PM EST Sunday 15 Nov 2026 = 18:00 UTC',
+              'The stamp came 91 minutes after this kickoff, so it cannot be called pre-kickoff for this game.'],
+             ('nfl-injury',), 'Official report page (read 2026-11-15)'),
+         row(['Official kickoff, NE @ DET', '9:30 AM EST Sunday 15 Nov 2026 = 14:30 UTC',
+              'The stamp came about five hours after this kickoff.'],
+             ('nfl-injury',), 'Official report page (read 2026-11-15)'),
+         row(['Only close-workflow run on record', 'Run created 2026-11-15T19:31:20Z, event schedule, conclusion success',
+              'No run is recorded between the 14:00 UTC cron and 19:31 UTC; the single run on record is the one that stamped the store.'],
+             ('repo',), 'Workflow run record'),
+         row(['Close capture guard (code)', 'tools/snapshot_close.py writes nothing for a market with no recorded market price',
+              'No close can be recorded for Week 10 or later without a price; an unpriced timestamp is never a close.'],
+             ('repo',), 'Project record (tested)'),
+     ])
      + table('Origination order (fixed)',
              ['Emission order this week', 'Rule', 'Enforcement'], [_order_row])
      + table('Week 10 2026 snapshot — 52 originated markets (open)',
@@ -283,11 +301,11 @@ page('markets.html', 'W10 snapshots', 'Every market we originate, opened and clo
      ])
      + table('Close-capture automation (no manual input; schedules the a77d40e1 F30 close-run gap for this store)',
              ['Piece', 'Behaviour', 'Guardrail'], [
-         row(['tools/snapshot_close.py', 'Recomputes fair numbers at close from the same inputs and records closed_at before kickoff',
-              'Refuses to overwrite an open row with a changed model id or input hash'],
+         row(['tools/snapshot_close.py', 'Recomputes fair numbers at close from the same inputs and records closed_at only for an open market that has a recorded market price',
+              'Refuses to overwrite an open row with a changed model id or input hash; writes nothing for an unpriced market (session 446067c4)'],
              ('repo',), 'Project record'),
-         row(['.github/workflows/snapshot.yml', 'Scheduled pre-kickoff Sunday 16:45 UTC and daily 16:00 UTC; commits only under data/snapshots/**',
-              'Fails closed: a run with unexpected file changes aborts the commit'],
+         row(['.github/workflows/snapshot.yml', 'Scheduled 14:00 UTC daily and 23:30 UTC Thursdays (the cron in the file); commits only under data/snapshots/**',
+              'Fails closed on unexpected file changes. The only run on record was created 2026-11-15 19:31 UTC, after kickoff (see the withdrawal table on markets.html)'],
              ('repo',), 'Scheduled workflow'),
      ]))
 
@@ -431,7 +449,7 @@ PAGES['index.html'] = (*PAGES['index.html'][:3],
                          '<p>Complements to the a77d40e1 market-board delta: a Week 10-specific '
                          '<a href="markets.html">price-snapshot store</a> whose opens were captured before the '
                          'Week 10 kickoffs (52 markets, fair line / market line / difference as separate columns, '
-                         'side → total → moneyline origination order) with scheduled pre-kickoff close capture; '
+                         'side → total → moneyline origination order) and a scheduled close capture that has not yet produced a priced close (the Week 10 bot stamp was withdrawn; see markets.html); '
                          '<a href="replacement-chains.html">replacement chains</a> deriving the replacement '
                          '<em>and its chart depth</em> for the Week 10 injury report from 19 newly retrieved club '
                          'charts; a quantitative <a href="demotion.html">demotion gate</a> with unit-tested '

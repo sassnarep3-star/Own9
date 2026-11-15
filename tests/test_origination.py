@@ -7,6 +7,7 @@ cannot) validate the elo-v1 model's predictive quality.
 """
 import hashlib
 import json
+import sys
 import unittest
 from pathlib import Path
 
@@ -20,18 +21,16 @@ from engine.origination_elo import (originate, load_results, run_elo, sample_sta
                                 MARKET_ORDER)
 
 OPENED_AT = '2026-11-14 (UTC, store deployment)'
-CLOSED_AT = '2026-11-15 19:31 UTC'
-CLOSED_STATUS = 'closed · pre-kickoff capture'
 
 
 def _fresh_store():
-    store = originate(RESULTS, WEEK10, OPENED_AT)
-    # Reproduce the close-capture step (tools/snapshot_close.py) so the
-    # committed closed store can be compared against regeneration.
-    for m in store['markets']:
-        m['closed_at'] = CLOSED_AT
-        m['status'] = CLOSED_STATUS
-    return store
+    # Pure regeneration from committed inputs: no close has been recorded.
+    return originate(RESULTS, WEEK10, OPENED_AT)
+
+
+def _expected_store():
+    from tools.withdraw_close_stamps import build
+    return build()
 
 
 class LoadResults(unittest.TestCase):
@@ -117,8 +116,41 @@ class OriginationOrder(unittest.TestCase):
 
     def test_committed_store_matches_regeneration(self):
         committed = json.loads(STORE.read_text())
-        self.assertEqual(committed, _fresh_store(),
-                         'the committed store must be exactly what the committed inputs produce')
+        self.assertEqual(committed, _expected_store(),
+                         'the committed store must be exactly what the committed inputs produce, '
+                         'with the documented close-stamp withdrawal applied')
+
+    def test_no_market_carries_a_close_without_a_price(self):
+        for m in self.store['markets']:
+            self.assertIsNone(m['closed_at'], m['market_id'])
+            self.assertNotIn('closed', m['status'], m['market_id'])
+            self.assertIsNone(m['market_line'], m['market_id'])
+
+    def test_withdrawn_stamps_are_kept_as_audit_fields(self):
+        committed = json.loads(STORE.read_text())
+        audit = committed['meta']['close_audit']
+        self.assertEqual(audit['markets_withdrawn'], 52)
+        self.assertEqual(audit['bot_stamp_utc'], '2026-11-15 19:31 UTC')
+        self.assertTrue(all(m['withdrawn_close_stamp'] == audit['bot_stamp_utc']
+                            for m in committed['markets']))
+        self.assertTrue(any('18:00 UTC' in e for e in [audit['reason']]))
+
+    def test_unpriced_close_is_refused_by_close_tool(self):
+        import shutil
+        import tempfile
+        sys.path.insert(0, str(ROOT))
+        from tools.snapshot_close import close_store, OPEN_STATUS
+        with tempfile.TemporaryDirectory() as d:
+            store = json.loads(STORE.read_text())
+            for m in store['markets']:
+                m['status'] = OPEN_STATUS
+                m['closed_at'] = None
+            tmp = Path(d) / 'store.json'
+            tmp.write_text(json.dumps(store))
+            before = tmp.read_text()
+            self.assertEqual(close_store(tmp, RESULTS, '2026-11-15 14:00 UTC'), 0)
+            self.assertEqual(tmp.read_text(), before, 'an unpriced close must write nothing')
+            shutil.rmtree(d, ignore_errors=True)
 
 
 class DemotionGateBoundaries(unittest.TestCase):

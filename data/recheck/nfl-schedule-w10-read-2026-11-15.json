@@ -1,0 +1,120 @@
+{
+  "source_url": "https://www.nfl.com/schedules/2026/by-week/week-10",
+  "read_on": "2026-11-15 (about 23:27 UTC)",
+  "read_by": "session 446067c4, fetch tool, chunk 1 of 2",
+  "method": "Status and final score as printed in the page headline. Away team first, as the page URL orders them. Not every game was readable in chunk 1.",
+  "games": [
+    {
+      "away": "WAS",
+      "home": "NYG",
+      "status": "FINAL",
+      "away_score": 24,
+      "home_score": 21,
+      "note": "Thu 12 Nov, Commanders 24, Giants 21"
+    },
+    {
+      "away": "NE",
+      "home": "DET",
+      "status": "FINAL",
+      "away_score": 10,
+      "home_score": 35,
+      "note": "Sun 15 Nov (Munich), Patriots 10, Lions 35"
+    },
+    {
+      "away": "KC",
+      "home": "ATL",
+      "status": "FINAL",
+      "away_score": 35,
+      "home_score": 13,
+      "note": "Sun 15 Nov, Chiefs 35, Falcons 13"
+    },
+    {
+      "away": "HOU",
+      "home": "CLE",
+      "status": "FINAL",
+      "away_score": 24,
+      "home_score": 27,
+      "note": "Sun 15 Nov, Texans 24, Browns 27"
+    },
+    {
+      "away": "MIN",
+      "home": "GB",
+      "status": "FINAL",
+      "away_score": 30,
+      "home_score": 10,
+      "note": "Sun 15 Nov, Vikings 30, Packers 10"
+    },
+    {
+      "away": "MIA",
+      "home": "IND",
+      "status": "FINAL",
+      "away_score": 22,
+      "home_score": 24,
+      "note": "Sun 15 Nov, Dolphins 22, Colts 24"
+    },
+    {
+      "away": "CAR",
+      "home": "NO",
+      "status": "FINAL",
+      "away_score": 20,
+      "home_score": 17,
+      "note": "Sun 15 Nov, Panthers 20, Saints 17"
+    },
+    {
+      "away": "BUF",
+      "home": "NYJ",
+      "status": "FINAL",
+      "away_score": 31,
+      "home_score": 12,
+      "note": "Sun 15 Nov, Bills 31, Jets 12"
+    },
+    {
+      "away": "JAX",
+      "home": "TEN",
+      "status": "FINAL",
+      "away_score": 40,
+      "home_score": 23,
+      "note": "Sun 15 Nov, Jaguars 40, Titans 23"
+    },
+    {
+      "away": "LA",
+      "home": "AZ",
+      "status": "LIVE (Q4)",
+      "away_score": 34,
+      "home_score": 6,
+      "note": "Rams 34, Cardinals 6, Q4 when read"
+    },
+    {
+      "away": "SEA",
+      "home": "LV",
+      "status": "LIVE (Q4)",
+      "away_score": 21,
+      "home_score": 10,
+      "note": "Seahawks 21, Raiders 10, Q4 when read"
+    },
+    {
+      "away": "SF",
+      "home": "DAL",
+      "status": "NOT READ",
+      "away_score": null,
+      "home_score": null,
+      "note": "Not in chunk 1"
+    },
+    {
+      "away": "PIT",
+      "home": "CIN",
+      "status": "NOT READ",
+      "away_score": null,
+      "home_score": null,
+      "note": "Not in chunk 1"
+    },
+    {
+      "away": "LAC",
+      "home": "BAL",
+      "status": "NOT READ",
+      "away_score": null,
+      "home_score": null,
+      "note": "Not in chunk 1"
+    }
+  ]
+}

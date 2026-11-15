@@ -321,6 +321,11 @@ correlations, signal/staking sheets) — this session adds only what that delta 
   record `closed_at` (and, if the feed grew, `model_fair_close`) before kickoff, refusing to run if the
   declared method constants changed, and committing only under `data/snapshots/` — the scheduled close run
   a77d40e1's F30 asked for, adopted here for the Week 10 store.
+  **Correction (session 446067c4, 15 Nov 2026):** the first close run on record (created 2026-11-15
+  19:31 UTC) stamped all 52 Week 10 markets without any market price, after the 1:00 PM ET kickoff of
+  KC @ ATL. Those stamps are withdrawn (`closed_at` is null; the stamp is kept as
+  `withdrawn_close_stamp`). `tools/snapshot_close.py` now writes nothing for an unpriced market. No
+  Week 10 closing price exists. See [markets.html](markets.html) for the withdrawal table and sources.
 
 New suggestions S-17–S-21 (price archive, close-capture adoption, sealed backtest, signal/staking adoption,
 game-centre row verification) and open questions Q-23/Q-24 (grading operator; re-promotion thresholds) are in

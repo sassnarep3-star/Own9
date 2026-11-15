@@ -39,7 +39,7 @@ NAV_GROUPS = [
     ('Evidence', [('index.html','Overview'),('availability.html','Availability tracker'),('injuries.html','Injuries & depth'),('availability-evidence.html','Availability sources'),('lines.html','Own lines'),('results-feed.html','Results feed'),('origination.html','Market board'),('price-snapshots.html','Price snapshots'),('markets.html','W10 snapshots'),('replacement-depth.html','Replacement depth'),('replacement-chains.html','Replacement chains'),('data.html','Data requirements'),('sources.html','Sources')]),
     ('Research', [('strategies.html','Strategies'),('correlations.html','Correlations'),('correlations-official.html','Correlations (official)'),('validation.html','Validation'),('leaderboard.html','Leaderboard'),('signal-staking.html','Signal vs staking'),('signal-and-staking.html','Signal vs staking (enforced)'),('requirements.html','Requirements'),('price-feed.html','Price & results'),('depth-correlations.html','Depth & correlation'),('demotion.html','Demotion gate'),('origination/index.html','Line origination desk')]),
     ('Origination', [('origination-engine.html','Origination engine'),('results.html','Verified results'),('depth-of-replacement.html','Depth of replacement'),('dependence.html','Dependence'),('signal-vs-staking.html','Signal / staking split')]),
-    ('Review', [('suggestions.html','Suggestions'),('suggestion-costs.html','Suggestion costs'),('flags.html','Flagged for review'),('audit.html','Repository audit'),('requirements-coverage.html','Requirements coverage')]),
+    ('Review', [('suggestions.html','Suggestions'),('suggestion-costs.html','Suggestion costs'),('flags.html','Flagged for review'),('injury-recheck.html','Official recheck'),('audit.html','Repository audit'),('requirements-coverage.html','Requirements coverage')]),
 ]
 
 
@@ -834,6 +834,16 @@ exec(compile(_0167a04c_body, 'pages_0167a04c.py', 'exec'),
       '__name__': 'pages_0167a04c'})
 
 
+# Session 446067c4: official recheck page, decision-readiness table on the overview, and the
+# session's review flags. Same additive pattern: the module edits PAGES and reads committed files.
+KEEP_DATE_15 = {'injury-recheck.html'}
+_pages_446067c4 = (ROOT/'tools/pages_446067c4.py').read_text()
+_446067c4_body = _pages_446067c4.split('\"\"\"', 2)[2]
+exec(compile(_446067c4_body, 'pages_446067c4.py', 'exec'),
+     {'page': page, 'table': table, 'row': row, 'e': e, 'PAGES': PAGES, 'ROOT': ROOT,
+      'INJ': INJ, 'json': json, '__name__': 'pages_446067c4'})
+
+
 def render():
     files = {}
     for filename,(label,title,intro,content) in PAGES.items():
@@ -841,7 +851,7 @@ def render():
             f'<span class="nav-group"><span class="nav-label">{e(group)}</span>'
             + ''.join(f'<a href="{f}"'+(' aria-current="page"' if f==filename else '')+f'>{e(label)}</a>' for f,label in items)
             + '</span>' for group,items in NAV_GROUPS)
-        page_date = '14 Nov 2026' if filename in KEEP_DATE_14 else '04 Nov 2026'
+        page_date = '15 Nov 2026' if filename in KEEP_DATE_15 else ('14 Nov 2026' if filename in KEEP_DATE_14 else '04 Nov 2026')
         files[filename] = f'''<!doctype html>
 <html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="description" content="Evidence-first NFL research dashboard. Strategies, validation, correlation requirements and transparent limitations."><title>{e(label)} · Own9 NFL Research</title><link rel="stylesheet" href="style.css"><script src="site.js" defer></script></head>
 <body><a class="skip" href="#main">Skip to content</a><header><div class="shell top"><a class="brand" href="index.html"><span>O9</span> OWN9 <small> / NFL RESEARCH</small></a><span class="status-dot">Research only · no live wagers</span></div><nav class="shell" aria-label="Main navigation">{nav}</nav></header>

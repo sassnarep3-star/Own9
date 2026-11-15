@@ -245,6 +245,42 @@ def originate(results_path, week10_path, opened_at):
     }
 
 
+# --- Close-stamp withdrawal (session 446067c4) ---------------------------------
+# The scheduled close bot stamped every Week 10 market with closed_at and a
+# "closed · pre-kickoff capture" status although no market price existed and
+# the stamp (2026-11-15 19:31 UTC, workflow run 43752883100, created 19:31:20Z)
+# came after the official 1:00 PM ET (18:00 UTC) kickoff of KC @ ATL. A stamp
+# without a price is not a close, so it is withdrawn and kept as an audit field.
+PENDING_CLOSE_STATUS = "open · close capture pending"
+CLOSE_WITHDRAWN_STATUS = "open · no pre-kickoff close captured (bot stamp withdrawn)"
+WEEK10_BOT_STAMP = "2026-11-15 19:31 UTC"
+
+
+def withdraw_close_stamp(store, stamp, reason, evidence):
+    """Return a copy of `store` in which unpriced close stamps are withdrawn.
+
+    Only markets still pending a close and carrying no market_line are changed:
+    closed_at is cleared, the stamp is preserved in withdrawn_close_stamp, and the
+    status states plainly that no pre-kickoff close exists. Pure and deterministic.
+    """
+    import copy
+    out = copy.deepcopy(store)
+    changed = 0
+    for m in out["markets"]:
+        if m["market_line"] is None and m["status"] in (PENDING_CLOSE_STATUS,):
+            m["withdrawn_close_stamp"] = stamp
+            m["closed_at"] = None
+            m["status"] = CLOSE_WITHDRAWN_STATUS
+            changed += 1
+    out["meta"]["close_audit"] = {
+        "bot_stamp_utc": stamp,
+        "markets_withdrawn": changed,
+        "reason": reason,
+        "evidence": evidence,
+    }
+    return out
+
+
 # --- Demotion gate (live -> paper) -------------------------------------------
 DEMOTION_THRESHOLDS = {
     "min_trailing_bets": 20,     # below this, no demotion decision is made
