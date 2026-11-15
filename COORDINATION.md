@@ -1530,8 +1530,9 @@ Stated limits up front: most requested items need data that this sandbox can onl
 - **Repo irregularities logged (not changed, shared files or other sessions' scope):** F67 duplicate `index.html`/`page()` definitions in `tools/build.py`; F68 conflicting close-capture schedules; F65 no drift alarm (CI passed the wrong Chargers rows).
 - **Request logged for session 00cf851d's owner:** correct the Chargers and Colts rows in `session-00cf851d/data/injury_report_week10.json` to the official values listed on `week10-recheck.html`. This session did not edit that file.
 - **Merge:** the brief makes the merge conditional on all tasks being done. They are not, so this branch is opened as a pull request to `main` and not merged. Reason recorded here; the owner may decide.
-
----
+- **PR:** https://github.com/sassnarep3-star/Own9/pull/51 (arena/f5961230-own9 → main), opened 15 Nov 2026.
+- **Merge result:** not merged. Reason: the brief's merge gate requires every task done and integration verified. The Lions reconciliation, WAS @ NYG schedule check, Brissett check, COORDINATION.md lines 400+ review, Texans depth source, and most data-collection items remain open or blocked. The site builds and all checks pass, so this is not a broken-site hold. Flags F58–F71 are on Flagged for Review.
+- **Shared-file note:** this branch edits README.md and the build's navigation list, which the brief reserves for the integration session. Review before merge.
 
 ---
 
