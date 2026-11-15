@@ -1551,3 +1551,27 @@ Scope notes: nothing in `site/**`, `strict-lab/**`, `own9-research/**`, `release
 **Boundaries kept:** no market price, close, probability, edge, strategy result or reward was created. The new readiness numbers are counts of what the repository contains. Nothing in `site/**`, `strict-lab/**`, `own9-research/**`, `release-checks/**` (beyond its tests run), `independent-audit/**` or `origination/**` data was edited.
 
 **Not done in this session (honest scope):** the full eight-chunk, 254/279 re-capture; an automated, hashed multi-day injury capture (needs a workflow tested in Actions, F62); ingestion of the 2026 Week 10 finals as a versioned feed (F60); priced market data (none obtained); official snap counts, official depth charts for 32 clubs, the game-centre venue transcription, the roof and weather overlay, past-season injury archives, roster-event register, pre-registration commits and "what would change our mind" fields for strategies. Each is a row in the decision-readiness table with its gate and clearing number.
+
+### 446067c4 — verification corrections and scope amendment (2026-11-15 UTC)
+
+**Corrections to the record above (these supersede it):**
+- **Kickoff times are verified.** The earlier note that the injury page does not state kickoff times was wrong. Re-fetching https://www.nfl.com/injuries/ (chunk 1 of 8) shows the game headers "9:30 AMEST, FOX, FOX DEPORTES" (NE @ DET) and "1:00 PMEST, CBS" (KC @ ATL). Both times, as converted in the repository (14:30 UTC and 18:00 UTC, EST = UTC−5 after the November change), now stand on that source. The schedule-page re-read has no times for games already Final, so it is not the source for them.
+- **Week 10 explicit statuses re-checked** on the same page for WAS, NYG, NE and DET (the rows shown in that chunk, including Patrick and Yankoff Out; Ben Brown, Carlton Davis and TreVeyon Henderson Out; Joseph, Mays and Reed Out; Malik Harrison Questionable). Chunks 2–8 are still not re-read.
+- **Cron text is verified.** `.github/workflows/snapshot.yml` contains `cron: '0 14 * * *'` and `cron: '30 23 * * 4'` (day 4 = Thursday), matching the cron row in `tools/pages_9a409d93.py`.
+- **`session-00cf851d/` is reverted** to `61a6e68`. The earlier commit `8dcd329` regenerated that session's measured inventory after our files were added. That was a change to another session's tree, so it is undone. Its owner should regenerate it if needed.
+
+**Scope amendment** (this session's claim now covers every path it changed on this branch):
+- `injury-recheck.html` (new); `tools/pages_446067c4.py` (new); `tools/build.py` (nav entry, `KEEP_DATE_15`, exec block)
+- `data/recheck/**` (new: the WAS/NYG/NE/DET transcription and the W10 schedule read)
+- `evidence/sources.json` (two entries added: `nfl-injury-recheck-2026-11-15`, `nfl-sched-w10-recheck-2026-11-15`)
+- `engine/origination_elo.py` (`withdraw_close_stamp()`), `tools/snapshot_close.py` (refuses unpriced closes), `tools/withdraw_close_stamps.py` (new), `data/snapshots/2026-w10-price-snapshot.json`, `tests/test_origination.py` (PR #50 overlap, see above)
+- `tools/pages_9a409d93.py` (close-stamp rows, cron row), `README.md` (close-capture correction paragraph)
+- Generated pages from `tools/build.py` only: `index.html` (readiness table prepended), `flags.html` (F58–F66 appended), `markets.html`, `results-feed.html`, and the navigation on each root page. These are integration-session outputs. Our contribution to them is a request for the integration session (below), not a standing change.
+
+**Requests for the integration session (shared outputs, not edited by this session beyond regeneration):**
+1. Keep the readiness table (`index.html`) and F58–F66 (`flags.html`) as generated from `tools/pages_446067c4.py`, or move them into the integration build.
+2. Remove the stale "pending close" wording still present in `decision.html` (D-18), `README.md` (~line 302), `docs/RESEARCH_SPEC.md`, `research/decision-brief.json`, and `research/suggestions.json`.
+3. Investigate run 43752883100 (headSha `5ce400ec…`, not the local `39d8649`) before trusting that run's record.
+4. Decide Q-21 / OD-16 (two origination implementations) and OD-01 (licence of `data/raw/*.csv`).
+
+**Still open for this session (not done):** full eight-chunk re-read of the injury page; priced market data for any Week 10 market (none exists, so no close can be valid); the guard gap noted earlier (`market_line` is null by policy, so the bot closes zero markets, and the "both prices" rule is not implemented); the PR #38 file overlap check; and the remaining workflows and README reads.
