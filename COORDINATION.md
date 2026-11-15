@@ -1502,3 +1502,18 @@ Desk: https://sassnarep3-star.github.io/Own9/origination/
 4. **OD-03** — ROI remains arithmetic, not economics, until executable quotes are captured.
 5. **Q-02** — external confirmation of the score content for 1999–2009 and the seasons
    not checked (2011–2017, 2019–2024) is still missing.
+
+---
+
+## Session 446067c4 — claim (branch `arena/446067c4-own9`, base `39d8649`) — 2026-11-15 UTC
+
+Board read before claiming: every prior claim in this file is `done`, `needs review` or relinquished. The last entry is `2c3cef39` (complete). `gh pr list --state open` shows one foreign open PR, #38 (`arena/22de6677-own9`, "Add pinned, all-section citation coverage audit"). It is not touched by this session. This session claims the scopes below and does not edit any other session's claimed files without logging it here.
+
+| Task | Status | Owner | Files |
+| --- | --- | --- | --- |
+| Close-stamp integrity: the scheduled close bot stamped 52 Week 10 markets "closed · pre-kickoff capture" with no market price, after official kickoffs. Correct the record, stop the bot from writing unpriced closes, and restore the red `main` test | in progress | 446067c4 | `data/snapshots/2026-w10-price-snapshot.json`, `tools/snapshot_close.py`, `tests/test_origination.py`, `markets.html` (regenerated), `results-feed.html` / `index.html` / `README.md` wording only where they state the false claim |
+| Official re-verification of the Week 10 2026 NFL injury report (Lions Out rows, slate kickoff times) with source links | in progress | 446067c4 | `injury-recheck.html` (new), `data/recheck/**` (new) |
+| Landing-page decision-readiness table: one row per requirement, the gate that blocks it, the number that would clear it, and the current measured number | in progress | 446067c4 | `tools/build.py` (index block and nav only), `research/readiness.json` (new), `index.html` (regenerated) |
+| Flagged for Review additions for every irregularity found in this session | in progress | 446067c4 | `tools/build.py` (flags block, additive), `flags.html` (regenerated) |
+
+Scope notes: nothing in `site/**`, `strict-lab/**`, `own9-research/**`, `release-checks/**`, `independent-audit/**`, `session-*/**`, `origination/**` or `engine/**` is edited. The Pages site is the legacy root build of `main`; this session's merge publishes it. Sandbox limits recorded up front: the shell cannot reach `nfl.com` (TLS fails), so official pages are read through the fetch tool only. No value is inferred. Any value that cannot be read from an official page is left blank and flagged.
