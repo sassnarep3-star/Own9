@@ -24,6 +24,24 @@ plus one market-data audit computed at build time from the files committed in `d
 | Know which official source answers an availability question | [Availability sources](availability-evidence.html) |
 | See which questions are answered, open, or blocked on a decision | [Question ledger](question-ledger.html) |
 
+## Session f5961230 (15 Nov 2026): repair, Week 10 re-check, decision readiness
+
+- **Repaired two failing checks on main.** The scheduled close job had set all 52 Week 10 markets to
+  "closed · pre-kickoff capture" with no market price. The store is back to its open state, and
+  `tools/snapshot_close.py` now refuses to write until a real closing-price source exists (F58).
+- **[Week 10 re-check](week10-recheck.html).** The official NFL injury page, read on 15 Nov 2026, shows
+  347 player rows in 28 club tables, 171 of them with a designation (hand count; the repo capture has 162 by script count). The repo capture agrees on rows but
+  has Chargers rows with every injury and designation cell blank, and an Arden Key entry the official page
+  does not show (F59, F60). Several figures in the brief (254/279 rows, the "injury-free" Seahawks and
+  Bengals, the blank Lions designations) are not reproduced; each claim has a verdict and a link.
+- **[Decision readiness](readiness.html).** One row per requirement in the brief, with status, blocking gate
+  and the number that would clear it. Counts are summarised on the [overview](index.html).
+- **New findings** are on [Flagged for Review](flags.html) as F58–F70. The "VR-xx / VQ-xx" references, the
+  136-game log and the price-data policy could not be traced in the repository (F62–F64).
+- **Not done:** most of the brief's data-collection items (archives, snap counts, Game Books for 14 games,
+  venue transcription, NWS overlays, depth charts for 32 clubs) need sources this session could not
+  obtain, and are listed as blocked rather than filled in.
+
 ## What was verified this session
 
 - Three official NFL Game Books (Weeks 9 and 10, 2026) were read for their

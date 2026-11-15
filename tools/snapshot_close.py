@@ -2,8 +2,18 @@
 """Close-capture for the price-snapshot store (no manual input).
 
 Run by the scheduled workflow before kickoff (see
-.github/workflows/snapshot.yml). For every market whose status is still
-"open · close capture pending" this script:
+.github/workflows/snapshot.yml).
+
+SAFETY NOTE (session f5961230): no executable closing market price exists in any
+source this repository has access to (see data/snapshots/CONTRACT.md and F34).
+A model recomputation is not a closing price, so this job must NOT mark any market
+closed. Until a licensed or officially published closing-price source is wired in
+via CLOSING_PRICE_SOURCE, close_store() refuses, leaves the store untouched and
+exits 0 with a visible warning. The earlier behaviour (which set status to
+"closed · pre-kickoff capture" with null market_line) is retired.
+
+The description below is the behaviour the job will have once a real source is
+configured:
 
   1. re-checks the store's declared method constants against the live
      engine/origination_elo.py — if the constants or the origination order
@@ -51,7 +61,17 @@ def _declared_constants(meta):
     }
 
 
+# None = no closing-price source has been wired in. Set to a source id only when
+# a published or licensed closing-line feed with provenance exists.
+CLOSING_PRICE_SOURCE = None
+
+
 def close_store(store_path=DEFAULT_STORE, results_path=DEFAULT_RESULTS, at=None):
+    if CLOSING_PRICE_SOURCE is None:
+        print('::warning::NO-OP: no closing-price source is configured. A model '
+              'recomputation is not a closing price, so no market was marked closed. '
+              'Store untouched (see data/snapshots/CONTRACT.md).')
+        return 0
     store = json.loads(Path(store_path).read_text())
     meta = store['meta']
     guards = [
