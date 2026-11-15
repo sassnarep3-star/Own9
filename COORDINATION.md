@@ -1517,3 +1517,37 @@ Board read before claiming: every prior claim in this file is `done`, `needs rev
 | Flagged for Review additions for every irregularity found in this session | in progress | 446067c4 | `tools/build.py` (flags block, additive), `flags.html` (regenerated) |
 
 Scope notes: nothing in `site/**`, `strict-lab/**`, `own9-research/**`, `release-checks/**`, `independent-audit/**`, `session-*/**`, `origination/**` or `engine/**` is edited. The Pages site is the legacy root build of `main`; this session's merge publishes it. Sandbox limits recorded up front: the shell cannot reach `nfl.com` (TLS fails), so official pages are read through the fetch tool only. No value is inferred. Any value that cannot be read from an official page is left blank and flagged.
+
+### 446067c4 — status, overlap and completion record (2026-11-15 UTC)
+
+**Final task status** (the claim table above is append-only history; these are the statuses to read):
+
+| Task | Final status | What was done | What remains (flag) |
+| --- | --- | --- | --- |
+| Close-stamp integrity and red `main` test | **done · needs review** | Bot stamps for all 52 Week 10 markets withdrawn (`closed_at` null; kept as `withdrawn_close_stamp`); `tools/snapshot_close.py` writes nothing for an unpriced market; test now compares the committed store with `withdraw_close_stamp(originate(...))`; tests added for the withdrawal and the refusal; `markets.html`, `README.md`, `results-feed.html` and the schedule text corrected. | Priced closes do not exist (F58). Clock times are not stored (F64). |
+| Official re-verification of the Week 10 report | **needs review (partial)** | Four complete club tables re-read (WAS, NYG, NE, DET; 44 rows); 20 of 20 explicit-status rows match the repository table; Lions Out rows (VR-08, VR-12) confirmed; Week 10 schedule re-read (9 FINAL, 2 in Q4, 3 not read). Page: `injury-recheck.html`. | Chunks 2–8 not re-read; 254/279 counts, SEA/CIN statements not re-verified; no capture job (F61, F62, F66). |
+| Decision-readiness table on the overview | **done** | 21 rows, one per requirement: measured-now value, blocking gate, and the number that would clear it, all computed at build time from committed files (`tools/pages_446067c4.py`). | Most rows are "blocked" by missing sources; that is the finding. |
+| Flagged for Review additions | **done** | F58–F66 appended to `flags.html`. | Owner decisions in F60 and F65. |
+
+**Overlap with PR #50 (`arena/4e62e00b-own9`, merged 15 Nov 2026 23:32:29 UTC, commit `61a6e68`).** That PR changed `tests/test_origination.py` so that `_fresh_store()` applied the bot's close stamp (`closed · pre-kickoff capture`, 19:31 UTC) to all 52 markets, and regenerated `markets.html` to match. That treats an unpriced stamp, made after the official 1:00 PM ET kickoff of KC @ ATL (18:00 UTC), as a valid pre-kickoff close. The official kickoff times and the store contents contradict it. This session **supersedes** that test change and that page content. The rebase kept upstream's `markets.html` and then regenerated it, and the test file keeps the pure regeneration. No other part of PR #50 was changed. This is logged here instead of silently reverted, as the board rules require.
+
+**Also observed (not changed here):** the close workflow ran once on record (`snapshot-close`, run 43752883100, created 19:31:20 UTC, event `schedule`). Its commit `39d8649` triggered the Pages build but no `Research quality` run, so the failing test was not reported until this session.
+
+**Sources read on 2026-11-15 (fetch tool; the shell cannot reach nfl.com):**
+- https://www.nfl.com/injuries/ (chunk 1 of 8; WAS, NYG, NE, DET tables; kickoff times 9:30 AM EST NE @ DET, 1:00 PM EST KC @ ATL). Registered as `nfl-injury-recheck-2026-11-15`.
+- https://www.nfl.com/schedules/2026/by-week/week-10 (chunk 1 of 2; FINAL/live status and scores). Registered as `nfl-sched-w10-recheck-2026-11-15`.
+- Saved rows: `data/recheck/nfl-injury-w10-clubs-read-2026-11-15.json` and `data/recheck/nfl-schedule-w10-read-2026-11-15.json`. These were transcribed from the fetch output, not byte-hashed.
+- GitHub: `gh run list --workflow snapshot.yml`, `gh run list --branch main`, `gh pr list` (for the run times and PR #50).
+
+**Verification performed (all green on the branch before the PR):**
+- `python3 -m unittest discover -s tests` — 285 tests OK (the failing test on `main` is fixed).
+- `python3 tools/build.py` run twice — deterministic; `python3 tools/verify.py` — 40 pages, 1,856 source-linked rows.
+- `python3 release-checks` tests, `engine/availability.py`, `engine/registers.py`, `scripts/check_site.py` — OK.
+- `python3 research/make_catalog.py` and `python3 scripts/build_site.py` — no diff.
+- `session-00cf851d` regeneration and tests — OK; its measured inventory regenerated for the new files (counts only; logged as an edit to another session's tree).
+- `origination/` run, build, verify and tests — OK, no diff.
+- Browser suites: root (40 pages × 2 viewports, 80 axe checks), `scripts/browser_test.cjs`, `session-00cf851d` and `origination` — all PASS.
+
+**Boundaries kept:** no market price, close, probability, edge, strategy result or reward was created. The new readiness numbers are counts of what the repository contains. Nothing in `site/**`, `strict-lab/**`, `own9-research/**`, `release-checks/**` (beyond its tests run), `independent-audit/**` or `origination/**` data was edited.
+
+**Not done in this session (honest scope):** the full eight-chunk, 254/279 re-capture; an automated, hashed multi-day injury capture (needs a workflow tested in Actions, F62); ingestion of the 2026 Week 10 finals as a versioned feed (F60); priced market data (none obtained); official snap counts, official depth charts for 32 clubs, the game-centre venue transcription, the roof and weather overlay, past-season injury archives, roster-event register, pre-registration commits and "what would change our mind" fields for strategies. Each is a row in the decision-readiness table with its gate and clearing number.
