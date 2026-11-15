@@ -30,7 +30,7 @@ plus one market-data audit computed at build time from the files committed in `d
   "closed · pre-kickoff capture" with no market price. The store is back to its open state, and
   `tools/snapshot_close.py` now refuses to write until a real closing-price source exists (F58).
 - **[Week 10 re-check](week10-recheck.html).** The official NFL injury page, read on 15 Nov 2026, shows
-  347 player rows in 28 club tables, 171 of them with a designation. The repo capture agrees on rows but
+  347 player rows in 28 club tables, 171 of them with a designation (hand count; the repo capture has 162 by script count). The repo capture agrees on rows but
   has Chargers rows with every injury and designation cell blank, and an Arden Key entry the official page
   does not show (F59, F60). Several figures in the brief (254/279 rows, the "injury-free" Seahawks and
   Bengals, the blank Lions designations) are not reproduced; each claim has a verdict and a link.
