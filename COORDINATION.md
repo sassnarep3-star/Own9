@@ -1502,3 +1502,18 @@ Desk: https://sassnarep3-star.github.io/Own9/origination/
 4. **OD-03** — ROI remains arithmetic, not economics, until executable quotes are captured.
 5. **Q-02** — external confirmation of the score content for 1999–2009 and the seasons
    not checked (2011–2017, 2019–2024) is still missing.
+
+---
+
+## Session f5961230 — claim and scope (branch `arena/f5961230-own9`)
+
+Arena fixes this session to branch `arena/f5961230-own9`. Per the session rules, no `session-<id>/<task>` branches are created; all work, commits and pushes stay on this branch. Other sessions' scopes are not edited.
+
+| Task | Status | Owner | File scope |
+| --- | --- | --- | --- |
+| Repair failing checks on main: stale generated `markets.html` and a price store closed without any market price | in progress | f5961230 | `tools/snapshot_close.py`, `data/snapshots/2026-w10-price-snapshot.json`, `markets.html`, `COORDINATION.md` |
+| Re-verify the Week 10 official NFL injury report line by line (counts, no-injury sections, Lions designations) and publish derived counts only | in progress | f5961230 | `evidence/availability/week-10-official-recheck.json`, new `verification/` note, `COORDINATION.md` |
+| Decision-readiness register: one row per requirement, blocking gate, number that clears it, status | in progress | f5961230 | `readiness.html` (new), `tools/readiness.py` (new), `tools/build.py` nav entry, `index.html` link |
+| Flagged for Review additions (irregularities found this session) | in progress | f5961230 | `flags.html` (append entries only) |
+
+Stated limits up front: most requested items need data that this sandbox can only reach through the official NFL pages, and some need sources that are not in the repository at all (for example the `VR-xx`/`VQ-xx` references, the Texans depth image, historical injury archives and snap counts). Those rows will be listed as blocked, not completed.
