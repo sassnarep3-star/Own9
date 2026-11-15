@@ -386,6 +386,8 @@ def register(page, table, row, PAGES, page_date_override):
              'Open item; a full row-level pass is required before the repo table is called verified.'], ('nfl-injury-2026-11-15',), 'Verification gap'),
         row(['F70 · Medium', 'Texans depth chart is an image labelled "Unofficial Depth Chart" on the official club site. It cannot be transcribed without an authorised structured source. The Packers jersey-number prefix and the Colts trades were not checked.',
              'Blocked on the depth-source decision.'], ('houston-depth-image',), 'Unverified item'),
+        row(['F71 · Medium', 'Ravens: Lamar Jackson is on injured reserve. Two NFL items give different timelines: "out 6-9 weeks, expects to return this season" (NFL Network, Nov 9) and "expected to miss 6-10 weeks" (NFL news roundup, Nov 13). The official Week 10 page has no Jackson row.',
+             'Use the official transaction or the club statement as the reference; do not average the two.'], ('nfl-injury-2026-11-15',), 'Irregularity'),
     ]
     flags_tbl = table('Added 15 Nov 2026 (session f5961230)', ['Finding', 'What is known and what is not', 'Next step'], flags_rows)
     label, title, intro, content = PAGES['flags.html']
