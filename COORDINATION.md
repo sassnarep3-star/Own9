@@ -1502,3 +1502,15 @@ Desk: https://sassnarep3-star.github.io/Own9/origination/
 4. **OD-03** — ROI remains arithmetic, not economics, until executable quotes are captured.
 5. **Q-02** — external confirmation of the score content for 1999–2009 and the seasons
    not checked (2011–2017, 2019–2024) is still missing.
+
+---
+
+## Session 23b64c60 — repo review, live official-source spot check, irregularity register
+
+Branch: `arena/23b64c60-own9` (the session branch is fixed by the environment; the `session-<id>/<task>` naming above was not used, and no other branch is created or pushed).
+
+| Task | Status | Owner | Files |
+| --- | --- | --- | --- |
+| Repo review: reproducibility of generators and tests, live spot check of official NFL pages, irregularity register with source links, executive summary | in progress | 23b64c60 | `review-23b64c60/**` (new, isolated folder) |
+
+Shared files (`index.html`, `flags.html`, `tools/build.py`, nav, `README.md`) are **not** edited in this session. Requests for the integration owner are listed in the review page.
