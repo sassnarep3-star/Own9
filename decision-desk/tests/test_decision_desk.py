@@ -42,7 +42,7 @@ class RequirementRegister(unittest.TestCase):
                 self.assertTrue(r['gate'].strip())
                 self.assertTrue(r['clearing_number'].strip())
                 self.assertTrue(r['evidence'])
-                self.assertIn(r['status'], ('met', 'partial', 'not-started', 'rejected'))
+                self.assertIn(r['status'], ('met', 'partial', 'not-started', 'rejected', 'blocked'))
 
     def test_ids_are_unique_and_sequential(self):
         ids = [r['id'] for r in load('requirements.json')]
@@ -59,6 +59,15 @@ class RequirementRegister(unittest.TestCase):
         statuses = {r['status'] for r in load('requirements.json')}
         self.assertIn('not-started', statuses)
         self.assertIn('partial', statuses)
+        self.assertIn('blocked', statuses)
+
+    def test_blocked_requirements_cite_the_terms_that_block_them(self):
+        terms = 'https://www.nfl.com/legal/terms/'
+        blocked = [r for r in load('requirements.json') if r['status'] == 'blocked']
+        self.assertTrue(blocked)
+        for r in blocked:
+            with self.subTest(id=r['id']):
+                self.assertIn(terms, [e['url'] for e in r['evidence']])
 
 
 class SuggestionBoard(unittest.TestCase):
@@ -66,6 +75,16 @@ class SuggestionBoard(unittest.TestCase):
         for s in load('suggestions.json')['suggestions']:
             with self.subTest(id=s['id']):
                 self.assertFalse(s['status'].lower().startswith('implemented'))
+
+    def test_suggestions_blocked_on_permission_name_the_terms(self):
+        terms = 'https://www.nfl.com/legal/terms/'
+        blocked = [s for s in load('suggestions.json')['suggestions']
+                   if 'blocked on permission' in s['status'].lower()]
+        self.assertTrue(blocked)
+        for s in blocked:
+            with self.subTest(id=s['id']):
+                self.assertIn(terms, [e['url'] for e in s['evidence']])
+                self.assertIn('Terms section 1.3', s['risk'])
 
     def test_no_path_is_chosen(self):
         for p in load('suggestions.json')['paths']:

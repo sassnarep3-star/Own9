@@ -19,6 +19,8 @@
   --notstarted-bg: #fbeaea;
   --rejected: #4a4f57;
   --rejected-bg: #eceef1;
+  --blocked: #5b2c83;
+  --blocked-bg: #f1e8f8;
   --radius: 10px;
 }
 
@@ -103,6 +105,15 @@ h2:first-of-type { margin-top: 18px; }
 .empty { color: var(--muted); font-style: italic; }
 
 section { margin-bottom: 34px; }
+
+.callout {
+  background: var(--panel);
+  border: 1px solid var(--line);
+  border-left: 4px solid var(--accent);
+  border-radius: var(--radius);
+  padding: 4px 18px 14px;
+}
+.callout h2 { border-bottom: none; margin-top: 16px; }
 
 .prose { max-width: 96ch; }
 .prose p { margin: 0 0 12px; }
@@ -210,6 +221,7 @@ table.wide td:nth-child(3) { min-width: 22ch; }
 .pill-partial { color: var(--partial); background: var(--partial-bg); }
 .pill-not-started { color: var(--notstarted); background: var(--notstarted-bg); }
 .pill-rejected { color: var(--rejected); background: var(--rejected-bg); }
+.pill-blocked { color: var(--blocked); background: var(--blocked-bg); }
 
 /* ---------- controls ---------- */
 

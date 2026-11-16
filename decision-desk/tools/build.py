@@ -42,6 +42,7 @@ STATUS_LABEL = {
     'partial': 'Partial',
     'not-started': 'Not started',
     'rejected': 'Rejected by design',
+    'blocked': 'Blocked by permission',
 }
 
 CATEGORY_ORDER = [
@@ -233,6 +234,7 @@ def build_index(reqs, flags, questions, cap):
         ('Met', f'{met} of {total}', 'implemented and populated with verified data'),
         ('Partial', f"{counts.get('partial', 0)} of {total}", 'the structure exists; the verified data does not yet'),
         ('Not started', f"{counts.get('not-started', 0)} of {total}", 'no implementation found in the repository'),
+        ('Blocked by permission', f"{counts.get('blocked', 0)} of {total}", 'NFL.com Terms 1.3; no amount of work substitutes'),
         ('Questions answered here', str(answered), 'each from an official page, each with a link'),
         ('Questions still open', str(openq), 'each with the data action or the decision that closes it'),
         ('Injury rows captured', str(len(cap['rows'])), f"{len(cap['teams_published'])} clubs; {bye} on bye"),
@@ -277,6 +279,45 @@ def build_index(reqs, flags, questions, cap):
 {card_html}
 </section>
 
+<section class="callout" aria-label="Permission blocker">
+<h2>Read this before anything else</h2>
+<div class="prose">
+<p><strong>NFL.com Terms of Service section 1.3, updated 16 May 2024, prohibits systematic retrieval
+of content from the Services without express prior written consent.</strong> The exact words are:
+<em>"Systematic retrieval of data or other content from the Services, whether to create or compile,
+directly or indirectly, a collection, compilation, database, or directory, is prohibited absent our
+express prior written consent."</em></p>
+<p>That is not a work blocker, it is a permission blocker, and it changes the register.
+{counts.get('blocked', 0)} requirements are marked <strong>blocked by permission</strong> rather than
+not started, and four suggestions that proposed scheduled capture are marked blocked on permission.
+It also applies to work already committed: this desk made seven fetches and committed one verbatim
+capture, so whether that capture stays is an owner decision, not this desk's to make. It is recorded
+as <a href="flagged.html#DD-13">DD-13</a> and as owner decision
+<a href="questions.html#O05">O05</a>. An earlier session reached the same conclusion independently
+and recorded it as DEC-01; this desk re-read the terms page rather than relying on that record.</p>
+<p class="muted">Source: <a class="src" href="https://www.nfl.com/legal/terms/">NFL.com Terms and
+Conditions, section 1.3</a>. Nothing here is legal advice, and only that subsection was read for a
+finding.</p>
+</div>
+</section>
+
+<section class="callout" aria-label="Duplicate registers">
+<h2>Three registers now cover the same brief</h2>
+<div class="prose">
+<p><code>readiness/</code> publishes 82 requirement rows, <code>verification/</code> publishes 74, and
+this desk publishes 73. Three counts for the same brief is worse than two, and it is the same failure
+mode as <a href="flagged.html#DD-11">DD-11</a>, where two implementations of the origination
+requirements already exist on different inputs.</p>
+<p>This desk did not read either other register line by line and makes no claim about which is
+better. It cross-links them so a reviewer can see all three and decide. Recorded as
+<a href="flagged.html#DD-14">DD-14</a> and owner decision
+<a href="questions.html#O06">O06</a>.</p>
+<p><a class="src" href="../readiness/index.html">readiness/ (82 rows)</a> ·
+<a class="src" href="../verification/index.html">verification/ (74 rows)</a> ·
+<a href="requirements.html">this desk (73 rows)</a></p>
+</div>
+</section>
+
 <section>
 <h2>Executive summary</h2>
 <div class="prose">
@@ -287,13 +328,15 @@ recompute and match, a fixed origination order, a joint-evidence gate that refus
 independence, a demotion gate that has been replayed, and leaderboard divisions ranked by proper score
 with uncertainty. What it does not yet have is a single graded event.</p>
 
-<p><strong>The gap is data, not code.</strong> Of 73 requirements, {met} are met,
-{counts.get('partial', 0)} are partial and {counts.get('not-started', 0)} have not started. Read the
-gate column and the same three blockages recur. No source obtained records an <em>opening</em> price,
-so closing-line value cannot be measured and no reward can be earned. No official snap-count source
-was found, so depth cannot be modelled from playing time. No inactive-list archive exists, so
-<em>Questionable</em> cannot be calibrated and designation reliability cannot be scored. These are
-prerequisites, not refinements.</p>
+<p><strong>The gap is data, and part of it is permission.</strong> Of 73 requirements, {met} are met,
+{counts.get('partial', 0)} are partial, {counts.get('not-started', 0)} have not started and
+{counts.get('blocked', 0)} are blocked by NFL.com Terms section 1.3, which prohibits systematic
+retrieval without express written consent. Read the gate column and the blockages recur. No source
+obtained records an <em>opening</em> price, so closing-line value cannot be measured and no reward
+can be earned. No official snap-count source was found, so depth cannot be modelled from playing
+time. No inactive-list archive exists, so <em>Questionable</em> cannot be calibrated and designation
+reliability cannot be scored. And the capture that would fix several of those is itself constrained
+by the terms. These are prerequisites, not refinements.</p>
 
 <p><strong>This session added verified evidence where the official pages allow it.</strong> The Week 10
 2026 injury report was captured verbatim, hashed and timestamped: {len(cap['rows'])} rows across
@@ -330,6 +373,7 @@ percentage or a threshold, not an aspiration.</p>
     <option value="met">Met</option>
     <option value="partial">Partial</option>
     <option value="not-started">Not started</option>
+    <option value="blocked">Blocked by permission</option>
     <option value="rejected">Rejected by design</option>
   </select>
   <button id="reset" type="button">Reset</button>

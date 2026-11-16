@@ -21,7 +21,7 @@ PAGES = ['index.html', 'requirements.html', 'questions.html', 'suggestions.html'
          'flagged.html']
 
 EXPECTED_REQUIREMENTS = 73
-EXPECTED_FLAGS = 12
+EXPECTED_FLAGS = 14
 MIN_INJURY_ROWS = 300
 EXPECTED_REPORT_CLUBS = 28
 
@@ -105,7 +105,7 @@ def main() -> int:
         check(bool(r.get('gate')), f"{r['id']} has no blocking gate")
         check(bool(r.get('clearing_number')), f"{r['id']} has no clearing number")
         check(bool(r.get('evidence')), f"{r['id']} has no evidence link")
-        check(r['status'] in ('met', 'partial', 'not-started', 'rejected'),
+        check(r['status'] in ('met', 'partial', 'not-started', 'rejected', 'blocked'),
               f"{r['id']} has an unrecognised status {r['status']!r}")
     ids = [r['id'] for r in reqs]
     check(len(set(ids)) == len(ids), 'requirement ids are not unique')

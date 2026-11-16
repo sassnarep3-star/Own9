@@ -232,7 +232,7 @@
     "category": "Availability",
     "requirement": "Run the 32-team roster/IR sweep before any team-level model is trusted",
     "status": "partial",
-    "gate": "This session captured the official reserve list for November 2026 only: 25 rows across 16 clubs. It is one month, not a season, and not all 32 clubs.",
+    "gate": "This session captured the official reserve list for November 2026 only: 25 rows across 16 clubs. It is one month, not a season, and not all 32 clubs. NFL.com Terms section 1.3 constrains a repeated sweep: a one-month read was made this session, but a full-season sweep is systematic retrieval.",
     "clearing_number": "Reserve-list and roster events captured for 32 of 32 clubs across a full season, dated and hashed.",
     "evidence": [
       {
@@ -242,6 +242,10 @@
       {
         "label": "NFL transactions, November 2026",
         "url": "https://www.nfl.com/transactions/"
+      },
+      {
+        "label": "NFL.com Terms of Service, section 1.3",
+        "url": "https://www.nfl.com/legal/terms/"
       }
     ]
   },
@@ -368,7 +372,7 @@
     "category": "Availability",
     "requirement": "Store every injury-hub read with its clock time and publish the delta, never the level",
     "status": "partial",
-    "gate": "This session recorded the first capture with a clock time and a SHA-256 of the raw bytes. With one capture, no delta can be computed.",
+    "gate": "This session recorded the first capture with a clock time and a SHA-256 of the raw bytes. With one capture, no delta can be computed. NFL.com Terms section 1.3 constrains a repeated read. One dated capture was made this session; a series of them is systematic retrieval.",
     "clearing_number": "At least 3 dated captures per week (Wednesday, Thursday, Friday) for at least one full week, so a delta exists for every row.",
     "evidence": [
       {
@@ -378,6 +382,10 @@
       {
         "label": "Capture CAP-01 manifest",
         "url": "https://github.com/sassnarep3-star/Own9/blob/main/decision-desk/data/captures/manifest.json"
+      },
+      {
+        "label": "NFL.com Terms of Service, section 1.3",
+        "url": "https://www.nfl.com/legal/terms/"
       }
     ]
   },
@@ -400,7 +408,7 @@
     "category": "Fixtures",
     "requirement": "Transcribe the venue of every fixture from the official game centre and publish it",
     "status": "partial",
-    "gate": "Only 1 of 13 Week 11 venues is confirmed by a game-centre read. The other 12 come from a link parameter on the schedule page, which is published by nfl.com but is not a venue field.",
+    "gate": "Only 1 of 13 Week 11 venues is confirmed by a game-centre read. The other 12 come from a link parameter on the schedule page, which is published by nfl.com but is not a venue field. NFL.com Terms section 1.3 constrains a per-club sweep. One game-centre read was made this session; thirty-two of them is systematic retrieval.",
     "clearing_number": "Home venue confirmed by a game-centre Game Info read for 32 of 32 clubs.",
     "evidence": [
       {
@@ -410,6 +418,10 @@
       {
         "label": "NFL schedule, Week 11 2026",
         "url": "https://www.nfl.com/schedules/2026/by-week/week-11"
+      },
+      {
+        "label": "NFL.com Terms of Service, section 1.3",
+        "url": "https://www.nfl.com/legal/terms/"
       }
     ]
   },
@@ -503,9 +515,9 @@
     "id": "R29",
     "category": "Infrastructure",
     "requirement": "Automate immutable multi-day availability snapshots with retained hashes",
-    "status": "partial",
-    "gate": "This session produced one immutable capture with a SHA-256 of the raw bytes. The capture is manual: it ran inside this session, not on a schedule.",
-    "clearing_number": "At least 3 captures per week for a full season, produced by a scheduled job, every hash retained.",
+    "status": "blocked",
+    "gate": "Blocked by NFL.com Terms section 1.3. The requirement asks for automated multi-day capture; the terms prohibit systematic retrieval without express prior written consent.",
+    "clearing_number": "Either express written consent from the NFL, or an owner decision to re-scope the requirement to something the terms permit.",
     "evidence": [
       {
         "label": "Capture CAP-01 manifest",
@@ -514,6 +526,10 @@
       {
         "label": ".github/workflows/snapshot.yml",
         "url": "https://github.com/sassnarep3-star/Own9/blob/main/.github/workflows/snapshot.yml"
+      },
+      {
+        "label": "NFL.com Terms of Service, section 1.3",
+        "url": "https://www.nfl.com/legal/terms/"
       }
     ]
   },
@@ -521,9 +537,9 @@
     "id": "R30",
     "category": "Infrastructure",
     "requirement": "Build immutable official availability snapshots: scheduled capture of injury reports, club depth pages and inactive evidence with raw hashes, timestamps and conflict flags",
-    "status": "partial",
-    "gate": "Injury reports are now captured with hashes and timestamps. No scheduled job exists for club depth pages or inactive evidence.",
-    "clearing_number": "All three source families captured on a schedule with raw hashes, timestamps and conflict flags for a full season.",
+    "status": "blocked",
+    "gate": "Blocked by NFL.com Terms section 1.3. The requirement asks for scheduled capture of injury reports, club depth pages and inactive evidence, all systematic.",
+    "clearing_number": "Either express written consent from the NFL, or an owner decision to re-scope the requirement to something the terms permit.",
     "evidence": [
       {
         "label": "decision-desk/data/captures/manifest.json",
@@ -532,6 +548,10 @@
       {
         "label": "NFL official injury report",
         "url": "https://www.nfl.com/injuries/"
+      },
+      {
+        "label": "NFL.com Terms of Service, section 1.3",
+        "url": "https://www.nfl.com/legal/terms/"
       }
     ]
   },
@@ -558,7 +578,7 @@
     "category": "Availability",
     "requirement": "Fix the two depth-parsing failures before widening coverage",
     "status": "partial",
-    "gate": "The Packers failure (jersey numbers prepended) is fixed by number stripping plus storing the raw string. The Texans failure is not: Houston publishes its depth chart as an image, and no authorized structured source was obtained.",
+    "gate": "The Packers failure (jersey numbers prepended) is fixed by number stripping plus storing the raw string. The Texans failure is not: Houston publishes its depth chart as an image, and no authorized structured source was obtained. NFL.com Terms section 1.3 also constrains sweeping all 32 club depth pages.",
     "clearing_number": "32 of 32 club depth charts parsed to rows without transcription by eye.",
     "evidence": [
       {
@@ -568,6 +588,10 @@
       {
         "label": "injuries.html",
         "url": "https://github.com/sassnarep3-star/Own9/blob/main/injuries.html"
+      },
+      {
+        "label": "NFL.com Terms of Service, section 1.3",
+        "url": "https://www.nfl.com/legal/terms/"
       }
     ]
   },
@@ -680,12 +704,16 @@
     "category": "Infrastructure",
     "requirement": "Add durable snapshot storage and alerts outside the static site",
     "status": "not-started",
-    "gate": "Captures are committed to this public git repository. There is no off-site immutable store and no freshness monitor.",
+    "gate": "Captures are committed to this public git repository. There is no off-site immutable store and no freshness monitor. Where the stored snapshots came from NFL.com, Terms section 1.3 applies to how they were obtained, not only to where they are stored.",
     "clearing_number": "An off-site immutable store plus a freshness monitor that alerts on source or schema change.",
     "evidence": [
       {
         "label": "decision-desk/data/captures/manifest.json",
         "url": "https://github.com/sassnarep3-star/Own9/blob/main/decision-desk/data/captures/manifest.json"
+      },
+      {
+        "label": "NFL.com Terms of Service, section 1.3",
+        "url": "https://www.nfl.com/legal/terms/"
       }
     ]
   },
@@ -748,7 +776,7 @@
     "category": "Availability",
     "requirement": "Add an official depth-chart register with date and source per row",
     "status": "partial",
-    "gate": "Three club charts were captured on 2026-11-14 with a source link per row. Coverage is 3 of 32 clubs, and the clubs label their own charts unofficial.",
+    "gate": "Three club charts were captured on 2026-11-14 with a source link per row. Coverage is 3 of 32 clubs, and the clubs label their own charts unofficial. NFL.com Terms section 1.3 constrains sweeping all 32 club depth pages.",
     "clearing_number": "Date and source on every depth row for 32 of 32 clubs.",
     "evidence": [
       {
@@ -758,6 +786,10 @@
       {
         "label": "data/depth/club-depth-charts-2026-11-14.json",
         "url": "https://github.com/sassnarep3-star/Own9/blob/main/data/depth/club-depth-charts-2026-11-14.json"
+      },
+      {
+        "label": "NFL.com Terms of Service, section 1.3",
+        "url": "https://www.nfl.com/legal/terms/"
       }
     ]
   },
@@ -820,12 +852,16 @@
     "category": "Infrastructure",
     "requirement": "Point-in-Time Snapshot Ledger for Injuries, Depth Charts and Inactives",
     "status": "partial",
-    "gate": "The ledger exists with one dated, hashed capture. Lookahead-safe backtesting needs a capture before every kickoff in the window, not one per session.",
+    "gate": "The ledger exists with one dated, hashed capture. Lookahead-safe backtesting needs a capture before every kickoff in the window, not one per session. NFL.com Terms section 1.3 constrains filling the ledger: a pre-kickoff capture for every game is systematic retrieval.",
     "clearing_number": "A pre-kickoff capture for 100% of games in the evaluation window, each with hash and timestamp.",
     "evidence": [
       {
         "label": "decision-desk/captures.html",
         "url": "https://github.com/sassnarep3-star/Own9/blob/main/decision-desk/captures.html"
+      },
+      {
+        "label": "NFL.com Terms of Service, section 1.3",
+        "url": "https://www.nfl.com/legal/terms/"
       }
     ]
   },
@@ -852,7 +888,7 @@
     "category": "Availability",
     "requirement": "Re-capture and republish the Week 10 injury tables (VR-04 to VR-07)",
     "status": "met",
-    "gate": "None blocking. Re-captured on 2026-11-16: 347 rows across 28 clubs, against 254 rows previously published and 279 stated as live. The drift is published, not reconciled.",
+    "gate": "None blocking. Re-captured on 2026-11-16: 347 rows across 28 clubs, against 254 rows previously published and 279 stated as live. The drift is published, not reconciled. NFL.com Terms section 1.3 constrains re-capture on a schedule. The one re-capture this session made is itself a retrieval; whether further re-capture should proceed is an owner decision.",
     "clearing_number": "Published row count equals the count on the official page at capture time (current: 347 = 347).",
     "evidence": [
       {
@@ -862,6 +898,10 @@
       {
         "label": "origination/flagged.html",
         "url": "https://github.com/sassnarep3-star/Own9/blob/main/origination/flagged.html"
+      },
+      {
+        "label": "NFL.com Terms of Service, section 1.3",
+        "url": "https://www.nfl.com/legal/terms/"
       }
     ]
   },
@@ -898,7 +938,7 @@
     "category": "Availability",
     "requirement": "Resolve the depth-order source before building the backup-deficiency feature",
     "status": "partial",
-    "gate": "Both routes were evaluated. The per-club official depth-chart route works for some clubs and the league route returns an NFL 404; the snap-count route has no official source. Neither is verified for all 32 clubs.",
+    "gate": "Both routes were evaluated. The per-club official depth-chart route works for some clubs and the league route returns an NFL 404; the snap-count route has no official source. Neither is verified for all 32 clubs. NFL.com Terms section 1.3 constrains sweeping all 32 clubs to resolve the depth route.",
     "clearing_number": "One route verified for 32 of 32 clubs before any deficiency feature is ranked.",
     "evidence": [
       {
@@ -908,6 +948,10 @@
       {
         "label": "depth-of-replacement.html",
         "url": "https://github.com/sassnarep3-star/Own9/blob/main/depth-of-replacement.html"
+      },
+      {
+        "label": "NFL.com Terms of Service, section 1.3",
+        "url": "https://www.nfl.com/legal/terms/"
       }
     ]
   },
@@ -933,9 +977,9 @@
     "id": "R54",
     "category": "Availability",
     "requirement": "Snapshot the nfl.com injury report every Wed, Thu and Fri and keep a dated history",
-    "status": "not-started",
-    "gate": "This session produced one capture, on the Monday of Week 10. There is no scheduled job, so no weekday history exists.",
-    "clearing_number": "Wednesday, Thursday and Friday captures retained for a full season, so Questionable-to-Out paths are replayable.",
+    "status": "blocked",
+    "gate": "Blocked by NFL.com Terms section 1.3. A Wednesday-Thursday-Friday history is systematic retrieval by construction.",
+    "clearing_number": "Either express written consent from the NFL, or an owner decision to re-scope the requirement to something the terms permit.",
     "evidence": [
       {
         "label": "NFL official injury report",
@@ -944,6 +988,10 @@
       {
         "label": "decision-desk/captures.html",
         "url": "https://github.com/sassnarep3-star/Own9/blob/main/decision-desk/captures.html"
+      },
+      {
+        "label": "NFL.com Terms of Service, section 1.3",
+        "url": "https://www.nfl.com/legal/terms/"
       }
     ]
   },
@@ -951,13 +999,17 @@
     "id": "R55",
     "category": "Availability",
     "requirement": "Treat the injury report as a timestamped series, not a weekly snapshot",
-    "status": "partial",
-    "gate": "The report is now captured with a retrieval clock time and a hash of the raw bytes. One capture cannot show evolution.",
-    "clearing_number": "Capture on every day from Wednesday to kickoff, with the fetch timestamp, for at least one full week.",
+    "status": "blocked",
+    "gate": "Blocked by NFL.com Terms section 1.3. A daily capture from Wednesday to kickoff is systematic retrieval by construction.",
+    "clearing_number": "Either express written consent from the NFL, or an owner decision to re-scope the requirement to something the terms permit.",
     "evidence": [
       {
         "label": "decision-desk/captures.html",
         "url": "https://github.com/sassnarep3-star/Own9/blob/main/decision-desk/captures.html"
+      },
+      {
+        "label": "NFL.com Terms of Service, section 1.3",
+        "url": "https://www.nfl.com/legal/terms/"
       }
     ]
   },
@@ -1121,13 +1173,17 @@
     "id": "R66",
     "category": "Availability",
     "requirement": "Archive weekly injury reports for past seasons",
-    "status": "not-started",
-    "gate": "The NFL injuries page exposes season and week selectors back to 1965, so the route exists. No past season has been captured with hashes.",
-    "clearing_number": "At least 3 past seasons of weekly injury reports captured, dated and hashed.",
+    "status": "blocked",
+    "gate": "Blocked by NFL.com Terms section 1.3. Archiving past seasons of weekly reports is systematic retrieval to compile a database.",
+    "clearing_number": "Either express written consent from the NFL, or an owner decision to re-scope the requirement to something the terms permit.",
     "evidence": [
       {
         "label": "NFL official injury report (season selector)",
         "url": "https://www.nfl.com/injuries/"
+      },
+      {
+        "label": "NFL.com Terms of Service, section 1.3",
+        "url": "https://www.nfl.com/legal/terms/"
       }
     ]
   },

@@ -356,7 +356,6 @@ New suggestions S-17–S-21 (price archive, close-capture adoption, sealed backt
 game-centre row verification) and open questions Q-23/Q-24 (grading operator; re-promotion thresholds) are in
 the registers awaiting review. Findings F34–F39 are on [flags.html](flags.html).
 
-<<<<<<< HEAD
 ## Decision readiness (`readiness/`)
 
 **Live:** https://sassnarep3-star.github.io/Own9/readiness/ (linked from the Decide group of the site navigation).
@@ -379,8 +378,6 @@ node readiness/tools/browser_test.cjs            # desktop, mobile, WCAG, filter
 ```
 
 The builder fails closed. A row marked "Verified today" must carry an official NFL link. A "Built" row must point to a file that exists. A blocked row must name the decision that blocks it. Any unknown ID or unknown source stops the build. Automated capture of NFL.com pages is not implemented: NFL.com Terms section 1.3 prohibit systematic retrieval without prior written consent (`DEC-01`).
-=======
----
 
 ## Decision desk · session `acf97d13` · 16 Nov 2026
 
@@ -398,7 +395,7 @@ answer one question a reviewer actually has: **what is open, and what number wou
 | [Fixtures](decision-desk/fixtures.html) | The Week 11 slate with venues, and what Week 10 scored. |
 | [Captures](decision-desk/captures.html) | The snapshot ledger: what was captured, when, and the hash that proves the bytes. |
 | [Sources](decision-desk/sources.html) | The official pages read, what each publishes and what it does not. |
-| [Flagged](decision-desk/flagged.html) | 12 irregularities, published rather than reconciled. |
+| [Flagged](decision-desk/flagged.html) | 14 irregularities, published rather than reconciled. |
 
 ### What was read from the official publisher on 16 Nov 2026
 
@@ -432,6 +429,28 @@ python3 -m unittest discover -s decision-desk/tests -v
 node decision-desk/tools/browser_test.cjs   # optional; needs `npm ci --ignore-scripts`
 ```
 
-Status counts on the register: 16 met, 36 partial, 19 not started, 2 rejected by design.
-No strategy on this desk has earned a stake, and no edge is claimed.
->>>>>>> c656bd7 (Add the decision desk: requirement gate table, question register, suggestion review board, official captures)
+### The permission blocker, stated plainly
+
+**NFL.com Terms of Service section 1.3, updated 16 May 2024, prohibits systematic retrieval of
+content from the Services without express prior written consent.** The exact words are: *"Systematic
+retrieval of data or other content from the Services, whether to create or compile, directly or
+indirectly, a collection, compilation, database, or directory, is prohibited absent our express prior
+written consent."* ([source](https://www.nfl.com/legal/terms/))
+
+That is a permission blocker, not a work blocker, and it changed the register. Five requirements
+(R29, R30, R54, R55, R66) are marked **blocked by permission** rather than not started, and four
+suggestions that proposed scheduled capture are marked blocked on permission. It also applies to work
+already committed: this desk made seven fetches and committed one verbatim capture, so whether that
+capture stays is an owner decision. Recorded as flag **DD-13** and owner decision **O05**. An earlier
+session reached the same conclusion independently and recorded it as DEC-01; this desk re-read the
+terms page rather than relying on that record.
+
+### Three registers now cover the same brief
+
+`readiness/` publishes 82 requirement rows, `verification/` publishes 74, and this desk publishes 73.
+Three counts for the same brief is worse than two, and it is the same failure mode as OD-16. This
+desk did not read either other register line by line and makes no claim about which is better; it
+cross-links all three. Recorded as flag **DD-14** and owner decision **O06**.
+
+Status counts on this register: 16 met, 33 partial, 17 not started, 5 blocked by permission,
+2 rejected by design. No strategy on this desk has earned a stake, and no edge is claimed.

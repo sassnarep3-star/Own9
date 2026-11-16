@@ -8,12 +8,16 @@
       "what_changes": "Turns the injury report from a weekly snapshot into a timestamped series, so Questionable-to-Out paths become replayable.",
       "why": "Three requirements already ask for this (R54, R55, R47) and none can be met with one capture. It is the smallest change that unblocks the largest number of rows on the decision table.",
       "cost": "One scheduled job plus off-site storage. The capture and parse code already exists in this desk.",
-      "risk": "Low. It writes new files and changes nothing that is published today.",
-      "status": "Awaiting decision",
+      "risk": "Blocked on permission. NFL.com Terms section 1.3 prohibits systematic retrieval without express prior written consent, and a Wednesday-to-kickoff schedule is systematic retrieval.",
+      "status": "Awaiting decision - blocked on permission",
       "evidence": [
         {
           "label": "Capture manifest",
           "url": "https://github.com/sassnarep3-star/Own9/blob/main/decision-desk/data/captures/manifest.json"
+        },
+        {
+          "label": "NFL.com Terms of Service, section 1.3",
+          "url": "https://www.nfl.com/legal/terms/"
         }
       ]
     },
@@ -24,12 +28,16 @@
       "what_changes": "Moves raw captures to an immutable store and adds a monitor that fails loudly when a source or schema changes.",
       "why": "Today a capture lives in git in the same tree as the site. That is fine for one capture and fragile at three per week for a season.",
       "cost": "A storage target and a monitor. No change to any published page.",
-      "risk": "Medium. It needs an owner decision on where the store lives and who can read it, which is requirement R40.",
-      "status": "Awaiting decision",
+      "risk": "Blocked on permission where the stored snapshots came from NFL.com. Terms section 1.3 applies to how they were obtained, not only to where they are kept.",
+      "status": "Awaiting decision - blocked on permission",
       "evidence": [
         {
           "label": "Flagged for review",
           "url": "https://github.com/sassnarep3-star/Own9/blob/main/decision-desk/flagged.html"
+        },
+        {
+          "label": "NFL.com Terms of Service, section 1.3",
+          "url": "https://www.nfl.com/legal/terms/"
         }
       ]
     },
@@ -40,12 +48,16 @@
       "what_changes": "Raises venue provenance from a commercial-link parameter on the schedule page to the game centre's own Game Info field.",
       "why": "This session proved the field exists but only read one fixture. Twelve of thirteen Week 11 venues are currently second-hand.",
       "cost": "One fetch per club. No code change.",
-      "risk": "Low.",
-      "status": "Awaiting decision",
+      "risk": "Constrained by permission. One game-centre read was made; a per-club sweep of 32 reads is systematic retrieval under NFL.com Terms section 1.3.",
+      "status": "Awaiting decision - blocked on permission",
       "evidence": [
         {
           "label": "Game centre: Chargers at Ravens",
           "url": "https://www.nfl.com/games/chargers-at-ravens-2026-reg-10"
+        },
+        {
+          "label": "NFL.com Terms of Service, section 1.3",
+          "url": "https://www.nfl.com/legal/terms/"
         }
       ]
     },
@@ -212,12 +224,16 @@
       "what_changes": "Captures dated, hashed weekly reports for past seasons so designations can be joined to outcomes.",
       "why": "Designation reliability (R53) and the Questionable calibration (R44) both need it, and both are prerequisites, not nice-to-haves.",
       "cost": "One backfill job, then the same scheduled capture as S01.",
-      "risk": "Medium. Volume is high and it needs the off-site store from S02 first.",
-      "status": "Awaiting decision",
+      "risk": "Blocked on permission. Archiving past seasons of weekly reports is systematic retrieval to compile a database, which NFL.com Terms section 1.3 prohibits.",
+      "status": "Awaiting decision - blocked on permission",
       "evidence": [
         {
           "label": "NFL official injury report (season selector)",
           "url": "https://www.nfl.com/injuries/"
+        },
+        {
+          "label": "NFL.com Terms of Service, section 1.3",
+          "url": "https://www.nfl.com/legal/terms/"
         }
       ]
     },
@@ -276,7 +292,7 @@
       "name": "Close the data gaps first",
       "items": "S01, S02, S03, S13, S09, S10",
       "buys": "Nothing is published that is not verified. Every model feature has a source before it is used.",
-      "costs": "Weeks pass with an empty leaderboard. If the goal is a competition, this path defers it longest.",
+      "costs": "Weeks pass with an empty leaderboard. More seriously, most of this path is blocked: NFL.com Terms section 1.3 prohibits the systematic retrieval it depends on, so it cannot proceed without consent or a licence.",
       "choose_if": "Choose this if the priority is that no published number is ever wrong.",
       "evidence": [
         {
@@ -346,6 +362,16 @@
         {
           "label": "COORDINATION.md (shared task board)",
           "url": "https://github.com/sassnarep3-star/Own9/blob/main/COORDINATION.md"
+        }
+      ]
+    },
+    {
+      "date": "2026-11-16",
+      "entry": "Four suggestions (S01, S02, S03, S13) were re-marked as blocked on permission after NFL.com Terms of Service section 1.3 was read. The board does not recommend proceeding with systematic retrieval without express written consent.",
+      "evidence": [
+        {
+          "label": "NFL.com Terms of Service, section 1.3",
+          "url": "https://www.nfl.com/legal/terms/"
         }
       ]
     }

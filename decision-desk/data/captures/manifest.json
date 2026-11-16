@@ -1,5 +1,5 @@
 {
-  "note": "Clock time is the sandbox UTC clock read with `date -u`. It is the only clock available to this session; no external time service is reachable from the sandbox. Every entry records the retrieval window, not a guess at a single instant.",
+  "note": "Clock time is the sandbox UTC clock read with `date -u`. It is the only clock available to this session; no external time service is reachable from the sandbox. Every entry records the retrieval window, not a guess at a single instant. One further page, CAP-07, was read for permission rather than data; it is the reason five requirements are marked blocked rather than not started.",
   "captures": [
     {
       "id": "CAP-01",
@@ -84,6 +84,20 @@
       "parsed_rows": 1,
       "parsed_clubs": 2,
       "page_title": "Los Angeles Chargers at Baltimore Ravens 2026 REG 10 - Game Center"
+    },
+    {
+      "id": "CAP-07",
+      "title": "NFL.com Terms and Conditions, section 1.3",
+      "url": "https://www.nfl.com/legal/terms/",
+      "retrieved_at_utc": "2026-11-16T01:45:00Z",
+      "window_utc": "2026-11-16T01:40Z/01:50Z",
+      "file": null,
+      "bytes": null,
+      "sha256": null,
+      "scope": "Section 1.3 read in full and quoted verbatim. No other section was read for a finding. This page changed five requirement statuses and four suggestion statuses.",
+      "parsed_rows": 1,
+      "parsed_clubs": null,
+      "page_title": "Terms and Conditions | NFL.com"
     }
   ]
 }

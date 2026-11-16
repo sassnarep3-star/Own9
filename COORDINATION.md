@@ -461,3 +461,70 @@ changed.
   (suggestion S07), that is your call; I did not edit the root `index.html`.
 - **Whoever picks up OD-16 / Q-21** — two implementations of the same eight requirements remain. It
   is the largest loose end on the site and needs a designation, not code.
+
+### Revision 1 — 2026-11-16, after reading NFL.com Terms section 1.3
+
+A second session (`462fba62`, with `4bd7042b`) recorded that NFL.com Terms section 1.3 prohibits
+systematic retrieval. This desk did not take that on trust: the terms page was re-read independently
+at 2026-11-16T01:45Z and the subsection is quoted verbatim on the landing page. The conclusion
+matches, and it changed this desk's output.
+
+- **Five requirements changed status from not-started to blocked by permission:** R29, R30, R54,
+  R55, R66. Their gates now name the terms clause and their clearing conditions are consent,
+  re-scoping or removal — not engineering.
+- **Eleven more requirements carry a permission note in the gate:** R13, R21, R23, R32, R39, R43,
+  R47, R49, R52 and the sweeps they imply.
+- **Four suggestions were re-marked** S01, S02, S03, S13 as "Awaiting decision — blocked on
+  permission", with the terms quoted in the risk column.
+- **Two new flags:** DD-13 (the permission blocker, including that this desk's own committed capture
+  falls under it) and DD-14 (three per-requirement registers now exist: `readiness/` 82 rows,
+  `verification/` 74 rows, `decision-desk/` 73 rows, extending VF-11).
+- **Two new owner decisions:** O05 (may the project retrieve systematically, and what happens to the
+  capture already committed) and O06 (which register is canonical).
+- **One new probe:** P08 (is there a licensed route), replacing P04 and P07, which proposed sweeps
+  that the terms constrain.
+- **Status counts after the change:** 16 met, 33 partial, 17 not started, 5 blocked by permission,
+  2 rejected by design.
+
+**This session does not answer O05 for the owner.** It recorded the constraint, stopped adding
+captures, and left the decision open. No further page was fetched after the terms were read.
+
+### Rebase onto a moved `main`
+
+`main` advanced through PRs #53 to #56 while this branch was open. The rebase produced three conflict
+sets, all resolved by keeping upstream's version and re-applying a minimal edit, per the process note
+already in this file:
+
+- `COORDINATION.md` — append-only tail. Resolved by union: upstream's record kept verbatim, this
+  session's claim appended after it. Nothing from either side was dropped.
+- 39 generated root `*.html` files — resolved by taking upstream's version of each and regenerating
+  with the shared generator, so both navigation entries are present. A check confirmed the only
+  change in every root page is the navigation anchor.
+- `session-00cf851d/{index.html,repo-review.html,data/repo_inventory.json}` — resolved by taking
+  upstream's version and re-running that session's own generator.
+- One defect was introduced and fixed: `README.md` was staged with conflict markers still in it
+  because a follow-up command ran after a heredoc script exited non-zero. The markers were removed
+  and the file re-resolved before the next push. **When chaining `git add` after a heredoc script,
+  use `&&` or check the exit code — a failed Python step does not stop the next line.**
+
+### Final navigation placement
+
+The desk is linked from the **Decide** group, directly after `readiness/index.html`, so the three
+registers that cover the same brief sit next to each other. It is labelled "Decision desk (73 rows)"
+so the row count is visible in the navigation itself.
+
+### Checks
+
+```sh
+python3 decision-desk/tools/build.py && python3 decision-desk/tools/verify.py \
+  && python3 -m unittest discover -s decision-desk/tests -v \
+  && node decision-desk/tools/browser_test.cjs
+python3 tools/build.py && python3 tools/verify.py && python3 -m unittest discover -s tests
+```
+
+- `decision-desk/tools/verify.py` — 1,164 checks pass.
+- 23 unit tests pass, including one asserting that every blocked requirement cites the terms URL and
+  every permission-blocked suggestion quotes "Terms section 1.3" in its risk column.
+- Browser: 9 pages × 2 viewports, no console errors, no failed responses, no horizontal overflow,
+  filters and reset behave, axe WCAG 2.1 AA clean.
+- Root: 39 pages regenerated, 1,755 source-linked rows verified, 313 root tests pass.
