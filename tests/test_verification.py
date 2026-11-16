@@ -285,6 +285,13 @@ class Pages(unittest.TestCase):
                               f'the landing page states {num}, which no register produces: '
                               f'{text[:80]}')
 
+    def test_flag_page_counts_match_the_register(self):
+        body = html('flags.html')
+        self.assertIn(f'{len(V.FLAGS)} irregularities', body)
+        for level in {f[1] for f in V.FLAGS}:
+            n = sum(1 for f in V.FLAGS if f[1] == level)
+            self.assertIn(f'{n} {level.lower()}', body)
+
     def test_the_landing_page_states_both_verdicts(self):
         landing = html('index.html')
         self.assertIn('How much of the brief is built', landing)
