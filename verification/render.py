@@ -393,10 +393,14 @@ def build() -> dict[str, str]:
             V.row(["Origination desk flags (../origination/flagged.html)",
                    "The line-origination desk's own findings OD-01 onwards"], (V.REPO,), "Existing register"),
         ]))
+    sev = {}
+    for flag in V.FLAGS:
+        sev[flag[1]] = sev.get(flag[1], 0) + 1
+    sev_text = ", ".join(f"{sev[k]} {k.lower()}" for k in ("Critical", "High", "Medium", "Low") if k in sev)
     pages["flags.html"] = page(
         "flags.html", "Flagged for review,\nwith what closes each.",
-        "Eight irregularities from this pass: one critical (the feed is behind the official page), none "
-        "blocking, each with the change that would clear it.",
+        f"{len(V.FLAGS)} irregularities from this pass ({sev_text}), none blocking, each with the "
+        "change that would clear it. Severity counts are computed from the register.",
         "".join(f), "Flagged")
 
     return pages
