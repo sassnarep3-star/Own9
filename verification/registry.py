@@ -148,8 +148,8 @@ REQ = [
     ("R-02", "Verified results feed so backtests and ROI can be computed at all",
      f"Built: {M['finals_total']} finals across weeks {M['finals_weeks'][0]}-{M['finals_weeks'][-1]}, "
      "each transcribed from the official weekly schedule page and each carrying its game-centre URL.",
-     f"Partly current: {M['finals_w10']} Week 10 finals are committed; the official Week 10 page now shows "
-     f"{M['finals_w10'] + 11} finals plus 2 games still without a score.",
+     f"Partly current: {M['finals_w10']} Week 10 final is committed; the official Week 10 page now "
+     f"shows {M['finals_w10'] + 11} finals plus 2 games still without a score.",
      "The feed is a dated 14 Nov capture, frozen on purpose. It is behind the official page by 11 settled games.",
      "A dated re-capture of Week 10 as its own immutable snapshot (published as SV-02 here), then the same for Week 11.",
      (S_SCHED_W10, REPO)),
@@ -1166,10 +1166,13 @@ def _register():
         "One row per line of the brief. 'Implemented' answers whether the mechanism exists and is "
         "tested; 'Established' answers whether the empirical claim survives contact with official "
         "evidence. They are different questions and no row merges them. A blank Established cell "
-        "means not established, never passed.",
+        "means not established, never passed. The gate ids are derived from the gate table, so a row "
+        "cannot claim to be blocked by a gate that does not list it.",
         ["ID", "Requirement", "Implemented (mechanism, tested)", "Established (official evidence)",
-         "Blocking gate", "Number or artefact that would clear it"],
-        [row(r, r[6], "Requirement verdict") for r in REQ],
+         "Gate", "Why it is blocked", "Number or artefact that would clear it"],
+        [row(list(r[:4]) + [", ".join(_gates_for(r[0])) or "none — declared self-satisfied",
+                            r[4], r[5]], r[6], "Requirement verdict")
+         for r in REQ],
     )
 
     TABLES["gates"] = (
@@ -1180,7 +1183,7 @@ def _register():
         ["Gate", "Gate name", "Why it is closed", "Requirement IDs it blocks", "What clears it",
          "How clearance would be measured"],
         [row([g[0], g[1], g[2], ", ".join(g[3]), g[4], g[5]],
-             tuple({sid for rid in g[3] for sid in _srcs_for(rid)}), "Gate")
+             _ordered_sources(g[3]), "Gate")
          for g in GATES],
     )
 
@@ -1198,7 +1201,7 @@ def _register():
         "The delta column the brief asks for, computed from the two reads. It deliberately does not "
         "claim the feed was regenerated, because it was not.",
         ["Measure", "SV-01 (14 Nov)", "SV-02 (16 Nov)", "Delta", "Meaning"],
-        [row(d, d[5], "Measured delta") for d in delta_rows()],
+        [row(d[:5], d[5], "Measured delta") for d in delta_rows()],
     )
 
     TABLES["venues"] = (
@@ -1207,15 +1210,15 @@ def _register():
         "remaining fixtures have no published venue in any source this repository holds, so their "
         "rows are absent rather than blank-filled.",
         ["Week", "Away", "Home", "Stadium (as published)", "Location (as published)", "Note"],
-        [row(v, v[6], "Official transcription") for v in VENUES],
+        [row(v[:6], v[6], "Official transcription") for v in VENUES],
     )
 
     TABLES["questions"] = (
         "Questions that must be settled before a decision can be made",
         "Each question is answerable now, blocked on a named artefact, or a decision only the owner can "
         "take. Where a question is answerable, the answer is stated rather than deferred.",
-        ["Question", "Question", "State", "Answer or why not", "What it would take"],
-        [row(q, q[5], "Question register") for q in QUESTIONS],
+        ["ID", "Question", "State", "Answer or why not", "What it would take"],
+        [row(q[:5], q[5], "Question register") for q in QUESTIONS],
     )
 
     TABLES["suggestions"] = (
@@ -1225,7 +1228,7 @@ def _register():
         "can choose before anything is built.",
         ["ID", "Suggestion", "Why it improves a decision", "Cost", "What it unblocks",
          "What would show it was wrong"],
-        [row(s, s[6], "Proposal") for s in SUGGESTIONS],
+        [row(s[:6], s[6], "Proposal") for s in SUGGESTIONS],
     )
 
     TABLES["flags"] = (
@@ -1235,7 +1238,8 @@ def _register():
         "close it.",
         ["ID", "Severity", "Irregularity", "What was observed", "Why it was not fixed here",
          "What closes it"],
-        [row(f, (REPO,) + tuple(x for x in f[6] if x != REPO), "Flagged irregularity") for f in FLAGS],
+        [row(f[:6], (REPO,) + tuple(x for x in f[6] if x != REPO), "Flagged irregularity")
+         for f in FLAGS],
     )
 
     TABLES["rechecked"] = (
@@ -1243,7 +1247,7 @@ def _register():
         "Earlier sessions' findings are not assumed to be true. These were re-observed against the "
         "sources on 2026-11-16, or explicitly carried forward unverified.",
         ["Finding", "Claim", "Re-checked result", "State"],
-        [row(r, r[4], "Re-check") for r in RECHECKED],
+        [row(r[:4], r[4], "Re-check") for r in RECHECKED],
     )
 
     TABLES["readiness"] = (
@@ -1288,6 +1292,26 @@ _MEANING = {
     "replacement_rows": "Replacement register rows",
     "replacement_withheld": "Replacement rows withheld with a stated reason",
 }
+
+
+def _ordered_sources(req_ids):
+    """Sources for a group of requirements, de-duplicated WITHOUT a set.
+
+    A set here made the rendered HTML depend on PYTHONHASHSEED, which this section's own
+    determinism test caught: the same list of sources rendered in different orders between
+    runs. Order is first-seen, so regeneration is byte-identical.
+    """
+    out = []
+    for rid in req_ids:
+        for sid in _srcs_for(rid):
+            if sid not in out:
+                out.append(sid)
+    return tuple(out)
+
+
+def _gates_for(rid):
+    """Gate ids that list this requirement. Derived, so the two tables cannot disagree."""
+    return [g[0] for g in GATES if rid in g[3]]
 
 
 def _srcs_for(rid):

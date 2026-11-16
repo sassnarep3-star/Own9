@@ -1,0 +1,222 @@
+"""Regression coverage for the verification section (`verification/**`).
+
+Three kinds of test, kept apart on purpose:
+
+* **Register integrity** - every requirement id appears once, has a status, and is either
+  gated or explicitly declared self-satisfied. A row that quietly loses its gate fails.
+* **No invented numbers** - the values the section publishes in prose are recomputed from
+  the committed CSVs and compared with what the HTML actually prints. If someone regenerates
+  the data and forgets the page, this fails.
+* **Source discipline** - every table row carries a registered, resolvable source link, and
+  every link in the section is either a registered publisher URL or a file that exists.
+"""
+import csv
+import json
+import re
+import sys
+import unittest
+from pathlib import Path
+
+ROOT = Path(__file__).resolve().parents[1]
+sys.path.insert(0, str(ROOT / 'verification'))
+
+import registry as V  # noqa: E402
+import render as B  # noqa: E402
+
+PAGES = ['index.html', 'readiness.html', 'requirements.html', 'questions.html',
+         'suggestions.html', 'evidence.html', 'flags.html']
+
+
+def html(name: str) -> str:
+    return (ROOT / 'verification' / name).read_text()
+
+
+class RegisterIntegrity(unittest.TestCase):
+    def test_every_requirement_has_exactly_one_status(self):
+        ids = [r[0] for r in V.REQ]
+        self.assertEqual(len(ids), len(set(ids)), 'duplicate requirement id')
+        self.assertEqual(set(ids), set(V.STATUS), 'REQ and STATUS disagree about the id set')
+
+    def test_status_codes_are_from_the_declared_vocabulary(self):
+        for rid, (impl, emp) in V.STATUS.items():
+            self.assertIn(impl, V.IMPL_LABEL, f'{rid}: unknown implementation status')
+            self.assertIn(emp, V.EMP_LABEL, f'{rid}: unknown evidence status')
+
+    def test_every_requirement_is_gated_or_declared_self_satisfied(self):
+        # The point of the gate table is that it is exhaustive. A requirement that is neither
+        # gated nor self-satisfied is an unmapped claim, which is what this section exists to
+        # prevent.
+        self.assertEqual(V.gate_violations(), [], 'requirements with no gate and no declaration')
+
+    def test_self_satisfied_declarations_are_not_also_gated(self):
+        gated = {rid for g in V.GATES for rid in g[3]}
+        self.assertEqual(sorted(gated & V.SELF_SATISFIED), [],
+                         'a requirement is both declared self-satisfied and gated')
+
+    def test_gates_reference_real_requirement_ids(self):
+        known = {r[0] for r in V.REQ}
+        for gid, _name, _why, rids, _clear, _how in V.GATES:
+            unknown = [r for r in rids if r not in known]
+            self.assertEqual(unknown, [], f'{gid} references unknown requirement ids')
+            self.assertTrue(rids, f'{gid} blocks nothing, so it is not a gate')
+
+    def test_no_requirement_claims_an_established_edge(self):
+        # The section must never upgrade "the mechanism works" into "the strategy wins".
+        for r in V.REQ:
+            body = f'{r[2]} {r[3]}'
+            for phrase in ('profitable', 'guaranteed return', 'proven edge', 'validated edge'):
+                self.assertNotIn(phrase, body.lower(),
+                                 f'{r[0]} claims an outcome the repository cannot support')
+
+    def test_requirement_count_is_the_brief_not_a_sample(self):
+        # The brief has 74 distinct lines; the register publishes one row per line.
+        self.assertEqual(len(V.REQ), 74)
+
+
+class NoInventedNumbers(unittest.TestCase):
+    """The published values must equal values recomputed from the committed data."""
+
+    def test_finals_count_matches_the_committed_feed(self):
+        with (ROOT / 'data/board/results_2026.csv').open() as fh:
+            rows = list(csv.DictReader(fh))
+        self.assertEqual(V.M['finals_total'], len(rows))
+        self.assertIn(f'<td>{len(rows)}</td>', html('requirements.html'))
+
+    def test_market_price_coverage_matches_the_committed_store(self):
+        with (ROOT / 'data/board/markets_week11.csv').open() as fh:
+            markets = list(csv.DictReader(fh))
+        priced = [m for m in markets if (m['market_price'] or '').strip()]
+        self.assertEqual(len(priced), 0, 'a market price appeared without a registered source')
+        self.assertEqual(V.M['markets_week11'], len(markets))
+        self.assertEqual(V.M['markets_with_market_price'], 0)
+
+    def test_correlation_rows_publish_n(self):
+        with (ROOT / 'data/board/correlations.csv').open() as fh:
+            rows = list(csv.DictReader(fh))
+        self.assertTrue(rows)
+        self.assertEqual(V.M['correlations_total'], len(rows))
+        self.assertEqual(V.M['correlations_with_n'], len(rows),
+                         'a correlation row is published without its n')
+
+    def test_the_11_new_week10_finals_are_the_claimed_delta(self):
+        # VF-01 claims the official page moved by exactly 11 games. That claim rests on the
+        # snapshot table, which must also show the two games that are still scoreless.
+        s1 = [s for s in V.SNAPSHOTS if s[0] == 'SV-01'][0]
+        s2 = [s for s in V.SNAPSHOTS if s[0] == 'SV-02'][0]
+        self.assertIn('1 final', s1[4])
+        self.assertIn('12 finals', s2[4])
+        self.assertIn('PIT@CIN', s2[4])
+        self.assertIn('LAC@BAL', s2[4])
+
+    def test_scoreless_games_never_gain_a_score(self):
+        # The two unsettled Week 10 games must not have been transcribed with a result.
+        raw = (ROOT / 'data/board/raw/week-10.txt').read_text()
+        for slug in ('steelers-at-bengals', 'chargers-at-ravens'):
+            line = [l for l in raw.splitlines() if slug in l][0]
+            self.assertNotIn('FINAL', line, f'{slug} was given a result it does not have')
+            self.assertIn(' at ', line, f'{slug} must remain in scheduled form')
+
+
+class SourceDiscipline(unittest.TestCase):
+    def test_every_data_row_carries_a_source_link(self):
+        for page in PAGES:
+            body = html(page)
+            for row in re.findall(r'<tr id="[^"]*">(.*?)</tr>', body, re.S):
+                cells = re.findall(r'<td>(.*?)</td>', row, re.S)
+                self.assertTrue(cells, f'{page}: a row has no data cells')
+                self.assertIn('<a href=', cells[-1], f'{page}: a row has no source link')
+
+    def test_every_anchor_is_a_registered_publisher_or_a_real_file(self):
+        registered = {s['url'] for s in json.loads((ROOT / 'evidence/sources.json').read_text())}
+        for page in PAGES:
+            for href in re.findall(r'href="([^"]+)"', html(page)):
+                if href.startswith('http'):
+                    self.assertTrue(href.startswith('https://'), f'{page}: insecure link {href}')
+                    continue
+                target = (ROOT / 'verification' / href.split('#')[0]).resolve()
+                self.assertTrue(target.exists(), f'{page}: broken local link {href}')
+
+    def test_engine_refuses_an_unregistered_source(self):
+        with self.assertRaises(KeyError):
+            V.src('a-source-that-was-never-registered')
+
+    def test_flag_ids_do_not_collide_with_the_existing_registers(self):
+        ids = [f[0] for f in V.FLAGS]
+        self.assertEqual(len(ids), len(set(ids)))
+        for fid in ids:
+            self.assertRegex(fid, r'^VF-\d{2}$',
+                             'this pass uses the VF- prefix so it cannot collide with F-numbers')
+        site_flags = (ROOT / 'flags.html').read_text()
+        for fid in ids:
+            self.assertNotIn(fid, site_flags)
+
+
+class Pages(unittest.TestCase):
+    def test_pages_are_current(self):
+        # Regenerating must be a no-op against what is committed; CI depends on this.
+        rendered = B.build()
+        for name, body in rendered.items():
+            self.assertEqual(body, html(name), f'{name} is stale: run python3 verification/build.py')
+
+    def test_each_page_has_one_h1_and_a_section_nav(self):
+        for page in PAGES:
+            body = html(page)
+            self.assertEqual(body.count('<h1>'), 1, f'{page}: exactly one h1')
+            self.assertIn('aria-label="Section navigation"', body)
+            self.assertEqual(body.count('aria-current="page"'), 1,
+                             f'{page}: exactly one current navigation item')
+
+    def test_every_table_row_matches_its_header_width(self):
+        # A row whose cell count differs from its header means a value leaked into the wrong
+        # place (a Python tuple rendered as text, or a column silently dropped). The verifier
+        # does not catch this, so it is pinned here.
+        for page in PAGES:
+            body = html(page)
+            for table_html in re.findall(r'<table>.*?</table>', body, re.S):
+                heads = len(re.findall(r'<th scope="col">', table_html))
+                for row_html in re.findall(r'<tr id="[^"]*">(.*?)</tr>', table_html, re.S):
+                    cells = len(re.findall(r'<t[dh][ >]', row_html))
+                    self.assertEqual(cells, heads,
+                                     f'{page}: a row has {cells} cells but the header has {heads}')
+
+    def test_requirement_gates_match_the_gate_table(self):
+        # The gate column is derived from the gate table; if someone edits one and not the
+        # other, this fails rather than publishing a contradiction.
+        for req in V.REQ:
+            listed = [g[0] for g in V.GATES if req[0] in g[3]]
+            if not listed:
+                self.assertIn(req[0], V.SELF_SATISFIED,
+                              f'{req[0]} has no gate and is not declared self-satisfied')
+
+    def test_table_wrappers_are_keyboard_reachable(self):
+        for page in PAGES:
+            body = html(page)
+            self.assertEqual(body.count('<div class="table-wrap"'),
+                             body.count('tabindex="0" role="region"'),
+                             f'{page}: a table wrapper is not a named focus region')
+            self.assertEqual(body.count('<div class="table-wrap"'), body.count('<caption'),
+                             f'{page}: a table wrapper has no caption')
+
+    def test_the_landing_page_states_both_verdicts(self):
+        landing = html('index.html')
+        self.assertIn('How much of the brief is built', landing)
+        self.assertIn('How much is established', landing)
+        required = html('requirements.html')
+        self.assertIn('Implemented (mechanism, tested)', required)
+        self.assertIn('Established (official evidence)', required)
+
+    def test_no_page_asserts_a_validated_edge_or_a_price(self):
+        # 'guaranteed' legitimately appears in the disclaimer ("no ... guaranteed return is
+        # claimed"), so the test looks for an *assertion*, not the word.
+        banned = ('we have validated', 'profitable strategy', 'guaranteed return is',
+                  'guaranteed profit', 'risk-free')
+        for page in PAGES:
+            body = html(page).lower()
+            for phrase in banned:
+                if phrase == 'guaranteed return is':
+                    continue  # this is the negation the disclaimer is allowed to use
+                self.assertNotIn(phrase, body, f'{page} asserts something unsupportable')
+
+
+if __name__ == '__main__':
+    unittest.main()

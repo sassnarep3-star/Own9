@@ -19,7 +19,7 @@ HERE = Path(__file__).resolve().parent
 ROOT = HERE.parent
 sys.path.insert(0, str(HERE))
 
-import engine as V  # noqa: E402
+import registry as V  # noqa: E402
 
 OUT = HERE  # pages are written beside this module
 
@@ -30,7 +30,7 @@ NAV = [
     ("requirements.html", "Requirements"),
     ("questions.html", "Questions"),
     ("suggestions.html", "Suggestions"),
-    ("evidence.html", "Evidence &amp; snapshots"),
+    ("evidence.html", "Evidence and snapshots"),
     ("flags.html", "Flagged"),
     ("../flags.html", "Site flag register"),
     ("../origination/index.html", "Origination desk"),
@@ -126,7 +126,7 @@ def build() -> dict[str, str]:
             V.row(["Is the site's own data current?",
                    f"No. The committed Week 10 capture is dated 14 Nov and the official page has since "
                    f"settled 11 more games. The feed holds {M['finals_total']} finals; the official page "
-                   "now supports 148.", "Evidence &amp; snapshots"], (V.S_SCHED_W10, V.REPO), "Measured"),
+                   "now supports 148.", "Evidence and snapshots"], (V.S_SCHED_W10, V.REPO), "Measured"),
             V.row(["Can luck be removed?",
                    "No. It can be bounded with proper scoring, intervals and multiplicity control, and "
                    "the site refuses to rank when the bound spans zero. 'Removal' is not offered.",
@@ -146,7 +146,7 @@ def build() -> dict[str, str]:
                    '<p>Answerable, blocked, or owner decision</p></a>'
                    '<a href="suggestions.html"><span>04 / CHOOSE</span><b>Suggestions</b>'
                    '<p>Cost, unblocked gate, and what would refute it</p></a>'
-                   '<a href="evidence.html"><span>05 / CHECK</span><b>Evidence &amp; snapshots</b>'
+                   '<a href="evidence.html"><span>05 / CHECK</span><b>Evidence and snapshots</b>'
                    '<p>Two dated reads kept side by side</p></a>'
                    '<a href="flags.html"><span>06 / REVIEW</span><b>Flagged for review</b>'
                    '<p>VF-01 to VF-08, with what closes each</p></a>'
