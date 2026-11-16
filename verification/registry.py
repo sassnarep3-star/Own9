@@ -1149,8 +1149,8 @@ FLAGS = [
     ("VF-04", "Medium", "Venue coverage is 3 fixtures of the whole feed",
      "Venue is published on each game centre and is transcribed for WAS@NYG, NE@DET and PIT@CIN only.",
      "Not filled in. A venue guessed from a schedule page would not be a transcription.",
-     "One game-centre read per fixture (R-21).",
-     (S_GAMECENTER_W10, REPO)),
+     "One game-centre read per fixture (R-21). Three are done and published on the evidence page.",
+     (S_GC_PIT_CIN, S_GC_NE_DET, REPO)),
     ("VF-05", "Medium", "The public/private data split required by the brief is not implemented",
      "Raw row-level files are served publicly from the same origin as the analysis layer.",
      "Not changed here: moving files changes every link and is an integration decision.",
@@ -1168,6 +1168,12 @@ FLAGS = [
      "Not inferred from depth charts: 'expected' is a different claim from 'listed on a chart'.",
      "An announced-starter register (R-38) plus chart coverage (G-03).",
      (S_GAMECENTER_W10, REPO)),
+    ("VF-08", "Low", "An open PR from another session is red and self-described as partial",
+     "PR #51 (session f5961230) carries failing checks and states it is not ready to merge.",
+     "Not merged and not edited by this session: it is another session's work and its files were "
+     "avoided so no claim conflict exists.",
+     "Its owner finishes it, or it is closed. Either is fine for this site's integrity.",
+     (REPO,)),
     ("VF-09", "Critical", "The brief and the publisher's terms are in direct conflict",
      "Ten requirement lines ask for scheduled multi-day capture, a season-long archive, or a reserve "
      "list joined to the weekly report. NFL.com Terms section 1.3 prohibit systematic retrieval to "
@@ -1192,12 +1198,6 @@ FLAGS = [
      "Not reconciled: readiness/** was already merged and belongs to session 4bd7042b. Editing it "
      "would be an unclaimed change to another session's register.",
      "One owner decision to designate a canonical register, or to fold one into the other.",
-     (REPO,)),
-    ("VF-08", "Low", "An open PR from another session is red and self-described as partial",
-     "PR #51 (session f5961230) carries failing checks and states it is not ready to merge.",
-     "Not merged and not edited by this session: it is another session's work and its files were "
-     "avoided so no claim conflict exists.",
-     "Its owner finishes it, or it is closed. Either is fine for this site's integrity.",
      (REPO,)),
 ]
 
