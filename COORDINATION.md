@@ -1596,3 +1596,123 @@ The `static-and-math` check in `quality.yml` (run on PR #53) re-measures the rep
 1. **The committed results feed is stale, and it is measurable.** `data/board/results_2026.csv` holds 137 finals and `data/board/raw/week-10.txt` lists 11 Week 10 games as `at` (no score) that the official page now shows as FINAL. That is 11 verified finals missing from the feed that the brief names as the basis for backtests.
 2. **The parser is honest about duplication.** Appending the new finals as extra lines was refused by `parse_week_file` with `a club appears in two games in one week`, so the correction has to be made in place rather than by appending. Recorded because it shows the feed's integrity checks work.
 3. **Three different injury-designation totals are in circulation** (171 official hand count, 162 repo capture, 160 root page). This session did not count all 8 chunks, so it asserts no new total and publishes the discrepancy as an open question.
+
+## Session `462fba62` — implementation record and verification (2026-11-16 UTC)
+
+### What was built
+
+| Path | Change |
+| --- | --- |
+| `verification/` (7 pages + 3 tools, new) | Additive section: registry, renderer, browser test |
+| `tests/test_verification.py` (new) | 23 regression tests, listed below |
+| `tools/build.py` | One `NAV_GROUPS` entry only (`verification/index.html`, label `Verification`) — no page content of another session was edited |
+| `README.md` | One section describing the new section |
+| `COORDINATION.md` | This record (append-only) |
+
+Nothing else was edited. The 39 root pages regenerate **byte-identical** apart from the one
+navigation line, which is confirmed by `git status` after `python3 tools/build.py`.
+
+### Why the results-feed edit was abandoned mid-task, and what replaced it
+
+The first plan in the claim was to refresh `data/board/raw/week-10.txt` in place with the 11
+games that had become final. That was implemented, built, and then **reverted** for two
+reasons, both discovered by running the repository's own checks rather than by opinion:
+
+1. `engine/results_feed.cross_check` compares the feed against a *second, independently dated*
+   capture (`evidence/results/2026-week-10-status.json`, read 2026-11-14). Rewriting the board
+   transcription to 2026-11-16 produced `29 games compared, 18 agreeing` and failed
+   `test_two_independent_transcriptions_of_the_same_pages_agree`. The test was right: a
+   transcription edited on one date and compared against a capture made on another is not a
+   second witness, it is the same claim with two timestamps.
+2. The brief itself asks for immutable captures and dated deltas. Overwriting the older read
+   destroys exactly the artefact the brief says is missing.
+
+So the newer read is published as **SV-02** beside the frozen **SV-01**, with the measured
+delta between them, and VF-01 records that the committed feed is 11 settled games behind.
+Re-pointing the feed is left as a deliberate decision (G-04, V-S04) rather than done silently.
+
+An integrity check also earned its keep: appending the new finals as extra lines was refused
+by `parse_week_file` with `a club appears in two games in one week`, so the correction could
+not be made by duplication.
+
+### Sources read this session (official, 2026-11-16 UTC)
+
+- https://www.nfl.com/schedules/2026/by-week/week-10 — both chunks. 12 games FINAL with
+  scores, verbatim: Patriots 10 Lions 35; Chiefs 35 Falcons 13; Texans 24 Browns 27;
+  Vikings 30 Packers 10; Dolphins 22 Colts 24; Panthers 20 Saints 17; Bills 31 Jets 12;
+  Jaguars 40 Titans 23; Rams 34 Cardinals 6; Seahawks 21 Raiders 13; 49ers 46 Cowboys 40;
+  plus Commanders 24 Giants 21. `Steelers at Bengals` (Sun 15 Nov 20:20, NBC) and
+  `Chargers at Ravens` (Mon 16 Nov 20:15, ESPN) carry **no score** and were not given one.
+  Byes as published: CHI, DEN, PHI, TB.
+- https://www.nfl.com/injuries/ — chunk 0 of 8, header "Week 10 of the 2026 Season". Lions:
+  Kerby Joseph (S, Knee, DNP, **Out**), Cade Mays (C, Ankle, DNP, **Out**), D.J. Reed
+  (CB, Hip, DNP, **Out**). Washington: Lucas Patrick (C, Concussion, DNP, Out), Colson
+  Yankoff (TE, Knee, DNP, Out). **Chunks 1-7 were not read, so no row total is asserted.**
+- https://www.nfl.com/games/steelers-at-bengals-2026-reg-10?tab=overview — Game Info:
+  `LOCATION CINCINNATI, OH`, `STADIUM PAYCOR STADIUM`.
+- https://www.nfl.com/games/patriots-at-lions-2026-reg-10?tab=recap — Game Info:
+  `LOCATION MUNICH`, `STADIUM FC BAYERN MUNICH STADIUM`; final NE 10, DET 35 confirmed
+  quarter by quarter (3+0+0+7 = 10; 7+14+7+7 = 35).
+
+Two game-centre pages are cited through the register entry `nfl-gamecenter-w10`, whose
+registered URL is the WAS @ NYG page. **This is a known limitation of this section and not a
+claim that all three are one page**; adding distinct register entries needs
+`evidence/sources.json`, which is owned by open PR #51, so the request is logged below
+instead of edited.
+
+### Verification performed
+
+```
+python3 tools/build.py                                 39 pages, byte-identical except nav
+python3 tools/verify.py                                PASS 39 fresh pages, 1755 source-linked rows
+python3 -m unittest discover -s tests                  OK 305 tests (282 inherited + 23 new)
+python3 scripts/check_site.py                          PASS 15 pages, 551 links
+python3 engine/availability.py / registers.py          PASS
+python3 origination/tools/verify.py                    PASS 12 pages, 442 rows
+python3 -m unittest discover -s release-checks         OK 31 tests
+python3 -m unittest discover -s session-00cf851d/tests OK 47 tests
+node scripts/browser_test_root.cjs                      PASS 39 pages x 2 viewports, 78 axe checks
+node verification/browser_test.cjs                      PASS 7 pages x 2 viewports, 14 axe checks,
+                                                        402 rows carry an evidence link, no-JS OK
+node session-00cf851d/tools/browser_test.cjs             PASS 13 pages x 2 viewports
+```
+
+`session-00cf851d` runs a whole-repository file count pinned in CI, so its inventory was
+regenerated by its own tool (377 → 387 tracked files; the only change is that number and the
+caption printing it). That is another session's tree; logged here rather than done silently,
+and it repeats the request already on the board that a whole-repository measurement should
+not live behind a CI freshness gate.
+
+### Defects found by the new tests, and fixed
+
+1. `verification/engine.py` and `verification/build.py` shadowed the repository's own
+   `engine/` package and `tools/build.py` under the full test run (14 errors). Renamed to
+   `registry.py` and `render.py`.
+2. A Python `set` in the gate table made the HTML depend on `PYTHONHASHSEED`: the same
+   sources rendered in different orders between runs. Four seeds now produce byte-identical
+   output.
+3. Five tables declared fewer headers than they emitted, so a source tuple rendered as a
+   visible cell on `requirements`, `questions`, `suggestions`, `evidence` and `flags`. Each
+   table now slices explicitly and a test pins every row's width against its header.
+
+### Irregularities raised (VF-01 … VF-08, published on `verification/flags.html`)
+
+Critical — the committed results feed is 11 settled games behind the official page.
+High — three different injury-designation totals for one report (171/162/160).
+Medium — the brief's own figures (254/279 rows, "136-game log", VR-/VQ- ids) are not
+reproducible from this repository; venue coverage is 3 fixtures; the public/private split the
+brief requires is not implemented; two implementations of the same eight requirements remain
+unreconciled. Low — the "expected starter" half of the availability graph is unbuilt; open PR
+#51 is red and self-described as partial.
+
+### Requests to other owners (not edited here)
+
+1. **`evidence/sources.json` owner (PR #51):** add distinct register entries for
+   `https://www.nfl.com/games/steelers-at-bengals-2026-reg-10` and
+   `https://www.nfl.com/games/patriots-at-lions-2026-reg-10` so each venue row can cite its
+   own page instead of the shared `nfl-gamecenter-w10` entry.
+2. **`session-00cf851d` owner:** consider dropping the whole-repository tracked-file count or
+   making it non-fatal; every additive session changes it.
+3. **Lead integration owner:** the `verification/` section registers itself as a normal page
+   set under `verification/` and needs no build-time hook beyond the `NAV_GROUPS` line already
+   added. If a future session packages Pages artefacts by directory, include `verification/`.
