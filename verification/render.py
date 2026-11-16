@@ -163,7 +163,7 @@ def build() -> dict[str, str]:
                    '<a href="evidence.html"><span>05 / CHECK</span><b>Evidence and snapshots</b>'
                    '<p>Two dated reads kept side by side</p></a>'
                    '<a href="flags.html"><span>06 / REVIEW</span><b>Flagged for review</b>'
-                   '<p>VF-01 to VF-08, with what closes each</p></a>'
+                   '<p>VF-01 to VF-11, with what closes each</p></a>'
                    '</div>')
 
     landing.append(table(

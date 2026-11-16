@@ -244,6 +244,11 @@ class Pages(unittest.TestCase):
             self.assertEqual(body.count('<div class="table-wrap"'), body.count('<caption'),
                              f'{page}: a table wrapper has no caption')
 
+    def test_the_landing_page_counts_match_the_register(self):
+        landing = html('index.html')
+        self.assertIn(f'VF-01 to VF-{len(V.FLAGS):02d}', landing)
+        self.assertIn(f'{len(V.REQ)} lines', landing)
+
     def test_the_landing_page_states_both_verdicts(self):
         landing = html('index.html')
         self.assertIn('How much of the brief is built', landing)
