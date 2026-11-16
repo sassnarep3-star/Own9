@@ -1502,3 +1502,18 @@ Desk: https://sassnarep3-star.github.io/Own9/origination/
 4. **OD-03** — ROI remains arithmetic, not economics, until executable quotes are captured.
 5. **Q-02** — external confirmation of the score content for 1999–2009 and the seasons
    not checked (2011–2017, 2019–2024) is still missing.
+
+---
+
+## Session 4bd7042b — claim (branch `arena/4bd7042b-own9`, base `61a6e68` on `main`) — 2026-11-16 UTC
+
+Branch name is fixed by the platform; the `session-<id>/<task>` naming in the brief is not used because this session may only work on its assigned branch. Scope is additive and disjoint from every claim above.
+
+| Task | Status | Owner | Files |
+| --- | --- | --- | --- |
+| Decision-readiness register: one row per requirement in the brief, blocking gate, clearing number, status, source link; executive summary; repository review with irregularities | in progress | 4bd7042b | `readiness/**` (new) |
+| Official injury-report capture automation: scheduled fetch, raw hash, timestamp, drift alarm, ledger; raw captures kept out of the public repo | in progress | 4bd7042b | `capture/**` (new), `.github/workflows/injury-capture.yml` (new), `.gitignore` (append) |
+| Landing-page navigation entry for the readiness section | in progress | 4bd7042b | `tools/build.py` (one nav entry), regenerated root `*.html` |
+| README and log | in progress | 4bd7042b | `README.md` (append), `COORDINATION.md` (append) |
+
+Not claimed here, deliberately (see the readiness page for the gate that blocks each): backtests, the joint-evidence gate for parlays, control baselines, pre-registration commits, the per-team view and the Texans depth image. These need owner decisions or data that this environment cannot reach.
