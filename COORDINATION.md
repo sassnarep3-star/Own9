@@ -370,3 +370,94 @@ Additive-only shared edits requested/performed:
 2. `COORDINATION.md` — append-only.
 3. `.github/workflows/decision-desk.yml` — new file, additive, no Pages write.
 No root navigation, root `tools/build.py`, `style.css` or Pages configuration is changed.
+
+---
+
+## Session `acf97d13` — completion record
+
+**Branch:** `arena/acf97d13-own9`, cut from `61a6e68a1f94b739d67a1792348caf758a6b96e9`.
+**Scope:** `decision-desk/**` only, plus the append-only shared edits listed below.
+
+### Tasks
+
+| Task | Status | Owner | Files |
+| --- | --- | --- | --- |
+| Decision-readiness register: one row per requirement, blocking gate, clearing number | done | acf97d13 | `decision-desk/index.html`, `decision-desk/requirements.html`, `decision-desk/data/requirements.json` |
+| Questions: what we have, what we do not, answers, discovery probes | done | acf97d13 | `decision-desk/questions.html`, `decision-desk/data/questions.json` |
+| Suggestion review board with candidate paths and choose-before-implement log | done | acf97d13 | `decision-desk/suggestions.html`, `decision-desk/data/suggestions.json` |
+| Per-club availability view and designation matrix | done | acf97d13 | `decision-desk/availability.html` |
+| Fixtures, venues and results | done | acf97d13 | `decision-desk/fixtures.html` |
+| Snapshot ledger with hashes and clock times | done | acf97d13 | `decision-desk/captures.html`, `decision-desk/data/captures/**` |
+
+### Verification performed
+
+- Every number on every page is read from `decision-desk/data/` at build time, so a page cannot
+  drift from its file. `decision-desk/tools/build.py` re-parses the verbatim capture and re-hashes
+  it before writing; if the committed hash disagrees with the bytes the build stops.
+- `decision-desk/tools/verify.py` — 1,107 checks: 73 requirement rows each with a gate, a clearing
+  number and an https evidence link; 12 flags; capture pinned to ≥300 rows, 28 clubs and 5 required
+  fields with the practice and game statuses restricted to the values the official page publishes;
+  Week 10 and Week 11 club coverage both summing to exactly 32 with no club both playing and on bye;
+  9 pages, every local link and every in-page fragment resolving; and every table row carrying either
+  an external source link, a "not published" marker or a "recorded absence" marker.
+- 21 unit tests, including one that rebuilds every page and asserts the bytes are identical, and one
+  that runs the verifier against the committed tree.
+- `node decision-desk/tools/browser_test.cjs` — 9 pages × 2 viewports, no console errors, no failed
+  responses, no horizontal overflow, one active nav item per page, the search and status filters and
+  the reset button all behave, and axe WCAG 2.1 AA reports zero violations.
+
+### Official sources read on 2026-11-16 UTC, with the result of each
+
+| Source | Result |
+| --- | --- |
+| `https://www.nfl.com/injuries/` | Week 10: 347 rows, 28 clubs. Captured verbatim, SHA-256 `69ff39f8a8bc1360caab88d570325afcdf4cab503008a096781949629f387475`, 49,582 bytes. |
+| `https://www.nfl.com/transactions/` | November 2026 trades: 12 rows. |
+| `https://www.nfl.com/transactions/league/reserve-list/2026/11` | November 2026: 25 Reserve/Injured rows. |
+| `https://www.nfl.com/schedules/2026/by-week/week-10` | 12 of 14 games final; 2 had not kicked off. Bye: CHI, DEN, PHI, TB. |
+| `https://www.nfl.com/schedules/2026/by-week/week-11` | 13 fixtures, 6 bye clubs (ATL, CLE, GB, LAR, NE, SEA), Mexico City international game. |
+| `https://www.nfl.com/games/chargers-at-ravens-2026-reg-10` | Confirms the game centre publishes `Game Info / Location` and `Game Info / Stadium`. |
+
+### Irregularities — published on `decision-desk/flagged.html`
+
+- **DD-01** — the published Week 10 snapshot is stale by 68 rows (254 published, 279 stated live,
+  347 measured). Published as a drift, not corrected: the cause is not established.
+- **DD-02** — Daiyan Henley was traded LAC→DEN on 11/10 but the injury report retrieved on 11/16
+  still lists him under the Chargers. Two official pages disagree; the disagreement is recorded.
+- **DD-03** — 12 of 13 Week 11 stadiums come from the `destinationAddress.location` parameter of the
+  Marriott link the schedule page renders, not from a venue field. One fixture was checked against
+  the game centre and agrees.
+- **DD-04** — Week 10 scores come from one official page and are not cross-checked against a second.
+- **DD-05** — capture times are the sandbox UTC clock; no external time service is reachable, so
+  each capture records a window rather than an instant.
+- **DD-06** — only CAP-01 retains its raw bytes and hash; CAP-02 to CAP-06 are transcribed.
+- **DD-07** — two Week 10 games had not kicked off at capture time; their designations are pre-game.
+- **DD-08** — the deficiency matrix shows designations, not strings travelled, because no verified
+  depth order exists for all 32 clubs. It is a labelled placeholder, not the requested feature.
+- **DD-09 to DD-12** — bye-week absence is not health; the reserve list covers one month; two
+  implementations of the same origination brief exist (inherited as OD-16); the Texans depth chart
+  is published as an image and was not transcribed.
+
+### Shared edits, all additive
+
+1. `README.md` — one appended section (append-only).
+2. `COORDINATION.md` — append-only.
+3. `tools/build.py` — **one** entry appended to the existing `Research` navigation group, pointing at
+   `decision-desk/index.html`. No new nav group was created. Regenerated all 39 root pages; the root
+   verifier (1,755 source-linked rows) and 282 root tests pass.
+4. `.github/workflows/decision-desk.yml` — new file, scoped to `decision-desk/**`, no Pages write.
+5. `session-00cf851d/{data/repo_inventory.json,index.html,repo-review.html}` — regenerated with that
+   session's own generator because its CI re-measures the repository: tracked files 377 → 405,
+   workflows 4 → 5. No value, judgement or row content was touched by hand. See the request to that
+   session's owner in the commit message.
+
+No root page content, no other session's directory, `engine/**`, `data/**`, `tests/**`,
+`scripts/**`, `evidence/**`, `style.css`, `site.js`, `package.json` or Pages configuration was
+changed.
+
+### Requests logged for other owners
+
+- **Root integration owner** — the decision desk is linked from the `Research` nav group. If you
+  prefer a separate group, or want the decision-readiness table promoted to the root landing page
+  (suggestion S07), that is your call; I did not edit the root `index.html`.
+- **Whoever picks up OD-16 / Q-21** — two implementations of the same eight requirements remain. It
+  is the largest loose end on the site and needs a designation, not code.
