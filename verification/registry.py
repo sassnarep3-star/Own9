@@ -1433,7 +1433,10 @@ def _cost_class(gate_id):
         "G-05": "More seasons — labour and archive access",
         "G-06": "Statistical — a real edge, not a task",
         "G-07": "Schema and process — cheapest open gate",
-    }.get(gate_id, "")
+        "G-08": "Model critique — needs G-01 and G-02 first",
+        "G-09": "Rights review — a recorded outcome per source family",
+        "G-10": "Consent or licence, or drop the requirement — a decision, not a build",
+    }[gate_id]
 
 
 _register()
