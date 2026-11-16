@@ -1,0 +1,39 @@
+name: Decision readiness
+
+on:
+  push:
+    branches: [main, 'arena/**']
+  pull_request:
+    branches: [main]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  readiness:
+    name: Decision-readiness register checks
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - name: Check out source
+        uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262 # v4
+      - name: Set up Python
+        uses: actions/setup-python@a26af69be951a213d495a4c3e4e4022e16d87065 # v5
+        with:
+          python-version: '3.12'
+      - name: Validate the registers and confirm the pages match them
+        run: python3 readiness/tools/build.py --check
+      - name: Test the validator and the rendered links
+        run: python3 -m unittest discover -s readiness/tests -v
+      - name: Set up Node
+        uses: actions/setup-node@49933ea5288caeca8642d1e84afbd3f7d6820020 # v4
+        with:
+          node-version: '22'
+      - name: Install the browser test dependencies
+        run: npm ci --ignore-scripts
+      - name: Test the readiness pages in a browser (desktop, mobile, WCAG, filters)
+        run: node readiness/tools/browser_test.cjs
+
+# Additive: touches only readiness/ and reads the registers. It does not write
+# to Pages or change publishing settings.

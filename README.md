@@ -325,3 +325,26 @@ correlations, signal/staking sheets) — this session adds only what that delta 
 New suggestions S-17–S-21 (price archive, close-capture adoption, sealed backtest, signal/staking adoption,
 game-centre row verification) and open questions Q-23/Q-24 (grading operator; re-promotion thresholds) are in
 the registers awaiting review. Findings F34–F39 are on [flags.html](flags.html).
+
+## Decision readiness (`readiness/`)
+
+**Live:** https://sassnarep3-star.github.io/Own9/readiness/ (linked from the Decide group of the site navigation).
+
+One row per requirement in the brief: its status, the decision or evidence that blocks it, the number that would clear it, and its sources. The registers are CSV files in `readiness/data/`:
+
+| File | What it holds |
+| --- | --- |
+| `requirements.csv` | One row per requirement (82 rows). |
+| `decisions.csv` | Eight owner decisions (`DEC-01` to `DEC-08`), each with a default that applies until the owner answers. |
+| `repo_review.csv` | Irregularities found in the repository review, with how each was checked. |
+
+Rebuild and check:
+
+```sh
+python3 readiness/tools/build.py                 # validate, then write the pages
+python3 readiness/tools/build.py --check         # fail if the pages differ from the registers
+python3 -m unittest discover -s readiness/tests -v
+node readiness/tools/browser_test.cjs            # desktop, mobile, WCAG, filters, links
+```
+
+The builder fails closed. A row marked "Verified today" must carry an official NFL link. A "Built" row must point to a file that exists. A blocked row must name the decision that blocks it. Any unknown ID or unknown source stops the build. Automated capture of NFL.com pages is not implemented: NFL.com Terms section 1.3 prohibit systematic retrieval without prior written consent (`DEC-01`).

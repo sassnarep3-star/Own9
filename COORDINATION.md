@@ -1517,3 +1517,44 @@ Branch name is fixed by the platform; the `session-<id>/<task>` naming in the br
 | README and log | in progress | 4bd7042b | `README.md` (append), `COORDINATION.md` (append) |
 
 Not claimed here, deliberately (see the readiness page for the gate that blocks each): backtests, the joint-evidence gate for parlays, control baselines, pre-registration commits, the per-team view and the Texans depth image. These need owner decisions or data that this environment cannot reach.
+
+### 4bd7042b — completion record (2026-11-16 UTC)
+
+**Status changes against the claim above:**
+- Decision-readiness register (`readiness/**`): **done**. 82 requirement rows, 8 owner decisions, 13 repository-review items. Validator fails closed; 24 unit tests; browser test (desktop and mobile, WCAG 2A/AA via axe, search and status filter, every local link). Linked from the Decide group of the root navigation.
+- Root navigation (`tools/build.py`): one entry added to the **Decide** group. Root pages regenerated; the only change in each of the 39 root pages is that navigation line. Root suite (282 tests), `tools/verify.py`, `scripts/check_site.py` and the root browser test (39 pages × 2 viewports, 78 axe checks) all pass.
+- Injury-report capture automation: **not built, deliberately**. NFL.com Terms (updated 16 May 2024) section 1.3 prohibit "systematic retrieval of data or other content from the Services ... to create or compile ... a database ... absent our express prior written consent." A scheduled scraper would breach that. The decision is recorded as **DEC-01** with the default "no systematic capture". The claim above is withdrawn in that respect. The register rows D-01 to D-05, D-08 and D-11 are blocked by it.
+
+**Sources read on 2026-11-16 (official):**
+- https://www.nfl.com/injuries/ (Week 10 2026 report). Lions rows re-checked: Kerby Joseph (S, Knee, Did Not Participate in Practice, Out), Cade Mays (C, Ankle, Did Not Participate in Practice, Out), D.J. Reed (CB, Hip, Did Not Participate in Practice, Out). Matches `injuries.html`. Row D-12 is **Verified today**.
+- https://www.nfl.com/legal/terms/ (section 1.3 quoted in DEC-01; read in full for that section).
+- Git history of this repository, read from the full history (the checkout was shallow and was unshallowed for this check): `origination/data/strategies.json`, `results.csv` and `correlations.json` first appear together in commit `fe1067e` (2026-11-14T23:13:37Z). Row B-10.
+
+**Irregularities (published on `readiness/repo-review.html`, not blocking):**
+- RV-01 (critical): cross-game parlay X-PARLAY priced with rho = 0 (independence), with synthesised prices; shown with the best ROI in the desk. **Not changed in this session**: the origination desk belongs to a completed session. DEC-03 asks the owner to remove it from the ranked table, which the brief's joint-evidence gate requires.
+- RV-02 (high): no pre-registration; rules, results and correlations committed together.
+- RV-03 (high): price store has 0 opening prices (13,341 rows); `data/snapshots/store.jsonl` is 0 bytes.
+- RV-04 (high): row-level raw data (`data/raw/*.csv`, `session-8b05dd6d/data/injuries.csv`) is in the public repo with unknown provenance.
+- RV-05 (high): 0 of 32 clubs have a verified official depth chart; all charts in the repo label themselves unofficial.
+- RV-06 (high): the brief's automated capture conflicts with NFL.com Terms section 1.3.
+- RV-07 to RV-10 (medium): site fragmentation, near-duplicate signal pages, stale COORDINATION claims, two unreconciled origination estimators (Q-21).
+- RV-11 (medium): an unverified statement about NFL depth-chart publication (`origination/evidence/depth_charts.json`), left unverified.
+- RV-12 (medium): `injuries.html` is headed "players with an explicit Game Status", so it is a subset of the report. The published counts (254 rows, 4 no-injury sections) remain unverified against the live 279 rows and 2 sections (D-13).
+- RV-13 (low): origination index says all three singles were demoted at bet 200 in 2010; `demotions.json` shows G-TOTAL at 2011.
+
+**Not done in this session (named, not hidden):** the Texans depth image (DEC-07), the 32-club depth sweep (DEC-06), the 136-game pre-registered corpus (DEC-04), the control baselines, the joint-evidence gate enforcement on X-PARLAY (DEC-03), the per-team view, the two-estimator view, the injury time series (DEC-01), and the decisions themselves (DEC-01 to DEC-08 await the owner; defaults apply until then).
+
+**Checks run:**
+```sh
+python3 readiness/tools/build.py --check
+python3 -m unittest discover -s readiness/tests -v          # 24 tests
+node readiness/tools/browser_test.cjs                       # 3 pages x 2 viewports
+python3 -m unittest discover -s tests                       # root, 282 tests
+python3 tools/verify.py && python3 scripts/check_site.py
+python3 engine/availability.py && python3 engine/registers.py
+python3 tools/build.py && git diff --stat -- '*.html'       # only nav lines changed
+node scripts/browser_test_root.cjs                          # 39 pages x 2 viewports
+python3 origination/tools/verify.py && python3 -m unittest discover -s origination/tests
+```
+
+**Shared files touched (additive only):** `tools/build.py` (one nav entry), 39 root HTML files (regenerated; nav line only), `README.md` (one section appended), `COORDINATION.md` (append-only), `.github/workflows/readiness.yml` (new). `origination/**` was not edited.
