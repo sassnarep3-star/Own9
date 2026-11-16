@@ -1518,3 +1518,33 @@ Work is therefore one branch, one owner, and claims are recorded here instead of
 Not claimed in this session (no data or no source reachable from the sandbox): historical injury archives,
 snap counts, Game Book inactives beyond those already on file, opening prices, licensed quote archives,
 per-club depth charts for 32 clubs, and any strategy pre-registration run. These stay in the readiness table as blocked.
+
+### Session 9136b4d8 — status and requests, 2026-11-16 UTC (branch `arena/9136b4d8-own9`)
+
+Scope actually changed, against the claim above:
+
+| Task | Status | Owner | Files actually changed |
+| --- | --- | --- | --- |
+| Decision-readiness table (72 requirements, state, gate, clearing number) | done (published outside root nav) | 9136b4d8 | `session-9136b4d8/readiness.html` (new), `session-9136b4d8/data/readiness.json` (new), `tools/pages_9136b4d8.py` (new) |
+| Repo review: irregularities F58–F70 | done | 9136b4d8 | `flags.html` (F58–F70 appended), `tools/pages_9136b4d8.py` |
+| Week 10 injury recheck (team-level counts, derived) | done | 9136b4d8 | `session-9136b4d8/readiness.html` (section), `session-9136b4d8/data/week10-recheck.json` (new) |
+| Tests for the above | done | 9136b4d8 | `tests/test_readiness.py` (new) |
+| Hook and date rule in the shared generator | done (minimal) | 9136b4d8 | `tools/build.py`: one `exec` hook before `render()`; one page-date rule for `flags.html` |
+
+Not changed in this session (shared outputs): `index.html`, navigation (`NAV_GROUPS`), `injuries.html`, `INJ` table, `tests/test_site.py`, `README.md`, `site/**`. Earlier drafts that changed them were reverted before commit.
+
+Verified on this branch: `tools/build.py` renders 39 root pages; `tools/verify.py` PASS (39 pages, 1,768 source-linked rows); `python3 -m unittest discover -s tests` 295 tests OK; `engine/availability.py`, `engine/registers.py`, `release-checks` tests, and the origination desk build/verify/tests all exit 0.
+
+Week 10 recheck, read from https://www.nfl.com/injuries/ on 16 Nov 2026 (8 chunks): 171 designations (Out 70, Doubtful 11, Questionable 90) across 14 games and 28 clubs. The INJ snapshot has 160 rows. Club-by-club, 25 clubs match exactly (AZ as `AZ`). Differences: BAL +2 and LAC +10 absent (Monday game); IND −1 (Arden Key has no designation on the official page). HOU and LAR are equal in count but two names differ from the display text. SEA 4 and CIN 4 match; the 15 and 9 counted in earlier notes are rostered rows, not designations.
+
+Cross-scope requests for the final integration session (not edited here):
+
+1. **INJ / injuries.html**: remove IND "Arden Key" (F59); rename HOU "Jake Hummel" to "Jacob Hummel" and LAR "Kamren Curl" to "Kam Curl" (F60); add BAL 2 and LAC 10 designations after terms are read (F58, F66). Expected result: 171 designations, 171 rows.
+2. **Navigation / root landing**: add `session-9136b4d8/readiness.html` ("Decision readiness") to `NAV_GROUPS` and the landing page. It is published in this session's folder, not at the root, because the root navigation check requires every root page to be listed in the nav.
+3. **Results feed**: ingest the 12 Week 10 finals shown on https://www.nfl.com/schedules/2026/REG10/ (F62). The other 2 games were not in the portion read.
+4. **Session 00cf851d inventory**: `session-00cf851d/data/repo_inventory.json` and `repo-review.html` count tracked files and root pages. Adding the files above changes those counts, so that session's regeneration check will drift. Regenerate with its own script after this branch is merged; this session did not hand-edit them.
+5. **Stale dates**: index.html and data.html carry 04 Nov, injuries.html 14 Nov (F63). Owner decision.
+
+Pull request: not opened from this session. Per the board, PR and merge belong to the final integration session; this session's branch is `arena/9136b4d8-own9` and will be pushed as-is.
+
+Corrections to earlier claims on this board: the `INJ` count before this session was 160 (not 159), so the test pin of 160 is correct at HEAD. The SEA/CIN "conflict" in the earlier working notes was a misreading (rostered rows vs designations). The "254 / 279 rows" figures in earlier notes could not be reproduced in this branch and are not used.

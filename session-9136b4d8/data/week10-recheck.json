@@ -1,0 +1,184 @@
+{
+  "as_of_utc": "2026-11-16",
+  "source_url": "https://www.nfl.com/injuries/",
+  "source_title": "Official Latest NFL Injury Report for Players - Week 10 of the 2026 Season | NFL.com",
+  "method": "Read by hand from the 8 chunks of the official page on 2026-11-16 UTC. Counted only rows whose Game Status is Out, Doubtful or Questionable. Rows with blank Game Status (including blank injury text) are not counted. No player names are stored here.",
+  "games_listed": 14,
+  "clubs_listed": 28,
+  "official_totals": {
+    "Out": 70,
+    "Doubtful": 11,
+    "Questionable": 90,
+    "designated": 171
+  },
+  "teams": [
+    {
+      "club": "WAS",
+      "Out": 2,
+      "Doubtful": 0,
+      "Questionable": 0
+    },
+    {
+      "club": "NYG",
+      "Out": 0,
+      "Doubtful": 0,
+      "Questionable": 1
+    },
+    {
+      "club": "NE",
+      "Out": 3,
+      "Doubtful": 0,
+      "Questionable": 9
+    },
+    {
+      "club": "DET",
+      "Out": 3,
+      "Doubtful": 0,
+      "Questionable": 2
+    },
+    {
+      "club": "KC",
+      "Out": 3,
+      "Doubtful": 0,
+      "Questionable": 3
+    },
+    {
+      "club": "ATL",
+      "Out": 1,
+      "Doubtful": 1,
+      "Questionable": 3
+    },
+    {
+      "club": "MIN",
+      "Out": 5,
+      "Doubtful": 0,
+      "Questionable": 3
+    },
+    {
+      "club": "GB",
+      "Out": 4,
+      "Doubtful": 1,
+      "Questionable": 7
+    },
+    {
+      "club": "JAX",
+      "Out": 3,
+      "Doubtful": 0,
+      "Questionable": 1
+    },
+    {
+      "club": "TEN",
+      "Out": 5,
+      "Doubtful": 0,
+      "Questionable": 1
+    },
+    {
+      "club": "BUF",
+      "Out": 0,
+      "Doubtful": 1,
+      "Questionable": 4
+    },
+    {
+      "club": "NYJ",
+      "Out": 1,
+      "Doubtful": 0,
+      "Questionable": 8
+    },
+    {
+      "club": "MIA",
+      "Out": 2,
+      "Doubtful": 1,
+      "Questionable": 1
+    },
+    {
+      "club": "IND",
+      "Out": 6,
+      "Doubtful": 0,
+      "Questionable": 1
+    },
+    {
+      "club": "CAR",
+      "Out": 1,
+      "Doubtful": 2,
+      "Questionable": 4
+    },
+    {
+      "club": "NO",
+      "Out": 4,
+      "Doubtful": 0,
+      "Questionable": 2
+    },
+    {
+      "club": "HOU",
+      "Out": 5,
+      "Doubtful": 0,
+      "Questionable": 6
+    },
+    {
+      "club": "CLE",
+      "Out": 2,
+      "Doubtful": 0,
+      "Questionable": 1
+    },
+    {
+      "club": "LAR",
+      "Out": 2,
+      "Doubtful": 0,
+      "Questionable": 5
+    },
+    {
+      "club": "AZ",
+      "Out": 3,
+      "Doubtful": 0,
+      "Questionable": 6
+    },
+    {
+      "club": "SEA",
+      "Out": 4,
+      "Doubtful": 0,
+      "Questionable": 0
+    },
+    {
+      "club": "LV",
+      "Out": 0,
+      "Doubtful": 0,
+      "Questionable": 2
+    },
+    {
+      "club": "SF",
+      "Out": 1,
+      "Doubtful": 0,
+      "Questionable": 7
+    },
+    {
+      "club": "DAL",
+      "Out": 5,
+      "Doubtful": 1,
+      "Questionable": 5
+    },
+    {
+      "club": "PIT",
+      "Out": 0,
+      "Doubtful": 0,
+      "Questionable": 1
+    },
+    {
+      "club": "CIN",
+      "Out": 1,
+      "Doubtful": 3,
+      "Questionable": 0
+    },
+    {
+      "club": "LAC",
+      "Out": 3,
+      "Doubtful": 1,
+      "Questionable": 6
+    },
+    {
+      "club": "BAL",
+      "Out": 1,
+      "Doubtful": 0,
+      "Questionable": 1
+    }
+  ]
+}

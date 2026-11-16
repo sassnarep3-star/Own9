@@ -834,6 +834,11 @@ exec(compile(_0167a04c_body, 'pages_0167a04c.py', 'exec'),
       '__name__': 'pages_0167a04c'})
 
 
+# Session arena/9136b4d8-own9 (16 Nov 2026): readiness.html and flags F58-F70. Runs after every page is registered.
+exec(compile((ROOT / 'tools/pages_9136b4d8.py').read_text(encoding='utf-8'), 'pages_9136b4d8.py', 'exec'),
+     {'page': page, 'table': table, 'row': row, 'PAGES': PAGES, 'ROOT': ROOT, 'INJ': INJ, '__name__': 'pages_9136b4d8'})
+
+
 def render():
     files = {}
     for filename,(label,title,intro,content) in PAGES.items():
@@ -841,7 +846,8 @@ def render():
             f'<span class="nav-group"><span class="nav-label">{e(group)}</span>'
             + ''.join(f'<a href="{f}"'+(' aria-current="page"' if f==filename else '')+f'>{e(label)}</a>' for f,label in items)
             + '</span>' for group,items in NAV_GROUPS)
-        page_date = '14 Nov 2026' if filename in KEEP_DATE_14 else '04 Nov 2026'
+        # flags.html was changed on 16 Nov 2026 by session 9136b4d8.
+        page_date = '16 Nov 2026' if filename in {'flags.html'} else ('14 Nov 2026' if filename in KEEP_DATE_14 else '04 Nov 2026')
         files[filename] = f'''<!doctype html>
 <html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="description" content="Evidence-first NFL research dashboard. Strategies, validation, correlation requirements and transparent limitations."><title>{e(label)} · Own9 NFL Research</title><link rel="stylesheet" href="style.css"><script src="site.js" defer></script></head>
 <body><a class="skip" href="#main">Skip to content</a><header><div class="shell top"><a class="brand" href="index.html"><span>O9</span> OWN9 <small> / NFL RESEARCH</small></a><span class="status-dot">Research only · no live wagers</span></div><nav class="shell" aria-label="Main navigation">{nav}</nav></header>
