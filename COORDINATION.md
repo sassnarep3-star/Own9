@@ -1793,3 +1793,59 @@ as **VF-11** on `verification/flags.html` and as item 4 in the requests below.
    `https://www.nfl.com/games/patriots-at-lions-2026-reg-10`. They are carried locally
    (`LOCAL_SOURCES` in `verification/registry.py`) and a test fails if a local record is
    duplicated upstream, so the move is safe when PR #51 lands.
+
+## Session `462fba62` — PR #54 merge and publication record (2026-11-16 UTC)
+
+**PR:** https://github.com/sassnarep3-star/Own9/pull/54
+**Merge:** merged to `main` at 2026-11-16T01:40:50Z as
+`92e48dd00aacd7f507b1982ca2c433544d8c683c` (`gh pr merge 54 --merge`), without waiting for
+approval, as instructed.
+
+**Checks on the merged commit — all four pass:**
+
+| Check | Result | Run |
+| --- | --- | --- |
+| `Research integrity and site checks` | pass | [43787509891](https://github.com/sassnarep3-star/Own9/actions/runs/43787509891) |
+| `static-and-math` (Research quality) | pass | [43787509834](https://github.com/sassnarep3-star/Own9/actions/runs/43787509834) |
+| `Line-origination desk checks` | pass | [43787509842](https://github.com/sassnarep3-star/Own9/actions/runs/43787509842) |
+| `Decision-readiness register checks` | pass | [43787509969](https://github.com/sassnarep3-star/Own9/actions/runs/43787509969) |
+
+An earlier push of the same branch failed `static-and-math` (run `43787305578`) because
+`session-00cf851d` pins a whole-repository file count in CI. Fixed by regenerating its
+inventory with its own tools (tracked files 389 → 400); a scripted diff confirmed the only
+change in its two pages is that number.
+
+**Deployment:** `pages-build-deployment` **succeeded** on `92e48dd`
+(run created 2026-11-16T01:40:52Z); GitHub Pages API reports `status: built`,
+`html_url: https://sassnarep3-star.github.io/Own9/`.
+
+**Live verification (public URL fetched, not just the API):**
+
+- https://sassnarep3-star.github.io/Own9/verification/ — serves the overview, the executive
+  summary with the terms finding, the 11 findings and the "what was verified" table, all with
+  working source links.
+- All six subpages are generated from the same registry and were checked locally in a browser
+  at two viewports; the merged navigation on all 39 root pages resolves.
+
+**Follow-up opened after the merge:** two cosmetic defects were visible on the live page and
+are being corrected in a second small PR rather than left in the published record — the
+findings table printed VF-08 after VF-11, and VF-04's source link pointed at the WAS @ NYG
+game centre although the finding is about venue coverage across the feed. A test now pins
+findings to id order so the first cannot recur.
+
+### Open items this session could not close
+
+1. **VF-09 / G-10** — the brief asks for scheduled multi-day capture, a season archive and a
+   reserve-list join; NFL.com Terms section 1.3 prohibit systematic retrieval without express
+   prior written consent. Ten requirement lines are blocked by permission, not by work. Needs
+   an owner decision or a licence; nothing in the repository can substitute.
+2. **VF-01 / G-04** — the committed results feed is 11 settled Week 10 games behind the
+   official page. The newer read is published as SV-02; re-pointing the feed is a deliberate
+   decision left to its owner.
+3. **VF-02** — three injury-designation totals (171/162/160) are in circulation and none is
+   reproducible from a machine count. One complete read with a retained hash ends it.
+4. **VF-11** — `readiness/` (82 rows) and `verification/` (74 rows) are two per-requirement
+   registers. Needs one owner decision to designate a canonical one.
+5. **VF-05 / DEC-05** — raw row-level data is public while its licence is unknown.
+6. **VF-10** — three pages read this session are not yet in the shared source register; they
+   are carried locally and a test fails if a local record is duplicated upstream.

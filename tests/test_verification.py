@@ -143,6 +143,9 @@ class SourceDiscipline(unittest.TestCase):
     def test_flag_ids_do_not_collide_with_the_existing_registers(self):
         ids = [f[0] for f in V.FLAGS]
         self.assertEqual(len(ids), len(set(ids)))
+        # Order matters to a reader: findings must be published in id order, not appended
+        # wherever the newest one happened to be inserted.
+        self.assertEqual(ids, sorted(ids), 'flags are not in id order')
         for fid in ids:
             self.assertRegex(fid, r'^VF-\d{2}$',
                              'this pass uses the VF- prefix so it cannot collide with F-numbers')
