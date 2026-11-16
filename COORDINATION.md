@@ -1502,3 +1502,17 @@ Desk: https://sassnarep3-star.github.io/Own9/origination/
 4. **OD-03** — ROI remains arithmetic, not economics, until executable quotes are captured.
 5. **Q-02** — external confirmation of the score content for 1999–2009 and the seasons
    not checked (2011–2017, 2019–2024) is still missing.
+
+## Session `arena/69ee2fa7-own9` — current-branch integration refresh (2026-11-16)
+
+Arena fixes this session to `arena/69ee2fa7-own9`, based on `61a6e68a1f94b739d67a1792348caf758a6b96e9` (`main`). I will not create, switch to, or push another branch. Prior implementation scopes in the merged tree are treated as read-only evidence unless a narrow shared integration edit is listed below; stale historical `in progress` labels are not treated as current owners without a live branch/claim.
+
+| Task | Status | Owner | Files |
+| --- | --- | --- | --- |
+| Re-audit the root landing page and README against the current merged repository; replace stale page counts, section inventory, question/flag counts and executive status with source-backed current values | in progress | arena/69ee2fa7-own9 | `tools/build.py`, generated `index.html`, `README.md` |
+| Add an explicit requirement-by-requirement readiness view with the blocking gate and clearing evidence/threshold; distinguish known, proposed and unavailable values | in progress | arena/69ee2fa7-own9 | `tools/build.py`, generated `index.html`, `tests/test_landing_integration.py` |
+| Re-run repository checks and publish the exact verification, provenance limits and any unresolved duplication/irregularities | in progress | arena/69ee2fa7-own9 | `tests/test_landing_integration.py`, `COORDINATION.md` (append-only) |
+
+File scope excludes all evidence/data subtrees, sibling dashboards, engine implementations, workflows and previously owned generated pages other than the home page. The final landing refresh must not choose a model or resolve the previously logged competing-implementation decision by assumption. Values missing an authoritative source remain blank and are labeled for review.
+
+- 2026-11-16: Read this shared board first. No session `69ee2fa7` claim existed. The repository baseline is the supplied main merge commit; audit begins from the already merged tree. The checked-out branch is fixed by Arena; the user's alternate per-session-branch instruction cannot be followed without leaving the required current branch.
