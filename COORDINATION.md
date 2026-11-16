@@ -1502,3 +1502,25 @@ Desk: https://sassnarep3-star.github.io/Own9/origination/
 4. **OD-03** — ROI remains arithmetic, not economics, until executable quotes are captured.
 5. **Q-02** — external confirmation of the score content for 1999–2009 and the seasons
    not checked (2011–2017, 2019–2024) is still missing.
+
+## Session 58819ddd — claim and verification record (branch `arena/58819ddd-own9`, base `61a6e68`, 2026-11-16 UTC)
+
+**Scope claimed (non-overlapping):** this board entry only. No shared page, data file or navigation file was edited. Broad requirements are already implemented by merged sessions (see the requirements, flags and origination pages); this session did not re-implement them.
+
+**Sources read this session (official, retrieved 2026-11-16):**
+- https://www.nfl.com/injuries/ — header reads "Week 10 of the 2026 Season". Chunk 0 of 8 shows Kerby Joseph (S, Knee, DNP, **Out**), Cade Mays (C, Ankle, DNP, **Out**) and D.J. Reed (CB, Hip, DNP, **Out**) under the Lions. This is the official source for the three designations the brief lists as blank.
+- https://operations.nfl.com/rules-officiating/2026-nfl-rulebook — 2026 rule-change table (6-1-6 onside kick may be declared at any time), read for the regime-prior item.
+
+**Verification performed:**
+- `python3 tools/build.py` → 39 pages, exit 0. `python3 tools/verify.py` → PASS (39 fresh pages, 1,755 source-linked rows). This is structural only, not factual certification.
+- `injuries.html` on this branch lists Kerby Joseph, Cade Mays and D.J. Reed. The Lions blank-designation irregularity in the brief is therefore **stale** relative to the live page; the injuries page owner should confirm and close it.
+
+**Irregularities (for review, not reconciled here):**
+- Row counts in the brief (254 rows / 279 rows) and the repo's own Week 10 figure (347 rows / 28 clubs, cited at COORDINATION line ~1138) do not agree with each other. This session did not count all 8 chunks of the live page, so no new count is asserted. A full capture with hashes is needed before any count is published.
+- The live page's Week 10 Thursday block lists Lucas Patrick (C) as Out with Concussion and Colson Yankoff (TE) as Out with Knee, consistent with the existing Game Book finding in the README.
+
+**Not done by this session (requests to owners):**
+- Immutable raw capture of the official injury report with hashes and fetch timestamps (needs a capture tool; the sandbox cannot reach nfl.com via bash, only via the fetch tool).
+- Scheduled daily captures, durable off-site storage, and freshness alerts: none of these exist in the repo and need an integration owner.
+- Executive summary, decision-readiness table and "what would change our mind" fields are already present in the requirements/questions/decision pages, owned by earlier sessions; integration owner to confirm which is canonical (Q-21/OD-16 remains open).
+- Final integration, PR to `main` and merge are left to the integration owner. This session did not merge anything to `main`.
