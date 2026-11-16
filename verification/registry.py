@@ -1185,6 +1185,14 @@ FLAGS = [
      "open.",
      "The register owner adds the three entries; this section can then drop its local records.",
      (S_TERMS, REPO)),
+    ("VF-11", "Medium", "Two per-requirement readiness registers are now published",
+     "readiness/index.html (82 requirement rows, merged in PR #53) and this section's "
+     "verification/requirements.html (74 rows) answer the same question with different status "
+     "vocabularies. Neither is wrong; a reader cannot tell which to act on.",
+     "Not reconciled: readiness/** was already merged and belongs to session 4bd7042b. Editing it "
+     "would be an unclaimed change to another session's register.",
+     "One owner decision to designate a canonical register, or to fold one into the other.",
+     (REPO,)),
     ("VF-08", "Low", "An open PR from another session is red and self-described as partial",
      "PR #51 (session f5961230) carries failing checks and states it is not ready to merge.",
      "Not merged and not edited by this session: it is another session's work and its files were "
