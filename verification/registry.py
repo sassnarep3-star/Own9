@@ -50,13 +50,47 @@ CLUB_DEPTH = {  # club depth charts already registered by earlier sessions
 
 REPO = "repo"
 
+# Sources read by this session that are NOT yet in the shared evidence/sources.json. They are
+# resolved locally instead of being edited into that file, which open PR #51 owns; VF-10 asks
+# its owner to register them. Each carries the URL that was actually read on 2026-11-16.
+LOCAL_SOURCES = {
+    "nfl-terms": {"url": "https://www.nfl.com/legal/terms/",
+                  "publisher": "NFL.com Terms (updated 16 May 2024)",
+                  "local_note": "section 1.3 read in full on 2026-11-16"},
+    "nfl-gc-pit-cin": {"url": "https://www.nfl.com/games/steelers-at-bengals-2026-reg-10",
+                       "publisher": "NFL game centre",
+                       "local_note": "Game Info block read on 2026-11-16"},
+    "nfl-gc-ne-det": {"url": "https://www.nfl.com/games/patriots-at-lions-2026-reg-10",
+                      "publisher": "NFL game centre",
+                      "local_note": "Game Info block read on 2026-11-16"},
+}
+S_TERMS = "nfl-terms"
+S_GC_PIT_CIN = "nfl-gc-pit-cin"
+S_GC_NE_DET = "nfl-gc-ne-det"
+
+# The clause that changes what may be recommended. Quoted, not paraphrased, and cited.
+TERMS_CLAUSE = (
+    'NFL.com Terms, section 1.3 (updated 16 May 2024): "You may use the Services solely for your own '
+    'individual non-commercial and informational purposes only... Systematic retrieval of data or '
+    'other content from the Services, whether to create or compile, directly or indirectly, a '
+    'collection, compilation, database, or directory, is prohibited absent our express prior written '
+    'consent."'
+)
+TERMS_CLEAR = (
+    "Express prior written consent from NFL Enterprises, or a licensed data feed. A single "
+    "owner-reviewed read is the permitted use; a scheduled series is what the clause forbids."
+)
+
 
 def src(source_id: str) -> dict:
-    """Resolve a registered source id to its record; fail loudly if it is unregistered."""
+    """Resolve a source id to its record; fail loudly if it is in neither register."""
     try:
         return _SOURCES[source_id]
-    except KeyError as exc:  # a link that the register cannot resolve must not be printed
-        raise KeyError(f"source id {source_id!r} is not in evidence/sources.json") from exc
+    except KeyError:
+        pass
+    if source_id in LOCAL_SOURCES:
+        return LOCAL_SOURCES[source_id]
+    raise KeyError(f"source id {source_id!r} is in neither the shared register nor this section's")
 
 
 def link(source_id: str) -> tuple[str, str]:
@@ -220,16 +254,20 @@ REQ = [
     ("R-12", "Make the injury signal a surprise, never a level",
      "Designed, not implemented: the design requires a pre-kickoff expected-availability baseline, which "
      "needs the dated series in R-13.",
-     "Blocked: a single weekly snapshot cannot define a surprise.",
-     "One capture cannot support a delta; a surprise needs at least two dated captures of the same field.",
-     "A daily Wednesday-to-kickoff series with retained hashes (see SV-01).",
-     (S_INJURY, REPO)),
+     "Blocked twice over: a single weekly snapshot cannot define a surprise, and a *series* is the "
+     "very thing the publisher's terms restrict.",
+     "Formally: one capture cannot support a delta, so a surprise needs two or more dated captures of "
+     "the same field. Legally: the series itself needs the consent described in G-10.",
+     "Either written consent / a licensed feed for a recurring series, or a design that derives "
+     "surprise from sources that do not require systematic retrieval.",
+     (S_INJURY, S_TERMS, REPO)),
     ("R-13", "Run the 32-team roster/IR sweep before any team-level model is trusted",
      "Not built: no roster or reserve-list sweep exists in the repository.",
      "Blocked: 'not listed' cannot be read as 'available' without the reserve list.",
      "The reserve list is not published on the weekly injury report page.",
-     "A dated roster/reserve-list capture per club, joined to the injury report.",
-     (S_INJURY, REPO)),
+     "A dated roster/reserve-list capture per club joined to the injury report (subject to G-10), "
+     "or a licensed roster feed.",
+     (S_INJURY, S_TERMS, REPO)),
     ("R-14", "Fixture-context feature set built only from published schedule facts",
      "Partly built: kickoff date, weekday, network, home club and bye clubs are transcribed for 2026.",
      "Blocked: venue is populated for one game in the committed evidence, and nothing is timezone-aware.",
@@ -311,12 +349,15 @@ REQ = [
      "A dated availability dataset plus a chronological holdout, then a published delta with uncertainty.",
      (S_INJURY, REPO)),
     ("R-26", "Automate immutable multi-day availability snapshots (daily, retained hashes)",
-     "Partly built: the repository holds one dated capture of the Week 10 report and one of the Week 10 "
-     "slate. No scheduled capture job exists for the injury report.",
-     "One capture cannot support a backtest of practice designations — the brief's own point.",
-     "A capture tool with hash retention and off-site storage is not in place.",
-     "Two or more scheduled captures with retained hashes, then a delta column.",
-     (S_INJURY, REPO)),
+     "Deliberately not built. The repository holds one dated read of the Week 10 report and one of the "
+     "Week 10 slate. No scheduled capture job was created for the injury report, because a recurring "
+     "capture is systematic retrieval and the publisher's terms forbid it absent written consent.",
+     "One capture cannot support a backtest of practice designations — the brief's own point — and a "
+     "scheduled series is currently not permitted, so this is blocked by policy before it is blocked "
+     "by engineering.",
+     "G-10. The requirements and the terms conflict, and the conflict cannot be resolved by building.",
+     "Express written consent from NFL Enterprises, or a licensed feed, before any scheduled capture.",
+     (S_INJURY, S_TERMS, REPO)),
     ("R-27", "Capture official inactive lists and snap counts",
      "Partly built: inactive lists are read from Game Books for 3 games. Snap counts are not captured "
      "anywhere.",
@@ -378,9 +419,10 @@ REQ = [
      "Partly built: captures are committed and immutable, and parsers fail loudly on a schema change "
      "(a missing field, a duplicate club, a bye-count arithmetic error).",
      "Not built: there is no freshness monitor and no alert channel.",
-     "Scheduled capture and an alert destination are not configured.",
-     "A scheduled job with retained hashes plus an alert route (issue, mail or webhook).",
-     (REPO,)),
+     "An alert destination is not configured; recurring capture is constrained by G-10.",
+     "An alert route on build failure (issue, mail or webhook), which needs no retrieval, plus — only "
+     "if G-10 permits it — a scheduled capture with retained hashes.",
+     (REPO, S_TERMS)),
     ("R-36", "Split the site into a public analysis layer and a private data layer",
      "Partly built: the public site publishes derived values and links; raw row-level files are in the "
      "repository, not in a private store.",
@@ -400,8 +442,8 @@ REQ = [
      "in the same slot; it has no separate 'announced by the club' field.",
      "Blocked: an announcement is a different document from a chart.",
      "Dated club announcements naming a starter change are not systematically captured.",
-     "A dated announcement register per club, with the announcement quoted.",
-     (REPO,)),
+     "A dated announcement register per club, with the announcement quoted — subject to G-10.",
+     (REPO, S_TERMS)),
     ("R-39", "An official depth-chart register with date and source per row",
      "Partly built: depth-chart evidence carries the club, the date and the URL for each retrieved chart.",
      f"Coverage is thin: {len(CLUB_DEPTH)} clubs have a registered chart.",
@@ -447,8 +489,9 @@ REQ = [
      f"Disputed: three different designation totals are in circulation (171 official hand count, 162 repo "
      "capture, 160 root page). This session counted 0 of 8 chunks itself and asserts no new total.",
      "A full capture with hashes is needed before any count is published.",
-     "A complete 8-chunk capture with a retained hash and a machine count, replacing all three totals.",
-     (S_INJURY, REPO)),
+     "A complete 8-chunk read with a retained hash and a machine count, replacing all three totals — "
+     "within the single-read use the terms permit (G-10).",
+     (S_INJURY, S_TERMS, REPO)),
     ("R-46", "Reject deriving depth order from jersey number, experience or salary",
      "Accepted as a prohibition and recorded as such: the shortcut is documented as rejected, not used.",
      "Prohibition holds; no value is derived this way anywhere in the repository.",
@@ -473,20 +516,24 @@ REQ = [
      "Not built: no play-rate-by-designation measurement exists.",
      "Blocked: needs archived designations joined to inactive lists across several seasons.",
      "The archival join does not exist (see R-51).",
-     "The join, plus a published play rate per designation with a confidence interval.",
-     (S_INJURY, REPO)),
+     "The join, plus a published play rate per designation with a confidence interval. The historical "
+     "join itself needs archived reports, which G-10 also constrains.",
+     (S_INJURY, S_TERMS, REPO)),
     ("R-50", "Snapshot the nfl.com injury report every Wed, Thu and Fri and keep a dated history",
-     "Not built: no scheduled capture job for the injury report exists.",
-     "Blocked: one capture is held.",
-     "No scheduled capture or durable storage is configured.",
-     "A scheduled job with retained hashes, then three dated captures in a week.",
-     (S_INJURY, REPO)),
+     "Not built, and not recommended until G-10 is answered: a Wednesday/Thursday/Friday job is "
+     "exactly the systematic retrieval the terms prohibit.",
+     "Blocked: one read is held.",
+     "G-10 — the terms, not the tooling. A scheduler is the easy part.",
+     "Written consent or a licensed feed; then a dated series with retained hashes.",
+     (S_INJURY, S_TERMS, REPO)),
     ("R-51", "Treat the injury report as a timestamped series, not a weekly snapshot",
-     "Not built for the same reason as R-50.",
+     "Not built for the same reason as R-50, and this is the requirement the terms bite hardest: a "
+     "timestamped series is a compilation.",
      "Blocked: without a series, no Questionable->Out or DNP->LP->FP transition can be measured.",
-     "The series does not exist.",
-     "Daily captures Wednesday to kickoff, each with its fetch timestamp.",
-     (S_INJURY, REPO)),
+     "G-10. The brief asks for a series; the terms prohibit compiling one without consent.",
+     "Consent or a licensed historical feed, and until then the honest answer is that this "
+     "requirement cannot be met by scraping.",
+     (S_INJURY, S_TERMS, REPO)),
     ("R-52", "Use snap counts as the starter proxy when the depth chart is unavailable",
      "Not built: no snap counts are captured.",
      "Blocked: no verified official snap-count source was found.",
@@ -555,8 +602,9 @@ REQ = [
      "Not built: no historical injury-report archive exists in the repository.",
      "Blocked: needed to test whether designations change outcomes (R-49).",
      "Archives for past seasons are not published in a retrievable form the repository holds.",
-     "A season-long archive with hashes, or a licensed archive.",
-     (S_INJURY, REPO)),
+     "A season-long archive with hashes, or a licensed archive. Building one by retrieval is what "
+     "G-10 forbids.",
+     (S_INJURY, S_TERMS, REPO)),
     ("R-63", "Pre-register each strategy (definition frozen before results are seen)",
      "Built: definitions are frozen and the registration commit is the registration; the elo constants "
      "are refused at close if they changed.",
@@ -737,10 +785,9 @@ GATES = [
     ("G-02", "No dated availability series",
      "The repository holds one capture of the Week 10 injury report and one of the Week 10 slate. "
      "A single capture cannot define a surprise, a delta or a transition.",
-     ["R-12", "R-13", "R-25", "R-26", "R-30", "R-40", "R-43", "R-45", "R-49", "R-50",
-      "R-51", "R-60", "R-62"],
-     "A scheduled capture with retained hashes, running daily Wednesday to kickoff.",
-     "Two or more dated captures of the same field — the count is the gate and it is measurable."),
+     ["R-25", "R-30", "R-40", "R-43"],
+     "Two or more dated captures of the same field, by whatever method G-10 permits.",
+     "The count itself: two or more dated captures. Measurable, and currently zero."),
     ("G-03", "Depth verified for 3 of 32 clubs",
      "Club depth charts are published per club in differing formats, and clubs self-label them "
      "unofficial. Three have been read and registered.",
@@ -776,6 +823,15 @@ GATES = [
      ["R-05", "R-15", "R-24", "R-54", "R-58", "R-64"],
      "A price source (G-01) for market comparison; a dated availability series (G-02) for ablations.",
      "n for a calibration curve, and a market number for a residual — both countable."),
+    ("G-10", "The publisher's terms restrict systematic retrieval",
+     "NFL.com Terms section 1.3 prohibit systematic retrieval of content to build a collection, "
+     "compilation or database without express prior written consent, and permit use only for "
+     "individual non-commercial informational purposes. Several requirement lines in this brief ask "
+     "for exactly that: a scheduled multi-day capture series, a season-long archive, and a reserve "
+     "list joined to the report. The requirement and the terms are in direct conflict.",
+     ["R-12", "R-13", "R-26", "R-45", "R-49", "R-50", "R-51", "R-60", "R-62"],
+     "Written consent from NFL Enterprises, or a licensed feed that permits storage and reuse.",
+     "A consent letter or a licence, or an owner decision to drop the affected requirements."),
     ("G-09", "Source rights unreviewed; raw rows are published",
      "The brief requires a public analysis layer and a private raw layer. No source's redistribution "
      "terms have been read and cleared, so the split cannot be decided either way.",
@@ -828,12 +884,12 @@ SNAPSHOTS = [
      "2026-11-16", "session 462fba62 (this section)",
      "Location MUNICH; Stadium FC BAYERN MUNICH STADIUM; final NE 10, DET 35",
      "Venue transcribed because it is published on the game centre; no depth or snap value inferred.",
-     (S_GAMECENTER_W10,)),
+     (S_GC_NE_DET,)),
     ("SV-06", "PIT @ CIN game centre",
      "2026-11-16", "session 462fba62 (this section)",
      "Location CINCINNATI, OH; Stadium PAYCOR STADIUM; no final score published",
      "The venue is available before kickoff; the score is not. The score cell stays blank.",
-     (S_GAMECENTER_W10,)),
+     (S_GC_PIT_CIN,)),
 ]
 
 
@@ -860,9 +916,9 @@ VENUES = [
     ("W10", "WAS", "NYG", "METLIFE STADIUM", "EAST RUTHERFORD, NJ",
      "Published on the game centre; already registered from the 14 Nov read", (S_GAMECENTER_W10,)),
     ("W10", "NE", "DET", "FC BAYERN MUNICH STADIUM", "MUNICH",
-     "International Game; stadium published on the game centre", (S_GAMECENTER_W10,)),
+     "International Game; read from its own game centre on 2026-11-16", (S_GC_NE_DET,)),
     ("W10", "PIT", "CIN", "PAYCOR STADIUM", "CINCINNATI, OH",
-     "Read from the game centre's Game Info block on 2026-11-16", (S_GAMECENTER_W10,)),
+     "Read from its own game centre's Game Info block on 2026-11-16", (S_GC_PIT_CIN,)),
 ]
 
 
@@ -912,13 +968,22 @@ QUESTIONS = [
      "series. One capture gives one instant.",
      "This is the brief's own point, and the site agrees with it rather than working around it.",
      (S_INJURY, REPO)),
+    ("Q-06b", "May this project run a recurring capture of NFL pages at all?",
+     "Owner decision — and it outranks every data question below it.",
+     "No, not on the current terms. " + TERMS_CLAUSE + " An owner-reviewed single read for "
+     "verification is the permitted use; a scheduled multi-day series is a compilation. This is not a "
+     "research gap and cannot be closed by engineering.",
+     "Written consent or a licensed feed. Until then the requirements that need a series stay "
+     "blocked, and a page that recommends building one would be recommending a breach.",
+     (S_TERMS, REPO)),
     ("Q-07", "Which depth-order route should be built first?",
      "Owner decision, with a stated preference.",
      "Route (a) per-club charts is verified for 3 clubs and is in use. Route (b) snap counts has no "
      "verified source in this repository. The preference is (a) continued, because a chart can be read "
      "and cited today.",
-     "The brief already orders the routes (a) then (b); the open part is whether to spend 29 more chart "
-     "reads on (a).",
+     "The brief already orders the routes (a) then (b); the open part is whether 29 more club-page "
+     "reads are permitted at all (Q-06b). If they are not, route (b) is the only survivor and it has "
+     "no verified source.",
      (REPO, CLUB_DEPTH["KC"])),
     ("Q-08", "What would make a strategy eligible?",
      "Answerable now — a number.",
@@ -987,6 +1052,16 @@ def question_counts():
 # Each suggestion is a proposal with a cost, a decision it unblocks, and what would show it
 # was the wrong choice. None of them claims a numerical result.
 SUGGESTIONS = [
+    ("V-S00", "Answer the terms question before any capture is built (Q-06b)",
+     "The brief asks for a scheduled multi-day capture, a season archive and a reserve-list join. On "
+     "the publisher's current terms all three are prohibited without written consent. Ten requirement "
+     "lines are blocked on this and none of them can be engineered around, so it is the first decision "
+     "and it is free to ask.",
+     "One letter to NFL Enterprises, or one licence enquiry.",
+     "Unblocks G-10: 9 requirement lines.",
+     "Consent is refused, in which case those requirements must be formally dropped rather than left "
+     "as 'blocked' for ever — and the honest site says so.",
+     (S_TERMS, REPO)),
     ("V-S01", "Add the falsification field to every strategy entry (R-17)",
      "Required by the brief and cheap: two columns, one test. It also makes every other strategy row "
      "auditable, because a row that cannot say what would refute it is not a claim.",
@@ -1006,19 +1081,22 @@ SUGGESTIONS = [
      "One build; a small schema addition.", "Clear G-04 for week 10 and demonstrate G-02's pattern.",
      "The diff cannot be computed without a second capture — it can, for Week 10.",
      (REPO,)),
-    ("V-S04", "Finish the Week 10 capture, hash it, and publish the count (Q-04)",
-     "The three competing totals are a credibility problem, and one full capture with a hash ends it. "
-     "This session read only the head of the page and therefore asserts no total.",
-     "One full retrieval and a hash; no licence required for an official report already read.",
-     "Clear the Q-04 blocker; it is the cheapest route to the G-02 series.",
-     "The page cannot be captured deterministically; a hash of the rendered text is still possible.",
-     (S_INJURY,)),
+    ("V-S04", "Finish the Week 10 read, hash it, and publish the count (Q-04)",
+     "The three competing totals are a credibility problem, and one complete read with a hash ends it "
+     "without compiling a database. This session read only the head of the page and asserts no total.",
+     "One full read and a hash — a single owner-reviewed use, which the terms permit.",
+     "Clear the Q-04 blocker.",
+     "The page cannot be read deterministically; a hash of the rendered text is still possible.",
+     (S_INJURY, S_TERMS)),
     ("V-S05", "Continue route (a) for depth, 29 clubs to go (Q-07)",
-     "Charts are readable and citable today; snap counts have no verified source. Chart coverage is the "
-     "only path that unblocks R-39/R-41 without a licence.",
-     "29 retrievals, each one page.", "Unblocks G-03 at 32/32.",
-     "Charts are no longer published, or clubs change format faster than they can be read.",
-     (CLUB_DEPTH["KC"], REPO)),
+     "Charts are readable and citable today; snap counts have no verified source. But 29 club-page "
+     "reads is the kind of systematic retrieval Q-06b asks about, so this suggestion is conditional on "
+     "the answer rather than recommended outright.",
+     "29 reads, each one page, each with its date.",
+     "Would unblock G-03 at 32/32 — if Q-06b permits it.",
+     "Charts are no longer published; clubs change format faster than they can be read; or the terms "
+     "answer is no, in which case this suggestion dies and route (b) has no source.",
+     (CLUB_DEPTH["KC"], REPO, S_TERMS)),
     ("V-S06", "Designate the canonical implementation rather than merging two (Q-13)",
      "The two implementations disagree because their inputs differ. Merging them changes published "
      "numbers; designating one is a one-line decision and is reversible.",
@@ -1090,6 +1168,23 @@ FLAGS = [
      "Not inferred from depth charts: 'expected' is a different claim from 'listed on a chart'.",
      "An announced-starter register (R-38) plus chart coverage (G-03).",
      (S_GAMECENTER_W10, REPO)),
+    ("VF-09", "Critical", "The brief and the publisher's terms are in direct conflict",
+     "Ten requirement lines ask for scheduled multi-day capture, a season-long archive, or a reserve "
+     "list joined to the weekly report. NFL.com Terms section 1.3 prohibit systematic retrieval to "
+     "build a collection, compilation or database without express prior written consent.",
+     "Not worked around, and not silently dropped. Earlier sections of this site recommended building "
+     "the capture; this pass corrects that on the quoted clause and publishes the correction rather "
+     "than editing the other pages.",
+     "Written consent or a licensed feed, or an explicit owner decision to drop those requirements.",
+     (S_TERMS, REPO)),
+    ("VF-10", "Low", "Three pages read this session are not in the shared source register",
+     "The terms page and two game centres were read on 2026-11-16 but are absent from "
+     "evidence/sources.json, which is owned by open PR #51. This section carries them locally and says "
+     "so, instead of citing a register entry that does not exist.",
+     "Logged as a request rather than edited: the register is another session's file and PR #51 has it "
+     "open.",
+     "The register owner adds the three entries; this section can then drop its local records.",
+     (S_TERMS, REPO)),
     ("VF-08", "Low", "An open PR from another session is red and self-described as partial",
      "PR #51 (session f5961230) carries failing checks and states it is not ready to merge.",
      "Not merged and not edited by this session: it is another session's work and its files were "
@@ -1324,7 +1419,7 @@ def _srcs_for(rid):
 def _cost_class(gate_id):
     return {
         "G-01": "Licence or own-book log — cannot be bought inside the repository",
-        "G-02": "Scheduled capture — engineering",
+        "G-02": "Capture — engineering, conditional on G-10",
         "G-03": "29 club reads — labour",
         "G-04": "One re-capture — already demonstrated (SV-02)",
         "G-05": "More seasons — labour and archive access",

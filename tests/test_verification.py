@@ -151,6 +151,53 @@ class SourceDiscipline(unittest.TestCase):
             self.assertNotIn(fid, site_flags)
 
 
+class PublisherTerms(unittest.TestCase):
+    """The section must not recommend what the publisher's terms prohibit."""
+
+    def test_terms_gate_exists_and_blocks_the_capture_requirements(self):
+        gate = [g for g in V.GATES if g[0] == 'G-10']
+        self.assertEqual(len(gate), 1, 'the terms gate is missing')
+        for rid in ('R-26', 'R-50', 'R-51', 'R-62'):
+            self.assertIn(rid, gate[0][3], f'{rid} needs a series and must be blocked by G-10')
+
+    def test_the_clause_is_quoted_not_paraphrased(self):
+        self.assertIn('Systematic retrieval of data', V.TERMS_CLAUSE)
+        self.assertIn('express prior written consent', V.TERMS_CLAUSE)
+        self.assertIn('https://www.nfl.com/legal/terms/', V.src('nfl-terms')['url'])
+
+    def test_no_page_recommends_building_a_scheduled_capture(self):
+        # The withdrawn recommendation was an unconditional instruction to build a scheduled
+        # series. A *conditional* mention ("only if G-10 permits it") is correct and expected,
+        # so this looks for the unconditional forms.
+        banned = ('build a scheduled capture', 'build the scheduled capture',
+                  'running daily Wednesday to kickoff')
+        for page in PAGES:
+            body = html(page).lower()
+            for phrase in banned:
+                self.assertNotIn(phrase, body, f'{page} still recommends the withdrawn capture')
+        # And where a scheduled capture is mentioned at all, G-10 must be named nearby.
+        for page in PAGES:
+            body = html(page)
+            for row in re.findall(r'<tr id="[^"]*">(.*?)</tr>', body, re.S):
+                low = row.lower()
+                if 'scheduled capture' in low or 'recurring capture' in low:
+                    self.assertTrue('g-10' in low or 'terms' in low,
+                                    f'{page}: a capture mention does not reference G-10')
+
+    def test_the_correction_is_published_on_the_landing_page(self):
+        body = html('index.html')
+        self.assertIn('Correction, same session', body)
+        self.assertIn('withdrawn', body)
+        self.assertIn('legal/terms', body)
+
+    def test_local_sources_resolve_and_are_labelled_local(self):
+        for sid, rec in V.LOCAL_SOURCES.items():
+            self.assertTrue(rec['url'].startswith('https://'))
+            self.assertNotIn(sid, {s['id'] for s in
+                                   json.loads((ROOT / 'evidence/sources.json').read_text())},
+                             f'{sid} has been registered upstream: drop the local record')
+
+
 class Pages(unittest.TestCase):
     def test_pages_are_current(self):
         # Regenerating must be a no-op against what is committed; CI depends on this.

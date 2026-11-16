@@ -95,11 +95,18 @@ def build() -> dict[str, str]:
     # ---------------------------------------------------------------- landing
     landing = []
     landing.append(
-        '<div class="notice"><strong>What this section is</strong><p>An independent pass over the '
-        'brief, line by line, on top of the existing dashboard. It does not re-publish another '
-        'session\'s numbers and it does not replace the site\'s canonical pages: every row either '
-        'links to an official publisher or to this repository, and three figures are recomputed from '
-        'the committed files at build time rather than trusted.</p></div>')
+        '<div class="notice"><strong>What this section is, and what it corrected</strong><p>An '
+        'independent pass over the brief, line by line. It does not re-publish another session\'s '
+        'numbers and it does not replace the site\'s canonical pages: every row links to an official '
+        'publisher or to this repository, and the figures in prose are recomputed from the committed '
+        'files at build time rather than trusted.</p><p><b>Correction, same session.</b> The first '
+        'draft of this section recommended building a scheduled multi-day capture of the NFL injury '
+        'report. Reading '
+        '<a href="https://www.nfl.com/legal/terms/">NFL.com Terms section 1.3</a> (updated 16 May 2024) '
+        'showed that recommendation to be wrong: systematic retrieval to build a compilation is '
+        'prohibited without express prior written consent. The recommendation is withdrawn, the '
+        'affected lines are now blocked on gate G-10, and the change is published here rather than '
+        'quietly deleted — a reader who saw the first version is owed the reason.</p></div>')
 
     landing.append(table(
         "Executive summary",
@@ -131,6 +138,13 @@ def build() -> dict[str, str]:
                    "No. It can be bounded with proper scoring, intervals and multiplicity control, and "
                    "the site refuses to rank when the bound spans zero. 'Removal' is not offered.",
                    "Questions Q-09"], (V.REPO,), "Method statement"),
+            V.row(["Does the brief conflict with the publisher's terms?",
+                   "Yes, and it is the most consequential finding here. Ten requirement lines need a "
+                   "scheduled multi-day capture, a season archive or a reserve-list join. NFL.com Terms "
+                   "section 1.3 prohibit systematic retrieval to build a compilation without express "
+                   "prior written consent. Those lines are blocked by policy, not by engineering, and "
+                   "no amount of building clears them.",
+                   "Readiness G-10 · Q-06b · VF-09"], (V.S_TERMS, V.REPO), "Official terms read"),
             V.row(["Are any of the brief's premises stale?",
                    "Yes, at least two: the three Lions designations it calls blank are published, and "
                    "the injury-row counts it cites (254/279) are not reproducible from this repository.",
@@ -201,27 +215,35 @@ def build() -> dict[str, str]:
     read.append('<div class="notice"><strong>How to read this</strong><p>A gate is only useful if it '
                 'names the number that would clear it. Gates are ordered by the count of requirement '
                 'lines they hold, so the top row is the one to work on first — unless it is the one '
-                'that cannot be worked on at all, which is precisely the point of publishing the cost '
-                'class beside it.</p></div>')
+                'that cannot be worked on at all, which is exactly the point of publishing the cost '
+                'class beside it. One gate is different in kind from the rest: <b>G-10</b> is not a '
+                'missing measurement but a permission this project does not have. It is the only gate '
+                'here that a decision, rather than a purchase or a build, can close.</p></div>')
     read.append(t("readiness"))
     read.append(t("gates"))
     read.append(table(
         "Recommended order (a recommendation, not a finding)",
         ["Order", "Action", "Why this order", "What it does not fix"],
         [
-            V.row(["1", "Clear the schema and process gate (G-07)",
+            V.row(["1", "Answer the terms question (G-10, V-S00)",
+                   "Ten requirement lines are blocked by the publisher's terms and none of them can be "
+                   "engineered around. One letter or one licence enquiry settles more of the brief than "
+                   "any build, and it costs nothing to ask.",
+                   "It builds nothing. Three of the suggestions below change cost depending on the "
+                   "answer."], (V.S_TERMS, V.REPO), "Reasoning"),
+            V.row(["2", "Clear the schema and process gate (G-07)",
                    "It is the only open gate that needs a decision rather than a licence or months of "
                    "labour, and it makes every other row auditable.",
                    "It changes no number. No strategy becomes eligible."], (V.REPO,), "Reasoning"),
-            V.row(["2", "Finish and hash one full injury-report capture (V-S04)",
+            V.row(["3", "Finish one complete injury-report read (V-S04)",
                    "Three competing totals are a credibility problem and one capture ends it. It also "
                    "proves the capture mechanism before it is scheduled.",
                    "One capture is still not a series; G-02 stays closed."], (V.S_INJURY,), "Reasoning"),
-            V.row(["3", "Designate the canonical implementation (V-S06)",
+            V.row(["4", "Designate the canonical implementation (V-S06)",
                    "Two implementations of the same requirements invite a reader to average them. One "
                    "decision, reversible.",
                    "It does not reconcile the inputs that make them differ."], (V.REPO,), "Reasoning"),
-            V.row(["4", "Treat the price gate as a procurement decision, not a task",
+            V.row(["5", "Treat the price gate as a procurement decision, not a task",
                    "Nothing else in the repository can produce a market number. Until a source is "
                    "approved, every residual, CLV and ROI claim stays blank by design.",
                    "It is the only route to most of the brief's price requirements."],
@@ -293,22 +315,27 @@ def build() -> dict[str, str]:
     s = []
     s.append('<div class="notice"><strong>A suggestion is a proposal, never a finding</strong><p>Each '
              'entry names the requirement it addresses, what it costs, what it unblocks, and what '
-             'evidence would show the choice was wrong. None of them asserts a numerical NFL result, '
-             'and none has been implemented by this session.</p></div>')
+             'evidence would show the choice was wrong. None asserts a numerical NFL result and none '
+             'has been implemented by this session. Two of them are <b>conditional</b>: V-S05 (29 club '
+             'depth pages) and any capture work depend on the answer to Q-06b, and are marked that way '
+             'rather than recommended flatly.</p></div>')
     s.append(t("suggestions"))
     s.append(table(
         "Which suggestion to take first, and why",
         ["Rank", "Suggestion", "Reason"],
         [
-            V.row(["1", "V-S01 — falsification field",
+            V.row(["1", "V-S00 — answer the terms question",
+                   "It is free to ask, it governs nine other lines, and building first would waste the "
+                   "work."], (V.S_TERMS,), "Reasoning"),
+            V.row(["2", "V-S01 — falsification field",
                    "Cheapest per unit of trust: it makes every strategy row auditable and needs no data."],
                   (V.REPO,), "Reasoning"),
-            V.row(["2", "V-S02 — control baseline row",
+            V.row(["3", "V-S02 — control baseline row",
                    "Turns an empty leaderboard into a measurement of what no-skill looks like on the "
                    "same sample."], (V.REPO,), "Reasoning"),
-            V.row(["3", "V-S04 — one hashed injury capture",
+            V.row(["4", "V-S04 — one hashed injury read",
                    "Ends the three-totals problem and proves the capture mechanism."], (V.S_INJURY,), "Reasoning"),
-            V.row(["4", "V-S07 — private raw layer",
+            V.row(["5", "V-S07 — private raw layer",
                    "The highest-consequence open risk: rights are unreviewed while raw rows are public."],
                   (V.REPO,), "Reasoning"),
         ]))
