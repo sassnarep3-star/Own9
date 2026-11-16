@@ -1716,3 +1716,80 @@ unreconciled. Low — the "expected starter" half of the availability graph is u
 3. **Lead integration owner:** the `verification/` section registers itself as a normal page
    set under `verification/` and needs no build-time hook beyond the `NAV_GROUPS` line already
    added. If a future session packages Pages artefacts by directory, include `verification/`.
+
+## Session `462fba62` — correction: the publisher's terms (2026-11-16, after rebasing onto `b36fbc4`)
+
+### What happened
+
+Main advanced while this branch was open (PR #53, session `4bd7042b`), adding a
+`readiness/` register and a `capture/` scope. Its completion record states that automated
+capture of NFL pages would breach **NFL.com Terms section 1.3**, and that it therefore built
+no capture (decision DEC-01). This session had, in its first draft, **recommended** building
+a scheduled Wednesday-to-kickoff capture.
+
+I read the source myself rather than taking either side on trust:
+**https://www.nfl.com/legal/terms/** (updated 16 May 2024), section 1.3, read in full on
+2026-11-16. It says, in the clause's own words: use is permitted "solely for your own
+individual non-commercial and informational purposes only", and "Systematic retrieval of data
+or other content from the Services, whether to create or compile, directly or indirectly, a
+collection, compilation, database, or directory, is prohibited absent our express prior
+written consent."
+
+A recurring capture series is a compilation. **`4bd7042b` was right and this session's first
+draft was wrong.** The recommendation is withdrawn.
+
+### What was changed rather than deleted
+
+| Change | Detail |
+| --- | --- |
+| New gate **G-10** | Quotes the clause; blocks R-12, R-13, R-26, R-45, R-49, R-50, R-51, R-60, R-62. Blocked by permission, not engineering. |
+| Nine requirement rows rewritten | Capture lines now read "not built, and not recommended"; R-51 states that a timestamped series is what the clause forbids. |
+| New **Q-06b** | "May this project run a recurring capture of NFL pages at all?" — marked as outranking the data questions below it. |
+| New **V-S00** | Answer the terms question first: one letter, governs nine lines, free. |
+| **V-S05** downgraded | 29 more club depth pages is now *conditional* on Q-06b, not recommended. |
+| Landing page | Publishes the correction and its reason. A reader who saw the first version is owed the explanation. |
+| **VF-09**, **VF-10** | New flags: the brief and the terms are in direct conflict; three pages read this session are absent from the shared register. |
+| Venue rows | Now cite the exact game centre each was read from (`nfl-gc-pit-cin`, `nfl-gc-ne-det`), via local source records, instead of the nearest pre-existing register entry. |
+
+Four tests pin the correction: G-10 exists and blocks the series requirements; the clause is
+quoted rather than paraphrased; no page recommends an unconditional scheduled capture; and
+any mention of a scheduled capture must name G-10 in the same row.
+
+### The overlap this creates, logged rather than reconciled
+
+`readiness/**` (session `4bd7042b`, merged) and `verification/**` (this session) now both
+publish a per-requirement readiness table — 82 rows there, 74 here — with different status
+vocabularies. Neither is wrong and neither was edited by the other. A reader will see two
+registers. This is the same class of duplication as Q-21/OD-16 (two implementations of the
+eight origination requirements) and it needs one owner decision, not another table. Logged
+as **VF-11** on `verification/flags.html` and as item 4 in the requests below.
+
+### Conflict resolution log (rebase onto `b36fbc4`)
+
+- `COORDINATION.md` conflicted as an append-only tail (both sides appended). Resolved by
+  union: `4bd7042b`'s record kept verbatim, this session's record appended after it. Nothing
+  from either side was dropped.
+- 39 generated root `*.html` files conflicted. Resolution: took main's version of each and
+  regenerated with the shared generator, so both navigation entries are present
+  (`readiness/index.html` in the Decide group, `verification/index.html` in Review). A script
+  diff confirmed the *only* change in every root page is the added navigation anchor.
+- `session-00cf851d/{index,repo-review}.html` and `data/repo_inventory.json` conflicted.
+  Resolution: took main's version and re-ran that session's own generator, so its pinned
+  file count reflects the merged tree.
+- One conflict marker was accidentally committed into the generated `verification/readiness.html`
+  during the rebase. Fixed by regenerating from the registry and grepping the whole tree for
+  markers (none remain). Recorded because it is exactly the kind of defect a deterministic
+  generator is supposed to make impossible.
+
+### Requests (updated)
+
+4. **Lead integration owner:** `readiness/` (session `4bd7042b`) and `verification/` (this
+   session) both publish a per-requirement readiness register. Please designate one as
+   canonical, or fold the extra columns of one into the other. This session did not edit
+   `readiness/**`, and `readiness/**` was already merged before this branch rebased.
+5. **`evidence/sources.json` owner:** the three pages read by this session but absent from
+   the shared register are `https://www.nfl.com/legal/terms/`,
+   `https://www.nfl.com/games/steelers-at-bengals-2026-reg-10` and
+   `https://www.nfl.com/games/patriots-at-lions-2026-reg-10`. They are carried locally
+   (`LOCAL_SOURCES` in `verification/registry.py`) and a test fails if a local record is
+   duplicated upstream, so the move is safe when PR #51 lands.
