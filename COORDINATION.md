@@ -1502,3 +1502,19 @@ Desk: https://sassnarep3-star.github.io/Own9/origination/
 4. **OD-03** — ROI remains arithmetic, not economics, until executable quotes are captured.
 5. **Q-02** — external confirmation of the score content for 1999–2009 and the seasons
    not checked (2011–2017, 2019–2024) is still missing.
+
+## Session 9136b4d8 — claim, 2026-11-16 UTC (branch `arena/9136b4d8-own9`, base `61a6e68`)
+
+Operating note: this Arena session is fixed to branch `arena/9136b4d8-own9`. The requested per-task
+`session-<id>/<task>` branches are not created, because the session may only work on its own branch.
+Work is therefore one branch, one owner, and claims are recorded here instead of on separate branches.
+
+| Task | Status | Owner | Files |
+| --- | --- | --- | --- |
+| Decision-readiness table: one row per requirement in the 2026-11-16 brief, with blocking gate and clearing number | in progress | 9136b4d8 | `readiness.html` (new), `tools/build.py` (nav + landing block), generated pages |
+| Repo review: dated irregularities (stale landing date, Week 10 injury counts, duplicate pages) published as F58+ | in progress | 9136b4d8 | `flags.html`, `tools/build.py` |
+| Week 10 injury count re-check against the official nfl.com/injuries/ page (team-level, derived counts only) | in progress | 9136b4d8 | `readiness.html`, `COORDINATION.md` |
+
+Not claimed in this session (no data or no source reachable from the sandbox): historical injury archives,
+snap counts, Game Book inactives beyond those already on file, opening prices, licensed quote archives,
+per-club depth charts for 32 clubs, and any strategy pre-registration run. These stay in the readiness table as blocked.
