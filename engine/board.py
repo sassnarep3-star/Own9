@@ -24,6 +24,7 @@ from __future__ import annotations
 import csv
 import math
 import re
+from random import Random
 from pathlib import Path
 
 ROOT = Path(__file__).resolve().parents[1]
@@ -366,6 +367,103 @@ def walk_forward(finals: list[dict], upcoming: list[dict], start_week: int = 3) 
     return rows
 
 
+def brier_skill_panel(finals: list[dict], upcoming: list[dict], *,
+                      start_week: int = 3, end_week: int = 9,
+                      resamples: int = 2000, confidence: float = 0.95,
+                      seed: int = 9) -> dict:
+    """Pooled Brier skill vs a fixed 50/50 home-win forecast, with week clusters.
+
+    Only complete, chronological holdout weeks are included. Every forecast for
+    week ``w`` is fit on finals from weeks strictly before ``w``. Ties use a
+    half-win target, matching ``walk_forward``. The percentile interval resamples
+    whole weeks (not individual games); it is a descriptive uncertainty interval,
+    assumes exchangeable week clusters, and is not adjusted for multiple model
+    trials. This statistic does not remove luck or validate a strategy.
+    """
+    if type(start_week) is not int or start_week < 2:
+        raise FeedError("start_week must be an integer >= 2")
+    if end_week is not None and (type(end_week) is not int or end_week < start_week):
+        raise FeedError("end_week must be an integer >= start_week")
+    if type(resamples) is not int or resamples < 100:
+        raise FeedError("at least 100 cluster bootstrap resamples are required")
+    if not isinstance(confidence, (int, float)) or not 0 < confidence < 1:
+        raise FeedError("confidence must be between zero and one")
+    if type(seed) is not int:
+        raise FeedError("seed must be an integer")
+
+    weeks = sorted({g["week"] for g in finals})
+    by_week = {}
+    for week in weeks:
+        if week < start_week or (end_week is not None and week > end_week):
+            continue
+        train = [g for g in finals if g["week"] < week]
+        evals = [g for g in finals if g["week"] == week]
+        expected = len(evals) + sum(g["week"] == week for g in upcoming)
+        if not train or not evals or len(evals) != expected:
+            continue
+        model = fit(train)
+        losses = []
+        for game in evals:
+            p_home = price(model, game)["p_home_win"]
+            margin = game["home_score"] - game["away_score"]
+            observed = 1.0 if margin > 0 else 0.0 if margin < 0 else 0.5
+            model_loss = (p_home - observed) ** 2
+            baseline_loss = (0.5 - observed) ** 2
+            losses.append((model_loss, baseline_loss))
+        by_week[week] = losses
+
+    if len(by_week) < 2:
+        raise FeedError("at least two complete week clusters are required")
+    total_model = sum(m for rows in by_week.values() for m, _ in rows)
+    total_base = sum(b for rows in by_week.values() for _, b in rows)
+    if total_base <= 0:
+        raise FeedError("Brier skill is undefined for an all-tie benchmark sample")
+    n_games = sum(len(rows) for rows in by_week.values())
+    brier_model = total_model / n_games
+    brier_baseline = total_base / n_games
+    skill = 1.0 - total_model / total_base
+
+    # Resample complete weeks with replacement. Recompute the skill ratio in each
+    # draw so the benchmark denominator remains paired with its sampled outcomes.
+    rng = Random(seed)
+    blocks = list(by_week.values())
+    draws = []
+    for _ in range(resamples):
+        sampled = rng.choices(blocks, k=len(blocks))
+        model_sum = sum(m for block in sampled for m, _ in block)
+        base_sum = sum(b for block in sampled for _, b in block)
+        if base_sum > 0:
+            draws.append(1.0 - model_sum / base_sum)
+    if len(draws) < max(100, resamples // 2):
+        raise FeedError("too few valid cluster-bootstrap draws")
+    draws.sort()
+
+    def quantile(q):
+        position = q * (len(draws) - 1)
+        lower = int(position)
+        upper = min(lower + 1, len(draws) - 1)
+        fraction = position - lower
+        return draws[lower] + fraction * (draws[upper] - draws[lower])
+
+    alpha = (1.0 - float(confidence)) / 2.0
+    return {
+        "n_games": n_games,
+        "n_weeks": len(by_week),
+        "weeks": sorted(by_week),
+        "model_brier": brier_model,
+        "baseline_brier": brier_baseline,
+        "brier_skill": skill,
+        "ci_low": quantile(alpha),
+        "ci_high": quantile(1.0 - alpha),
+        "confidence": float(confidence),
+        "resamples": resamples,
+        "seed": seed,
+        "benchmark": "constant 0.5 home-win probability; not market favorites",
+        "interval_method": "percentile bootstrap of complete weeks; two-sided; exchangeability assumed",
+        "multiplicity_adjusted": False,
+    }
+
+
 # ------------------------------------------------------------------ correlations
 
 def pearson(xs, ys) -> tuple[float, int]:
@@ -446,9 +544,14 @@ def leaderboard(walk_rows: list[dict]) -> list[dict]:
     n_total = sum(r["n"] for r in complete)
     picks_total = sum(r["picks"] for r in complete)
     correct_total = sum(round((r["dir_acc"] or 0) * r["picks"]) for r in complete)
-    brier_w = _mean([r["brier_home_win"] for r in complete])
-    mae_m_w = _mean([r["mae_margin"] for r in complete])
-    mae_t_w = _mean([r["mae_total"] for r in complete])
+    # The aggregate is over the game-level predictions represented by n_total,
+    # so weight weekly means by their evaluated game counts (not equally by week).
+    brier_w = (sum(r["n"] * r["brier_home_win"] for r in complete) / n_total
+               if n_total else None)
+    mae_m_w = (sum(r["n"] * r["mae_margin"] for r in complete) / n_total
+               if n_total else None)
+    mae_t_w = (sum(r["n"] * r["mae_total"] for r in complete) / n_total
+               if n_total else None)
     dir_acc = (correct_total / picks_total) if picks_total else None
     entries = []
     for key, label, sig in (
@@ -462,7 +565,10 @@ def leaderboard(walk_rows: list[dict]) -> list[dict]:
         entries.append({
             "strategy": label,
             "status": "Paper",
-            "signal": {"n_walk_games": n_total, **sig, "brier_home_win": brier_w},
+            # The total model has no calibrated over/under probability here;
+            # never copy a home-win Brier into that track.
+            "signal": {"n_walk_games": n_total, **sig,
+                       "brier_home_win": None if key == "total" else brier_w},
             "staking": {"plan": "flat 1 unit, singles only (parlay exposure not implemented)",
                         "roi": None, "clv": None, "exposure_cap": None},
             "gate": "Live-to-paper gate operating parameters unset -> live issuance blocked",
@@ -523,7 +629,9 @@ def write_exports(finals: list[dict], upcoming: list[dict], markets: list[dict],
     def dump(name: str, header: list[str], rows: list[dict]) -> None:
         path = OUT / name
         with path.open("w", newline="") as fh:
-            w = csv.writer(fh)
+            # LF line endings keep deterministic generated artifacts clean under
+            # Git's whitespace checks on every platform.
+            w = csv.writer(fh, lineterminator="\n")
             w.writerow(header)
             for r in rows:
                 w.writerow([("" if r.get(k) is None else r.get(k)) for k in header])
@@ -572,6 +680,7 @@ def run() -> dict:
     walk_rows = walk_forward(finals, upcoming)
     corr_rows = correlations(finals)
     lb_rows = leaderboard(walk_rows)
+    skill_panel = brier_skill_panel(finals, upcoming)
     repl_rows = replacement_depth()
     counts = write_exports(finals, upcoming, markets, snapshots, walk_rows, corr_rows, lb_rows, repl_rows)
     return {
@@ -579,6 +688,7 @@ def run() -> dict:
         "feed_stats": feed_stats,
         "model": live_model, "markets": markets, "snapshots": snapshots,
         "walk_rows": walk_rows, "corr_rows": corr_rows, "lb_rows": lb_rows,
+        "skill_panel": skill_panel,
         "repl_rows": repl_rows, "counts": counts, "week11_games": w11,
     }
 

@@ -753,5 +753,59 @@
   "status": "retrieved",
   "supports": "Seahawks depth chart read again on 2026-11-14 in this session: QB Sam Darnold / Drew Lock / Jalen Milroe; LT Charles Cross / Josh Jones; LG Quenton Nelson / Anthony Bradford; DT Leonard Williams / Rylie Mills; plus the full offense, defense and special-teams tables.",
   "scope": "Column order is the published string order. The page text retrieved in this session (both chunks, title 'Seattle Seahawks') displays no 'unofficial depth chart' heading, unlike the Chiefs and Lions pages, so the self-labelled-unofficial caveat is recorded per club and not applied blanket-wide; see F29. Not a league-certified game-day depth record."
- }
+ },
+{
+    "id": "nfl-schedule-w10-current-2026-11-16",
+    "publisher": "NFL",
+    "url": "https://www.nfl.com/schedules/2026/by-week/week-10",
+    "checked": "2026-11-16",
+    "status": "retrieved",
+    "supports": "Live official 2026 Week 10 schedule page, read across both returned chunks on 2026-11-16: final scores for the Thursday 12 November game and eleven Sunday 15 November games; Steelers at Bengals and Chargers at Ravens were still listed without final scores at this retrieval; bye block names CHI, DEN, PHI and TB.",
+    "scope": "Mutable schedule page, not an immutable result archive. Supports only the final/pending states visible at retrieval, not later outcomes, prices, or permission to bulk-republish. Compared with the committed 2026 results feed captured 2026-11-14, eleven Sunday finals were not yet present in the local transcription."
+  },
+  {
+    "id": "nfl-schedule-w11-current-2026-11-16",
+    "publisher": "NFL",
+    "url": "https://www.nfl.com/schedules/2026/by-week/week-11",
+    "checked": "2026-11-16",
+    "status": "retrieved",
+    "supports": "Live official 2026 Week 11 schedule page, first chunk read on 2026-11-16: published Week 11 matchups, dates, kickoff times and broadcast labels, including Colts at Texans on 19 November and Sunday matchups on 22 November.",
+    "scope": "The schedule is mutable and subject to league changes. The retrieved chunk is used only to verify published fixture context; it is not an odds source, a frozen announcement archive, or a venue register for every fixture."
+  },
+  {
+    "id": "nfl-injury-current-2026-11-16",
+    "publisher": "NFL",
+    "url": "https://www.nfl.com/injuries/",
+    "checked": "2026-11-16",
+    "status": "retrieved",
+    "supports": "The current NFL injury-report route selected Week 10 of the 2026 season when read on 2026-11-16. Its published fields include Player, Position, Injuries, Practice Status and Game Status; the Lions rows for Kerby Joseph, Cade Mays and D.J. Reed each show Game Status Out.",
+    "scope": "Dynamic live page; first returned chunk read only. This is not a historical capture, does not establish the full current row count or every club table, and does not publish snaps, starters or depth order."
+  },
+  {
+    "id": "nfl-reserve-current-2026-11-16",
+    "publisher": "NFL",
+    "url": "https://www.nfl.com/transactions/league/reserve-list/2026/11",
+    "checked": "2026-11-16",
+    "status": "retrieved",
+    "supports": "Official NFL November 2026 reserve-list page; its table publishes From, To, Date, Name, Position and Transaction, including Reserve/Injured entries in the first returned chunk.",
+    "scope": "First returned chunk only. Transaction evidence does not itself establish expected starters, depth rank, participation, or the full roster/IR state for all 32 clubs."
+  },
+  {
+    "id": "nfl-rulebook-current-2026-11-16",
+    "publisher": "NFL Football Operations",
+    "url": "https://operations.nfl.com/rules-officiating/2026-nfl-rulebook",
+    "checked": "2026-11-16",
+    "status": "retrieved",
+    "supports": "The official 2026 NFL Rulebook page lists Rule 6-1-6 as permitting the kicking team to declare an onside kick at any time during the game.",
+    "scope": "Rule text only. It does not provide event rates, strategy priors, market impact, or validation for a 2026 onside-kick regime feature."
+  },
+{
+    "id": "nfl-terms-current-2026-11-16",
+    "publisher": "NFL Enterprises, LLC",
+    "url": "https://www.nfl.com/legal/terms/",
+    "checked": "2026-11-16",
+    "status": "retrieved",
+    "supports": "NFL.com Terms and Conditions page, section 1.3, read on 2026-11-16; the page states that use is limited to individual non-commercial informational purposes and that systematic retrieval to create or compile a collection, compilation, database or directory is prohibited absent express prior written consent.",
+    "scope": "Terms page says it was updated 2024-05-16. This is a source-specific terms excerpt, not legal advice or a conclusion about a particular project use, licence, jurisdiction, fair use, or separate data-provider terms. No express written permission was located in the repository; the public row-level data publication risk is therefore flagged for review."
+  }
 ]

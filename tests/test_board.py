@@ -13,7 +13,7 @@ sys.path.insert(0, str(ROOT / 'tools'))
 sys.path.insert(0, str(ROOT))
 
 from verify import Page, check  # noqa: E402
-from engine.board import (FeedError, OrderViolation, correlations, fit, fisher_ci,  # noqa: E402
+from engine.board import (FeedError, OrderViolation, brier_skill_panel, correlations, fit, fisher_ci,  # noqa: E402
                           load_feed, originate, pearson, price, run)
 from build import PAGES, render  # noqa: E402
 
@@ -74,6 +74,32 @@ class EngineTests(unittest.TestCase):
         side = next(e for e in self.artefacts['lb_rows'] if e['strategy'].startswith('OWN-SIDE'))
         self.assertIsNotNone(side['signal']['dir_acc'])
         self.assertGreater(side['signal']['n_walk_games'], 0)
+
+    def test_leaderboard_pools_games_and_withholds_wrong_target_score(self):
+        side = next(r for r in self.artefacts['lb_rows'] if r['strategy'].startswith('OWN-SIDE'))
+        total = next(r for r in self.artefacts['lb_rows'] if r['strategy'].startswith('OWN-TOTAL'))
+        self.assertAlmostEqual(side['signal']['brier_home_win'], 0.2350725179446179)
+        self.assertIsNone(total['signal']['brier_home_win'],
+                          'home-win Brier is not a proper score for a total forecast')
+        # The leaderboard publishes n=104, so weekly summaries must be pooled by
+        # game count, not averaged equally across seven different slate sizes.
+        n = sum(r['n'] for r in self.artefacts['walk_rows'] if r['complete'])
+        expected = sum(r['n'] * r['brier_home_win'] for r in self.artefacts['walk_rows'] if r['complete']) / n
+        self.assertEqual(n, 104)
+        self.assertAlmostEqual(side['signal']['brier_home_win'], expected)
+
+    def test_brier_skill_panel_is_pooled_clustered_and_not_a_pass(self):
+        panel = self.artefacts['skill_panel']
+        self.assertEqual(panel['n_games'], 104)
+        self.assertEqual(panel['n_weeks'], 7)
+        self.assertEqual(panel['weeks'], list(range(3, 10)))
+        self.assertAlmostEqual(panel['baseline_brier'], 0.24759615384615385)
+        self.assertAlmostEqual(panel['brier_skill'], 0.05058089839843649)
+        self.assertLess(panel['ci_low'], 0.0)
+        self.assertGreater(panel['ci_high'], 0.0)
+        self.assertFalse(panel['multiplicity_adjusted'])
+        again = brier_skill_panel(self.artefacts['finals'], self.artefacts['upcoming'])
+        self.assertEqual(panel, again, 'fixed seed must make the panel reproducible')
 
     def test_walk_forward_no_leakage(self):
         # Fit n for week w must equal the verified finals count of weeks strictly < w.
