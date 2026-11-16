@@ -20,18 +20,12 @@ from engine.origination_elo import (originate, load_results, run_elo, sample_sta
                                 MARKET_ORDER)
 
 OPENED_AT = '2026-11-14 (UTC, store deployment)'
-CLOSED_AT = '2026-11-15 19:31 UTC'
-CLOSED_STATUS = 'closed · pre-kickoff capture'
 
 
 def _fresh_store():
-    store = originate(RESULTS, WEEK10, OPENED_AT)
-    # Reproduce the close-capture step (tools/snapshot_close.py) so the
-    # committed closed store can be compared against regeneration.
-    for m in store['markets']:
-        m['closed_at'] = CLOSED_AT
-        m['status'] = CLOSED_STATUS
-    return store
+    # No official closing-price source is configured, so the store must remain
+    # open with null close timestamps until a real close is captured.
+    return originate(RESULTS, WEEK10, OPENED_AT)
 
 
 class LoadResults(unittest.TestCase):
@@ -104,6 +98,7 @@ class OriginationOrder(unittest.TestCase):
             self.assertIsNone(m['market_line'], m['market_id'])
             self.assertIsNone(m['market_line_source'], m['market_id'])
             self.assertIsNone(m['diff'], m['market_id'])
+            self.assertIsNone(m['closed_at'], m['market_id'])
 
     def test_pre_kickoff_game_is_not_originated(self):
         ids = {m['market_id'] for m in self.store['markets']}

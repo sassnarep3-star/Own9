@@ -1545,15 +1545,16 @@ Started: 2026-11-16 UTC · Role: **final integration session**.
 
 | Task | Status | Owner | Files |
 | --- | --- | --- | --- |
-| Merge + re-verify open PR #51 (session `f5961230`: store repair, Week 10 re-check, decision-readiness register) | in progress | de8c461d | `tools/f5961230_pages.py`, `readiness.html`, `week10-recheck.html`, `tools/snapshot_close.py` |
+| Merge + re-verify open PR #51 (session `f5961230`: store repair, Week 10 re-check, decision-readiness register) | done on integration branch; pending final PR | de8c461d | `tools/f5961230_pages.py`, `readiness.html`, `week10-recheck.html`, `tools/snapshot_close.py`, `tests/test_origination.py` |
 | Merge + re-verify open PR #38 (session `22de6677`: pinned citation-coverage audit) | in progress | de8c461d | `session-22de6677/**` |
-| Landing-page decision-readiness table (one row per brief requirement, blocking gate, clearing number) | in progress | de8c461d | `tools/build.py` (index page), `index.html` |
-| Line-by-line re-verification of the combined tree against official sources | unclaimed | de8c461d | read-only |
+| Landing-page decision-readiness table (one row per brief requirement, blocking gate, clearing number) | done: 66 rows rendered on `index.html` | de8c461d | `tools/f5961230_pages.py`, `index.html` |
+| Line-by-line re-verification of the combined tree against official sources | in progress; offline structural checks only so far | de8c461d | read-only |
 | Final build, link check, browser/a11y check, Pages deploy confirmation | in progress | de8c461d | `.github/workflows/**`, `COORDINATION.md` |
 
 ## Rules this session follows
 
-- Root scope only: `tools/build.py`, `tools/verify.py`, `scripts/**`, `index.html`,
+- Root scope only: `tools/build.py`, `tools/f5961230_pages.py`, `tools/verify.py`,
+  `tests/test_origination.py` (minimal merge-integration repair), `scripts/**`, `index.html`,
   `flags.html`, `COORDINATION.md`, `README.md`, `.github/workflows/**` and the merged
   branches' own new files. No other session's page content or register row is rewritten.
 - Shared files are edited **additively**: appended registers, appended nav entries, unioned
@@ -1572,5 +1573,33 @@ Started: 2026-11-16 UTC · Role: **final integration session**.
 - 2026-11-16: Two PRs are open against `main`: **#51** (session `f5961230`, last commit
   2026-11-15T23:38Z) and **#38** (session `22de6677`, last commit 2026-11-14T22:20Z). Both
   claims are older than 60 minutes with no new commits, so this integration session takes
-  over both per the board rule, merges them, and re-verifies the combined tree. Neither
-  branch is rewritten: both are merged forward into `arena/de8c461d-own9`.
+  over both per the board rule, integrates them forward, and re-verifies the combined tree.
+  The source branches themselves are not rewritten.
+- 2026-11-16: Integration of PR #51 is prepared on this branch (forward merge, not a
+  rewrite). The merge exposed a stale `tests/test_origination.py` helper: it synthesized
+  `closed_at` despite the repaired store correctly remaining open when no real closing
+  price source exists. Updated only that fixture/assertion to match the fail-closed
+  contract; `python3 -m unittest discover -s tests` passes **282/282**.
+- 2026-11-16: The readiness generator previously put only a summary/link on the landing
+  page. It now renders the complete **66-row** requirement table there (requirement,
+  status, blocking gate, clearing number and evidence links), as well as retaining the
+  dedicated register. `python3 tools/build.py` renders 41 pages; `python3 tools/verify.py`
+  passes with 1,985 source-linked rows and local assets/fragments/nav landmarks. The
+  verifier is structural, not external source certification.
+- 2026-11-16: Before the landing-table addition, `scripts/check_site.py` passed (15 pages,
+  147 directly linked rows, 551 local HTML links/resources); `engine/availability.py` and
+  `engine/registers.py` passed. `npm run test:browser:root` passed 41 root pages × 2
+  viewports / 82 axe checks; `npm run test:browser` passed 15 pages × 2 viewports / 30
+  axe checks. Root browser testing was repeated after the landing-table edit and passed.
+- 2026-11-16: No fresh NFL-page retrieval was performed by this integration session.
+  Official-source re-verification is constrained to committed source records and local
+  artifacts; F69's 23-club row-level gap and other unverified items remain explicitly
+  flagged. Do not describe structural tests as factual certification.
+- 2026-11-16: Pre-push `git pull --rebase` replayed the six PR #51 branch commits and
+  produced two `COORDINATION.md` append conflicts (the f5961230 claim/completion record
+  versus this integration claim). Both session records were preserved and ordered; no
+  source-branch files were discarded or edited. The default rebase omitted the earlier
+  merge-commit-only integration delta, so the landing-table generator, its rendered page,
+  the matching regression fixture, and integration log were explicitly reapplied from the
+  recorded local merge tree, then rebuilt and rechecked. Original PR source branches remain
+  untouched; only this branch's local history was rebased.

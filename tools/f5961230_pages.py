@@ -353,7 +353,8 @@ def register(page, table, row, PAGES, page_date_override):
                + str(counts.get('Blocked: data', 0) + counts.get('Blocked: decision', 0)) + ' are blocked, '
                + str(counts.get('Contradicted', 0)) + ' contradicted by the official page and '
                + str(counts.get('Rejected in brief', 0)) + ' rejected in the brief. '
-               '<a href="readiness.html">Open the full register</a> · <a href="week10-recheck.html">Week 10 re-check</a>.</p>')
+               '<a href="readiness.html">Open the full register</a> · <a href="week10-recheck.html">Week 10 re-check</a>.</p>'
+               + readiness_tbl)
     if 'index.html' in PAGES:
         label, title, intro, content = PAGES['index.html']
         PAGES['index.html'] = (label, title, intro, content + landing)
