@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Suggestions · Own9 decision desk</title>
+<meta name="description" content="Review these, choose a path, then implement. Nothing here is built until it is chosen.">
+<link rel="stylesheet" href="assets/style.css">
+<script src="assets/filter.js" defer></script>
+</head>
+<body>
+<a class="skip" href="#main">Skip to main content</a>
+<header class="topbar">
+  <a class="brand" href="index.html">Own9 <span>decision desk</span></a>
+  <p class="brandnote">One row per requirement. The gate that blocks it. The number that would clear it.</p>
+</header>
+<nav class="nav" aria-label="Decision desk sections">
+  <a href="index.html"><strong>Decision desk</strong><span>Overview</span></a>
+<a href="requirements.html"><strong>Requirements</strong><span>Gate table</span></a>
+<a href="questions.html"><strong>Questions</strong><span>Have / have not</span></a>
+<a class="active" href="suggestions.html"><strong>Suggestions</strong><span>Review board</span></a>
+<a href="availability.html"><strong>Availability</strong><span>Per club</span></a>
+<a href="fixtures.html"><strong>Fixtures</strong><span>Venues and results</span></a>
+<a href="captures.html"><strong>Captures</strong><span>Snapshot ledger</span></a>
+<a href="sources.html"><strong>Sources</strong><span>Official register</span></a>
+<a href="flagged.html"><strong>Flagged</strong><span>For review</span></a>
+</nav>
+<main id="main" class="wrap">
+  <h1>Suggestions</h1>
+  <p class="lead">Review these, choose a path, then implement. Nothing here is built until it is chosen.</p>
+
+<section>
+<h2>How to use this board</h2>
+<div class="prose">
+<p>Read the suggestions, then choose a path. Nothing else happens in between: no suggestion marked
+<em>Awaiting decision</em> has been implemented, and none will be until someone marks it chosen. The
+paths are deliberately left unranked. Ranking them would substitute this desk's preference for the
+owner's decision, which is the thing the section exists to prevent.</p>
+<p>Two items are marked <em>Proposed to the root owner</em> rather than built, because they would edit
+files another session owns. They are logged as requests in <code>COORDINATION.md</code> instead.</p>
+</div>
+</section>
+
+<section>
+<h2>Decision log</h2>
+<div class="tablewrap">
+<table class="wide">
+<thead><tr><th scope="col">Date</th><th scope="col">Entry</th><th scope="col">Record</th></tr></thead>
+<tbody>
+<tr><td>2026-11-16</td><td>No path chosen. No suggestion marked Awaiting decision was implemented by this session. The board exists to be read and chosen from, not to be acted on by the builder.</td><td><a class="src" href="https://github.com/sassnarep3-star/Own9/blob/main/COORDINATION.md">COORDINATION.md (shared task board)</a></td></tr>
+<tr><td>2026-11-16</td><td>Two items are marked Proposed to the root owner rather than implemented, because they would edit files another session owns. They are logged as requests in COORDINATION.md instead.</td><td><a class="src" href="https://github.com/sassnarep3-star/Own9/blob/main/COORDINATION.md">COORDINATION.md (shared task board)</a></td></tr>
+</tbody></table></div>
+</section>
+
+<section>
+<h2>Candidate paths</h2>
+<p class="note">Four ways through the same work. Each one buys something different and costs something
+different. None is recommended over the others.</p>
+<div class="tablewrap">
+<table class="wide">
+<thead><tr><th scope="col">Path</th><th scope="col">Name</th><th scope="col">Suggestions it contains</th><th scope="col">What it buys</th><th scope="col">What it costs</th><th scope="col">Choose it if</th><th scope="col">Record</th></tr></thead>
+<tbody>
+<tr><td><span class="rid">Path A</span></td><td>Close the data gaps first</td><td>S01, S02, S03, S13, S09, S10</td><td>Nothing is published that is not verified. Every model feature has a source before it is used.</td><td>Weeks pass with an empty leaderboard. If the goal is a competition, this path defers it longest.</td><td>Choose this if the priority is that no published number is ever wrong.</td><td><a class="src" href="https://github.com/sassnarep3-star/Own9/blob/main/decision-desk/data/suggestions.json">decision-desk/data/suggestions.json</a></td></tr>
+<tr><td><span class="rid">Path B</span></td><td>Ship the competition first</td><td>S06, S08, plus the existing leaderboard and pre-registration work</td><td>The leaderboard, its divisions, its controls and its pre-registration rules go live on a defined schedule.</td><td>Candidates would be ranked on features whose sources are not yet verified, which is how a bad signal gets funded.</td><td>Choose this if the priority is having a running competition, and you accept that early entries rest on thin evidence.</td><td><a class="src" href="https://github.com/sassnarep3-star/Own9/blob/main/decision-desk/data/suggestions.json">decision-desk/data/suggestions.json</a></td></tr>
+<tr><td><span class="rid">Path C</span></td><td>Consolidate the site first</td><td>S05, S07, S04, S12</td><td>One canonical page per register, one canonical implementation of the origination brief, and a landing page that states what is open.</td><td>It publishes no new evidence. It makes existing evidence readable.</td><td>Choose this if a reviewer needs to understand the project before funding more work on it.</td><td><a class="src" href="https://github.com/sassnarep3-star/Own9/blob/main/decision-desk/data/suggestions.json">decision-desk/data/suggestions.json</a></td></tr>
+<tr><td><span class="rid">Path D</span></td><td>Resolve governance first</td><td>S11, S04, plus the owner decisions O01 and O02</td><td>The licence question and the duplicate-implementation question are answered before any further capture or modelling.</td><td>It stops capture work that may have to be discarded if the licence answer is unfavourable.</td><td>Choose this if the terms of use are the real constraint and everything else depends on them.</td><td><a class="src" href="https://github.com/sassnarep3-star/Own9/blob/main/decision-desk/data/suggestions.json">decision-desk/data/suggestions.json</a></td></tr>
+</tbody></table></div>
+</section>
+
+<section>
+<h2>Suggestion register</h2>
+<div class="tablewrap">
+<table class="wide">
+<thead><tr><th scope="col">ID</th><th scope="col">Suggestion</th><th scope="col">Area</th><th scope="col">What it changes</th><th scope="col">Why it matters</th><th scope="col">Cost</th><th scope="col">Risk</th><th scope="col">Status</th><th scope="col">Source</th></tr></thead>
+<tbody>
+<tr><td><span class="rid">S01</span></td><td>Put the capture on a schedule: Wednesday, Thursday, Friday and kickoff, every week</td><td><span class="cat">Data capture</span></td><td>Turns the injury report from a weekly snapshot into a timestamped series, so Questionable-to-Out paths become replayable.</td><td>Three requirements already ask for this (R54, R55, R47) and none can be met with one capture. It is the smallest change that unblocks the largest number of rows on the decision table.</td><td>One scheduled job plus off-site storage. The capture and parse code already exists in this desk.</td><td>Low. It writes new files and changes nothing that is published today.</td><td><span class="status-awaiting-decision">Awaiting decision</span></td><td><a class="src" href="https://github.com/sassnarep3-star/Own9/blob/main/decision-desk/data/captures/manifest.json">Capture manifest</a></td></tr>
+<tr><td><span class="rid">S02</span></td><td>Store captures outside the public repository and alert on freshness and schema change</td><td><span class="cat">Infrastructure</span></td><td>Moves raw captures to an immutable store and adds a monitor that fails loudly when a source or schema changes.</td><td>Today a capture lives in git in the same tree as the site. That is fine for one capture and fragile at three per week for a season.</td><td>A storage target and a monitor. No change to any published page.</td><td>Medium. It needs an owner decision on where the store lives and who can read it, which is requirement R40.</td><td><span class="status-awaiting-decision">Awaiting decision</span></td><td><a class="src" href="https://github.com/sassnarep3-star/Own9/blob/main/decision-desk/flagged.html">Flagged for review</a></td></tr>
+<tr><td><span class="rid">S03</span></td><td>Confirm the venue of one fixture per club from the game centre, not from a link parameter</td><td><span class="cat">Data capture</span></td><td>Raises venue provenance from a commercial-link parameter on the schedule page to the game centre&#x27;s own Game Info field.</td><td>This session proved the field exists but only read one fixture. Twelve of thirteen Week 11 venues are currently second-hand.</td><td>One fetch per club. No code change.</td><td>Low.</td><td><span class="status-awaiting-decision">Awaiting decision</span></td><td><a class="src" href="https://www.nfl.com/games/chargers-at-ravens-2026-reg-10">Game centre: Chargers at Ravens</a></td></tr>
+<tr><td><span class="rid">S04</span></td><td>Pick one canonical implementation of the origination brief</td><td><span class="cat">Governance</span></td><td>Designates either the market board on the main dashboard or the origination desk as the one that speaks for the project.</td><td>Two implementations of the same eight requirements exist on different inputs, so they can publish different model lines for the same game. That is flag OD-16 and the single largest loose end on the site.</td><td>A recorded decision, then either a deprecation notice or a merge onto one input set.</td><td>Medium. Whichever is chosen, the other&#x27;s pages must be labelled or removed, and that touches another session&#x27;s files.</td><td><span class="status-awaiting-decision">Awaiting decision</span></td><td><a class="src" href="https://github.com/sassnarep3-star/Own9/blob/main/origination/flagged.html">Flag OD-16</a><br><a class="src" href="https://github.com/sassnarep3-star/Own9/blob/main/origination/questions.html">Origination desk questions (Q-21)</a></td></tr>
+<tr><td><span class="rid">S05</span></td><td>Collapse the duplicate registry pages into one index per register</td><td><span class="cat">Site</span></td><td>The repository holds several pages that answer the same question: questions.html, question-ledger.html, missing-information.html and decisions-questions.html; suggestions.html, suggestion-costs.html and decisions-questions.html.</td><td>A reviewer cannot tell which page is current. Two of them already carry different counts for the same objects.</td><td>Editorial. Each duplicate gets a dated banner pointing at the canonical page.</td><td>Low if done by labelling rather than deleting, since deleting touches other sessions&#x27; files.</td><td><span class="status-awaiting-decision">Awaiting decision</span></td><td><a class="src" href="https://github.com/sassnarep3-star/Own9/blob/main/questions.html">Questions and answers</a><br><a class="src" href="https://github.com/sassnarep3-star/Own9/blob/main/question-ledger.html">Question ledger</a><br><a class="src" href="https://github.com/sassnarep3-star/Own9/blob/main/missing-information.html">Missing information</a></td></tr>
+<tr><td><span class="rid">S06</span></td><td>Publish the control baselines with every leaderboard run</td><td><span class="cat">Leaderboard</span></td><td>Adds a random-picks row and a favourites-only row, scored on the same events as every candidate.</td><td>Without them a candidate cannot be distinguished from a favourable run of fixtures. It is requirement R57 and it costs nothing to compute.</td><td>Small. The controls are already specified.</td><td>Low.</td><td><span class="status-awaiting-decision">Awaiting decision</span></td><td><a class="src" href="https://github.com/sassnarep3-star/Own9/blob/main/leaderboard.html">Leaderboard</a></td></tr>
+<tr><td><span class="rid">S07</span></td><td>Make the landing page the decision table</td><td><span class="cat">Site</span></td><td>Puts one row per requirement, its blocking gate and the number that would clear it on the first screen a reviewer sees.</td><td>It is requirement R22 and it answers the question a reviewer actually has: what is open, and what would close it.</td><td>Done by this session on the decision desk. Extending it to the root landing page touches a file owned by another session.</td><td>Low on this desk. Requires a request, not an edit, for the root page.</td><td><span class="status-proposed-to-the-root-owner">Proposed to the root owner</span></td><td><a class="src" href="https://github.com/sassnarep3-star/Own9/blob/main/decision-desk/index.html">Decision desk landing page</a></td></tr>
+<tr><td><span class="rid">S08</span></td><td>Freeze the 2026 kickoff rule in git before measuring anything about it</td><td><span class="cat">Validation</span></td><td>Commits rule text, sample window and gates, then publishes the commit hash as the registration.</td><td>If the rule is measured first and written down afterwards, the result is post hoc and cannot be used. This is R68 and R69.</td><td>One commit plus a published hash.</td><td>Low, and it must happen before any measurement or the measurement is worthless.</td><td><span class="status-awaiting-decision">Awaiting decision</span></td><td><a class="src" href="https://github.com/sassnarep3-star/Own9/blob/main/validation.html">Validation gates</a></td></tr>
+<tr><td><span class="rid">S09</span></td><td>Add a shared and empty state to the depth schema</td><td><span class="cat">Availability</span></td><td>Lets a slot holding two players and a slot holding none be represented as they are published, instead of as a ranked list.</td><td>149 club/unit/position slots list more than one rank-1 player. Treating column one as the starter fabricates a starter the club never named. This is R33 and R51.</td><td>A schema change plus a re-parse of the three charts already captured.</td><td>Medium. It changes what downstream code may assume about a depth row.</td><td><span class="status-awaiting-decision">Awaiting decision</span></td><td><a class="src" href="https://github.com/sassnarep3-star/Own9/blob/main/availability-evidence.html">Availability sources</a></td></tr>
+<tr><td><span class="rid">S10</span></td><td>Resolve the depth-order question for all 32 clubs before building the deficiency matrix</td><td><span class="cat">Availability</span></td><td>Runs both candidate routes to completion and records a verdict per club: parsed, image-only, or absent.</td><td>The matrix cannot show strings travelled until one route is verified. Building it on designations instead is what this session&#x27;s matrix does, and it is a placeholder, not the feature.</td><td>One pass over 32 clubs, recording status per club.</td><td>Low. It produces a register of statuses, not a new dependency.</td><td><span class="status-awaiting-decision">Awaiting decision</span></td><td><a class="src" href="https://github.com/sassnarep3-star/Own9/blob/main/availability-evidence.html">Availability sources</a></td></tr>
+<tr><td><span class="rid">S11</span></td><td>Write down the price-data policy before publishing any backtest</td><td><span class="cat">Governance</span></td><td>Records the licence determination for every price file used, and keeps quarantined files quarantined.</td><td>Three seasons of scores inside the committed lines file were checked and matched, which settles the content and says nothing about the right to use it. That is flag OD-01.</td><td>A written note per file.</td><td>Low, and it blocks every downstream claim until it is done.</td><td><span class="status-awaiting-decision">Awaiting decision</span></td><td><a class="src" href="https://github.com/sassnarep3-star/Own9/blob/main/lines.html">Own lines audit</a></td></tr>
+<tr><td><span class="rid">S12</span></td><td>Put the per-team availability view on the root dashboard</td><td><span class="cat">Site</span></td><td>Gives a reviewer one row per club: how many are out, how many are on the reserve list, and who is named as the replacement.</td><td>It is requirement R41 and this session built it. It is more useful on the first screen than three pages deep.</td><td>A request to the root integration owner, which is how this desk handles shared files.</td><td>Low.</td><td><span class="status-proposed-to-the-root-owner">Proposed to the root owner</span></td><td><a class="src" href="https://github.com/sassnarep3-star/Own9/blob/main/decision-desk/availability.html">Decision desk availability</a></td></tr>
+<tr><td><span class="rid">S13</span></td><td>Archive at least three past seasons of weekly injury reports</td><td><span class="cat">Data capture</span></td><td>Captures dated, hashed weekly reports for past seasons so designations can be joined to outcomes.</td><td>Designation reliability (R53) and the Questionable calibration (R44) both need it, and both are prerequisites, not nice-to-haves.</td><td>One backfill job, then the same scheduled capture as S01.</td><td>Medium. Volume is high and it needs the off-site store from S02 first.</td><td><span class="status-awaiting-decision">Awaiting decision</span></td><td><a class="src" href="https://www.nfl.com/injuries/">NFL official injury report (season selector)</a></td></tr>
+<tr><td><span class="rid">S14</span></td><td>Do not rank the improvement paths for the reviewer</td><td><span class="cat">Governance</span></td><td>Leaves the four candidate paths unranked and records the choice as unmade.</td><td>Ranking them would substitute the builder&#x27;s preference for the owner&#x27;s decision, which is the thing the suggestions section exists to prevent.</td><td>None.</td><td>None. It is a refusal, not a change.</td><td><span class="status-not-chosen-by-design">Not chosen, by design</span></td><td><a class="src" href="https://github.com/sassnarep3-star/Own9/blob/main/suggestion-costs.html">Suggestion costs</a></td></tr>
+<tr><td><span class="rid">S15</span></td><td>Reject ranking strategies by season-long ROI</td><td><span class="cat">Rejected</span></td><td>Recorded so the alternative is not re-proposed each time a short-run ROI looks good.</td><td>Short-run ROI cannot distinguish skill from variance, which is the whole point of the proper-score ranking.</td><td>None.</td><td>None. Rejected by the requirement itself.</td><td><span class="status-rejected">Rejected</span></td><td><a class="src" href="https://github.com/sassnarep3-star/Own9/blob/main/signal-and-staking.html">Signal and staking</a></td></tr>
+<tr><td><span class="rid">S16</span></td><td>Reject deriving depth order from jersey number, experience or salary</td><td><span class="cat">Rejected</span></td><td>Recorded so the shortcut is not re-proposed when the depth source is missing.</td><td>It would produce a number that looks like a depth tier and is not one.</td><td>None.</td><td>None. Rejected by the requirement itself.</td><td><span class="status-rejected">Rejected</span></td><td><a class="src" href="https://github.com/sassnarep3-star/Own9/blob/main/session-8b05dd6d/suggestions.html">Suggestions (session 8b05dd6d)</a></td></tr>
+</tbody></table></div>
+</section>
+
+</main>
+<footer class="foot">
+  <p>Static, dependency-free, generated from <code>decision-desk/data/</code> by
+  <code>decision-desk/tools/build.py</code>. Every table row links to the official publisher or to the
+  project record that produced it. A blank cell is a deliberate blank: nothing on this desk is inferred.</p>
+  <p><a href="../index.html">Root dashboard</a> · <a href="https://github.com/sassnarep3-star/Own9">Repository</a></p>
+</footer>
+</body>
+</html>

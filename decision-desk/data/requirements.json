@@ -1,0 +1,1252 @@
+[
+  {
+    "id": "R01",
+    "category": "Pricing",
+    "requirement": "Add a price-snapshot store that records opening and closing numbers for every market we originate",
+    "status": "partial",
+    "gate": "No source obtained records an opening price. All opening columns are blank on every row of the committed store.",
+    "clearing_number": "Opening and closing price recorded on 100% of originated markets for 8 consecutive weeks.",
+    "evidence": [
+      {
+        "label": "origination/price-snapshots.html",
+        "url": "https://github.com/sassnarep3-star/Own9/blob/main/origination/price-snapshots.html"
+      },
+      {
+        "label": "price-snapshots.html (root)",
+        "url": "https://github.com/sassnarep3-star/Own9/blob/main/price-snapshots.html"
+      },
+      {
+        "label": "Flag OD-02",
+        "url": "https://github.com/sassnarep3-star/Own9/blob/main/origination/flagged.html"
+      }
+    ]
+  },
+  {
+    "id": "R02",
+    "category": "Pricing",
+    "requirement": "Add a verified results feed so backtests and ROI can be computed at all",
+    "status": "met",
+    "gate": "None blocking. The feed recomputes and matches on every row checked.",
+    "clearing_number": "Recompute match stays at 100% of rows (current: 7,088 of 7,088).",
+    "evidence": [
+      {
+        "label": "results.html",
+        "url": "https://github.com/sassnarep3-star/Own9/blob/main/results.html"
+      },
+      {
+        "label": "results-feed.html",
+        "url": "https://github.com/sassnarep3-star/Own9/blob/main/results-feed.html"
+      },
+      {
+        "label": "NFL schedule (Week 10)",
+        "url": "https://www.nfl.com/schedules/2026/by-week/week-10"
+      }
+    ]
+  },
+  {
+    "id": "R03",
+    "category": "Pricing",
+    "requirement": "Originate the side first, then the total, then the moneyline",
+    "status": "met",
+    "gate": "None blocking. The order is fixed in code and reconciled on every run.",
+    "clearing_number": "Order reconciliation returns 0 violations (current: 0).",
+    "evidence": [
+      {
+        "label": "origination-engine.html",
+        "url": "https://github.com/sassnarep3-star/Own9/blob/main/origination-engine.html"
+      },
+      {
+        "label": "markets.html",
+        "url": "https://github.com/sassnarep3-star/Own9/blob/main/markets.html"
+      }
+    ]
+  },
+  {
+    "id": "R04",
+    "category": "Pricing",
+    "requirement": "Publish the model's fair line, the market line, and the difference as separate columns",
+    "status": "met",
+    "gate": "None blocking for the origination desk, which holds a recorded closing price on every market.",
+    "clearing_number": "Three separate columns on 100% of originated markets (current: 100%).",
+    "evidence": [
+      {
+        "label": "origination/prices.html",
+        "url": "https://github.com/sassnarep3-star/Own9/blob/main/origination/prices.html"
+      },
+      {
+        "label": "lines.html",
+        "url": "https://github.com/sassnarep3-star/Own9/blob/main/lines.html"
+      }
+    ]
+  },
+  {
+    "id": "R05",
+    "category": "Leaderboard",
+    "requirement": "Separate signal from staking in the leaderboard so a lucky staking run cannot mask a bad signal",
+    "status": "met",
+    "gate": "None blocking. Two boards, two rank keys, never combined.",
+    "clearing_number": "0 submissions ranked by a blended score (current: 0).",
+    "evidence": [
+      {
+        "label": "signal-vs-staking.html",
+        "url": "https://github.com/sassnarep3-star/Own9/blob/main/signal-vs-staking.html"
+      },
+      {
+        "label": "signal-and-staking.html",
+        "url": "https://github.com/sassnarep3-star/Own9/blob/main/signal-and-staking.html"
+      }
+    ]
+  },
+  {
+    "id": "R06",
+    "category": "Availability",
+    "requirement": "Track the depth of the replacement, not just the fact of a replacement",
+    "status": "partial",
+    "gate": "Depth tiers come from club-published depth charts that the clubs themselves label unofficial. The league depth-chart route returns an NFL 404.",
+    "clearing_number": "A league-published depth order for 32 of 32 clubs, or snap share for 32 of 32 clubs.",
+    "evidence": [
+      {
+        "label": "depth-of-replacement.html",
+        "url": "https://github.com/sassnarep3-star/Own9/blob/main/depth-of-replacement.html"
+      },
+      {
+        "label": "replacement-chains.html",
+        "url": "https://github.com/sassnarep3-star/Own9/blob/main/replacement-chains.html"
+      },
+      {
+        "label": "Flag F19-F21",
+        "url": "https://github.com/sassnarep3-star/Own9/blob/main/flags.html"
+      }
+    ]
+  },
+  {
+    "id": "R07",
+    "category": "Modelling",
+    "requirement": "Compute correlations only from officially sourced numbers and publish n with each value",
+    "status": "partial",
+    "gate": "Every published interval straddles the predeclared deadband, so the gate refuses the joint price (292 offered, 0 priced).",
+    "clearing_number": "Lower bound of |rho| above 0.10 with n of at least 200 for at least one pair.",
+    "evidence": [
+      {
+        "label": "dependence.html",
+        "url": "https://github.com/sassnarep3-star/Own9/blob/main/dependence.html"
+      },
+      {
+        "label": "correlations-official.html",
+        "url": "https://github.com/sassnarep3-star/Own9/blob/main/correlations-official.html"
+      },
+      {
+        "label": "depth-correlations.html",
+        "url": "https://github.com/sassnarep3-star/Own9/blob/main/depth-correlations.html"
+      }
+    ]
+  },
+  {
+    "id": "R08",
+    "category": "Leaderboard",
+    "requirement": "Define a demotion gate that sends a live strategy back to paper",
+    "status": "met",
+    "gate": "None blocking. The gate is defined in code and was replayed: it would have demoted every live candidate at the first evaluable window.",
+    "clearing_number": "Gate exercised on every evaluable window with the outcome published (current: replayed once).",
+    "evidence": [
+      {
+        "label": "demotion.html",
+        "url": "https://github.com/sassnarep3-star/Own9/blob/main/demotion.html"
+      },
+      {
+        "label": "engine/demotion.py",
+        "url": "https://github.com/sassnarep3-star/Own9/blob/main/engine/demotion.py"
+      }
+    ]
+  },
+  {
+    "id": "R09",
+    "category": "Leaderboard",
+    "requirement": "Pre-register every strategy; forbid backtest numbers from ever appearing on the leaderboard",
+    "status": "partial",
+    "gate": "No pre-registration record exists per strategy. The leaderboard has no rows, so the prohibition is untested rather than enforced.",
+    "clearing_number": "A pre-registration commit hash for 100% of leaderboard entries, and 0 backtest-derived rows ever published.",
+    "evidence": [
+      {
+        "label": "validation.html",
+        "url": "https://github.com/sassnarep3-star/Own9/blob/main/validation.html"
+      },
+      {
+        "label": "strategies.html",
+        "url": "https://github.com/sassnarep3-star/Own9/blob/main/strategies.html"
+      },
+      {
+        "label": "leaderboard.html",
+        "url": "https://github.com/sassnarep3-star/Own9/blob/main/leaderboard.html"
+      }
+    ]
+  },
+  {
+    "id": "R10",
+    "category": "Availability",
+    "requirement": "Build the availability graph as a first-class dataset (who was expected to start, who actually did)",
+    "status": "partial",
+    "gate": "Coverage is 2 of 32 clubs (Washington and New York, Weeks 9 to 10).",
+    "clearing_number": "Expected and actual starter recorded for 32 of 32 clubs across every week of the evaluation window.",
+    "evidence": [
+      {
+        "label": "availability.html",
+        "url": "https://github.com/sassnarep3-star/Own9/blob/main/availability.html"
+      },
+      {
+        "label": "availability-evidence.html",
+        "url": "https://github.com/sassnarep3-star/Own9/blob/main/availability-evidence.html"
+      }
+    ]
+  },
+  {
+    "id": "R11",
+    "category": "Availability",
+    "requirement": "Do not model depth from jersey order; model it from playing time",
+    "status": "not-started",
+    "gate": "No official snap-count or participation source was obtained. The NFL statistics categories published on nfl.com contain no snap or participation category.",
+    "clearing_number": "Snap share per player per game for 32 of 32 clubs.",
+    "evidence": [
+      {
+        "label": "availability-evidence.html - checked absences",
+        "url": "https://github.com/sassnarep3-star/Own9/blob/main/availability-evidence.html"
+      }
+    ]
+  },
+  {
+    "id": "R12",
+    "category": "Modelling",
+    "requirement": "Make the injury signal a surprise, never a level",
+    "status": "not-started",
+    "gate": "A surprise needs a baseline distribution over weeks. Only one dated capture exists, so no baseline can be estimated.",
+    "clearing_number": "At least 3 seasons of dated designation rows, giving a baseline and a z-scored surprise per player-week.",
+    "evidence": [
+      {
+        "label": "question-ledger.html",
+        "url": "https://github.com/sassnarep3-star/Own9/blob/main/question-ledger.html"
+      }
+    ]
+  },
+  {
+    "id": "R13",
+    "category": "Availability",
+    "requirement": "Run the 32-team roster/IR sweep before any team-level model is trusted",
+    "status": "partial",
+    "gate": "This session captured the official reserve list for November 2026 only: 25 rows across 16 clubs. It is one month, not a season, and not all 32 clubs.",
+    "clearing_number": "Reserve-list and roster events captured for 32 of 32 clubs across a full season, dated and hashed.",
+    "evidence": [
+      {
+        "label": "NFL reserve list, November 2026",
+        "url": "https://www.nfl.com/transactions/league/reserve-list/2026/11"
+      },
+      {
+        "label": "NFL transactions, November 2026",
+        "url": "https://www.nfl.com/transactions/"
+      }
+    ]
+  },
+  {
+    "id": "R14",
+    "category": "Fixtures",
+    "requirement": "Add a fixture-context feature set built only from published schedule facts",
+    "status": "partial",
+    "gate": "The features are not built. The underlying facts are now captured for one week (13 fixtures: kickoff time, network, venue, bye status, international designation).",
+    "clearing_number": "Published-schedule features present for 100% of fixtures in the backtest window, with no feature sourced from outside the official schedule.",
+    "evidence": [
+      {
+        "label": "NFL schedule, Week 11 2026",
+        "url": "https://www.nfl.com/schedules/2026/by-week/week-11"
+      }
+    ]
+  },
+  {
+    "id": "R15",
+    "category": "Modelling",
+    "requirement": "Store every model output as a probability plus its inputs, not just a pick",
+    "status": "partial",
+    "gate": "Probabilities are published; the input vector that produced each probability is not stored on the row.",
+    "clearing_number": "100% of model rows carry the input vector and a version hash of the code that produced them.",
+    "evidence": [
+      {
+        "label": "origination/originated.html",
+        "url": "https://github.com/sassnarep3-star/Own9/blob/main/origination/originated.html"
+      },
+      {
+        "label": "origination-engine.html",
+        "url": "https://github.com/sassnarep3-star/Own9/blob/main/origination-engine.html"
+      }
+    ]
+  },
+  {
+    "id": "R16",
+    "category": "Modelling",
+    "requirement": "Compute and publish the removal-of-luck panel on the site dashboard",
+    "status": "partial",
+    "gate": "The panel is specified but empty. Removing luck requires enough graded events for a lower bound to be estimated at all.",
+    "clearing_number": "A game-clustered lower bound on benchmark-relative Brier skill above 0 over at least 200 graded events.",
+    "evidence": [
+      {
+        "label": "leaderboard.html",
+        "url": "https://github.com/sassnarep3-star/Own9/blob/main/leaderboard.html"
+      },
+      {
+        "label": "validation.html",
+        "url": "https://github.com/sassnarep3-star/Own9/blob/main/validation.html"
+      }
+    ]
+  },
+  {
+    "id": "R17",
+    "category": "Modelling",
+    "requirement": "Add a two-sided what-would-change-our-mind field to every strategy entry",
+    "status": "partial",
+    "gate": "The field is not present on every entry, and where it exists it is not always populated in both directions.",
+    "clearing_number": "Both a confirm-side and a disconfirm-side condition populated for 100% of strategy entries.",
+    "evidence": [
+      {
+        "label": "strategies.html",
+        "url": "https://github.com/sassnarep3-star/Own9/blob/main/strategies.html"
+      },
+      {
+        "label": "strategies.html (site)",
+        "url": "https://github.com/sassnarep3-star/Own9/blob/main/site/strategies.html"
+      }
+    ]
+  },
+  {
+    "id": "R18",
+    "category": "Pricing",
+    "requirement": "Price a line ourselves and publish the residual against the market, on a schedule, from day one",
+    "status": "partial",
+    "gate": "The root board originates Week 11 markets but holds no recorded market price to take a residual against. The origination desk does hold a closing price on every market.",
+    "clearing_number": "An originated number and a captured market number on the same market family for 8 consecutive weeks, with the residual published each week.",
+    "evidence": [
+      {
+        "label": "origination.html",
+        "url": "https://github.com/sassnarep3-star/Own9/blob/main/origination.html"
+      },
+      {
+        "label": "markets.html",
+        "url": "https://github.com/sassnarep3-star/Own9/blob/main/markets.html"
+      }
+    ]
+  },
+  {
+    "id": "R19",
+    "category": "Validation",
+    "requirement": "Turn the 136-game log into the pre-registered backtest corpus",
+    "status": "not-started",
+    "gate": "No such corpus is committed to the repository. The 136-game log was not located as a data file.",
+    "clearing_number": "136 games committed as a corpus with a pre-registration commit hash recorded before the evaluation window opens.",
+    "evidence": [
+      {
+        "label": "COORDINATION.md - open items",
+        "url": "https://github.com/sassnarep3-star/Own9/blob/main/COORDINATION.md"
+      }
+    ]
+  },
+  {
+    "id": "R20",
+    "category": "Pricing",
+    "requirement": "Decide the price-data policy before any backtest is published",
+    "status": "partial",
+    "gate": "The committed market-lines file is quarantined, and its licence and provenance remain unknown. Three seasons of scores inside it were checked and matched; that settles content, not rights.",
+    "clearing_number": "A written licence determination recorded for every price file used in a published backtest.",
+    "evidence": [
+      {
+        "label": "lines.html",
+        "url": "https://github.com/sassnarep3-star/Own9/blob/main/lines.html"
+      },
+      {
+        "label": "Flag OD-01",
+        "url": "https://github.com/sassnarep3-star/Own9/blob/main/origination/flagged.html"
+      }
+    ]
+  },
+  {
+    "id": "R21",
+    "category": "Availability",
+    "requirement": "Store every injury-hub read with its clock time and publish the delta, never the level",
+    "status": "partial",
+    "gate": "This session recorded the first capture with a clock time and a SHA-256 of the raw bytes. With one capture, no delta can be computed.",
+    "clearing_number": "At least 3 dated captures per week (Wednesday, Thursday, Friday) for at least one full week, so a delta exists for every row.",
+    "evidence": [
+      {
+        "label": "NFL official injury report",
+        "url": "https://www.nfl.com/injuries/"
+      },
+      {
+        "label": "Capture CAP-01 manifest",
+        "url": "https://github.com/sassnarep3-star/Own9/blob/main/decision-desk/data/captures/manifest.json"
+      }
+    ]
+  },
+  {
+    "id": "R22",
+    "category": "Governance",
+    "requirement": "Put a decision-readiness table on the landing page: one row per requirement, with the gate that blocks it and the number that would clear it",
+    "status": "met",
+    "gate": "None blocking. Built by this session as the landing page of the decision desk.",
+    "clearing_number": "Every requirement row carries a blocking gate and a numeric clearing condition (current: 73 of 73).",
+    "evidence": [
+      {
+        "label": "decision-desk/index.html",
+        "url": "https://github.com/sassnarep3-star/Own9/blob/main/decision-desk/index.html"
+      }
+    ]
+  },
+  {
+    "id": "R23",
+    "category": "Fixtures",
+    "requirement": "Transcribe the venue of every fixture from the official game centre and publish it",
+    "status": "partial",
+    "gate": "Only 1 of 13 Week 11 venues is confirmed by a game-centre read. The other 12 come from a link parameter on the schedule page, which is published by nfl.com but is not a venue field.",
+    "clearing_number": "Home venue confirmed by a game-centre Game Info read for 32 of 32 clubs.",
+    "evidence": [
+      {
+        "label": "Game centre: Chargers at Ravens",
+        "url": "https://www.nfl.com/games/chargers-at-ravens-2026-reg-10"
+      },
+      {
+        "label": "NFL schedule, Week 11 2026",
+        "url": "https://www.nfl.com/schedules/2026/by-week/week-11"
+      }
+    ]
+  },
+  {
+    "id": "R24",
+    "category": "Fixtures",
+    "requirement": "Publish the league's dated schedule announcement beside the live schedule page",
+    "status": "not-started",
+    "gate": "No dated announcement URL was obtained. The schedule page does publish a flexible-scheduling note for Weeks 16, 17 and 18, but it carries no publication date.",
+    "clearing_number": "A dated announcement URL and its publication date published beside the live schedule.",
+    "evidence": [
+      {
+        "label": "NFL flexible scheduling procedures",
+        "url": "https://www.nfl.com/legal/flexible-scheduling-procedures"
+      },
+      {
+        "label": "NFL schedule, Week 11 2026",
+        "url": "https://www.nfl.com/schedules/2026/by-week/week-11"
+      }
+    ]
+  },
+  {
+    "id": "R25",
+    "category": "Availability",
+    "requirement": "Use official NFL Game Books for actual starters and game-day status; do not infer depth rank or snaps",
+    "status": "met",
+    "gate": "None blocking. Three official Game Books were read for game-day lineups, inactive lists and final statistics.",
+    "clearing_number": "Every starter claim traced to a Game Book page number; 0 inferred starters (current: 0).",
+    "evidence": [
+      {
+        "label": "availability.html",
+        "url": "https://github.com/sassnarep3-star/Own9/blob/main/availability.html"
+      },
+      {
+        "label": "session-00cf851d/verification.html",
+        "url": "https://github.com/sassnarep3-star/Own9/blob/main/session-00cf851d/verification.html"
+      }
+    ]
+  },
+  {
+    "id": "R26",
+    "category": "Modelling",
+    "requirement": "Ingest game-level results to make the ratings opponent-aware",
+    "status": "partial",
+    "gate": "The results feed exists and is verified, but no opponent-aware rating has been fitted or published.",
+    "clearing_number": "An opponent-adjusted rating published with an out-of-sample proper score.",
+    "evidence": [
+      {
+        "label": "results.html",
+        "url": "https://github.com/sassnarep3-star/Own9/blob/main/results.html"
+      },
+      {
+        "label": "origination/leaderboard.html",
+        "url": "https://github.com/sassnarep3-star/Own9/blob/main/origination/leaderboard.html"
+      }
+    ]
+  },
+  {
+    "id": "R27",
+    "category": "Availability",
+    "requirement": "Add injury and personnel ablations instead of fixed penalties",
+    "status": "not-started",
+    "gate": "An ablation needs a verified availability feature set to switch on and off. None exists yet.",
+    "clearing_number": "Identical model run with and without verified availability features over chronological holdouts, difference reported with an interval.",
+    "evidence": [
+      {
+        "label": "availability-evidence.html",
+        "url": "https://github.com/sassnarep3-star/Own9/blob/main/availability-evidence.html"
+      },
+      {
+        "label": "decision.html",
+        "url": "https://github.com/sassnarep3-star/Own9/blob/main/decision.html"
+      }
+    ]
+  },
+  {
+    "id": "R28",
+    "category": "Availability",
+    "requirement": "Add injury/depth ablations, not fixed penalties; compare identical models with and without verified availability features using chronological holdouts",
+    "status": "not-started",
+    "gate": "Same as R27: the verified availability feature set does not exist, so there is nothing to ablate.",
+    "clearing_number": "Chronological holdout results published for both arms with the difference and its interval.",
+    "evidence": [
+      {
+        "label": "validation.html",
+        "url": "https://github.com/sassnarep3-star/Own9/blob/main/validation.html"
+      }
+    ]
+  },
+  {
+    "id": "R29",
+    "category": "Infrastructure",
+    "requirement": "Automate immutable multi-day availability snapshots with retained hashes",
+    "status": "partial",
+    "gate": "This session produced one immutable capture with a SHA-256 of the raw bytes. The capture is manual: it ran inside this session, not on a schedule.",
+    "clearing_number": "At least 3 captures per week for a full season, produced by a scheduled job, every hash retained.",
+    "evidence": [
+      {
+        "label": "Capture CAP-01 manifest",
+        "url": "https://github.com/sassnarep3-star/Own9/blob/main/decision-desk/data/captures/manifest.json"
+      },
+      {
+        "label": ".github/workflows/snapshot.yml",
+        "url": "https://github.com/sassnarep3-star/Own9/blob/main/.github/workflows/snapshot.yml"
+      }
+    ]
+  },
+  {
+    "id": "R30",
+    "category": "Infrastructure",
+    "requirement": "Build immutable official availability snapshots: scheduled capture of injury reports, club depth pages and inactive evidence with raw hashes, timestamps and conflict flags",
+    "status": "partial",
+    "gate": "Injury reports are now captured with hashes and timestamps. No scheduled job exists for club depth pages or inactive evidence.",
+    "clearing_number": "All three source families captured on a schedule with raw hashes, timestamps and conflict flags for a full season.",
+    "evidence": [
+      {
+        "label": "decision-desk/data/captures/manifest.json",
+        "url": "https://github.com/sassnarep3-star/Own9/blob/main/decision-desk/data/captures/manifest.json"
+      },
+      {
+        "label": "NFL official injury report",
+        "url": "https://www.nfl.com/injuries/"
+      }
+    ]
+  },
+  {
+    "id": "R31",
+    "category": "Availability",
+    "requirement": "Capture official inactive lists and snap counts",
+    "status": "not-started",
+    "gate": "Only 6 of 254 report rows carried a game designation in the earlier capture, and no official snap-count source was obtained.",
+    "clearing_number": "Inactive list and snap share captured for 100% of games in the evaluation window.",
+    "evidence": [
+      {
+        "label": "questions.html",
+        "url": "https://github.com/sassnarep3-star/Own9/blob/main/questions.html"
+      },
+      {
+        "label": "availability-evidence.html",
+        "url": "https://github.com/sassnarep3-star/Own9/blob/main/availability-evidence.html"
+      }
+    ]
+  },
+  {
+    "id": "R32",
+    "category": "Availability",
+    "requirement": "Fix the two depth-parsing failures before widening coverage",
+    "status": "partial",
+    "gate": "The Packers failure (jersey numbers prepended) is fixed by number stripping plus storing the raw string. The Texans failure is not: Houston publishes its depth chart as an image, and no authorized structured source was obtained.",
+    "clearing_number": "32 of 32 club depth charts parsed to rows without transcription by eye.",
+    "evidence": [
+      {
+        "label": "session-8b05dd6d/injuries.html",
+        "url": "https://github.com/sassnarep3-star/Own9/blob/main/session-8b05dd6d/injuries.html"
+      },
+      {
+        "label": "injuries.html",
+        "url": "https://github.com/sassnarep3-star/Own9/blob/main/injuries.html"
+      }
+    ]
+  },
+  {
+    "id": "R33",
+    "category": "Availability",
+    "requirement": "Model depth slots as groups, not a single starter",
+    "status": "partial",
+    "gate": "The problem is documented (149 club/unit/position slots list more than one rank-1 player) but the schema still treats column 1 as a starter.",
+    "clearing_number": "100% of slots with more than one rank-1 player represented as a group, not as one starter.",
+    "evidence": [
+      {
+        "label": "availability-evidence.html",
+        "url": "https://github.com/sassnarep3-star/Own9/blob/main/availability-evidence.html"
+      }
+    ]
+  },
+  {
+    "id": "R34",
+    "category": "Availability",
+    "requirement": "Treat roster turnover as a first-class data event",
+    "status": "partial",
+    "gate": "This session captured 12 trades and 25 reserve-list moves for November 2026 with dates and player links. They are not yet versioned against individual depth rows.",
+    "clearing_number": "Every depth row carries the identifier of the last official roster event that preceded it.",
+    "evidence": [
+      {
+        "label": "NFL transactions, November 2026",
+        "url": "https://www.nfl.com/transactions/"
+      },
+      {
+        "label": "NFL reserve list, November 2026",
+        "url": "https://www.nfl.com/transactions/league/reserve-list/2026/11"
+      }
+    ]
+  },
+  {
+    "id": "R35",
+    "category": "Validation",
+    "requirement": "Start with a singles-only shadow baseline, pre-registered, versions frozen, forecasts recorded before kickoff",
+    "status": "partial",
+    "gate": "The baseline is specified. No frozen forecast record exists: nothing has been recorded before kickoff on a schedule.",
+    "clearing_number": "A pre-registered singles forecast recorded before kickoff for 8 consecutive weeks, with the model version frozen.",
+    "evidence": [
+      {
+        "label": "strategies.html",
+        "url": "https://github.com/sassnarep3-star/Own9/blob/main/strategies.html"
+      },
+      {
+        "label": "validation.html",
+        "url": "https://github.com/sassnarep3-star/Own9/blob/main/validation.html"
+      }
+    ]
+  },
+  {
+    "id": "R36",
+    "category": "Leaderboard",
+    "requirement": "Keep parlays and prop combos behind a joint-evidence gate",
+    "status": "met",
+    "gate": "None blocking. A joint price is produced only when a validated joint probability and the operator void/push rules are both available; otherwise it is left blank.",
+    "clearing_number": "0 combos priced under an assumed independence (current: 292 offered, 0 priced).",
+    "evidence": [
+      {
+        "label": "dependence.html",
+        "url": "https://github.com/sassnarep3-star/Own9/blob/main/dependence.html"
+      },
+      {
+        "label": "origination/flagged.html",
+        "url": "https://github.com/sassnarep3-star/Own9/blob/main/origination/flagged.html"
+      }
+    ]
+  },
+  {
+    "id": "R37",
+    "category": "Leaderboard",
+    "requirement": "Use proper-score leaderboard divisions: singles, game parlays, same-game parlays and prop combos ranked separately",
+    "status": "met",
+    "gate": "None blocking. Divisions are defined and eligibility is fail-closed.",
+    "clearing_number": "0 submissions ranked across divisions (current: 0).",
+    "evidence": [
+      {
+        "label": "leaderboard.html",
+        "url": "https://github.com/sassnarep3-star/Own9/blob/main/leaderboard.html"
+      },
+      {
+        "label": "site/leaderboard.html",
+        "url": "https://github.com/sassnarep3-star/Own9/blob/main/site/leaderboard.html"
+      }
+    ]
+  },
+  {
+    "id": "R38",
+    "category": "Leaderboard",
+    "requirement": "Rank with proper scores and uncertainty, not win rate",
+    "status": "met",
+    "gate": "None blocking. Ranking is by benchmark-relative Brier skill with a game-cluster lower bound and a multiplicity adjustment.",
+    "clearing_number": "0 rows ranked by raw win rate or short-run ROI (current: 0).",
+    "evidence": [
+      {
+        "label": "leaderboard.html",
+        "url": "https://github.com/sassnarep3-star/Own9/blob/main/leaderboard.html"
+      },
+      {
+        "label": "signal-and-staking.html",
+        "url": "https://github.com/sassnarep3-star/Own9/blob/main/signal-and-staking.html"
+      }
+    ]
+  },
+  {
+    "id": "R39",
+    "category": "Infrastructure",
+    "requirement": "Add durable snapshot storage and alerts outside the static site",
+    "status": "not-started",
+    "gate": "Captures are committed to this public git repository. There is no off-site immutable store and no freshness monitor.",
+    "clearing_number": "An off-site immutable store plus a freshness monitor that alerts on source or schema change.",
+    "evidence": [
+      {
+        "label": "decision-desk/data/captures/manifest.json",
+        "url": "https://github.com/sassnarep3-star/Own9/blob/main/decision-desk/data/captures/manifest.json"
+      }
+    ]
+  },
+  {
+    "id": "R40",
+    "category": "Infrastructure",
+    "requirement": "Split the site into a public analysis layer and a private data layer",
+    "status": "not-started",
+    "gate": "Raw row-level data is committed in the public repository today. Moving it requires an owner decision on the terms of use first.",
+    "clearing_number": "An owner decision recorded, and raw row-level data no longer published in the public tree.",
+    "evidence": [
+      {
+        "label": "Flag OD-01",
+        "url": "https://github.com/sassnarep3-star/Own9/blob/main/origination/flagged.html"
+      },
+      {
+        "label": "decision-desk/questions.html",
+        "url": "https://github.com/sassnarep3-star/Own9/blob/main/decision-desk/questions.html"
+      }
+    ]
+  },
+  {
+    "id": "R41",
+    "category": "Availability",
+    "requirement": "Add a per-team view: starters out, replacements named, net injury count",
+    "status": "met",
+    "gate": "None blocking. Built by this session from the 347-row Week 10 capture joined to the official reserve list.",
+    "clearing_number": "One row per club with the out count, the reserve-list count and the named replacements (current: 28 of 32 clubs; 4 on bye).",
+    "evidence": [
+      {
+        "label": "decision-desk/availability.html",
+        "url": "https://github.com/sassnarep3-star/Own9/blob/main/decision-desk/availability.html"
+      },
+      {
+        "label": "NFL official injury report",
+        "url": "https://www.nfl.com/injuries/"
+      }
+    ]
+  },
+  {
+    "id": "R42",
+    "category": "Availability",
+    "requirement": "Add an announced-starter evidence field, not an inferred replacement",
+    "status": "partial",
+    "gate": "The NFL does publish dated starter changes, and this session read three of them as headlines (Drew Lock, Kyle McCord, Jacoby Brissett). They are not yet a structured field on the player row.",
+    "clearing_number": "A dated starter-change field populated for 100% of quarterback changes, linked to the official article.",
+    "evidence": [
+      {
+        "label": "NFL news: Drew Lock to start",
+        "url": "https://www.nfl.com/news/drew-lock-no-injury-designation-seahawks-raiders"
+      },
+      {
+        "label": "NFL reserve list 2026-11",
+        "url": "https://www.nfl.com/transactions/league/reserve-list/2026/11"
+      }
+    ]
+  },
+  {
+    "id": "R43",
+    "category": "Availability",
+    "requirement": "Add an official depth-chart register with date and source per row",
+    "status": "partial",
+    "gate": "Three club charts were captured on 2026-11-14 with a source link per row. Coverage is 3 of 32 clubs, and the clubs label their own charts unofficial.",
+    "clearing_number": "Date and source on every depth row for 32 of 32 clubs.",
+    "evidence": [
+      {
+        "label": "injuries.html",
+        "url": "https://github.com/sassnarep3-star/Own9/blob/main/injuries.html"
+      },
+      {
+        "label": "data/depth/club-depth-charts-2026-11-14.json",
+        "url": "https://github.com/sassnarep3-star/Own9/blob/main/data/depth/club-depth-charts-2026-11-14.json"
+      }
+    ]
+  },
+  {
+    "id": "R44",
+    "category": "Modelling",
+    "requirement": "Calibrate what Questionable means empirically instead of using old percentages",
+    "status": "not-started",
+    "gate": "Calibration needs designations joined to actual participation. No inactive-list archive exists to join against.",
+    "clearing_number": "Play rate per designation with a confidence interval, over at least 2 seasons.",
+    "evidence": [
+      {
+        "label": "injuries.html",
+        "url": "https://github.com/sassnarep3-star/Own9/blob/main/injuries.html"
+      },
+      {
+        "label": "availability-evidence.html",
+        "url": "https://github.com/sassnarep3-star/Own9/blob/main/availability-evidence.html"
+      }
+    ]
+  },
+  {
+    "id": "R45",
+    "category": "Availability",
+    "requirement": "Interactive Offense vs Defense Matchup Deficiency Matrix (1st-4th String)",
+    "status": "partial",
+    "gate": "This session publishes a designation-based deficiency matrix. It cannot show 1st-to-4th-string tiers because no verified depth order exists for all 32 clubs.",
+    "clearing_number": "A verified 1st-to-4th-string tier for 32 of 32 clubs, so the matrix can show strings travelled rather than designations.",
+    "evidence": [
+      {
+        "label": "decision-desk/availability.html",
+        "url": "https://github.com/sassnarep3-star/Own9/blob/main/decision-desk/availability.html"
+      },
+      {
+        "label": "Flag F19-F21",
+        "url": "https://github.com/sassnarep3-star/Own9/blob/main/flags.html"
+      }
+    ]
+  },
+  {
+    "id": "R46",
+    "category": "Availability",
+    "requirement": "Flag stale depth rows against the official transactions log",
+    "status": "partial",
+    "gate": "This session found one live conflict and published it, but the join is manual, not automated.",
+    "clearing_number": "An automated join to the transactions log reporting 0 unreviewed conflicts.",
+    "evidence": [
+      {
+        "label": "NFL transactions, November 2026",
+        "url": "https://www.nfl.com/transactions/"
+      },
+      {
+        "label": "decision-desk/flagged.html",
+        "url": "https://github.com/sassnarep3-star/Own9/blob/main/decision-desk/flagged.html"
+      }
+    ]
+  },
+  {
+    "id": "R47",
+    "category": "Infrastructure",
+    "requirement": "Point-in-Time Snapshot Ledger for Injuries, Depth Charts and Inactives",
+    "status": "partial",
+    "gate": "The ledger exists with one dated, hashed capture. Lookahead-safe backtesting needs a capture before every kickoff in the window, not one per session.",
+    "clearing_number": "A pre-kickoff capture for 100% of games in the evaluation window, each with hash and timestamp.",
+    "evidence": [
+      {
+        "label": "decision-desk/captures.html",
+        "url": "https://github.com/sassnarep3-star/Own9/blob/main/decision-desk/captures.html"
+      }
+    ]
+  },
+  {
+    "id": "R48",
+    "category": "Availability",
+    "requirement": "Populate the three missing Lions game-status designations (VR-08, VR-12)",
+    "status": "met",
+    "gate": "None blocking. Read from the official report on 2026-11-16: Kerby Joseph Out (knee), Cade Mays Out (ankle), D.J. Reed Out (hip).",
+    "clearing_number": "All three cells populated from the official page (current: 3 of 3).",
+    "evidence": [
+      {
+        "label": "NFL official injury report",
+        "url": "https://www.nfl.com/injuries/"
+      },
+      {
+        "label": "decision-desk/availability.html",
+        "url": "https://github.com/sassnarep3-star/Own9/blob/main/decision-desk/availability.html"
+      }
+    ]
+  },
+  {
+    "id": "R49",
+    "category": "Availability",
+    "requirement": "Re-capture and republish the Week 10 injury tables (VR-04 to VR-07)",
+    "status": "met",
+    "gate": "None blocking. Re-captured on 2026-11-16: 347 rows across 28 clubs, against 254 rows previously published and 279 stated as live. The drift is published, not reconciled.",
+    "clearing_number": "Published row count equals the count on the official page at capture time (current: 347 = 347).",
+    "evidence": [
+      {
+        "label": "NFL official injury report",
+        "url": "https://www.nfl.com/injuries/"
+      },
+      {
+        "label": "origination/flagged.html",
+        "url": "https://github.com/sassnarep3-star/Own9/blob/main/origination/flagged.html"
+      }
+    ]
+  },
+  {
+    "id": "R50",
+    "category": "Rejected",
+    "requirement": "Reject: deriving depth order from jersey number, experience or salary",
+    "status": "rejected",
+    "gate": "Rejected by the requirement itself. Recorded here so the shortcut is not re-proposed.",
+    "clearing_number": "Not applicable. The rejection stands until an official depth or snap source exists.",
+    "evidence": [
+      {
+        "label": "session-8b05dd6d/suggestions.html",
+        "url": "https://github.com/sassnarep3-star/Own9/blob/main/session-8b05dd6d/suggestions.html"
+      }
+    ]
+  },
+  {
+    "id": "R51",
+    "category": "Availability",
+    "requirement": "Represent shared and empty depth slots faithfully",
+    "status": "not-started",
+    "gate": "The depth schema has no representation for a slot holding two players or holding none, so both cases are indistinguishable from a ranked list.",
+    "clearing_number": "A schema in which shared slots and empty slots are distinct states, applied to 100% of slots.",
+    "evidence": [
+      {
+        "label": "availability-evidence.html",
+        "url": "https://github.com/sassnarep3-star/Own9/blob/main/availability-evidence.html"
+      }
+    ]
+  },
+  {
+    "id": "R52",
+    "category": "Availability",
+    "requirement": "Resolve the depth-order source before building the backup-deficiency feature",
+    "status": "partial",
+    "gate": "Both routes were evaluated. The per-club official depth-chart route works for some clubs and the league route returns an NFL 404; the snap-count route has no official source. Neither is verified for all 32 clubs.",
+    "clearing_number": "One route verified for 32 of 32 clubs before any deficiency feature is ranked.",
+    "evidence": [
+      {
+        "label": "availability-evidence.html",
+        "url": "https://github.com/sassnarep3-star/Own9/blob/main/availability-evidence.html"
+      },
+      {
+        "label": "depth-of-replacement.html",
+        "url": "https://github.com/sassnarep3-star/Own9/blob/main/depth-of-replacement.html"
+      }
+    ]
+  },
+  {
+    "id": "R53",
+    "category": "Modelling",
+    "requirement": "Score injury-designation reliability before using it as a feature",
+    "status": "not-started",
+    "gate": "Reliability is measured by joining designations to inactive lists. No inactive-list archive exists.",
+    "clearing_number": "Play rate per designation, with a confidence interval, over several seasons, published before the label is used as a feature.",
+    "evidence": [
+      {
+        "label": "questions.html",
+        "url": "https://github.com/sassnarep3-star/Own9/blob/main/questions.html"
+      },
+      {
+        "label": "injuries.html",
+        "url": "https://github.com/sassnarep3-star/Own9/blob/main/injuries.html"
+      }
+    ]
+  },
+  {
+    "id": "R54",
+    "category": "Availability",
+    "requirement": "Snapshot the nfl.com injury report every Wed, Thu and Fri and keep a dated history",
+    "status": "not-started",
+    "gate": "This session produced one capture, on the Monday of Week 10. There is no scheduled job, so no weekday history exists.",
+    "clearing_number": "Wednesday, Thursday and Friday captures retained for a full season, so Questionable-to-Out paths are replayable.",
+    "evidence": [
+      {
+        "label": "NFL official injury report",
+        "url": "https://www.nfl.com/injuries/"
+      },
+      {
+        "label": "decision-desk/captures.html",
+        "url": "https://github.com/sassnarep3-star/Own9/blob/main/decision-desk/captures.html"
+      }
+    ]
+  },
+  {
+    "id": "R55",
+    "category": "Availability",
+    "requirement": "Treat the injury report as a timestamped series, not a weekly snapshot",
+    "status": "partial",
+    "gate": "The report is now captured with a retrieval clock time and a hash of the raw bytes. One capture cannot show evolution.",
+    "clearing_number": "Capture on every day from Wednesday to kickoff, with the fetch timestamp, for at least one full week.",
+    "evidence": [
+      {
+        "label": "decision-desk/captures.html",
+        "url": "https://github.com/sassnarep3-star/Own9/blob/main/decision-desk/captures.html"
+      }
+    ]
+  },
+  {
+    "id": "R56",
+    "category": "Availability",
+    "requirement": "Use snap counts as the starter proxy when the depth chart is unavailable",
+    "status": "not-started",
+    "gate": "No official snap-count source was obtained. Until one exists, this fallback cannot be exercised for any club.",
+    "clearing_number": "Snap share per player per game for 32 of 32 clubs, used wherever a club chart is missing.",
+    "evidence": [
+      {
+        "label": "availability-evidence.html",
+        "url": "https://github.com/sassnarep3-star/Own9/blob/main/availability-evidence.html"
+      }
+    ]
+  },
+  {
+    "id": "R57",
+    "category": "Leaderboard",
+    "requirement": "Add a control baseline (random picks; favourites only) to every leaderboard run",
+    "status": "partial",
+    "gate": "The control is defined. It has never been published with real numbers, because no run has graded events to score.",
+    "clearing_number": "A random and a favourites-only control row published with every leaderboard run, scored on the same events.",
+    "evidence": [
+      {
+        "label": "leaderboard.html",
+        "url": "https://github.com/sassnarep3-star/Own9/blob/main/leaderboard.html"
+      },
+      {
+        "label": "validation.html",
+        "url": "https://github.com/sassnarep3-star/Own9/blob/main/validation.html"
+      }
+    ]
+  },
+  {
+    "id": "R58",
+    "category": "Fixtures",
+    "requirement": "Stadium Roof/Surface and NWS Hourly Wind/Precipitation Overlay",
+    "status": "not-started",
+    "gate": "The National Weather Service API is not reachable from this sandbox, and no official stadium roof-status endpoint was obtained.",
+    "clearing_number": "Roof status, surface and an hourly forecast grid joined to every outdoor fixture, with the 90-minute roof designation recorded.",
+    "evidence": [
+      {
+        "label": "decision-desk/fixtures.html",
+        "url": "https://github.com/sassnarep3-star/Own9/blob/main/decision-desk/fixtures.html"
+      }
+    ]
+  },
+  {
+    "id": "R59",
+    "category": "Leaderboard",
+    "requirement": "Two-Stage Skill Leaderboard (proper-score qualification, then prospective CLV/ROI escrow)",
+    "status": "partial",
+    "gate": "Stage one exists. Stage two needs closing-line value, which needs an opening price; no source records one.",
+    "clearing_number": "A prospective escrow window with recorded opening and closing prices, so CLV is measurable.",
+    "evidence": [
+      {
+        "label": "signal-and-staking.html",
+        "url": "https://github.com/sassnarep3-star/Own9/blob/main/signal-and-staking.html"
+      },
+      {
+        "label": "Flag OD-02",
+        "url": "https://github.com/sassnarep3-star/Own9/blob/main/origination/flagged.html"
+      }
+    ]
+  },
+  {
+    "id": "R60",
+    "category": "Pricing",
+    "requirement": "Vig-Free Market Consensus vs Originated Fair-Line Decomposition View",
+    "status": "not-started",
+    "gate": "No market-consensus source was obtained, so the vig cannot be separated from true pricing divergence.",
+    "clearing_number": "A de-vigged consensus number and an originated fair line published side by side on the same markets.",
+    "evidence": [
+      {
+        "label": "lines.html",
+        "url": "https://github.com/sassnarep3-star/Own9/blob/main/lines.html"
+      },
+      {
+        "label": "origination.html",
+        "url": "https://github.com/sassnarep3-star/Own9/blob/main/origination.html"
+      }
+    ]
+  },
+  {
+    "id": "R61",
+    "category": "Validation",
+    "requirement": "Publish a weekly what-changed diff instead of a static snapshot",
+    "status": "partial",
+    "gate": "A diff needs two snapshots of the same object. This session produced a second Week 10 capture, which makes a row-count diff computable for the first time.",
+    "clearing_number": "A stored diff per week showing rank change, rating change and availability change.",
+    "evidence": [
+      {
+        "label": "decision-desk/captures.html",
+        "url": "https://github.com/sassnarep3-star/Own9/blob/main/decision-desk/captures.html"
+      }
+    ]
+  },
+  {
+    "id": "R62",
+    "category": "Modelling",
+    "requirement": "Publish every model total twice until one wins, with the gap column",
+    "status": "not-started",
+    "gate": "Only one total estimator is implemented, so there is no gap to publish.",
+    "clearing_number": "Two estimators published with a gap column, collapsed to one only after a walk-forward comparison.",
+    "evidence": [
+      {
+        "label": "origination/originated.html",
+        "url": "https://github.com/sassnarep3-star/Own9/blob/main/origination/originated.html"
+      }
+    ]
+  },
+  {
+    "id": "R63",
+    "category": "Infrastructure",
+    "requirement": "Add a drift alarm to every scraper: pin expected row counts and required fields, fail loudly",
+    "status": "partial",
+    "gate": "This session's parser is pinned to 28 clubs, 5 required fields and a minimum row count, and the verifier fails the build on any shortfall. Other scrapers in the repository are not covered.",
+    "clearing_number": "Every scraper in the repository pinned to expected row counts and required fields, with the build failing on any missing field.",
+    "evidence": [
+      {
+        "label": "decision-desk/tools/verify.py",
+        "url": "https://github.com/sassnarep3-star/Own9/blob/main/decision-desk/tools/verify.py"
+      }
+    ]
+  },
+  {
+    "id": "R64",
+    "category": "Availability",
+    "requirement": "Capture the reserve list so not listed never means available",
+    "status": "met",
+    "gate": "None blocking. The official reserve list for November 2026 is captured: 25 rows, dated, each with the player link.",
+    "clearing_number": "Reserve list joined to every availability view, so absence from the injury report is explained (current: joined for November 2026).",
+    "evidence": [
+      {
+        "label": "NFL reserve list, November 2026",
+        "url": "https://www.nfl.com/transactions/league/reserve-list/2026/11"
+      },
+      {
+        "label": "decision-desk/availability.html",
+        "url": "https://github.com/sassnarep3-star/Own9/blob/main/decision-desk/availability.html"
+      }
+    ]
+  },
+  {
+    "id": "R65",
+    "category": "Rejected",
+    "requirement": "Reject: ranking strategies by season-long ROI",
+    "status": "rejected",
+    "gate": "Rejected by the requirement itself. Recorded so the alternative is not re-proposed.",
+    "clearing_number": "Not applicable. The rejection stands; ranking is by proper score with uncertainty.",
+    "evidence": [
+      {
+        "label": "signal-and-staking.html",
+        "url": "https://github.com/sassnarep3-star/Own9/blob/main/signal-and-staking.html"
+      }
+    ]
+  },
+  {
+    "id": "R66",
+    "category": "Availability",
+    "requirement": "Archive weekly injury reports for past seasons",
+    "status": "not-started",
+    "gate": "The NFL injuries page exposes season and week selectors back to 1965, so the route exists. No past season has been captured with hashes.",
+    "clearing_number": "At least 3 past seasons of weekly injury reports captured, dated and hashed.",
+    "evidence": [
+      {
+        "label": "NFL official injury report (season selector)",
+        "url": "https://www.nfl.com/injuries/"
+      }
+    ]
+  },
+  {
+    "id": "R67",
+    "category": "Validation",
+    "requirement": "Pre-register each strategy, definition frozen before results are seen",
+    "status": "partial",
+    "gate": "Pre-registration is stated as policy. No strategy carries a registration commit hash with a frozen definition and sample window.",
+    "clearing_number": "A registration commit hash, a frozen definition and a sample window for 100% of strategies.",
+    "evidence": [
+      {
+        "label": "origination/leaderboard.html",
+        "url": "https://github.com/sassnarep3-star/Own9/blob/main/origination/leaderboard.html"
+      },
+      {
+        "label": "validation.html",
+        "url": "https://github.com/sassnarep3-star/Own9/blob/main/validation.html"
+      }
+    ]
+  },
+  {
+    "id": "R68",
+    "category": "Modelling",
+    "requirement": "2026 Kickoff and Declared Onside-Kick Regime Priors Filter",
+    "status": "not-started",
+    "gate": "No rule text for the 2026 kickoff or onside-kick regime was committed before the season, so no prior can be claimed pre-registered.",
+    "clearing_number": "Rule text, sample window and gates committed to git before the evaluation window opens, with the commit hash published.",
+    "evidence": [
+      {
+        "label": "decision-desk/suggestions.html",
+        "url": "https://github.com/sassnarep3-star/Own9/blob/main/decision-desk/suggestions.html"
+      }
+    ]
+  },
+  {
+    "id": "R69",
+    "category": "Validation",
+    "requirement": "Freeze a rule before it sees data: commit rule text, sample window and gates, and publish the commit hash as the registration",
+    "status": "partial",
+    "gate": "The rule is documented in the repository, but no commit hash is published as a registration for any rule.",
+    "clearing_number": "A published commit hash per rule, with the commit predating the first evaluation date.",
+    "evidence": [
+      {
+        "label": "validation.html",
+        "url": "https://github.com/sassnarep3-star/Own9/blob/main/validation.html"
+      },
+      {
+        "label": "strict-lab/validation.html",
+        "url": "https://github.com/sassnarep3-star/Own9/blob/main/strict-lab/validation.html"
+      }
+    ]
+  },
+  {
+    "id": "R70",
+    "category": "Validation",
+    "requirement": "Split data into train, validation and final holdout seasons",
+    "status": "partial",
+    "gate": "The split is specified in the strict-lab method notes. No corpus exists to split, so no split has been exercised.",
+    "clearing_number": "Three disjoint season sets declared and committed before any fitting, with the holdout touched once.",
+    "evidence": [
+      {
+        "label": "strict-lab/methodology.html",
+        "url": "https://github.com/sassnarep3-star/Own9/blob/main/strict-lab/methodology.html"
+      }
+    ]
+  },
+  {
+    "id": "R71",
+    "category": "Governance",
+    "requirement": "Make suggestions on how to improve the site, in a dedicated section someone can review and choose between before anything is implemented",
+    "status": "met",
+    "gate": "None blocking. This session adds a review board with candidate paths and a decision log that records no approval.",
+    "clearing_number": "Every suggestion carries a status, and 0 suggestions are implemented while marked awaiting decision (current: 0).",
+    "evidence": [
+      {
+        "label": "decision-desk/suggestions.html",
+        "url": "https://github.com/sassnarep3-star/Own9/blob/main/decision-desk/suggestions.html"
+      },
+      {
+        "label": "suggestion-costs.html",
+        "url": "https://github.com/sassnarep3-star/Own9/blob/main/suggestion-costs.html"
+      }
+    ]
+  },
+  {
+    "id": "R72",
+    "category": "Governance",
+    "requirement": "A clear list of questions, information and answers that must be addressed before any decision, with suggestions for discovering missing information",
+    "status": "met",
+    "gate": "None blocking. This session publishes what we have, what we do not have, and a probe for each gap.",
+    "clearing_number": "Every open question carries either a closing data action or a named probe (current: 100%).",
+    "evidence": [
+      {
+        "label": "decision-desk/questions.html",
+        "url": "https://github.com/sassnarep3-star/Own9/blob/main/decision-desk/questions.html"
+      },
+      {
+        "label": "question-ledger.html",
+        "url": "https://github.com/sassnarep3-star/Own9/blob/main/question-ledger.html"
+      }
+    ]
+  },
+  {
+    "id": "R73",
+    "category": "Leaderboard",
+    "requirement": "A leaderboard competition that provides rewards for top-performing strategies across singles, parlays and prop combos",
+    "status": "partial",
+    "gate": "The competition policy and divisions exist. No strategy has qualified, and no reward schedule is funded.",
+    "clearing_number": "A funded reward schedule published, and at least 1 strategy qualified through the proper-score gate.",
+    "evidence": [
+      {
+        "label": "leaderboard.html",
+        "url": "https://github.com/sassnarep3-star/Own9/blob/main/leaderboard.html"
+      },
+      {
+        "label": "suggestions.html",
+        "url": "https://github.com/sassnarep3-star/Own9/blob/main/suggestions.html"
+      }
+    ]
+  }
+]

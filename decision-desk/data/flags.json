@@ -1,0 +1,170 @@
+[
+  {
+    "id": "DD-01",
+    "title": "Published Week 10 injury snapshot is stale against the official page",
+    "finding": "The repository publishes 254 injury rows and states 279 as the live count. The official page publishes 347 rows at 2026-11-16T01:17Z. That is 68 more than published and 93 more than the stated live count.",
+    "status": "Unresolved. The cause is not established: the official page may have grown, the earlier transcription may have been partial, or both. Both numbers are published rather than reconciled.",
+    "what_would_clear_it": "Re-capture on a schedule and diff row by row. Do not overwrite the old snapshot before the diff is recorded.",
+    "evidence": [
+      {
+        "label": "NFL official injury report",
+        "url": "https://www.nfl.com/injuries/"
+      },
+      {
+        "label": "Origination desk flag OD-13",
+        "url": "https://github.com/sassnarep3-star/Own9/blob/main/origination/flagged.html"
+      }
+    ]
+  },
+  {
+    "id": "DD-02",
+    "title": "A player appears under a club he was traded away from six days earlier",
+    "finding": "Daiyan Henley was traded from the Chargers to the Broncos on 11/10. The Week 10 injury report retrieved on 11/16 still lists him under the Chargers, with full participation and no game designation.",
+    "status": "Flagged, not reconciled. Both pages are official. Which one is current for the purposes of a pre-kickoff model is a question for replay, not for a guess now.",
+    "what_would_clear_it": "Join every availability row to the transactions log and surface the conflict, which is requirement R46.",
+    "evidence": [
+      {
+        "label": "NFL transactions, November 2026",
+        "url": "https://www.nfl.com/transactions/"
+      },
+      {
+        "label": "NFL official injury report",
+        "url": "https://www.nfl.com/injuries/"
+      }
+    ]
+  },
+  {
+    "id": "DD-03",
+    "title": "Twelve of thirteen Week 11 stadiums come from a link parameter, not a venue field",
+    "finding": "The stadium strings were read from the destinationAddress.location parameter of the Marriott link the schedule page renders under each fixture. That is published by nfl.com but it is a commercial-link parameter.",
+    "status": "One of thirteen was confirmed against the game centre's own Game Info field and matched. The other twelve are labelled link-parameter-sourced and are not certified.",
+    "what_would_clear_it": "Read the Game Info block for one fixture per club, which is suggestion S03.",
+    "evidence": [
+      {
+        "label": "NFL schedule, Week 11 2026",
+        "url": "https://www.nfl.com/schedules/2026/by-week/week-11"
+      },
+      {
+        "label": "Game centre: Chargers at Ravens",
+        "url": "https://www.nfl.com/games/chargers-at-ravens-2026-reg-10"
+      }
+    ]
+  },
+  {
+    "id": "DD-04",
+    "title": "Week 10 results are single-sourced",
+    "finding": "All twelve final scores were read from the official by-week schedule page at one moment. They have not been cross-checked against a second official page, such as a game centre or a Game Book.",
+    "status": "Published as single-sourced. No score has been inferred; the two games that had not kicked off are left blank.",
+    "what_would_clear_it": "Cross-check against the game centre for each completed game before the scores enter a results feed.",
+    "evidence": [
+      {
+        "label": "NFL schedule, Week 10 2026",
+        "url": "https://www.nfl.com/schedules/2026/by-week/week-10"
+      }
+    ]
+  },
+  {
+    "id": "DD-05",
+    "title": "Capture times come from the sandbox clock",
+    "finding": "No external time service is reachable from the sandbox, so every retrieval time is the sandbox UTC clock read with date -u, and individual fetch times were not recorded separately.",
+    "status": "Each capture records a window rather than a single instant, and the window is stated on the page.",
+    "what_would_clear_it": "Record a timestamp per fetch from a trusted source once one is reachable, or record the HTTP Date header of the response.",
+    "evidence": [
+      {
+        "label": "Capture manifest",
+        "url": "https://github.com/sassnarep3-star/Own9/blob/main/decision-desk/data/captures/manifest.json"
+      }
+    ]
+  },
+  {
+    "id": "DD-06",
+    "title": "Only one of six captures retains its raw bytes and hash",
+    "finding": "CAP-01 (the injury report) is committed verbatim with a SHA-256. CAP-02 to CAP-06 were transcribed into structured records without retaining the raw markdown, so they cannot be re-hashed.",
+    "status": "Stated per capture in the manifest. No claim of immutability is made for the five transcribed captures.",
+    "what_would_clear_it": "Retain raw bytes for every future capture, which is requirement R30.",
+    "evidence": [
+      {
+        "label": "Capture manifest",
+        "url": "https://github.com/sassnarep3-star/Own9/blob/main/decision-desk/data/captures/manifest.json"
+      }
+    ]
+  },
+  {
+    "id": "DD-07",
+    "title": "Two Week 10 games had not kicked off at capture time",
+    "finding": "Steelers at Bengals (8:20 PM ET, 15 November) and Chargers at Ravens (8:15 PM ET, 16 November) had not started when the pages were read, at 2026-11-16T01:17Z UTC, which is 20:17 ET on 15 November.",
+    "status": "Their score cells are blank on the official page and blank here. Their designations are pre-game designations, not outcomes.",
+    "what_would_clear_it": "Re-read after kickoff if those games are to enter the results feed.",
+    "evidence": [
+      {
+        "label": "NFL schedule, Week 10 2026",
+        "url": "https://www.nfl.com/schedules/2026/by-week/week-10"
+      }
+    ]
+  },
+  {
+    "id": "DD-08",
+    "title": "The deficiency matrix shows designations, not strings travelled",
+    "finding": "No verified depth order exists for all 32 clubs, so the matrix cannot show a first-string receiver against a third-string corner. It shows game-status designations by position group instead.",
+    "status": "Published as a placeholder with the limitation stated on the page. It is not the feature that requirement R45 asks for.",
+    "what_would_clear_it": "Resolve the depth-order source for 32 of 32 clubs first, which is requirement R52 and suggestion S10.",
+    "evidence": [
+      {
+        "label": "Decision desk availability",
+        "url": "https://github.com/sassnarep3-star/Own9/blob/main/decision-desk/availability.html"
+      }
+    ]
+  },
+  {
+    "id": "DD-09",
+    "title": "Four clubs have no injury rows at all, and that is not health",
+    "finding": "Chicago, Denver, Philadelphia and Tampa Bay were on bye in Week 10, so the official report publishes no rows for them.",
+    "status": "Shown explicitly as on bye rather than as zero injuries. The per-team table carries 28 of 32 clubs for this reason.",
+    "what_would_clear_it": "Carry the bye flag into every availability view, so an empty row is never read as a clean bill of health.",
+    "evidence": [
+      {
+        "label": "NFL schedule, Week 10 2026",
+        "url": "https://www.nfl.com/schedules/2026/by-week/week-10"
+      }
+    ]
+  },
+  {
+    "id": "DD-10",
+    "title": "The reserve list covers one month",
+    "finding": "Twenty-five reserve-list moves were captured for November 2026. Players placed on reserve in earlier months do not appear, so absence from this list is not evidence of availability either.",
+    "status": "Stated on the page with the capture window.",
+    "what_would_clear_it": "Backfill the season, which is suggestion S13.",
+    "evidence": [
+      {
+        "label": "NFL reserve list, November 2026",
+        "url": "https://www.nfl.com/transactions/league/reserve-list/2026/11"
+      }
+    ]
+  },
+  {
+    "id": "DD-11",
+    "title": "Two implementations of the same origination brief exist",
+    "finding": "A market board on the main dashboard and the origination desk implement the same eight requirements on different inputs, so they can publish different model lines for the same game.",
+    "status": "Inherited from earlier sessions as flag OD-16 and question Q-21. Recorded here because a reviewer reading this desk will hit it. Not resolved by this session.",
+    "what_would_clear_it": "An owner decision, which is suggestion S04 and owner decision O01.",
+    "evidence": [
+      {
+        "label": "Origination desk flag OD-16",
+        "url": "https://github.com/sassnarep3-star/Own9/blob/main/origination/flagged.html"
+      }
+    ]
+  },
+  {
+    "id": "DD-12",
+    "title": "The Texans depth chart is published as an image",
+    "finding": "Houston publishes its depth chart in a form that does not parse to text. No authorized structured alternative was obtained.",
+    "status": "Not transcribed. No depth rows are published for Houston from this session.",
+    "what_would_clear_it": "An authorized structured source, or a recorded absence for the club in the P07 sweep.",
+    "evidence": [
+      {
+        "label": "Availability sources",
+        "url": "https://github.com/sassnarep3-star/Own9/blob/main/availability-evidence.html"
+      }
+    ]
+  }
+]

@@ -1,0 +1,89 @@
+{
+  "note": "Clock time is the sandbox UTC clock read with `date -u`. It is the only clock available to this session; no external time service is reachable from the sandbox. Every entry records the retrieval window, not a guess at a single instant.",
+  "captures": [
+    {
+      "id": "CAP-01",
+      "title": "NFL official injury report, 2026 Week 10",
+      "url": "https://www.nfl.com/injuries/",
+      "retrieved_at_utc": "2026-11-16T01:17:10Z",
+      "window_utc": "2026-11-16T01:10Z/01:20Z",
+      "file": "nfl-injuries-2026-w10-2026-11-16.md",
+      "bytes": 49582,
+      "sha256": "69ff39f8a8bc1360caab88d570325afcdf4cab503008a096781949629f387475",
+      "scope": "Injury tables only. The page's trailing NEWS module and footer were not captured.",
+      "parsed_rows": 347,
+      "parsed_clubs": 28,
+      "page_title": "Official Latest NFL Injury Report for Players - Week 10 of the 2026 Season"
+    },
+    {
+      "id": "CAP-02",
+      "title": "NFL league transactions, November 2026 (trades tab)",
+      "url": "https://www.nfl.com/transactions/",
+      "retrieved_at_utc": "2026-11-16T01:22:00Z",
+      "window_utc": "2026-11-16T01:20Z/01:30Z",
+      "file": null,
+      "bytes": null,
+      "sha256": null,
+      "scope": "Trades table only, transcribed into data/transactions-2026-11.json. Raw markdown was not retained for this page.",
+      "parsed_rows": 12,
+      "parsed_clubs": null,
+      "page_title": "2026 NFL League Transactions - Trades Waivers, Signings & more."
+    },
+    {
+      "id": "CAP-03",
+      "title": "NFL reserve list, November 2026",
+      "url": "https://www.nfl.com/transactions/league/reserve-list/2026/11",
+      "retrieved_at_utc": "2026-11-16T01:24:00Z",
+      "window_utc": "2026-11-16T01:20Z/01:30Z",
+      "file": null,
+      "bytes": null,
+      "sha256": null,
+      "scope": "Reserve/Injured rows only, transcribed into data/transactions-2026-11.json.",
+      "parsed_rows": 25,
+      "parsed_clubs": null,
+      "page_title": "2026 NFL reserve-list by month | NFL.com"
+    },
+    {
+      "id": "CAP-04",
+      "title": "NFL schedule, 2026 Week 10 (by week)",
+      "url": "https://www.nfl.com/schedules/2026/by-week/week-10",
+      "retrieved_at_utc": "2026-11-16T01:26:00Z",
+      "window_utc": "2026-11-16T01:20Z/01:30Z",
+      "file": null,
+      "bytes": null,
+      "sha256": null,
+      "scope": "Final scores for completed games, kickoff times and networks, bye clubs.",
+      "parsed_rows": 14,
+      "parsed_clubs": 32,
+      "page_title": "NFL Schedules: Games, Times, Matchups & Tickets"
+    },
+    {
+      "id": "CAP-05",
+      "title": "NFL schedule, 2026 Week 11 (by week)",
+      "url": "https://www.nfl.com/schedules/2026/by-week/week-11",
+      "retrieved_at_utc": "2026-11-16T01:28:00Z",
+      "window_utc": "2026-11-16T01:20Z/01:35Z",
+      "file": null,
+      "bytes": null,
+      "sha256": null,
+      "scope": "Fixtures, kickoff times, networks, bye clubs, international-game designations and the stadium name carried in the page's own hotel-link parameter.",
+      "parsed_rows": 13,
+      "parsed_clubs": 32,
+      "page_title": "NFL Week 11 Schedule 2026: Games, Times, Matchups & Tickets"
+    },
+    {
+      "id": "CAP-06",
+      "title": "NFL game centre, Chargers at Ravens, 2026 REG 10",
+      "url": "https://www.nfl.com/games/chargers-at-ravens-2026-reg-10",
+      "retrieved_at_utc": "2026-11-16T01:29:00Z",
+      "window_utc": "2026-11-16T01:20Z/01:35Z",
+      "file": null,
+      "bytes": null,
+      "sha256": null,
+      "scope": "Read to establish whether the game centre publishes an explicit venue field. It does: Game Info / Location and Game Info / Stadium.",
+      "parsed_rows": 1,
+      "parsed_clubs": 2,
+      "page_title": "Los Angeles Chargers at Baltimore Ravens 2026 REG 10 - Game Center"
+    }
+  ]
+}
