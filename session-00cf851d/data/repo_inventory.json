@@ -15,7 +15,7 @@
   {
    "area": "Tests",
    "path": "tests",
-   "files": 11,
+   "files": 12,
    "verified_against_official_source": null
   },
   {
@@ -156,5 +156,5 @@
   "validation.html"
  ],
  "external_href_count_across_root_pages": 2445,
- "tracked_files": 389
+ "tracked_files": 400
 }

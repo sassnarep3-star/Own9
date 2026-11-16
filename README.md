@@ -236,6 +236,36 @@ both sources cited. Where no chart was retrieved, replacement columns stay blank
 MIA depth slots) — never inferred. No injury-adjusted edge is asserted; the snapshot is a
 single point-in-time retrieval (F21).
 
+## Verification section (`verification/`, 16 Nov 2026, session 462fba62)
+
+**[Verification overview](verification/index.html)** — an independent pass over the brief,
+additive and linking to nothing it did not read. Built because the other sections answer
+"what has been built"; this one answers "what is established, and by which number".
+
+| Page | What it holds |
+| --- | --- |
+| [Readiness](verification/readiness.html) | 9 gates, the requirement lines each holds, and the measurement that clears each |
+| [Requirements](verification/requirements.html) | All 74 lines of the brief, each with **two** verdicts: mechanism implemented, claim established |
+| [Questions](verification/questions.html) | 14 questions marked answerable / blocked / owner decision, answered where answerable |
+| [Suggestions](verification/suggestions.html) | 8 proposals with cost, unblocked gate and a falsification test |
+| [Evidence](verification/evidence.html) | 6 dated snapshots kept side by side, the measured delta between two reads, 3 venues |
+| [Flagged](verification/flags.html) | VF-01…VF-08, each with what would close it |
+
+- **Implemented ≠ established.** 27 lines are implemented, 20 partly, 24 not; only 10 are
+  established against official evidence and 35 cannot be assessed because the evidence does
+  not exist. No line claims a validated betting edge.
+- **The frozen Week 10 capture was not rewritten.** When the official weekly schedule page
+  settled 11 more games on 16 Nov, the 14 Nov transcription was left alone and the newer
+  read was published as its own dated snapshot (SV-02). Rewriting it would have mixed two
+  retrieval dates in one witness and broken the repository's own two-transcription
+  cross-check — which is exactly what happened, and was caught, when it was first attempted.
+- **Numbers in prose are measured.** 137 finals, 0 of 39 markets priced, 3 correlation pairs
+  each publishing n, 105 graded walk-forward games — all recomputed from the committed CSVs
+  at build time, and a test compares the page against the data.
+
+Reproduce: `python3 verification/render.py` · `python3 -m unittest tests.test_verification` ·
+`node verification/browser_test.cjs`.
+
 ## Linked subsites (separate owning sessions; not merged into this dashboard)
 
 [site/](site/index.html) (additive dashboard) · [strict-lab/](strict-lab/index.html) ·
