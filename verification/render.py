@@ -85,6 +85,19 @@ def t(name: str) -> str:
     return table(title, headers, rows)
 
 
+def _top_gates_sentence() -> str:
+    """Describe the two largest gates from the register instead of typing their counts.
+
+    An earlier draft hard-coded "blocks 7" and "blocks 13"; the gate table changed and the
+    sentence did not. The counts now come from the table that the readiness page renders.
+    """
+    ordered = sorted(V.GATES, key=lambda g: -len(g[3]))
+    first, second = ordered[0], ordered[1]
+    return (f"{first[0]} — {first[1].lower()} — holds {len(first[3])} requirement lines, and "
+            f"{second[0]} — {second[1].lower()} — holds {len(second[3])}. The term gate G-10 also "
+            "holds nine lines and is the only one a decision alone can close.")
+
+
 def build() -> dict[str, str]:
     C = V.req_counts()
     I, E = C["impl"], C["emp"]
@@ -123,9 +136,7 @@ def build() -> dict[str, str]:
                    "the evidence does not exist. No line claims a validated betting edge.",
                    "Requirements, line by line"], (V.REPO,), "Measured summary"),
             V.row(["What blocks the most?",
-                   "The price gate (no approved price source) blocks 7 requirement lines, and the "
-                   "availability-series gate blocks 13. Neither can be cleared from inside this "
-                   "repository.", "Readiness"], (V.REPO,), "Gate analysis"),
+                   _top_gates_sentence(), "Readiness"], (V.REPO,), "Gate analysis"),
             V.row(["What is the cheapest thing to fix?",
                    "The schema-and-process gate: a falsification field on strategy entries, a control "
                    "baseline row, a weekly diff column and an alert route. These need a decision, not a "

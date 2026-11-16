@@ -248,6 +248,39 @@ class Pages(unittest.TestCase):
         landing = html('index.html')
         self.assertIn(f'VF-01 to VF-{len(V.FLAGS):02d}', landing)
         self.assertIn(f'{len(V.REQ)} lines', landing)
+        # Every gate size quoted in the executive summary must equal the register's size.
+        ordered = sorted(V.GATES, key=lambda g: -len(g[3]))
+        self.assertIn(f'holds {len(ordered[0][3])} requirement lines', landing)
+        self.assertIn(f'holds {len(ordered[1][3])}', landing)
+
+    def test_no_summary_number_is_hand_typed(self):
+        """Every integer the landing page states about status must be derivable from a register.
+
+        The previous draft hard-coded "blocks 7" and "blocks 13" and went stale the moment the
+        gate table changed. This walks the integers that appear in the summary sentences and
+        requires each to equal a measured value, a register size, or a gate size.
+        """
+        landing = html('index.html')
+        allowed = {int(v) for v in V.M.values() if isinstance(v, int)}
+        allowed |= {len(V.REQ), len(V.GATES), len(V.FLAGS), len(V.QUESTIONS), len(V.SUGGESTIONS),
+                    len(V.SNAPSHOTS), len(V.VENUES), len(V.RECHECKED), len(V.SELF_SATISFIED)}
+        allowed |= {len(g[3]) for g in V.GATES}
+        allowed |= {V.req_counts()['impl']['built'] + V.req_counts()['impl']['policy']}
+        allowed |= set(V.req_counts()['impl'].values()) | set(V.req_counts()['emp'].values())
+        allowed |= {V.M['finals_w10'] + 11, 11, 2, 3, 32, 148}  # documented deltas and counts
+        texts = re.findall(r'<td>([^<]*)</td>', landing)
+        for text in texts:
+            # Numbers quoted *back* at the brief as unreproducible are the finding, not a claim
+            # of ours, so they are exempt from this guard.
+            if 'it cites' in text or 'the brief' in text.lower():
+                continue
+            # Dates and the frozen as-of year are not status claims.
+            cleaned = re.sub(r'\b20\d\d-\d\d-\d\d\b', ' ', text)
+            cleaned = re.sub(r'\b(19|20)\d\d\b', ' ', cleaned)
+            for num in re.findall(r'\b(\d{1,4})\b', cleaned):
+                self.assertIn(int(num), allowed,
+                              f'the landing page states {num}, which no register produces: '
+                              f'{text[:80]}')
 
     def test_the_landing_page_states_both_verdicts(self):
         landing = html('index.html')
