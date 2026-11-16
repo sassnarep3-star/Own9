@@ -137,6 +137,27 @@ class CaptureIntegrity(unittest.TestCase):
                     'Did Not Participate In Practice'))
                 self.assertIn(r['game_status'], ('', 'Out', 'Doubtful', 'Questionable'))
 
+    def test_every_parsed_club_code_is_canonical(self):
+        # Arizona is published as AZ on nfl.com. Using ARI silently blanked a club row on the
+        # availability page that had 15 rows of data behind it.
+        canonical = {'AZ', 'ATL', 'BAL', 'BUF', 'CAR', 'CHI', 'CIN', 'CLE', 'DAL', 'DEN', 'DET',
+                     'GB', 'HOU', 'IND', 'JAX', 'KC', 'LV', 'LAC', 'LAR', 'MIA', 'MIN', 'NE',
+                     'NO', 'NYG', 'NYJ', 'PHI', 'PIT', 'SEA', 'SF', 'TB', 'TEN', 'WAS'}
+        parsed = load('parsed/injury_captures.json')
+        codes = {r['team'] for r in parsed[sorted(parsed)[0]]['rows']}
+        self.assertEqual(codes - canonical, set())
+        self.assertEqual(len(canonical), 32)
+
+    def test_no_club_with_parsed_data_is_blanked_on_the_availability_page(self):
+        import re
+        text = (DESK / 'availability.html').read_text()
+        parsed = load('parsed/injury_captures.json')
+        codes = {r['team'] for r in parsed[sorted(parsed)[0]]['rows']}
+        body = re.findall(r'<tbody>([\s\S]*?)</tbody>', text)[0]
+        for code in sorted(codes):
+            with self.subTest(club=code):
+                self.assertIn(f'<strong>{code}</strong>', body)
+
     def test_club_count_matches_the_number_playing_that_week(self):
         parsed = load('parsed/injury_captures.json')
         clubs = parsed[sorted(parsed)[0]]['teams_published']
