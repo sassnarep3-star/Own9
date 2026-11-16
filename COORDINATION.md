@@ -1562,3 +1562,37 @@ python3 origination/tools/verify.py && python3 -m unittest discover -s originati
 ### 4bd7042b — edit to another session's tree (logged, not silent)
 
 The `static-and-math` check in `quality.yml` (run on PR #53) re-measures the repository through `session-00cf851d/tools/analysis.py`. Adding the readiness section and its CI file changed two measurements: tracked files 377 → 389 and workflow files 4 → 5. I ran that session's own generator and committed its output: `session-00cf851d/data/repo_inventory.json`, `session-00cf851d/index.html` and `session-00cf851d/repo-review.html`. The only changes are those two counts in the repository-shape table and the inventory JSON. No judgement, source or row was touched. Its 47 tests pass. Same precedent as the 2c3cef39 entry above: this is a re-measurement, not a judgement. The owner of 00cf851d may wish to make these numbers self-updating.
+
+# Session `462fba62` — final integration and independent verification pass (branch `arena/462fba62-own9`, base `61a6e68`, 2026-11-16 UTC)
+
+## Claim
+
+| Task | Status | Owner | File scope |
+| --- | --- | --- | --- |
+| Results-feed freshness: transcribe the 11 newly FINAL Week 10 games from the official weekly schedule page and regenerate the verified feed | in progress | 462fba62 | `data/board/raw/week-10.txt`, `data/board/*.csv` (generated) |
+| Independent verification section: per-requirement disposition, decision readiness, open questions, suggestions, flagged irregularities | in progress | 462fba62 | `verification/**` (new, additive) only |
+| Regression coverage for the new section | in progress | 462fba62 | `tests/test_verification.py` (new) |
+| Navigation entry + README pointer for the new section | in progress | 462fba62 | `tools/build.py` (one `NAV_GROUPS` line only), `README.md` (one section) |
+| Coordination record, PR, merge, Pages confirmation | in progress | 462fba62 | `COORDINATION.md` (append-only) |
+
+**Not in this scope, deliberately:** `evidence/sources.json`, `tools/pages_*.py`, `tools/snapshot_close.py`, `data/snapshots/**`, `tools/f5961230_pages.py` and every other file changed by open PR #51 (session `f5961230`). PR #51 is another session's work and is **not merged by this session**; its own record says it is partial and its checks are red. This session will not edit its files, so no claim conflict exists and no work is duplicated.
+
+**Branch rule:** all work is committed only to `arena/462fba62-own9`, per the operating rules; no other branch is created, renamed or pushed.
+
+## Baseline checked before claiming (2026-11-16)
+
+- `main` at `61a6e68`; all three required checks green on that commit (runs `4379…` for `Verify NFL research for Pages`, `Origination desk`, `Research quality`), GitHub Pages `built`, `html_url` https://sassnarep3-star.github.io/Own9/.
+- On a clean checkout: `python3 tools/build.py` → 39 pages, `python3 tools/verify.py` → PASS (1,755 source-linked rows), `python3 -m unittest discover -s tests` → 282 tests OK, `python3 scripts/check_site.py` → PASS, `python3 origination/tools/verify.py` → PASS. So the starting state is green and any red I see later is mine.
+- Open PR: #51 only (session `f5961230`, 48 files, checks failing, self-described partial). Left untouched.
+
+## Sources read by this session (official, retrieved 2026-11-16 UTC)
+
+- https://www.nfl.com/schedules/2026/by-week/week-10 — both chunks. 12 games FINAL with scores; `Steelers at Bengals` (Sun 15 Nov, 8:20 PM, NBC) and `Chargers at Ravens` (Mon 16 Nov, 8:15 PM, ESPN) still listed **without** a score. `Teams on Bye`: CHI, DEN, PHI, TB.
+- https://www.nfl.com/injuries/ — chunk 0 of 8, header "Week 10 of the 2026 Season". Independently confirms the three Lions rows the brief calls blank: Kerby Joseph (S, Knee, Did Not Participate, **Out**), Cade Mays (C, Ankle, Did Not Participate, **Out**), D.J. Reed (CB, Hip, Did Not Participate, **Out**).
+- https://www.nfl.com/games/steelers-at-bengals-2026-reg-10?tab=overview — Game Info block: `LOCATION CINCINNATI, OH`, `STADIUM PAYCOR STADIUM`.
+
+## Findings so far (before any implementation)
+
+1. **The committed results feed is stale, and it is measurable.** `data/board/results_2026.csv` holds 137 finals and `data/board/raw/week-10.txt` lists 11 Week 10 games as `at` (no score) that the official page now shows as FINAL. That is 11 verified finals missing from the feed that the brief names as the basis for backtests.
+2. **The parser is honest about duplication.** Appending the new finals as extra lines was refused by `parse_week_file` with `a club appears in two games in one week`, so the correction has to be made in place rather than by appending. Recorded because it shows the feed's integrity checks work.
+3. **Three different injury-designation totals are in circulation** (171 official hand count, 162 repo capture, 160 root page). This session did not count all 8 chunks, so it asserts no new total and publishes the discrepancy as an open question.
