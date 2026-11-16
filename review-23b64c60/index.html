@@ -1,0 +1,82 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Repo review · Own9 (session 23b64c60)</title>
+<style>
+body{font:16px/1.5 system-ui,-apple-system,Segoe UI,sans-serif;margin:0;color:#1d2330;background:#f6f7f9}
+header,main{max-width:1100px;margin:0 auto;padding:18px}
+header{background:#14213d;color:#fff}
+h1{margin:0;font-size:1.6rem} h2{margin-top:2rem;border-bottom:2px solid #d9dde5;padding-bottom:4px}
+.card{background:#fff;border:1px solid #d9dde5;border-radius:8px;padding:14px 18px}
+.tw{overflow-x:auto}
+table{border-collapse:collapse;width:100%;background:#fff;font-size:.92rem}
+th,td{border:1px solid #d9dde5;padding:6px 8px;text-align:left;vertical-align:top}
+th{background:#eef1f6}
+.flag{color:#8a3b00;font-weight:600}
+nav a{color:#fff;margin-right:14px}
+</style>
+</head>
+<body>
+<header>
+<h1>Repo review · Own9</h1>
+<p>Session 23b64c60 · branch <code>arena/23b64c60-own9</code> · observations dated 2026-11-16</p>
+<nav><a href='../index.html'>Dashboard</a><a href='../flags.html'>Flagged for Review</a><a href='../sources.html'>Sources</a></nav>
+</header>
+<main>
+
+<h2>Executive summary</h2>
+<div class='card'>
+<ul>
+<li><strong>The committed build is reproducible.</strong> Every generator re-runs with no diff, and the root test suite (282 tests), the root verifier, the link checker and the origination desk (38 tests) all pass on this branch.</li>
+<li><strong>Live spot checks agree with the repo on all 5 Week 10 injury rows that have a repo counterpart, and on the Week 10 final score. A sixth live row (Giants) has no repo counterpart.</strong> The NFL injury page showing Joseph, Mays and D.J. Reed as Out means flag VR-08 is out of date. The Giants row was observed live but has no repo counterpart to compare.</li>
+<li><strong>The repo overstates two things.</strong> The README calls the Week 10 Injury page 'full', but it is a filtered subset of an 18-observation two-club excerpt. README counts (19 pages, 105 tests) do not match the tree (39 root HTML pages, 282 tests).</li>
+<li><strong>Most of the brief cannot be verified from this repo.</strong> The VR/VQ/SG identifiers are not in the repository, the full 32-club injury history is absent, there are no opening prices, and the data licence is unknown. Those items stay blank or unverified; none is filled in here.</li>
+<li><strong>Nothing here is a betting recommendation.</strong> No strategy has passed a validation gate, and this review does not establish any edge, correlation or ROI.</li>
+</ul>
+</div>
+
+<h2>1 · Inventory (measured at build time from git ls-files)</h2>
+<p>Counts come from the git index, not from memory. The HTML pages are spread across ten publication trees, which is the main structural risk to a single source of truth.</p>
+<div class='tw'><table><thead><tr><th scope='col'>Tree</th><th scope='col'>HTML pages</th></tr></thead><tbody><tr><td>(repo root)</td><td>39</td></tr><tr><td>site</td><td>15</td></tr><tr><td>session-00cf851d</td><td>13</td></tr><tr><td>origination</td><td>12</td></tr><tr><td>own9-research</td><td>12</td></tr><tr><td>session-8b05dd6d</td><td>11</td></tr><tr><td>research</td><td>10</td></tr><tr><td>strict-lab</td><td>8</td></tr><tr><td>independent-audit</td><td>5</td></tr><tr><td>release-checks</td><td>2</td></tr><tr><td>All HTML pages</td><td>127</td></tr><tr><td>All tracked files</td><td>377</td></tr></tbody></table></div>
+
+<h2>2 · Baseline checks run on this branch</h2>
+<p>Recorded from this session's runs. Re-running them regenerates the same results because the outputs are deterministic.</p>
+<div class='tw'><table><thead><tr><th scope='col'>Command</th><th scope='col'>Result</th></tr></thead><tbody><tr><td>python3 -m unittest discover -s tests</td><td>Ran 282 tests: OK</td></tr><tr><td>python3 tools/verify.py</td><td>PASS: 39 fresh pages; 1755 source-linked rows; local assets/fragments</td></tr><tr><td>python3 scripts/check_site.py</td><td>PASS: 15 pages, 147 data rows with direct official-source links, 551 links checked</td></tr><tr><td>python3 tools/build.py, scripts/build_site.py, research/make_catalog.py</td><td>Exit 0, no git diff: outputs reproduce from source</td></tr><tr><td>origination: run.py, build.py, verify.py, unittest</td><td>PASS: 12 pages, 442 source-linked rows; Ran 38 tests: OK</td></tr></tbody></table></div>
+
+<h2>3 · Live official-source spot check (2026-11-16)</h2>
+<p>Each row names the repo claim, its committed location, the official page, the live observation, and the result. <strong>Only the rows listed here were checked</strong>; the remaining Week 10 rows are not verified by this review.</p>
+<div class='tw'><table><thead><tr><th scope='col'>Claim</th><th scope='col'>Repo location</th><th scope='col'>Official source</th><th scope='col'>Live observation</th><th scope='col'>Result</th></tr></thead><tbody><tr><td>Lions: Kerby Joseph (S, Knee) Out</td><td>evidence/availability/injury-report-2026-week-10.json (DET rows)</td><td><a href='https://www.nfl.com/injuries/' rel='noopener'>https://www.nfl.com/injuries/</a></td><td>Week 10 DET table: Kerby Joseph, S, Knee, Did Not Participate In Practice, Out</td><td>Match (retired flag VR-08 for this row)</td></tr><tr><td>Lions: Cade Mays (C, Ankle) Out</td><td>evidence/availability/injury-report-2026-week-10.json (DET rows)</td><td><a href='https://www.nfl.com/injuries/' rel='noopener'>https://www.nfl.com/injuries/</a></td><td>Week 10 DET table: Cade Mays, C, Ankle, Did Not Participate In Practice, Out</td><td>Match (retired flag VR-08 for this row)</td></tr><tr><td>Lions: D.J. Reed (CB, Hip) Out</td><td>evidence/availability/injury-report-2026-week-10.json (DET rows)</td><td><a href='https://www.nfl.com/injuries/' rel='noopener'>https://www.nfl.com/injuries/</a></td><td>Week 10 DET table: D.J. Reed, CB, Hip, Did Not Participate In Practice, Out</td><td>Match (retired flag VR-08 for this row)</td></tr><tr><td>Commanders: Lucas Patrick (C, Concussion) Out</td><td>evidence/availability/injury-report-2026-week-10.json (WAS rows)</td><td><a href='https://www.nfl.com/injuries/' rel='noopener'>https://www.nfl.com/injuries/</a></td><td>Week 10 WAS table: Lucas Patrick, C, Concussion, Did Not Participate In Practice, Out</td><td>Match</td></tr><tr><td>Commanders: Colson Yankoff (TE, Knee) Out</td><td>evidence/availability/injury-report-2026-week-10.json (WAS rows)</td><td><a href='https://www.nfl.com/injuries/' rel='noopener'>https://www.nfl.com/injuries/</a></td><td>Week 10 WAS table: Colson Yankoff, TE, Knee, Did Not Participate In Practice, Out</td><td>Match</td></tr><tr><td>Giants: Malik Harrison (LB, Groin) Questionable</td><td>Not in the committed evidence excerpt (it holds two club tables only)</td><td><a href='https://www.nfl.com/injuries/' rel='noopener'>https://www.nfl.com/injuries/</a></td><td>Week 10 NYG table: Malik Harrison, LB, Groin, Limited Participation in Practice, Questionable</td><td>Live value observed; repo has no row to compare, so it is not verified against the repo</td></tr><tr><td>Commanders 24, Giants 21, FINAL, Thu Nov 12 2026</td><td>evidence/sources.json id nfl-schedule-w10; results feed</td><td><a href='https://www.nfl.com/schedules/2026/by-week/week-10' rel='noopener'>https://www.nfl.com/schedules/2026/by-week/week-10</a></td><td>Headline: Commanders 24, Giants 21, FINAL, Thursday, November 12th</td><td>Match</td></tr></tbody></table></div>
+<p>VR-08 (Lions game-status cells blank) is stale: the committed evidence and the live NFL page both show Out for Joseph, Mays and Reed.</p>
+
+<h2>4 · Irregularities flagged for review</h2>
+<p class='flag'>These do not block anything and are not repaired here. Each entry has its source.</p>
+<div class='tw'><table><thead><tr><th scope='col'>Item</th><th scope='col'>Finding</th><th scope='col'>Source / where to check</th></tr></thead><tbody><tr><td>Identifier gap</td><td>The VR-, VQ- and SG- identifiers cited in the review brief (for example VR-17, VR-26, VQ-07, VR-24, VR-25, VQ-05, SG-03, SG-05) appear nowhere in the repository (0 matches on a full-text search of tracked files). They cannot be traced to a register, so none of those cited items is verified here.</td><td>Repository search, this session. Request: the owner should publish the VR/VQ/SG register or its file location.</td></tr><tr><td>Week 10 snapshot described as &#x27;full&#x27;</td><td>README.md describes injuries.html as &#x27;the full Week 10 2026 injury report snapshot&#x27;. injuries.html shows &#x27;players with an explicit Game Status&#x27; only, and the committed evidence file is a two-club excerpt (18 observations: WAS 9, DET 9) whose rights_note says it is &#x27;not a republication of the full league report&#x27;.</td><td>evidence/availability/injury-report-2026-week-10.json (rights_note); injuries.html section heading; https://www.nfl.com/injuries/</td></tr><tr><td>Row counts (254 vs 279) not re-verified</td><td>The live NFL injury page is served in 8 chunks. This review read chunk 0 only (WAS, NYG, NE, DET, and part of KC). The 254 vs 279 row counts and the 4 vs 2 &#x27;no injury&#x27; sections were NOT re-counted, so VR-04 to VR-07 remain unverified.</td><td>https://www.nfl.com/injuries/</td></tr><tr><td>README counts stale</td><td>README says &#x27;Nineteen pages&#x27; and &#x27;105 Python tests&#x27;. This session measured 39 root HTML pages and 282 passing root unit tests (python3 -m unittest discover -s tests). The committed README numbers do not match the tree.</td><td>README.md; tests/ (run output recorded below)</td></tr><tr><td>Parallel publication trees</td><td>Ten HTML trees publish overlapping content (root, origination/, site/, research/, own9-research/, strict-lab/, independent-audit/, release-checks/, session-00cf851d/, session-8b05dd6d/). Two implementations of the same eight requirements already exist (noted on the board as Q-21 / OD-16). Duplicate pages can disagree.</td><td>Measured in the inventory below; COORDINATION.md (session 2c3cef39 completion record).</td></tr><tr><td>Coordination board size and branch naming</td><td>COORDINATION.md is about 220 KB across 64 sections, and the board prescribes session-&lt;id&gt;/&lt;task&gt; branches, which the environment does not allow for this session. This session uses only arena/23b64c60-own9.</td><td>COORDINATION.md; environment branch rule.</td></tr><tr><td>Data licence unknown</td><td>data/raw/*.csv have no licence or provenance on record (OD-01 on the board). Scores were matched to the official NFL publisher; the right to use the files was not established.</td><td>COORDINATION.md (session 2c3cef39, open item 2).</td></tr><tr><td>No opening prices</td><td>The price-snapshot contract (data/snapshots/CONTRACT.md) is header-only. No opening or closing quote with provenance is committed, so no closing-line value or executable ROI can be computed.</td><td>data/snapshots/CONTRACT.md; price-snapshots.html.</td></tr></tbody></table></div>
+
+<h2>5 · Unverified items (left blank, not inferred)</h2>
+<ul>
+<li>Full Week 10 injury row count (254 vs 279) and the sections with no injuries (4 vs 2): not re-counted; see the flag above.</li>
+<li>The VR-, VQ- and SG- items in the brief: no register in the repo, so no source can be checked.</li>
+<li>Any opening price, any closing-line value, any executable ROI: no source committed.</li>
+<li>Injury-report history by week beyond the single Week 10 excerpt; no multi-day snapshot store with raw hashes is committed.</li>
+</ul>
+
+<h2>6 · Requests for the integration owner (not edited in this session)</h2>
+<ul>
+<li>Link this page from <code>flags.html</code> (Flagged for Review) and from the root navigation.</li>
+<li>Correct the README counts and the 'full Week 10 snapshot' wording, or label them as the excerpt they are.</li>
+<li>Publish or locate the VR/VQ/SG register, or confirm those identifiers were never committed.</li>
+</ul>
+
+<h2>7 · Manual review links</h2>
+<ul>
+<li><a href='https://www.nfl.com/injuries/'>NFL injury report, Week 10 2026</a></li>
+<li><a href='https://www.nfl.com/schedules/2026/by-week/week-10'>NFL schedule, Week 10 2026</a></li>
+<li><a href='https://github.com/sassnarep3-star/Own9/blob/main/COORDINATION.md'>COORDINATION.md on main</a></li>
+</ul>
+
+<p class='card'>Generated by <code>review-23b64c60/build.py</code>. This page is an observation log for 2026-11-16. It is not a certification of any claim in the repository.</p>
+</main>
+</body>
+</html>
