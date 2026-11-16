@@ -87,7 +87,7 @@
   {
    "area": "Workflows",
    "path": ".github/workflows",
-   "files": 4,
+   "files": 5,
    "verified_against_official_source": null
   }
  ],
@@ -156,5 +156,5 @@
   "validation.html"
  ],
  "external_href_count_across_root_pages": 2445,
- "tracked_files": 377
+ "tracked_files": 389
 }
