@@ -1524,4 +1524,5 @@ Shared files (`index.html`, `flags.html`, `tools/build.py`, nav, `README.md`) ar
 - **Irregularities flagged:** VR-08 is stale (the repo and the live page both show Out). The README's 'full Week 10 snapshot' is a filtered two-club excerpt. README counts (19 pages, 105 tests) do not match the tree (39 root HTML pages, 282 tests). Ten parallel HTML trees (127 pages). Full register on the review page, section 4.
 - **Requests for the integration owner (not edited here):** link `review-23b64c60/index.html` from `flags.html` and the root navigation; correct the README counts and the 'full snapshot' wording; publish or locate the VR/VQ/SG register.
 - **Merge:** per the board, the final integration session merges shared outputs. This session opens a pull request into `main` from `arena/23b64c60-own9` but does not merge it, so the integration owner can verify the combined data first.
+- **PR:** https://github.com/sassnarep3-star/Own9/pull/52 (open, not merged; merge deferred to integration).
 
