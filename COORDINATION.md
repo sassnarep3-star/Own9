@@ -528,3 +528,35 @@ python3 tools/build.py && python3 tools/verify.py && python3 -m unittest discove
 - Browser: 9 pages × 2 viewports, no console errors, no failed responses, no horizontal overflow,
   filters and reset behave, axe WCAG 2.1 AA clean.
 - Root: 39 pages regenerated, 1,755 source-linked rows verified, 313 root tests pass.
+
+### Revision 2 — 2026-11-16, a defect found after merge and fixed
+
+**PR #57 was merged at 2026-11-16T02:01:30Z as `a3af014209be670cfbed29c04633ede4604ec5f8`, and the
+Pages build succeeded (`built`, 35.2 s).** The site was then checked by retrieval from the public URL,
+not just by CI, and that is how the defect below was found.
+
+**Defect: the Arizona row on the availability page was blank while 15 rows of data sat behind it.**
+`decision-desk/availability.html` rendered Arizona as "not captured". The cause was a club-code
+mismatch: the official injury report publishes Arizona as **AZ**, and the canonical list in the
+builder used **ARI**. Every other club matched. The row was not an inference or a guess — it was a
+silent blank produced by a key that never matched, which is precisely the failure mode this repository
+warns about, and the verifier had no check for it.
+
+Fixed, and the class of defect is now pinned:
+
+- `decision-desk/tools/build.py` — the canonical list now uses the abbreviations the official page
+  publishes, with a comment saying why.
+- `decision-desk/tools/verify.py` — asserts the parsed club codes are a subset of the canonical 32,
+  and that both fixture files use canonical codes. Check count 1,164 → 1,170.
+- `decision-desk/tests/test_decision_desk.py` — two new tests: one that the parsed codes are
+  canonical, and one that **no club with parsed data is rendered blank on the availability page**.
+  Test count 23 → 25.
+- `decision-desk/data/week-1{0,1}*.json` — `ARI` changed to `AZ`, and a `club_code_note` added
+  stating that the by-week schedule page publishes club *names*, not codes, so the three-letter codes
+  are a normalisation and coverage is asserted on the normalised codes rather than on a value read
+  off the page.
+
+**Process note, because it will happen again:** all checks were green and the merge was clean, and the
+page was still wrong. CI verifies structure; it does not look at the page. Retrieving the published
+URL after deployment found in one request what 1,164 checks did not. **Fetch the live page after every
+deploy and read a row, not just the status.**

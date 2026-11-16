@@ -3,20 +3,158 @@
   "retrieved_at_utc": "2026-11-16T01:28:00Z",
   "window_utc": "2026-11-16T01:20Z/01:35Z",
   "stadium_provenance": "The stadium string is the value of the destinationAddress.location parameter inside the Marriott hotel link that the official schedule page itself renders under each fixture. It is published by nfl.com but it is a commercial-link parameter, not a venue field. CAP-06 established that the game centre does publish an explicit Game Info / Stadium field and that its value matched the link parameter for the one fixture checked (M&T Bank Stadium). Every stadium below is therefore labelled link-parameter-sourced and is not certified until a game-centre read confirms it.",
-  "bye_clubs": ["ATL", "CLE", "GB", "LAR", "NE", "SEA"],
+  "bye_clubs": [
+    "ATL",
+    "CLE",
+    "GB",
+    "LAR",
+    "NE",
+    "SEA"
+  ],
   "games": [
-    {"game_url": "https://www.nfl.com/games/colts-at-texans-2026-reg-11", "day": "Thursday", "date": "2026-11-19", "kickoff_et": "8:15 PM", "network": "PRIME", "away": "IND", "home": "HOU", "stadium": "NRG Stadium", "international": null},
-    {"game_url": "https://www.nfl.com/games/dolphins-at-bills-2026-reg-11", "day": "Sunday", "date": "2026-11-22", "kickoff_et": "1:00 PM", "network": "CBS", "away": "MIA", "home": "BUF", "stadium": "Highmark Stadium", "international": null},
-    {"game_url": "https://www.nfl.com/games/ravens-at-panthers-2026-reg-11", "day": "Sunday", "date": "2026-11-22", "kickoff_et": "1:00 PM", "network": "FOX", "away": "BAL", "home": "CAR", "stadium": "Bank of America Stadium", "international": null},
-    {"game_url": "https://www.nfl.com/games/saints-at-bears-2026-reg-11", "day": "Sunday", "date": "2026-11-22", "kickoff_et": "1:00 PM", "network": "FOX", "away": "NO", "home": "CHI", "stadium": "Soldier Field", "international": null},
-    {"game_url": "https://www.nfl.com/games/titans-at-cowboys-2026-reg-11", "day": "Sunday", "date": "2026-11-22", "kickoff_et": "1:00 PM", "network": "FOX", "away": "TEN", "home": "DAL", "stadium": "AT&T Stadium", "international": null},
-    {"game_url": "https://www.nfl.com/games/buccaneers-at-lions-2026-reg-11", "day": "Sunday", "date": "2026-11-22", "kickoff_et": "1:00 PM", "network": "FOX", "away": "TB", "home": "DET", "stadium": "Ford Field", "international": null},
-    {"game_url": "https://www.nfl.com/games/cardinals-at-chiefs-2026-reg-11", "day": "Sunday", "date": "2026-11-22", "kickoff_et": "1:00 PM", "network": "CBS", "away": "ARI", "home": "KC", "stadium": "GEHA Field at Arrowhead Stadium", "international": null},
-    {"game_url": "https://www.nfl.com/games/steelers-at-eagles-2026-reg-11", "day": "Sunday", "date": "2026-11-22", "kickoff_et": "1:00 PM", "network": "CBS", "away": "PIT", "home": "PHI", "stadium": "Lincoln Financial Field", "international": null},
-    {"game_url": "https://www.nfl.com/games/jets-at-chargers-2026-reg-11", "day": "Sunday", "date": "2026-11-22", "kickoff_et": "4:05 PM", "network": "FOX", "away": "NYJ", "home": "LAC", "stadium": "SoFi Stadium", "international": null},
-    {"game_url": "https://www.nfl.com/games/jaguars-at-giants-2026-reg-11", "day": "Sunday", "date": "2026-11-22", "kickoff_et": "4:25 PM", "network": "CBS", "away": "JAX", "home": "NYG", "stadium": "MetLife Stadium", "international": null},
-    {"game_url": "https://www.nfl.com/games/raiders-at-broncos-2026-reg-11", "day": "Sunday", "date": "2026-11-22", "kickoff_et": "4:25 PM", "network": "CBS", "away": "LV", "home": "DEN", "stadium": "Empower Field at Mile High", "international": null},
-    {"game_url": "https://www.nfl.com/games/vikings-at-49ers-2026-reg-11", "day": "Sunday", "date": "2026-11-22", "kickoff_et": "8:20 PM", "network": "NBC", "away": "MIN", "home": "SF", "stadium": null, "international": "Mexico City, as published on the schedule page"},
-    {"game_url": "https://www.nfl.com/games/bengals-at-commanders-2026-reg-11", "day": "Monday", "date": "2026-11-23", "kickoff_et": "8:15 PM", "network": "ESPN", "away": "CIN", "home": "WAS", "stadium": "FedEx Field", "international": null}
-  ]
+    {
+      "game_url": "https://www.nfl.com/games/colts-at-texans-2026-reg-11",
+      "day": "Thursday",
+      "date": "2026-11-19",
+      "kickoff_et": "8:15 PM",
+      "network": "PRIME",
+      "away": "IND",
+      "home": "HOU",
+      "stadium": "NRG Stadium",
+      "international": null
+    },
+    {
+      "game_url": "https://www.nfl.com/games/dolphins-at-bills-2026-reg-11",
+      "day": "Sunday",
+      "date": "2026-11-22",
+      "kickoff_et": "1:00 PM",
+      "network": "CBS",
+      "away": "MIA",
+      "home": "BUF",
+      "stadium": "Highmark Stadium",
+      "international": null
+    },
+    {
+      "game_url": "https://www.nfl.com/games/ravens-at-panthers-2026-reg-11",
+      "day": "Sunday",
+      "date": "2026-11-22",
+      "kickoff_et": "1:00 PM",
+      "network": "FOX",
+      "away": "BAL",
+      "home": "CAR",
+      "stadium": "Bank of America Stadium",
+      "international": null
+    },
+    {
+      "game_url": "https://www.nfl.com/games/saints-at-bears-2026-reg-11",
+      "day": "Sunday",
+      "date": "2026-11-22",
+      "kickoff_et": "1:00 PM",
+      "network": "FOX",
+      "away": "NO",
+      "home": "CHI",
+      "stadium": "Soldier Field",
+      "international": null
+    },
+    {
+      "game_url": "https://www.nfl.com/games/titans-at-cowboys-2026-reg-11",
+      "day": "Sunday",
+      "date": "2026-11-22",
+      "kickoff_et": "1:00 PM",
+      "network": "FOX",
+      "away": "TEN",
+      "home": "DAL",
+      "stadium": "AT&T Stadium",
+      "international": null
+    },
+    {
+      "game_url": "https://www.nfl.com/games/buccaneers-at-lions-2026-reg-11",
+      "day": "Sunday",
+      "date": "2026-11-22",
+      "kickoff_et": "1:00 PM",
+      "network": "FOX",
+      "away": "TB",
+      "home": "DET",
+      "stadium": "Ford Field",
+      "international": null
+    },
+    {
+      "game_url": "https://www.nfl.com/games/cardinals-at-chiefs-2026-reg-11",
+      "day": "Sunday",
+      "date": "2026-11-22",
+      "kickoff_et": "1:00 PM",
+      "network": "CBS",
+      "away": "AZ",
+      "home": "KC",
+      "stadium": "GEHA Field at Arrowhead Stadium",
+      "international": null
+    },
+    {
+      "game_url": "https://www.nfl.com/games/steelers-at-eagles-2026-reg-11",
+      "day": "Sunday",
+      "date": "2026-11-22",
+      "kickoff_et": "1:00 PM",
+      "network": "CBS",
+      "away": "PIT",
+      "home": "PHI",
+      "stadium": "Lincoln Financial Field",
+      "international": null
+    },
+    {
+      "game_url": "https://www.nfl.com/games/jets-at-chargers-2026-reg-11",
+      "day": "Sunday",
+      "date": "2026-11-22",
+      "kickoff_et": "4:05 PM",
+      "network": "FOX",
+      "away": "NYJ",
+      "home": "LAC",
+      "stadium": "SoFi Stadium",
+      "international": null
+    },
+    {
+      "game_url": "https://www.nfl.com/games/jaguars-at-giants-2026-reg-11",
+      "day": "Sunday",
+      "date": "2026-11-22",
+      "kickoff_et": "4:25 PM",
+      "network": "CBS",
+      "away": "JAX",
+      "home": "NYG",
+      "stadium": "MetLife Stadium",
+      "international": null
+    },
+    {
+      "game_url": "https://www.nfl.com/games/raiders-at-broncos-2026-reg-11",
+      "day": "Sunday",
+      "date": "2026-11-22",
+      "kickoff_et": "4:25 PM",
+      "network": "CBS",
+      "away": "LV",
+      "home": "DEN",
+      "stadium": "Empower Field at Mile High",
+      "international": null
+    },
+    {
+      "game_url": "https://www.nfl.com/games/vikings-at-49ers-2026-reg-11",
+      "day": "Sunday",
+      "date": "2026-11-22",
+      "kickoff_et": "8:20 PM",
+      "network": "NBC",
+      "away": "MIN",
+      "home": "SF",
+      "stadium": null,
+      "international": "Mexico City, as published on the schedule page"
+    },
+    {
+      "game_url": "https://www.nfl.com/games/bengals-at-commanders-2026-reg-11",
+      "day": "Monday",
+      "date": "2026-11-23",
+      "kickoff_et": "8:15 PM",
+      "network": "ESPN",
+      "away": "CIN",
+      "home": "WAS",
+      "stadium": "FedEx Field",
+      "international": null
+    }
+  ],
+  "club_code_note": "The by-week schedule page publishes club names (\"Cardinals at Chiefs\"), not codes. The three-letter codes used here are a normalisation of those names, and they follow the abbreviations the official injury report publishes (Arizona is AZ, not ARI). Coverage is therefore asserted on the normalised codes, not on a value read off the page."
 }

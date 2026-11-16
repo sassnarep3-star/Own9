@@ -142,6 +142,16 @@ def main() -> int:
           f'injury capture parsed {len(rows)} rows, below the pinned floor of {MIN_INJURY_ROWS}')
     check(len(parsed[key]['teams_published']) == EXPECTED_REPORT_CLUBS,
           f"capture parsed {len(parsed[key]['teams_published'])} clubs, expected {EXPECTED_REPORT_CLUBS}")
+    CANONICAL = {'AZ', 'ATL', 'BAL', 'BUF', 'CAR', 'CHI', 'CIN', 'CLE', 'DAL', 'DEN', 'DET', 'GB',
+                 'HOU', 'IND', 'JAX', 'KC', 'LV', 'LAC', 'LAR', 'MIA', 'MIN', 'NE', 'NO', 'NYG',
+                 'NYJ', 'PHI', 'PIT', 'SEA', 'SF', 'TB', 'TEN', 'WAS'}
+    check(len(CANONICAL) == 32, 'the canonical club list is not 32 codes')
+    parsed_codes = {r['team'] for r in rows}
+    unknown = parsed_codes - CANONICAL
+    check(not unknown,
+          f'the capture uses club codes outside the canonical list: {sorted(unknown)}. '
+          'A code that is not recognised silently blanks a club row on the availability page.')
+
     required = ('player', 'position', 'practice_status', 'game_status', 'team')
     for r in rows:
         for field in required:
@@ -174,6 +184,10 @@ def main() -> int:
     for g in w10['games']:
         t10.update((g['away'], g['home']))
     check(len(t10) == 28, f'Week 10 has {len(t10)} playing clubs, expected 28')
+    check(not (t10 - CANONICAL),
+          f'Week 10 uses non-canonical club codes: {sorted(t10 - CANONICAL)}')
+    check(not (teams - CANONICAL),
+          f'Week 11 uses non-canonical club codes: {sorted(teams - CANONICAL)}')
     check(not (t10 & set(w10['bye_clubs'])), 'a club is both playing and on bye in Week 10')
 
     print('\n== pages ==')

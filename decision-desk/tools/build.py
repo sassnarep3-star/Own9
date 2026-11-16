@@ -609,7 +609,11 @@ def build_availability(cap, tx):
     for r in txdata['reserve_list']:
         reserve_by_club[r['club']].append(f"{r['player']} ({r['date']})")
 
-    all_clubs = ['ARI', 'ATL', 'BAL', 'BUF', 'CAR', 'CHI', 'CIN', 'CLE', 'DAL', 'DEN', 'DET', 'GB',
+    # Canonical club codes. These are the abbreviations the official report publishes, which are
+    # not always the ones a fan would write: Arizona is AZ on nfl.com, not ARI. Using any other
+    # code silently blanks a club that has data, which is the exact failure this desk exists to
+    # avoid, so verify.py asserts the parsed codes are a subset of this list.
+    all_clubs = ['AZ', 'ATL', 'BAL', 'BUF', 'CAR', 'CHI', 'CIN', 'CLE', 'DAL', 'DEN', 'DET', 'GB',
                  'HOU', 'IND', 'JAX', 'KC', 'LV', 'LAC', 'LAR', 'MIA', 'MIN', 'NE', 'NO', 'NYG',
                  'NYJ', 'PHI', 'PIT', 'SEA', 'SF', 'TB', 'TEN', 'WAS']
 
