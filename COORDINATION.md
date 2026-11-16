@@ -1502,3 +1502,44 @@ Desk: https://sassnarep3-star.github.io/Own9/origination/
 4. **OD-03** — ROI remains arithmetic, not economics, until executable quotes are captured.
 5. **Q-02** — external confirmation of the score content for 1999–2009 and the seasons
    not checked (2011–2017, 2019–2024) is still missing.
+
+---
+
+# Session `de8c461d` — final integration (merge, re-verify, publish)
+
+Session: `de8c461d` · Branch: `arena/de8c461d-own9` · Base: `main` @ `61a6e68` ·
+Started: 2026-11-16 UTC · Role: **final integration session**.
+
+## Scope claim
+
+| Task | Status | Owner | Files |
+| --- | --- | --- | --- |
+| Merge + re-verify open PR #51 (session `f5961230`: store repair, Week 10 re-check, decision-readiness register) | in progress | de8c461d | `tools/f5961230_pages.py`, `readiness.html`, `week10-recheck.html`, `tools/snapshot_close.py` |
+| Merge + re-verify open PR #38 (session `22de6677`: pinned citation-coverage audit) | in progress | de8c461d | `session-22de6677/**` |
+| Landing-page decision-readiness table (one row per brief requirement, blocking gate, clearing number) | in progress | de8c461d | `tools/build.py` (index page), `index.html` |
+| Line-by-line re-verification of the combined tree against official sources | unclaimed | de8c461d | read-only |
+| Final build, link check, browser/a11y check, Pages deploy confirmation | in progress | de8c461d | `.github/workflows/**`, `COORDINATION.md` |
+
+## Rules this session follows
+
+- Root scope only: `tools/build.py`, `tools/verify.py`, `scripts/**`, `index.html`,
+  `flags.html`, `COORDINATION.md`, `README.md`, `.github/workflows/**` and the merged
+  branches' own new files. No other session's page content or register row is rewritten.
+- Shared files are edited **additively**: appended registers, appended nav entries, unioned
+  source records, appended flags continuing existing numbering.
+- No value is published that an official source does not provide. Unverifiable cells stay
+  blank and are labelled, never inferred.
+- No backtest number, ROI, CLV or edge is claimed as validated; no wager is placed.
+
+## Log
+
+- 2026-11-16: Read `main` @ `61a6e68`. Baseline verified locally: `python3 tools/build.py`
+  → 39 static pages, deterministic (no diff); `python3 -m unittest discover -s tests` →
+  **282 tests OK**; `python3 tools/verify.py` → PASS (39 pages, 1755 source-linked rows).
+  Repository history was a shallow clone; `git fetch --unshallow` restored ancestry so the
+  two open PR branches can be merged without rewriting them.
+- 2026-11-16: Two PRs are open against `main`: **#51** (session `f5961230`, last commit
+  2026-11-15T23:38Z) and **#38** (session `22de6677`, last commit 2026-11-14T22:20Z). Both
+  claims are older than 60 minutes with no new commits, so this integration session takes
+  over both per the board rule, merges them, and re-verifies the combined tree. Neither
+  branch is rewritten: both are merged forward into `arena/de8c461d-own9`.
