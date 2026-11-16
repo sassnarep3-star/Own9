@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Sources · Own9 decision desk</title>
+<meta name="description" content="The official pages this desk read, what each publishes, and what it does not.">
+<link rel="stylesheet" href="assets/style.css">
+<script src="assets/filter.js" defer></script>
+</head>
+<body>
+<a class="skip" href="#main">Skip to main content</a>
+<header class="topbar">
+  <a class="brand" href="index.html">Own9 <span>decision desk</span></a>
+  <p class="brandnote">One row per requirement. The gate that blocks it. The number that would clear it.</p>
+</header>
+<nav class="nav" aria-label="Decision desk sections">
+  <a href="index.html"><strong>Decision desk</strong><span>Overview</span></a>
+<a href="requirements.html"><strong>Requirements</strong><span>Gate table</span></a>
+<a href="questions.html"><strong>Questions</strong><span>Have / have not</span></a>
+<a href="suggestions.html"><strong>Suggestions</strong><span>Review board</span></a>
+<a href="availability.html"><strong>Availability</strong><span>Per club</span></a>
+<a href="fixtures.html"><strong>Fixtures</strong><span>Venues and results</span></a>
+<a href="captures.html"><strong>Captures</strong><span>Snapshot ledger</span></a>
+<a class="active" href="sources.html"><strong>Sources</strong><span>Official register</span></a>
+<a href="flagged.html"><strong>Flagged</strong><span>For review</span></a>
+</nav>
+<main id="main" class="wrap">
+  <h1>Sources</h1>
+  <p class="lead">The official pages this desk read, what each publishes, and what it does not.</p>
+
+<section>
+<h2>Official sources read this session</h2>
+<p class="note">Six pages, all on nfl.com, all read on 2026-11-16 UTC. The second column is the exact
+scope that was read; the last column is what the page does not publish. A checked absence is recorded
+as a fact, not worked around.</p>
+<div class="tablewrap">
+<table class="wide">
+<thead><tr><th scope="col">Source</th><th scope="col">Scope read</th><th scope="col">What it publishes</th><th scope="col">Limits found</th></tr></thead>
+<tbody>
+<tr><td><a class="src" href="https://www.nfl.com/injuries/">Official NFL injury report</a></td><td>Week 10 2026</td><td>Player, position, injury description, practice status, game status, per club, per fixture, with kickoff time and network.</td><td>Publishes only clubs playing that week. Carries no clock time of publication, no depth order, no snap counts and no inactive list. Past weeks are reachable through a selector but were not captured.</td></tr>
+<tr><td><a class="src" href="https://www.nfl.com/transactions/">Official NFL transactions (trades)</a></td><td>November 2026</td><td>From club, to club, date, player and transaction type for 12 trades.</td><td>Dates are MM/DD with no year; the year comes from the page&#x27;s own month selector. Only the trades tab was read.</td></tr>
+<tr><td><a class="src" href="https://www.nfl.com/transactions/league/reserve-list/2026/11">Official NFL reserve list</a></td><td>November 2026</td><td>Club, date, player and transaction type for 25 Reserve/Injured moves.</td><td>One month only. Other transaction tabs (signings, waivers, terminations, other) were not read.</td></tr>
+<tr><td><a class="src" href="https://www.nfl.com/schedules/2026/by-week/week-10">Official NFL schedule, Week 10 2026</a></td><td>Week 10 2026</td><td>Final scores for 12 of 14 games, kickoff times, networks, bye clubs and the Munich international-game designation.</td><td>The two games that had not kicked off show no score. No venue field on the listing; venue appears only in a link parameter.</td></tr>
+<tr><td><a class="src" href="https://www.nfl.com/schedules/2026/by-week/week-11">Official NFL schedule, Week 11 2026</a></td><td>Week 11 2026</td><td>13 fixtures with date, kickoff time and network; 6 bye clubs; the Mexico City international-game designation; flexible-scheduling notes for Weeks 16 to 18.</td><td>No venue field on the listing. The flexible-scheduling note carries no publication date.</td></tr>
+<tr><td><a class="src" href="https://www.nfl.com/games/chargers-at-ravens-2026-reg-10">Official NFL game centre</a></td><td>Chargers at Ravens, 2026 REG 10</td><td>Game Info block with Location and Stadium; team records; season team statistics; team leaders; a short injury list per club.</td><td>Only one game centre was read. Whether roof status and surface are published there is untested, which is probe P05.</td></tr>
+<tr><td><a class="src" href="https://www.nfl.com/legal/terms/">NFL.com Terms and Conditions</a></td><td>Section 1 (Intellectual Property), subsection 1.3 (Permitted Uses), updated 16 May 2024.</td><td>The permitted uses of the Services, including the prohibition on systematic retrieval.</td><td>Only section 1.3 was read in full for this finding. Nothing here is legal advice, and this desk does not claim to interpret the rest of the agreement.</td></tr>
+</tbody></table></div>
+</section>
+
+<section>
+<h2>Rule this desk holds to</h2>
+<div class="prose">
+<p>Every table row on every page links to an official publisher or to the project record that produced
+it. Where a value could not be confirmed from an official source, the cell is left blank and marked as
+not published — never filled in, never inferred, never back-filled from memory. A blank cell is a
+finding, and it is the most useful kind on this desk.</p>
+</div>
+</section>
+
+</main>
+<footer class="foot">
+  <p>Static, dependency-free, generated from <code>decision-desk/data/</code> by
+  <code>decision-desk/tools/build.py</code>. Every table row links to the official publisher or to the
+  project record that produced it. A blank cell is a deliberate blank: nothing on this desk is inferred.</p>
+  <p><a href="../index.html">Root dashboard</a> · <a href="https://github.com/sassnarep3-star/Own9">Repository</a></p>
+</footer>
+</body>
+</html>

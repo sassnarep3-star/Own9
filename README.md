@@ -378,3 +378,79 @@ node readiness/tools/browser_test.cjs            # desktop, mobile, WCAG, filter
 ```
 
 The builder fails closed. A row marked "Verified today" must carry an official NFL link. A "Built" row must point to a file that exists. A blocked row must name the decision that blocks it. Any unknown ID or unknown source stops the build. Automated capture of NFL.com pages is not implemented: NFL.com Terms section 1.3 prohibit systematic retrieval without prior written consent (`DEC-01`).
+
+## Decision desk · session `acf97d13` · 16 Nov 2026
+
+A separate decision layer, isolated in the new top-level directory `decision-desk/`. It exists to
+answer one question a reviewer actually has: **what is open, and what number would close it?**
+[Landing page](decision-desk/index.html).
+
+| Page | What it holds |
+| --- | --- |
+| [Decision desk](decision-desk/index.html) | Executive summary and the decision-readiness table: all 73 requirements, each with the gate that blocks it and the number that would clear it. |
+| [Requirements](decision-desk/requirements.html) | The same register grouped by area, with how to read each status. |
+| [Questions](decision-desk/questions.html) | What information we have, what we do not, 10 questions answered from official pages, 8 closable with data work, 4 owner decisions and 7 probes. |
+| [Suggestions](decision-desk/suggestions.html) | 16 costed suggestions, 4 deliberately unranked candidate paths, and a decision log recording that nothing was implemented. |
+| [Availability](decision-desk/availability.html) | One row per club: out, doubtful, questionable, reserve list, and the names the official page publishes. |
+| [Fixtures](decision-desk/fixtures.html) | The Week 11 slate with venues, and what Week 10 scored. |
+| [Captures](decision-desk/captures.html) | The snapshot ledger: what was captured, when, and the hash that proves the bytes. |
+| [Sources](decision-desk/sources.html) | The official pages read, what each publishes and what it does not. |
+| [Flagged](decision-desk/flagged.html) | 14 irregularities, published rather than reconciled. |
+
+### What was read from the official publisher on 16 Nov 2026
+
+| Capture | What it produced |
+| --- | --- |
+| [NFL injury report, Week 10](https://www.nfl.com/injuries/) | 347 rows across 28 clubs, captured verbatim, hashed (SHA-256 `69ff39f8…`) and timestamped. |
+| [NFL transactions, November 2026](https://www.nfl.com/transactions/) | 12 trades, dated, with player links. |
+| [NFL reserve list, November 2026](https://www.nfl.com/transactions/league/reserve-list/2026/11) | 25 Reserve/Injured moves, which is why a player absent from the injury report is not necessarily available. |
+| [NFL schedule, Week 10](https://www.nfl.com/schedules/2026/by-week/week-10) | 12 of 14 games final; the other two had not kicked off. |
+| [NFL schedule, Week 11](https://www.nfl.com/schedules/2026/by-week/week-11) | 13 fixtures, 6 bye clubs, kickoff times, networks, and the Mexico City international game. |
+| [NFL game centre](https://www.nfl.com/games/chargers-at-ravens-2026-reg-10) | Proves the game centre publishes an explicit `Game Info / Stadium` venue field. |
+
+### Three findings worth the reviewer's time
+
+- **DD-01** — the published Week 10 injury snapshot is stale against the official page by 68 rows
+  (254 published, 279 stated live, 347 measured). Published as a drift, not silently corrected,
+  because the cause is not established.
+- **DD-02** — Daiyan Henley was traded from the Chargers to the Broncos on 11/10, yet the injury
+  report retrieved on 11/16 still lists him under the Chargers. Two official pages disagree; the
+  disagreement is recorded, not resolved.
+- **DD-03** — 12 of 13 Week 11 stadiums come from a link parameter inside the schedule page's own
+  hotel link, not from a venue field. The game centre's own venue field agrees for the one fixture
+  checked.
+
+Reproduce:
+
+```sh
+python3 decision-desk/tools/build.py     # regenerate the 9 pages from the committed data
+python3 decision-desk/tools/verify.py    # rows, links, fragments, hashes, source coverage
+python3 -m unittest discover -s decision-desk/tests -v
+node decision-desk/tools/browser_test.cjs   # optional; needs `npm ci --ignore-scripts`
+```
+
+### The permission blocker, stated plainly
+
+**NFL.com Terms of Service section 1.3, updated 16 May 2024, prohibits systematic retrieval of
+content from the Services without express prior written consent.** The exact words are: *"Systematic
+retrieval of data or other content from the Services, whether to create or compile, directly or
+indirectly, a collection, compilation, database, or directory, is prohibited absent our express prior
+written consent."* ([source](https://www.nfl.com/legal/terms/))
+
+That is a permission blocker, not a work blocker, and it changed the register. Five requirements
+(R29, R30, R54, R55, R66) are marked **blocked by permission** rather than not started, and four
+suggestions that proposed scheduled capture are marked blocked on permission. It also applies to work
+already committed: this desk made seven fetches and committed one verbatim capture, so whether that
+capture stays is an owner decision. Recorded as flag **DD-13** and owner decision **O05**. An earlier
+session reached the same conclusion independently and recorded it as DEC-01; this desk re-read the
+terms page rather than relying on that record.
+
+### Three registers now cover the same brief
+
+`readiness/` publishes 82 requirement rows, `verification/` publishes 74, and this desk publishes 73.
+Three counts for the same brief is worse than two, and it is the same failure mode as OD-16. This
+desk did not read either other register line by line and makes no claim about which is better; it
+cross-links all three. Recorded as flag **DD-14** and owner decision **O06**.
+
+Status counts on this register: 16 met, 33 partial, 17 not started, 5 blocked by permission,
+2 rejected by design. No strategy on this desk has earned a stake, and no edge is claimed.

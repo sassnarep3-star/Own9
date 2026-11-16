@@ -1,0 +1,379 @@
+{
+  "note": "Nothing on this board has been implemented unless its status says so. Awaiting decision means exactly that.",
+  "suggestions": [
+    {
+      "id": "S01",
+      "title": "Put the capture on a schedule: Wednesday, Thursday, Friday and kickoff, every week",
+      "category": "Data capture",
+      "what_changes": "Turns the injury report from a weekly snapshot into a timestamped series, so Questionable-to-Out paths become replayable.",
+      "why": "Three requirements already ask for this (R54, R55, R47) and none can be met with one capture. It is the smallest change that unblocks the largest number of rows on the decision table.",
+      "cost": "One scheduled job plus off-site storage. The capture and parse code already exists in this desk.",
+      "risk": "Blocked on permission. NFL.com Terms section 1.3 prohibits systematic retrieval without express prior written consent, and a Wednesday-to-kickoff schedule is systematic retrieval.",
+      "status": "Awaiting decision - blocked on permission",
+      "evidence": [
+        {
+          "label": "Capture manifest",
+          "url": "https://github.com/sassnarep3-star/Own9/blob/main/decision-desk/data/captures/manifest.json"
+        },
+        {
+          "label": "NFL.com Terms of Service, section 1.3",
+          "url": "https://www.nfl.com/legal/terms/"
+        }
+      ]
+    },
+    {
+      "id": "S02",
+      "title": "Store captures outside the public repository and alert on freshness and schema change",
+      "category": "Infrastructure",
+      "what_changes": "Moves raw captures to an immutable store and adds a monitor that fails loudly when a source or schema changes.",
+      "why": "Today a capture lives in git in the same tree as the site. That is fine for one capture and fragile at three per week for a season.",
+      "cost": "A storage target and a monitor. No change to any published page.",
+      "risk": "Blocked on permission where the stored snapshots came from NFL.com. Terms section 1.3 applies to how they were obtained, not only to where they are kept.",
+      "status": "Awaiting decision - blocked on permission",
+      "evidence": [
+        {
+          "label": "Flagged for review",
+          "url": "https://github.com/sassnarep3-star/Own9/blob/main/decision-desk/flagged.html"
+        },
+        {
+          "label": "NFL.com Terms of Service, section 1.3",
+          "url": "https://www.nfl.com/legal/terms/"
+        }
+      ]
+    },
+    {
+      "id": "S03",
+      "title": "Confirm the venue of one fixture per club from the game centre, not from a link parameter",
+      "category": "Data capture",
+      "what_changes": "Raises venue provenance from a commercial-link parameter on the schedule page to the game centre's own Game Info field.",
+      "why": "This session proved the field exists but only read one fixture. Twelve of thirteen Week 11 venues are currently second-hand.",
+      "cost": "One fetch per club. No code change.",
+      "risk": "Constrained by permission. One game-centre read was made; a per-club sweep of 32 reads is systematic retrieval under NFL.com Terms section 1.3.",
+      "status": "Awaiting decision - blocked on permission",
+      "evidence": [
+        {
+          "label": "Game centre: Chargers at Ravens",
+          "url": "https://www.nfl.com/games/chargers-at-ravens-2026-reg-10"
+        },
+        {
+          "label": "NFL.com Terms of Service, section 1.3",
+          "url": "https://www.nfl.com/legal/terms/"
+        }
+      ]
+    },
+    {
+      "id": "S04",
+      "title": "Pick one canonical implementation of the origination brief",
+      "category": "Governance",
+      "what_changes": "Designates either the market board on the main dashboard or the origination desk as the one that speaks for the project.",
+      "why": "Two implementations of the same eight requirements exist on different inputs, so they can publish different model lines for the same game. That is flag OD-16 and the single largest loose end on the site.",
+      "cost": "A recorded decision, then either a deprecation notice or a merge onto one input set.",
+      "risk": "Medium. Whichever is chosen, the other's pages must be labelled or removed, and that touches another session's files.",
+      "status": "Awaiting decision",
+      "evidence": [
+        {
+          "label": "Flag OD-16",
+          "url": "https://github.com/sassnarep3-star/Own9/blob/main/origination/flagged.html"
+        },
+        {
+          "label": "Origination desk questions (Q-21)",
+          "url": "https://github.com/sassnarep3-star/Own9/blob/main/origination/questions.html"
+        }
+      ]
+    },
+    {
+      "id": "S05",
+      "title": "Collapse the duplicate registry pages into one index per register",
+      "category": "Site",
+      "what_changes": "The repository holds several pages that answer the same question: questions.html, question-ledger.html, missing-information.html and decisions-questions.html; suggestions.html, suggestion-costs.html and decisions-questions.html.",
+      "why": "A reviewer cannot tell which page is current. Two of them already carry different counts for the same objects.",
+      "cost": "Editorial. Each duplicate gets a dated banner pointing at the canonical page.",
+      "risk": "Low if done by labelling rather than deleting, since deleting touches other sessions' files.",
+      "status": "Awaiting decision",
+      "evidence": [
+        {
+          "label": "Questions and answers",
+          "url": "https://github.com/sassnarep3-star/Own9/blob/main/questions.html"
+        },
+        {
+          "label": "Question ledger",
+          "url": "https://github.com/sassnarep3-star/Own9/blob/main/question-ledger.html"
+        },
+        {
+          "label": "Missing information",
+          "url": "https://github.com/sassnarep3-star/Own9/blob/main/missing-information.html"
+        }
+      ]
+    },
+    {
+      "id": "S06",
+      "title": "Publish the control baselines with every leaderboard run",
+      "category": "Leaderboard",
+      "what_changes": "Adds a random-picks row and a favourites-only row, scored on the same events as every candidate.",
+      "why": "Without them a candidate cannot be distinguished from a favourable run of fixtures. It is requirement R57 and it costs nothing to compute.",
+      "cost": "Small. The controls are already specified.",
+      "risk": "Low.",
+      "status": "Awaiting decision",
+      "evidence": [
+        {
+          "label": "Leaderboard",
+          "url": "https://github.com/sassnarep3-star/Own9/blob/main/leaderboard.html"
+        }
+      ]
+    },
+    {
+      "id": "S07",
+      "title": "Make the landing page the decision table",
+      "category": "Site",
+      "what_changes": "Puts one row per requirement, its blocking gate and the number that would clear it on the first screen a reviewer sees.",
+      "why": "It is requirement R22 and it answers the question a reviewer actually has: what is open, and what would close it.",
+      "cost": "Done by this session on the decision desk. Extending it to the root landing page touches a file owned by another session.",
+      "risk": "Low on this desk. Requires a request, not an edit, for the root page.",
+      "status": "Proposed to the root owner",
+      "evidence": [
+        {
+          "label": "Decision desk landing page",
+          "url": "https://github.com/sassnarep3-star/Own9/blob/main/decision-desk/index.html"
+        }
+      ]
+    },
+    {
+      "id": "S08",
+      "title": "Freeze the 2026 kickoff rule in git before measuring anything about it",
+      "category": "Validation",
+      "what_changes": "Commits rule text, sample window and gates, then publishes the commit hash as the registration.",
+      "why": "If the rule is measured first and written down afterwards, the result is post hoc and cannot be used. This is R68 and R69.",
+      "cost": "One commit plus a published hash.",
+      "risk": "Low, and it must happen before any measurement or the measurement is worthless.",
+      "status": "Awaiting decision",
+      "evidence": [
+        {
+          "label": "Validation gates",
+          "url": "https://github.com/sassnarep3-star/Own9/blob/main/validation.html"
+        }
+      ]
+    },
+    {
+      "id": "S09",
+      "title": "Add a shared and empty state to the depth schema",
+      "category": "Availability",
+      "what_changes": "Lets a slot holding two players and a slot holding none be represented as they are published, instead of as a ranked list.",
+      "why": "149 club/unit/position slots list more than one rank-1 player. Treating column one as the starter fabricates a starter the club never named. This is R33 and R51.",
+      "cost": "A schema change plus a re-parse of the three charts already captured.",
+      "risk": "Medium. It changes what downstream code may assume about a depth row.",
+      "status": "Awaiting decision",
+      "evidence": [
+        {
+          "label": "Availability sources",
+          "url": "https://github.com/sassnarep3-star/Own9/blob/main/availability-evidence.html"
+        }
+      ]
+    },
+    {
+      "id": "S10",
+      "title": "Resolve the depth-order question for all 32 clubs before building the deficiency matrix",
+      "category": "Availability",
+      "what_changes": "Runs both candidate routes to completion and records a verdict per club: parsed, image-only, or absent.",
+      "why": "The matrix cannot show strings travelled until one route is verified. Building it on designations instead is what this session's matrix does, and it is a placeholder, not the feature.",
+      "cost": "One pass over 32 clubs, recording status per club.",
+      "risk": "Low. It produces a register of statuses, not a new dependency.",
+      "status": "Awaiting decision",
+      "evidence": [
+        {
+          "label": "Availability sources",
+          "url": "https://github.com/sassnarep3-star/Own9/blob/main/availability-evidence.html"
+        }
+      ]
+    },
+    {
+      "id": "S11",
+      "title": "Write down the price-data policy before publishing any backtest",
+      "category": "Governance",
+      "what_changes": "Records the licence determination for every price file used, and keeps quarantined files quarantined.",
+      "why": "Three seasons of scores inside the committed lines file were checked and matched, which settles the content and says nothing about the right to use it. That is flag OD-01.",
+      "cost": "A written note per file.",
+      "risk": "Low, and it blocks every downstream claim until it is done.",
+      "status": "Awaiting decision",
+      "evidence": [
+        {
+          "label": "Own lines audit",
+          "url": "https://github.com/sassnarep3-star/Own9/blob/main/lines.html"
+        }
+      ]
+    },
+    {
+      "id": "S12",
+      "title": "Put the per-team availability view on the root dashboard",
+      "category": "Site",
+      "what_changes": "Gives a reviewer one row per club: how many are out, how many are on the reserve list, and who is named as the replacement.",
+      "why": "It is requirement R41 and this session built it. It is more useful on the first screen than three pages deep.",
+      "cost": "A request to the root integration owner, which is how this desk handles shared files.",
+      "risk": "Low.",
+      "status": "Proposed to the root owner",
+      "evidence": [
+        {
+          "label": "Decision desk availability",
+          "url": "https://github.com/sassnarep3-star/Own9/blob/main/decision-desk/availability.html"
+        }
+      ]
+    },
+    {
+      "id": "S13",
+      "title": "Archive at least three past seasons of weekly injury reports",
+      "category": "Data capture",
+      "what_changes": "Captures dated, hashed weekly reports for past seasons so designations can be joined to outcomes.",
+      "why": "Designation reliability (R53) and the Questionable calibration (R44) both need it, and both are prerequisites, not nice-to-haves.",
+      "cost": "One backfill job, then the same scheduled capture as S01.",
+      "risk": "Blocked on permission. Archiving past seasons of weekly reports is systematic retrieval to compile a database, which NFL.com Terms section 1.3 prohibits.",
+      "status": "Awaiting decision - blocked on permission",
+      "evidence": [
+        {
+          "label": "NFL official injury report (season selector)",
+          "url": "https://www.nfl.com/injuries/"
+        },
+        {
+          "label": "NFL.com Terms of Service, section 1.3",
+          "url": "https://www.nfl.com/legal/terms/"
+        }
+      ]
+    },
+    {
+      "id": "S14",
+      "title": "Do not rank the improvement paths for the reviewer",
+      "category": "Governance",
+      "what_changes": "Leaves the four candidate paths unranked and records the choice as unmade.",
+      "why": "Ranking them would substitute the builder's preference for the owner's decision, which is the thing the suggestions section exists to prevent.",
+      "cost": "None.",
+      "risk": "None. It is a refusal, not a change.",
+      "status": "Not chosen, by design",
+      "evidence": [
+        {
+          "label": "Suggestion costs",
+          "url": "https://github.com/sassnarep3-star/Own9/blob/main/suggestion-costs.html"
+        }
+      ]
+    },
+    {
+      "id": "S15",
+      "title": "Reject ranking strategies by season-long ROI",
+      "category": "Rejected",
+      "what_changes": "Recorded so the alternative is not re-proposed each time a short-run ROI looks good.",
+      "why": "Short-run ROI cannot distinguish skill from variance, which is the whole point of the proper-score ranking.",
+      "cost": "None.",
+      "risk": "None. Rejected by the requirement itself.",
+      "status": "Rejected",
+      "evidence": [
+        {
+          "label": "Signal and staking",
+          "url": "https://github.com/sassnarep3-star/Own9/blob/main/signal-and-staking.html"
+        }
+      ]
+    },
+    {
+      "id": "S16",
+      "title": "Reject deriving depth order from jersey number, experience or salary",
+      "category": "Rejected",
+      "what_changes": "Recorded so the shortcut is not re-proposed when the depth source is missing.",
+      "why": "It would produce a number that looks like a depth tier and is not one.",
+      "cost": "None.",
+      "risk": "None. Rejected by the requirement itself.",
+      "status": "Rejected",
+      "evidence": [
+        {
+          "label": "Suggestions (session 8b05dd6d)",
+          "url": "https://github.com/sassnarep3-star/Own9/blob/main/session-8b05dd6d/suggestions.html"
+        }
+      ]
+    }
+  ],
+  "paths": [
+    {
+      "id": "Path A",
+      "name": "Close the data gaps first",
+      "items": "S01, S02, S03, S13, S09, S10",
+      "buys": "Nothing is published that is not verified. Every model feature has a source before it is used.",
+      "costs": "Weeks pass with an empty leaderboard. More seriously, most of this path is blocked: NFL.com Terms section 1.3 prohibits the systematic retrieval it depends on, so it cannot proceed without consent or a licence.",
+      "choose_if": "Choose this if the priority is that no published number is ever wrong.",
+      "evidence": [
+        {
+          "label": "decision-desk/data/suggestions.json",
+          "url": "https://github.com/sassnarep3-star/Own9/blob/main/decision-desk/data/suggestions.json"
+        }
+      ]
+    },
+    {
+      "id": "Path B",
+      "name": "Ship the competition first",
+      "items": "S06, S08, plus the existing leaderboard and pre-registration work",
+      "buys": "The leaderboard, its divisions, its controls and its pre-registration rules go live on a defined schedule.",
+      "costs": "Candidates would be ranked on features whose sources are not yet verified, which is how a bad signal gets funded.",
+      "choose_if": "Choose this if the priority is having a running competition, and you accept that early entries rest on thin evidence.",
+      "evidence": [
+        {
+          "label": "decision-desk/data/suggestions.json",
+          "url": "https://github.com/sassnarep3-star/Own9/blob/main/decision-desk/data/suggestions.json"
+        }
+      ]
+    },
+    {
+      "id": "Path C",
+      "name": "Consolidate the site first",
+      "items": "S05, S07, S04, S12",
+      "buys": "One canonical page per register, one canonical implementation of the origination brief, and a landing page that states what is open.",
+      "costs": "It publishes no new evidence. It makes existing evidence readable.",
+      "choose_if": "Choose this if a reviewer needs to understand the project before funding more work on it.",
+      "evidence": [
+        {
+          "label": "decision-desk/data/suggestions.json",
+          "url": "https://github.com/sassnarep3-star/Own9/blob/main/decision-desk/data/suggestions.json"
+        }
+      ]
+    },
+    {
+      "id": "Path D",
+      "name": "Resolve governance first",
+      "items": "S11, S04, plus the owner decisions O01 and O02",
+      "buys": "The licence question and the duplicate-implementation question are answered before any further capture or modelling.",
+      "costs": "It stops capture work that may have to be discarded if the licence answer is unfavourable.",
+      "choose_if": "Choose this if the terms of use are the real constraint and everything else depends on them.",
+      "evidence": [
+        {
+          "label": "decision-desk/data/suggestions.json",
+          "url": "https://github.com/sassnarep3-star/Own9/blob/main/decision-desk/data/suggestions.json"
+        }
+      ]
+    }
+  ],
+  "decision_log": [
+    {
+      "date": "2026-11-16",
+      "entry": "No path chosen. No suggestion marked Awaiting decision was implemented by this session. The board exists to be read and chosen from, not to be acted on by the builder.",
+      "evidence": [
+        {
+          "label": "COORDINATION.md (shared task board)",
+          "url": "https://github.com/sassnarep3-star/Own9/blob/main/COORDINATION.md"
+        }
+      ]
+    },
+    {
+      "date": "2026-11-16",
+      "entry": "Two items are marked Proposed to the root owner rather than implemented, because they would edit files another session owns. They are logged as requests in COORDINATION.md instead.",
+      "evidence": [
+        {
+          "label": "COORDINATION.md (shared task board)",
+          "url": "https://github.com/sassnarep3-star/Own9/blob/main/COORDINATION.md"
+        }
+      ]
+    },
+    {
+      "date": "2026-11-16",
+      "entry": "Four suggestions (S01, S02, S03, S13) were re-marked as blocked on permission after NFL.com Terms of Service section 1.3 was read. The board does not recommend proceeding with systematic retrieval without express written consent.",
+      "evidence": [
+        {
+          "label": "NFL.com Terms of Service, section 1.3",
+          "url": "https://www.nfl.com/legal/terms/"
+        }
+      ]
+    }
+  ]
+}

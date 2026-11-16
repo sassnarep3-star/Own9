@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Flagged for review · Own9 decision desk</title>
+<meta name="description" content="Irregularities, conflicts and limitations. Published, not reconciled.">
+<link rel="stylesheet" href="assets/style.css">
+<script src="assets/filter.js" defer></script>
+</head>
+<body>
+<a class="skip" href="#main">Skip to main content</a>
+<header class="topbar">
+  <a class="brand" href="index.html">Own9 <span>decision desk</span></a>
+  <p class="brandnote">One row per requirement. The gate that blocks it. The number that would clear it.</p>
+</header>
+<nav class="nav" aria-label="Decision desk sections">
+  <a href="index.html"><strong>Decision desk</strong><span>Overview</span></a>
+<a href="requirements.html"><strong>Requirements</strong><span>Gate table</span></a>
+<a href="questions.html"><strong>Questions</strong><span>Have / have not</span></a>
+<a href="suggestions.html"><strong>Suggestions</strong><span>Review board</span></a>
+<a href="availability.html"><strong>Availability</strong><span>Per club</span></a>
+<a href="fixtures.html"><strong>Fixtures</strong><span>Venues and results</span></a>
+<a href="captures.html"><strong>Captures</strong><span>Snapshot ledger</span></a>
+<a href="sources.html"><strong>Sources</strong><span>Official register</span></a>
+<a class="active" href="flagged.html"><strong>Flagged</strong><span>For review</span></a>
+</nav>
+<main id="main" class="wrap">
+  <h1>Flagged for review</h1>
+  <p class="lead">Irregularities, conflicts and limitations. Published, not reconciled.</p>
+
+<section>
+<h2>Flagged for review</h2>
+<p class="note">14 items. Each is published rather than reconciled: where two official pages
+disagree, this desk records the disagreement and leaves it, because choosing a side without evidence
+would be the inference the project exists to avoid.</p>
+<div class="tablewrap">
+<table class="wide">
+<thead><tr><th scope="col">ID</th><th scope="col">Item</th><th scope="col">Finding</th><th scope="col">Status</th><th scope="col">What would clear it</th><th scope="col">Source</th></tr></thead>
+<tbody>
+<tr><td><span class="rid" id="DD-01">DD-01</span></td><td>Published Week 10 injury snapshot is stale against the official page</td><td>The repository publishes 254 injury rows and states 279 as the live count. The official page publishes 347 rows at 2026-11-16T01:17Z. That is 68 more than published and 93 more than the stated live count.</td><td>Unresolved. The cause is not established: the official page may have grown, the earlier transcription may have been partial, or both. Both numbers are published rather than reconciled.</td><td>Re-capture on a schedule and diff row by row. Do not overwrite the old snapshot before the diff is recorded.</td><td><a class="src" href="https://www.nfl.com/injuries/">NFL official injury report</a><br><a class="src" href="https://github.com/sassnarep3-star/Own9/blob/main/origination/flagged.html">Origination desk flag OD-13</a></td></tr>
+<tr><td><span class="rid" id="DD-02">DD-02</span></td><td>A player appears under a club he was traded away from six days earlier</td><td>Daiyan Henley was traded from the Chargers to the Broncos on 11/10. The Week 10 injury report retrieved on 11/16 still lists him under the Chargers, with full participation and no game designation.</td><td>Flagged, not reconciled. Both pages are official. Which one is current for the purposes of a pre-kickoff model is a question for replay, not for a guess now.</td><td>Join every availability row to the transactions log and surface the conflict, which is requirement R46.</td><td><a class="src" href="https://www.nfl.com/transactions/">NFL transactions, November 2026</a><br><a class="src" href="https://www.nfl.com/injuries/">NFL official injury report</a></td></tr>
+<tr><td><span class="rid" id="DD-03">DD-03</span></td><td>Twelve of thirteen Week 11 stadiums come from a link parameter, not a venue field</td><td>The stadium strings were read from the destinationAddress.location parameter of the Marriott link the schedule page renders under each fixture. That is published by nfl.com but it is a commercial-link parameter.</td><td>One of thirteen was confirmed against the game centre&#x27;s own Game Info field and matched. The other twelve are labelled link-parameter-sourced and are not certified.</td><td>Read the Game Info block for one fixture per club, which is suggestion S03.</td><td><a class="src" href="https://www.nfl.com/schedules/2026/by-week/week-11">NFL schedule, Week 11 2026</a><br><a class="src" href="https://www.nfl.com/games/chargers-at-ravens-2026-reg-10">Game centre: Chargers at Ravens</a></td></tr>
+<tr><td><span class="rid" id="DD-04">DD-04</span></td><td>Week 10 results are single-sourced</td><td>All twelve final scores were read from the official by-week schedule page at one moment. They have not been cross-checked against a second official page, such as a game centre or a Game Book.</td><td>Published as single-sourced. No score has been inferred; the two games that had not kicked off are left blank.</td><td>Cross-check against the game centre for each completed game before the scores enter a results feed.</td><td><a class="src" href="https://www.nfl.com/schedules/2026/by-week/week-10">NFL schedule, Week 10 2026</a></td></tr>
+<tr><td><span class="rid" id="DD-05">DD-05</span></td><td>Capture times come from the sandbox clock</td><td>No external time service is reachable from the sandbox, so every retrieval time is the sandbox UTC clock read with date -u, and individual fetch times were not recorded separately.</td><td>Each capture records a window rather than a single instant, and the window is stated on the page.</td><td>Record a timestamp per fetch from a trusted source once one is reachable, or record the HTTP Date header of the response.</td><td><a class="src" href="https://github.com/sassnarep3-star/Own9/blob/main/decision-desk/data/captures/manifest.json">Capture manifest</a></td></tr>
+<tr><td><span class="rid" id="DD-06">DD-06</span></td><td>Only one of six captures retains its raw bytes and hash</td><td>CAP-01 (the injury report) is committed verbatim with a SHA-256. CAP-02 to CAP-06 were transcribed into structured records without retaining the raw markdown, so they cannot be re-hashed.</td><td>Stated per capture in the manifest. No claim of immutability is made for the five transcribed captures.</td><td>Retain raw bytes for every future capture, which is requirement R30.</td><td><a class="src" href="https://github.com/sassnarep3-star/Own9/blob/main/decision-desk/data/captures/manifest.json">Capture manifest</a></td></tr>
+<tr><td><span class="rid" id="DD-07">DD-07</span></td><td>Two Week 10 games had not kicked off at capture time</td><td>Steelers at Bengals (8:20 PM ET, 15 November) and Chargers at Ravens (8:15 PM ET, 16 November) had not started when the pages were read, at 2026-11-16T01:17Z UTC, which is 20:17 ET on 15 November.</td><td>Their score cells are blank on the official page and blank here. Their designations are pre-game designations, not outcomes.</td><td>Re-read after kickoff if those games are to enter the results feed.</td><td><a class="src" href="https://www.nfl.com/schedules/2026/by-week/week-10">NFL schedule, Week 10 2026</a></td></tr>
+<tr><td><span class="rid" id="DD-08">DD-08</span></td><td>The deficiency matrix shows designations, not strings travelled</td><td>No verified depth order exists for all 32 clubs, so the matrix cannot show a first-string receiver against a third-string corner. It shows game-status designations by position group instead.</td><td>Published as a placeholder with the limitation stated on the page. It is not the feature that requirement R45 asks for.</td><td>Resolve the depth-order source for 32 of 32 clubs first, which is requirement R52 and suggestion S10.</td><td><a class="src" href="https://github.com/sassnarep3-star/Own9/blob/main/decision-desk/availability.html">Decision desk availability</a></td></tr>
+<tr><td><span class="rid" id="DD-09">DD-09</span></td><td>Four clubs have no injury rows at all, and that is not health</td><td>Chicago, Denver, Philadelphia and Tampa Bay were on bye in Week 10, so the official report publishes no rows for them.</td><td>Shown explicitly as on bye rather than as zero injuries. The per-team table carries 28 of 32 clubs for this reason.</td><td>Carry the bye flag into every availability view, so an empty row is never read as a clean bill of health.</td><td><a class="src" href="https://www.nfl.com/schedules/2026/by-week/week-10">NFL schedule, Week 10 2026</a></td></tr>
+<tr><td><span class="rid" id="DD-10">DD-10</span></td><td>The reserve list covers one month</td><td>Twenty-five reserve-list moves were captured for November 2026. Players placed on reserve in earlier months do not appear, so absence from this list is not evidence of availability either.</td><td>Stated on the page with the capture window.</td><td>Backfill the season, which is suggestion S13.</td><td><a class="src" href="https://www.nfl.com/transactions/league/reserve-list/2026/11">NFL reserve list, November 2026</a></td></tr>
+<tr><td><span class="rid" id="DD-11">DD-11</span></td><td>Two implementations of the same origination brief exist</td><td>A market board on the main dashboard and the origination desk implement the same eight requirements on different inputs, so they can publish different model lines for the same game.</td><td>Inherited from earlier sessions as flag OD-16 and question Q-21. Recorded here because a reviewer reading this desk will hit it. Not resolved by this session.</td><td>An owner decision, which is suggestion S04 and owner decision O01.</td><td><a class="src" href="https://github.com/sassnarep3-star/Own9/blob/main/origination/flagged.html">Origination desk flag OD-16</a></td></tr>
+<tr><td><span class="rid" id="DD-12">DD-12</span></td><td>The Texans depth chart is published as an image</td><td>Houston publishes its depth chart in a form that does not parse to text. No authorized structured alternative was obtained.</td><td>Not transcribed. No depth rows are published for Houston from this session.</td><td>An authorized structured source, or a recorded absence for the club in the P07 sweep.</td><td><a class="src" href="https://github.com/sassnarep3-star/Own9/blob/main/availability-evidence.html">Availability sources</a></td></tr>
+<tr><td><span class="rid" id="DD-13">DD-13</span></td><td>NFL.com Terms section 1.3 prohibits the systematic capture this desk was asked to specify</td><td>Section 1.3 of the NFL.com Terms of Service, updated 16 May 2024 and read on 2026-11-16, states: &quot;Systematic retrieval of data or other content from the Services, whether to create or compile, directly or indirectly, a collection, compilation, database, or directory, is prohibited absent our express prior written consent.&quot; That blocks automated multi-day snapshots (R29, R30), a scheduled Wednesday-to-kickoff series (R54, R55), a past-season archive (R66), and any per-club sweep (R13, R23, R32, R43, R52). It also applies to work already committed: this session made six fetches and committed one verbatim 49,582-byte capture plus structured transcriptions.</td><td>Blocked by permission, not by work. Five requirements were re-marked as blocked and four suggestions were re-marked as blocked on permission. An earlier session reached the same conclusion independently and recorded it as DEC-01; this session re-read the terms page rather than relying on that record. No further capture has been run since.</td><td>An owner decision with one of three outcomes: obtain express written consent, re-scope the affected requirements to what the terms permit, or remove the committed capture. Recorded as owner decision O05.</td><td><a class="src" href="https://www.nfl.com/legal/terms/">NFL.com Terms of Service, section 1.3</a><br><a class="src" href="https://github.com/sassnarep3-star/Own9/blob/main/readiness/decisions.html">Session 462fba62 decision DEC-01</a></td></tr>
+<tr><td><span class="rid" id="DD-14">DD-14</span></td><td>Three per-requirement readiness registers now exist</td><td>readiness/ publishes 82 requirement rows, verification/ publishes 74, and this desk publishes 73. Three different counts for the same brief. An earlier session recorded the two-register version as VF-11; this session adds a third.</td><td>Flagged, not adjudicated. This session did not read either other register line by line, so it makes no claim about which is better. Cross-linked from the landing page.</td><td>One register designated canonical. Recorded as owner decision O06.</td><td><a class="src" href="https://github.com/sassnarep3-star/Own9/blob/main/readiness/index.html">readiness/index.html</a><br><a class="src" href="https://github.com/sassnarep3-star/Own9/blob/main/verification/index.html">verification/index.html</a></td></tr>
+</tbody></table></div>
+</section>
+
+<section>
+<h2>Inherited from earlier sessions</h2>
+<p class="note">These were raised by other sessions and are repeated here because a reviewer reading
+this desk will hit them. They are not re-adjudicated.</p>
+<ul class="startlist">
+<li><strong>OD-01</strong> — the licence and provenance of the committed price files are unknown.
+<a class="src" href="https://github.com/sassnarep3-star/Own9/blob/main/origination/flagged.html">Origination desk flags</a></li>
+<li><strong>OD-02</strong> — no source obtained records an opening price, so all opening columns are blank.
+<a class="src" href="https://github.com/sassnarep3-star/Own9/blob/main/origination/flagged.html">Origination desk flags</a></li>
+<li><strong>OD-03</strong> — ROI is arithmetic on recorded closing prices, not economics.
+<a class="src" href="https://github.com/sassnarep3-star/Own9/blob/main/origination/flagged.html">Origination desk flags</a></li>
+<li><strong>OD-16</strong> — two implementations of the same origination brief exist on different inputs.
+<a class="src" href="https://github.com/sassnarep3-star/Own9/blob/main/origination/flagged.html">Origination desk flags</a></li>
+</ul>
+</section>
+
+</main>
+<footer class="foot">
+  <p>Static, dependency-free, generated from <code>decision-desk/data/</code> by
+  <code>decision-desk/tools/build.py</code>. Every table row links to the official publisher or to the
+  project record that produced it. A blank cell is a deliberate blank: nothing on this desk is inferred.</p>
+  <p><a href="../index.html">Root dashboard</a> · <a href="https://github.com/sassnarep3-star/Own9">Repository</a></p>
+</footer>
+</body>
+</html>

@@ -1,0 +1,51 @@
+[
+  {
+    "name": "Official NFL injury report",
+    "url": "https://www.nfl.com/injuries/",
+    "scope_read": "Week 10 2026",
+    "what_it_publishes": "Player, position, injury description, practice status, game status, per club, per fixture, with kickoff time and network.",
+    "limits": "Publishes only clubs playing that week. Carries no clock time of publication, no depth order, no snap counts and no inactive list. Past weeks are reachable through a selector but were not captured."
+  },
+  {
+    "name": "Official NFL transactions (trades)",
+    "url": "https://www.nfl.com/transactions/",
+    "scope_read": "November 2026",
+    "what_it_publishes": "From club, to club, date, player and transaction type for 12 trades.",
+    "limits": "Dates are MM/DD with no year; the year comes from the page's own month selector. Only the trades tab was read."
+  },
+  {
+    "name": "Official NFL reserve list",
+    "url": "https://www.nfl.com/transactions/league/reserve-list/2026/11",
+    "scope_read": "November 2026",
+    "what_it_publishes": "Club, date, player and transaction type for 25 Reserve/Injured moves.",
+    "limits": "One month only. Other transaction tabs (signings, waivers, terminations, other) were not read."
+  },
+  {
+    "name": "Official NFL schedule, Week 10 2026",
+    "url": "https://www.nfl.com/schedules/2026/by-week/week-10",
+    "scope_read": "Week 10 2026",
+    "what_it_publishes": "Final scores for 12 of 14 games, kickoff times, networks, bye clubs and the Munich international-game designation.",
+    "limits": "The two games that had not kicked off show no score. No venue field on the listing; venue appears only in a link parameter."
+  },
+  {
+    "name": "Official NFL schedule, Week 11 2026",
+    "url": "https://www.nfl.com/schedules/2026/by-week/week-11",
+    "scope_read": "Week 11 2026",
+    "what_it_publishes": "13 fixtures with date, kickoff time and network; 6 bye clubs; the Mexico City international-game designation; flexible-scheduling notes for Weeks 16 to 18.",
+    "limits": "No venue field on the listing. The flexible-scheduling note carries no publication date."
+  },
+  {
+    "name": "Official NFL game centre",
+    "url": "https://www.nfl.com/games/chargers-at-ravens-2026-reg-10",
+    "scope_read": "Chargers at Ravens, 2026 REG 10",
+    "what_it_publishes": "Game Info block with Location and Stadium; team records; season team statistics; team leaders; a short injury list per club.",
+    "limits": "Only one game centre was read. Whether roof status and surface are published there is untested, which is probe P05."
+  },
+  {
+    "name": "NFL.com Terms and Conditions",
+    "url": "https://www.nfl.com/legal/terms/",
+    "scope_read": "Section 1 (Intellectual Property), subsection 1.3 (Permitted Uses), updated 16 May 2024.",
+    "what_it_publishes": "The permitted uses of the Services, including the prohibition on systematic retrieval.",
+    "limits": "Only section 1.3 was read in full for this finding. Nothing here is legal advice, and this desk does not claim to interpret the rest of the agreement."
+  }
+]

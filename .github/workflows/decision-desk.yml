@@ -1,0 +1,47 @@
+name: Decision desk checks
+
+on:
+  push:
+    branches: [main, 'arena/**']
+    paths:
+      - 'decision-desk/**'
+      - '.github/workflows/decision-desk.yml'
+  pull_request:
+    branches: [main]
+    paths:
+      - 'decision-desk/**'
+      - '.github/workflows/decision-desk.yml'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: decision-desk-${{ github.ref }}
+  cancel-in-progress: false
+
+jobs:
+  verify:
+    name: Regenerate, verify and test
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - name: Check out source
+        uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262 # v4
+
+      - name: Set up Python
+        uses: actions/setup-python@a26af69be951a213d495a4c3e4e4022e16d87065 # v5
+        with:
+          python-version: '3.12'
+
+      - name: Regenerate the decision-desk pages
+        run: python3 decision-desk/tools/build.py
+
+      - name: Pages must not drift from the committed data
+        run: git diff --exit-code -- decision-desk
+
+      - name: Verify rows, links, fragments, hashes and source coverage
+        run: python3 decision-desk/tools/verify.py
+
+      - name: Unit tests
+        run: python3 -m unittest discover -s decision-desk/tests -v
