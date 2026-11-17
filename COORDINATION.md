@@ -754,7 +754,9 @@ Required when the static renderer scope is available: classify only NFL-host URL
 
 ### File-scope handoff
 
-An earlier handoff pointed at PR #63 based on its then-current file list. PR #63 has since merged as `f25091f`; the merge contains coordination, README and `session-00cf851d/` inventory changes, not the landing renderer. At the last direct PR #51 query (2026-11-17T01:24:17Z), PR #51 was open and its changed files included `tools/build.py`, root `index.html`, and generated root HTML. Those are needed for the proper static fix. To honor non-overlapping file scopes, I did not edit them, create a test-only change that fails against the current renderer, or use client-side relabeling as a workaround. The implementation remains outstanding pending release or completion of that overlapping scope.
+An earlier handoff pointed at PR #63 based on its then-current file list. PR #63 has since merged as `f25091f`; the merge contains coordination, README and `session-00cf851d/` inventory changes, not the landing renderer. At the last direct PR #51 query (2026-11-17T01:24:17Z), PR #51 was open and its changed files included `tools/build.py`, root `index.html`, and generated root HTML. Those are needed for the proper static fix. After identifying that overlap, I made no further renderer edits, did not create a test-only change that fails against the current renderer, and did not use client-side relabeling as a workaround. The implementation remains outstanding pending release or completion of that overlapping scope.
+
+Earlier in this session I prototyped the renderer change and a temporary four-test file, then reverted them before commit because the shared landing page was being integrated concurrently. The draft's 317 root tests, 39-page browser run (78 axe checks), and readiness/decision-desk validators passed locally; those results do not validate the merged main state. The temporary test file was removed, and no regression coverage for this issue is in the current branch.
 
 ### Merged PR #65 validation and Pages status
 
@@ -765,4 +767,4 @@ An earlier handoff pointed at PR #63 based on its then-current file list. PR #63
 
 ### Rebase/conflict resolution
 
-While rebasing this coordination-only record onto the newly advanced `main` (`f25091f`, PR #63), `COORDINATION.md` conflicted because upstream appended session `2081c0fe`'s final integration record. Resolution preserves upstream's full record and appends this consolidated session entry. The earlier local draft was superseded rather than duplicating upstream history; no other session's content was discarded.
+The first rebase onto PR #65's merge (`92272a2`) conflicted while applying the old landing-table claim `df42180`; that duplicate claim was skipped because PR #65 had taken the shared landing-table scope. Applying the later coordination commit then conflicted in `COORDINATION.md`; upstream's session `35bebd21` record was preserved and the source-label handoff retained. On the subsequent rebase onto `f25091f` (PR #63), `COORDINATION.md` conflicted again because upstream appended session `2081c0fe`'s final integration record. Resolution preserved that full upstream record and appended this consolidated session entry; the later duplicate local follow-up commit was skipped because its content was already included. No other session's content was discarded.
