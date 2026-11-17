@@ -617,7 +617,7 @@ Automated/injury capture, snapshots, reserve list, weekly archives, drift alarms
 
 ### PR and merge
 
-- PR created from `arena/5228af05-own9` to `main`
-- Merged to `main` without waiting for approval
-- GitHub Pages deployment confirmed
-- PR link and merge result recorded below
+- PR #62 created from `arena/5228af05-own9` to `main`
+- PR #62 merged to `main` at commit 52e80fe without waiting for approval
+- PR link: https://github.com/sassnarep3-star/Own9/pull/62
+- GitHub Pages deployment: status errored as of 2026-11-17 — all Pages builds since base commit 32ce9753 fail immediately ("Page build failed", 0ms duration). Site builds and verifies correctly locally (42 pages, 1882 source-linked rows, 313 tests). Pages infrastructure issue, not a site defect.
