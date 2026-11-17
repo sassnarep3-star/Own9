@@ -723,3 +723,18 @@ The implementation will report feature-minus-baseline proper-score differences w
 predeclared cluster uncertainty interval, reject mismatched or non-point-in-time rows, and remain
 ineligible when source/fold provenance is missing. It will not modify root navigation or claim
 an NFL feature effect. PR #51, #52, #58, #61 and #38 remain untouched.
+
+### `18c56676` rebase/conflict and non-overlap note (2026-11-17 UTC)
+
+`git pull --rebase origin main` advanced the base from `32ce975` to `52e80fe` while the claim
+was being pushed (PRs #60 and #62 had merged). The append-only `COORDINATION.md` tail conflicted
+when the first local claim was replayed. Resolution was a union: both upstream completion records
+were retained verbatim and this session's claim was appended; no upstream entry was dropped. The
+second local scope-correction record then replayed cleanly. `git diff --check` and a conflict-marker
+grep passed afterward.
+
+A new open PR #63 (`arena/2081c0fe-own9`, “Add executive decision front door”) was also checked.
+It covers `tools/build.py`, root navigation/pages, `executive.html`, `README.md`, and its own
+coordination record, overlapping the initial landing-page claim. It does not cover the re-scoped
+ablation utility (`engine/ablation.py`, `tests/test_ablation.py`, `docs/ABLATION_PROTOCOL.md`,
+`ablation-lab/**`); this session leaves PR #63 and all other open PRs untouched.
