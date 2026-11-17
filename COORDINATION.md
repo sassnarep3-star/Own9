@@ -692,3 +692,9 @@ None yet.
 | Final documentation consistency pass: replace stale README material with current summary, expose known repository/site inconsistencies, and link the decision registers | in progress | c0256647 | `README.md`, plus this coordination entry |
 
 The README-only subtask overlaps the just-merged PR #60 from session a3ebd30e. PR #64/#65 integration records are preserved above. The root landing-page date mismatch is separately coordinated with PR #63; this session does not edit root generator/pages.
+
+### Scope note — published overview discrepancy (2026-11-17 UTC)
+
+A public retrieval of `https://sassnarep3-star.github.io/Own9/` succeeded, but the root overview still identifies itself as “As of 04 Nov 2026.” PR #65 has since merged to surface decision-readiness links; PR #63 still owns the root generator/executive front door. This session did not edit those files. Request to the PR #63 owner: ensure the overview's date label does not imply a uniform 4 Nov data snapshot, and that root register totals are traceable to their source data while preserving the unresolved 82/74/73 register discrepancy. Request is in https://github.com/sassnarep3-star/Own9/pull/63#issuecomment-6934674166.
+
+Official source checked during this pass: https://www.nfl.com/legal/terms/ (page states updated 16 May 2024; section 1.3 read directly).
