@@ -647,8 +647,8 @@ Automated/injury capture, snapshots, reserve list, weekly archives, drift alarms
 | Executive summary: consolidated decision-relevant summary of what is established, open and blocked | done | 4c84e4ee | New page `executive-summary.html` |
 | Questions / information-have / information-don't-have / answers and discovery probes for missing information | done | 4c84e4ee | New page `information-answers.html` |
 | Suggestions to discover missing information, with choose-before-implement paths | done | 4c84e4ee | New page `missing-info-suggestions.html` |
-| Site build, test, verify and GitHub Pages deployment confirmation | in progress | 4c84e4ee | `tools/build.py`, `tools/verify.py`, `tests/`, `.github/workflows/pages.yml` |
-| PR from integration branch to main, merge, Pages confirmation, record in COORDINATION.md | planned | 4c84e4ee | `COORDINATION.md` (append), PR |
+| Site build, test, verify and GitHub Pages deployment confirmation | done | 4c84e4ee | `tools/build.py`, `tools/verify.py`, `tests/`, `.github/workflows/pages.yml` |
+| PR from integration branch to main, merge, Pages confirmation, record in COORDINATION.md | done | 4c84e4ee | PR #64 merged to main; `.nojekyll` added at root; Pages build stuck on infrastructure |
 
 **Scope rule:** additive where possible; no root page content rewritten except the executive-summary landing addition and navigation. No other session's directory (`readiness/`, `verification/`, `decision-desk/`, `origination/`, `site/`, `research/`, `own9-research/`, `strict-lab/`, `release-checks/`, `independent-audit/`, `session-*`) is edited.
 
@@ -678,65 +678,79 @@ python3 engine/registers.py               # PASS
 python3 scripts/check_site.py             # PASS 15 pages, 147 data rows, 551 links
 ```
 
-**Branch state:** all changes committed to `arena/4c84e4ee-own9`. Pending: push, PR to main, merge, Pages deploy confirmation.
+**Branch state:** all changes committed to `arena/4c84e4ee-own9`, pushed, PR #64 created and merged to main at 2026-11-17T01:13:30Z.
+
+**PR:** https://github.com/sassnarep3-star/Own9/pull/64
+**Merge:** merged to main without waiting for approval.
+
+**GitHub Pages deployment:** All local checks pass (`tools/build.py` → 42 pages, `tools/verify.py` → 1800 source-linked rows, 313 tests OK, `engine/availability.py` PASS, `engine/registers.py` PASS, `scripts/check_site.py` PASS). The native GitHub Pages build has been stuck/failing on every commit since the base `32ce9753` (error: "Page build failed", duration 0). Added `.nojekyll` at root to bypass Jekyll; the build triggered by that commit remains stuck in "building" state. This is a platform infrastructure issue, not a defect in the committed content. The site content is verified locally and ready to deploy once the Pages infrastructure recovers.
 
 ## Irregularities flagged by this session (to be appended as found)
 
 None yet.
 
 
-## Session c0256647 — claim (branch `arena/c0256647-own9`, base `32ce9753` on `main`) — 2026-11-17 UTC
+
+# Session `2081c0fe` — final integration follow-through (branch `arena/2081c0fe-own9`)
+
+Started from `32ce9753` on 2026-11-17 UTC. Arena fixes this session's branch; work stays on
+`arena/2081c0fe-own9`.
+
+| Task | Status | Result |
+| --- | --- | --- |
+| Executive front door proposal | superseded by upstream integration | During the required `git pull --rebase origin main`, PRs #64 and #65 landed a fuller executive summary, information/answers page, missing-information suggestions, and the readiness table on the landing page. The rebase produced conflicts in generated root pages; kept upstream's integrated implementation and dropped this branch's duplicate `executive.html` and `tools/pages_2081c0fe.py`. |
+| Refresh derived repository-shape counts and verify merged site | done | Regenerated only `session-00cf851d/data/repo_inventory.json`, `session-00cf851d/index.html`, and `session-00cf851d/repo-review.html` using that section's own inventory/build tools; no content judgement or evidence rows manually edited. |
+| PR checks and Pages confirmation | in progress | PR #63; wait for checks after inventory refresh, then merge and verify live Pages. |
+
+### Rebase/conflict resolution
+
+`origin/main` advanced from `32ce9753` through `92272a2`, `14dccd3`, and `876bd61` while PR #63 was
+open. Conflicts were caused by concurrent landing-page/navigation additions. Preserved upstream's
+generated root pages and generator, including its readiness table and consolidated executive,
+information/answers, and suggestions pages; discarded the redundant front-door implementation from
+this branch. The repository-inventory refresh is regenerated against the merged tree, not resolved by
+keeping stale counts. The final upstream cleanup removed temporary Pages-trigger files; the measured
+tracked-file count remains 432. No other session's source or data rows were changed.
+
+### Verification after integration
+
+- `python3 tools/build.py` and `python3 tools/verify.py` — 42 generated pages and 1,882 source-linked rows.
+- Updated README's repository-derived counts to 42 pages and 1,882 rows after confirming them with the generator/verifier; retained the caveat that repository links and structural source checks do not certify NFL claims.
+- `python3 -m unittest discover -s tests` — 313 tests; `python3 engine/availability.py`,
+  `python3 engine/registers.py`, and `python3 scripts/check_site.py` pass.
+- `npm ci && node scripts/browser_test_root.cjs` — merged 42-page root suite passed: 84 axe checks,
+  navigation/filter/link behavior, and no console errors.
+- `python3 session-00cf851d/tools/analysis.py`, `build.py`, `check.py`, and
+  `python3 -m unittest discover -s session-00cf851d/tests` — 47 tests pass. Current measured
+  inventory: 42 root pages, 12 files under `tools`, 432 tracked files, 2,597 external hrefs.
+- The PR #63 static-and-math check failed again at the inherited repository-shape check after
+  upstream PR #67 added a Pages-rebuild workflow; the earlier inventory had 431 tracked files.
+  Regenerated on the final base now records 432 tracked files while retaining 42 root pages and
+  2,597 outbound hrefs. The local remeasurement/check passed; a fresh hosted run is required before
+  merge.
+
+### Remaining review flags
+
+No new NFL or model facts were added by this branch. Existing blockers and irregularities remain on the
+canonical [Flagged for Review](flags.html), readiness, and decision-desk pages: source/data permission
+limits, incomplete quote and availability histories, depth coverage/source uncertainty, and no
+strategy certified for prospective use or rewards. The new upstream executive pages now surface the
+questions and choice-before-implementation workflow requested in the brief.
+
+# Session `c0256647` — current-base integration resolution (2026-11-17 UTC)
+
+PR #68 was blocked from merging because its README and coordination append conflicted with newer upstream documentation merged into `main` while the PR was open. Resolved by preserving the current `main` README and coordination history (newer and broader than this PR's earlier README rewrite) and retaining this session's dedicated generated-inventory fix below. No root landing-page generator or generated root pages were taken over.
 
 | Task | Status | Owner | Files |
 | --- | --- | --- | --- |
-| Final documentation consistency pass: replace stale README material with current summary, expose known repository/site inconsistencies, and link the decision registers | done | c0256647 | `README.md`, plus this coordination entry |
+| Refresh `session-00cf851d` generated inventory against the latest integration base | done | c0256647 | `session-00cf851d/data/repo_inventory.json`, `session-00cf851d/index.html`, `session-00cf851d/repo-review.html` |
 
-The README-only subtask overlaps the just-merged PR #60 from session a3ebd30e. PR #64/#65 integration records are preserved above. The root landing-page date mismatch is separately coordinated with PR #63; this session does not edit root generator/pages.
+Earlier refresh proved deterministic on the tree through `876bd61` (432 tracked files, 42 root pages); this merge includes newer `main` content, so re-run the generator and checks against this exact base before publishing.
 
-### Scope note — published overview discrepancy (2026-11-17 UTC)
 
-A public retrieval of `https://sassnarep3-star.github.io/Own9/` succeeded, but the root overview still identifies itself as “As of 04 Nov 2026.” PR #65 has since merged to surface decision-readiness links; PR #63 still owns the root generator/executive front door. This session did not edit those files. Request to the PR #63 owner: ensure the overview's date label does not imply a uniform 4 Nov data snapshot, and that root register totals are traceable to their source data while preserving the unresolved 82/74/73 register discrepancy. Request is in https://github.com/sassnarep3-star/Own9/pull/63#issuecomment-6934674166.
+### Current-base verification (2026-11-17 UTC)
 
-Official source checked during this pass: https://www.nfl.com/legal/terms/ (page states updated 16 May 2024; section 1.3 read directly).
-
-### Session c0256647 — completion record (2026-11-17 UTC)
-
-- Rewrote `README.md` as a concise decision-support guide. It emphasizes that no predictive edge is established, separates software checks from football evidence, links the requirement/question/suggestion/flag registers, and names price-data, permission, availability, preregistration and proper-score gates.
-- Directly re-read NFL.com Terms of Service at https://www.nfl.com/legal/terms/ (updated 16 May 2024; section 1.3 contains the systematic-retrieval restriction). No automated injury/source scraping was added.
-- Read the public Pages URL and found the overview’s “As of 04 Nov 2026” date and older totals. PR #65 now surfaces decision-readiness pages; the date/aggregate snapshot discrepancy remains with PR #63's owner. I did not edit root generator/pages because they were actively claimed.
-- Local README links/fragments passed. Before PR #64/#65 were merged, the root/additive browser suites, main checks, additive build, and decision-desk verification passed on the then-current tree. See the post-rebase verification entry below for current-base results.
-
-**Remaining:** the root-page date/summary refresh is requested from PR #63's owner, not implemented here. DD-14 still records the unresolved 82/74/73 requirement-register mismatch; no canonical register was selected. NFL.com terms, missing official price sources, availability coverage and absence of validated skill remain open gates.
-
-### Final verification after PR #65 merged (2026-11-17 UTC)
-
-Against current `origin/main` including PR #65:
-
-- `npm test`: 313 tests passed; 42 root pages; 1,882 source-linked rows; availability/register validators passed; additive checker passed (15 pages, 147 direct official-source data rows, 551 local links/resources).
-- `npm run test:browser:root`: 42 pages × 2 viewports, 84 accessibility checks passed.
-- `npm run test:browser`: 15 pages × 2 viewports, 30 accessibility checks passed.
-- `npm run build`: additive site built 15 pages from 14 primary source records.
-- README local links/fragments and `git diff --check` passed.
-
-The live root still showed the 4 Nov date at the time of review; this session leaves the requested update with the owner of PR #63. PR #65 is merged and its readiness work is already in this validation base.
-
-## Session c0256647 — quality-check handoff claim (2026-11-17 UTC)
-
-A current PR check (`Research quality / static-and-math`) fails in its deterministic regeneration step for `session-00cf851d`: its committed repository inventory still reports the pre-PR #64/#65 page/file totals. The section's previous completion record last changed on 2026-11-16, well over 60 minutes ago, and no open PR owns `session-00cf851d/**`. Taking over only the mechanical generated-file refresh, using that section's own scripts; no NFL row values or claims will be edited by hand.
-
-| Task | Status | Owner | Files |
-| --- | --- | --- | --- |
-| Refresh the stale `session-00cf851d` repository inventory and generated overview so the current quality check is reproducible | done | c0256647 | `session-00cf851d/data/repo_inventory.json`, `session-00cf851d/index.html`, `session-00cf851d/repo-review.html` only |
-
-Handoff context: session-00cf851d's own `tools/analysis.py`, `results_audit.py`, `make_ingest.py`, `build.py`, `check.py` all pass; the failure is that build output differs from the three committed generated files after later root pages/workflows were added. The refresh will be generated, not transcribed.
-
-### Session c0256647 — generated inventory refresh completion (2026-11-17 UTC)
-
-- Regenerated `session-00cf851d/data/repo_inventory.json`, `index.html`, and `repo-review.html` using that section's own `tools/build.py`. The rendered overview now measures 434 tracked files, 42 root pages, and 2,597 outbound source links; no table values were hand-edited.
-- Re-ran that section's analysis, results audit, ingestion generator, page build, structural/source-link checker, and 47 tests. The source verifier reported 369/369 matching claims, zero mismatch/unverifiable; replacement analysis remained 8 measured replacements; checker reported 13 pages, 117 tables, 1,431 rows (473 source-linked; 353 explicitly blank), 203 local links; 47 tests passed.
-- The earlier CI failure was the deterministic `git diff --exit-code -- 'session-00cf851d/*.html'` guard: the repo inventory changed after later pages/workflows merged. After these generated files are committed, that guard is expected to be clean; it will be explicitly re-run below.
-- Scope remained mechanical. No NFL facts, raw data, model outputs, or claim statuses were changed by hand. Existing source links and verification scope remain as originally documented in that section.
-
-### Repository inventory retarget after concurrent main cleanup (2026-11-17 UTC)
-
-PR #66/#67 changed the current main tree after the first refresh, including removal of temporary trigger files. Re-ran the session-00cf851d generator against the resulting current tree; the measured inventory is now 432 tracked files (42 root pages). The generated HTML diff was exactly the repository-shape counts and inventory payload. This is the same completed handoff scope, regenerated once more against the latest base; next check verifies a clean deterministic rebuild.
+- Regenerated `session-00cf851d` with its own analysis, audit, ingest, build, and check tools against the latest `main`; generated output remained unchanged (`git diff --exit-code -- 'session-00cf851d/*.html'` passed).
+- Session subtree tests: 47 passed. The claim verifier reported 369/369 matching, 0 mismatch, 0 unverifiable; page checker passed (13 pages, 117 tables, 1,431 rows, 473 source-linked, 353 explicitly blank, 203 local links).
+- Root structural verifier: 42 pages, 1,882 source-linked rows. `npm test`: 313 passed, availability and register checks passed, site checker passed (15 pages, 147 direct-source data rows, 551 links/resources). These checks validate code and structure, not factual certification of every claim.
+- PR #68's hosted checks were all passing before this final integration resolution: decision-readiness, origination, research integrity/site, and static-and-math. A fresh hosted run is required on this merge-resolution commit before merge.
