@@ -560,3 +560,11 @@ Fixed, and the class of defect is now pinned:
 page was still wrong. CI verifies structure; it does not look at the page. Retrieving the published
 URL after deployment found in one request what 1,164 checks did not. **Fetch the live page after every
 deploy and read a row, not just the status.**
+
+## Session `a3ebd30e` — claim (branch `arena/a3ebd30e-own9`, base `32ce9753`) — 2026-11-17 UTC
+
+| Task | Status | Owner | Files |
+| --- | --- | --- | --- |
+| Audit and correct the README executive summary's repository-derived page/test counts; rerun the repository's checks and record the scope of verification | in progress | a3ebd30e | `README.md`, `COORDINATION.md` |
+
+Scope is documentation-only: no new NFL data, model claims, or external-source verification. The source-of-truth for generated page count is `python3 tools/verify.py`; unit-test count is the root `python3 -m unittest discover -s tests` run. The external-content limitation of offline verification must remain explicit.
