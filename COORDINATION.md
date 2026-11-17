@@ -684,3 +684,21 @@ python3 scripts/check_site.py             # PASS 15 pages, 147 data rows, 551 li
 
 None yet.
 
+
+
+# Session `2081c0fe` — executive landing integration (current branch `arena/2081c0fe-own9`)
+
+Started: 2026-11-17 UTC. This is the platform-assigned integration branch, based on `32ce9753`.
+The required `session-<id>/<task>` branch naming is not used: Arena fixes the current branch and
+all work stays here.
+
+| Task | Status | Owner | Files |
+| --- | --- | --- | --- |
+| Add a concise executive front door linking the already-built canonical readiness, questions, suggestions, evidence, and flags; do not duplicate or invent evidence | in progress | 2081c0fe | `executive.html` (new), `tools/build.py` (nav/renderer), generated root `*.html` |
+| Validate the integrated root site and live Pages deployment; report remaining gates and irregularities | in progress | 2081c0fe | `COORDINATION.md` (append-only), `README.md` (append-only) |
+
+Scope note: `decision-desk/**`, `readiness/**`, `engine/**`, `data/**`, source registers, and all
+other task-owned trees remain untouched. This final integration consumes existing published pages;
+it does not claim unsupported NFL facts, produce a strategy result, capture restricted source data,
+or make owner decisions. User-requested separate session branches are incompatible with the fixed
+Arena branch, so this claim and its commits remain on `arena/2081c0fe-own9`.
