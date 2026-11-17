@@ -285,6 +285,17 @@ class Pages(unittest.TestCase):
                               f'the landing page states {num}, which no register produces: '
                               f'{text[:80]}')
 
+    def test_gate_page_counts_match_the_register(self):
+        body = html('readiness.html')
+        self.assertIn(f'{len(V.GATES)} gates', body)
+        self.assertIn(f'{V.gate_summary()["requirements_mapped"]} of {len(V.REQ)}', body)
+
+    def test_every_gate_has_a_cost_class(self):
+        # An empty cost class renders as a blank cell, which reads as "free".
+        for gate in V.GATES:
+            self.assertTrue(V._cost_class(gate[0]).strip(),
+                            f'{gate[0]} has no cost class, so its cost reads as zero')
+
     def test_flag_page_counts_match_the_register(self):
         body = html('flags.html')
         self.assertIn(f'{len(V.FLAGS)} irregularities', body)

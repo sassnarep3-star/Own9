@@ -223,13 +223,16 @@ def build() -> dict[str, str]:
 
     # ---------------------------------------------------------------- readiness
     read = []
-    read.append('<div class="notice"><strong>How to read this</strong><p>A gate is only useful if it '
-                'names the number that would clear it. Gates are ordered by the count of requirement '
+    read.append(f'<div class="notice"><strong>How to read this</strong><p>A gate is only useful if it '
+                f'names the number that would clear it. Gates are ordered by the count of requirement '
                 'lines they hold, so the top row is the one to work on first — unless it is the one '
                 'that cannot be worked on at all, which is exactly the point of publishing the cost '
-                'class beside it. One gate is different in kind from the rest: <b>G-10</b> is not a '
+                f'class beside it. One gate is different in kind from the rest: <b>G-10</b> is not a '
                 'missing measurement but a permission this project does not have. It is the only gate '
                 'here that a decision, rather than a purchase or a build, can close.</p></div>')
+    read.append(f'<p class="lead">{len(V.GATES)} gates, computed from the register: '
+                f'{V.gate_summary()["requirements_mapped"]} of {len(V.REQ)} requirement lines are '
+                f'mapped to at least one gate.</p>')
     read.append(t("readiness"))
     read.append(t("gates"))
     read.append(table(
@@ -262,8 +265,8 @@ def build() -> dict[str, str]:
         ]))
     pages["readiness.html"] = page(
         "readiness.html", "What blocks a decision,\nand the number that clears it.",
-        "Nine gates, the requirement lines each one holds, the measurement that would show it "
-        "cleared, and how much of it is a decision rather than a purchase.",
+        f"{len(V.GATES)} gates, the requirement lines each one holds, the measurement that would "
+        "show it cleared, and how much of it is a decision rather than a purchase.",
         "".join(read), "Readiness")
 
     # ---------------------------------------------------------------- requirements
