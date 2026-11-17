@@ -699,12 +699,12 @@ Started from `32ce9753` on 2026-11-17 UTC. Arena fixes this session's branch; wo
 
 ### Rebase/conflict resolution
 
-`origin/main` advanced from `32ce9753` to `92272a2` while PR #63 was open. Conflicts were caused by
-concurrent landing-page/navigation additions. Preserved upstream's generated root pages and generator,
-including its 82-row readiness table and three consolidated decision pages; discarded the redundant
-front-door implementation from this branch. The repository-inventory refresh is regenerated against
-the merged tree, not resolved by keeping stale counts. No other session's source or data rows were
-changed.
+`origin/main` advanced from `32ce9753` through `92272a2` to `14dccd3` while PR #63 was open. Conflicts
+were caused by concurrent landing-page/navigation additions. Preserved upstream's generated root
+pages and generator, including its readiness table and consolidated executive, information/answers,
+and suggestions pages; discarded the redundant front-door implementation from this branch. The
+repository-inventory refresh is regenerated against the merged tree, not resolved by keeping stale
+counts. No other session's source or data rows were changed.
 
 ### Verification after integration
 
@@ -712,15 +712,16 @@ changed.
 - Updated README's repository-derived counts to 42 pages and 1,882 rows after confirming them with the generator/verifier; retained the caveat that repository links and structural source checks do not certify NFL claims.
 - `python3 -m unittest discover -s tests` — 313 tests; `python3 engine/availability.py`,
   `python3 engine/registers.py`, and `python3 scripts/check_site.py` pass.
-- `npm ci && node scripts/browser_test_root.cjs` — root navigation, filters, links and accessibility
-  checks passed on the pre-rebase version (40 pages). The merged 42-page browser suite is pending
-  re-run after the final generated data refresh.
+- `npm ci && node scripts/browser_test_root.cjs` — merged 42-page root suite passed: 84 axe checks,
+  navigation/filter/link behavior, and no console errors.
 - `python3 session-00cf851d/tools/analysis.py`, `build.py`, `check.py`, and
   `python3 -m unittest discover -s session-00cf851d/tests` — 47 tests pass. Current measured
-  inventory: 42 root pages, 12 files under `tools`, 431 tracked files, 2,597 external hrefs.
-- The first PR #63 CI run failed at the inherited repository-shape check because generated inventory
-  was stale after concurrent integrations. This refresh is intended to clear that check. The local
-  remeasurement/check passed; a fresh hosted run is required before merge.
+  inventory: 42 root pages, 12 files under `tools`, 432 tracked files, 2,597 external hrefs.
+- The PR #63 static-and-math check failed again at the inherited repository-shape check after
+  upstream PR #67 added a Pages-rebuild workflow; the earlier inventory had 431 tracked files.
+  Regenerated on the final base now records 432 tracked files while retaining 42 root pages and
+  2,597 outbound hrefs. The local remeasurement/check passed; a fresh hosted run is required before
+  merge.
 
 ### Remaining review flags
 
