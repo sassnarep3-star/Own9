@@ -700,7 +700,9 @@ Started from `32ce9753` on 2026-11-17 UTC. Arena fixes this session's branch; wo
 | --- | --- | --- |
 | Executive front door proposal | superseded by upstream integration | During the required `git pull --rebase origin main`, PRs #64 and #65 landed a fuller executive summary, information/answers page, missing-information suggestions, and the readiness table on the landing page. The rebase produced conflicts in generated root pages; kept upstream's integrated implementation and dropped this branch's duplicate `executive.html` and `tools/pages_2081c0fe.py`. |
 | Refresh derived repository-shape counts and verify merged site | done | Regenerated only `session-00cf851d/data/repo_inventory.json`, `session-00cf851d/index.html`, and `session-00cf851d/repo-review.html` using that section's own inventory/build tools; no content judgement or evidence rows manually edited. |
-| PR checks and Pages confirmation | in progress | PR #63; wait for checks after inventory refresh, then merge and verify live Pages. |
+| PR checks and Pages confirmation | done | PR #63 merged; all four required PR checks passed. Live GitHub Pages was fetched after merge and contains the 42-page landing/readiness integration and the refreshed 432-file inventory. |
+
+**Merge:** [PR #63](https://github.com/sassnarep3-star/Own9/pull/63) merged to `main` at 2026-11-17T01:32:25Z as `f25091f90a232fe6f67594164ba6a147571ac3e8`. All four hosted PR checks passed. The serial custom Pages validation run #289 was cancelled by a higher-priority publication request, but direct post-merge retrieval confirmed the live site serves the updated root and inventory pages: [dashboard](https://sassnarep3-star.github.io/Own9/) and [repository review](https://sassnarep3-star.github.io/Own9/session-00cf851d/repo-review.html).
 
 ### Rebase/conflict resolution
 
@@ -723,11 +725,12 @@ tracked-file count remains 432. No other session's source or data rows were chan
 - `python3 session-00cf851d/tools/analysis.py`, `build.py`, `check.py`, and
   `python3 -m unittest discover -s session-00cf851d/tests` — 47 tests pass. Current measured
   inventory: 42 root pages, 12 files under `tools`, 432 tracked files, 2,597 external hrefs.
-- The PR #63 static-and-math check failed again at the inherited repository-shape check after
-  upstream PR #67 added a Pages-rebuild workflow; the earlier inventory had 431 tracked files.
-  Regenerated on the final base now records 432 tracked files while retaining 42 root pages and
-  2,597 outbound hrefs. The local remeasurement/check passed; a fresh hosted run is required before
-  merge.
+- The first PR #63 `static-and-math` attempts failed at the inherited repository-shape check because
+  the measured inventory became stale as PRs #64–#67 changed the generated site and workflow files.
+  Regenerated with the section's own tool on the final base: 432 tracked files, 42 root pages, and
+  2,597 outbound hrefs. Final PR #63 checks passed (including `static-and-math`); the inherited
+  subtree's 47 tests passed. The final root Pages content and refreshed inventory were also fetched
+  from the live site after merge.
 
 ### Remaining review flags
 
