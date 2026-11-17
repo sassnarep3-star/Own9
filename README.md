@@ -459,3 +459,4 @@ cross-links all three. Recorded as flag **DD-14** and owner decision **O06**.
 
 Status counts on this register: 16 met, 33 partial, 17 not started, 5 blocked by permission,
 2 rejected by design. No strategy on this desk has earned a stake, and no edge is claimed.
+trigger pages rebuild
