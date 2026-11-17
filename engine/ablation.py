@@ -275,6 +275,8 @@ def _validate_row(row, policy, registered_sources):
         'heldout_week_label': row['heldout_week'],
         'train_through_week': train_through,
         'training_cutoff_utc': training_cutoff,
+        'training_data_sha256': _sha256(row['training_data_sha256'], 'training_data_sha256'),
+        'kickoff_utc': kickoff,
         'outcome': outcome,
         'without': without,
         'with': with_availability,
@@ -318,14 +320,26 @@ def evaluate_availability_ablation(rows, policy):
     frozen_fits = {}
     for row in validated:
         key = row['heldout_week']
-        fit = (row['train_through_week'], row['training_cutoff_utc'])
+        fit = (row['train_through_week'], row['training_cutoff_utc'],
+               row['training_data_sha256'])
         if key in frozen_fits and frozen_fits[key] != fit:
-            raise ValueError('all fixtures in a held-out week must share one frozen training cutoff')
+            raise ValueError(
+                'all fixtures in a held-out week must share one frozen training cutoff and artifact')
         frozen_fits[key] = fit
     heldout_weeks = sorted({row['heldout_week'] for row in validated})
     training_ends = [frozen_fits[week][0] for week in heldout_weeks]
     if any(later < earlier for earlier, later in zip(training_ends, training_ends[1:])):
         raise ValueError('chronological holdout training windows cannot move backward')
+    training_cutoffs = [frozen_fits[week][1] for week in heldout_weeks]
+    if any(later < earlier for earlier, later in zip(training_cutoffs, training_cutoffs[1:])):
+        raise ValueError('chronological holdout training cutoffs cannot move backward')
+    kickoffs = {
+        week: [row['kickoff_utc'] for row in validated if row['heldout_week'] == week]
+        for week in heldout_weeks
+    }
+    if any(min(kickoffs[later]) <= max(kickoffs[earlier])
+           for earlier, later in zip(heldout_weeks, heldout_weeks[1:])):
+        raise ValueError('held-out week labels do not match chronological kickoff timestamps')
     if len(heldout_weeks) < frozen['minimum_test_weeks']:
         return {
             'status': 'blocked_insufficient_holdout_weeks',

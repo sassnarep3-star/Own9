@@ -194,6 +194,21 @@ class PairedAvailabilityAblationTests(unittest.TestCase):
         with self.assertRaisesRegex(ValueError, 'training windows cannot move backward'):
             evaluate_availability_ablation(rows, policy())
 
+    def test_chronological_training_cutoffs_cannot_move_backwards(self):
+        rows = synthetic_rows()
+        rows[2]['training_cutoff_utc'] = '2027-08-01T00:00:00Z'
+        with self.assertRaisesRegex(ValueError, 'training cutoffs cannot move backward'):
+            evaluate_availability_ablation(rows, policy())
+
+    def test_heldout_week_labels_must_follow_kickoff_times(self):
+        rows = synthetic_rows()
+        rows[1]['kickoff_utc'] = '2027-09-10T16:00:00Z'
+        rows[1]['availability_snapshot_utc'] = '2027-09-10T14:00:00Z'
+        rows[1]['forecast_recorded_utc'] = '2027-09-10T15:00:00Z'
+        rows[1]['training_cutoff_utc'] = '2027-09-10T13:00:00Z'
+        with self.assertRaisesRegex(ValueError, 'week labels do not match chronological kickoff'):
+            evaluate_availability_ablation(rows, policy())
+
     def test_snapshot_and_forecast_must_be_pre_kickoff(self):
         rows = synthetic_rows()
         rows[0]['availability_snapshot_utc'] = '2027-09-10T18:00:00Z'
@@ -252,6 +267,18 @@ class PairedAvailabilityAblationTests(unittest.TestCase):
         second_in_week['training_cutoff_utc'] = '2027-09-01T00:00:00Z'
         rows.append(second_in_week)
         with self.assertRaisesRegex(ValueError, 'share one frozen training cutoff'):
+            evaluate_availability_ablation(rows, policy())
+
+    def test_training_artifact_must_be_frozen_within_a_holdout_week(self):
+        rows = synthetic_rows()
+        second_in_week = deepcopy(rows[0])
+        second_in_week['fixture_id'] = 'second-synthetic-fixture-in-week'
+        second_in_week['input_snapshot_sha256'] = digest('second-fixture-input')
+        second_in_week['input_artifact_ref'] = 'test-fixture://synthetic-inputs/second'
+        second_in_week['forecast_record_sha256'] = digest('second-fixture-forecast')
+        second_in_week['training_data_sha256'] = digest('drifted-training-data')
+        rows.append(second_in_week)
+        with self.assertRaisesRegex(ValueError, 'share one frozen training cutoff and artifact'):
             evaluate_availability_ablation(rows, policy())
 
     def test_row_must_reference_the_registered_commit_and_target(self):
