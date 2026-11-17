@@ -719,3 +719,13 @@ Against current `origin/main` including PR #65:
 - README local links/fragments and `git diff --check` passed.
 
 The live root still showed the 4 Nov date at the time of review; this session leaves the requested update with the owner of PR #63. PR #65 is merged and its readiness work is already in this validation base.
+
+## Session c0256647 — quality-check handoff claim (2026-11-17 UTC)
+
+A current PR check (`Research quality / static-and-math`) fails in its deterministic regeneration step for `session-00cf851d`: its committed repository inventory still reports the pre-PR #64/#65 page/file totals. The section's previous completion record last changed on 2026-11-16, well over 60 minutes ago, and no open PR owns `session-00cf851d/**`. Taking over only the mechanical generated-file refresh, using that section's own scripts; no NFL row values or claims will be edited by hand.
+
+| Task | Status | Owner | Files |
+| --- | --- | --- | --- |
+| Refresh the stale `session-00cf851d` repository inventory and generated overview so the current quality check is reproducible | in progress | c0256647 | `session-00cf851d/data/repo_inventory.json`, `session-00cf851d/index.html`, `session-00cf851d/repo-review.html` only |
+
+Handoff context: session-00cf851d's own `tools/analysis.py`, `results_audit.py`, `make_ingest.py`, `build.py`, `check.py` all pass; the failure is that build output differs from the three committed generated files after later root pages/workflows were added. The refresh will be generated, not transcribed.
