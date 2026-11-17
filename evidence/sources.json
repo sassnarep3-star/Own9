@@ -719,8 +719,7 @@
   "status": "retrieved",
   "supports": "Official 2026 Week 11 schedule page: slate, kickoff dates/times and, for completed games, final scores with club records.",
   "scope": "Week 11 results and schedule only. No odds, totals or closing lines are published on this page. Scores transcribed verbatim into data/board/raw/week-11.txt."
- }
- ,
+ },
  {
   "id": "nfl-schedule-w8-byweek",
   "publisher": "NFL",
@@ -729,7 +728,8 @@
   "status": "retrieved",
   "supports": "Official 2026 Week 8 schedule page, read 2026-11-14: 14 games each shown as a link label with both scores and a winner indicator beside each club, plus that club's W-L-T record as printed on the card, and a 'Teams on Bye' block naming HOU, NO, NYG and SF.",
   "scope": "Scores and records only; no odds, no lines. Verified limitation: the bye block prints each club's record as of retrieval, not as of Week 8 (HOU 3-5, NO 3-5, NYG 5-3-1 and SF 7-1 displayed although their Week 9 game cards imply 2-5, 2-5, 4-2-1 and 6-1), so only the 28 game-card records are usable as a Week 8 baseline. Published as F28."
- },{
+ },
+ {
   "id": "nfl-schedule-w10-byweek",
   "publisher": "NFL",
   "url": "https://www.nfl.com/schedules/2026/by-week/week-10",
@@ -737,7 +737,8 @@
   "status": "retrieved",
   "supports": "Official 2026 Week 10 schedule page, read 2026-11-14: fourteen games listed - Commanders 24, Giants 21 FINAL on Thursday November 12, thirteen games scheduled November 15-16 with times and networks, and CHI, DEN, PHI and TB on bye.",
   "scope": "Results, status and records only. No odds or lines are published on this page. Thirteen of the fourteen games carry no score at retrieval, so a results feed built today cannot settle a Week 10 bet on them."
- },{
+ },
+ {
   "id": "nfl-gamecenter-w10-standings",
   "publisher": "NFL",
   "url": "https://www.nfl.com/games/commanders-at-giants-2026-reg-10",
@@ -745,7 +746,8 @@
   "status": "retrieved",
   "supports": "Game center for Commanders at Giants, Week 10 2026, read 2026-11-14: marks the game Final, gives location EAST RUTHERFORD, NJ and METLIFE STADIUM, links the official Game Book PDF, and prints the NFC East table NYG 5-3-1 .611, DAL 4-5 .444, WAS 3-5-1 .389, PHI 2-7 .222.",
   "scope": "Used as the second official rendering for the record and win-percentage cross-check of the Week 10 results feed. The quarter-score cells render as hidden placeholders in the retrieved text, so quarter splits are not claimed from this page."
- },{
+ },
+ {
   "id": "seahawks-depth-1cf",
   "publisher": "Seattle Seahawks (official club site)",
   "url": "https://www.seahawks.com/team/depth-chart/",
@@ -753,5 +755,77 @@
   "status": "retrieved",
   "supports": "Seahawks depth chart read again on 2026-11-14 in this session: QB Sam Darnold / Drew Lock / Jalen Milroe; LT Charles Cross / Josh Jones; LG Quenton Nelson / Anthony Bradford; DT Leonard Williams / Rylie Mills; plus the full offense, defense and special-teams tables.",
   "scope": "Column order is the published string order. The page text retrieved in this session (both chunks, title 'Seattle Seahawks') displays no 'unofficial depth chart' heading, unlike the Chiefs and Lions pages, so the self-labelled-unofficial caveat is recorded per club and not applied blanket-wide; see F29. Not a league-certified game-day depth record."
+ },
+ {
+  "id": "nfl-injury-live-2026-11-17",
+  "publisher": "NFL",
+  "url": "https://www.nfl.com/injuries/",
+  "checked": "2026-11-17",
+  "status": "retrieved",
+  "supports": "Week 10 2026 report read again on 2026-11-17 (chunks 0, 6 and 7 of 8). The header still reads 'Week 10 of the 2026 Season'. The Commanders, Giants, Patriots, Lions, Chiefs and Falcons tables match the retained 2026-11-16 capture row for row, including Kerby Joseph / Cade Mays / D.J. Reed all Out for Detroit and Lucas Patrick / Colson Yankoff Out for Washington. The Chargers and Ravens tables are present on the live page: the Ravens carry ten rows including Jaylinn Hawkins (Out) and Adam Randall (Questionable); the Chargers rows include Brenen Thompson (Doubtful), Isas Waxter (Out) and Kendall Williamson (Out).",
+  "scope": "A verification read, not a scheduled capture: NFL.com Terms section 1.3 forbids systematic retrieval without written consent, so no automated fetch is run by this project. Only the chunks listed were read on this date, so no league-wide total is claimed from this retrieval; totals come from the retained hashed capture."
+ },
+ {
+  "id": "nfl-news-lock-sea",
+  "publisher": "NFL Communications",
+  "url": "https://www.nfl.com/news/drew-lock-no-injury-designation-seahawks-raiders",
+  "checked": "2026-11-17",
+  "status": "retrieved",
+  "supports": "Headline as published in the NEWS module of the official Week 10 injury report page, read 2026-11-17: 'Drew Lock (elbow/oblique) has no injury designation, will start for Seahawks vs. Raiders'.",
+  "scope": "An announced starter, published by the league. It is not a depth chart, not a certified game-day lineup and not evidence about any other position. No string or tier is asserted from it."
+ },
+ {
+  "id": "nfl-news-darnold-sea",
+  "publisher": "NFL Communications",
+  "url": "https://www.nfl.com/news/sam-darnold-ruled-out-for-seahawks-week-10-game-vs-raiders-drew-lock-expected-to-start-again",
+  "checked": "2026-11-17",
+  "status": "retrieved",
+  "supports": "Headline in the NEWS module of the official Week 10 injury report page, read 2026-11-17: 'Sam Darnold ruled out for Seahawks' Week 10 game vs. Raiders; Drew Lock expected to start again'.",
+  "scope": "League news. 'Ruled out' is the article's wording; the report row for the player remains the designation of record."
+ },
+ {
+  "id": "nfl-news-willis-mccord-mia",
+  "publisher": "NFL Communications",
+  "url": "https://www.nfl.com/news/dolphins-place-qb-malik-willis-groin-on-injured-reserve-kyle-mccord-in-line-for-first-start",
+  "checked": "2026-11-17",
+  "status": "retrieved",
+  "supports": "Headline in the NEWS module of the official Week 10 injury report page, read 2026-11-17: 'Dolphins place QB Malik Willis (groin) on injured reserve; Kyle McCord in line for first start'.",
+  "scope": "Explains why Malik Willis carries no Week 10 report row: an injured-reserve player is off the weekly report, so absence from the report is not availability. 'In line for' is an expectation, not a named starter."
+ },
+ {
+  "id": "nfl-news-starts-nov-11",
+  "publisher": "NFL Communications",
+  "url": "https://www.nfl.com/news/nfl-news-roundup-latest-league-updates-from-wednesday-nov-11",
+  "checked": "2026-11-17",
+  "status": "retrieved",
+  "supports": "Headline in the NEWS module of the official Week 10 injury report page, read 2026-11-17: 'NFL news roundup: Browns to start QB Deshaun Watson vs. Texans; Cardinals' Carson Beck to start vs. Rams'.",
+  "scope": "Two announced quarterback starts for Week 10, dated by the article. No depth tier and no replacement quality is asserted."
+ },
+ {
+  "id": "nfl-news-jackson-bal",
+  "publisher": "NFL Communications",
+  "url": "https://www.nfl.com/news/nfl-news-roundup-latest-league-updates-from-friday-nov-13",
+  "checked": "2026-11-17",
+  "status": "retrieved",
+  "supports": "Headline in the NEWS module of the official Week 10 injury report page, read 2026-11-17: 'NFL news roundup: Ravens confirm Lamar Jackson expected to miss 6-10 weeks; Kenneth Walker questionable'.",
+  "scope": "Establishes an absence for a Baltimore quarterback without naming a replacement; the Ravens depth chart is not in this repository, so no replacement is published for BAL."
+ },
+ {
+  "id": "nfl-news-henderson-ne",
+  "publisher": "NFL Communications",
+  "url": "https://www.nfl.com/news/nfl-news-roundup-latest-league-updates-from-saturday-nov-14",
+  "checked": "2026-11-17",
+  "status": "retrieved",
+  "supports": "Headline in the NEWS module of the official Week 10 injury report page, read 2026-11-17: 'NFL news roundup: Patriots place RB TreVeyon Henderson (illness) on injured reserve'.",
+  "scope": "Corroborates the reserve-list row for the same player and date in decision-desk/data/transactions-2026-11.json."
+ },
+ {
+  "id": "nfl-news-nacua-lar",
+  "publisher": "NFL Communications",
+  "url": "https://www.nfl.com/news/rams-wr-puka-nacua-likely-to-be-placed-on-injured-reserve-with-turf-toe-sprained-mcl-and-pcl",
+  "checked": "2026-11-17",
+  "status": "retrieved",
+  "supports": "Headline in the NEWS module of the official Week 10 injury report page, read 2026-11-17: 'Rams WR Puka Nacua likely to be placed on injured reserve with turf toe, sprained MCL and PCL'.",
+  "scope": "'Likely' is the article's wording. The report row for Nacua carries a practice designation and no game status, which is the contradiction recorded on the team availability page."
  }
 ]

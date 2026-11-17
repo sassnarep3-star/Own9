@@ -48,7 +48,7 @@ KEEP_DATE_14 |= {'origination-engine.html','results.html','depth-of-replacement.
 # Navigation grouped by what the reader is trying to do, not by file order.
 NAV_GROUPS = [
     ('Decide', [('executive-summary.html','Executive summary'),('readiness/index.html','Decision readiness'),('decision-desk/index.html','Decision desk (73 rows)'),('decision.html','Decision brief'),('questions.html','Question register'),('information-answers.html','Information & answers'),('decisions-questions.html','Decision review'),('question-ledger.html','Question ledger'),('missing-information.html','Missing info')]),
-    ('Evidence', [('index.html','Overview'),('availability.html','Availability tracker'),('injuries.html','Injuries & depth'),('availability-evidence.html','Availability sources'),('lines.html','Own lines'),('results-feed.html','Results feed'),('origination.html','Market board'),('price-snapshots.html','Price snapshots'),('markets.html','W10 snapshots'),('replacement-depth.html','Replacement depth'),('replacement-chains.html','Replacement chains'),('data.html','Data requirements'),('sources.html','Sources')]),
+    ('Evidence', [('index.html','Overview'),('availability.html','Availability tracker'),('injuries.html','Injuries & depth'),('teams-availability.html','Team availability'),('availability-evidence.html','Availability sources'),('lines.html','Own lines'),('results-feed.html','Results feed'),('origination.html','Market board'),('price-snapshots.html','Price snapshots'),('markets.html','W10 snapshots'),('replacement-depth.html','Replacement depth'),('replacement-chains.html','Replacement chains'),('data.html','Data requirements'),('sources.html','Sources')]),
     ('Research', [('strategies.html','Strategies'),('correlations.html','Correlations'),('correlations-official.html','Correlations (official)'),('validation.html','Validation'),('leaderboard.html','Leaderboard'),('signal-staking.html','Signal vs staking'),('signal-and-staking.html','Signal vs staking (enforced)'),('requirements.html','Requirements'),('price-feed.html','Price & results'),('depth-correlations.html','Depth & correlation'),('demotion.html','Demotion gate'),('origination/index.html','Line origination desk')]),
     ('Origination', [('origination-engine.html','Origination engine'),('results.html','Verified results'),('depth-of-replacement.html','Depth of replacement'),('dependence.html','Dependence'),('signal-vs-staking.html','Signal / staking split')]),
     ('Review', [('suggestions.html','Suggestions'),('suggestion-costs.html','Suggestion costs'),('missing-info-suggestions.html','Suggestions for missing information'),('verification/index.html','Verification'),('flags.html','Flagged for review'),('audit.html','Repository audit'),('requirements-coverage.html','Requirements coverage')]),
@@ -880,6 +880,16 @@ def _decision_readiness_table():
             '<div class="table-wrap" tabindex="0" role="region" aria-label="Decision readiness — requirements at a glance — scrollable table">'
             '<table><caption class="sr-only">Decision readiness — requirements at a glance</caption>'
             f'<thead>{head}</thead><tbody>{"".join(body)}</tbody></table></div>')
+
+
+# Session 6669951c: team availability view, recomputed from the retained official capture,
+# plus the AV-01..AV-07 items appended to the review page. The module reads a generated
+# artefact only; it edits no other page's rows.
+_6669951c_source = (ROOT/'tools/pages_6669951c.py').read_text()
+_6669951c_body = _6669951c_source.split('"""', 2)[2]
+exec(compile(_6669951c_body, 'pages_6669951c.py', 'exec'),
+     {'page': page, 'table': table, 'row': row, 'e': e, 'PAGES': PAGES, 'ROOT': ROOT,
+      '__name__': 'pages_6669951c'})
 
 
 # Session 35bebd21: surface the decision-readiness register on the landing page,
