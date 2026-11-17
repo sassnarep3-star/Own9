@@ -721,3 +721,17 @@ Arena branch, so this claim and its commits remain on `arena/2081c0fe-own9`.
 ### Files
 
 `tools/pages_2081c0fe.py` (new page definition), `tools/build.py`, generated root pages, `executive.html`, this coordination record, and one appended README section. No task-owned data, model, or decision-desk tree was edited.
+
+### Integration CI remeasurement note (2026-11-17 UTC)
+
+PR #63's first `static-and-math` run failed only in its inherited `session-00cf851d` repository-shape
+section. The relevant validator steps (the root availability/register checks, source-linked page check,
+arithmetic/site tests, and release-checker tests) completed successfully; the failing step runs that
+subtree's repository inventory generator and requires its rendered audit to match. Final integration
+added one root page, one root generator module, and the navigation links, so the committed inventory
+was stale. Re-ran only that subtree's own measurement/build/check/test commands; it changed exactly
+`session-00cf851d/data/repo_inventory.json`, `session-00cf851d/index.html`, and
+`session-00cf851d/repo-review.html`, with the root-page count 39→40, tools count 12→13, tracked
+files 428→430, and external links 2445→2447. No judgement or evidence row was manually edited.
+This is the same generated remeasurement precedent described earlier in this file. Re-running the
+subtree check and 47 tests passed. The refresh will be included in PR #63 and CI will be re-run.
