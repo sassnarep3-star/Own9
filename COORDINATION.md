@@ -726,6 +726,13 @@ A current PR check (`Research quality / static-and-math`) fails in its determini
 
 | Task | Status | Owner | Files |
 | --- | --- | --- | --- |
-| Refresh the stale `session-00cf851d` repository inventory and generated overview so the current quality check is reproducible | in progress | c0256647 | `session-00cf851d/data/repo_inventory.json`, `session-00cf851d/index.html`, `session-00cf851d/repo-review.html` only |
+| Refresh the stale `session-00cf851d` repository inventory and generated overview so the current quality check is reproducible | done | c0256647 | `session-00cf851d/data/repo_inventory.json`, `session-00cf851d/index.html`, `session-00cf851d/repo-review.html` only |
 
 Handoff context: session-00cf851d's own `tools/analysis.py`, `results_audit.py`, `make_ingest.py`, `build.py`, `check.py` all pass; the failure is that build output differs from the three committed generated files after later root pages/workflows were added. The refresh will be generated, not transcribed.
+
+### Session c0256647 — generated inventory refresh completion (2026-11-17 UTC)
+
+- Regenerated `session-00cf851d/data/repo_inventory.json`, `index.html`, and `repo-review.html` using that section's own `tools/build.py`. The rendered overview now measures 434 tracked files, 42 root pages, and 2,597 outbound source links; no table values were hand-edited.
+- Re-ran that section's analysis, results audit, ingestion generator, page build, structural/source-link checker, and 47 tests. The source verifier reported 369/369 matching claims, zero mismatch/unverifiable; replacement analysis remained 8 measured replacements; checker reported 13 pages, 117 tables, 1,431 rows (473 source-linked; 353 explicitly blank), 203 local links; 47 tests passed.
+- The earlier CI failure was the deterministic `git diff --exit-code -- 'session-00cf851d/*.html'` guard: the repo inventory changed after later pages/workflows merged. After these generated files are committed, that guard is expected to be clean; it will be explicitly re-run below.
+- Scope remained mechanical. No NFL facts, raw data, model outputs, or claim statuses were changed by hand. Existing source links and verification scope remain as originally documented in that section.
