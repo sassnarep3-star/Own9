@@ -700,3 +700,26 @@ No raw-source data, official captures, model outputs, or other session-owned dat
 changed by this integration pass. The existing `readiness/`, `verification/`, and
 `decision-desk/` registers remain unchanged until this pass compares their remit and records an
 explicit integration disposition.
+
+## `18c56676` scope correction — avoid pending integration work (2026-11-17 UTC)
+
+Before editing any site/data files, the current GitHub open-PR list was checked. It contains PRs
+#51 (`tools/build.py`, root pages, `evidence/sources.json`, `README.md`, snapshots), #52 (a
+repository-review page), #58 (`verification/**`), #61 (a landing/publication and canonical-path
+audit), and #38 (a citation-coverage audit). In particular, #61 explicitly covers the root
+landing/publication route and canonical-register issue. The root landing/navigation integration
+claim above therefore **does not proceed** in this session; no root page, shared table, nav,
+source registry or README was edited. Its disposition is awaiting integration after those open
+scopes resolve, not an assertion that the work is done.
+
+This session is re-scoped to one independent, unclaimed requirement that changes no shared
+landing page or source data:
+
+| Task | Status | Owner | Files |
+| --- | --- | --- | --- |
+| Add a paired-score, chronological-holdout ablation utility for availability/personnel inputs; publish no empirical values without eligible paired forecasts | in progress | 18c56676 | `engine/ablation.py` (new), `tests/test_ablation.py` (new), `docs/ABLATION_PROTOCOL.md` (new), `ablation-lab/**` (new) |
+
+The implementation will report feature-minus-baseline proper-score differences with a
+predeclared cluster uncertainty interval, reject mismatched or non-point-in-time rows, and remain
+ineligible when source/fold provenance is missing. It will not modify root navigation or claim
+an NFL feature effect. PR #51, #52, #58, #61 and #38 remain untouched.
