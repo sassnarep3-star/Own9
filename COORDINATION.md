@@ -689,3 +689,50 @@ python3 scripts/check_site.py             # PASS 15 pages, 147 data rows, 551 li
 
 None yet.
 
+
+
+# Session `2081c0fe` — final integration follow-through (branch `arena/2081c0fe-own9`)
+
+Started from `32ce9753` on 2026-11-17 UTC. Arena fixes this session's branch; work stays on
+`arena/2081c0fe-own9`.
+
+| Task | Status | Result |
+| --- | --- | --- |
+| Executive front door proposal | superseded by upstream integration | During the required `git pull --rebase origin main`, PRs #64 and #65 landed a fuller executive summary, information/answers page, missing-information suggestions, and the readiness table on the landing page. The rebase produced conflicts in generated root pages; kept upstream's integrated implementation and dropped this branch's duplicate `executive.html` and `tools/pages_2081c0fe.py`. |
+| Refresh derived repository-shape counts and verify merged site | done | Regenerated only `session-00cf851d/data/repo_inventory.json`, `session-00cf851d/index.html`, and `session-00cf851d/repo-review.html` using that section's own inventory/build tools; no content judgement or evidence rows manually edited. |
+| PR checks and Pages confirmation | in progress | PR #63; wait for checks after inventory refresh, then merge and verify live Pages. |
+
+### Rebase/conflict resolution
+
+`origin/main` advanced from `32ce9753` through `92272a2`, `14dccd3`, and `876bd61` while PR #63 was
+open. Conflicts were caused by concurrent landing-page/navigation additions. Preserved upstream's
+generated root pages and generator, including its readiness table and consolidated executive,
+information/answers, and suggestions pages; discarded the redundant front-door implementation from
+this branch. The repository-inventory refresh is regenerated against the merged tree, not resolved by
+keeping stale counts. The final upstream cleanup removed temporary Pages-trigger files; the measured
+tracked-file count remains 432. No other session's source or data rows were changed.
+
+### Verification after integration
+
+- `python3 tools/build.py` and `python3 tools/verify.py` — 42 generated pages and 1,882 source-linked rows.
+- Updated README's repository-derived counts to 42 pages and 1,882 rows after confirming them with the generator/verifier; retained the caveat that repository links and structural source checks do not certify NFL claims.
+- `python3 -m unittest discover -s tests` — 313 tests; `python3 engine/availability.py`,
+  `python3 engine/registers.py`, and `python3 scripts/check_site.py` pass.
+- `npm ci && node scripts/browser_test_root.cjs` — merged 42-page root suite passed: 84 axe checks,
+  navigation/filter/link behavior, and no console errors.
+- `python3 session-00cf851d/tools/analysis.py`, `build.py`, `check.py`, and
+  `python3 -m unittest discover -s session-00cf851d/tests` — 47 tests pass. Current measured
+  inventory: 42 root pages, 12 files under `tools`, 432 tracked files, 2,597 external hrefs.
+- The PR #63 static-and-math check failed again at the inherited repository-shape check after
+  upstream PR #67 added a Pages-rebuild workflow; the earlier inventory had 431 tracked files.
+  Regenerated on the final base now records 432 tracked files while retaining 42 root pages and
+  2,597 outbound hrefs. The local remeasurement/check passed; a fresh hosted run is required before
+  merge.
+
+### Remaining review flags
+
+No new NFL or model facts were added by this branch. Existing blockers and irregularities remain on the
+canonical [Flagged for Review](flags.html), readiness, and decision-desk pages: source/data permission
+limits, incomplete quote and availability histories, depth coverage/source uncertainty, and no
+strategy certified for prospective use or rewards. The new upstream executive pages now surface the
+questions and choice-before-implementation workflow requested in the brief.

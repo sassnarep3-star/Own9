@@ -3,7 +3,7 @@
   {
    "area": "Root dashboard (generated)",
    "path": "(repository root)",
-   "files": 39,
+   "files": 42,
    "verified_against_official_source": null
   },
   {
@@ -113,7 +113,7 @@
    "note": "Measured locally on 2026-11-14. Not re-checked against an official source: the league publishes no retrievable archive of historical closing prices, so no comparison is possible."
   }
  ],
- "root_pages": 39,
+ "root_pages": 42,
  "root_page_names": [
   "audit.html",
   "availability-evidence.html",
@@ -127,12 +127,15 @@
   "dependence.html",
   "depth-correlations.html",
   "depth-of-replacement.html",
+  "executive-summary.html",
   "flags.html",
   "index.html",
+  "information-answers.html",
   "injuries.html",
   "leaderboard.html",
   "lines.html",
   "markets.html",
+  "missing-info-suggestions.html",
   "missing-information.html",
   "origination-engine.html",
   "origination.html",
@@ -155,6 +158,6 @@
   "suggestions.html",
   "validation.html"
  ],
- "external_href_count_across_root_pages": 2445,
- "tracked_files": 428
+ "external_href_count_across_root_pages": 2597,
+ "tracked_files": 432
 }
