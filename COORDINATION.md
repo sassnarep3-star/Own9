@@ -686,52 +686,46 @@ None yet.
 
 
 
-# Session `2081c0fe` — executive landing integration (current branch `arena/2081c0fe-own9`)
+# Session `2081c0fe` — final integration follow-through (branch `arena/2081c0fe-own9`)
 
-Started: 2026-11-17 UTC. This is the platform-assigned integration branch, based on `32ce9753`.
-The required `session-<id>/<task>` branch naming is not used: Arena fixes the current branch and
-all work stays here.
-
-| Task | Status | Owner | Files |
-| --- | --- | --- | --- |
-| Add a concise executive front door linking the already-built canonical readiness, questions, suggestions, evidence, and flags; do not duplicate or invent evidence | in progress | 2081c0fe | `executive.html` (new), `tools/build.py` (nav/renderer), generated root `*.html` |
-| Validate the integrated root site and live Pages deployment; report remaining gates and irregularities | in progress | 2081c0fe | `COORDINATION.md` (append-only), `README.md` (append-only) |
-
-Scope note: `decision-desk/**`, `readiness/**`, `engine/**`, `data/**`, source registers, and all
-other task-owned trees remain untouched. This final integration consumes existing published pages;
-it does not claim unsupported NFL facts, produce a strategy result, capture restricted source data,
-or make owner decisions. User-requested separate session branches are incompatible with the fixed
-Arena branch, so this claim and its commits remain on `arena/2081c0fe-own9`.
-
-## Session `2081c0fe` — completion (2026-11-17 UTC)
+Started from `32ce9753` on 2026-11-17 UTC. Arena fixes this session's branch; work stays on
+`arena/2081c0fe-own9`.
 
 | Task | Status | Result |
 | --- | --- | --- |
-| Executive front door and canonical review links | done | Added `executive.html`; linked first under Decide; generated all 40 root pages from `tools/build.py`. |
-| Verification and deployment handoff | done | Generator, structural verifier, unit suite, engine/register checks, site link checks, and root browser suite pass. |
+| Executive front door proposal | superseded by upstream integration | During the required `git pull --rebase origin main`, PRs #64 and #65 landed a fuller executive summary, information/answers page, missing-information suggestions, and the readiness table on the landing page. The rebase produced conflicts in generated root pages; kept upstream's integrated implementation and dropped this branch's duplicate `executive.html` and `tools/pages_2081c0fe.py`. |
+| Refresh derived repository-shape counts and verify merged site | done | Regenerated only `session-00cf851d/data/repo_inventory.json`, `session-00cf851d/index.html`, and `session-00cf851d/repo-review.html` using that section's own inventory/build tools; no content judgement or evidence rows manually edited. |
+| PR checks and Pages confirmation | in progress | PR #63; wait for checks after inventory refresh, then merge and verify live Pages. |
 
-### Implementation and verification
+### Rebase/conflict resolution
 
-- `executive.html` is a concise decision-first portal: readiness → information gaps → suggestion review → flags, with additional paths to the line-originating, availability, dependence, and leaderboard sections. It links to existing detailed tables rather than cloning or maintaining a competing register.
-- No NFL counts, new model estimates, or new strategy performance claims were added. All existing data-table rows remain source-linked under the root verifier. Page references to the NFL terms and the scoring method are direct links; neither is described as proof of an NFL edge.
-- Official pages fetched for link/label review on 2026-11-17 UTC: [NFL Terms](https://www.nfl.com/legal/terms/) (the page identifies itself as NFL.com Terms and Conditions, updated May 16, 2024; the relevant language is section 1.3) and [scikit-learn Brier score documentation](https://scikit-learn.org/stable/modules/generated/sklearn.metrics.brier_score_loss.html) (defines the score and calls it strictly proper). The executive page quotes neither and makes no claim that either source validates a particular strategy.
-- Checks: `python3 tools/build.py`; `python3 tools/verify.py` (40 fresh pages, 1,755 source-linked rows); `python3 -m unittest discover -s tests -v` (313 passed); `npm test`; `npm ci`; `node scripts/browser_test_root.cjs` (40 pages × 2 viewports, 80 axe checks; pass). `npm test` passed before browser dependencies were installed; its independent browser command first reported missing `playwright-core`, then passed after `npm ci`.
-- Remaining inherited irregularities are not resolved by this navigation-only integration: duplicated/overlapping registers and research implementations, unavailable or restricted acquisition routes, sparse/empty market quote data, unverified historical line provenance, incomplete depth coverage, and no strategy certified for prospective use or rewards. See the existing [Flagged for Review](flags.html) and detailed readiness/decision-desk pages.
+`origin/main` advanced from `32ce9753` to `92272a2` while PR #63 was open. Conflicts were caused by
+concurrent landing-page/navigation additions. Preserved upstream's generated root pages and generator,
+including its 82-row readiness table and three consolidated decision pages; discarded the redundant
+front-door implementation from this branch. The repository-inventory refresh is regenerated against
+the merged tree, not resolved by keeping stale counts. No other session's source or data rows were
+changed.
 
-### Files
+### Verification after integration
 
-`tools/pages_2081c0fe.py` (new page definition), `tools/build.py`, generated root pages, `executive.html`, this coordination record, and one appended README section. No task-owned data, model, or decision-desk tree was edited.
+- `python3 tools/build.py` and `python3 tools/verify.py` — 42 generated pages and 1,882 source-linked rows.
+- Updated README's repository-derived counts to 42 pages and 1,882 rows after confirming them with the generator/verifier; retained the caveat that repository links and structural source checks do not certify NFL claims.
+- `python3 -m unittest discover -s tests` — 313 tests; `python3 engine/availability.py`,
+  `python3 engine/registers.py`, and `python3 scripts/check_site.py` pass.
+- `npm ci && node scripts/browser_test_root.cjs` — root navigation, filters, links and accessibility
+  checks passed on the pre-rebase version (40 pages). The merged 42-page browser suite is pending
+  re-run after the final generated data refresh.
+- `python3 session-00cf851d/tools/analysis.py`, `build.py`, `check.py`, and
+  `python3 -m unittest discover -s session-00cf851d/tests` — 47 tests pass. Current measured
+  inventory: 42 root pages, 12 files under `tools`, 431 tracked files, 2,597 external hrefs.
+- The first PR #63 CI run failed at the inherited repository-shape check because generated inventory
+  was stale after concurrent integrations. This refresh is intended to clear that check. The local
+  remeasurement/check passed; a fresh hosted run is required before merge.
 
-### Integration CI remeasurement note (2026-11-17 UTC)
+### Remaining review flags
 
-PR #63's first `static-and-math` run failed only in its inherited `session-00cf851d` repository-shape
-section. The relevant validator steps (the root availability/register checks, source-linked page check,
-arithmetic/site tests, and release-checker tests) completed successfully; the failing step runs that
-subtree's repository inventory generator and requires its rendered audit to match. Final integration
-added one root page, one root generator module, and the navigation links, so the committed inventory
-was stale. Re-ran only that subtree's own measurement/build/check/test commands; it changed exactly
-`session-00cf851d/data/repo_inventory.json`, `session-00cf851d/index.html`, and
-`session-00cf851d/repo-review.html`, with the root-page count 39→40, tools count 12→13, tracked
-files 428→430, and external links 2445→2447. No judgement or evidence row was manually edited.
-This is the same generated remeasurement precedent described earlier in this file. Re-running the
-subtree check and 47 tests passed. The refresh will be included in PR #63 and CI will be re-run.
+No new NFL or model facts were added by this branch. Existing blockers and irregularities remain on the
+canonical [Flagged for Review](flags.html), readiness, and decision-desk pages: source/data permission
+limits, incomplete quote and availability histories, depth coverage/source uncertainty, and no
+strategy certified for prospective use or rewards. The new upstream executive pages now surface the
+questions and choice-before-implementation workflow requested in the brief.
