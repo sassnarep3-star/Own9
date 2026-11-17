@@ -736,3 +736,33 @@ canonical [Flagged for Review](flags.html), readiness, and decision-desk pages: 
 limits, incomplete quote and availability histories, depth coverage/source uncertainty, and no
 strategy certified for prospective use or rewards. The new upstream executive pages now surface the
 questions and choice-before-implementation workflow requested in the brief.
+
+## Session `7c0967ca` — readiness source-label audit and handoff (2026-11-17 UTC)
+
+### Claim and scope
+
+| Task | Status | Owner | Files |
+| --- | --- | --- | --- |
+| Re-audit the merged readiness-table source labels and record the ownership/deployment handoff | done for coordination | 7c0967ca | `COORDINATION.md` only |
+| Correct the source classification and add regression coverage | blocked at last ownership check by PR #51's overlapping renderer files; not claimed or edited | 7c0967ca | No implementation files claimed |
+
+### Finding and required correction
+
+PR [#65](https://github.com/sassnarep3-star/Own9/pull/65) merged as `92272a2776fc1789421db4c13cb2d0dc8cc73021`. Its landing renderer labels any nonblank `official_url` as “Official source.” The B-10 URL is `https://github.com/sassnarep3-star/Own9/commit/fe1067e`, which is project history, not an NFL source. The committed requirements CSV has 8 HTTPS `.nfl.com` URLs and 74 rows without an `.nfl.com` URL (host-only counts; no NFL source was fetched for this audit). Rows without such a URL link to the repository but do not visibly mark the official-source value unverified.
+
+Required when the static renderer scope is available: classify only NFL-host URLs as official NFL sources; keep B-10's GitHub commit as project evidence, distinct from official sourcing; leave missing/blank official-source values blank and visibly unverified; add regression coverage for B-10 and missing/blank values. Do not infer a source. `readiness/data/requirements.csv` was not modified.
+
+### File-scope handoff
+
+An earlier handoff pointed at PR #63 based on its then-current file list. PR #63 has since merged as `f25091f`; the merge contains coordination, README and `session-00cf851d/` inventory changes, not the landing renderer. At the last direct PR #51 query (2026-11-17T01:24:17Z), PR #51 was open and its changed files included `tools/build.py`, root `index.html`, and generated root HTML. Those are needed for the proper static fix. To honor non-overlapping file scopes, I did not edit them, create a test-only change that fails against the current renderer, or use client-side relabeling as a workaround. The implementation remains outstanding pending release or completion of that overlapping scope.
+
+### Merged PR #65 validation and Pages status
+
+- Both `Research quality / static-and-math` checks for PR #65 failed (runs `43994280327` and `43994274909`). Decision-readiness, origination, and research-integrity/site checks completed successfully.
+- Pages run `43994285923` for merge commit `92272a2` built successfully, but `deploy` and `report-build-status` were cancelled; the Pages API reported `status: errored`.
+- Later rebuilds also had successful build jobs but cancelled deploy/report jobs: `43994850342` (`14dccd3`) and `43995470494` (`14dc102`).
+- Latest observed run was `43995607496` for `876bd61`: its build and report-build-status jobs succeeded, while `deploy` remained in progress at the last poll. The Pages build API last reported `building`, not `built`. A subsequent GitHub API request hit the rate limit, so deployment success was not established.
+
+### Rebase/conflict resolution
+
+While rebasing this coordination-only record onto the newly advanced `main` (`f25091f`, PR #63), `COORDINATION.md` conflicted because upstream appended session `2081c0fe`'s final integration record. Resolution preserves upstream's full record and appends this consolidated session entry. The earlier local draft was superseded rather than duplicating upstream history; no other session's content was discarded.
