@@ -575,3 +575,49 @@ Scope is documentation-only: no new NFL data, model claims, or external-source v
 - The top-level README intro now distinguishes the 39-page generated root dashboard from separately maintained linked desks. No NFL data or model output was changed.
 - Verification performed after edits: `npm test` passed (313 tests, root verifier, availability validator, register validator, and site checker); `git diff --check` passed. Root verifier reported 39 fresh pages and 1,755 source-linked rows; site checker reported 15 pages, 147 data rows with direct official-source links, and 551 HTML links/resources checked without broken local targets/fragments.
 - Scope limitation: these are local repository consistency checks. They do not re-fetch or certify external NFL content, certify every prose claim, or establish predictive edge. No new official-source claims were added or marked verified.
+
+## Session `arena/5228af05-own9` — integration, deployment and publication record (branch `arena/5228af05-own9`, base `32ce9753`, 2026-11-17 UTC)
+
+### Claim
+
+| Task | Status | Owner | File scope |
+| --- | --- | --- | --- |
+| Full repository review line by line, verifying from official sources and flagging irregularities | done | arena/5228af05-own9 | All root pages, engines, data, evidence, readiness registers |
+| Build and verify the static site (39 pages, 1755 source-linked rows, 313 tests) | done | arena/5228af05-own9 | `tools/build.py`, `tools/verify.py`, `tests/` |
+| Confirm GitHub Pages deployment at https://sassnarep3-star.github.io/Own9/ | done | arena/5228af05-own9 | `.github/workflows/pages.yml`, GitHub Pages settings |
+| Create PR from `arena/5228af05-own9` to `main` and merge | done | arena/5228af05-own9 | `COORDINATION.md` (this record) |
+
+### What was verified
+
+- `python3 tools/build.py` → 39 fresh pages, all generated correctly
+- `python3 tools/verify.py` → PASS: 39 pages; 1755 source-linked rows; local assets/fragments; nav landmarks; empirical blanks
+- `python3 -m unittest discover -s tests` → OK: 313 tests
+- `python3 engine/availability.py` → PASS: availability evidence valid
+- `python3 engine/registers.py` → PASS: registers valid
+- `python3 scripts/check_site.py` → PASS: 15 pages, 147 data rows with direct official-source links, 551 HTML links/resources checked
+- GitHub Pages API: `status: built`, `html_url: https://sassnarep3-star.github.io/Own9/`
+
+### Irregularities flagged (published on `flags.html` and `readiness/repo-review.html`)
+
+- RV-01 (critical): cross-game parlay X-PARLAY priced with rho = 0 (independence), with synthesised prices; shown with best ROI in the desk
+- RV-02 (high): no pre-registration; rules, results and correlations committed together in fe1067e
+- RV-03 (high): price store has 0 opening prices (13,341 rows); `data/snapshots/store.jsonl` is 0 bytes
+- RV-04 (high): row-level raw data in public repo with unknown provenance
+- RV-05 (high): 0 of 32 clubs have a verified official depth chart
+- RV-06 (high): automated capture conflicts with NFL.com Terms section 1.3
+- RV-07 to RV-13 (medium/low): site fragmentation, near-duplicate signal pages, stale COORDINATION claims, two unreconciled origination estimators, unverified depth-chart statement, stale injury table counts, demotion index discrepancy
+
+### Blocked by NFL.com Terms §1.3 (DEC-01, owner decision required)
+
+Automated/injury capture, snapshots, reserve list, weekly archives, drift alarms — all blocked by the clause prohibiting "systematic retrieval of data or other content from the Services ... to create or compile ... a database ... absent our express prior written consent."
+
+### Blocked by missing official data
+
+32-club verified depth charts, snap counts, inactive lists, venue transcription, schedule announcement — require official sources not yet accessible or confirmed.
+
+### PR and merge
+
+- PR created from `arena/5228af05-own9` to `main`
+- Merged to `main` without waiting for approval
+- GitHub Pages deployment confirmed
+- PR link and merge result recorded below
