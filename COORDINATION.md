@@ -702,3 +702,22 @@ other task-owned trees remain untouched. This final integration consumes existin
 it does not claim unsupported NFL facts, produce a strategy result, capture restricted source data,
 or make owner decisions. User-requested separate session branches are incompatible with the fixed
 Arena branch, so this claim and its commits remain on `arena/2081c0fe-own9`.
+
+## Session `2081c0fe` — completion (2026-11-17 UTC)
+
+| Task | Status | Result |
+| --- | --- | --- |
+| Executive front door and canonical review links | done | Added `executive.html`; linked first under Decide; generated all 40 root pages from `tools/build.py`. |
+| Verification and deployment handoff | done | Generator, structural verifier, unit suite, engine/register checks, site link checks, and root browser suite pass. |
+
+### Implementation and verification
+
+- `executive.html` is a concise decision-first portal: readiness → information gaps → suggestion review → flags, with additional paths to the line-originating, availability, dependence, and leaderboard sections. It links to existing detailed tables rather than cloning or maintaining a competing register.
+- No NFL counts, new model estimates, or new strategy performance claims were added. All existing data-table rows remain source-linked under the root verifier. Page references to the NFL terms and the scoring method are direct links; neither is described as proof of an NFL edge.
+- Official pages fetched for link/label review on 2026-11-17 UTC: [NFL Terms](https://www.nfl.com/legal/terms/) (the page identifies itself as NFL.com Terms and Conditions, updated May 16, 2024; the relevant language is section 1.3) and [scikit-learn Brier score documentation](https://scikit-learn.org/stable/modules/generated/sklearn.metrics.brier_score_loss.html) (defines the score and calls it strictly proper). The executive page quotes neither and makes no claim that either source validates a particular strategy.
+- Checks: `python3 tools/build.py`; `python3 tools/verify.py` (40 fresh pages, 1,755 source-linked rows); `python3 -m unittest discover -s tests -v` (313 passed); `npm test`; `npm ci`; `node scripts/browser_test_root.cjs` (40 pages × 2 viewports, 80 axe checks; pass). `npm test` passed before browser dependencies were installed; its independent browser command first reported missing `playwright-core`, then passed after `npm ci`.
+- Remaining inherited irregularities are not resolved by this navigation-only integration: duplicated/overlapping registers and research implementations, unavailable or restricted acquisition routes, sparse/empty market quote data, unverified historical line provenance, incomplete depth coverage, and no strategy certified for prospective use or rewards. See the existing [Flagged for Review](flags.html) and detailed readiness/decision-desk pages.
+
+### Files
+
+`tools/pages_2081c0fe.py` (new page definition), `tools/build.py`, generated root pages, `executive.html`, this coordination record, and one appended README section. No task-owned data, model, or decision-desk tree was edited.
