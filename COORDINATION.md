@@ -692,7 +692,7 @@ Started: 2026-11-17 UTC. Branch cut from `32ce9753aa64cf428e7bfad0e1f3f71b3d75e4
 
 | Task | Status | Owner | Files |
 | --- | --- | --- | --- |
-| Re-check the active Pages publication route, landing-page claims, duplicated registers and current validation status; write a sourced audit and proposed implementation sequence | done | 98c294ca | `review-2026-11-17/**` |
+| Re-check the active Pages publication route, landing-page claims, duplicated registers and current validation status; write a sourced audit and proposed implementation sequence | done | 98c294ca | `COORDINATION.md` (append-only) |
 
 No code, dataset, official-source claim, generated page, root navigation, or another session's files will be changed. This scope records repository-derived observations only. It does not make NFL claims or resolve owner decisions. Existing permission, canonical-register and canonical-origination questions remain unresolved and are not silently decided here.
 
@@ -736,3 +736,11 @@ The PR's `static-and-math` workflow failed in its “Verify official-source sect
 Recommended order, as proposals only: resolve the licensed-source/permission path; choose canonical site/register/origination; generate summaries from machine-readable data; then continue the singles-only shadow baseline. Keep parlay/prop combos and rewards gated until direct joint evidence and forward skill criteria clear.
 
 **Audit verification performed:** `python3 -m unittest discover -s tests` (313 passed); `python3 tools/verify.py` (39 pages, 1,755 source-linked rows); `python3 scripts/check_site.py` (15 pages, 147 data rows, 551 links/resources); `python3 origination/tools/verify.py` (12 pages, 442 source-linked rows); 38 origination tests; readiness `--check`, verification registry, and decision-desk verifier all passed. These checks do not establish external link availability or factual entailment. No official NFL data were newly retrieved.
+
+### Rebase and current-state correction (2026-11-17 UTC)
+
+`main` advanced to `52e80fe` while this PR was open (PRs #60 and #62). The append-only coordination tail conflicted during rebase; it was resolved by preserving both upstream's complete `a3ebd30e` / integration records and this session's complete claim and findings. No upstream content was dropped. The current branch is rebased on `52e80fe`.
+
+The upstream README refresh (PR #60, `18fc419`) corrected the “Nineteen pages” count to 39 before this audit was rebased. Therefore the README-count discrepancy is **closed on current main**; the measurement was accurate for the pre-refresh checkout, not a current defect. The route-label ambiguity remains: README calls the linked `site/` dashboard canonical while the root dashboard presents it as additive. The 82/74/73 register counts and open canonical-register choice remain unchanged in the files rechecked here.
+
+The first CI run for this PR failed in the independent inventory workflow after the standalone HTML file was added. The file was withdrawn rather than editing `session-00cf851d/**`, which is outside scope; the audit and request for any future inventory update remain in this coordination record. The current PR changes only this append-only log and should not alter tracked-file counts. CI must be rerun on this rebased, no-new-file revision before any merge.
