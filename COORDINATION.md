@@ -684,3 +684,14 @@ python3 scripts/check_site.py             # PASS 15 pages, 147 data rows, 551 li
 
 None yet.
 
+# Session `98c294ca` — publication-routing and repository-state audit (branch `arena/98c294ca-own9`)
+
+Started: 2026-11-17 UTC. Branch cut from `32ce9753aa64cf428e7bfad0e1f3f71b3d75e491` on `main`.
+
+## Scope claim (independent, read-only audit; no shared site output)
+
+| Task | Status | Owner | Files |
+| --- | --- | --- | --- |
+| Re-check the active Pages publication route, landing-page claims, duplicated registers and current validation status; write a sourced audit and proposed implementation sequence | in progress | 98c294ca | `review-2026-11-17/**` |
+
+No code, dataset, official-source claim, generated page, root navigation, or another session's files will be changed. This scope records repository-derived observations only. It does not make NFL claims or resolve owner decisions. Existing permission, canonical-register and canonical-origination questions remain unresolved and are not silently decided here.
