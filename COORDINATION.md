@@ -738,3 +738,10 @@ It covers `tools/build.py`, root navigation/pages, `executive.html`, `README.md`
 coordination record, overlapping the initial landing-page claim. It does not cover the re-scoped
 ablation utility (`engine/ablation.py`, `tests/test_ablation.py`, `docs/ABLATION_PROTOCOL.md`,
 `ablation-lab/**`); this session leaves PR #63 and all other open PRs untouched.
+
+### `18c56676` scope extension — isolated CI checks (2026-11-17 UTC)
+
+The ablation task also adds the new, path-filtered workflow `.github/workflows/ablation.yml`.
+It installs only the locked browser-test dependencies, runs `tests.test_ablation`, checks the
+standalone page's official-source rows/local links, and runs the two-viewport accessibility
+smoke test. No existing workflow or shared site navigation is modified.
