@@ -707,3 +707,15 @@ Official source checked during this pass: https://www.nfl.com/legal/terms/ (page
 - Local README links/fragments passed. Before PR #64/#65 were merged, the root/additive browser suites, main checks, additive build, and decision-desk verification passed on the then-current tree. See the post-rebase verification entry below for current-base results.
 
 **Remaining:** the root-page date/summary refresh is requested from PR #63's owner, not implemented here. DD-14 still records the unresolved 82/74/73 requirement-register mismatch; no canonical register was selected. NFL.com terms, missing official price sources, availability coverage and absence of validated skill remain open gates.
+
+### Final verification after PR #65 merged (2026-11-17 UTC)
+
+Against current `origin/main` including PR #65:
+
+- `npm test`: 313 tests passed; 42 root pages; 1,882 source-linked rows; availability/register validators passed; additive checker passed (15 pages, 147 direct official-source data rows, 551 local links/resources).
+- `npm run test:browser:root`: 42 pages × 2 viewports, 84 accessibility checks passed.
+- `npm run test:browser`: 15 pages × 2 viewports, 30 accessibility checks passed.
+- `npm run build`: additive site built 15 pages from 14 primary source records.
+- README local links/fragments and `git diff --check` passed.
+
+The live root still showed the 4 Nov date at the time of review; this session leaves the requested update with the owner of PR #63. PR #65 is merged and its readiness work is already in this validation base.
