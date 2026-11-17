@@ -1,0 +1,94 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Independent repository and publication-route audit for Own9 NFL Research, 17 November 2026.">
+  <title>Publication and repository audit · Own9</title>
+  <style>
+    :root{color-scheme:light;--ink:#172432;--muted:#526273;--line:#d8e0e8;--paper:#fff;--wash:#f3f6f9;--blue:#135c9e;--amber:#80510b;--red:#8b3131}
+    *{box-sizing:border-box}body{margin:0;background:var(--wash);color:var(--ink);font:16px/1.55 system-ui,-apple-system,"Segoe UI",sans-serif}
+    main{max-width:1100px;margin:0 auto;padding:2rem 1rem 4rem}.top{border-bottom:1px solid var(--line);padding-bottom:1.25rem;margin-bottom:1.5rem}
+    .eyebrow{font-size:.8rem;font-weight:750;letter-spacing:.1em;color:var(--blue);text-transform:uppercase}h1{font-size:clamp(2rem,5vw,3.4rem);line-height:1.08;margin:.5rem 0}h2{margin:2rem 0 .5rem;font-size:1.45rem}
+    .lede{font-size:1.12rem;max-width:75ch;color:#344556}.callout{background:#fff8e8;border-left:4px solid #c88918;padding:1rem 1.1rem;border-radius:.25rem}
+    .cards{display:grid;grid-template-columns:repeat(auto-fit,minmax(210px,1fr));gap:.75rem;margin:1rem 0}.card{background:var(--paper);border:1px solid var(--line);border-radius:.5rem;padding:1rem}.card b{display:block;font-size:1.4rem}.card small{color:var(--muted)}
+    .table-wrap{overflow-x:auto;background:var(--paper);border:1px solid var(--line);border-radius:.5rem}table{border-collapse:collapse;width:100%;min-width:800px}caption{text-align:left;padding:.8rem;font-weight:700}th,td{text-align:left;vertical-align:top;padding:.8rem;border-top:1px solid var(--line)}th{background:#edf2f7}td:first-child{font-weight:700;width:15%}a{color:var(--blue);text-underline-offset:2px}a:focus-visible{outline:3px solid #e1a22c;outline-offset:3px}.badge{display:inline-block;border-radius:2rem;padding:.1rem .55rem;font-size:.78rem;font-weight:700;background:#f6ead2;color:var(--amber)}
+    code{background:#edf2f7;border-radius:.2rem;padding:.1rem .3rem}pre{background:#172432;color:#f1f5f9;padding:1rem;border-radius:.5rem;overflow-x:auto}li{margin:.45rem 0}.small{color:var(--muted);font-size:.93rem}footer{margin-top:2.5rem;border-top:1px solid var(--line);padding-top:1rem;color:var(--muted);font-size:.9rem}
+  </style>
+</head>
+<body>
+<main>
+  <header class="top">
+    <div class="eyebrow">Own9 · Independent repository review</div>
+    <h1>Publication route &amp; decision-readiness audit</h1>
+    <p class="lede">A bounded review of the checked-in site structure, repository registers, and validation commands as of <time datetime="2026-11-17">17 November 2026 UTC</time>. This page records repository facts and unresolved gates; it does not certify new NFL facts or claim model skill.</p>
+    <p><a href="../index.html">← Main project dashboard</a> · <a href="../flags.html">Flagged for Review</a> · <a href="../suggestions.html">Suggestions</a> · <a href="../questions.html">Questions</a></p>
+  </header>
+
+  <div class="callout"><strong>Executive summary.</strong> Core static-site, source-link, integrity, and arithmetic test suites pass in this checkout. The largest decision-making risk is not an untested formula: it is that several overlapping dashboards/registers coexist, with no canonical designation recorded. The README's stated page count also does not match the current root page count. No new NFL data were fetched for this audit. A genuine edge, validated strategy, usable opening-price history, and funded rewards are not established by passing software tests.</div>
+
+  <section aria-labelledby="snapshot">
+    <h2 id="snapshot">Measured repository snapshot</h2>
+    <div class="cards">
+      <div class="card"><b>39</b><small>root-level HTML pages, counted with the command below</small></div>
+      <div class="card"><b>15</b><small>HTML pages under the separate <code>site/</code> dashboard</small></div>
+      <div class="card"><b>313</b><small>root Python tests passed in this checkout</small></div>
+      <div class="card"><b>1,755</b><small>source-linked root rows accepted by the structural verifier</small></div>
+    </div>
+    <p class="small">Counts are local repository measurements, not NFL statistics. The root and nested dashboard are both present: the root index calls the nested dashboard additive and the README also describes <code>site/</code> as canonical. The nested dashboard labels itself as a dated research snapshot; it is not represented here as a live data feed.</p>
+  </section>
+
+  <section aria-labelledby="findings">
+    <h2 id="findings">Findings and recommended disposition</h2>
+    <div class="table-wrap" tabindex="0" role="region" aria-label="Audit findings, horizontally scrollable">
+      <table>
+        <caption>Repository findings · source links point to the inspected project records, except where an official NFL source is explicitly identified</caption>
+        <thead><tr><th scope="col">ID / priority</th><th scope="col">Finding</th><th scope="col">Evidence checked</th><th scope="col">Recommended next action</th><th scope="col">Source</th></tr></thead>
+        <tbody>
+          <tr><td>RA-01<br><span class="badge">High · governance</span></td><td>Three requirement registers publish different totals: 82 rows in readiness, 74 in verification, and 73 in decision-desk. The repository itself records that the canonical choice is unresolved.</td><td>Counted the readiness CSV (82) and decision-desk JSON (73); the verification register and decision-desk question document the 74-row count and the unresolved choice. No rows were merged or silently dropped.</td><td>Choose one canonical register; label the others historical/superseded or reconcile them with an auditable mapping. Do not use any count as a project-wide total until then.</td><td><a href="https://github.com/sassnarep3-star/Own9/blob/main/readiness/data/requirements.csv">Readiness CSV</a> · <a href="https://github.com/sassnarep3-star/Own9/blob/main/verification/registry.py">Verification register</a> · <a href="https://github.com/sassnarep3-star/Own9/blob/main/decision-desk/questions.html">Decision desk O06</a></td></tr>
+          <tr><td>RA-02<br><span class="badge">High · publication</span></td><td>The README says “Nineteen pages”; this checkout contains 39 root HTML pages. There is also a separate 15-page dashboard under <code>site/</code>. Navigation/landing copy therefore needs an explicit canonical-route statement and current generated counts.</td><td>Counted root and nested HTML files. Read the root dashboard's “Related sections” table and README's live-dashboard/canonical-dashboard descriptions.</td><td>Have the eventual integration owner designate the root landing page or the nested lab as canonical, and generate page counts from the build rather than maintaining them manually. Preserve clearly dated snapshots as such.</td><td><a href="https://github.com/sassnarep3-star/Own9/blob/main/README.md">README</a> · <a href="https://github.com/sassnarep3-star/Own9/blob/main/index.html">Root landing page</a> · <a href="https://github.com/sassnarep3-star/Own9/tree/main/site">Nested dashboard</a></td></tr>
+          <tr><td>RA-03<br><span class="badge">High · model evidence</span></td><td>Software verification is not empirical validation. Passing tests establish arithmetic and structural rules, not NFL predictive skill, profitable execution, or a reward-qualified strategy.</td><td>Ran the root tests and both root/origination structural verifiers. Their stated scope is internal consistency/source-link structure, not external factual entailment or strategy performance.</td><td>Keep leaderboard reward eligibility locked until frozen pre-registration, point-in-time prices/results, untouched chronological evaluation, benchmark-relative proper scores with uncertainty, and prospective execution gates are all evidenced.</td><td><a href="https://github.com/sassnarep3-star/Own9/blob/main/README.md">Project executive summary</a> · <a href="https://github.com/sassnarep3-star/Own9/blob/main/tools/verify.py">Root verifier</a> · <a href="https://github.com/sassnarep3-star/Own9/blob/main/origination/tools/verify.py">Origination verifier</a></td></tr>
+          <tr><td>RA-04<br><span class="badge">Blocking · permission</span></td><td>Automated, systematic NFL-site capture is already recorded as blocked pending permission or a licensed route. This audit did not build or run a scraper and did not re-fetch the terms page.</td><td>Checked the existing decision register's citation and the direct NFL terms URL it cites. The stated constraint is treated as a previously documented gate, not a new legal opinion.</td><td>Do not automate NFL.com collection unless the owner records express prior written consent or selects a permitted licensed source. If no route is available, re-scope the requirements rather than weakening the gate.</td><td><a href="https://www.nfl.com/legal/terms/">NFL.com Terms of Service (official source)</a> · <a href="https://github.com/sassnarep3-star/Own9/blob/main/decision-desk/requirements.html">Decision-desk permission gates</a></td></tr>
+          <tr><td>RA-05<br><span class="badge">High · architecture</span></td><td>The project contains two origination implementations and multiple overlapping question/suggestion/availability views. Existing project records themselves identify the canonical implementation and navigation consolidation as open decisions.</td><td>Reviewed the root landing-page section directory and the decision-desk questions/suggestions that describe the duplication. Did not edit or privilege either implementation.</td><td>Resolve the canonical model/data input first, then select one per-topic view and add dated redirects or “superseded” notices. Consolidation should preserve provenance and flags.</td><td><a href="https://github.com/sassnarep3-star/Own9/blob/main/decision-desk/questions.html">Open decisions</a> · <a href="https://github.com/sassnarep3-star/Own9/blob/main/decision-desk/suggestions.html">Suggested consolidation paths</a> · <a href="https://github.com/sassnarep3-star/Own9/blob/main/origination/flagged.html">Origination flags</a></td></tr>
+        </tbody>
+      </table>
+    </div>
+  </section>
+
+  <section aria-labelledby="order">
+    <h2 id="order">Suggested decision sequence</h2>
+    <ol>
+      <li><strong>Set the source-permission policy first.</strong> Prefer a licensed feed or documented consent; stop short of systematic scraping otherwise. Keep the uncertainty visible.</li>
+      <li><strong>Pick the canonical publication and data registers.</strong> Set one canonical landing route, one requirement register, and one origination implementation. Record mappings before marking alternatives superseded.</li>
+      <li><strong>Refresh derived documentation automatically.</strong> Build page counts and status summaries from their machine-readable inputs; test that displayed values match.</li>
+      <li><strong>Continue with the lowest-risk model path.</strong> Keep singles-only shadow forecasts as the baseline. Keep parlays and prop combos ineligible until direct joint-evidence and settlement-rule gates pass.</li>
+      <li><strong>Do not promote a leaderboard by ROI.</strong> Require pre-registration and chronological holdouts, proper-score skill with uncertainty, benchmark controls, captured executable prices, and forward evaluation before rewards.</li>
+    </ol>
+    <p>These are recommendations, not owner decisions. Existing <a href="../suggestions.html">suggestions</a> and <a href="../questions.html">decision questions</a> remain the review surfaces.</p>
+  </section>
+
+  <section aria-labelledby="checks">
+    <h2 id="checks">Verification performed</h2>
+    <p>Commands run against this checkout on 17 November 2026 UTC:</p>
+    <pre><code>python3 -m unittest discover -s tests -v
+python3 tools/verify.py
+python3 scripts/check_site.py
+python3 origination/tools/verify.py
+python3 -m unittest discover -s origination/tests
+python3 readiness/tools/build.py --check
+python3 verification/registry.py
+python3 decision-desk/tools/verify.py</code></pre>
+    <ul>
+      <li>Root unit tests: 313 passed.</li>
+      <li>Root verifier: 39 fresh pages, 1,755 source-linked rows, local assets/fragments and navigation checks passed.</li>
+      <li>Local site checker: 15 pages, 147 data rows and 551 HTML links/resources passed.</li>
+      <li>Origination tests: 38 passed; its verifier accepted 12 pages and 442 source-linked rows.</li>
+      <li>Readiness, verification-register and decision-desk integrity commands completed successfully.</li>
+    </ul>
+    <p class="small"><strong>Limits:</strong> these commands do not validate external reachability or prove a linked page entails a specific claim. No official NFL injury, schedule, game-book, odds, or terms page was newly retrieved during this audit. The official Terms link above is carried from the repository's previously documented source register.</p>
+  </section>
+
+  <footer>Own9 repository audit · 2026-11-17 UTC · Repository-derived findings are not NFL data or betting advice.</footer>
+</main>
+</body>
+</html>

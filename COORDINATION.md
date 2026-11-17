@@ -692,6 +692,29 @@ Started: 2026-11-17 UTC. Branch cut from `32ce9753aa64cf428e7bfad0e1f3f71b3d75e4
 
 | Task | Status | Owner | Files |
 | --- | --- | --- | --- |
-| Re-check the active Pages publication route, landing-page claims, duplicated registers and current validation status; write a sourced audit and proposed implementation sequence | in progress | 98c294ca | `review-2026-11-17/**` |
+| Re-check the active Pages publication route, landing-page claims, duplicated registers and current validation status; write a sourced audit and proposed implementation sequence | done | 98c294ca | `review-2026-11-17/**` |
 
 No code, dataset, official-source claim, generated page, root navigation, or another session's files will be changed. This scope records repository-derived observations only. It does not make NFL claims or resolve owner decisions. Existing permission, canonical-register and canonical-origination questions remain unresolved and are not silently decided here.
+
+## Session `98c294ca` — completion record (2026-11-17 UTC)
+
+**Status:** done. Added `review-2026-11-17/index.html`, a standalone, responsive audit page under the assigned isolated scope. No root page, navigation, input dataset, model, or prior session's file was edited.
+
+### Rechecked repository facts and findings
+
+- The root contains 39 top-level HTML files; `site/` contains 15. The README's introductory “Nineteen pages” statement does not match the current root count. The root landing page describes `site/` as an additive dashboard; the README also calls it canonical. The nested page is explicitly dated as a snapshot, so this audit does not label its date as an error.
+- Requirement totals remain inconsistent: 82 in `readiness/data/requirements.csv`, 74 as documented by `verification/registry.py`/`verification/requirements.html`, and 73 in `decision-desk/data/requirements.json`. The decision desk already logs the canonical-register choice as open. No register was edited or declared canonical.
+- The project has overlapping origination and decision-support pages; their canonical choice is already recorded as open. No owner decision was made.
+- The existing Terms-based permission gate is cited at `https://www.nfl.com/legal/terms/`. No NFL page was newly retrieved during this audit; no scraper or NFL data capture was created.
+- All counts are explicitly identified on the audit page as repository measurements, not NFL statistics. Findings link to the relevant repository records; the legal gate links to the official NFL source.
+
+### Checks
+
+- `python3 -m unittest discover -s tests`: 313 passed.
+- `python3 tools/verify.py`: PASS, 39 pages and 1,755 source-linked rows.
+- `python3 scripts/check_site.py`: PASS, 15 pages, 147 data rows, 551 HTML links/resources.
+- `python3 origination/tools/verify.py`: PASS, 12 pages and 442 source-linked rows; origination tests: 38 passed.
+- `python3 readiness/tools/build.py --check`, `python3 verification/registry.py`, and `python3 decision-desk/tools/verify.py`: completed successfully.
+- Standalone audit page parsed; 20 links and 6 table rows; zero missing local targets.
+
+**Limits:** structural verification does not prove factual entailment or external link reachability. Audit page recommendations are proposals only; permission, canonical register, and canonical origination decisions remain open.
