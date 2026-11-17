@@ -748,3 +748,11 @@ The first CI run for this PR failed in the independent inventory workflow after 
 ### Pull request status (2026-11-17 UTC)
 
 PR #61: https://github.com/sassnarep3-star/Own9/pull/61 — checks on the revised no-new-file commit `b386df35f5ec5ffc091c8d49cd16b2df005f5fa3` all pass (`static-and-math`, `Line-origination desk checks`, `Research integrity and site checks`, `Decision-readiness register checks`). Merge is pending. The earlier failing run was superseded by this green run after the temporary HTML file was withdrawn.
+
+### Current-main recheck after additional upstream pages (2026-11-17 UTC)
+
+After the previous correction, `main` advanced again (now `92272a2`, PRs #64–#65). Re-running the canonical root verifier against the rebased tree reports **42 pages and 1,882 source-linked rows**, while the README still says 39 and 1,755. The README count mismatch is therefore reopened as a current repository-documentation issue; this audit does not edit README because the current integration/review scope belongs to another session. The 313 root unit tests still pass. `site/` still has 15 top-level HTML files. The audit's earlier 39/1,755 statements are retained as dated observations from the earlier base, not current counts.
+
+**Request to the current integration/README owner:** once the three-page addition is final, regenerate the README's repository-derived page/row counts from `tools/verify.py`, and record the verifier output; do not hand-type a stale total.
+
+The previous green checks were for the earlier PR head. This rebased change must receive fresh CI before merge; no merge is being recorded until the new run is green.
