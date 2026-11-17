@@ -757,3 +757,33 @@ Earlier refresh proved deterministic on the tree through `876bd61` (432 tracked 
 - Session subtree tests: 47 passed. The claim verifier reported 369/369 matching, 0 mismatch, 0 unverifiable; page checker passed (13 pages, 117 tables, 1,431 rows, 473 source-linked, 353 explicitly blank, 203 local links).
 - Root structural verifier: 42 pages, 1,882 source-linked rows. `npm test`: 313 passed, availability and register checks passed, site checker passed (15 pages, 147 direct-source data rows, 551 links/resources). These checks validate code and structure, not factual certification of every claim.
 - PR #68's hosted checks were all passing before this final integration resolution: decision-readiness, origination, research integrity/site, and static-and-math. A fresh hosted run is required on this merge-resolution commit before merge.
+
+# Session `6669951c` — team availability view, Week 10 re-count and site integration (branch `arena/6669951c-own9`, base `3aabe89d` on `main`, started 2026-11-17 UTC)
+
+Branch name is fixed by the platform, so the `session-<id>/<task>` naming in the brief cannot be
+used; all work is committed to `arena/6669951c-own9` and nowhere else.
+
+## Claim
+
+| Task | Status | Owner | Files |
+| --- | --- | --- | --- |
+| Re-count the Week 10 injury report from the retained hash-verified capture and reconcile every circulating figure (254/279/160/162/171); publish the delta between the 2026-11-14 and 2026-11-16 reads | in progress | 6669951c | `session-6669951c/**` (new) |
+| Per-team availability view: rows listed, designations, net count, unit split, announced-starter evidence, roster-event conflicts against the transactions log (E-11, E-06, E-09, D-11) | in progress | 6669951c | `session-6669951c/**`, `tools/pages_6669951c.py` (new), `teams-availability.html` (new) |
+| Register the official sources read on 2026-11-17 (report re-read plus the dated league-news headlines the report page carries) | in progress | 6669951c | `evidence/sources.json` (append-only) |
+| Publish AV-01..AV-07 irregularities found by the re-count | in progress | 6669951c | `tools/pages_6669951c.py` appends a table to `flags.html` |
+| Regression coverage for the re-count and the page | in progress | 6669951c | `tests/test_availability_recount.py` (new) |
+| Update the readiness register rows this closes; README counts; navigation entry | in progress | 6669951c | `readiness/data/requirements.csv` (status/what_exists rows only), `tools/build.py` (one `NAV_GROUPS` line + one module-exec block), regenerated root `*.html`, `README.md` (counts) |
+| Re-measure the repository inventory with the owner section's own tool, then PR, merge and confirm Pages | in progress | 6669951c | `session-00cf851d/data/repo_inventory.json`, `session-00cf851d/index.html`, `session-00cf851d/repo-review.html` (generated), `COORDINATION.md` (append-only) |
+
+**Deliberately not touched:** `origination/**`, `decision-desk/**`, `verification/**`, `ablation-lab/**`
+and `engine/**` — the last two are the scope of open PR #69 (session `18c56676`) and PR #61
+(session `98c294ca`, `COORDINATION.md` only). This session edits no file those PRs touch, so no
+claim conflict exists. The root transcription in `tools/build.py` (`INJ`) is **not** rewritten:
+the 12-row gap it has against the official report is published as AV-01 with both dates attached
+instead of silently revising another section's dated artefact.
+
+**Blocked, not skipped:** scheduled or automated capture of the league report stays blocked by
+DEC-01 (NFL.com Terms section 1.3, quoted in `readiness/`); this session made one dated
+verification read, as earlier sessions did. Price-data policy (DEC-02), the 32-club depth sweep
+(DEC-06), the pre-registered 136-game corpus (DEC-04) and the X-PARLAY joint-evidence enforcement
+(DEC-03) await the owner; the defaults recorded in `research/decision-brief.json` continue to apply.
