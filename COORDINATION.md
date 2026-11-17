@@ -718,3 +718,21 @@ No code, dataset, official-source claim, generated page, root navigation, or ano
 - Standalone audit page parsed; 20 links and 6 table rows; zero missing local targets.
 
 **Limits:** structural verification does not prove factual entailment or external link reachability. Audit page recommendations are proposals only; permission, canonical register, and canonical origination decisions remain open.
+
+### Revision after CI failure — publication file-count scope
+
+The PR's `static-and-math` workflow failed in its “Verify official-source section (session-00cf851d)” step. Its earlier steps passed. That step regenerates `session-00cf851d/data/repo_inventory.json` and its HTML pages; the inventory script measures the repository's `git ls-files` set. I will not edit those files because they are outside this session's claimed scope. To avoid leaving a generated inventory stale, the standalone HTML audit page has been withdrawn; the audit is retained in this append-only coordination record. The existing deployed dashboard and its Suggestions / Flagged for Review pages are unchanged.
+
+**Request to the inventory owner / integration session:** if the standalone audit is to be published as a new HTML file, re-run `session-00cf851d/tools/analysis.py` and its own generator/checks to update its tracked-file inventory and page output, then rerun the full workflow. No such cross-scope update was made here.
+
+### Audit content retained (repository facts, rechecked 2026-11-17 UTC)
+
+1. **Publication route / page count:** 39 root-level HTML files and 15 `site/*.html` files were counted. The README intro says “Nineteen pages”; the current root count is 39. The root index calls `/site/` an additive dashboard, while the README calls it canonical elsewhere. The nested dashboard labels itself with a dated research snapshot. Recommendation: integrate on one designated root route and generate counts from inputs; do not erase snapshot labels.
+2. **Requirement-register totals:** readiness CSV = 82 rows; verification's published register = 74; decision-desk JSON = 73. The decision desk already records the choice as unresolved. No total is privileged here.
+3. **Overlapping decision surfaces:** multiple origination and question/suggestion views exist; repository records mark the canonical origination and consolidation choices open. No model/data path was chosen.
+4. **Software tests do not establish skill:** root tests validate mechanics and integrity only. Reward eligibility still needs preregistration, point-in-time prices/results, chronological holdouts, benchmark-relative proper scores with uncertainty, and prospective execution evidence.
+5. **Permission gate:** the existing official NFL Terms source is https://www.nfl.com/legal/terms/. It is carried from the repository's previously documented review; this session did not retrieve it anew, did not offer a new legal opinion, and did not create a scraper.
+
+Recommended order, as proposals only: resolve the licensed-source/permission path; choose canonical site/register/origination; generate summaries from machine-readable data; then continue the singles-only shadow baseline. Keep parlay/prop combos and rewards gated until direct joint evidence and forward skill criteria clear.
+
+**Audit verification performed:** `python3 -m unittest discover -s tests` (313 passed); `python3 tools/verify.py` (39 pages, 1,755 source-linked rows); `python3 scripts/check_site.py` (15 pages, 147 data rows, 551 links/resources); `python3 origination/tools/verify.py` (12 pages, 442 source-linked rows); 38 origination tests; readiness `--check`, verification registry, and decision-desk verifier all passed. These checks do not establish external link availability or factual entailment. No official NFL data were newly retrieved.
