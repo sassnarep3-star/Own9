@@ -684,3 +684,64 @@ python3 scripts/check_site.py             # PASS 15 pages, 147 data rows, 551 li
 
 None yet.
 
+# Session `18c56676` — final integration: executive landing and navigation audit
+
+Started: 2026-11-17 UTC. This session is operating only on the Arena-assigned branch
+`arena/18c56676-own9` (base `32ce9753aa64cf428e7bfad0e1f3f71b3d75e491`). The user requested a
+final integration session; Arena fixes this branch name, so no `session-*/` branch is created.
+
+| Task | Status | Owner | Files |
+| --- | --- | --- | --- |
+| Reconcile the root landing/navigation into a concise, decision-first entry point without deleting existing research pages; preserve the previous overview as an archive if needed | in progress | 18c56676 | `tools/build.py`, `style.css`, generated root `*.html` |
+| Add integration regression checks for landing-page links, navigation reachability and stale/duplicate executive claims | in progress | 18c56676 | `tests/test_integration.py` (new) |
+| Verify the combined build, source links, existing test suites and Pages deployment; record any unverified facts as flags | in progress | 18c56676 | `README.md` (append-only), `COORDINATION.md` (append-only) |
+
+No raw-source data, official captures, model outputs, or other session-owned data tables will be
+changed by this integration pass. The existing `readiness/`, `verification/`, and
+`decision-desk/` registers remain unchanged until this pass compares their remit and records an
+explicit integration disposition.
+
+## `18c56676` scope correction — avoid pending integration work (2026-11-17 UTC)
+
+Before editing any site/data files, the current GitHub open-PR list was checked. It contains PRs
+#51 (`tools/build.py`, root pages, `evidence/sources.json`, `README.md`, snapshots), #52 (a
+repository-review page), #58 (`verification/**`), #61 (a landing/publication and canonical-path
+audit), and #38 (a citation-coverage audit). In particular, #61 explicitly covers the root
+landing/publication route and canonical-register issue. The root landing/navigation integration
+claim above therefore **does not proceed** in this session; no root page, shared table, nav,
+source registry or README was edited. Its disposition is awaiting integration after those open
+scopes resolve, not an assertion that the work is done.
+
+This session is re-scoped to one independent, unclaimed requirement that changes no shared
+landing page or source data:
+
+| Task | Status | Owner | Files |
+| --- | --- | --- | --- |
+| Add a paired-score, chronological-holdout ablation utility for availability/personnel inputs; publish no empirical values without eligible paired forecasts | in progress | 18c56676 | `engine/ablation.py` (new), `tests/test_ablation.py` (new), `docs/ABLATION_PROTOCOL.md` (new), `ablation-lab/**` (new) |
+
+The implementation will report feature-minus-baseline proper-score differences with a
+predeclared cluster uncertainty interval, reject mismatched or non-point-in-time rows, and remain
+ineligible when source/fold provenance is missing. It will not modify root navigation or claim
+an NFL feature effect. PR #51, #52, #58, #61 and #38 remain untouched.
+
+### `18c56676` rebase/conflict and non-overlap note (2026-11-17 UTC)
+
+`git pull --rebase origin main` advanced the base from `32ce975` to `52e80fe` while the claim
+was being pushed (PRs #60 and #62 had merged). The append-only `COORDINATION.md` tail conflicted
+when the first local claim was replayed. Resolution was a union: both upstream completion records
+were retained verbatim and this session's claim was appended; no upstream entry was dropped. The
+second local scope-correction record then replayed cleanly. `git diff --check` and a conflict-marker
+grep passed afterward.
+
+A new open PR #63 (`arena/2081c0fe-own9`, “Add executive decision front door”) was also checked.
+It covers `tools/build.py`, root navigation/pages, `executive.html`, `README.md`, and its own
+coordination record, overlapping the initial landing-page claim. It does not cover the re-scoped
+ablation utility (`engine/ablation.py`, `tests/test_ablation.py`, `docs/ABLATION_PROTOCOL.md`,
+`ablation-lab/**`); this session leaves PR #63 and all other open PRs untouched.
+
+### `18c56676` scope extension — isolated CI checks (2026-11-17 UTC)
+
+The ablation task also adds the new, path-filtered workflow `.github/workflows/ablation.yml`.
+It installs only the locked browser-test dependencies, runs `tests.test_ablation`, checks the
+standalone page's official-source rows/local links, and runs the two-viewport accessibility
+smoke test. No existing workflow or shared site navigation is modified.

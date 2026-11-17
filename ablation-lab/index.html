@@ -1,0 +1,86 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="A fail-closed NFL availability and personnel ablation panel. No empirical effect is claimed.">
+  <title>Availability ablation · Own9 NFL Research</title>
+  <link rel="stylesheet" href="../style.css">
+  <style>
+    .panel{margin:24px 0;padding:18px 22px;border:1px solid #e7d4aa;border-left:4px solid #9a6812;border-radius:9px;background:#fff9ea;color:#57451f}
+    .panel p{margin:5px 0 0}.cards a{min-height:132px}.missing{color:#7c5b18;font-weight:750}.source-note{display:block;color:#657480;font-size:.72rem;margin-top:6px}
+    .status{display:inline-block;border:1px solid #dbc792;border-radius:999px;padding:3px 9px;font-size:.72rem;font-weight:750;color:#725414;background:#fff9ea}
+    .table-section{margin-top:30px}.intro{max-width:850px}
+  </style>
+</head>
+<body>
+  <a class="skip" href="#main">Skip to content</a>
+  <header>
+    <div class="shell top">
+      <a class="brand" href="../index.html"><span>O9</span> OWN9 <small> / NFL RESEARCH</small></a>
+      <span class="status-dot">Research only · no live wagers</span>
+    </div>
+    <nav class="shell" aria-label="Ablation navigation">
+      <a href="../executive-summary.html">Executive summary</a>
+      <a href="../decision-desk/index.html">Decision desk</a>
+      <a href="../questions.html">Questions</a>
+      <a href="../suggestions.html">Suggestions</a>
+      <a href="../flags.html">Flagged for Review</a>
+      <a href="../index.html">Main dashboard</a>
+    </nav>
+  </header>
+  <main class="shell" id="main">
+    <div class="page-meta"><span class="eyebrow">RESEARCH / AVAILABILITY ABLATION</span><span>Protocol and code · 17 Nov 2026 UTC</span></div>
+    <h1>Test the feature.<br>Do not subtract a guess.</h1>
+    <p class="lead intro">Compare the same frozen model with and without verified availability/personnel inputs on the same chronological holdouts. Publish a paired proper-score difference and uncertainty only when the inputs pass provenance and timing checks.</p>
+
+    <div class="panel" role="note">
+      <strong>No NFL ablation result is available.</strong>
+      <p>The estimate and interval are intentionally blank: no committed dataset of preregistered, paired, pre-kickoff forecasts with verified source hashes passes the contract. This page is a method and readiness panel, not evidence that injuries improve a line.</p>
+      <p><a href="../docs/ABLATION_PROTOCOL.md">Read the frozen scoring/data contract</a> · <a href="../engine/ablation.py">Inspect the implementation</a>.</p>
+    </div>
+
+    <div class="cards" aria-label="Ablation status summary">
+      <a href="../docs/ABLATION_PROTOCOL.md"><span>PAIR DESIGN</span><b>With vs. without</b><p>Same model family, fit window, target and held-out fixtures.</p></a>
+      <a href="../decision-desk/index.html"><span>DATA GATE</span><b>Not cleared</b><p>Point-in-time availability and game-day evidence are incomplete.</p></a>
+      <a href="../validation.html"><span>UNCERTAINTY</span><b>No estimate</b><p>Week-cluster interval and family-size adjustment are specified, not run; this is not a leaderboard game-cluster gate.</p></a>
+      <a href="../leaderboard.html"><span>ELIGIBILITY</span><b>Not eligible</b><p>This utility cannot certify a strategy or permit a leaderboard rank.</p></a>
+    </div>
+
+    <section class="table-section">
+      <h2>Executive panel</h2>
+      <div class="table-wrap" tabindex="0" role="region" aria-label="Ablation panel — scrollable table">
+        <table>
+          <caption class="sr-only">Current availability/personnel ablation status. Blank estimates mean not computed, not zero.</caption>
+          <thead><tr><th scope="col">Measure</th><th scope="col">Current value</th><th scope="col">Blocking gate / clearing evidence</th><th scope="col">Source scope</th></tr></thead>
+          <tbody>
+            <tr><th scope="row">Paired held-out forecasts</th><td><span class="status">Not available</span></td><td>Commit one row per fixture/target with both probability distributions, a preregistration reference, feature/input hashes and a pre-kickoff timestamp.</td><td><a href="https://www.nfl.com/injuries/" target="_blank" rel="noopener noreferrer">NFL injury report</a><span class="source-note">Official availability source; the linked page does not itself provide a replayable project history.</span></td></tr>
+            <tr><th scope="row">Brier difference</th><td><span class="missing" aria-label="Unavailable and unverified">—</span> <span class="source-note">Not computed; not zero.</span></td><td>Score the identical three-state targets for both variants on the same chronological holdouts. Positive means the availability variant has lower Brier loss.</td><td><a href="https://static.www.nfl.com/image/upload/v1794570519/gamecenter/ab5828d9-4feb-11f1-abca-2c54536568a9.pdf" target="_blank" rel="noopener noreferrer">Official NFL Game Book</a><span class="source-note">One fixture's official result/lineup source; not a season-wide evaluation corpus.</span></td></tr>
+            <tr><th scope="row">Uncertainty interval</th><td><span class="missing" aria-label="Unavailable and unverified">—</span> <span class="source-note">Not computed; not zero.</span></td><td>Use the preregistered week-cluster bootstrap and familywise adjustment; report the held-out game and week counts and the complete registered comparison family. This is not the separately required game-cluster leaderboard lower bound.</td><td><a href="https://www.nfl.com/schedules/2026/by-week/week-10" target="_blank" rel="noopener noreferrer">Official NFL schedule, Week 10</a><span class="source-note">Fixture/week context only; it does not validate a bootstrap or an NFL feature effect.</span></td></tr>
+            <tr><th scope="row">Playing-time / replacement depth</th><td><span class="status">Unverified</span></td><td>Use official game-day status and an official participation source. Do not infer depth rank from jersey number, experience, or an unofficial chart.</td><td><a href="https://www.nfl.com/stats/player-stats/" target="_blank" rel="noopener noreferrer">NFL player statistics</a> · <a href="https://static.www.nfl.com/image/upload/v1794570519/gamecenter/ab5828d9-4feb-11f1-abca-2c54536568a9.pdf" target="_blank" rel="noopener noreferrer">NFL Game Book</a><span class="source-note">The project has not verified a season-wide official snap/participation field for this ablation.</span></td></tr>
+            <tr><th scope="row">Recurring source capture</th><td><span class="status">Permission gate</span></td><td>No automated or repeated NFL-page retrieval is added. Resolve source rights or use an authorized feed before building a multi-day series.</td><td><a href="https://www.nfl.com/legal/terms/" target="_blank" rel="noopener noreferrer">NFL.com Terms, section 1.3</a><span class="source-note">The existing decision register records this as a permission blocker; this session did not make a new capture.</span></td></tr>
+          </tbody>
+        </table>
+      </div>
+    </section>
+
+    <section class="table-section">
+      <h2>Frozen comparison design</h2>
+      <div class="table-wrap" tabindex="0" role="region" aria-label="Comparison variants — scrollable table">
+        <table>
+          <caption class="sr-only">Two matched model variants; no empirical probabilities or score values are currently published.</caption>
+          <thead><tr><th scope="col">Variant</th><th scope="col">Features</th><th scope="col">Output required</th><th scope="col">Official data scope</th></tr></thead>
+          <tbody>
+            <tr><th scope="row">Baseline: without availability</th><td>Frozen team/player inputs excluding the preregistered availability/personnel features.</td><td>Per-fixture probabilities for win, push and loss; model/input hashes; forecast time before kickoff.</td><td><a href="https://www.nfl.com/schedules/2026/by-week/week-10" target="_blank" rel="noopener noreferrer">NFL schedule/results</a> · <a href="https://www.nfl.com/stats/" target="_blank" rel="noopener noreferrer">NFL statistics</a></td></tr>
+            <tr><th scope="row">Ablation: with verified availability</th><td>The same model family and holdout, adding only source-verified, time-stamped availability/personnel inputs.</td><td>Same target and output schema as baseline; attach the official snapshot timestamp and hash. No fixed point penalty.</td><td><a href="https://www.nfl.com/injuries/" target="_blank" rel="noopener noreferrer">NFL injury report</a> · <a href="https://static.www.nfl.com/image/upload/v1794570519/gamecenter/ab5828d9-4feb-11f1-abca-2c54536568a9.pdf" target="_blank" rel="noopener noreferrer">NFL Game Book</a></td></tr>
+            <tr><th scope="row">Published contrast</th><td>Paired categorical Brier score: without minus with; positive favors the availability model.</td><td>Difference, multiplicity-adjusted week-cluster interval, n fixtures, n held-out weeks, and clear caveats. A positive result does not by itself clear the leaderboard.</td><td><a href="https://scikit-learn.org/stable/modules/generated/sklearn.metrics.brier_score_loss.html" target="_blank" rel="noopener noreferrer">Brier score definition</a> · <a href="https://www.nfl.com/schedules/2026/by-week/week-10" target="_blank" rel="noopener noreferrer">Official NFL schedule</a></td></tr>
+          </tbody>
+        </table>
+      </div>
+      <p class="download">Full protocol: <a href="../docs/ABLATION_PROTOCOL.md">ABLATION_PROTOCOL.md</a>. Current rules and prerequisites: <a href="../decision-desk/requirements.html">decision-readiness register</a> · <a href="../decision-desk/questions.html">questions</a> · <a href="../decision-desk/suggestions.html">suggestions</a> · <a href="../decision-desk/flagged.html">Flagged for Review</a>.</p>
+    </section>
+    <p class="disclaimer">Research method only. No injury-adjusted line, strategy performance, betting advice or funded reward is published here. A blank metric is unavailable, not zero. Official source links identify the publisher and their limited scope; they do not independently verify a value in a missing dataset.</p>
+  </main>
+  <footer class="shell"><b>OWN9 / NFL RESEARCH</b><span>Evidence over assumptions · <a href="../sources.html">Root evidence register</a> · <a href="../flags.html">Flagged for Review</a></span></footer>
+</body>
+</html>
