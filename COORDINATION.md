@@ -744,3 +744,7 @@ Recommended order, as proposals only: resolve the licensed-source/permission pat
 The upstream README refresh (PR #60, `18fc419`) corrected the “Nineteen pages” count to 39 before this audit was rebased. Therefore the README-count discrepancy is **closed on current main**; the measurement was accurate for the pre-refresh checkout, not a current defect. The route-label ambiguity remains: README calls the linked `site/` dashboard canonical while the root dashboard presents it as additive. The 82/74/73 register counts and open canonical-register choice remain unchanged in the files rechecked here.
 
 The first CI run for this PR failed in the independent inventory workflow after the standalone HTML file was added. The file was withdrawn rather than editing `session-00cf851d/**`, which is outside scope; the audit and request for any future inventory update remain in this coordination record. The current PR changes only this append-only log and should not alter tracked-file counts. CI must be rerun on this rebased, no-new-file revision before any merge.
+
+### Pull request status (2026-11-17 UTC)
+
+PR #61: https://github.com/sassnarep3-star/Own9/pull/61 — checks on the revised no-new-file commit `b386df35f5ec5ffc091c8d49cd16b2df005f5fa3` all pass (`static-and-math`, `Line-origination desk checks`, `Research integrity and site checks`, `Decision-readiness register checks`). Merge is pending. The earlier failing run was superseded by this green run after the temporary HTML file was withdrawn.
