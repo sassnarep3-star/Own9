@@ -684,3 +684,19 @@ python3 scripts/check_site.py             # PASS 15 pages, 147 data rows, 551 li
 
 None yet.
 
+# Session `18c56676` — final integration: executive landing and navigation audit
+
+Started: 2026-11-17 UTC. This session is operating only on the Arena-assigned branch
+`arena/18c56676-own9` (base `32ce9753aa64cf428e7bfad0e1f3f71b3d75e491`). The user requested a
+final integration session; Arena fixes this branch name, so no `session-*/` branch is created.
+
+| Task | Status | Owner | Files |
+| --- | --- | --- | --- |
+| Reconcile the root landing/navigation into a concise, decision-first entry point without deleting existing research pages; preserve the previous overview as an archive if needed | in progress | 18c56676 | `tools/build.py`, `style.css`, generated root `*.html` |
+| Add integration regression checks for landing-page links, navigation reachability and stale/duplicate executive claims | in progress | 18c56676 | `tests/test_integration.py` (new) |
+| Verify the combined build, source links, existing test suites and Pages deployment; record any unverified facts as flags | in progress | 18c56676 | `README.md` (append-only), `COORDINATION.md` (append-only) |
+
+No raw-source data, official captures, model outputs, or other session-owned data tables will be
+changed by this integration pass. The existing `readiness/`, `verification/`, and
+`decision-desk/` registers remain unchanged until this pass compares their remit and records an
+explicit integration disposition.
