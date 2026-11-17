@@ -736,3 +736,21 @@ canonical [Flagged for Review](flags.html), readiness, and decision-desk pages: 
 limits, incomplete quote and availability histories, depth coverage/source uncertainty, and no
 strategy certified for prospective use or rewards. The new upstream executive pages now surface the
 questions and choice-before-implementation workflow requested in the brief.
+
+# Session `c0256647` — current-base integration resolution (2026-11-17 UTC)
+
+PR #68 was blocked from merging because its README and coordination append conflicted with newer upstream documentation merged into `main` while the PR was open. Resolved by preserving the current `main` README and coordination history (newer and broader than this PR's earlier README rewrite) and retaining this session's dedicated generated-inventory fix below. No root landing-page generator or generated root pages were taken over.
+
+| Task | Status | Owner | Files |
+| --- | --- | --- | --- |
+| Refresh `session-00cf851d` generated inventory against the latest integration base | done | c0256647 | `session-00cf851d/data/repo_inventory.json`, `session-00cf851d/index.html`, `session-00cf851d/repo-review.html` |
+
+Earlier refresh proved deterministic on the tree through `876bd61` (432 tracked files, 42 root pages); this merge includes newer `main` content, so re-run the generator and checks against this exact base before publishing.
+
+
+### Current-base verification (2026-11-17 UTC)
+
+- Regenerated `session-00cf851d` with its own analysis, audit, ingest, build, and check tools against the latest `main`; generated output remained unchanged (`git diff --exit-code -- 'session-00cf851d/*.html'` passed).
+- Session subtree tests: 47 passed. The claim verifier reported 369/369 matching, 0 mismatch, 0 unverifiable; page checker passed (13 pages, 117 tables, 1,431 rows, 473 source-linked, 353 explicitly blank, 203 local links).
+- Root structural verifier: 42 pages, 1,882 source-linked rows. `npm test`: 313 passed, availability and register checks passed, site checker passed (15 pages, 147 direct-source data rows, 551 links/resources). These checks validate code and structure, not factual certification of every claim.
+- PR #68's hosted checks were all passing before this final integration resolution: decision-readiness, origination, research integrity/site, and static-and-math. A fresh hosted run is required on this merge-resolution commit before merge.
