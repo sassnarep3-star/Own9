@@ -736,3 +736,7 @@ Handoff context: session-00cf851d's own `tools/analysis.py`, `results_audit.py`,
 - Re-ran that section's analysis, results audit, ingestion generator, page build, structural/source-link checker, and 47 tests. The source verifier reported 369/369 matching claims, zero mismatch/unverifiable; replacement analysis remained 8 measured replacements; checker reported 13 pages, 117 tables, 1,431 rows (473 source-linked; 353 explicitly blank), 203 local links; 47 tests passed.
 - The earlier CI failure was the deterministic `git diff --exit-code -- 'session-00cf851d/*.html'` guard: the repo inventory changed after later pages/workflows merged. After these generated files are committed, that guard is expected to be clean; it will be explicitly re-run below.
 - Scope remained mechanical. No NFL facts, raw data, model outputs, or claim statuses were changed by hand. Existing source links and verification scope remain as originally documented in that section.
+
+### Repository inventory retarget after concurrent main cleanup (2026-11-17 UTC)
+
+PR #66/#67 changed the current main tree after the first refresh, including removal of temporary trigger files. Re-ran the session-00cf851d generator against the resulting current tree; the measured inventory is now 432 tracked files (42 root pages). The generated HTML diff was exactly the repository-shape counts and inventory payload. This is the same completed handoff scope, regenerated once more against the latest base; next check verifies a clean deterministic rebuild.
