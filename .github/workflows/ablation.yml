@@ -2,19 +2,27 @@ name: Availability ablation checks
 on:
   pull_request:
     paths:
+      - '.github/workflows/ablation.yml'
       - 'engine/ablation.py'
+      - 'engine/core.py'
       - 'tests/test_ablation.py'
       - 'docs/ABLATION_PROTOCOL.md'
       - 'ablation-lab/**'
       - 'evidence/sources.json'
+      - 'package.json'
+      - 'package-lock.json'
   push:
     branches: [main, 'arena/**']
     paths:
+      - '.github/workflows/ablation.yml'
       - 'engine/ablation.py'
+      - 'engine/core.py'
       - 'tests/test_ablation.py'
       - 'docs/ABLATION_PROTOCOL.md'
       - 'ablation-lab/**'
       - 'evidence/sources.json'
+      - 'package.json'
+      - 'package-lock.json'
   workflow_dispatch:
 
 permissions:
