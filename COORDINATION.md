@@ -689,7 +689,7 @@ None yet.
 
 | Task | Status | Owner | Files |
 | --- | --- | --- | --- |
-| Final documentation consistency pass: replace stale README material with current summary, expose known repository/site inconsistencies, and link the decision registers | in progress | c0256647 | `README.md`, plus this coordination entry |
+| Final documentation consistency pass: replace stale README material with current summary, expose known repository/site inconsistencies, and link the decision registers | done | c0256647 | `README.md`, plus this coordination entry |
 
 The README-only subtask overlaps the just-merged PR #60 from session a3ebd30e. PR #64/#65 integration records are preserved above. The root landing-page date mismatch is separately coordinated with PR #63; this session does not edit root generator/pages.
 
@@ -698,3 +698,12 @@ The README-only subtask overlaps the just-merged PR #60 from session a3ebd30e. P
 A public retrieval of `https://sassnarep3-star.github.io/Own9/` succeeded, but the root overview still identifies itself as “As of 04 Nov 2026.” PR #65 has since merged to surface decision-readiness links; PR #63 still owns the root generator/executive front door. This session did not edit those files. Request to the PR #63 owner: ensure the overview's date label does not imply a uniform 4 Nov data snapshot, and that root register totals are traceable to their source data while preserving the unresolved 82/74/73 register discrepancy. Request is in https://github.com/sassnarep3-star/Own9/pull/63#issuecomment-6934674166.
 
 Official source checked during this pass: https://www.nfl.com/legal/terms/ (page states updated 16 May 2024; section 1.3 read directly).
+
+### Session c0256647 — completion record (2026-11-17 UTC)
+
+- Rewrote `README.md` as a concise decision-support guide. It emphasizes that no predictive edge is established, separates software checks from football evidence, links the requirement/question/suggestion/flag registers, and names price-data, permission, availability, preregistration and proper-score gates.
+- Directly re-read NFL.com Terms of Service at https://www.nfl.com/legal/terms/ (updated 16 May 2024; section 1.3 contains the systematic-retrieval restriction). No automated injury/source scraping was added.
+- Read the public Pages URL and found the overview’s “As of 04 Nov 2026” date and older totals. PR #65 now surfaces decision-readiness pages; the date/aggregate snapshot discrepancy remains with PR #63's owner. I did not edit root generator/pages because they were actively claimed.
+- Local README links/fragments passed. Before PR #64/#65 were merged, the root/additive browser suites, main checks, additive build, and decision-desk verification passed on the then-current tree. See the post-rebase verification entry below for current-base results.
+
+**Remaining:** the root-page date/summary refresh is requested from PR #63's owner, not implemented here. DD-14 still records the unresolved 82/74/73 requirement-register mismatch; no canonical register was selected. NFL.com terms, missing official price sources, availability coverage and absence of validated skill remain open gates.
