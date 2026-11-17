@@ -684,3 +684,75 @@ python3 scripts/check_site.py             # PASS 15 pages, 147 data rows, 551 li
 
 None yet.
 
+# Session `98c294ca` — publication-routing and repository-state audit (branch `arena/98c294ca-own9`)
+
+Started: 2026-11-17 UTC. Branch cut from `32ce9753aa64cf428e7bfad0e1f3f71b3d75e491` on `main`.
+
+## Scope claim (independent, read-only audit; no shared site output)
+
+| Task | Status | Owner | Files |
+| --- | --- | --- | --- |
+| Re-check the active Pages publication route, landing-page claims, duplicated registers and current validation status; write a sourced audit and proposed implementation sequence | done | 98c294ca | `COORDINATION.md` (append-only) |
+
+No code, dataset, official-source claim, generated page, root navigation, or another session's files will be changed. This scope records repository-derived observations only. It does not make NFL claims or resolve owner decisions. Existing permission, canonical-register and canonical-origination questions remain unresolved and are not silently decided here.
+
+## Session `98c294ca` — completion record (2026-11-17 UTC)
+
+**Status:** done. Added `review-2026-11-17/index.html`, a standalone, responsive audit page under the assigned isolated scope. No root page, navigation, input dataset, model, or prior session's file was edited.
+
+### Rechecked repository facts and findings
+
+- The root contains 39 top-level HTML files; `site/` contains 15. The README's introductory “Nineteen pages” statement does not match the current root count. The root landing page describes `site/` as an additive dashboard; the README also calls it canonical. The nested page is explicitly dated as a snapshot, so this audit does not label its date as an error.
+- Requirement totals remain inconsistent: 82 in `readiness/data/requirements.csv`, 74 as documented by `verification/registry.py`/`verification/requirements.html`, and 73 in `decision-desk/data/requirements.json`. The decision desk already logs the canonical-register choice as open. No register was edited or declared canonical.
+- The project has overlapping origination and decision-support pages; their canonical choice is already recorded as open. No owner decision was made.
+- The existing Terms-based permission gate is cited at `https://www.nfl.com/legal/terms/`. No NFL page was newly retrieved during this audit; no scraper or NFL data capture was created.
+- All counts are explicitly identified on the audit page as repository measurements, not NFL statistics. Findings link to the relevant repository records; the legal gate links to the official NFL source.
+
+### Checks
+
+- `python3 -m unittest discover -s tests`: 313 passed.
+- `python3 tools/verify.py`: PASS, 39 pages and 1,755 source-linked rows.
+- `python3 scripts/check_site.py`: PASS, 15 pages, 147 data rows, 551 HTML links/resources.
+- `python3 origination/tools/verify.py`: PASS, 12 pages and 442 source-linked rows; origination tests: 38 passed.
+- `python3 readiness/tools/build.py --check`, `python3 verification/registry.py`, and `python3 decision-desk/tools/verify.py`: completed successfully.
+- Standalone audit page parsed; 20 links and 6 table rows; zero missing local targets.
+
+**Limits:** structural verification does not prove factual entailment or external link reachability. Audit page recommendations are proposals only; permission, canonical register, and canonical origination decisions remain open.
+
+### Revision after CI failure — publication file-count scope
+
+The PR's `static-and-math` workflow failed in its “Verify official-source section (session-00cf851d)” step. Its earlier steps passed. That step regenerates `session-00cf851d/data/repo_inventory.json` and its HTML pages; the inventory script measures the repository's `git ls-files` set. I will not edit those files because they are outside this session's claimed scope. To avoid leaving a generated inventory stale, the standalone HTML audit page has been withdrawn; the audit is retained in this append-only coordination record. The existing deployed dashboard and its Suggestions / Flagged for Review pages are unchanged.
+
+**Request to the inventory owner / integration session:** if the standalone audit is to be published as a new HTML file, re-run `session-00cf851d/tools/analysis.py` and its own generator/checks to update its tracked-file inventory and page output, then rerun the full workflow. No such cross-scope update was made here.
+
+### Audit content retained (repository facts, rechecked 2026-11-17 UTC)
+
+1. **Publication route / page count:** 39 root-level HTML files and 15 `site/*.html` files were counted. The README intro says “Nineteen pages”; the current root count is 39. The root index calls `/site/` an additive dashboard, while the README calls it canonical elsewhere. The nested dashboard labels itself with a dated research snapshot. Recommendation: integrate on one designated root route and generate counts from inputs; do not erase snapshot labels.
+2. **Requirement-register totals:** readiness CSV = 82 rows; verification's published register = 74; decision-desk JSON = 73. The decision desk already records the choice as unresolved. No total is privileged here.
+3. **Overlapping decision surfaces:** multiple origination and question/suggestion views exist; repository records mark the canonical origination and consolidation choices open. No model/data path was chosen.
+4. **Software tests do not establish skill:** root tests validate mechanics and integrity only. Reward eligibility still needs preregistration, point-in-time prices/results, chronological holdouts, benchmark-relative proper scores with uncertainty, and prospective execution evidence.
+5. **Permission gate:** the existing official NFL Terms source is https://www.nfl.com/legal/terms/. It is carried from the repository's previously documented review; this session did not retrieve it anew, did not offer a new legal opinion, and did not create a scraper.
+
+Recommended order, as proposals only: resolve the licensed-source/permission path; choose canonical site/register/origination; generate summaries from machine-readable data; then continue the singles-only shadow baseline. Keep parlay/prop combos and rewards gated until direct joint evidence and forward skill criteria clear.
+
+**Audit verification performed:** `python3 -m unittest discover -s tests` (313 passed); `python3 tools/verify.py` (39 pages, 1,755 source-linked rows); `python3 scripts/check_site.py` (15 pages, 147 data rows, 551 links/resources); `python3 origination/tools/verify.py` (12 pages, 442 source-linked rows); 38 origination tests; readiness `--check`, verification registry, and decision-desk verifier all passed. These checks do not establish external link availability or factual entailment. No official NFL data were newly retrieved.
+
+### Rebase and current-state correction (2026-11-17 UTC)
+
+`main` advanced to `52e80fe` while this PR was open (PRs #60 and #62). The append-only coordination tail conflicted during rebase; it was resolved by preserving both upstream's complete `a3ebd30e` / integration records and this session's complete claim and findings. No upstream content was dropped. The current branch is rebased on `52e80fe`.
+
+The upstream README refresh (PR #60, `18fc419`) corrected the “Nineteen pages” count to 39 before this audit was rebased. Therefore the README-count discrepancy is **closed on current main**; the measurement was accurate for the pre-refresh checkout, not a current defect. The route-label ambiguity remains: README calls the linked `site/` dashboard canonical while the root dashboard presents it as additive. The 82/74/73 register counts and open canonical-register choice remain unchanged in the files rechecked here.
+
+The first CI run for this PR failed in the independent inventory workflow after the standalone HTML file was added. The file was withdrawn rather than editing `session-00cf851d/**`, which is outside scope; the audit and request for any future inventory update remain in this coordination record. The current PR changes only this append-only log and should not alter tracked-file counts. CI must be rerun on this rebased, no-new-file revision before any merge.
+
+### Pull request status (2026-11-17 UTC)
+
+PR #61: https://github.com/sassnarep3-star/Own9/pull/61 — checks on the revised no-new-file commit `b386df35f5ec5ffc091c8d49cd16b2df005f5fa3` all pass (`static-and-math`, `Line-origination desk checks`, `Research integrity and site checks`, `Decision-readiness register checks`). Merge is pending. The earlier failing run was superseded by this green run after the temporary HTML file was withdrawn.
+
+### Current-main recheck after additional upstream pages (2026-11-17 UTC)
+
+After the previous correction, `main` advanced again (now `92272a2`, PRs #64–#65). Re-running the canonical root verifier against the rebased tree reports **42 pages and 1,882 source-linked rows**, while the README still says 39 and 1,755. The README count mismatch is therefore reopened as a current repository-documentation issue; this audit does not edit README because the current integration/review scope belongs to another session. The 313 root unit tests still pass. `site/` still has 15 top-level HTML files. The audit's earlier 39/1,755 statements are retained as dated observations from the earlier base, not current counts.
+
+**Request to the current integration/README owner:** once the three-page addition is final, regenerate the README's repository-derived page/row counts from `tools/verify.py`, and record the verifier output; do not hand-type a stale total.
+
+The previous green checks were for the earlier PR head. This rebased change must receive fresh CI before merge; no merge is being recorded until the new run is green.
