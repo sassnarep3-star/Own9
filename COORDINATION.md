@@ -561,6 +561,21 @@ page was still wrong. CI verifies structure; it does not look at the page. Retri
 URL after deployment found in one request what 1,164 checks did not. **Fetch the live page after every
 deploy and read a row, not just the status.**
 
+
+# Session `35bebd21` — claim (branch `arena/35bebd21-own9`, base `32ce975` on `main`) — 2026-11-17 UTC
+
+Branch name is fixed by the platform; this session works only on `arena/35bebd21-own9`, branched from `32ce975` which is also the current `main` tip. Scope is additive and disjoint from every claim above.
+
+| Task | Status | Owner | Files |
+| --- | --- | --- | --- |
+| Repo review with irregularities and official-source links | in progress | 35bebd21 | root `*.html`, `tools/build.py`, `flags.html`, `readiness/**` |
+| Landing page: clean category-organized dashboard with a decision-readiness table (one row per requirement, blocking gate, clearing number) | in progress | 35bebd21 | `tools/build.py` (append to `PAGES['index.html']`), regenerated root `index.html` |
+| Executive summary, Q&A register, suggestions board (surface existing verified registers on the landing page) | in progress | 35bebd21 | `index.html`, `questions.html`, `suggestions.html`, `readiness/**` |
+| Verify line origination, leaderboard, injury tracking, correlations from committed official evidence | in progress | 35bebd21 | `origination/**`, `leaderboard.html`, `injuries.html`, `correlations-official.html`, `flags.html` |
+| Publication: commit, push, PR to main, merge, confirm GitHub Pages deploys | in progress | 35bebd21 | branch `arena/35bebd21-own9`, `main` |
+
+Items not in scope (blocked on owner decision or on data this environment cannot reach): scheduled NFL.com capture (DEC-01; NFL.com Terms section 1.3 prohibits systematic retrieval without prior written consent), licensed price feed (DEC-02), 32-club depth sweep (DEC-06), pre-registered backtest corpus (DEC-04), control baselines, joint-evidence gate enforcement on X-PARLAY (DEC-03), stadium/NWS overlay (A-09), venue transcription (A-10), dated schedule announcement (A-11).
+
 ## Session `a3ebd30e` — claim (branch `arena/a3ebd30e-own9`, base `32ce9753`) — 2026-11-17 UTC
 
 | Task | Status | Owner | Files |
@@ -668,3 +683,4 @@ python3 scripts/check_site.py             # PASS 15 pages, 147 data rows, 551 li
 ## Irregularities flagged by this session (to be appended as found)
 
 None yet.
+

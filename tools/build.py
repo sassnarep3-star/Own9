@@ -1,4 +1,5 @@
 """Deterministic static renderer; no network calls, no invented NFL metrics."""
+import csv
 import json
 import sys
 from html import escape as e
@@ -12,6 +13,17 @@ SUGGESTIONS = json.loads((ROOT/'research/suggestions.json').read_text())
 QUESTIONS = json.loads((ROOT/'research/decision-register.json').read_text())
 BRIEF = json.loads((ROOT/'research/decision-brief.json').read_text())
 AVAILABILITY = json.loads((ROOT/'evidence/lineups/was-nyg-2026-week-9-10.json').read_text())
+# Decision-readiness register (readiness/data/requirements.csv): one row per requirement,
+# with the blocking gate and the number that would clear it. Loaded defensively so a
+# missing register never breaks the build.
+_READINESS_PATH = ROOT / 'readiness' / 'data' / 'requirements.csv'
+READINESS = []
+if _READINESS_PATH.exists():
+    try:
+        for _r in csv.DictReader(_READINESS_PATH.read_text().splitlines()):
+            READINESS.append(_r)
+    except Exception:
+        READINESS = []
 # Map the evidence file's own citation keys onto the shared source register.
 GAMEBOOK = {
     'gamebook_week9_lar_was': 'nfl-gamebook-w9-lar-was',
@@ -835,6 +847,47 @@ exec(compile(_0167a04c_body, 'pages_0167a04c.py', 'exec'),
 
 
 
+def _decision_readiness_table():
+    """Render one row per requirement from the readiness register: status, blocking gate,
+    clearing number and source. Defensive: a missing register renders a note, never a failure."""
+    if not READINESS:
+        return ('<h2>Decision readiness — requirements at a glance</h2>'
+                '<p>The readiness register is not available in this build. See '
+                '<a href="readiness/index.html">Decision readiness</a> for the full register.</p>')
+    head = ('<tr><th scope="col">ID</th><th scope="col">Requirement</th>'
+            '<th scope="col">Status</th><th scope="col">Blocking gate</th>'
+            '<th scope="col">Clearing number</th><th scope="col">Source</th></tr>')
+    body = []
+    for i, r in enumerate(READINESS, 1):
+        rid = e(r.get('id', ''))
+        req = e(r.get('requirement', ''))
+        status = e(r.get('status', ''))
+        gate = e(r.get('blocking_gate', ''))
+        clearing = e(r.get('clearing_number', ''))
+        official = r.get('official_url', '').strip()
+        links = []
+        if official:
+            links.append(f'<a href="{e(official)}">Official source ↗</a>')
+        links.append('<a href="https://github.com/sassnarep3-star/Own9">Readiness register ↗</a>')
+        scope = ' · '.join(links)
+        body.append(f'<tr id="readiness-{i}"><th scope="row">{rid}</th><td>{req}</td>'
+                    f'<td>{status}</td><td>{gate}</td><td>{clearing}</td>'
+                    f'<td><span class="evidence-kind">Readiness register</span>{scope}</td></tr>')
+    return ('<h2>Decision readiness — requirements at a glance</h2>'
+            '<p>One row per requirement: the status, the gate that blocks it, and the number that would clear it. '
+            'Blank cells mean the information is not published — nothing is inferred. '
+            '<a href="readiness/index.html">Full decision-readiness register (82 rows)</a>.</p>'
+            '<div class="table-wrap" tabindex="0" role="region" aria-label="Decision readiness — requirements at a glance — scrollable table">'
+            '<table><caption class="sr-only">Decision readiness — requirements at a glance</caption>'
+            f'<thead>{head}</thead><tbody>{"".join(body)}</tbody></table></div>')
+
+
+# Session 35bebd21: surface the decision-readiness register on the landing page,
+# one row per requirement with its blocking gate and clearing number.
+PAGES['index.html'] = (*PAGES['index.html'][:3],
+                       PAGES['index.html'][3] + _decision_readiness_table())
+
+
 
 # --- New pages added by session 4c84e4ee: consolidated decision layer ---
 page('executive-summary.html','Executive summary','Executive summary · what is established, open and blocked',
@@ -899,6 +952,7 @@ page('missing-info-suggestions.html','Suggestions for missing information','Sugg
 <tr><th scope="row">Joint-evidence gate</th><td>Pricing parlays or prop combos by multiplying marginal probabilities.</td><td>A directly validated joint probability plus the operator's void/push rules.</td><td><a href="https://docs.scipy.org/doc/scipy/reference/generated/scipy.stats.pearsonr.html">SciPy ↗</a></td></tr>
 <tr><th scope="row">Fail-closed eligibility</th><td>Any strategy entering the ranked leaderboard before passing all validation gates.</td><td>All gates passed on a held-out sample; benchmark-relative skill with uncertainty.</td><td><a href="https://github.com/sassnarep3-star/Own9">Own9 ↗</a></td></tr>
 </tbody></table></div><p class="download">Review each suggestion on <a href="suggestions.html">Suggestions</a> and <a href="suggestion-costs.html">Suggestion costs</a>; open items are published on <a href="flags.html">Flagged for Review</a>.</p>''')
+
 
 
 def render():
