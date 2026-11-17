@@ -699,12 +699,13 @@ Started from `32ce9753` on 2026-11-17 UTC. Arena fixes this session's branch; wo
 
 ### Rebase/conflict resolution
 
-`origin/main` advanced from `32ce9753` through `92272a2` to `14dccd3` while PR #63 was open. Conflicts
-were caused by concurrent landing-page/navigation additions. Preserved upstream's generated root
-pages and generator, including its readiness table and consolidated executive, information/answers,
-and suggestions pages; discarded the redundant front-door implementation from this branch. The
-repository-inventory refresh is regenerated against the merged tree, not resolved by keeping stale
-counts. No other session's source or data rows were changed.
+`origin/main` advanced from `32ce9753` through `92272a2`, `14dccd3`, and `876bd61` while PR #63 was
+open. Conflicts were caused by concurrent landing-page/navigation additions. Preserved upstream's
+generated root pages and generator, including its readiness table and consolidated executive,
+information/answers, and suggestions pages; discarded the redundant front-door implementation from
+this branch. The repository-inventory refresh is regenerated against the merged tree, not resolved by
+keeping stale counts. The final upstream cleanup removed temporary Pages-trigger files; the measured
+tracked-file count remains 432. No other session's source or data rows were changed.
 
 ### Verification after integration
 
