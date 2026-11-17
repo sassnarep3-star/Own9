@@ -565,6 +565,13 @@ deploy and read a row, not just the status.**
 
 | Task | Status | Owner | Files |
 | --- | --- | --- | --- |
-| Audit and correct the README executive summary's repository-derived page/test counts; rerun the repository's checks and record the scope of verification | in progress | a3ebd30e | `README.md`, `COORDINATION.md` |
+| Audit and correct the README executive summary's repository-derived page/test counts; rerun the repository's checks and record the scope of verification | done | a3ebd30e | `README.md`, `COORDINATION.md` |
 
 Scope is documentation-only: no new NFL data, model claims, or external-source verification. The source-of-truth for generated page count is `python3 tools/verify.py`; unit-test count is the root `python3 -m unittest discover -s tests` run. The external-content limitation of offline verification must remain explicit.
+
+### Session `a3ebd30e` — completion record (2026-11-17 UTC)
+
+- Updated the README's repository-generated page count (39, from `python3 tools/verify.py`), source-linked row count (1,755, same verifier), root test count (313, from `npm test` / `python3 -m unittest discover -s tests`), and live register counts (21 suggestions, 24 questions, 21 decisions, from `engine/registers.py`). The executive summary now explicitly says these are software/structure checks, not predictive-skill evidence.
+- The top-level README intro now distinguishes the 39-page generated root dashboard from separately maintained linked desks. No NFL data or model output was changed.
+- Verification performed after edits: `npm test` passed (313 tests, root verifier, availability validator, register validator, and site checker); `git diff --check` passed. Root verifier reported 39 fresh pages and 1,755 source-linked rows; site checker reported 15 pages, 147 data rows with direct official-source links, and 551 HTML links/resources checked without broken local targets/fragments.
+- Scope limitation: these are local repository consistency checks. They do not re-fetch or certify external NFL content, certify every prose claim, or establish predictive edge. No new official-source claims were added or marked verified.

@@ -6,8 +6,10 @@ An auditable NFL research workspace covering line origination, singles, parlays,
 player-prop combos, seven validation gates, a proposed competition, correlation
 requirements, official source scopes and a published review register.
 
-Nineteen pages, `tools/build.py`, `tools/verify.py`, verified snapshots and synthetic data only,
-plus one market-data audit computed at build time from the files committed in `data/raw/`.
+The root dashboard currently builds 39 generated HTML pages (`tools/build.py`); the separately
+maintained linked research desks have their own pages and checks. The root verifier reports 1,755
+source-linked rows. The root suite contains 313 Python unit tests (`python3 -m unittest discover -s tests`);
+these counts describe repository structure and software checks, not NFL strategy validation.
 
 ## Start with the decisions, not the archive
 
@@ -49,14 +51,17 @@ plus one market-data audit computed at build time from the files committed in `d
 
 ## Executive summary
 
-- **Implemented:** nineteen static dashboard pages; dependency-free pricing, binary scoring,
+- **Implemented:** 39 generated root-dashboard pages; dependency-free pricing, binary scoring,
   Pearson/phi, a Fisher-z correlation interval with a predeclared-deadband dependence gate,
   a joint price that refuses to default to independence, fail-closed eligibility, verified
   two-week lineup evidence with a fail-closed validator, and three validated registers
-  (16 suggestions, 22 questions, 16 decisions); and, from the 14 Nov 2026 integration, a costed
-  suggestion sheet (18 items, 4 candidate paths), a question ledger (32 questions, 7 discovery
-  probes), an official availability-source register with two checked absences, and a measured
-  audit of the committed market-lines file: 105 Python tests, 2 browser suites and CI.
+  (21 suggestions, 24 questions, 21 decisions, as reported by `engine/registers.py`); and,
+  from the 14 Nov 2026 integration, a costed suggestion sheet (18 items, 4 candidate paths),
+  a question ledger (32 questions, 7 discovery probes), an official availability-source
+  register with two checked absences, and a measured
+  audit of the committed market-lines file. The root suite has 313 Python tests; the root site
+  verifier checks 1,755 source-linked rows. These are software and structure checks, not evidence
+  of predictive skill.
 - **Not established:** an NFL edge, a numerical NFL line, empirical correlation, completed
   model/backtest, historical executable quote archive, verified skill or funded rewards.
   Note the nuance on the second clause: an undocumented local file with 20,490 historical quote
