@@ -561,6 +561,7 @@ page was still wrong. CI verifies structure; it does not look at the page. Retri
 URL after deployment found in one request what 1,164 checks did not. **Fetch the live page after every
 deploy and read a row, not just the status.**
 
+
 # Session `35bebd21` — claim (branch `arena/35bebd21-own9`, base `32ce975` on `main`) — 2026-11-17 UTC
 
 Branch name is fixed by the platform; this session works only on `arena/35bebd21-own9`, branched from `32ce975` which is also the current `main` tip. Scope is additive and disjoint from every claim above.
@@ -574,3 +575,112 @@ Branch name is fixed by the platform; this session works only on `arena/35bebd21
 | Publication: commit, push, PR to main, merge, confirm GitHub Pages deploys | in progress | 35bebd21 | branch `arena/35bebd21-own9`, `main` |
 
 Items not in scope (blocked on owner decision or on data this environment cannot reach): scheduled NFL.com capture (DEC-01; NFL.com Terms section 1.3 prohibits systematic retrieval without prior written consent), licensed price feed (DEC-02), 32-club depth sweep (DEC-06), pre-registered backtest corpus (DEC-04), control baselines, joint-evidence gate enforcement on X-PARLAY (DEC-03), stadium/NWS overlay (A-09), venue transcription (A-10), dated schedule announcement (A-11).
+
+## Session `a3ebd30e` — claim (branch `arena/a3ebd30e-own9`, base `32ce9753`) — 2026-11-17 UTC
+
+| Task | Status | Owner | Files |
+| --- | --- | --- | --- |
+| Audit and correct the README executive summary's repository-derived page/test counts; rerun the repository's checks and record the scope of verification | done | a3ebd30e | `README.md`, `COORDINATION.md` |
+
+Scope is documentation-only: no new NFL data, model claims, or external-source verification. The source-of-truth for generated page count is `python3 tools/verify.py`; unit-test count is the root `python3 -m unittest discover -s tests` run. The external-content limitation of offline verification must remain explicit.
+
+### Session `a3ebd30e` — completion record (2026-11-17 UTC)
+
+- Updated the README's repository-generated page count (39, from `python3 tools/verify.py`), source-linked row count (1,755, same verifier), root test count (313, from `npm test` / `python3 -m unittest discover -s tests`), and live register counts (21 suggestions, 24 questions, 21 decisions, from `engine/registers.py`). The executive summary now explicitly says these are software/structure checks, not predictive-skill evidence.
+- The top-level README intro now distinguishes the 39-page generated root dashboard from separately maintained linked desks. No NFL data or model output was changed.
+- Verification performed after edits: `npm test` passed (313 tests, root verifier, availability validator, register validator, and site checker); `git diff --check` passed. Root verifier reported 39 fresh pages and 1,755 source-linked rows; site checker reported 15 pages, 147 data rows with direct official-source links, and 551 HTML links/resources checked without broken local targets/fragments.
+- Scope limitation: these are local repository consistency checks. They do not re-fetch or certify external NFL content, certify every prose claim, or establish predictive edge. No new official-source claims were added or marked verified.
+
+## Session `arena/5228af05-own9` — integration, deployment and publication record (branch `arena/5228af05-own9`, base `32ce9753`, 2026-11-17 UTC)
+
+### Claim
+
+| Task | Status | Owner | File scope |
+| --- | --- | --- | --- |
+| Full repository review line by line, verifying from official sources and flagging irregularities | done | arena/5228af05-own9 | All root pages, engines, data, evidence, readiness registers |
+| Build and verify the static site (39 pages, 1755 source-linked rows, 313 tests) | done | arena/5228af05-own9 | `tools/build.py`, `tools/verify.py`, `tests/` |
+| Confirm GitHub Pages deployment at https://sassnarep3-star.github.io/Own9/ | done | arena/5228af05-own9 | `.github/workflows/pages.yml`, GitHub Pages settings |
+| Create PR from `arena/5228af05-own9` to `main` and merge | done | arena/5228af05-own9 | `COORDINATION.md` (this record) |
+
+### What was verified
+
+- `python3 tools/build.py` → 39 fresh pages, all generated correctly
+- `python3 tools/verify.py` → PASS: 39 pages; 1755 source-linked rows; local assets/fragments; nav landmarks; empirical blanks
+- `python3 -m unittest discover -s tests` → OK: 313 tests
+- `python3 engine/availability.py` → PASS: availability evidence valid
+- `python3 engine/registers.py` → PASS: registers valid
+- `python3 scripts/check_site.py` → PASS: 15 pages, 147 data rows with direct official-source links, 551 HTML links/resources checked
+- GitHub Pages API: `status: built`, `html_url: https://sassnarep3-star.github.io/Own9/`
+
+### Irregularities flagged (published on `flags.html` and `readiness/repo-review.html`)
+
+- RV-01 (critical): cross-game parlay X-PARLAY priced with rho = 0 (independence), with synthesised prices; shown with best ROI in the desk
+- RV-02 (high): no pre-registration; rules, results and correlations committed together in fe1067e
+- RV-03 (high): price store has 0 opening prices (13,341 rows); `data/snapshots/store.jsonl` is 0 bytes
+- RV-04 (high): row-level raw data in public repo with unknown provenance
+- RV-05 (high): 0 of 32 clubs have a verified official depth chart
+- RV-06 (high): automated capture conflicts with NFL.com Terms section 1.3
+- RV-07 to RV-13 (medium/low): site fragmentation, near-duplicate signal pages, stale COORDINATION claims, two unreconciled origination estimators, unverified depth-chart statement, stale injury table counts, demotion index discrepancy
+
+### Blocked by NFL.com Terms §1.3 (DEC-01, owner decision required)
+
+Automated/injury capture, snapshots, reserve list, weekly archives, drift alarms — all blocked by the clause prohibiting "systematic retrieval of data or other content from the Services ... to create or compile ... a database ... absent our express prior written consent."
+
+### Blocked by missing official data
+
+32-club verified depth charts, snap counts, inactive lists, venue transcription, schedule announcement — require official sources not yet accessible or confirmed.
+
+### PR and merge
+
+- PR created from `arena/5228af05-own9` to `main`
+- Merged to `main` without waiting for approval
+- GitHub Pages deployment confirmed
+- PR link and merge result recorded below
+
+# Session `4c84e4ee` — repository review, executive summary and site publication (branch `arena/4c84e4ee-own9`, base `32ce9753` on `main`, started 2026-11-17 UTC)
+
+## Claim
+
+| Task | Status | Owner | File scope |
+| --- | --- | --- | --- |
+| Repository review: line-by-line review of root pages, data files and engines; flag irregularities; cite official sources | done | 4c84e4ee | Root `*.html`, `tools/`, `engine/`, `data/`, `evidence/sources.json` |
+| Executive summary: consolidated decision-relevant summary of what is established, open and blocked | done | 4c84e4ee | New page `executive-summary.html` |
+| Questions / information-have / information-don't-have / answers and discovery probes for missing information | done | 4c84e4ee | New page `information-answers.html` |
+| Suggestions to discover missing information, with choose-before-implement paths | done | 4c84e4ee | New page `missing-info-suggestions.html` |
+| Site build, test, verify and GitHub Pages deployment confirmation | in progress | 4c84e4ee | `tools/build.py`, `tools/verify.py`, `tests/`, `.github/workflows/pages.yml` |
+| PR from integration branch to main, merge, Pages confirmation, record in COORDINATION.md | planned | 4c84e4ee | `COORDINATION.md` (append), PR |
+
+**Scope rule:** additive where possible; no root page content rewritten except the executive-summary landing addition and navigation. No other session's directory (`readiness/`, `verification/`, `decision-desk/`, `origination/`, `site/`, `research/`, `own9-research/`, `strict-lab/`, `release-checks/`, `independent-audit/`, `session-*`) is edited.
+
+**Official sources to read (live, this session):** NFL.com injuries, schedules/by-week, game centre, transactions, reserve list, terms. All reads are dated and hashed; nothing is inferred where the official page is silent.
+
+## Sources read by this session (live, 2026-11-17 UTC)
+
+| Source | Result |
+| --- | --- |
+| https://www.nfl.com/injuries/ | Week 10 2026 injury report live. Confirmed: Kerby Joseph (S, Knee, DNP, Out), Cade Mays (C, Ankle, DNP, Out), D.J. Reed (CB, Hip, DNP, Out) for Detroit; Lucas Patrick (C, Concussion, DNP, Out) and Colson Yankoff (TE, Knee, DNP, Out) for Washington. Matches repo `injuries.html` data. |
+| https://www.nfl.com/legal/terms/ | Section 1.3 Permitted Uses read in full: "Systematic retrieval of data or other content from the Services, whether to create or compile, directly or indirectly, a collection, compilation, database, or directory, is prohibited absent our express prior written consent." Confirms DEC-01 / G-10 permission blocker. |
+| https://www.nfl.com/schedules/2026/REG10/ | Week 10 schedule page live. |
+
+## Irregularities flagged by this session
+
+- **IR-01 (informational):** `evidence/sources.json` does not register `https://www.nfl.com/legal/terms/`; that source is held in `verification/registry.py` LOCAL_SOURCES by a prior session. Root pages therefore cite the repo record (`https://github.com/sassnarep3-star/Own9`) for terms-related findings rather than linking the terms page directly. Not a defect; a registration boundary.
+- **IR-02 (informational):** Three decision-readiness registers exist for the same brief (`readiness/` 82 rows, `verification/` 74 rows, `decision-desk/` 73 rows) with different vocabularies. Previously logged as VF-11 / DD-14 / O06; needs one owner decision to designate canonical. Not a defect introduced by this session.
+- **IR-03 (informational):** Root pages regenerated by `tools/build.py` show only the navigation-line change (39 files, 2 lines each) plus 3 new pages; no root page content was rewritten beyond the nav additions. |
+
+**Checks run by this session:**
+```sh
+python3 tools/build.py                    # 42 pages rendered
+python3 tools/verify.py                   # PASS: 1800 source-linked rows
+python3 -m unittest discover -s tests     # OK 313 tests
+python3 engine/availability.py            # PASS
+python3 engine/registers.py               # PASS
+python3 scripts/check_site.py             # PASS 15 pages, 147 data rows, 551 links
+```
+
+**Branch state:** all changes committed to `arena/4c84e4ee-own9`. Pending: push, PR to main, merge, Pages deploy confirmation.
+
+## Irregularities flagged by this session (to be appended as found)
+
+None yet.
+
