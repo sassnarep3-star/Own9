@@ -684,3 +684,11 @@ python3 scripts/check_site.py             # PASS 15 pages, 147 data rows, 551 li
 
 None yet.
 
+
+## Session c0256647 — claim (branch `arena/c0256647-own9`, base `32ce9753` on `main`) — 2026-11-17 UTC
+
+| Task | Status | Owner | Files |
+| --- | --- | --- | --- |
+| Final documentation consistency pass: replace stale README material with current summary, expose known repository/site inconsistencies, and link the decision registers | in progress | c0256647 | `README.md`, plus this coordination entry |
+
+The README-only subtask overlaps the just-merged PR #60 from session a3ebd30e. PR #64/#65 integration records are preserved above. The root landing-page date mismatch is separately coordinated with PR #63; this session does not edit root generator/pages.
