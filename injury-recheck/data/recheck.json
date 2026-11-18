@@ -1,0 +1,253 @@
+{
+  "source_url": "https://www.nfl.com/injuries/league/2026/REG10",
+  "source_publisher": "NFL.com (NFL Enterprises LLC) - official league injury report",
+  "read_date_utc": "2026-11-18",
+  "read_method": "fetch of the public page, read chunk by chunk (8 chunks); rows transcribed by hand from the chunk text; no bulk capture stored",
+  "official_rows": [
+    {
+      "team": "DET",
+      "club": "Lions",
+      "player": "Kerby Joseph",
+      "position": "S",
+      "injury": "Knee",
+      "practice": "Did Not Participate In Practice",
+      "game": "Out",
+      "chunk": 0,
+      "game_section": "Sun 15 Nov 9:30 AM ET, NE-DET game (Lions table, listed NE then DET)",
+      "flag_refs": [
+        "VR-08"
+      ]
+    },
+    {
+      "team": "DET",
+      "club": "Lions",
+      "player": "Cade Mays",
+      "position": "C",
+      "injury": "Ankle",
+      "practice": "Did Not Participate In Practice",
+      "game": "Out",
+      "chunk": 0,
+      "game_section": "Sun 15 Nov 9:30 AM ET, NE-DET game (Lions table, listed NE then DET)",
+      "flag_refs": [
+        "VR-12"
+      ]
+    },
+    {
+      "team": "DET",
+      "club": "Lions",
+      "player": "D.J. Reed",
+      "position": "CB",
+      "injury": "Hip",
+      "practice": "Did Not Participate In Practice",
+      "game": "Out",
+      "chunk": 0,
+      "game_section": "Sun 15 Nov 9:30 AM ET, NE-DET game (Lions table, listed NE then DET)",
+      "flag_refs": [
+        "VR-12"
+      ]
+    },
+    {
+      "team": "WAS",
+      "club": "Commanders",
+      "player": "Lucas Patrick",
+      "position": "C",
+      "injury": "Concussion",
+      "practice": "Did Not Participate In Practice",
+      "game": "Out",
+      "chunk": 0,
+      "game_section": "Thu 12 Nov 8:15 PM ET, WAS vs NYG (Commanders table)",
+      "flag_refs": []
+    },
+    {
+      "team": "SEA",
+      "club": "Seahawks",
+      "player": "Charles Cross",
+      "position": "T",
+      "injury": "Ankle",
+      "practice": "Did Not Participate In Practice",
+      "game": "Out",
+      "chunk": 4,
+      "game_section": "Sun 15 Nov 4:05 PM ET, SEA vs LV (Seahawks table)",
+      "flag_refs": [
+        "VR-04"
+      ]
+    },
+    {
+      "team": "SEA",
+      "club": "Seahawks",
+      "player": "Sam Darnold",
+      "position": "QB",
+      "injury": "Ribs, Quadricep",
+      "practice": "Did Not Participate In Practice",
+      "game": "Out",
+      "chunk": 4,
+      "game_section": "Sun 15 Nov 4:05 PM ET, SEA vs LV (Seahawks table)",
+      "flag_refs": [
+        "VR-04"
+      ]
+    },
+    {
+      "team": "SEA",
+      "club": "Seahawks",
+      "player": "Quenton Nelson",
+      "position": "G",
+      "injury": "Knee",
+      "practice": "Did Not Participate In Practice",
+      "game": "Out",
+      "chunk": 4,
+      "game_section": "Sun 15 Nov 4:05 PM ET, SEA vs LV (Seahawks table)",
+      "flag_refs": [
+        "VR-04"
+      ]
+    },
+    {
+      "team": "SEA",
+      "club": "Seahawks",
+      "player": "Leonard Williams",
+      "position": "DT",
+      "injury": "Stinger",
+      "practice": "Did Not Participate In Practice",
+      "game": "Out",
+      "chunk": 4,
+      "game_section": "Sun 15 Nov 4:05 PM ET, SEA vs LV (Seahawks table)",
+      "flag_refs": [
+        "VR-04"
+      ]
+    },
+    {
+      "team": "CIN",
+      "club": "Bengals",
+      "player": "Jalen Davis",
+      "position": "CB",
+      "injury": "Hamstring",
+      "practice": "Full Participation in Practice",
+      "game": "Doubtful",
+      "chunk": 5,
+      "game_section": "Sun 15 Nov 8:20 PM ET, PIT vs CIN (Bengals table)",
+      "flag_refs": [
+        "VR-05"
+      ]
+    },
+    {
+      "team": "CIN",
+      "club": "Bengals",
+      "player": "Kyle Dugger",
+      "position": "S",
+      "injury": "Quadricep",
+      "practice": "Did Not Participate In Practice",
+      "game": "Out",
+      "chunk": 5,
+      "game_section": "Sun 15 Nov 8:20 PM ET, PIT vs CIN (Bengals table)",
+      "flag_refs": [
+        "VR-05"
+      ]
+    },
+    {
+      "team": "CIN",
+      "club": "Bengals",
+      "player": "Andrei Iosivas",
+      "position": "WR",
+      "injury": "Thumb",
+      "practice": "Full Participation in Practice",
+      "game": "Doubtful",
+      "chunk": 5,
+      "game_section": "Sun 15 Nov 8:20 PM ET, PIT vs CIN (Bengals table)",
+      "flag_refs": [
+        "VR-05"
+      ]
+    },
+    {
+      "team": "CIN",
+      "club": "Bengals",
+      "player": "Brian Parker II",
+      "position": "G",
+      "injury": "Knee",
+      "practice": "Full Participation in Practice",
+      "game": "Doubtful",
+      "chunk": 5,
+      "game_section": "Sun 15 Nov 8:20 PM ET, PIT vs CIN (Bengals table)",
+      "flag_refs": [
+        "VR-05"
+      ]
+    },
+    {
+      "team": "SEA",
+      "club": "Seahawks",
+      "player": "Drew Lock",
+      "position": "QB",
+      "injury": "",
+      "practice": "Limited Participation in Practice",
+      "game": "",
+      "chunk": 4,
+      "game_section": "Sun 15 Nov 4:05 PM ET, SEA vs LV (Seahawks table)",
+      "flag_refs": [
+        "VR-26"
+      ]
+    }
+  ],
+  "official_absence_and_news": [
+    {
+      "id": "N-1",
+      "player": "Malik Willis",
+      "club": "MIA",
+      "official_fact": "Not listed in the Dolphins table of the Week 10 report (chunk 3).",
+      "official_news_headline": "Dolphins place QB Malik Willis (groin) on injured reserve; Kyle McCord in line for first start",
+      "official_news_url": "https://www.nfl.com/news/dolphins-place-qb-malik-willis-groin-on-injured-reserve-kyle-mccord-in-line-for-first-start",
+      "chunk": 6,
+      "flag_refs": [
+        "VR-25",
+        "VQ-06"
+      ]
+    },
+    {
+      "id": "N-2",
+      "player": "Drew Lock",
+      "club": "SEA",
+      "official_fact": "Report lists Lock as Limited Participation with no game status (chunk 4).",
+      "official_news_headline": "Drew Lock (elbow/oblique) has no injury designation, will start for Seahawks vs. Raiders",
+      "official_news_url": "https://www.nfl.com/news/drew-lock-no-injury-designation-seahawks-raiders",
+      "chunk": 6,
+      "flag_refs": [
+        "VR-26"
+      ]
+    }
+  ],
+  "official_counts_seen": {
+    "SEA_listed_players": 15,
+    "CIN_listed_players": 9,
+    "CIN_players_with_game_status": 4,
+    "note": "Counted by hand from the Seahawks and Bengals tables. Full-report row count was NOT re-counted."
+  },
+  "irregularities": [
+    {
+      "id": "RC-01",
+      "severity": "medium",
+      "text": "The official Week 10 page URL (/injuries/league/2026/REG10) carries the title and heading 'Week 11 of the 2026 Season' while its body table heading reads 'Injuries - WEEK 10' and the games shown are Week 10 games (12-16 Nov 2026). Cause not determinable from the page; treat the title as an unexplained label.",
+      "source_url": "https://www.nfl.com/injuries/league/2026/REG10"
+    },
+    {
+      "id": "RC-02",
+      "severity": "medium",
+      "text": "The default https://www.nfl.com/injuries/ page now shows Week 11 (Thursday 19 Nov, IND vs HOU first). Any repository text that calls the Week 10 capture 'current' is out of date.",
+      "source_url": "https://www.nfl.com/injuries/"
+    },
+    {
+      "id": "RC-03",
+      "severity": "high",
+      "text": "Retrieval date conflict inside the repository: injuries.html says the Week 10 report was 'retrieved on 14 Nov 2026', while decision-desk/data/captures/manifest.json records CAP-01 at 2026-11-16T01:17:10Z and COORDINATION.md records 2026-11-16. The published date is not reconciled.",
+      "source_url": "https://www.nfl.com/injuries/league/2026/REG10"
+    },
+    {
+      "id": "RC-04",
+      "severity": "medium",
+      "text": "Row counts differ across repository artifacts: injuries.html publishes 160 explicit-status rows; the capture manifest records 347 parsed rows; the brief cites 254 and 279. None of these totals was re-counted against the full official report in this check; the full count remains open.",
+      "source_url": "https://www.nfl.com/injuries/league/2026/REG10"
+    },
+    {
+      "id": "RC-05",
+      "severity": "low",
+      "text": "The official Week 10 page is not a verifiable snapshot: it can be edited after the fact by the publisher. The repository's hash-retained capture (decision-desk CAP-01) is the only retained copy, and it is not a substitute for a time-stamped official archive.",
+      "source_url": "https://www.nfl.com/injuries/league/2026/REG10"
+    }
+  ]
+}
