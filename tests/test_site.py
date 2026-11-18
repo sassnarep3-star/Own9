@@ -58,6 +58,24 @@ class SiteVerification(unittest.TestCase):
         self.assertIn('self-labeled',html)
         self.assertIn('F19',html)
 
+    def test_landing_page_summary_uses_current_registers(self):
+        root=Path(__file__).resolve().parents[1]
+        sys.path.insert(0,str(root))
+        from engine.registers import validate as validate_registers
+        from build import render
+        problems, counts=validate_registers()
+        self.assertEqual(problems,[])
+        html=render()['index.html']
+        self.assertEqual((root/'index.html').read_text(),html,
+                         'published landing page is stale relative to its generator')
+        self.assertIn(f"{counts['decisions']} registered decisions",html)
+        self.assertIn(f"{counts['questions']} questions",html)
+        self.assertIn(f"{counts['suggestions']} scored, falsifiable options",html)
+        self.assertIn(f"{counts['question_states']['answered']} answered",html)
+        self.assertIn('Source dates are shown on each evidence page',html)
+        self.assertNotIn('16 open decisions',html)
+        self.assertNotIn('22 questions: answered, open, unpublished',html)
+
     def test_subsite_navigation_links(self):
         root=Path(__file__).resolve().parents[1]
         for sub in ('site/review.html','strict-lab/flags.html','research/flagged.html',

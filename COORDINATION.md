@@ -939,6 +939,14 @@ PR #77 created from `arena/1728f05f-own9` to `main`. Merge requires conflict res
 The `static-and-math` check on PR #75 failed at "Verify official-source section (session-00cf851d)": its committed inventory measured 432 tracked files, and adding `team-view/` (four files) makes 436. I re-ran that section's own generators (`analysis.py`, `results_audit.py`, `make_ingest.py`, `build.py`, `check.py`) on this branch after merging `origin/main`, and committed only the regenerated output: `session-00cf851d/data/repo_inventory.json`, `session-00cf851d/index.html`, `session-00cf851d/repo-review.html`. The only changes are the repository-shape counts (432 → 436 tracked files; 2,597 outbound links unchanged). No judgement, source or row was edited. Its 47 tests pass. Same precedent as the 4bd7042b and c0256647 entries above.
 
 **Branch history note:** an earlier local `git pull --rebase` replayed commits that were already pushed, which made a normal push non-fast-forward. Nothing was force-pushed. The branch was fast-forwarded onto `origin/arena/d8f11315-own9` by merging `origin/main` (conflict in COORDINATION.md resolved by keeping both sides), then the regenerated output was committed on top.
+### ed9c8761 — PR #76 merge and publication record (2026-11-18 UTC)
+
+- **PR:** https://github.com/sassnarep3-star/Own9/pull/76 — merged to `main` with a merge commit (`2b0b023551d500346b4c7081ed1623156040eaec`, 2026-11-18T06:39:21Z).
+- **Conflict:** `main` advanced (PR #77, `1728f05f`) while PR #76 was open, so the merge was blocked. Resolved by merging `origin/main` into the branch; the only conflict was `COORDINATION.md`, where both sides had appended. Both records kept in full, markers removed, nothing discarded. The root build, verifier, 313 tests, the inherited inventory chain, the origination verifier and the register checks were rerun on the merged tree.
+- **Checks on the merged branch:** all four required checks passed (`static-and-math`, `Decision-readiness register checks`, `Line-origination desk checks`, `Research integrity and site checks`).
+- **Pages:** `gh api repos/sassnarep3-star/Own9/pages/builds/latest` reports `built`. The live page `https://sassnarep3-star.github.io/Own9/injury-recheck/index.html` was fetched and shows the 13 computed rows.
+- **Not on the site's navigation:** `tools/build.py` was not edited (shared file). The page is reachable by URL and from README; the integration session should add a navigation link.
+- **Open:** full Week 10 row/section count; Week 11 verification; scheduled capture (blocked by NFL Terms s.1.3 pending DEC-01); RC-01 to RC-05 to be added to Flagged for Review by the integration session.
 ## Session `arena/d6cec1e7-own9` — documentation consistency pass (2026-11-18 UTC)
 
 | Task | Status | Owner | Files |
@@ -1008,3 +1016,27 @@ GitHub Pages: deployed at https://sassnarep3-star.github.io/Own9/ (confirmed bui
 ## Irregularities
 
 Published on `flags.html` (F01–F57 plus session continuations F22–F57): empty price-snapshot store (F34/F42), no executable odds archive (F01/F18), 2006–2018 unlicensed local quote file quarantined (F22), stale results snapshot (F29), no snap-count source (F25), no official depth chart for 29 of 32 clubs (F13/F17/F44/F45), cross-source depth/report conflicts (F20/F35/F51/F52), single-point-in-time injury snapshot (F21/F28/F47), duplicate leaderboard definition in the generator (F39), two price-store implementations (F40). None block the merge; all are flagged with source links for owner review after the site is live.
+### Publication record
+
+- PR [#73](https://github.com/sassnarep3-star/Own9/pull/73) merged to `main` at 2026-11-18 06:37:59 UTC. Merge commit: `50627a9c2e72f436c943d86c8faeffd9f69654b4`.
+- Hosted checks on PR #73 passed: Decision-readiness register, Line-origination desk, Research integrity and site, and static-and-math.
+- The Pages build for the merge commit was observed in `building` state immediately after merge; final deployment status is to be confirmed.
+
+| Task | Status | Owner | Files |
+| --- | --- | --- | --- |
+| Reconcile the published landing-page summary with current project registers and remove its stale fixed date; compare live GitHub Pages with the built repository and add a regression test | in progress | arena/d6cec1e7-own9 | `tools/build.py`, generated `index.html`, `tests/test_site.py`, `COORDINATION.md` |
+
+This is final-integration follow-through: the landing page is a shared output. The live page read during this task showed older values (16 decisions, 22 questions, 16 suggestions) than the current validated registers (21, 24, 21). No NFL evidence or model values are involved; register counts are repository-derived.
+
+### Landing-page reconciliation — implementation complete, publication pending
+
+- Compared the live landing page at https://sassnarep3-star.github.io/Own9/ with `index.html` and `tools/build.py`. The live / repository page was stale: it said 16 decisions, 22 questions and 16 suggestions, while the current validated source registers contain 21, 24 and 21 respectively; it also labeled the overview “As of 04 Nov 2026” despite newer evidence records.
+- Updated `tools/build.py` to render the overview counts from `research/decision-brief.json`, `research/decision-register.json` and `research/suggestions.json`, including current question states and suggestion dispositions. The overview now directs readers to each evidence page for its source date rather than implying one date applies to the whole mixed-date dashboard.
+- Added a regression test that compares generated and committed landing-page output and checks the rendered counts against `engine.registers.validate()`.
+- `python3 tools/build.py` rendered 42 pages. `npm test` passed: 314 tests; root verification found 42 pages and 1,882 source-linked rows; availability, register and local-link checks passed; `git diff --check` passed.
+- Rebase encountered a COORDINATION.md conflict after session `7b640fc8` merged its integration record into `main`. Resolved by preserving the complete upstream record and the earlier PR #73 publication record; no unrelated session history was discarded.
+- No NFL facts or model values were added, edited, or newly marked verified. This is a repository-integrity correction. Public publication and a post-deploy live fetch remain pending.
+
+| Task | Status | Owner | Files |
+| --- | --- | --- | --- |
+| Reconcile the published landing-page summary with current project registers and remove its stale fixed date; compare live GitHub Pages with the built repository and add a regression test | in progress | arena/d6cec1e7-own9 | `tools/build.py`, generated `index.html`, `tests/test_site.py`, `COORDINATION.md` |
