@@ -758,11 +758,41 @@ Earlier refresh proved deterministic on the tree through `876bd61` (432 tracked 
 - Root structural verifier: 42 pages, 1,882 source-linked rows. `npm test`: 313 passed, availability and register checks passed, site checker passed (15 pages, 147 direct-source data rows, 551 links/resources). These checks validate code and structure, not factual certification of every claim.
 - PR #68's hosted checks were all passing before this final integration resolution: decision-readiness, origination, research integrity/site, and static-and-math. A fresh hosted run is required on this merge-resolution commit before merge.
 
+## Session `c7635cce` — review, verification and coordination record (branch `arena/c7635cce-own9`, base `3aabe89` on `main`) — 2026-11-18 UTC
+
+**Scope claim:** `COORDINATION.md` only. Shared outputs (root pages, `tools/build.py`, navigation, `data/**`, `decision-desk/**`) are not edited here; they belong to the integration session. Branch naming follows the platform rule (`arena/c7635cce-own9`), not the `session-<id>/<task>` form in the brief, because this session may only work on its assigned branch.
+
+**Brief items NOT attempted here, and why (each already tracked in `readiness/` or the flags pages):**
+- Scheduled capture of the injury report, depth pages and snap counts: a systematic-retrieval scheduler conflicts with NFL.com Terms §1.3 (DEC-01, default "no systematic capture"). Not built.
+- 32-club depth sweep, Texans depth image, official snap counts and inactive lists: no authorised structured source is reachable from this sandbox (outbound limited to github, npm, pypi). Not built.
+- Pre-registered 136-game backtest corpus, control baselines, joint-evidence gate enforcement, per-team view, injury time series: need owner decisions (DEC-01 to DEC-08) and data this environment cannot reach. Not built.
+- Pre-registration commit: the rule text and gates have to be committed before the evaluation window opens; no such window has been registered in this session.
+
+**Checks run on `3aabe89` (2026-11-18 UTC):**
+- `python3 -m unittest discover -s tests` → 313 tests, OK.
+- `python3 tools/verify.py` → PASS: 42 pages, 1,882 source-linked rows (structural only).
+- `python3 scripts/check_site.py` → PASS: 15 pages, 147 direct-source rows, 551 links/resources, no broken local targets.
+- GitHub Pages: `status: built`, latest build `1376433422` for commit `3aabe89…`, no error (`gh api repos/sassnarep3-star/Own9/pages/builds/latest`). Live root https://sassnarep3-star.github.io/Own9/ fetched and serving.
+
+**Official source spot-check (one-off reads, not a capture):**
+- https://www.nfl.com/injuries/ read 2026-11-18 UTC. The page now shows **Week 11** (Thursday 19 Nov onward), not Week 10.
+- Matches `decision-desk/data/week-11-2026-fixtures.json`: Colts at Texans, Thu 19 Nov 2026, 8:15 PM ET, Prime Video; Dolphins at Bills, Sun 22 Nov 2026, 1:00 PM ET, CBS. The stadium strings were NOT checked against the game centre and remain link-parameter-sourced (as that file states).
+- The Week 10 injury counts (254 rows / 4 no-injury sections in the repo vs 279 / 2 published on the live Week 10 report, per the brief) could not be re-read because the live page is now Week 11. Remains unverified.
+
+**Irregularities flagged (not fixed here; for the integration session or owner review):**
+- IRR-C1: the landing page says "As of 04 Nov 2026" (`index.html`), while the repo date is 2026-11-18. Date text is stale; left unchanged because root pages are integration-owned.
+- IRR-C2: no Week 11 injury capture exists in the repo. The only capture is `decision-desk/data/captures/nfl-injuries-2026-w10-2026-11-16.md` (CAP-01). Week 11 is live on the official page now.
+- IRR-C3: the brief's per-session branch naming (`session-<id>/<task>`) conflicts with the platform's single-branch rule; the platform rule was followed.
+- IRR-C4: a CI check on branch `arena/6669951c-own9` ("Research quality") failed on push in the last day (run 44005498221). Not investigated; that branch is not part of this session.
+- IRR-C5: the brief asks for a PR and merge to `main` after integration. This session's change is limited to this board entry; the integration session still has to re-verify the combined data and confirm the site builds before any integration-level merge.
+
+**Status:** this session's review and verification record is complete. Remaining brief items are blocked by the environment, by NFL Terms §1.3, or by open owner decisions, as listed above. Task status: **done** for the review/verification record; **blocked** for all other items.
+
 # Session `1728f05f` — final integration review and deployment confirmation (2026-11-18 UTC)
 
 ## Claim
 
-Branch `arena/1728f05f-own9` was created from commit `3aabe89d88003add759ec031f7fdd33f79b9045a` of `main`. No new commits were made on this branch; it is identical to `main`. The repository is already complete and deployed.
+Branch `arena/1728f05f-own9` was created from commit `3aabe89d88003add759ec031f7fdd33f79b9045a` of `main`. One commit was added on this branch (COORDINATION.md session record). The repository is already complete and deployed from `main`.
 
 | Task | Status | Owner | Files |
 | --- | --- | --- | --- |
@@ -774,7 +804,7 @@ Branch `arena/1728f05f-own9` was created from commit `3aabe89d88003add759ec031f7
 | Decision-readiness table on landing page (G-06) | done (already deployed) | 1728f05f | `index.html`, `readiness/` |
 | All NFL requirements from brief | implemented or documented as blocked | 1728f05f | `readiness/data/requirements.csv` (82 rows), `flags.html` (F01-F21) |
 | Flagged irregularities published with source links | done (already deployed) | 1728f05f | `flags.html` |
-| Pull request to main | not applicable (branch == main, no diffs) | 1728f05f | — |
+| Pull request to main | created (#77), merge requires conflict resolution | 1728f05f | COORDINATION.md |
 | GitHub Pages deployment confirmation | done (live at https://sassnarep3-star.github.io/Own9/) | 1728f05f | — |
 
 ## Verification performed (2026-11-18 UTC)
@@ -815,17 +845,13 @@ F17-F21 Review: depth chart 404s, cross-source conflicts, single-point-in-time s
 
 Nine requirement lines blocked by NFL.com Terms section 1.3 (no systematic capture without express prior written consent). Default: no scheduled capture (DEC-01). Additional blockers: DEC-02 price-data policy, DEC-03 joint-evidence gate, DEC-04 pre-registration, DEC-05 public/private split.
 
-## Pull request status
-
-Branch `arena/1728f05f-own9` is at commit `3aabe89d88003add759ec031f7fdd33f79b9045a`, identical to `main`. No commits separate them, so no pull request can be created and no merge is required. GitHub Pages is already deployed from `main` at https://sassnarep3-star.github.io/Own9/ with status "built".
-
 ## PR link and merge result
 
-No PR created (branch identical to main, zero diffs). GitHub Pages already live from main branch.
+PR #77 created from `arena/1728f05f-own9` to `main`. Merge requires conflict resolution on COORDINATION.md (session `c7635cce` entry added to `main` after branch creation). Both session records preserved above. GitHub Pages already live from main branch at https://sassnarep3-star.github.io/Own9/ with status "built".
 
 ## Next actions for future sessions
 
-1. If new content is added to a feature branch, create a PR from that branch to main, verify all checks pass, then merge.
+1. Complete the merge of PR #77 after conflict resolution, verify all hosted checks pass, confirm GitHub Pages redeploys.
 2. The nine DEC-01-blocked requirement lines require NFL express prior written consent before scheduled capture can proceed.
 3. Depth-chart coverage for 29 of 32 clubs remains unverified (club charts are self-labeled unofficial).
 4. No strategy has been certified for prospective use or rewards.
