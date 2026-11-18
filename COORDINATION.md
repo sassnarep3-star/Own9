@@ -787,3 +787,12 @@ Earlier refresh proved deterministic on the tree through `876bd61` (432 tracked 
 - IRR-C5: the brief asks for a PR and merge to `main` after integration. This session's change is limited to this board entry; the integration session still has to re-verify the combined data and confirm the site builds before any integration-level merge.
 
 **Status:** this session's review and verification record is complete. Remaining brief items are blocked by the environment, by NFL Terms §1.3, or by open owner decisions, as listed above. Task status: **done** for the review/verification record; **blocked** for all other items.
+# Session `11971707` — claim (branch `arena/11971707-own9`, base `3aabe89` on `main`) — 2026-11-18 UTC
+
+Scope is one unclaimed brief item, checked against the open PRs (#51, #52, #58, #61, #69, #71, #72) and the board above: **"Flag stale depth rows against the official transactions log"** — Baltimore QB (VR-17, VR-26; VQ-07). No other open claim touches it (`grep -i huntley` on the board: no hits).
+
+| Task | Status | Owner | Files |
+| --- | --- | --- | --- |
+| Baltimore QB stale-depth check against official transactions and reserve-list pages; flag rows, no inferred replacement | in progress | 11971707 | `staleness/**` (new only) |
+
+Not claimed here, deliberately: the Texans depth image (DEC-07, needs an authorised structured source), the 32-club depth sweep (DEC-06), the 136-game corpus (DEC-04), the injury time series (DEC-01: NFL.com Terms §1.3), and the root navigation/landing page (integration session only). Manual single-page reads only; no scheduled or systematic retrieval.
