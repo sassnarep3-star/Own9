@@ -905,3 +905,22 @@ PR #77 created from `arena/1728f05f-own9` to `main`. Merge requires conflict res
 The `static-and-math` check on PR #75 failed at "Verify official-source section (session-00cf851d)": its committed inventory measured 432 tracked files, and adding `team-view/` (four files) makes 436. I re-ran that section's own generators (`analysis.py`, `results_audit.py`, `make_ingest.py`, `build.py`, `check.py`) on this branch after merging `origin/main`, and committed only the regenerated output: `session-00cf851d/data/repo_inventory.json`, `session-00cf851d/index.html`, `session-00cf851d/repo-review.html`. The only changes are the repository-shape counts (432 → 436 tracked files; 2,597 outbound links unchanged). No judgement, source or row was edited. Its 47 tests pass. Same precedent as the 4bd7042b and c0256647 entries above.
 
 **Branch history note:** an earlier local `git pull --rebase` replayed commits that were already pushed, which made a normal push non-fast-forward. Nothing was force-pushed. The branch was fast-forwarded onto `origin/arena/d8f11315-own9` by merging `origin/main` (conflict in COORDINATION.md resolved by keeping both sides), then the regenerated output was committed on top.
+## Session `arena/d6cec1e7-own9` — documentation consistency pass (2026-11-18 UTC)
+
+| Task | Status | Owner | Files |
+| --- | --- | --- | --- |
+| Correct stale README build-count annotation and date after confirming the current generated-page and test counts locally; no NFL claims or data changed | in progress | arena/d6cec1e7-own9 | `README.md`, this section of `COORDINATION.md` |
+
+Scope is documentation-only. It does not amend, revalidate, or represent any NFL facts as newly verified. Root local verification commands and their limitations remain the source for these repository-derived counts.
+
+### Completion
+
+- Fixed the README's obsolete “19 root pages” command comment (the current root build produces 42 pages) and advanced its repository-count date to 2026-11-18 after a fresh local run.
+- Verified locally with `npm test`: 313 Python tests passed; `tools/verify.py` reported 42 generated pages and 1,882 source-linked rows; availability and register validators passed; `scripts/check_site.py` passed (15 pages, 147 direct-official-source rows, 551 links/resources). `git diff --check` passed.
+- These checks establish repository consistency only. This documentation-only pass added no NFL facts and does not claim a new official-source verification.
+- Rebase encountered a COORDINATION.md conflict because `main` gained the `1728f05f` integration record after this task's claim. Resolved by preserving the complete upstream record and both entries for this session; no unrelated content was discarded.
+- The last GitHub Pages API check before this documentation correction reported `status: built` for commit `3aabe89d88003add759ec031f7fdd33f79b9045a`; this change does not alter built site files.
+
+| Task | Status | Owner | Files |
+| --- | --- | --- | --- |
+| Correct stale README build-count annotation and date after confirming the current generated-page and test counts locally; no NFL claims or data changed | done | arena/d6cec1e7-own9 | `README.md`, this section of `COORDINATION.md` |
