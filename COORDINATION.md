@@ -757,3 +757,32 @@ Earlier refresh proved deterministic on the tree through `876bd61` (432 tracked 
 - Session subtree tests: 47 passed. The claim verifier reported 369/369 matching, 0 mismatch, 0 unverifiable; page checker passed (13 pages, 117 tables, 1,431 rows, 473 source-linked, 353 explicitly blank, 203 local links).
 - Root structural verifier: 42 pages, 1,882 source-linked rows. `npm test`: 313 passed, availability and register checks passed, site checker passed (15 pages, 147 direct-source data rows, 551 links/resources). These checks validate code and structure, not factual certification of every claim.
 - PR #68's hosted checks were all passing before this final integration resolution: decision-readiness, origination, research integrity/site, and static-and-math. A fresh hosted run is required on this merge-resolution commit before merge.
+
+# Session on branch `arena/dcb3dd7f-own9` — status record (base `3aabe89` on `main`, 2026-11-18 UTC)
+
+**Scope decision.** The brief asks for parallel `session-<id>/<task>` branches and for a full
+rebuild (32-club depth sweep, 136-game backtest corpus, daily injury captures, snap counts,
+Texans depth image, opening prices, per-team view). This session is bound to one branch and
+cannot reach most of those sources, so it did not claim them. Work is recorded here only.
+
+**Checks run on the base (all passing):**
+- `python3 -m unittest discover -s tests` — 313 tests OK
+- `python3 tools/verify.py` — 42 pages, 1,882 source-linked rows (structural only)
+- `python3 scripts/check_site.py` — 15 pages, 147 data rows with direct official links, no broken local targets
+- `python3 engine/registers.py` and `python3 engine/availability.py` — valid
+
+**Official source read, 2026-11-18 UTC (one page read, not a capture):**
+- https://www.nfl.com/injuries/ — the live page now shows **"Week 11 of the 2026 Season"**
+  (Thursday 19 Nov IND @ HOU; Colts and Texans tables present). The repo's injury tables are
+  **Week 10**, so they are stale for the current week. Checked for row count only; the table
+  itself was not copied.
+
+**Irregularities (carried forward, not resolved here):**
+- The Week 10 injury tables remain unrefreshed (RV-04 to RV-07, D-13).
+- The brief's automated capture conflicts with NFL.com Terms §1.3 (DEC-01). Not built.
+- Items in the brief that need data this environment cannot reach: 32-club depth sweep (DEC-06),
+  Texans depth image (DEC-07), opening prices (RV-03), 136-game pre-registered corpus (DEC-04),
+  snap counts, inactive-list history, reserve list.
+
+**Merge status.** Not merged. The brief's merge condition ("all tasks done") is not met; a
+PR with this record is opened for review only.
