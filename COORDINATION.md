@@ -757,3 +757,37 @@ Earlier refresh proved deterministic on the tree through `876bd61` (432 tracked 
 - Session subtree tests: 47 passed. The claim verifier reported 369/369 matching, 0 mismatch, 0 unverifiable; page checker passed (13 pages, 117 tables, 1,431 rows, 473 source-linked, 353 explicitly blank, 203 local links).
 - Root structural verifier: 42 pages, 1,882 source-linked rows. `npm test`: 313 passed, availability and register checks passed, site checker passed (15 pages, 147 direct-source data rows, 551 links/resources). These checks validate code and structure, not factual certification of every claim.
 - PR #68's hosted checks were all passing before this final integration resolution: decision-readiness, origination, research integrity/site, and static-and-math. A fresh hosted run is required on this merge-resolution commit before merge.
+
+# Session `arena/5511633d-own9` — review and scope record (branch `arena/5511633d-own9`, base `3aabe89`, 2026-11-18 UTC)
+
+## Scope decision
+
+The brief lists more than 80 separate build tasks. Most of them need owner decisions, data this environment cannot reach, or sources whose terms forbid the required method. They are not claimed in this session and are not marked done. The reasons for each are recorded below. No table row, verdict or value was added or changed.
+
+## Baseline checked (2026-11-18 UTC)
+
+- `python3 -m unittest discover -s tests` — 313 tests, OK.
+- `python3 tools/verify.py` — 42 fresh pages; 1,882 source-linked rows; no structural failures.
+- `python3 scripts/check_site.py` — 15 pages, 147 data rows with direct official-source links, 551 links/resources checked; no broken local targets.
+- `python3 engine/availability.py` — PASS (4 blocks, 18 observations, teams DET and WAS).
+- `python3 engine/registers.py` — PASS (21 suggestions, 21 decisions, 24 questions, 3 blocked decisions).
+
+## Official-source read (one page, 2026-11-18 UTC)
+
+- https://www.nfl.com/injuries/ now displays **Week 11** of the 2026 season (Thursday 19 Nov IND at HOU; Sunday 22 Nov games listed), not Week 10. The first chunk was read; the page has three chunks.
+- Consequence: the Week 10 count discrepancy (RV-12, D-13: published 254 rows and 4 no-injury sections versus 279 rows and 2 sections) **cannot be re-checked against the live page any more**. It remains **unverified**. Re-checking it needs a dated archive copy from the official site, which this repository does not hold.
+- No Week 11 table was transcribed into the repository in this session.
+
+## Why the open tasks are not started here
+
+- **Scheduled capture of the injury report, depth pages and inactive lists** (daily snapshots, raw hashes, drift alarms, Wednesday-to-kickoff series): not built. NFL.com Terms §1.3 prohibit systematic retrieval for compiling a database without written consent. This is recorded as DEC-01 and the owner must decide. Prior sessions reached the same conclusion.
+- **32-club depth sweep and the Texans depth image**: no authorised structured source is available here. Transcribing the image by eye would be an inference, which the brief forbids.
+- **Pre-registered backtest, 136-game corpus, train/validation/holdout split, control baselines, two-estimator total view**: need an owner decision on the price-data policy (DEC-04, DEC-05) and the rule text must be committed before the evaluation window opens. Committing it in this session would not be a registration, because the outcomes it would be tested on are already in the repository.
+- **Joint-evidence gate for parlays (X-PARLAY, RV-01)**: the existing desk owns that file. Removing a row from a ranked table is a judgement for the owner (DEC-03), so it was not edited here.
+- **Per-team view, snap-count ablations, injury-designation reliability study, Questionable calibration**: need archived multi-season official injury reports and inactive lists that are not in the repository.
+
+## Next step for the owner
+
+Decide DEC-01 (whether any systematic capture of NFL.com is permitted, or whether manual dated archiving is acceptable), DEC-03 (X-PARLAY removal), and DEC-04 / DEC-05 (price-data policy and pre-registration window). Until they are decided, the repository's existing blocked-status rows remain correct.
+
+Checks run: as listed under "Baseline checked". No pull request opened: this session made no change to published data or pages, so there was nothing for a merge to publish.
