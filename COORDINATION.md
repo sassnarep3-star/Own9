@@ -757,3 +757,13 @@ Earlier refresh proved deterministic on the tree through `876bd61` (432 tracked 
 - Session subtree tests: 47 passed. The claim verifier reported 369/369 matching, 0 mismatch, 0 unverifiable; page checker passed (13 pages, 117 tables, 1,431 rows, 473 source-linked, 353 explicitly blank, 203 local links).
 - Root structural verifier: 42 pages, 1,882 source-linked rows. `npm test`: 313 passed, availability and register checks passed, site checker passed (15 pages, 147 direct-source data rows, 551 links/resources). These checks validate code and structure, not factual certification of every claim.
 - PR #68's hosted checks were all passing before this final integration resolution: decision-readiness, origination, research integrity/site, and static-and-math. A fresh hosted run is required on this merge-resolution commit before merge.
+
+## Session `ed9c8761` — claim (branch `arena/ed9c8761-own9`, base `3aabe89` on `main`) — 2026-11-18 UTC
+
+Branch name is fixed by the platform; this session works only on `arena/ed9c8761-own9`.
+
+| Task | Status | Owner | Files |
+| --- | --- | --- | --- |
+| Line-by-line re-check of the published Week 10 2026 injury-snapshot rows against the live official NFL page (Lions, Seattle, Cincinnati, Washington, Drew Lock, Malik Willis) with a machine-compared verdict per row | in progress | ed9c8761 | `injury-recheck/**` (new), `README.md` (one section appended), `COORDINATION.md` (append-only) |
+
+Not claimed, deliberately: the full 279-row count and the 2-section check (requires transcribing every official row; not done this session and left as an open item), Week 11 capture, every other brief item. Navigation (`tools/build.py`) is not edited; the integration session should add a link to `injury-recheck/index.html`.
