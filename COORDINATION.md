@@ -1062,3 +1062,12 @@ Initial audit of committed root HTML found mismatched row/header counts on `demo
 - `npm test` passes: 314 Python tests, root verifier (42 pages / 1,882 source-linked rows), availability and registers validators, and site checker (15 pages / 147 official-source rows / 551 links). `git diff --check` passes. Browser suite was not run because `node_modules` is absent.
 - Scope and verification limitation: structural/site checks only; no external NFL source was fetched, no NFL fact was added or marked newly verified, and no external link availability is asserted.
 - Rebase before publication repeatedly encountered `COORDINATION.md` conflicts as concurrent integration PRs appended records to `main`. Each conflict was resolved by keeping the complete current-main coordination history and appending this session's claim/completion; no upstream entries or data were discarded.
+
+### d8f11315 — PR #75 merge and publication record (2026-11-18 UTC)
+
+- **PR:** https://github.com/sassnarep3-star/Own9/pull/75 (`arena/d8f11315-own9` → `main`)
+- **Merge:** merged with `gh pr merge 75 --merge` at 2026-11-18T06:54:22Z, merge commit `7dfa099ad9c985d28ebf35e7c825c9b7fbb381db`, without waiting for approval.
+- **Checks on the verified head `f5d3251`:** Decision-readiness register checks: pass. Line-origination desk checks: pass. Research integrity and site checks: pass. static-and-math: pass.
+- **Merge friction:** `main` moved five times while the PR was open (PRs #73, #76, #78 and others). Each time, only the append-only `COORDINATION.md` conflicted; both sides were kept. The checks were re-run on each merged head before the final merge. The inherited inventory was re-measured twice (432 → 436 → 440). No force-push was used.
+- **GitHub Pages:** the latest Pages build reports `built` at the merge commit. The live page https://sassnarep3-star.github.io/Own9/team-view/index.html renders all 32 club rows with source links.
+- **Still not done, by design:** the root navigation and landing-page link to `team-view/` (integration session's remit); the Week 10 capture reconciliation (TV-01); starters out and replacements named (DEC-06 and RV-05).
