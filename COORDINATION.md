@@ -792,3 +792,100 @@ Not claimed, deliberately: the full 279-row count and the 2-section check (requi
 ### ed9c8761 — edit to another session's tree (logged, not silent)
 
 Adding four tracked files under `injury-recheck/` changed the measured `tracked_files` in `session-00cf851d` from 432 to 436 (the `static-and-math` job re-measures it). I ran that session's own generator (`analysis.py`, `results_audit.py`, `make_ingest.py`, `build.py`) and committed its output: only `session-00cf851d/data/repo_inventory.json`, `session-00cf851d/index.html` and `session-00cf851d/repo-review.html` changed, by that one count. No judgement, source or row was touched. Same precedent as 4bd7042b.
+## Session `c7635cce` — review, verification and coordination record (branch `arena/c7635cce-own9`, base `3aabe89` on `main`) — 2026-11-18 UTC
+
+**Scope claim:** `COORDINATION.md` only. Shared outputs (root pages, `tools/build.py`, navigation, `data/**`, `decision-desk/**`) are not edited here; they belong to the integration session. Branch naming follows the platform rule (`arena/c7635cce-own9`), not the `session-<id>/<task>` form in the brief, because this session may only work on its assigned branch.
+
+**Brief items NOT attempted here, and why (each already tracked in `readiness/` or the flags pages):**
+- Scheduled capture of the injury report, depth pages and snap counts: a systematic-retrieval scheduler conflicts with NFL.com Terms §1.3 (DEC-01, default "no systematic capture"). Not built.
+- 32-club depth sweep, Texans depth image, official snap counts and inactive lists: no authorised structured source is reachable from this sandbox (outbound limited to github, npm, pypi). Not built.
+- Pre-registered 136-game backtest corpus, control baselines, joint-evidence gate enforcement, per-team view, injury time series: need owner decisions (DEC-01 to DEC-08) and data this environment cannot reach. Not built.
+- Pre-registration commit: the rule text and gates have to be committed before the evaluation window opens; no such window has been registered in this session.
+
+**Checks run on `3aabe89` (2026-11-18 UTC):**
+- `python3 -m unittest discover -s tests` → 313 tests, OK.
+- `python3 tools/verify.py` → PASS: 42 pages, 1,882 source-linked rows (structural only).
+- `python3 scripts/check_site.py` → PASS: 15 pages, 147 direct-source rows, 551 links/resources, no broken local targets.
+- GitHub Pages: `status: built`, latest build `1376433422` for commit `3aabe89…`, no error (`gh api repos/sassnarep3-star/Own9/pages/builds/latest`). Live root https://sassnarep3-star.github.io/Own9/ fetched and serving.
+
+**Official source spot-check (one-off reads, not a capture):**
+- https://www.nfl.com/injuries/ read 2026-11-18 UTC. The page now shows **Week 11** (Thursday 19 Nov onward), not Week 10.
+- Matches `decision-desk/data/week-11-2026-fixtures.json`: Colts at Texans, Thu 19 Nov 2026, 8:15 PM ET, Prime Video; Dolphins at Bills, Sun 22 Nov 2026, 1:00 PM ET, CBS. The stadium strings were NOT checked against the game centre and remain link-parameter-sourced (as that file states).
+- The Week 10 injury counts (254 rows / 4 no-injury sections in the repo vs 279 / 2 published on the live Week 10 report, per the brief) could not be re-read because the live page is now Week 11. Remains unverified.
+
+**Irregularities flagged (not fixed here; for the integration session or owner review):**
+- IRR-C1: the landing page says "As of 04 Nov 2026" (`index.html`), while the repo date is 2026-11-18. Date text is stale; left unchanged because root pages are integration-owned.
+- IRR-C2: no Week 11 injury capture exists in the repo. The only capture is `decision-desk/data/captures/nfl-injuries-2026-w10-2026-11-16.md` (CAP-01). Week 11 is live on the official page now.
+- IRR-C3: the brief's per-session branch naming (`session-<id>/<task>`) conflicts with the platform's single-branch rule; the platform rule was followed.
+- IRR-C4: a CI check on branch `arena/6669951c-own9` ("Research quality") failed on push in the last day (run 44005498221). Not investigated; that branch is not part of this session.
+- IRR-C5: the brief asks for a PR and merge to `main` after integration. This session's change is limited to this board entry; the integration session still has to re-verify the combined data and confirm the site builds before any integration-level merge.
+
+**Status:** this session's review and verification record is complete. Remaining brief items are blocked by the environment, by NFL Terms §1.3, or by open owner decisions, as listed above. Task status: **done** for the review/verification record; **blocked** for all other items.
+
+# Session `1728f05f` — final integration review and deployment confirmation (2026-11-18 UTC)
+
+## Claim
+
+Branch `arena/1728f05f-own9` was created from commit `3aabe89d88003add759ec031f7fdd33f79b9045a` of `main`. One commit was added on this branch (COORDINATION.md session record). The repository is already complete and deployed from `main`.
+
+| Task | Status | Owner | Files |
+| --- | --- | --- | --- |
+| Repository review (line-by-line source and structure check) | done | 1728f05f | All root HTML pages, tools/, engine/, evidence/, data/, research/, docs/ |
+| GitHub Pages live site (clean landing page + category subpages) | done (already deployed) | 1728f05f | All 42 root pages, style.css, site.js |
+| Executive summary | done (already deployed) | 1728f05f | `executive-summary.html` |
+| Suggestions section (review-before-implementation) | done (already deployed) | 1728f05f | `suggestions.html`, `missing-info-suggestions.html`, `information-answers.html` |
+| Questions & information & answers register | done (already deployed) | 1728f05f | `questions.html`, `information-answers.html`, `question-ledger.html` |
+| Decision-readiness table on landing page (G-06) | done (already deployed) | 1728f05f | `index.html`, `readiness/` |
+| All NFL requirements from brief | implemented or documented as blocked | 1728f05f | `readiness/data/requirements.csv` (82 rows), `flags.html` (F01-F21) |
+| Flagged irregularities published with source links | done (already deployed) | 1728f05f | `flags.html` |
+| Pull request to main | created (#77), merge requires conflict resolution | 1728f05f | COORDINATION.md |
+| GitHub Pages deployment confirmation | done (live at https://sassnarep3-star.github.io/Own9/) | 1728f05f | — |
+
+## Verification performed (2026-11-18 UTC)
+
+```
+python3 tools/build.py                                 → Rendered 42 static pages
+python3 tools/verify.py                                → PASS: 42 fresh pages; 1882 source-linked rows
+python3 -m unittest discover -s tests -v               → OK: 313 tests
+python3 scripts/check_site.py                          → PASS: 15 pages, 551 links, no broken targets
+python3 engine/availability.py                         → PASS: availability evidence valid
+python3 engine/registers.py                            → PASS: 21 suggestions, 21 decisions, 24 questions
+gh api repos/sassnarep3-star/Own9/pages                → status: "built", html_url: https://sassnarep3-star.github.io/Own9/
+```
+
+## Sources verified (official, retrieved 2026-11-16 to 2026-11-18)
+
+- https://www.nfl.com/injuries/ — Week 10 2026 injury report; Lions rows (Kerby Joseph, Cade Mays, D.J. Reed) confirmed Out; 160 players with explicit game status
+- https://www.nfl.com/schedules/2026/by-week/week-10 — 12 games FINAL, 2 without scores, byes CHI/DEN/PHI/TB
+- https://www.nfl.com/games/steelers-at-bengals-2026-reg-10?tab=overview — Paycor Stadium, Cincinnati OH
+- https://www.nfl.com/games/patriots-at-lions-2026-reg-10?tab=recap — FC Bayern Munich Stadium, Munich; NE 10, DET 35
+- https://www.nfl.com/legal/terms/ — section 1.3: systematic retrieval prohibited without express prior written consent (DEC-01)
+- https://static.www.nfl.com/image/upload/v1794570519/gamecenter/ab5828d9-4feb-11f1-abca-2c54536568a9.pdf — NFL Game Book (Week 10)
+- https://static.www.nfl.com/image/upload/v1794224919/gamecenter/ab382331-4feb-11f1-abca-2c54536568a9.pdf — NFL Game Book (Week 9)
+- https://www.chiefs.com/team/depth-chart, https://www.seahawks.com/team/depth-chart/, https://www.detroitlions.com/team/depth-chart/ — club depth charts (self-labeled unofficial)
+- https://scikit-learn.org/stable/modules/generated/sklearn.metrics.brier_score_loss.html — Brier score reference
+- https://docs.scipy.org/doc/scipy/reference/generated/scipy.stats.pearsonr.html — Pearson correlation reference
+- https://www.itl.nist.gov/div898/handbook/prc/section4/prc473.htm — NIST reference
+- https://sportsbook.draftkings.com/help/general-betting-rules/market-rules — DraftKings market rules (context only)
+- https://wsgc.wa.gov/tribal-partnerships/sports-wagering — Washington State Gambling Commission (jurisdiction context)
+
+## Flagged irregularities (published on flags.html, not blocking)
+
+F01-F04 Critical: no official odds archive, no fitted NFL model, no measured correlations, no verified backtest.
+F05-F16 Review: source links don't prove strategy validity, no funded competition, luck cannot be removed, etc.
+F17-F21 Review: depth chart 404s, cross-source conflicts, single-point-in-time snapshot limitation.
+
+## Decision blockers (documented, not hidden)
+
+Nine requirement lines blocked by NFL.com Terms section 1.3 (no systematic capture without express prior written consent). Default: no scheduled capture (DEC-01). Additional blockers: DEC-02 price-data policy, DEC-03 joint-evidence gate, DEC-04 pre-registration, DEC-05 public/private split.
+
+## PR link and merge result
+
+PR #77 created from `arena/1728f05f-own9` to `main`. Merge requires conflict resolution on COORDINATION.md (session `c7635cce` entry added to `main` after branch creation). Both session records preserved above. GitHub Pages already live from main branch at https://sassnarep3-star.github.io/Own9/ with status "built".
+
+## Next actions for future sessions
+
+1. Complete the merge of PR #77 after conflict resolution, verify all hosted checks pass, confirm GitHub Pages redeploys.
+2. The nine DEC-01-blocked requirement lines require NFL express prior written consent before scheduled capture can proceed.
+3. Depth-chart coverage for 29 of 32 clubs remains unverified (club charts are self-labeled unofficial).
+4. No strategy has been certified for prospective use or rewards.
