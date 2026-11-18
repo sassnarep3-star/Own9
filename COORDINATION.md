@@ -889,6 +889,15 @@ PR #77 created from `arena/1728f05f-own9` to `main`. Merge requires conflict res
 2. The nine DEC-01-blocked requirement lines require NFL express prior written consent before scheduled capture can proceed.
 3. Depth-chart coverage for 29 of 32 clubs remains unverified (club charts are self-labeled unofficial).
 4. No strategy has been certified for prospective use or rewards.
+
+### ed9c8761 — PR #76 merge and publication record (2026-11-18 UTC)
+
+- **PR:** https://github.com/sassnarep3-star/Own9/pull/76 — merged to `main` with a merge commit (`2b0b023551d500346b4c7081ed1623156040eaec`, 2026-11-18T06:39:21Z).
+- **Conflict:** `main` advanced (PR #77, `1728f05f`) while PR #76 was open, so the merge was blocked. Resolved by merging `origin/main` into the branch; the only conflict was `COORDINATION.md`, where both sides had appended. Both records kept in full, markers removed, nothing discarded. The root build, verifier, 313 tests, the inherited inventory chain, the origination verifier and the register checks were rerun on the merged tree.
+- **Checks on the merged branch:** all four required checks passed (`static-and-math`, `Decision-readiness register checks`, `Line-origination desk checks`, `Research integrity and site checks`).
+- **Pages:** `gh api repos/sassnarep3-star/Own9/pages/builds/latest` reports `built`. The live page `https://sassnarep3-star.github.io/Own9/injury-recheck/index.html` was fetched and shows the 13 computed rows.
+- **Not on the site's navigation:** `tools/build.py` was not edited (shared file). The page is reachable by URL and from README; the integration session should add a navigation link.
+- **Open:** full Week 10 row/section count; Week 11 verification; scheduled capture (blocked by NFL Terms s.1.3 pending DEC-01); RC-01 to RC-05 to be added to Flagged for Review by the integration session.
 ## Session `arena/d6cec1e7-own9` — documentation consistency pass (2026-11-18 UTC)
 
 | Task | Status | Owner | Files |
