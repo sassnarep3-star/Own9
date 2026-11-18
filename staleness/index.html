@@ -1,0 +1,43 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Baltimore QB depth: stale-row check | Own9</title>
+<style>
+body{font-family:system-ui,-apple-system,Segoe UI,sans-serif;margin:0;color:#1d2330;background:#f7f8fa;line-height:1.45}
+header,main{max-width:1200px;margin:0 auto;padding:18px}
+header{padding-bottom:0}
+h1{font-size:1.5rem;margin:.2rem 0}
+a{color:#0b5cad}
+.note{background:#fff;border:1px solid #d9dee7;border-radius:8px;padding:12px 14px;margin:12px 0}
+table{width:100%;border-collapse:collapse;background:#fff;font-size:.9rem}
+th,td{border:1px solid #d9dee7;padding:8px;text-align:left;vertical-align:top}
+th{background:#eef2f7}
+tr.flag td:first-child{border-left:4px solid #c2410c}
+small{color:#4b5563}
+</style></head>
+<body>
+<header>
+<p><a href="../index.html">&larr; Own9 home</a></p>
+<h1>Baltimore QB depth: stale-row check against official sources</h1>
+<div class="note">
+<strong>What this page shows.</strong> Each row compares a value in the repository with an official NFL.com or club-site value, read on the date shown. Blank means unverified. Nothing is inferred. The rows answer one question from the brief: which published depth rows are stale against official transactions, injury-reserve status and game documents.
+<br><strong>Scope.</strong> Baltimore QB only (9 rows). Other clubs are not covered by this page. Reads are single manual page views on 2026-11-18, not systematic captures.
+<br><strong>Status key.</strong> Confirmed = official source agrees. Contradicted = repo value is stale. Flagged = official pages do not reconcile or are incomplete; for review.
+</div>
+</header>
+<main>
+<table>
+<thead><tr><th>ID</th><th>Club</th><th>Player</th><th>Item</th><th>Repo value (as published)</th><th>Official value</th><th>Status</th><th>Source (official)</th><th>Read (UTC)</th></tr></thead>
+<tbody>
+<tr class=""><td>S-01</td><td>BAL</td><td>Lamar Jackson</td><td>QB1 availability (replacement_depth row BAL)</td><td>IR (league news); replacement withheld; citation is &#x27;league news&#x27; with no URL</td><td>NFL.com article text: Jackson &#x27;landing on IR&#x27;; roster status code RES</td><td><strong>Confirmed: placed on IR</strong></td><td><a href="https://www.nfl.com/news/ravens-lamar-jackson-right-thumb-out-6-9-weeks-expects-to-return-this-season" rel="noopener">www.nfl.com ↗</a><br><small>Article: &#x27;With Jackson and Tyler Huntley ... placed on injured reserve&#x27;. Related headline dated Nov 01, 2026: &#x27;Ravens QB Lamar Jackson to undergo surgery on right thumb, will be placed on IR&#x27;. Roster code legend not on page.</small></td><td>2026-11-18</td></tr>
+<tr class=""><td>S-02</td><td>BAL</td><td>Tyler Huntley</td><td>QB availability (no BAL depth row in repo)</td><td>Not in replacement register; appears only as a headline in session-8b05dd6d/injuries.html</td><td>NFL.com article text: season-ending turf toe, placed on IR; roster status code RES</td><td><strong>Confirmed: placed on IR</strong></td><td><a href="https://www.nfl.com/news/ravens-qb-tyler-huntley-out-for-season-turf-toe-injury" rel="noopener">www.nfl.com ↗</a><br><small>Article gives the injury and &#x27;out for the season&#x27;. The IR placement is stated in the Jackson article above.</small></td><td>2026-11-18</td></tr>
+<tr class="flag"><td>S-03</td><td>BAL</td><td>Jacoby Brissett</td><td>QB1 replacement (replacement_depth row BAL)</td><td>Blank: &#x27;Withheld: no verified chart or start announcement&#x27;</td><td>Started Week 10 at QB: Game Book, Chargers at Ravens (Nov 16, 2026) lists &#x27;QB 11 J.Brissett&#x27; in Lineups; 49 attempts in passing</td><td><strong>Contradicted: repo blank is stale</strong></td><td><a href="https://static.www.nfl.com/image/upload/v1794916121/gamecenter/ab78ad5a-4feb-11f1-abca-2c54536568a9.pdf" rel="noopener">static.www.nfl.com ↗</a><br><small>Official NFL Game Book (linked from https://www.nfl.com/games/chargers-at-ravens-2026-reg-10?tab=overview). Correction belongs to the integration session (data/board/replacement_depth.csv and replacement-depth.html).</small></td><td>2026-11-18</td></tr>
+<tr class=""><td>S-04</td><td>BAL</td><td>Jacoby Brissett</td><td>QB1 club depth chart (undated)</td><td>Not in repo</td><td>Club depth chart QB row: Brissett, Fagnano, Slovis (first listed = Brissett)</td><td><strong>Confirmed on official club chart; chart has no as-of date</strong></td><td><a href="https://www.baltimoreravens.com/team/depth-chart" rel="noopener">www.baltimoreravens.com ↗</a><br><small>Club-site page; no as-of date shown, so the chart cannot be versioned against a date. Flagged for review.</small></td><td>2026-11-18</td></tr>
+<tr class=""><td>S-05</td><td>BAL</td><td>Jacoby Brissett</td><td>Acquisition (trade)</td><td>Not in repo</td><td>Traded from Arizona to Baltimore, dated 11/06 (Trades, November 2026)</td><td><strong>Confirmed</strong></td><td><a href="https://www.nfl.com/transactions/" rel="noopener">www.nfl.com ↗</a><br><small>Official NFL.com transactions page, Trades November 2026 (row dated 11/06, Cardinals to Ravens). Related NFL.com article headline dated Nov 06, 2026: &#x27;Ravens complete trade for Cardinals&#x27; Jacoby Brissett; deal terms revealed&#x27; (headline seen; not opened).</small></td><td>2026-11-18</td></tr>
+<tr class=""><td>S-06</td><td>BAL</td><td>Joe Fagnano</td><td>QB2 usage (Week 9 start; Week 10 status)</td><td>Not in repo</td><td>Started Thursday Week 9 vs Jacksonville (NFL.com article text); Week 10 &#x27;Did Not Play&#x27; (Game Book)</td><td><strong>Confirmed</strong></td><td><a href="https://www.nfl.com/news/ravens-lamar-jackson-right-thumb-out-6-9-weeks-expects-to-return-this-season" rel="noopener">www.nfl.com ↗</a><br><a href="https://static.www.nfl.com/image/upload/v1794916121/gamecenter/ab78ad5a-4feb-11f1-abca-2c54536568a9.pdf" rel="noopener">static.www.nfl.com ↗</a><br><small>Week 9 start: article text &#x27;forced to start undrafted third-stringer Joe Fagnano on Thursday night against Jacksonville&#x27;. Week 10: Game Book, &#x27;QB 12 J.Fagnano&#x27; under Did Not Play.</small></td><td>2026-11-18</td></tr>
+<tr class=""><td>S-07</td><td>BAL</td><td>Kedon Slovis</td><td>QB3 (Week 10 status)</td><td>Not in repo</td><td>Roster status ACT; Week 10 Game Book: &#x27;3QB 18 K.Slovis&#x27; under Not Active</td><td><strong>Confirmed</strong></td><td><a href="https://www.nfl.com/teams/baltimore-ravens/roster" rel="noopener">www.nfl.com ↗</a><br><a href="https://static.www.nfl.com/image/upload/v1794916121/gamecenter/ab78ad5a-4feb-11f1-abca-2c54536568a9.pdf" rel="noopener">static.www.nfl.com ↗</a><br><small>Roster status ACT (NFL.com roster). Not Active per Game Book (link in S-03).</small></td><td>2026-11-18</td></tr>
+<tr class="flag"><td>S-08</td><td>BAL</td><td>Andrew Vorhees</td><td>Roster status vs trade record</td><td>Not in repo</td><td>Trade record: Ravens to Falcons, 11/10 (Trades, November 2026). Roster status code TRC; code legend not on page.</td><td><strong>Flagged: trade record and roster code do not reconcile on the page</strong></td><td><a href="https://www.nfl.com/transactions/" rel="noopener">www.nfl.com ↗</a><br><small>Unresolved. Roster code TRC is not defined on the page. Not inferred. Flagged for review.</small></td><td>2026-11-18</td></tr>
+<tr class="flag"><td>S-09</td><td>BAL</td><td>(reserve list)</td><td>Completeness of the official transactions log</td><td>Repo cites reserve-list pages for Lamar Jackson and Tyler Huntley</td><td>Reserve-list pages as served: October list runs 10/31 to 10/24; November list runs 11/17 to 11/10. Neither shows Jackson&#x27;s Nov 01 IR placement or Huntley&#x27;s IR entry.</td><td><strong>Flagged: log as served is incomplete</strong></td><td><a href="https://www.nfl.com/transactions/league/reserve-list/2026/11" rel="noopener">www.nfl.com ↗</a><br><small>Reserve-list pages cannot confirm IR dates on their own. Confirmation here comes from NFL.com article text (S-01, S-02). Oct list: https://www.nfl.com/transactions/league/reserve-list/2026/10</small></td><td>2026-11-18</td></tr>
+</tbody></table>
+<p class="note"><strong>Not changed here.</strong> The shared files <code>data/board/replacement_depth.csv</code> and <code>replacement-depth.html</code> still show Brissett's replacement as blank (S-03). Correcting them belongs to the integration session. Flagged for review: the club depth chart carries no as-of date (S-04) and the roster status code TRC is not defined on the page (S-08).</p>
+</main></body></html>

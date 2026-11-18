@@ -796,3 +796,43 @@ Scope is one unclaimed brief item, checked against the open PRs (#51, #52, #58, 
 | Baltimore QB stale-depth check against official transactions and reserve-list pages; flag rows, no inferred replacement | in progress | 11971707 | `staleness/**` (new only) |
 
 Not claimed here, deliberately: the Texans depth image (DEC-07, needs an authorised structured source), the 32-club depth sweep (DEC-06), the 136-game corpus (DEC-04), the injury time series (DEC-01: NFL.com Terms §1.3), and the root navigation/landing page (integration session only). Manual single-page reads only; no scheduled or systematic retrieval.
+
+### 11971707 — completion record (2026-11-18 UTC)
+
+**Status:** the Baltimore QB stale-row check is **done** (`staleness/**`, new files only). The brief's wording, "Baltimore still publishes Lamar Jackson and Tyler Huntley at QB", was **not reproduced** in the form written: the official club chart does not list them at QB, and the repo's replacement register does not show Huntley. What the repo does get wrong is the blank replacement for the week's starter.
+
+**Findings (rows in `staleness/register.csv`, rendered at `staleness/index.html`):**
+- S-01 Lamar Jackson: IR confirmed by NFL.com article text. The repo's "league news" citation has no URL.
+- S-02 Tyler Huntley: IR confirmed by NFL.com article text ("out for the season"). Not in the depth register; appears only as a headline.
+- S-03 Brissett, replacement cell: **contradicted**. Repo shows blank ("Withheld"). The official Week 10 Game Book (Nov 16, Chargers at Ravens) lists QB 11 J.Brissett in Lineups, with 49 pass attempts.
+- S-04 Club depth chart (baltimoreravens.com/team/depth-chart): QB row Brissett, Fagnano, Slovis. **No as-of date**, so it cannot be versioned. Flagged.
+- S-05 Brissett acquisition: NFL.com transactions, Trades November, dated 11/06 (Arizona to Baltimore). Confirmed.
+- S-06 Fagnano: started Week 9 (Thursday vs Jacksonville, NFL.com article); Week 10 Did Not Play (Game Book). Not in repo.
+- S-07 Slovis: roster ACT; Week 10 Not Active (Game Book).
+- S-08 Andrew Vorhees: trade record shows Ravens to Falcons, 11/10, but the roster lists him with status code TRC, which the page does not define. Flagged; not inferred.
+- S-09 Reserve-list completeness: the October list runs 10/31 to 10/24 and the November list runs 11/17 to 11/10. Neither shows Jackson's Nov 01 IR placement. The transactions log as served cannot confirm IR dates alone.
+
+**Sources (official, read 2026-11-18 UTC):**
+- https://www.nfl.com/news/ravens-lamar-jackson-right-thumb-out-6-9-weeks-expects-to-return-this-season
+- https://www.nfl.com/news/ravens-qb-tyler-huntley-out-for-season-turf-toe-injury
+- https://static.www.nfl.com/image/upload/v1794916121/gamecenter/ab78ad5a-4feb-11f1-abca-2c54536568a9.pdf (NFL Game Book, Week 10, 11/16/2026)
+- https://www.nfl.com/games/chargers-at-ravens-2026-reg-10?tab=overview (final LAC 23, BAL 20; links the Game Book)
+- https://www.baltimoreravens.com/team/depth-chart (club site; undated)
+- https://www.nfl.com/teams/baltimore-ravens/roster (status codes ACT, RES, DEV, TRC, CUT, TRT; no legend on the page)
+- https://www.nfl.com/transactions/ (Trades November 2026: 11/06 Brissett; 11/10 Vorhees and Neuzil)
+- https://www.nfl.com/transactions/league/reserve-list/2026/10 and https://www.nfl.com/transactions/league/reserve-list/2026/11
+
+**Verification performed:** every row has at least one https link on an allowed official host (nfl.com, static.www.nfl.com, baltimoreravens.com); `python3 staleness/build.py --check` → PASS 9 rows; the page renders with no unresolved placeholders. No value was inferred. Nothing on the shared data or root pages was edited.
+
+**Handoff to the integration session (not edited here, per the rules):**
+1. `data/board/replacement_depth.csv` (BAL QB row) and `replacement-depth.html`: replace the blank with the Game Book value for Brissett (S-03), and cite the Game Book URL. Replace the "league news" citation with the NFL.com article URLs (S-01, S-02).
+2. `injuries.html` line for BAL QB (and the matching `session-8b05dd6d` page): cite the NFL.com article for Jackson's IR, not "league news".
+3. Add `staleness/index.html` to the navigation and the Flagged for Review page, with rows S-04, S-08 and S-09 marked as flagged.
+
+**Irregularities for review:** S-04 (undated depth chart), S-08 (roster code TRC undefined, trade record disagrees in appearance), S-09 (reserve-list pages incomplete as served). Not checked in this session: other clubs, the Texans image, the Malik Willis status, the Lions designations (already covered by other sessions).
+
+**Checks run:**
+```sh
+python3 staleness/build.py --check        # PASS 9 rows
+python3 staleness/build.py                 # writes staleness/index.html
+```
