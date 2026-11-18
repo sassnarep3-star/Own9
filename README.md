@@ -8,7 +8,7 @@ requirements, official source scopes and a published review register.
 
 As of 2026-11-18, the root dashboard builds 42 generated HTML pages (`tools/build.py`); the separately
 maintained linked research desks have their own pages and checks. The root verifier reports 1,882
-source-linked rows. The root suite contains 313 Python unit tests (`python3 -m unittest discover -s tests`);
+source-linked rows. The root suite contains 314 Python unit tests (`python3 -m unittest discover -s tests`);
 these counts describe repository structure and software checks, not NFL strategy validation.
 
 ## Start with the decisions, not the archive

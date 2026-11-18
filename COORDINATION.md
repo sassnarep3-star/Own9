@@ -989,3 +989,24 @@ This is final-integration follow-through: the landing page is a shared output. T
 | --- | --- | --- | --- |
 | Reconcile the published landing-page summary with current project registers and remove its stale fixed date; compare live GitHub Pages with the built repository and add a regression test | in progress | arena/d6cec1e7-own9 | `tools/build.py`, generated `index.html`, `tests/test_site.py`, `COORDINATION.md` |
 **Session `c7635cce` — PR and merge record (2026-11-18 UTC):** PR [#71](https://github.com/sassnarep3-star/Own9/pull/71) (`arena/c7635cce-own9` → `main`), merged with a merge commit at `bebffeead399e2179f5f2d6631277992a61fdb04` on 2026-11-18T06:31:01Z (`gh pr merge 71 --merge`). Four hosted checks passed before the merge: Decision-readiness register, Line-origination desk, Research integrity and site checks, static-and-math. The Pages build for the merge (and for later `main` commit `ce79872`) reached `built`; the live Flagged for Review page was fetched after the merge. Task status: **done** (record only; the other items remain blocked as listed above).
+# Session `011b4860` — claim (branch `arena/011b4860-own9`, base `3aabe89`, 2026-11-18 UTC)
+
+This session is constrained to the active Arena branch. It will not create or switch branches. Scope is a non-overlapping static-site quality fix; no NFL facts or strategy results will be added.
+
+| Task | Status | Owner | Files |
+| --- | --- | --- | --- |
+| Add structural regression checking for generated root-page table widths; fix any malformed rows discovered; verify page output and tests | done | 011b4860 | `tools/build.py`, `tools/pages_9a409d93.py`, `tools/pages_4f2e0291.py`, `tests/test_site.py`, `README.md`, generated root pages `demotion.html`, `leaderboard.html`, `suggestion-costs.html`, `COORDINATION.md` |
+
+Initial audit of committed root HTML found mismatched row/header counts on `demotion.html` (3 rows), `leaderboard.html` (1 row), and `suggestion-costs.html` (6 rows). Existing `verification/` tests only exercise its seven-page subsite, not root-page table geometry. Values remain unchanged; repairs will preserve the intended cells and column semantics. No source-derived factual claims are in this scope.
+
+### Session `011b4860` — completion record (2026-11-18 UTC)
+
+- Added a standard-library HTML parser regression check in `tests/test_site.py` for table row widths against column-header widths across all 42 committed root dashboard pages. The check is part of default unittest discovery and `npm test`; it reuses an existing test file so the repository-inventory subtree's tracked-file counts stay unchanged. Updated the README's root test count from 313 to 314 based on the passing test run.
+- Corrected three root-page table issues without changing NFL data or model results:
+  - `demotion.html`: the Current status table's explanatory text now has its own `Explanation` header.
+  - `leaderboard.html`: the re-entry status is retained in the re-entry condition cell instead of creating an extra unheaded column.
+  - `suggestion-costs.html`: the “What it did not touch” statements are now in their named data column, not incorrectly styled as evidence-kind labels.
+- Rebuilt with `python3 tools/build.py` (42 pages). The new root-table test passes; an independent scan found zero mismatched root table rows.
+- `npm test` passes: 314 Python tests, root verifier (42 pages / 1,882 source-linked rows), availability and registers validators, and site checker (15 pages / 147 official-source rows / 551 links). `git diff --check` passes. Browser suite was not run because `node_modules` is absent.
+- Scope and verification limitation: structural/site checks only; no external NFL source was fetched, no NFL fact was added or marked newly verified, and no external link availability is asserted.
+- Rebase before publication repeatedly encountered `COORDINATION.md` conflicts as concurrent integration PRs appended records to `main`. Each conflict was resolved by keeping the complete current-main coordination history and appending this session's claim/completion; no upstream entries or data were discarded.
