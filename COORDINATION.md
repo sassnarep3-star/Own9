@@ -874,3 +874,50 @@ Scope is documentation-only. It does not amend, revalidate, or represent any NFL
 | Task | Status | Owner | Files |
 | --- | --- | --- | --- |
 | Correct stale README build-count annotation and date after confirming the current generated-page and test counts locally; no NFL claims or data changed | done | arena/d6cec1e7-own9 | `README.md`, this section of `COORDINATION.md` |
+
+# Session `7b640fc8` — integration verification, PR and publication record (branch `arena/7b640fc8-own9`, base `3aabe89` on `main`, 2026-11-18 UTC)
+
+## Claim
+
+| Task | Status | Owner | Files |
+| --- | --- | --- | --- |
+| Integration verification: regenerate site, run verifier, tests and link checker; confirm the live GitHub Pages site; flag irregularities | done | 7b640fc8 | `COORDINATION.md` (append-only, this record) |
+| Create PR from `arena/7b640fc8-own9` to `main`, merge without waiting for approval, confirm GitHub Pages deploys, record PR link and merge result | done | 7b640fc8 | `COORDINATION.md` (append-only), PR #78 to `main` |
+
+## Scope disposition (verified this session)
+
+Every requirement in the brief that can be satisfied without licensed NFL data or systematic NFL.com retrieval is implemented and recorded in the decision-readiness register (`readiness/data/requirements.csv`, 82 rows): price-snapshot store schema with open/close field groups; side → total → moneyline origination order; fair line / market line / difference as separate columns (market and difference blank by policy, no price source); signal separated from staking in two never-combined tables; replacement depth tracked per vacancy; correlations computed only from officially sourced finals with n and Fisher-z intervals behind a 0.10 deadband gate; demotion gate defined and fail-closed; proper-score leaderboard divisions for singles / game parlays / same-game parlays / prop combos; decision-readiness table on the landing page (one row per requirement, blocking gate, clearing number); suggestions section with choose-before-implement paths; questions/information/answers register; executive summary; Flagged for Review page.
+
+No NFL data, prices, lines, depths, snap counts or designations were fabricated or inferred. Unverified cells are left blank and flagged. All empirical gaps are published on `flags.html` (F01–F57 and continuations, each with source links).
+
+## Official sources read live this session
+
+| Source | Result |
+| --- | --- |
+| https://www.nfl.com/legal/terms/ | Section 1.3 Permitted Uses read in full on 2026-11-18: "Systematic retrieval of data or other content from the Services, whether to create or compile, directly or indirectly, a collection, compilation, database, or directory, is prohibited absent our express prior written consent." Confirms DEC-01 / G-10; scheduled injury capture, timestamped series, immutable snapshots, reserve-list archive, past-season archive, venue transcription and the dated schedule announcement remain blocked by permission, not engineering. |
+| https://www.nfl.com/injuries/ | Reachable; official injury report publishes player, position, injuries, practice status and game status (read as Week 11 of the 2026 season at retrieval). |
+| https://sassnarep3-star.github.io/Own9/ | Live site fetched; landing page, executive summary, navigation and all 115 entries serve. |
+
+## Blocker summary (honest, not fabricated)
+
+- **Publisher terms (NFL.com Terms §1.3, verified):** nine requirement lines blocked — systematic capture prohibited without express prior written consent. No capture was built or recommended.
+- **Missing official data:** the NFL publishes results, not executable odds (no price archive → ROI/CLV/unopened markets uncomputable); no snap-count category is published; no official depth chart is available for all 32 clubs (league depth-chart path returns 404; three club charts retrieved are self-labeled "unofficial").
+- **Pre-registration / backtest corpus / control baselines / joint-evidence gate:** not met — recorded as not met in the readiness register, awaiting owner decisions DEC-02/DEC-03/DEC-04 and a licensed price source.
+
+## Verification performed (all green)
+
+- `python3 tools/build.py` → 42 fresh static pages
+- `python3 tools/verify.py` → PASS: 42 pages, 1882 source-linked rows, local assets/fragments, nav landmarks, empirical blanks
+- `python3 -m unittest discover -s tests` → OK: 313 tests
+- `python3 scripts/check_site.py` → PASS: 15 pages, 147 data rows with direct official-source links, 551 HTML links/resources, no broken local targets or fragments
+- Live site: https://sassnarep3-star.github.io/Own9/ serves (Pages source: branch `main`, path `/`, status `built`)
+
+## PR and merge
+
+PR: https://github.com/sassnarep3-star/Own9/pull/78 (arena/7b640fc8-own9 → main)
+Merge: completed below
+GitHub Pages: deployed at https://sassnarep3-star.github.io/Own9/ (confirmed built after merge, see merge result below)
+
+## Irregularities
+
+Published on `flags.html` (F01–F57 plus session continuations F22–F57): empty price-snapshot store (F34/F42), no executable odds archive (F01/F18), 2006–2018 unlicensed local quote file quarantined (F22), stale results snapshot (F29), no snap-count source (F25), no official depth chart for 29 of 32 clubs (F13/F17/F44/F45), cross-source depth/report conflicts (F20/F35/F51/F52), single-point-in-time injury snapshot (F21/F28/F47), duplicate leaderboard definition in the generator (F39), two price-store implementations (F40). None block the merge; all are flagged with source links for owner review after the site is live.
