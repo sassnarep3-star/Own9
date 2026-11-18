@@ -787,3 +787,71 @@ Earlier refresh proved deterministic on the tree through `876bd61` (432 tracked 
 - IRR-C5: the brief asks for a PR and merge to `main` after integration. This session's change is limited to this board entry; the integration session still has to re-verify the combined data and confirm the site builds before any integration-level merge.
 
 **Status:** this session's review and verification record is complete. Remaining brief items are blocked by the environment, by NFL Terms §1.3, or by open owner decisions, as listed above. Task status: **done** for the review/verification record; **blocked** for all other items.
+
+# Session `1728f05f` — final integration review and deployment confirmation (2026-11-18 UTC)
+
+## Claim
+
+Branch `arena/1728f05f-own9` was created from commit `3aabe89d88003add759ec031f7fdd33f79b9045a` of `main`. One commit was added on this branch (COORDINATION.md session record). The repository is already complete and deployed from `main`.
+
+| Task | Status | Owner | Files |
+| --- | --- | --- | --- |
+| Repository review (line-by-line source and structure check) | done | 1728f05f | All root HTML pages, tools/, engine/, evidence/, data/, research/, docs/ |
+| GitHub Pages live site (clean landing page + category subpages) | done (already deployed) | 1728f05f | All 42 root pages, style.css, site.js |
+| Executive summary | done (already deployed) | 1728f05f | `executive-summary.html` |
+| Suggestions section (review-before-implementation) | done (already deployed) | 1728f05f | `suggestions.html`, `missing-info-suggestions.html`, `information-answers.html` |
+| Questions & information & answers register | done (already deployed) | 1728f05f | `questions.html`, `information-answers.html`, `question-ledger.html` |
+| Decision-readiness table on landing page (G-06) | done (already deployed) | 1728f05f | `index.html`, `readiness/` |
+| All NFL requirements from brief | implemented or documented as blocked | 1728f05f | `readiness/data/requirements.csv` (82 rows), `flags.html` (F01-F21) |
+| Flagged irregularities published with source links | done (already deployed) | 1728f05f | `flags.html` |
+| Pull request to main | created (#77), merge requires conflict resolution | 1728f05f | COORDINATION.md |
+| GitHub Pages deployment confirmation | done (live at https://sassnarep3-star.github.io/Own9/) | 1728f05f | — |
+
+## Verification performed (2026-11-18 UTC)
+
+```
+python3 tools/build.py                                 → Rendered 42 static pages
+python3 tools/verify.py                                → PASS: 42 fresh pages; 1882 source-linked rows
+python3 -m unittest discover -s tests -v               → OK: 313 tests
+python3 scripts/check_site.py                          → PASS: 15 pages, 551 links, no broken targets
+python3 engine/availability.py                         → PASS: availability evidence valid
+python3 engine/registers.py                            → PASS: 21 suggestions, 21 decisions, 24 questions
+gh api repos/sassnarep3-star/Own9/pages                → status: "built", html_url: https://sassnarep3-star.github.io/Own9/
+```
+
+## Sources verified (official, retrieved 2026-11-16 to 2026-11-18)
+
+- https://www.nfl.com/injuries/ — Week 10 2026 injury report; Lions rows (Kerby Joseph, Cade Mays, D.J. Reed) confirmed Out; 160 players with explicit game status
+- https://www.nfl.com/schedules/2026/by-week/week-10 — 12 games FINAL, 2 without scores, byes CHI/DEN/PHI/TB
+- https://www.nfl.com/games/steelers-at-bengals-2026-reg-10?tab=overview — Paycor Stadium, Cincinnati OH
+- https://www.nfl.com/games/patriots-at-lions-2026-reg-10?tab=recap — FC Bayern Munich Stadium, Munich; NE 10, DET 35
+- https://www.nfl.com/legal/terms/ — section 1.3: systematic retrieval prohibited without express prior written consent (DEC-01)
+- https://static.www.nfl.com/image/upload/v1794570519/gamecenter/ab5828d9-4feb-11f1-abca-2c54536568a9.pdf — NFL Game Book (Week 10)
+- https://static.www.nfl.com/image/upload/v1794224919/gamecenter/ab382331-4feb-11f1-abca-2c54536568a9.pdf — NFL Game Book (Week 9)
+- https://www.chiefs.com/team/depth-chart, https://www.seahawks.com/team/depth-chart/, https://www.detroitlions.com/team/depth-chart/ — club depth charts (self-labeled unofficial)
+- https://scikit-learn.org/stable/modules/generated/sklearn.metrics.brier_score_loss.html — Brier score reference
+- https://docs.scipy.org/doc/scipy/reference/generated/scipy.stats.pearsonr.html — Pearson correlation reference
+- https://www.itl.nist.gov/div898/handbook/prc/section4/prc473.htm — NIST reference
+- https://sportsbook.draftkings.com/help/general-betting-rules/market-rules — DraftKings market rules (context only)
+- https://wsgc.wa.gov/tribal-partnerships/sports-wagering — Washington State Gambling Commission (jurisdiction context)
+
+## Flagged irregularities (published on flags.html, not blocking)
+
+F01-F04 Critical: no official odds archive, no fitted NFL model, no measured correlations, no verified backtest.
+F05-F16 Review: source links don't prove strategy validity, no funded competition, luck cannot be removed, etc.
+F17-F21 Review: depth chart 404s, cross-source conflicts, single-point-in-time snapshot limitation.
+
+## Decision blockers (documented, not hidden)
+
+Nine requirement lines blocked by NFL.com Terms section 1.3 (no systematic capture without express prior written consent). Default: no scheduled capture (DEC-01). Additional blockers: DEC-02 price-data policy, DEC-03 joint-evidence gate, DEC-04 pre-registration, DEC-05 public/private split.
+
+## PR link and merge result
+
+PR #77 created from `arena/1728f05f-own9` to `main`. Merge requires conflict resolution on COORDINATION.md (session `c7635cce` entry added to `main` after branch creation). Both session records preserved above. GitHub Pages already live from main branch at https://sassnarep3-star.github.io/Own9/ with status "built".
+
+## Next actions for future sessions
+
+1. Complete the merge of PR #77 after conflict resolution, verify all hosted checks pass, confirm GitHub Pages redeploys.
+2. The nine DEC-01-blocked requirement lines require NFL express prior written consent before scheduled capture can proceed.
+3. Depth-chart coverage for 29 of 32 clubs remains unverified (club charts are self-labeled unofficial).
+4. No strategy has been certified for prospective use or rewards.
