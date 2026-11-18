@@ -757,3 +757,33 @@ Earlier refresh proved deterministic on the tree through `876bd61` (432 tracked 
 - Session subtree tests: 47 passed. The claim verifier reported 369/369 matching, 0 mismatch, 0 unverifiable; page checker passed (13 pages, 117 tables, 1,431 rows, 473 source-linked, 353 explicitly blank, 203 local links).
 - Root structural verifier: 42 pages, 1,882 source-linked rows. `npm test`: 313 passed, availability and register checks passed, site checker passed (15 pages, 147 direct-source data rows, 551 links/resources). These checks validate code and structure, not factual certification of every claim.
 - PR #68's hosted checks were all passing before this final integration resolution: decision-readiness, origination, research integrity/site, and static-and-math. A fresh hosted run is required on this merge-resolution commit before merge.
+
+## Session `c7635cce` — review, verification and coordination record (branch `arena/c7635cce-own9`, base `3aabe89` on `main`) — 2026-11-18 UTC
+
+**Scope claim:** `COORDINATION.md` only. Shared outputs (root pages, `tools/build.py`, navigation, `data/**`, `decision-desk/**`) are not edited here; they belong to the integration session. Branch naming follows the platform rule (`arena/c7635cce-own9`), not the `session-<id>/<task>` form in the brief, because this session may only work on its assigned branch.
+
+**Brief items NOT attempted here, and why (each already tracked in `readiness/` or the flags pages):**
+- Scheduled capture of the injury report, depth pages and snap counts: a systematic-retrieval scheduler conflicts with NFL.com Terms §1.3 (DEC-01, default "no systematic capture"). Not built.
+- 32-club depth sweep, Texans depth image, official snap counts and inactive lists: no authorised structured source is reachable from this sandbox (outbound limited to github, npm, pypi). Not built.
+- Pre-registered 136-game backtest corpus, control baselines, joint-evidence gate enforcement, per-team view, injury time series: need owner decisions (DEC-01 to DEC-08) and data this environment cannot reach. Not built.
+- Pre-registration commit: the rule text and gates have to be committed before the evaluation window opens; no such window has been registered in this session.
+
+**Checks run on `3aabe89` (2026-11-18 UTC):**
+- `python3 -m unittest discover -s tests` → 313 tests, OK.
+- `python3 tools/verify.py` → PASS: 42 pages, 1,882 source-linked rows (structural only).
+- `python3 scripts/check_site.py` → PASS: 15 pages, 147 direct-source rows, 551 links/resources, no broken local targets.
+- GitHub Pages: `status: built`, latest build `1376433422` for commit `3aabe89…`, no error (`gh api repos/sassnarep3-star/Own9/pages/builds/latest`). Live root https://sassnarep3-star.github.io/Own9/ fetched and serving.
+
+**Official source spot-check (one-off reads, not a capture):**
+- https://www.nfl.com/injuries/ read 2026-11-18 UTC. The page now shows **Week 11** (Thursday 19 Nov onward), not Week 10.
+- Matches `decision-desk/data/week-11-2026-fixtures.json`: Colts at Texans, Thu 19 Nov 2026, 8:15 PM ET, Prime Video; Dolphins at Bills, Sun 22 Nov 2026, 1:00 PM ET, CBS. The stadium strings were NOT checked against the game centre and remain link-parameter-sourced (as that file states).
+- The Week 10 injury counts (254 rows / 4 no-injury sections in the repo vs 279 / 2 published on the live Week 10 report, per the brief) could not be re-read because the live page is now Week 11. Remains unverified.
+
+**Irregularities flagged (not fixed here; for the integration session or owner review):**
+- IRR-C1: the landing page says "As of 04 Nov 2026" (`index.html`), while the repo date is 2026-11-18. Date text is stale; left unchanged because root pages are integration-owned.
+- IRR-C2: no Week 11 injury capture exists in the repo. The only capture is `decision-desk/data/captures/nfl-injuries-2026-w10-2026-11-16.md` (CAP-01). Week 11 is live on the official page now.
+- IRR-C3: the brief's per-session branch naming (`session-<id>/<task>`) conflicts with the platform's single-branch rule; the platform rule was followed.
+- IRR-C4: a CI check on branch `arena/6669951c-own9` ("Research quality") failed on push in the last day (run 44005498221). Not investigated; that branch is not part of this session.
+- IRR-C5: the brief asks for a PR and merge to `main` after integration. This session's change is limited to this board entry; the integration session still has to re-verify the combined data and confirm the site builds before any integration-level merge.
+
+**Status:** this session's review and verification record is complete. Remaining brief items are blocked by the environment, by NFL Terms §1.3, or by open owner decisions, as listed above. Task status: **done** for the review/verification record; **blocked** for all other items.
