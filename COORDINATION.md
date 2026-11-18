@@ -973,6 +973,7 @@ This is final-integration follow-through: the landing page is a shared output. T
 - Updated `tools/build.py` to render the overview counts from `research/decision-brief.json`, `research/decision-register.json` and `research/suggestions.json`, including current question states and suggestion dispositions. The overview now directs readers to each evidence page for its source date rather than implying one date applies to the whole mixed-date dashboard.
 - Added a regression test that compares generated and committed landing-page output and checks the rendered counts against `engine.registers.validate()`.
 - `python3 tools/build.py` rendered 42 pages. `npm test` passed: 314 tests; root verification found 42 pages and 1,882 source-linked rows; availability, register and local-link checks passed; `git diff --check` passed.
+- Rebase encountered a COORDINATION.md conflict after session `7b640fc8` merged its integration record into `main`. Resolved by preserving the complete upstream record and the earlier PR #73 publication record; no unrelated session history was discarded.
 - No NFL facts or model values were added, edited, or newly marked verified. This is a repository-integrity correction. Public publication and a post-deploy live fetch remain pending.
 
 | Task | Status | Owner | Files |
