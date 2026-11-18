@@ -899,3 +899,9 @@ PR #77 created from `arena/1728f05f-own9` to `main`. Merge requires conflict res
 2. The nine DEC-01-blocked requirement lines require NFL express prior written consent before scheduled capture can proceed.
 3. Depth-chart coverage for 29 of 32 clubs remains unverified (club charts are self-labeled unofficial).
 4. No strategy has been certified for prospective use or rewards.
+
+### d8f11315 — edit to another session's generated output (logged, not silent)
+
+The `static-and-math` check on PR #75 failed at "Verify official-source section (session-00cf851d)": its committed inventory measured 432 tracked files, and adding `team-view/` (four files) makes 436. I re-ran that section's own generators (`analysis.py`, `results_audit.py`, `make_ingest.py`, `build.py`, `check.py`) on this branch after merging `origin/main`, and committed only the regenerated output: `session-00cf851d/data/repo_inventory.json`, `session-00cf851d/index.html`, `session-00cf851d/repo-review.html`. The only changes are the repository-shape counts (432 → 436 tracked files; 2,597 outbound links unchanged). No judgement, source or row was edited. Its 47 tests pass. Same precedent as the 4bd7042b and c0256647 entries above.
+
+**Branch history note:** an earlier local `git pull --rebase` replayed commits that were already pushed, which made a normal push non-fast-forward. Nothing was force-pushed. The branch was fast-forwarded onto `origin/arena/d8f11315-own9` by merging `origin/main` (conflict in COORDINATION.md resolved by keeping both sides), then the regenerated output was committed on top.
