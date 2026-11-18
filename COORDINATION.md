@@ -955,3 +955,27 @@ GitHub Pages: deployed at https://sassnarep3-star.github.io/Own9/ (confirmed bui
 ## Irregularities
 
 Published on `flags.html` (F01–F57 plus session continuations F22–F57): empty price-snapshot store (F34/F42), no executable odds archive (F01/F18), 2006–2018 unlicensed local quote file quarantined (F22), stale results snapshot (F29), no snap-count source (F25), no official depth chart for 29 of 32 clubs (F13/F17/F44/F45), cross-source depth/report conflicts (F20/F35/F51/F52), single-point-in-time injury snapshot (F21/F28/F47), duplicate leaderboard definition in the generator (F39), two price-store implementations (F40). None block the merge; all are flagged with source links for owner review after the site is live.
+### Publication record
+
+- PR [#73](https://github.com/sassnarep3-star/Own9/pull/73) merged to `main` at 2026-11-18 06:37:59 UTC. Merge commit: `50627a9c2e72f436c943d86c8faeffd9f69654b4`.
+- Hosted checks on PR #73 passed: Decision-readiness register, Line-origination desk, Research integrity and site, and static-and-math.
+- The Pages build for the merge commit was observed in `building` state immediately after merge; final deployment status is to be confirmed.
+
+| Task | Status | Owner | Files |
+| --- | --- | --- | --- |
+| Reconcile the published landing-page summary with current project registers and remove its stale fixed date; compare live GitHub Pages with the built repository and add a regression test | in progress | arena/d6cec1e7-own9 | `tools/build.py`, generated `index.html`, `tests/test_site.py`, `COORDINATION.md` |
+
+This is final-integration follow-through: the landing page is a shared output. The live page read during this task showed older values (16 decisions, 22 questions, 16 suggestions) than the current validated registers (21, 24, 21). No NFL evidence or model values are involved; register counts are repository-derived.
+
+### Landing-page reconciliation — implementation complete, publication pending
+
+- Compared the live landing page at https://sassnarep3-star.github.io/Own9/ with `index.html` and `tools/build.py`. The live / repository page was stale: it said 16 decisions, 22 questions and 16 suggestions, while the current validated source registers contain 21, 24 and 21 respectively; it also labeled the overview “As of 04 Nov 2026” despite newer evidence records.
+- Updated `tools/build.py` to render the overview counts from `research/decision-brief.json`, `research/decision-register.json` and `research/suggestions.json`, including current question states and suggestion dispositions. The overview now directs readers to each evidence page for its source date rather than implying one date applies to the whole mixed-date dashboard.
+- Added a regression test that compares generated and committed landing-page output and checks the rendered counts against `engine.registers.validate()`.
+- `python3 tools/build.py` rendered 42 pages. `npm test` passed: 314 tests; root verification found 42 pages and 1,882 source-linked rows; availability, register and local-link checks passed; `git diff --check` passed.
+- Rebase encountered a COORDINATION.md conflict after session `7b640fc8` merged its integration record into `main`. Resolved by preserving the complete upstream record and the earlier PR #73 publication record; no unrelated session history was discarded.
+- No NFL facts or model values were added, edited, or newly marked verified. This is a repository-integrity correction. Public publication and a post-deploy live fetch remain pending.
+
+| Task | Status | Owner | Files |
+| --- | --- | --- | --- |
+| Reconcile the published landing-page summary with current project registers and remove its stale fixed date; compare live GitHub Pages with the built repository and add a regression test | in progress | arena/d6cec1e7-own9 | `tools/build.py`, generated `index.html`, `tests/test_site.py`, `COORDINATION.md` |

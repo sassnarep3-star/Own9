@@ -439,7 +439,7 @@ def page(file, label, title, intro, content):
 page('index.html','Overview','Evidence first.\nAn edge must be earned.',
      'An NFL line-origination lab for game singles, player props and joint bets. Built to test skill—not reward a lucky streak.',
      '''<div class="notice"><strong>Research framework · no validated strategies</strong><p>No verified historical executable odds or point-in-time paired dataset was obtained. NFL lines, measured correlations, test scores and cash rewards are intentionally blank. No wagering is enabled.</p></div>
-<div class="cards"><a href="decision.html"><span>01 / DECIDE</span><b>Decision brief</b><p>16 open decisions, defaults and stopping rules</p></a><a href="questions.html"><span>02 / ASK</span><b>Questions &amp; answers</b><p>22 questions: answered, open, unpublished</p></a><a href="availability.html"><span>03 / AVAILABILITY</span><b>Who actually started</b><p>Official lineups, verified changes</p></a><a href="suggestions.html"><span>04 / REVIEW</span><b>Suggestions</b><p>Scored, falsifiable, choose before building</p></a><a href="strategies.html"><span>05 / HYPOTHESES</span><b>Signal registry</b><p>Singles, props &amp; joint models</p></a><a href="validation.html"><span>06 / DISCIPLINE</span><b>Seven evidence gates</b><p>Fail closed. Publish all trials.</p></a><a href="correlations.html"><span>07 / DEPENDENCE</span><b>Correlation lab</b><p>Paired evidence, not assumptions</p></a><a href="leaderboard.html"><span>08 / COMPETITION</span><b>Evidence leaderboard</b><p>No eligible entries, no awards</p></a></div><div class="cards"><a href="injuries.html"><span>09 / AVAILABILITY</span><b>Injuries & depth</b><p>Week 10 2026 verified snapshot</p></a><a href="data.html"><span>10 / INPUTS</span><b>Data requirements</b><p>Acquisition contract, fail closed</p></a><a href="audit.html"><span>11 / RECORDS</span><b>Repository audit</b><p>Implementation and integration log</p></a><a href="flags.html"><span>12 / TRANSPARENCY</span><b>Flagged for Review</b><p>Published irregularities, F01-F21</p></a></div>'''
+<div class="cards"><a href="decision.html"><span>01 / DECIDE</span><b>Decision brief</b><p>__DECISION_COUNT__ registered decisions, defaults and stopping rules</p></a><a href="questions.html"><span>02 / ASK</span><b>Questions &amp; answers</b><p>__QUESTION_COUNT__ questions: __ANSWERED__ answered, __OPEN__ open, __UNKNOWN__ unpublished</p></a><a href="availability.html"><span>03 / AVAILABILITY</span><b>Who actually started</b><p>Official lineups, verified changes</p></a><a href="suggestions.html"><span>04 / REVIEW</span><b>Suggestions</b><p>__SUGGESTION_COUNT__ scored, falsifiable options to review</p></a><a href="strategies.html"><span>05 / HYPOTHESES</span><b>Signal registry</b><p>Singles, props &amp; joint models</p></a><a href="validation.html"><span>06 / DISCIPLINE</span><b>Seven evidence gates</b><p>Fail closed. Publish all trials.</p></a><a href="correlations.html"><span>07 / DEPENDENCE</span><b>Correlation lab</b><p>Paired evidence, not assumptions</p></a><a href="leaderboard.html"><span>08 / COMPETITION</span><b>Evidence leaderboard</b><p>No eligible entries, no awards</p></a></div><div class="cards"><a href="injuries.html"><span>09 / AVAILABILITY</span><b>Injuries & depth</b><p>Week 10 2026 verified snapshot</p></a><a href="data.html"><span>10 / INPUTS</span><b>Data requirements</b><p>Acquisition contract, fail closed</p></a><a href="audit.html"><span>11 / RECORDS</span><b>Repository audit</b><p>Implementation and integration log</p></a><a href="flags.html"><span>12 / TRANSPARENCY</span><b>Flagged for Review</b><p>Published irregularities, F01-F21</p></a></div>'''
      + table('Executive summary',['Decision area','Finding','Disposition'],[
          row(['Originate NFL lines','A distribution-first design is specified; tested pricing primitives exist. No officially verified fitted NFL probability model or numerical line is available in this dashboard.','Implemented math / model not implemented']),
          row(['Useful signals','Opponent-adjusted efficiency, pace, participation and shared game script are hypotheses; no direction, effect size or profitability is asserted.','Research proposals'],('nfl-stats','nfl-injury'),'Context only / proposed'),
@@ -447,9 +447,9 @@ page('index.html','Overview','Evidence first.\nAn edge must be earned.',
          row(['Correlation','No verified aligned sample was obtained. Descriptive Pearson/phi code is tested only on synthetic examples.','Unverified NFL values'],('pearson','repo'),'Formula support / project record'),
          row(['Competition rewards','Separate target-matched tracks and hypothetical recognition badges are proposed. No sponsor, cash pool or awards exist.','No funded program']),
          row(['Availability tracking','Two official Game Books show four of four published starting elevens changed between Week 9 and Week 10 for WAS and NYG, and one starting slot has a fully documented replacement. No official depth tier is available, so second/third/fourth-string labels remain blank.','Verified change / tier unpublished'],('nfl-gamebook-w10','nfl-gamebook-w9-lar-was','nfl-gamebook-w9-nyg-phi'),'Direct publisher / three game books'),
-         row(['Decisions and questions','16 decisions carry a default and a predeclared stopping rule. 22 questions are split into 12 answered, 8 open and 2 fields the publisher does not release.','Published registers'],
+         row(['Decisions and questions','__DECISION_COUNT__ registered decisions carry defaults and predeclared stopping rules. __QUESTION_COUNT__ questions are split into __ANSWERED__ answered, __OPEN__ open and __UNKNOWN__ unpublished.','Published registers'],
              ('repo',),'Project record'),
-         row(['Suggested improvements','16 suggestions scored on decision impact and evidence cost. 12 accepted and carried by a decision, 2 deferred, 2 blocked on a missing archive or licence.','Reviewable queue'],('repo',),'Project record'),
+         row(['Suggested improvements','__SUGGESTION_COUNT__ suggestions scored on decision impact and evidence cost: __ACCEPTED__ accepted, __DEFERRED__ deferred, __BLOCKED__ blocked on missing evidence.','Reviewable queue'],('repo',),'Project record'),
          row(['Executive recommendation','Continue as a paper-research lab. Missing provenance, prices or validation blocks eligibility—not publication of limitations.','No bets recommended'])
      ]) + '<p class="download">Read the <a href="questions.html">decision questions &amp; improvement suggestions</a> register, the <a href="docs/RESEARCH_SPEC.md">full research specification</a>, the <a href="decision.html">decision brief</a> and the <a href="audit.html">repository audit</a>. Every empirical gap appears on <a href="flags.html">Flagged for Review</a>, every proposed change is queued on <a href="suggestions.html">Suggestions</a>, and the earlier <a href="decisions-questions.html">decision questions register</a> is preserved with its own recommended paths.</p>'
      + table('Related sections in this repository',['Section','Contents','Publisher / session record','Integration state'],[
@@ -887,6 +887,34 @@ def _decision_readiness_table():
 PAGES['index.html'] = (*PAGES['index.html'][:3],
                        PAGES['index.html'][3] + _decision_readiness_table())
 
+# Keep summary counts tied to the validated project registers rather than hand-maintained prose.
+# These are repository counts, not NFL measurements or model results.
+_OVERVIEW_QUESTION_COUNTS = {
+    state: sum(q['state'] == state for q in QUESTIONS['questions'])
+    for state in ('answered', 'open_discoverable', 'unknown_unpublished')
+}
+_OVERVIEW_SUGGESTION_COUNTS = {
+    state: sum(s['status'] == state for s in SUGGESTIONS['suggestions'])
+    for state in ('accepted', 'deferred', 'blocked_on_evidence')
+}
+_OVERVIEW_COUNTS = {
+    '__DECISION_COUNT__': len(BRIEF['decisions']),
+    '__QUESTION_COUNT__': len(QUESTIONS['questions']),
+    '__ANSWERED__': _OVERVIEW_QUESTION_COUNTS['answered'],
+    '__OPEN__': _OVERVIEW_QUESTION_COUNTS['open_discoverable'],
+    '__UNKNOWN__': _OVERVIEW_QUESTION_COUNTS['unknown_unpublished'],
+    '__SUGGESTION_COUNT__': len(SUGGESTIONS['suggestions']),
+    '__ACCEPTED__': _OVERVIEW_SUGGESTION_COUNTS['accepted'],
+    '__DEFERRED__': _OVERVIEW_SUGGESTION_COUNTS['deferred'],
+    '__BLOCKED__': _OVERVIEW_SUGGESTION_COUNTS['blocked_on_evidence'],
+}
+_index_content = PAGES['index.html'][3]
+for _token, _count in _OVERVIEW_COUNTS.items():
+    _index_content = _index_content.replace(_token, str(_count))
+if any(token in _index_content for token in _OVERVIEW_COUNTS):
+    raise ValueError('unresolved register count in landing-page content')
+PAGES['index.html'] = (*PAGES['index.html'][:3], _index_content)
+
 
 
 # --- New pages added by session 4c84e4ee: consolidated decision layer ---
@@ -963,10 +991,12 @@ def render():
             + ''.join(f'<a href="{f}"'+(' aria-current="page"' if f==filename else '')+f'>{e(label)}</a>' for f,label in items)
             + '</span>' for group,items in NAV_GROUPS)
         page_date = '14 Nov 2026' if filename in KEEP_DATE_14 else '04 Nov 2026'
+        date_label = ('Source dates are shown on each evidence page' if filename == 'index.html'
+                      else f'As of {page_date} · UTC')
         files[filename] = f'''<!doctype html>
 <html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="description" content="Evidence-first NFL research dashboard. Strategies, validation, correlation requirements and transparent limitations."><title>{e(label)} · Own9 NFL Research</title><link rel="stylesheet" href="style.css"><script src="site.js" defer></script></head>
 <body><a class="skip" href="#main">Skip to content</a><header><div class="shell top"><a class="brand" href="index.html"><span>O9</span> OWN9 <small> / NFL RESEARCH</small></a><span class="status-dot">Research only · no live wagers</span></div><nav class="shell" aria-label="Main navigation">{nav}</nav></header>
-<main class="shell" id="main"><div class="page-meta"><span class="eyebrow">RESEARCH DESK / {e(label.upper())}</span><span>As of {e(page_date)} · UTC</span></div><h1>{e(title).replace(chr(10),'<br>')}</h1><p class="lead">{e(intro)}</p><div class="filter" hidden><label for="row-search">Find a table entry</label><input id="row-search" type="search" placeholder="Filter this page…" autocomplete="off"><span id="row-count" role="status" aria-live="polite"></span></div>{content}<p class="disclaimer">Research, not betting advice. No verified edge or guaranteed return. Blank empirical values are unavailable and unverified, never zero.</p></main>
+<main class="shell" id="main"><div class="page-meta"><span class="eyebrow">RESEARCH DESK / {e(label.upper())}</span><span>{e(date_label)}</span></div><h1>{e(title).replace(chr(10),'<br>')}</h1><p class="lead">{e(intro)}</p><div class="filter" hidden><label for="row-search">Find a table entry</label><input id="row-search" type="search" placeholder="Filter this page…" autocomplete="off"><span id="row-count" role="status" aria-live="polite"></span></div>{content}<p class="disclaimer">Research, not betting advice. No verified edge or guaranteed return. Blank empirical values are unavailable and unverified, never zero.</p></main>
 <footer class="shell"><b>OWN9 / NFL RESEARCH</b><span>Evidence over assumptions · <a href="sources.html">Evidence register</a> · <a href="flags.html">Flagged for Review</a></span></footer></body></html>\n'''
     return files
 
