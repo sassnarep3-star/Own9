@@ -1066,3 +1066,9 @@ Initial audit of committed root HTML found mismatched row/header counts on `demo
 - Rebase before publication repeatedly encountered `COORDINATION.md` conflicts as concurrent integration PRs appended records to `main`. Each conflict was resolved by keeping the complete current-main coordination history and appending this session's claim/completion; no upstream entries or data were discarded.
 - PR #74 was merged to `main` at 2026-11-18 06:50:41 UTC as merge commit `8e2bae011488b6a274bb3748023f441482ff2194`. Hosted decision-readiness, origination, research-integrity/site and static-and-math checks passed. The post-merge Pages workflow passed; GitHub Pages API returned `status: built` for `https://sassnarep3-star.github.io/Own9/`.
 | Reconcile the published landing-page summary with current project registers and remove its stale fixed date; compare live GitHub Pages with the built repository and add a regression test | done | arena/d6cec1e7-own9 | `tools/build.py`, generated `index.html`, `tests/test_site.py`, `COORDINATION.md` |
+
+| Task | Status | Owner | Files |
+| --- | --- | --- | --- |
+| Reconcile README's duplicated root-suite count with the final merged test suite and rerun validation | in progress | arena/d6cec1e7-own9 | `README.md`, this section of `COORDINATION.md` |
+
+This is a repository-derived documentation correction only; no NFL evidence or model outputs are in scope.
