@@ -6,7 +6,7 @@ An auditable NFL research workspace covering line origination, singles, parlays,
 player-prop combos, seven validation gates, a proposed competition, correlation
 requirements, official source scopes and a published review register.
 
-As of 2026-11-17, the root dashboard builds 42 generated HTML pages (`tools/build.py`); the separately
+As of 2026-11-18, the root dashboard builds 42 generated HTML pages (`tools/build.py`); the separately
 maintained linked research desks have their own pages and checks. The root verifier reports 1,882
 source-linked rows. The root suite contains 313 Python unit tests (`python3 -m unittest discover -s tests`);
 these counts describe repository structure and software checks, not NFL strategy validation.
@@ -150,7 +150,7 @@ paper evaluation remain unimplemented and explicitly flagged.
 ```sh
 python3 tools/build.py
 python3 origination/tools/run.py       # regenerate the origination desk's data
-python3 origination/tools/build.py     # regenerate the origination desk's pages                 # regenerate the 19 root pages
+python3 origination/tools/build.py     # regenerate the origination desk's pages
 python3 tools/verify.py                # rows, links, fragments, nav, blanks
 python3 engine/availability.py         # lineup + injury evidence rules
 python3 engine/registers.py            # suggestions, questions, decisions
