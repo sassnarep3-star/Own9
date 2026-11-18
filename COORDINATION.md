@@ -995,6 +995,17 @@ This session is constrained to the active Arena branch. It will not create or sw
 
 | Task | Status | Owner | Files |
 | --- | --- | --- | --- |
-| Add structural regression checking for generated root-page table widths; fix any malformed rows discovered; verify page output and tests | in progress | 011b4860 | `tools/build.py`, `tests/test_root_tables.py` (new), generated root pages `demotion.html`, `leaderboard.html`, `suggestion-costs.html`, `COORDINATION.md` |
+| Add structural regression checking for generated root-page table widths; fix any malformed rows discovered; verify page output and tests | done | 011b4860 | `tools/build.py`, `tools/pages_9a409d93.py`, `tools/pages_4f2e0291.py`, `tests/test_root_tables.py`, generated root pages `demotion.html`, `leaderboard.html`, `suggestion-costs.html`, `COORDINATION.md` |
 
 Initial audit of committed root HTML found mismatched row/header counts on `demotion.html` (3 rows), `leaderboard.html` (1 row), and `suggestion-costs.html` (6 rows). Existing `verification/` tests only exercise its seven-page subsite, not root-page table geometry. Values remain unchanged; repairs will preserve the intended cells and column semantics. No source-derived factual claims are in this scope.
+
+### Session `011b4860` — completion record (2026-11-18 UTC)
+
+- Added `tests/test_root_tables.py`, a standard-library HTML parser regression test checking table row widths against column-header widths across all 42 committed root dashboard pages. The check is now part of default unittest discovery and `npm test`.
+- Corrected three root-page table issues without changing NFL data or model results:
+  - `demotion.html`: the Current status table's explanatory text now has its own `Explanation` header.
+  - `leaderboard.html`: the re-entry status is retained in the re-entry condition cell instead of creating an extra unheaded column.
+  - `suggestion-costs.html`: the “What it did not touch” statements are now in their named data column, not incorrectly styled as evidence-kind labels.
+- Rebuilt with `python3 tools/build.py` (42 pages). The new root-table test passes; an independent scan found zero mismatched root table rows.
+- `npm test` passes: 314 Python tests, root verifier (42 pages / 1,882 source-linked rows), availability and registers validators, and site checker (15 pages / 147 official-source rows / 551 links). `git diff --check` passes. Browser suite was not run because `node_modules` is absent.
+- Scope and verification limitation: structural/site checks only; no external NFL source was fetched, no NFL fact was added or marked newly verified, and no external link availability is asserted.

@@ -777,25 +777,25 @@ page('suggestion-costs.html', 'Suggestion cost sheet',
          + table('Implemented by this release', ['Item', 'What landed', 'Where', 'What it did not touch'], [
              row(['Availability source register', 'Ten official and club source records with their limits, 26 '
                   'transcribed Week 10 report entries, 13 reserve-list moves, a deficiency specification and six '
-                  'AV candidates whose measured columns are blank.', 'Availability sources'],
-                 ('nfl-injury', 'nfl-reserve-list'),
-                 'Injuries & depth and Availability tracker keep their own rows and claims.'),
+                  'AV candidates whose measured columns are blank.', 'Availability sources',
+                  'Injuries & depth and Availability tracker keep their own rows and claims.'],
+                 ('nfl-injury', 'nfl-reserve-list'), 'Project record'),
              row(['Suggestion cost sheet', 'Eighteen suggestions with cost, risk and status, four candidate paths '
-                  'and a decision log.', 'Suggestion costs'], ('repo',),
-                 'The scored Suggestions register, its 16 items and their statuses are unchanged.'),
+                  'and a decision log.', 'Suggestion costs',
+                  'The scored Suggestions register, its 16 items and their statuses are unchanged.'], ('repo',), 'Project record'),
              row(['Question ledger', 'Nineteen answered questions, six closable ones, seven owner decisions and '
-                  'seven probes for missing information.', 'Question ledger'], ('repo',),
-                 'Question register and Decision review were not edited.'),
+                  'seven probes for missing information.', 'Question ledger',
+                  'Question register and Decision review were not edited.'], ('repo',), 'Project record'),
              row(['Market data audit', 'A build-time tool that measures the inherited lines file instead of '
-                  'describing it, published on the own-lines page.', 'Own lines'], ('repo',),
-                 'No line, price, ROI or backtest was produced or claimed.'),
+                  'describing it, published on the own-lines page.', 'Own lines',
+                  'No line, price, ROI or backtest was produced or claimed.'], ('repo',), 'Project record'),
              row(['Review register extension', 'Six findings appended after the existing register, continuing its '
                   'numbering at F22; three overlapping findings were dropped as already recorded.',
-                  'Flagged for review'], ('repo',),
-                 'F01 to F21 and every row above the extension are untouched.'),
+                  'Flagged for review',
+                  'F01 to F21 and every row above the extension are untouched.'], ('repo',), 'Project record'),
              row(['Section directory', 'A count-and-certification table of all seven published sections, with '
-                  'per-section status.', 'Overview'], ('repo',),
-                 'The overview\u2019s own summary and registers are unchanged; a table was appended.'),
+                  'per-section status.', 'Overview',
+                  'The overview\u2019s own summary and registers are unchanged; a table was appended.'], ('repo',), 'Project record'),
          ])
 
          + table('Decision log', ['ID', 'Suggestion set', 'Decision', 'Date', 'Decided by', 'Rationale'], [
