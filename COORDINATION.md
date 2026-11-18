@@ -989,3 +989,12 @@ This is final-integration follow-through: the landing page is a shared output. T
 | --- | --- | --- | --- |
 | Reconcile the published landing-page summary with current project registers and remove its stale fixed date; compare live GitHub Pages with the built repository and add a regression test | in progress | arena/d6cec1e7-own9 | `tools/build.py`, generated `index.html`, `tests/test_site.py`, `COORDINATION.md` |
 **Session `c7635cce` — PR and merge record (2026-11-18 UTC):** PR [#71](https://github.com/sassnarep3-star/Own9/pull/71) (`arena/c7635cce-own9` → `main`), merged with a merge commit at `bebffeead399e2179f5f2d6631277992a61fdb04` on 2026-11-18T06:31:01Z (`gh pr merge 71 --merge`). Four hosted checks passed before the merge: Decision-readiness register, Line-origination desk, Research integrity and site checks, static-and-math. The Pages build for the merge (and for later `main` commit `ce79872`) reached `built`; the live Flagged for Review page was fetched after the merge. Task status: **done** (record only; the other items remain blocked as listed above).
+# Session `011b4860` — claim (branch `arena/011b4860-own9`, base `3aabe89`, 2026-11-18 UTC)
+
+This session is constrained to the active Arena branch. It will not create or switch branches. Scope is a non-overlapping static-site quality fix; no NFL facts or strategy results will be added.
+
+| Task | Status | Owner | Files |
+| --- | --- | --- | --- |
+| Add structural regression checking for generated root-page table widths; fix any malformed rows discovered; verify page output and tests | in progress | 011b4860 | `tools/build.py`, `tests/test_root_tables.py` (new), generated root pages `demotion.html`, `leaderboard.html`, `suggestion-costs.html`, `COORDINATION.md` |
+
+Initial audit of committed root HTML found mismatched row/header counts on `demotion.html` (3 rows), `leaderboard.html` (1 row), and `suggestion-costs.html` (6 rows). Existing `verification/` tests only exercise its seven-page subsite, not root-page table geometry. Values remain unchanged; repairs will preserve the intended cells and column semantics. No source-derived factual claims are in this scope.
