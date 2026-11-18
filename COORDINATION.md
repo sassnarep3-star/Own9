@@ -855,3 +855,10 @@ PR #77 created from `arena/1728f05f-own9` to `main`. Merge requires conflict res
 2. The nine DEC-01-blocked requirement lines require NFL express prior written consent before scheduled capture can proceed.
 3. Depth-chart coverage for 29 of 32 clubs remains unverified (club charts are self-labeled unofficial).
 4. No strategy has been certified for prospective use or rewards.
+## Session `arena/d6cec1e7-own9` — documentation consistency pass (2026-11-18 UTC)
+
+| Task | Status | Owner | Files |
+| --- | --- | --- | --- |
+| Correct stale README build-count annotation and date after confirming the current generated-page and test counts locally; no NFL claims or data changed | in progress | arena/d6cec1e7-own9 | `README.md`, this section of `COORDINATION.md` |
+
+Scope is documentation-only. It does not amend, revalidate, or represent any NFL facts as newly verified. Root local verification commands and their limitations remain the source for these repository-derived counts.
