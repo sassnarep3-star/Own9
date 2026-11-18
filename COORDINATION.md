@@ -847,7 +847,7 @@ Nine requirement lines blocked by NFL.com Terms section 1.3 (no systematic captu
 
 ## PR link and merge result
 
-PR #77 created from `arena/1728f05f-own9` to `main`. Merge requires conflict resolution on COORDINATION.md (session `c7635cce` entry added to `main` after branch creation). Both session records preserved above. GitHub Pages already live from main branch at https://sassnarep3-star.github.io/Own9/ with status "built".
+PR #77 created from `arena/1728f05f-own9` to `main`. Merged via `gh pr merge 77 --merge`. Merge commit created on `main`. GitHub Pages build 1380119798 for commit `ce798728910453b74a76b60a2aa749ddf0fa84fb` completed with status "built" and no error. Live site: https://sassnarep3-star.github.io/Own9/
 
 ## Next actions for future sessions
 
