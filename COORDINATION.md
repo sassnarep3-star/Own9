@@ -960,3 +960,9 @@ Published on `flags.html` (F01–F57 plus session continuations F22–F57): empt
 - PR [#73](https://github.com/sassnarep3-star/Own9/pull/73) merged to `main` at 2026-11-18 06:37:59 UTC. Merge commit: `50627a9c2e72f436c943d86c8faeffd9f69654b4`.
 - Hosted checks on PR #73 passed: Decision-readiness register, Line-origination desk, Research integrity and site, and static-and-math.
 - The Pages build for the merge commit was observed in `building` state immediately after merge; final deployment status is to be confirmed.
+
+| Task | Status | Owner | Files |
+| --- | --- | --- | --- |
+| Reconcile the published landing-page summary with current project registers and remove its stale fixed date; compare live GitHub Pages with the built repository and add a regression test | in progress | arena/d6cec1e7-own9 | `tools/build.py`, generated `index.html`, `tests/test_site.py`, `COORDINATION.md` |
+
+This is final-integration follow-through: the landing page is a shared output. The live page read during this task showed older values (16 decisions, 22 questions, 16 suggestions) than the current validated registers (21, 24, 21). No NFL evidence or model values are involved; register counts are repository-derived.
