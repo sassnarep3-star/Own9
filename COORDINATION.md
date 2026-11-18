@@ -788,3 +788,7 @@ Not claimed, deliberately: the full 279-row count and the 2-section check (requi
 **Shared files touched:** `README.md` (one section appended), `COORDINATION.md` (append-only). No change to `tools/build.py`, `injuries.html`, `flags.html` or any other session's files. The integration session should add a navigation link to `injury-recheck/index.html` and record RC-01 to RC-05 on the Flagged for Review page.
 
 **Not done, deliberately:** scheduled capture (NFL Terms section 1.3); the full-report count; Week 11 verification; the other brief items (depth image, 32-club sweep, backtests, pre-registration, per-team view, etc.), which need owner decisions or data this environment cannot reach.
+
+### ed9c8761 — edit to another session's tree (logged, not silent)
+
+Adding four tracked files under `injury-recheck/` changed the measured `tracked_files` in `session-00cf851d` from 432 to 436 (the `static-and-math` job re-measures it). I ran that session's own generator (`analysis.py`, `results_audit.py`, `make_ingest.py`, `build.py`) and committed its output: only `session-00cf851d/data/repo_inventory.json`, `session-00cf851d/index.html` and `session-00cf851d/repo-review.html` changed, by that one count. No judgement, source or row was touched. Same precedent as 4bd7042b.
