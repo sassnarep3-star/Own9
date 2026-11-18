@@ -995,13 +995,13 @@ This session is constrained to the active Arena branch. It will not create or sw
 
 | Task | Status | Owner | Files |
 | --- | --- | --- | --- |
-| Add structural regression checking for generated root-page table widths; fix any malformed rows discovered; verify page output and tests | done | 011b4860 | `tools/build.py`, `tools/pages_9a409d93.py`, `tools/pages_4f2e0291.py`, `tests/test_root_tables.py`, generated root pages `demotion.html`, `leaderboard.html`, `suggestion-costs.html`, `COORDINATION.md` |
+| Add structural regression checking for generated root-page table widths; fix any malformed rows discovered; verify page output and tests | done | 011b4860 | `tools/build.py`, `tools/pages_9a409d93.py`, `tools/pages_4f2e0291.py`, `tests/test_site.py`, `README.md`, generated root pages `demotion.html`, `leaderboard.html`, `suggestion-costs.html`, `COORDINATION.md` |
 
 Initial audit of committed root HTML found mismatched row/header counts on `demotion.html` (3 rows), `leaderboard.html` (1 row), and `suggestion-costs.html` (6 rows). Existing `verification/` tests only exercise its seven-page subsite, not root-page table geometry. Values remain unchanged; repairs will preserve the intended cells and column semantics. No source-derived factual claims are in this scope.
 
 ### Session `011b4860` — completion record (2026-11-18 UTC)
 
-- Added `tests/test_root_tables.py`, a standard-library HTML parser regression test checking table row widths against column-header widths across all 42 committed root dashboard pages. The check is now part of default unittest discovery and `npm test`.
+- Added a standard-library HTML parser regression check in `tests/test_site.py` for table row widths against column-header widths across all 42 committed root dashboard pages. The check is part of default unittest discovery and `npm test`; it reuses an existing test file so the repository-inventory subtree's tracked-file counts stay unchanged. Updated the README's root test count from 313 to 314 based on the passing test run.
 - Corrected three root-page table issues without changing NFL data or model results:
   - `demotion.html`: the Current status table's explanatory text now has its own `Explanation` header.
   - `leaderboard.html`: the re-entry status is retained in the re-entry condition cell instead of creating an extra unheaded column.
