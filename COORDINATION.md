@@ -1020,7 +1020,7 @@ Published on `flags.html` (F01–F57 plus session continuations F22–F57): empt
 
 - PR [#73](https://github.com/sassnarep3-star/Own9/pull/73) merged to `main` at 2026-11-18 06:37:59 UTC. Merge commit: `50627a9c2e72f436c943d86c8faeffd9f69654b4`.
 - Hosted checks on PR #73 passed: Decision-readiness register, Line-origination desk, Research integrity and site, and static-and-math.
-- The Pages build for the merge commit was observed in `building` state immediately after merge; final deployment status is to be confirmed.
+- The immediate Pages check was `building`; the subsequent native Pages deployment completed successfully on current `main` commit `2c9fdcb9f46f3febad72f44a904295c554e6ec42` (run [44253548312](https://github.com/sassnarep3-star/Own9/actions/runs/44253548312)). The cache-busted live fetch confirmed that main's landing page now serves the updated register counts.
 
 | Task | Status | Owner | Files |
 | --- | --- | --- | --- |
@@ -1028,14 +1028,16 @@ Published on `flags.html` (F01–F57 plus session continuations F22–F57): empt
 
 This is final-integration follow-through: the landing page is a shared output. The live page read during this task showed older values (16 decisions, 22 questions, 16 suggestions) than the current validated registers (21, 24, 21). No NFL evidence or model values are involved; register counts are repository-derived.
 
-### Landing-page reconciliation — implementation complete, publication pending
+### Landing-page reconciliation — implemented, merged and deployed
 
 - Compared the live landing page at https://sassnarep3-star.github.io/Own9/ with `index.html` and `tools/build.py`. The live / repository page was stale: it said 16 decisions, 22 questions and 16 suggestions, while the current validated source registers contain 21, 24 and 21 respectively; it also labeled the overview “As of 04 Nov 2026” despite newer evidence records.
 - Updated `tools/build.py` to render the overview counts from `research/decision-brief.json`, `research/decision-register.json` and `research/suggestions.json`, including current question states and suggestion dispositions. The overview now directs readers to each evidence page for its source date rather than implying one date applies to the whole mixed-date dashboard.
 - Added a regression test that compares generated and committed landing-page output and checks the rendered counts against `engine.registers.validate()`.
 - `python3 tools/build.py` rendered 42 pages. `npm test` passed: 314 tests; root verification found 42 pages and 1,882 source-linked rows; availability, register and local-link checks passed; `git diff --check` passed.
 - Rebase encountered a COORDINATION.md conflict after session `7b640fc8` merged its integration record into `main`. Resolved by preserving the complete upstream record and the earlier PR #73 publication record; no unrelated session history was discarded.
-- No NFL facts or model values were added, edited, or newly marked verified. This is a repository-integrity correction. Public publication and a post-deploy live fetch remain pending.
+- No NFL facts or model values were added, edited, or newly marked verified. This is a repository-integrity correction.
+- PR [#81](https://github.com/sassnarep3-star/Own9/pull/81) merged on 2026-11-18 at 06:43:32 UTC (merge commit `eb0d690d44b2883bfb48f761a15c15b377474882`). Hosted decision-readiness, line-origination, research-integrity/site, and static-and-math checks passed.
+- Native Pages deployment succeeded on current main commit `2c9fdcb9f46f3febad72f44a904295c554e6ec42` (workflow run [44253548312](https://github.com/sassnarep3-star/Own9/actions/runs/44253548312)). The ordinary URL was briefly served from stale cache; a cache-busted live fetch at https://sassnarep3-star.github.io/Own9/?v=eb0d690 confirmed the published overview contains the current counts and no fixed 04 Nov overview date.
 
 | Task | Status | Owner | Files |
 | --- | --- | --- | --- |
@@ -1063,3 +1065,4 @@ Initial audit of committed root HTML found mismatched row/header counts on `demo
 - Scope and verification limitation: structural/site checks only; no external NFL source was fetched, no NFL fact was added or marked newly verified, and no external link availability is asserted.
 - Rebase before publication repeatedly encountered `COORDINATION.md` conflicts as concurrent integration PRs appended records to `main`. Each conflict was resolved by keeping the complete current-main coordination history and appending this session's claim/completion; no upstream entries or data were discarded.
 - PR #74 was merged to `main` at 2026-11-18 06:50:41 UTC as merge commit `8e2bae011488b6a274bb3748023f441482ff2194`. Hosted decision-readiness, origination, research-integrity/site and static-and-math checks passed. The post-merge Pages workflow passed; GitHub Pages API returned `status: built` for `https://sassnarep3-star.github.io/Own9/`.
+| Reconcile the published landing-page summary with current project registers and remove its stale fixed date; compare live GitHub Pages with the built repository and add a regression test | done | arena/d6cec1e7-own9 | `tools/build.py`, generated `index.html`, `tests/test_site.py`, `COORDINATION.md` |
