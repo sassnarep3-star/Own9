@@ -757,3 +757,25 @@ Earlier refresh proved deterministic on the tree through `876bd61` (432 tracked 
 - Session subtree tests: 47 passed. The claim verifier reported 369/369 matching, 0 mismatch, 0 unverifiable; page checker passed (13 pages, 117 tables, 1,431 rows, 473 source-linked, 353 explicitly blank, 203 local links).
 - Root structural verifier: 42 pages, 1,882 source-linked rows. `npm test`: 313 passed, availability and register checks passed, site checker passed (15 pages, 147 direct-source data rows, 551 links/resources). These checks validate code and structure, not factual certification of every claim.
 - PR #68's hosted checks were all passing before this final integration resolution: decision-readiness, origination, research integrity/site, and static-and-math. A fresh hosted run is required on this merge-resolution commit before merge.
+
+# Session `d8f11315` — per-team availability view, Week 11 (branch `arena/d8f11315-own9`, base `3aabe89` on `main`, 2026-11-18 UTC)
+
+## Claim
+
+| Task | Status | Owner | File scope |
+| --- | --- | --- | --- |
+| Per-team view (published counts only): report status, practice-state counts and Out/Doubtful counts per club for the current official week, with a source link on every row; starters-out and replacement fields left blank and flagged | in progress | d8f11315 | `team-view/**` (new directory only) |
+
+**Not claimed, deliberately:** starters out and replacements named (no verified official depth chart or Game Book starter list exists in the repo; DEC-06 / RV-05), the root navigation and landing page (integration session only), and the committed Week 10 capture (not edited; see irregularity TV-01).
+
+## Sources read on 2026-11-18 UTC (official, one read each, manual)
+
+- https://www.nfl.com/injuries/ — live page reads as **Week 11 of the 2026 Season** (Thursday Nov 19 onward), not Week 10. Three chunks read. Club tables present for IND (11 rows) and HOU (15 rows); the other 24 playing clubs read "No Injuries Reported".
+- https://www.nfl.com/schedules/2026/REG11/ — 13 Week 11 games; "Teams on Bye": ATL, CLE, GB, LAR, NE, SEA.
+
+## Irregularities (to be published on the view page)
+
+- **TV-01 (high):** the committed capture `decision-desk/data/parsed/injury_captures.json` is labelled Week 10 and holds 347 rows over 28 clubs. The board elsewhere cites 254 rows and 279 live rows. Neither figure is reconciled in this session, and the view does not use the capture.
+- **TV-02 (high):** the live Week 11 page shows game-status cells blank for all 26 rows it lists. A blank cell is not a clearance (site definition). No Out or Doubtful designation is published as of this read.
+- **TV-03 (medium):** 24 playing clubs read "No Injuries Reported" on Nov 18, before the Wednesday/Thursday report cycle has finished. The counts may change on the next read; the view is dated.
+- **TV-04 (medium):** NFL.com Terms §1.3 restricts systematic retrieval. This view is a single manual read, publishes only club-level counts with links, and no player-level rows. Owner decision DEC-01 still applies to any automated capture.
