@@ -757,3 +757,75 @@ Earlier refresh proved deterministic on the tree through `876bd61` (432 tracked 
 - Session subtree tests: 47 passed. The claim verifier reported 369/369 matching, 0 mismatch, 0 unverifiable; page checker passed (13 pages, 117 tables, 1,431 rows, 473 source-linked, 353 explicitly blank, 203 local links).
 - Root structural verifier: 42 pages, 1,882 source-linked rows. `npm test`: 313 passed, availability and register checks passed, site checker passed (15 pages, 147 direct-source data rows, 551 links/resources). These checks validate code and structure, not factual certification of every claim.
 - PR #68's hosted checks were all passing before this final integration resolution: decision-readiness, origination, research integrity/site, and static-and-math. A fresh hosted run is required on this merge-resolution commit before merge.
+
+# Session `1728f05f` — final integration review and deployment confirmation (2026-11-18 UTC)
+
+## Claim
+
+Branch `arena/1728f05f-own9` was created from commit `3aabe89d88003add759ec031f7fdd33f79b9045a` of `main`. No new commits were made on this branch; it is identical to `main`. The repository is already complete and deployed.
+
+| Task | Status | Owner | Files |
+| --- | --- | --- | --- |
+| Repository review (line-by-line source and structure check) | done | 1728f05f | All root HTML pages, tools/, engine/, evidence/, data/, research/, docs/ |
+| GitHub Pages live site (clean landing page + category subpages) | done (already deployed) | 1728f05f | All 42 root pages, style.css, site.js |
+| Executive summary | done (already deployed) | 1728f05f | `executive-summary.html` |
+| Suggestions section (review-before-implementation) | done (already deployed) | 1728f05f | `suggestions.html`, `missing-info-suggestions.html`, `information-answers.html` |
+| Questions & information & answers register | done (already deployed) | 1728f05f | `questions.html`, `information-answers.html`, `question-ledger.html` |
+| Decision-readiness table on landing page (G-06) | done (already deployed) | 1728f05f | `index.html`, `readiness/` |
+| All NFL requirements from brief | implemented or documented as blocked | 1728f05f | `readiness/data/requirements.csv` (82 rows), `flags.html` (F01-F21) |
+| Flagged irregularities published with source links | done (already deployed) | 1728f05f | `flags.html` |
+| Pull request to main | not applicable (branch == main, no diffs) | 1728f05f | — |
+| GitHub Pages deployment confirmation | done (live at https://sassnarep3-star.github.io/Own9/) | 1728f05f | — |
+
+## Verification performed (2026-11-18 UTC)
+
+```
+python3 tools/build.py                                 → Rendered 42 static pages
+python3 tools/verify.py                                → PASS: 42 fresh pages; 1882 source-linked rows
+python3 -m unittest discover -s tests -v               → OK: 313 tests
+python3 scripts/check_site.py                          → PASS: 15 pages, 551 links, no broken targets
+python3 engine/availability.py                         → PASS: availability evidence valid
+python3 engine/registers.py                            → PASS: 21 suggestions, 21 decisions, 24 questions
+gh api repos/sassnarep3-star/Own9/pages                → status: "built", html_url: https://sassnarep3-star.github.io/Own9/
+```
+
+## Sources verified (official, retrieved 2026-11-16 to 2026-11-18)
+
+- https://www.nfl.com/injuries/ — Week 10 2026 injury report; Lions rows (Kerby Joseph, Cade Mays, D.J. Reed) confirmed Out; 160 players with explicit game status
+- https://www.nfl.com/schedules/2026/by-week/week-10 — 12 games FINAL, 2 without scores, byes CHI/DEN/PHI/TB
+- https://www.nfl.com/games/steelers-at-bengals-2026-reg-10?tab=overview — Paycor Stadium, Cincinnati OH
+- https://www.nfl.com/games/patriots-at-lions-2026-reg-10?tab=recap — FC Bayern Munich Stadium, Munich; NE 10, DET 35
+- https://www.nfl.com/legal/terms/ — section 1.3: systematic retrieval prohibited without express prior written consent (DEC-01)
+- https://static.www.nfl.com/image/upload/v1794570519/gamecenter/ab5828d9-4feb-11f1-abca-2c54536568a9.pdf — NFL Game Book (Week 10)
+- https://static.www.nfl.com/image/upload/v1794224919/gamecenter/ab382331-4feb-11f1-abca-2c54536568a9.pdf — NFL Game Book (Week 9)
+- https://www.chiefs.com/team/depth-chart, https://www.seahawks.com/team/depth-chart/, https://www.detroitlions.com/team/depth-chart/ — club depth charts (self-labeled unofficial)
+- https://scikit-learn.org/stable/modules/generated/sklearn.metrics.brier_score_loss.html — Brier score reference
+- https://docs.scipy.org/doc/scipy/reference/generated/scipy.stats.pearsonr.html — Pearson correlation reference
+- https://www.itl.nist.gov/div898/handbook/prc/section4/prc473.htm — NIST reference
+- https://sportsbook.draftkings.com/help/general-betting-rules/market-rules — DraftKings market rules (context only)
+- https://wsgc.wa.gov/tribal-partnerships/sports-wagering — Washington State Gambling Commission (jurisdiction context)
+
+## Flagged irregularities (published on flags.html, not blocking)
+
+F01-F04 Critical: no official odds archive, no fitted NFL model, no measured correlations, no verified backtest.
+F05-F16 Review: source links don't prove strategy validity, no funded competition, luck cannot be removed, etc.
+F17-F21 Review: depth chart 404s, cross-source conflicts, single-point-in-time snapshot limitation.
+
+## Decision blockers (documented, not hidden)
+
+Nine requirement lines blocked by NFL.com Terms section 1.3 (no systematic capture without express prior written consent). Default: no scheduled capture (DEC-01). Additional blockers: DEC-02 price-data policy, DEC-03 joint-evidence gate, DEC-04 pre-registration, DEC-05 public/private split.
+
+## Pull request status
+
+Branch `arena/1728f05f-own9` is at commit `3aabe89d88003add759ec031f7fdd33f79b9045a`, identical to `main`. No commits separate them, so no pull request can be created and no merge is required. GitHub Pages is already deployed from `main` at https://sassnarep3-star.github.io/Own9/ with status "built".
+
+## PR link and merge result
+
+No PR created (branch identical to main, zero diffs). GitHub Pages already live from main branch.
+
+## Next actions for future sessions
+
+1. If new content is added to a feature branch, create a PR from that branch to main, verify all checks pass, then merge.
+2. The nine DEC-01-blocked requirement lines require NFL express prior written consent before scheduled capture can proceed.
+3. Depth-chart coverage for 29 of 32 clubs remains unverified (club charts are self-labeled unofficial).
+4. No strategy has been certified for prospective use or rewards.
