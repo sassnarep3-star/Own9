@@ -958,3 +958,7 @@ Scope is documentation-only. It does not amend, revalidate, or represent any NFL
 | Task | Status | Owner | Files |
 | --- | --- | --- | --- |
 | Correct stale README build-count annotation and date after confirming the current generated-page and test counts locally; no NFL claims or data changed | done | arena/d6cec1e7-own9 | `README.md`, this section of `COORDINATION.md` |
+
+### d8f11315 — re-measure after merging `origin/main` again (2026-11-18 UTC)
+
+After `origin/main` added `injury-recheck/` (PR #76 and its files) the inherited inventory measured 440 tracked files, not 436. Re-ran the `session-00cf851d` generators on this branch and committed the regenerated output only (`repo_inventory.json`, `index.html`, `repo-review.html`; 436 → 440). Its 47 tests pass. Same precedent as the entry above.
