@@ -966,3 +966,15 @@ Published on `flags.html` (F01–F57 plus session continuations F22–F57): empt
 | Reconcile the published landing-page summary with current project registers and remove its stale fixed date; compare live GitHub Pages with the built repository and add a regression test | in progress | arena/d6cec1e7-own9 | `tools/build.py`, generated `index.html`, `tests/test_site.py`, `COORDINATION.md` |
 
 This is final-integration follow-through: the landing page is a shared output. The live page read during this task showed older values (16 decisions, 22 questions, 16 suggestions) than the current validated registers (21, 24, 21). No NFL evidence or model values are involved; register counts are repository-derived.
+
+### Landing-page reconciliation — implementation complete, publication pending
+
+- Compared the live landing page at https://sassnarep3-star.github.io/Own9/ with `index.html` and `tools/build.py`. The live / repository page was stale: it said 16 decisions, 22 questions and 16 suggestions, while the current validated source registers contain 21, 24 and 21 respectively; it also labeled the overview “As of 04 Nov 2026” despite newer evidence records.
+- Updated `tools/build.py` to render the overview counts from `research/decision-brief.json`, `research/decision-register.json` and `research/suggestions.json`, including current question states and suggestion dispositions. The overview now directs readers to each evidence page for its source date rather than implying one date applies to the whole mixed-date dashboard.
+- Added a regression test that compares generated and committed landing-page output and checks the rendered counts against `engine.registers.validate()`.
+- `python3 tools/build.py` rendered 42 pages. `npm test` passed: 314 tests; root verification found 42 pages and 1,882 source-linked rows; availability, register and local-link checks passed; `git diff --check` passed.
+- No NFL facts or model values were added, edited, or newly marked verified. This is a repository-integrity correction. Public publication and a post-deploy live fetch remain pending.
+
+| Task | Status | Owner | Files |
+| --- | --- | --- | --- |
+| Reconcile the published landing-page summary with current project registers and remove its stale fixed date; compare live GitHub Pages with the built repository and add a regression test | in progress | arena/d6cec1e7-own9 | `tools/build.py`, generated `index.html`, `tests/test_site.py`, `COORDINATION.md` |
