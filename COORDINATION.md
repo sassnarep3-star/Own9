@@ -955,3 +955,8 @@ GitHub Pages: deployed at https://sassnarep3-star.github.io/Own9/ (confirmed bui
 ## Irregularities
 
 Published on `flags.html` (F01–F57 plus session continuations F22–F57): empty price-snapshot store (F34/F42), no executable odds archive (F01/F18), 2006–2018 unlicensed local quote file quarantined (F22), stale results snapshot (F29), no snap-count source (F25), no official depth chart for 29 of 32 clubs (F13/F17/F44/F45), cross-source depth/report conflicts (F20/F35/F51/F52), single-point-in-time injury snapshot (F21/F28/F47), duplicate leaderboard definition in the generator (F39), two price-store implementations (F40). None block the merge; all are flagged with source links for owner review after the site is live.
+### Publication record
+
+- PR [#73](https://github.com/sassnarep3-star/Own9/pull/73) merged to `main` at 2026-11-18 06:37:59 UTC. Merge commit: `50627a9c2e72f436c943d86c8faeffd9f69654b4`.
+- Hosted checks on PR #73 passed: Decision-readiness register, Line-origination desk, Research integrity and site, and static-and-math.
+- The Pages build for the merge commit was observed in `building` state immediately after merge; final deployment status is to be confirmed.
