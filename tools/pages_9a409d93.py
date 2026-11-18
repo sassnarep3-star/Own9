@@ -389,7 +389,7 @@ page('demotion.html', 'Demotion gate', 'A live strategy earns its place every we
            ['Threshold', 'Value', 'Meaning'], _th_rows)
      + table('Behaviour of the gate (synthetic inputs — arithmetic examples, not NFL observations)',
              ['Scenario', 'Decision', 'Reasons recorded'], _ex_rows)
-     + table('Current status', ['Check', 'State'], [
+     + table('Current status', ['Check', 'State', 'Explanation'], [
          row(['Live strategies', 'None', 'No strategy has passed the seven validation gates, so nothing is live to demote'],
              ('repo',), 'Project record'),
          row(['Gate state', 'Defined, armed, never triggered',
