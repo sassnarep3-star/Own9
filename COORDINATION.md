@@ -868,6 +868,7 @@ Scope is documentation-only. It does not amend, revalidate, or represent any NFL
 - Fixed the README's obsolete “19 root pages” command comment (the current root build produces 42 pages) and advanced its repository-count date to 2026-11-18 after a fresh local run.
 - Verified locally with `npm test`: 313 Python tests passed; `tools/verify.py` reported 42 generated pages and 1,882 source-linked rows; availability and register validators passed; `scripts/check_site.py` passed (15 pages, 147 direct-official-source rows, 551 links/resources). `git diff --check` passed.
 - These checks establish repository consistency only. This documentation-only pass added no NFL facts and does not claim a new official-source verification.
+- Rebase encountered a COORDINATION.md conflict because `main` gained the `1728f05f` integration record after this task's claim. Resolved by preserving the complete upstream record and both entries for this session; no unrelated content was discarded.
 - The last GitHub Pages API check before this documentation correction reported `status: built` for commit `3aabe89d88003add759ec031f7fdd33f79b9045a`; this change does not alter built site files.
 
 | Task | Status | Owner | Files |
