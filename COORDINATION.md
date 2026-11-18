@@ -757,3 +757,13 @@ Earlier refresh proved deterministic on the tree through `876bd61` (432 tracked 
 - Session subtree tests: 47 passed. The claim verifier reported 369/369 matching, 0 mismatch, 0 unverifiable; page checker passed (13 pages, 117 tables, 1,431 rows, 473 source-linked, 353 explicitly blank, 203 local links).
 - Root structural verifier: 42 pages, 1,882 source-linked rows. `npm test`: 313 passed, availability and register checks passed, site checker passed (15 pages, 147 direct-source data rows, 551 links/resources). These checks validate code and structure, not factual certification of every claim.
 - PR #68's hosted checks were all passing before this final integration resolution: decision-readiness, origination, research integrity/site, and static-and-math. A fresh hosted run is required on this merge-resolution commit before merge.
+
+# Session `11971707` — claim (branch `arena/11971707-own9`, base `3aabe89` on `main`) — 2026-11-18 UTC
+
+Scope is one unclaimed brief item, checked against the open PRs (#51, #52, #58, #61, #69, #71, #72) and the board above: **"Flag stale depth rows against the official transactions log"** — Baltimore QB (VR-17, VR-26; VQ-07). No other open claim touches it (`grep -i huntley` on the board: no hits).
+
+| Task | Status | Owner | Files |
+| --- | --- | --- | --- |
+| Baltimore QB stale-depth check against official transactions and reserve-list pages; flag rows, no inferred replacement | in progress | 11971707 | `staleness/**` (new only) |
+
+Not claimed here, deliberately: the Texans depth image (DEC-07, needs an authorised structured source), the 32-club depth sweep (DEC-06), the 136-game corpus (DEC-04), the injury time series (DEC-01: NFL.com Terms §1.3), and the root navigation/landing page (integration session only). Manual single-page reads only; no scheduled or systematic retrieval.
