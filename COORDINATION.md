@@ -758,6 +758,40 @@ Earlier refresh proved deterministic on the tree through `876bd61` (432 tracked 
 - Root structural verifier: 42 pages, 1,882 source-linked rows. `npm test`: 313 passed, availability and register checks passed, site checker passed (15 pages, 147 direct-source data rows, 551 links/resources). These checks validate code and structure, not factual certification of every claim.
 - PR #68's hosted checks were all passing before this final integration resolution: decision-readiness, origination, research integrity/site, and static-and-math. A fresh hosted run is required on this merge-resolution commit before merge.
 
+## Session `ed9c8761` — claim (branch `arena/ed9c8761-own9`, base `3aabe89` on `main`) — 2026-11-18 UTC
+
+Branch name is fixed by the platform; this session works only on `arena/ed9c8761-own9`.
+
+| Task | Status | Owner | Files |
+| --- | --- | --- | --- |
+| Line-by-line re-check of the published Week 10 2026 injury-snapshot rows against the live official NFL page (Lions, Seattle, Cincinnati, Washington, Drew Lock, Malik Willis) with a machine-compared verdict per row | in progress | ed9c8761 | `injury-recheck/**` (new), `README.md` (one section appended), `COORDINATION.md` (append-only) |
+
+Not claimed, deliberately: the full 279-row count and the 2-section check (requires transcribing every official row; not done this session and left as an open item), Week 11 capture, every other brief item. Navigation (`tools/build.py`) is not edited; the integration session should add a link to `injury-recheck/index.html`.
+
+### ed9c8761 — completion record (2026-11-18 UTC)
+
+**Status:** the re-check task is **done** for the scope above. Full-report count not done (open).
+
+**Sources read (official, 2026-11-18 UTC):**
+- https://www.nfl.com/injuries/league/2026/REG10 — chunks 0–6 read; Lions table in chunk 0, Commanders in chunk 0, Dolphins in chunk 3, Seahawks and 49ers in chunks 4–5, Bengals in chunk 5, news list in chunk 6.
+- https://www.nfl.com/injuries/ — read chunk 0; the page now shows Week 11 (Thu 19 Nov first).
+- https://www.nfl.com/news/dolphins-place-qb-malik-willis-groin-on-injured-reserve-kyle-mccord-in-line-for-first-start (headline only, from the chunk-6 news list)
+- https://www.nfl.com/news/drew-lock-no-injury-designation-seahawks-raiders (headline only, from the chunk-6 news list)
+- https://www.nfl.com/legal/terms/ — section 1.3 read (systematic retrieval prohibited) — why this session did not automate capture.
+
+**Results (13 rows, computed):** 12 match, 1 consistent. No mismatch. Lions Joseph, Mays and Reed read **Out** on both sides. Seattle and Cincinnati are present in the repo table; the brief's "injury-free" wording is stale.
+
+**Irregularities (on `injury-recheck/index.html`, RC-01 to RC-05):** Week 11 title on the Week 10 URL; the repo's "retrieved 14 Nov" conflicts with the capture manifest's 16 Nov; 160 / 347 / 254 / 279 row totals unreconciled; the source is not an archive.
+
+**Checks run:** `python3 injury-recheck/build.py` (13 rows, 0 disagreements); `python3 -m unittest discover -s injury-recheck/tests` (8 tests); `python3 tools/build.py` (no root page changes expected); `python3 tools/verify.py`; `python3 -m unittest discover -s tests`.
+
+**Shared files touched:** `README.md` (one section appended), `COORDINATION.md` (append-only). No change to `tools/build.py`, `injuries.html`, `flags.html` or any other session's files. The integration session should add a navigation link to `injury-recheck/index.html` and record RC-01 to RC-05 on the Flagged for Review page.
+
+**Not done, deliberately:** scheduled capture (NFL Terms section 1.3); the full-report count; Week 11 verification; the other brief items (depth image, 32-club sweep, backtests, pre-registration, per-team view, etc.), which need owner decisions or data this environment cannot reach.
+
+### ed9c8761 — edit to another session's tree (logged, not silent)
+
+Adding four tracked files under `injury-recheck/` changed the measured `tracked_files` in `session-00cf851d` from 432 to 436 (the `static-and-math` job re-measures it). I ran that session's own generator (`analysis.py`, `results_audit.py`, `make_ingest.py`, `build.py`) and committed its output: only `session-00cf851d/data/repo_inventory.json`, `session-00cf851d/index.html` and `session-00cf851d/repo-review.html` changed, by that one count. No judgement, source or row was touched. Same precedent as 4bd7042b.
 ## Session `c7635cce` — review, verification and coordination record (branch `arena/c7635cce-own9`, base `3aabe89` on `main`) — 2026-11-18 UTC
 
 **Scope claim:** `COORDINATION.md` only. Shared outputs (root pages, `tools/build.py`, navigation, `data/**`, `decision-desk/**`) are not edited here; they belong to the integration session. Branch naming follows the platform rule (`arena/c7635cce-own9`), not the `session-<id>/<task>` form in the brief, because this session may only work on its assigned branch.

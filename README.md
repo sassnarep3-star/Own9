@@ -460,3 +460,15 @@ cross-links all three. Recorded as flag **DD-14** and owner decision **O06**.
 Status counts on this register: 16 met, 33 partial, 17 not started, 5 blocked by permission,
 2 rejected by design. No strategy on this desk has earned a stake, and no edge is claimed.
 trigger pages rebuild
+
+## Week 10 injury rows re-checked against the official report (`injury-recheck/`, 18 Nov 2026, session `ed9c8761`)
+
+[injury-recheck/index.html](injury-recheck/index.html) compares 13 official Week 10 rows, read from the
+[NFL.com Week 10 2026 injury report](https://www.nfl.com/injuries/league/2026/REG10) on 2026-11-18 (UTC), with the
+snapshot table on [injuries.html](injuries.html). Verdicts are computed by `injury-recheck/build.py`. Result: 12 rows
+match field for field, and the Drew Lock row is consistent (no game status, so absent from the table by design).
+The Lions Out designations the brief called blank (Joseph, Mays, Reed) are present and read Out on the official page.
+Seattle (4 Out) and Cincinnati (4 with a game status) are present in the table, so the earlier "shown as injury-free" finding does not reproduce.
+Four irregularities are logged there (a "Week 11" title on the Week 10 URL, a retrieval-date conflict of 14 vs 16 Nov, unreconciled row totals,
+and the non-archival nature of the source). The full 279-row count is **not** done.
+Reproduce: `python3 injury-recheck/build.py && python3 -m unittest discover -s injury-recheck/tests`.
