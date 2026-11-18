@@ -915,8 +915,8 @@ No NFL data, prices, lines, depths, snap counts or designations were fabricated 
 ## PR and merge
 
 PR: https://github.com/sassnarep3-star/Own9/pull/78 (arena/7b640fc8-own9 → main)
-Merge: completed below
-GitHub Pages: deployed at https://sassnarep3-star.github.io/Own9/ (confirmed built after merge, see merge result below)
+Merge: merged to `main` at `b6a067ed30535d5324131bb9b53e221ee0493074` via `gh pr merge 78 --merge` (no approval wait, per instruction)
+GitHub Pages: `status: built`, `html_url: https://sassnarep3-star.github.io/Own9/` — rebuild confirmed after the merge
 
 ## Irregularities
 
