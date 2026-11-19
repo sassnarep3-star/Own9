@@ -1134,11 +1134,30 @@ Branch name is fixed by the platform; this session works only on `arena/fc038adc
 
 | Task | Status | Owner | Files |
 | --- | --- | --- | --- |
-| Final line-by-line verification of the committed root site (build, tests, links, registers, official-source links) and completion of G-08: pull request, merge and Pages deployment for the integration | in progress | fc038adc | `COORDINATION.md` (append-only session record) |
+| Final line-by-line verification of the committed root site (build, tests, links, registers, official-source links) and completion of G-08: pull request, merge and Pages deployment for the integration | done | fc038adc | `COORDINATION.md` (append-only session record) |
 
 Not claimed here, deliberately: every NFL-data feature (origination desk, injury capture, depth charts, backtest corpus, pre-registration) which is either owned by a completed session (`origination/**`), blocked by NFL.com Terms section 1.3 (DEC-01; systematic retrieval prohibited without express prior written consent), or blocked by missing official data (no executable odds archive, no snap counts, no verified depth chart for all 32 clubs). This session performs structural verification only and adds no NFL facts or model outputs.
 
-### `fc038adc` — completion record (to be filled on completion)
+### `fc038adc` — completion record (2026-11-19 UTC)
 
-*Pending:* final verification results, PR number, merge result, GitHub Pages deployment confirmation, and the PR link recorded here.
+**Status change against the claim above:** final-integration task **done**; G-08 (pull request, merge and Pages deployment for the integration) **complete**.
+
+**Verification (all green on the merged head `c67dcf5d`):**
+- `python3 tools/build.py` -> 42 fresh pages
+- `python3 tools/verify.py` -> PASS: 42 pages, 1882 source-linked rows; local assets/fragments; nav landmarks; empirical blanks
+- `python3 -m unittest discover -s tests` -> OK: 315 tests
+- `python3 scripts/check_site.py` -> PASS: 15 pages, 147 official-source rows, 551 links/resources; no broken local targets or fragments
+- `python3 engine/registers.py` -> PASS: registers valid (21 suggestions, 21 decisions, 24 questions)
+- `python3 engine/availability.py` -> PASS
+- GitHub Pages -> status: built, source branch `main`, html_url https://sassnarep3-star.github.io/Own9/
+
+**Publication:**
+- **PR:** https://github.com/sassnarep3-star/Own9/pull/86 (`arena/fc038adc-own9` -> `main`)
+- **Merge:** merged without waiting for approval, merge commit `c67dcf5d68bc09e490dce7ec5921620611e441f3` (`gh pr merge 86 --merge`)
+- **All four hosted checks passed before merge:** Decision-readiness register checks, Line-origination desk checks, static-and-math (Research quality), Research integrity and site checks.
+- **GitHub Pages:** deployment succeeded; `status: built` at https://sassnarep3-star.github.io/Own9/ (confirmed via the Pages API after the build transitioned from `building` to `built`).
+
+**Scope:** additive only; no NFL data, model outputs, `origination/` files, or other-session directories were touched. This session performed structural verification only and added no NFL facts or model outputs.
+
+**Not claimed here (blocked or owned elsewhere):** every NFL-data feature — the origination desk (completed session), scheduled injury capture / depth charts / backtest corpus / pre-registration (blocked by NFL.com Terms section 1.3, DEC-01; or by missing official data: no executable odds archive, no snap counts, no verified depth chart for all 32 clubs). These remain documented on `flags.html` and the decision-readiness register; none block this merge.
 
