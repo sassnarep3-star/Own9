@@ -1135,3 +1135,17 @@ python3 tools/build.py && git diff --check               # nav-only diff, clean
 - **Checks on the verified head `cdb6e1d`:** Decision-readiness register checks: pass. Line-origination desk checks: pass. Research integrity and site checks: pass. static-and-math: pass.
 - **GitHub Pages:** latest Pages build reports `built` at the merge commit (build created 2026-11-19T12:17:37Z, updated 2026-11-19T12:18:16Z). Live landing page https://sassnarep3-star.github.io/Own9/ serves the current registers (21 decisions, 24 questions, 21 suggestions); live https://sassnarep3-star.github.io/Own9/team-view/index.html renders all 32 club rows with source links. The new root-navigation entry ("Per-team view") is in the merged `index.html` (verified in the merge commit; the page reader's markdown view omits header navigation, so the link is confirmed from the committed file and the passing `tools/verify.py` local-link check, not from the reader).
 - **Still not done, by design:** Week 10 capture reconciliation (TV-01); starters out and replacements named (DEC-06 and RV-05); 32-club depth sweep, Texans depth image, opening prices, 136-game corpus, snap counts, reserve list, and any scheduled capture (DEC-01). Each remains blocked as recorded in the completion record above. Flagged irregularities IR-FC01–IR-FC03 do not block the merge and remain published here for owner review after the site is live.
+
+# Session `fc038adc` — claim (branch `arena/fc038adc-own9`, base `4eefb0b34c38ef8c717a5f55f83895a24f0faee4` on `main`) — 2026-11-19 UTC
+
+Branch name is fixed by the platform; this session works only on `arena/fc038adc-own9`. Scope is additive and disjoint from every claim above.
+
+| Task | Status | Owner | Files |
+| --- | --- | --- | --- |
+| Final line-by-line verification of the committed root site (build, tests, links, registers, official-source links) and completion of G-08: pull request, merge and Pages deployment for the integration | in progress | fc038adc | `COORDINATION.md` (append-only session record) |
+
+Not claimed here, deliberately: every NFL-data feature (origination desk, injury capture, depth charts, backtest corpus, pre-registration) which is either owned by a completed session (`origination/**`), blocked by NFL.com Terms section 1.3 (DEC-01; systematic retrieval prohibited without express prior written consent), or blocked by missing official data (no executable odds archive, no snap counts, no verified depth chart for all 32 clubs). This session performs structural verification only and adds no NFL facts or model outputs.
+
+### `fc038adc` — completion record (to be filled on completion)
+
+*Pending:* final verification results, PR number, merge result, GitHub Pages deployment confirmation, and the PR link recorded here.
