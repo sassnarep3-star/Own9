@@ -6,9 +6,9 @@ An auditable NFL research workspace covering line origination, singles, parlays,
 player-prop combos, seven validation gates, a proposed competition, correlation
 requirements, official source scopes and a published review register.
 
-As of 2026-11-18, the root dashboard builds 42 generated HTML pages (`tools/build.py`); the separately
+As of 2026-11-19, the root dashboard builds 42 generated HTML pages (`tools/build.py`); the separately
 maintained linked research desks have their own pages and checks. The root verifier reports 1,882
-source-linked rows. The root suite contains 314 Python unit tests (`python3 -m unittest discover -s tests`);
+source-linked rows. The root suite contains 315 Python unit tests (`python3 -m unittest discover -s tests`);
 these counts describe repository structure and software checks, not NFL strategy validation.
 
 ## Start with the decisions, not the archive
@@ -59,7 +59,7 @@ these counts describe repository structure and software checks, not NFL strategy
   from the 14 Nov 2026 integration, a costed suggestion sheet (18 items, 4 candidate paths),
   a question ledger (32 questions, 7 discovery probes), an official availability-source
   register with two checked absences, and a measured
-  audit of the committed market-lines file. The root suite has 313 Python tests; the root site
+  audit of the committed market-lines file. The root suite has 315 Python tests; the root site
   verifier checks 1,882 source-linked rows. These are software and structure checks, not evidence
   of predictive skill.
 - **Not established:** an NFL edge, a numerical NFL line, empirical correlation, completed
