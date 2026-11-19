@@ -1127,3 +1127,18 @@ python3 tools/build.py && git diff --check               # nav-only diff, clean
 ```
 
 **Publication:** PR opened from `arena/fcbf31a3-own9` to `main` and merged without waiting for approval, per the brief. Hosted checks and the Pages build are confirmed after the merge; the PR link and merge result are recorded in the follow-up COORDINATION entry (same branch, second PR), following the PR #75 → #84 precedent.
+
+# Session `fc038adc` — claim (branch `arena/fc038adc-own9`, base `4eefb0b34c38ef8c717a5f55f83895a24f0faee4` on `main`) — 2026-11-19 UTC
+
+Branch name is fixed by the platform; this session works only on `arena/fc038adc-own9`. Scope is additive and disjoint from every claim above.
+
+| Task | Status | Owner | Files |
+| --- | --- | --- | --- |
+| Final line-by-line verification of the committed root site (build, tests, links, registers, official-source links) and completion of G-08: pull request, merge and Pages deployment for the integration | in progress | fc038adc | `COORDINATION.md` (append-only session record) |
+
+Not claimed here, deliberately: every NFL-data feature (origination desk, injury capture, depth charts, backtest corpus, pre-registration) which is either owned by a completed session (`origination/**`), blocked by NFL.com Terms section 1.3 (DEC-01; systematic retrieval prohibited without express prior written consent), or blocked by missing official data (no executable odds archive, no snap counts, no verified depth chart for all 32 clubs). This session performs structural verification only and adds no NFL facts or model outputs.
+
+### `fc038adc` — completion record (to be filled on completion)
+
+*Pending:* final verification results, PR number, merge result, GitHub Pages deployment confirmation, and the PR link recorded here.
+
