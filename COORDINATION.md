@@ -1128,6 +1128,14 @@ python3 tools/build.py && git diff --check               # nav-only diff, clean
 
 **Publication:** PR opened from `arena/fcbf31a3-own9` to `main` and merged without waiting for approval, per the brief. Hosted checks and the Pages build are confirmed after the merge; the PR link and merge result are recorded in the follow-up COORDINATION entry (same branch, second PR), following the PR #75 → #84 precedent.
 
+### fcbf31a3 — PR #85 merge and Pages publication record (2026-11-19 UTC)
+
+- **PR:** https://github.com/sassnarep3-star/Own9/pull/85 (`arena/fcbf31a3-own9` → `main`)
+- **Merge:** merged with `gh pr merge 85 --merge` at 2026-11-19T12:17:36Z, merge commit `65428b6be4c086079321769ce087508791b20120`, without waiting for approval.
+- **Checks on the verified head `cdb6e1d`:** Decision-readiness register checks: pass. Line-origination desk checks: pass. Research integrity and site checks: pass. static-and-math: pass.
+- **GitHub Pages:** latest Pages build reports `built` at the merge commit (build created 2026-11-19T12:17:37Z, updated 2026-11-19T12:18:16Z). Live landing page https://sassnarep3-star.github.io/Own9/ serves the current registers (21 decisions, 24 questions, 21 suggestions); live https://sassnarep3-star.github.io/Own9/team-view/index.html renders all 32 club rows with source links. The new root-navigation entry ("Per-team view") is in the merged `index.html` (verified in the merge commit; the page reader's markdown view omits header navigation, so the link is confirmed from the committed file and the passing `tools/verify.py` local-link check, not from the reader).
+- **Still not done, by design:** Week 10 capture reconciliation (TV-01); starters out and replacements named (DEC-06 and RV-05); 32-club depth sweep, Texans depth image, opening prices, 136-game corpus, snap counts, reserve list, and any scheduled capture (DEC-01). Each remains blocked as recorded in the completion record above. Flagged irregularities IR-FC01–IR-FC03 do not block the merge and remain published here for owner review after the site is live.
+
 # Session `fc038adc` — claim (branch `arena/fc038adc-own9`, base `4eefb0b34c38ef8c717a5f55f83895a24f0faee4` on `main`) — 2026-11-19 UTC
 
 Branch name is fixed by the platform; this session works only on `arena/fc038adc-own9`. Scope is additive and disjoint from every claim above.
