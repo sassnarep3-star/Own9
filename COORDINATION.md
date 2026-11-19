@@ -1076,6 +1076,58 @@ Initial audit of committed root HTML found mismatched row/header counts on `demo
 - PR #74 was merged to `main` at 2026-11-18 06:50:41 UTC as merge commit `8e2bae011488b6a274bb3748023f441482ff2194`. Hosted decision-readiness, origination, research-integrity/site and static-and-math checks passed. The post-merge Pages workflow passed; GitHub Pages API returned `status: built` for `https://sassnarep3-star.github.io/Own9/`.
 | Reconcile the published landing-page summary with current project registers and remove its stale fixed date; compare live GitHub Pages with the built repository and add a regression test | done | arena/d6cec1e7-own9 | `tools/build.py`, generated `index.html`, `tests/test_site.py`, `COORDINATION.md` |
 
+# Session `fcbf31a3` — final integration and live verification (branch `arena/fcbf31a3-own9`, base `4eefb0b` on `main`, 2026-11-19 UTC)
+
+Branch name is fixed by the platform; the `session-<id>/<task>` naming in the brief is not used because this session may only work on its assigned branch. Scope is additive and disjoint from every claim above. No new files are added, so the `session-00cf851d` tracked-file inventory counts are unchanged.
+
+| Task | Status | Owner | Files |
+| --- | --- | --- | --- |
+| Final integration: link the orphaned per-team view (`team-view/`) from the root navigation (remit noted by session `d8f11315`); correct stale README test-count/date annotations; re-verify the combined site line by line against official sources; confirm no broken local links; PR, merge, confirm Pages | in progress | fcbf31a3 | `tools/build.py` (one `NAV_GROUPS` entry), regenerated root `*.html` (42 pages, nav line only), `README.md` (counts/date), `COORDINATION.md` (append-only) |
+
+**Not in this scope, deliberately:** the 32-club depth sweep (DEC-06), Texans depth image (DEC-07), opening prices (RV-03), 136-game pre-registered corpus (DEC-04), snap counts, inactive-list history, reserve list, and any scheduled capture (DEC-01). Each is blocked by an owner decision or by NFL.com Terms §1.3 (re-read 2026-11-19, see completion record). Open PRs #38, #51, #52, #61, #69 are other sessions' branches with failing checks; this session will not edit their files and will not merge a broken site.
+
+**Baseline checked before claiming (2026-11-19):** `main` at `4eefb0b`; Pages `built` at that commit (build 1380176612). Local: `python3 -m unittest discover -s tests` — 315 tests OK; `python3 tools/verify.py` — PASS (42 pages, 1,882 source-linked rows); `python3 scripts/check_site.py` — PASS (15 pages, 147 rows, 551 links); `python3 engine/availability.py` and `python3 engine/registers.py` — valid; `python3 origination/tools/verify.py` — PASS; `python3 readiness/tools/build.py --check` — valid; `python3 decision-desk/tools/verify.py` — 1,170 checks passed; `team-view` tests — 10 OK. Zero broken local targets in root `*.html` and `site/*.html` (independent scan). Live landing page fetched via the page reader shows the current registers (21 decisions, 24 questions, 21 suggestions), matching the repository.
+
+### fcbf31a3 — completion record (2026-11-19 UTC)
+
+**Status change against the claim above:** final-integration task **done**, pending PR merge and Pages confirmation (see Publication below).
+
+**What changed (no new files, no NFL values added or edited):**
+- `tools/build.py`: one `NAV_GROUPS` entry — `team-view/index.html` ("Per-team view") added to the Evidence group after "Injuries & depth". This closes the orphan noted by session `d8f11315` ("the root navigation and landing-page link to `team-view/` (integration session's remit)"). The per-team view itself was not edited.
+- 42 root `*.html` regenerated with `python3 tools/build.py`. Verified by `git diff`: each page differs only in that one navigation line; no table, value, or source link changed.
+- `README.md`: stale annotations corrected to measured values — root suite 314/313 → **315** tests (two places), "As of 2026-11-18" → **2026-11-19**. The 42-page and 1,882-row counts were already correct and are unchanged. No test asserts these README strings (checked), so this is a documentation correction only.
+
+**Sources read on 2026-11-19 (official, via the page reader; no systematic capture, per DEC-01):**
+- https://www.nfl.com/injuries/ — live page now shows **"Week 11 of the 2026 Season"** (Thursday 19 Nov IND @ HOU). Colts table: 11 rows; Texans table: 15 rows. Row counts match `team-view/data/week11.json` (IND 11, HOU 15, read 2026-11-18). Practice splits and game statuses on the live page differ from the stored counts (live IND reads DNP 8 / LP 1 / FP 2 with 5 Out and 4 Questionable; stored IND reads DNP 8 / LP 2 / FP 1 with all blank. Live HOU reads DNP 5 / LP 0 / FP 10 with 4 Out and 3 Questionable; stored HOU reads DNP 6 / LP 1 / FP 8 with all blank). This is recorded as **superseded, not as a read error**: the stored snapshot is a Wednesday (2026-11-18) point-in-time read and the live page is Thursday game-day (2026-11-19), when game statuses are published. Without the retained 2026-11-18 capture (hash + timestamp), the Wednesday→Thursday delta cannot be attributed — which is exactly the brief's immutable-snapshot requirement. `team-view/` is therefore stale for game-day use and must not be treated as current. No values were overwritten.
+- https://www.nfl.com/schedules/2026/REG11/ — "Teams on Bye": ATL, CLE, GB, LAR, NE, SEA. Matches `team-view` `EXPECTED_BYES` exactly. Thursday fixture: Colts at Texans, 19 Nov, 8:15 PM, PRIME — matches the injury-page header.
+- https://www.nfl.com/legal/terms/ — **Updated: May 16, 2024**, §1.3: *"Systematic retrieval of data or other content from the Services, whether to create or compile, directly or indirectly, a collection, compilation, database, or directory, is prohibited absent our express prior written consent."* Unchanged from the 2026-11-16 read. DEC-01 default ("no systematic capture") therefore still applies; no scraper, scheduled capture, or bulk download was built in this session.
+
+**Irregularities (published here, not blocking; the site's Flagged for Review page remains the canonical register):**
+- IR-FC01 (medium): root `injuries.html` and related Week 10 tables are stale against the live Week 11 report. Already flagged as RV-04–RV-07 / D-13; re-confirmed 2026-11-19. Not refreshed here because a full 32-club player-level re-transcription was not claimed and must not be done by eye from a live page without the snapshot ledger the brief requires.
+- IR-FC02 (medium): `team-view/` Week 11 counts are superseded for game-day (see above). The page is correctly dated 2026-11-18 and now linked from the root navigation; readers must treat it as a Wednesday snapshot, not a Thursday status. A refresh requires a new dated read with retained hash, not an edit in place.
+- IR-FC03 (low): README historical counts ("costed suggestion sheet (18 items…)", "question ledger (32 questions…)") describe the 14 Nov 2026 integration snapshot, not the current registers (21 suggestions, 24 questions). Left as historical description; the current registers are reported by `engine/registers.py` and rendered on the landing page. Flagged so a future reader does not mistake them for current counts.
+- Open PRs #38, #51, #52, #61, #69 remain unmerged: each has at least one failing hosted check (`static-and-math` or Research integrity). PR #69's failure is the known `session-00cf851d` inventory re-measurement (it adds files without regenerating that session's inventory). Per the brief ("Do not merge a broken site"), none was merged by this session. PRs #58 and #72 pass all hosted checks but belong to other sessions' branches; this session did not merge them either, to keep scopes non-overlapping.
+
+**Checks run (all passing, 2026-11-19):**
+```sh
+python3 -m unittest discover -s tests                    # 315 tests OK
+python3 tools/verify.py                                  # PASS: 42 pages, 1,882 rows
+python3 scripts/check_site.py                            # PASS: 15 pages, 147 rows, 551 links
+python3 engine/availability.py && python3 engine/registers.py   # valid
+python3 origination/tools/verify.py                      # PASS: 12 pages, 442 rows
+python3 readiness/tools/build.py --check                 # valid, 82 requirements
+python3 decision-desk/tools/verify.py                    # 1,170 checks passed
+python3 -m unittest discover -s team-view/tests          # 10 tests OK
+python3 team-view/build.py --check                       # PASS: 32 clubs, 6 byes
+python3 session-00cf851d/tools/analysis.py               # 369 match, 0 mismatch
+python research/make_catalog.py && python scripts/build_site.py   # no diff (site/ fresh)
+python3 origination/tools/run.py && python3 origination/tools/build.py  # no diff (deterministic)
+python3 tools/build.py && git diff --check               # nav-only diff, clean
+# independent scan: 0 broken local targets in root *.html and site/*.html
+```
+
+**Publication:** PR opened from `arena/fcbf31a3-own9` to `main` and merged without waiting for approval, per the brief. Hosted checks and the Pages build are confirmed after the merge; the PR link and merge result are recorded in the follow-up COORDINATION entry (same branch, second PR), following the PR #75 → #84 precedent.
+
 # Session `fc038adc` — claim (branch `arena/fc038adc-own9`, base `4eefb0b34c38ef8c717a5f55f83895a24f0faee4` on `main`) — 2026-11-19 UTC
 
 Branch name is fixed by the platform; this session works only on `arena/fc038adc-own9`. Scope is additive and disjoint from every claim above.
@@ -1089,3 +1141,4 @@ Not claimed here, deliberately: every NFL-data feature (origination desk, injury
 ### `fc038adc` — completion record (to be filled on completion)
 
 *Pending:* final verification results, PR number, merge result, GitHub Pages deployment confirmation, and the PR link recorded here.
+
