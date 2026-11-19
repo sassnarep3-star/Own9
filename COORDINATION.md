@@ -1075,3 +1075,17 @@ Initial audit of committed root HTML found mismatched row/header counts on `demo
 - **Still not done, by design:** the root navigation and landing-page link to `team-view/` (integration session's remit); the Week 10 capture reconciliation (TV-01); starters out and replacements named (DEC-06 and RV-05).
 - PR #74 was merged to `main` at 2026-11-18 06:50:41 UTC as merge commit `8e2bae011488b6a274bb3748023f441482ff2194`. Hosted decision-readiness, origination, research-integrity/site and static-and-math checks passed. The post-merge Pages workflow passed; GitHub Pages API returned `status: built` for `https://sassnarep3-star.github.io/Own9/`.
 | Reconcile the published landing-page summary with current project registers and remove its stale fixed date; compare live GitHub Pages with the built repository and add a regression test | done | arena/d6cec1e7-own9 | `tools/build.py`, generated `index.html`, `tests/test_site.py`, `COORDINATION.md` |
+
+# Session `fc038adc` — claim (branch `arena/fc038adc-own9`, base `4eefb0b34c38ef8c717a5f55f83895a24f0faee4` on `main`) — 2026-11-19 UTC
+
+Branch name is fixed by the platform; this session works only on `arena/fc038adc-own9`. Scope is additive and disjoint from every claim above.
+
+| Task | Status | Owner | Files |
+| --- | --- | --- | --- |
+| Final line-by-line verification of the committed root site (build, tests, links, registers, official-source links) and completion of G-08: pull request, merge and Pages deployment for the integration | in progress | fc038adc | `COORDINATION.md` (append-only session record) |
+
+Not claimed here, deliberately: every NFL-data feature (origination desk, injury capture, depth charts, backtest corpus, pre-registration) which is either owned by a completed session (`origination/**`), blocked by NFL.com Terms section 1.3 (DEC-01; systematic retrieval prohibited without express prior written consent), or blocked by missing official data (no executable odds archive, no snap counts, no verified depth chart for all 32 clubs). This session performs structural verification only and adds no NFL facts or model outputs.
+
+### `fc038adc` — completion record (to be filled on completion)
+
+*Pending:* final verification results, PR number, merge result, GitHub Pages deployment confirmation, and the PR link recorded here.
